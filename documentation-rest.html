@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Talend Component Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="/css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="/css/documentation.css">
+    <link rel="shortcut icon" href="/images/favicon_0.ico" />
+    <style>
+    body{padding-top:50px}body>.navbar{-webkit-transition:background-color .3s ease-in;transition:background-color .3s ease-in}@media (min-width:768px){body>.navbar-transparent{background-color:transparent}body>.navbar-transparent .navbar-nav>.open>a{background-color:transparent!important}}#home{padding-top:0}#home .navbar-brand{padding:13.5px 15px 12.5px}#home .navbar-brand>img{display:inline;margin:0 10px;height:100%}#banner{min-height:300px;border-bottom:none}.table-of-contents{margin-top:1em}.page-header h1{font-size:4em}.bs-docs-section{margin-top:6em}.bs-docs-section h1{padding-top:100px}.bs-component{position:relative}.bs-component .modal{position:relative;top:auto;right:auto;left:auto;bottom:auto;z-index:1;display:block}.bs-component .modal-dialog{width:90%}.bs-component .popover{position:relative;display:inline-block;width:220px;margin:20px}#source-button{position:absolute;top:0;right:0;z-index:100;font-weight:700}.progress{margin-bottom:10px}footer{margin:5em 0}footer li{float:left;margin-right:1.5em;margin-bottom:1.5em}footer p{clear:left;margin-bottom:0}.splash{padding:9em 0 2em;background-color:#141d27;background-image:url(../img/bg.jpg);background-size:cover;background-attachment:fixed;color:#fff;text-align:center}.splash .logo{width:160px}.splash h1{font-size:3em}.splash #social{margin:2em 0}.splash .alert{margin:2em 0}.section-tout{padding:4em 0 3em;border-bottom:1px solid rgba(0,0,0,.05);background-color:#eaf1f1}.section-tout .fa{margin-right:.5em}.section-tout p{margin-bottom:3em}.section-preview{padding:4em 0 4em}.section-preview .preview{margin-bottom:4em;background-color:#eaf1f1}.section-preview .preview .image{position:relative}.section-preview .preview .image:before{box-shadow:inset 0 0 0 1px rgba(0,0,0,.1);position:absolute;top:0;left:0;width:100%;height:100%;content:"";pointer-events:none}.section-preview .preview .options{padding:1em 2em 2em;border:1px solid rgba(0,0,0,.05);border-top:none;text-align:center}.section-preview .preview .options p{margin-bottom:2em}.section-preview .dropdown-menu{text-align:left}.section-preview .lead{margin-bottom:2em}@media (max-width:767px){.section-preview .image img{width:100%}}.sponsor #carbonads{max-width:240px;margin:0 auto}.sponsor .carbon-text{display:block;margin-top:1em;font-size:12px}.sponsor .carbon-poweredby{float:right;margin-top:1em;font-size:10px}@media (max-width:767px){.splash{padding-top:4em}.splash .logo{width:100px}.splash h1{font-size:2em}#banner{margin-bottom:2em;text-align:center}}
+    </style>
+  </head>
+  <body>
+    <a class="github-fork-ribbon" target="_blank"
+        href="https://github.com/talend/component-runtime" data-ribbon="Fork me on GitHub"
+        title="Fork me on GitHub">Fork me on GitHub</a>
+    <div class="col-sm-offset-1 col-sm-10">
+
+	
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">Components</a>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="entries">Documentation <span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="entries">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/documentation-overview.html">Overview</a></li>
+            <li><a href="/getting-started.html">Getting Started</a></li>
+            <li><a href="/documentation.html">Reference</a></li>
+            <li><a href="/best-practices.html">Best Practices</a></li>
+            <li><a href="/documentation-testing.html">Testing</a></li>
+            <li><a href="/documentation-rest.html">REST API</a></li>
+            <li><a href="/wrapping-a-beam-io.html">How to wrap a Beam I/O</a></li>
+            <li><a href="/studio.html">Studio Integration</a></li>
+            <li><a href="/appendix.html">Appendix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container section-padded">
+        <div class="row title">
+            <div class='page-header'>
+              <h2>Talend Component REST API Documentation</h2>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_rest_api">1. REST API</a>
+<ul class="sectlevel2">
+<li><a href="#_rest_resources_of_component_runtime_server">1.1. REST resources of Component Runtime :: Server</a></li>
+<li><a href="#_websocket_transport">1.2. WebSocket transport</a></li>
+</ul>
+</li>
+<li><a href="#_web_forms_and_rest_api">2. Web forms and REST API</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_rest_api">1. REST API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The REST API intends to expose over HTTP most of Talend Component features, it is a standalone Java HTTP server.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+WebSocket protocol is activated for the endpoints as well, instead of <code>/api/v1</code> they uses the base <code>/websocket/v1</code>, see WebSocket part for more details.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here is the API:</p>
+</div>
+<div class="sect2">
+<h3 id="_rest_resources_of_component_runtime_server">1.1. REST resources of Component Runtime :: Server</h3>
+<div class="paragraph">
+<p>1.0.0-SNAPSHOT</p>
+</div>
+<div class="sect3">
+<h4 id="_code_post_api_v1_action_execute_code">1.1.1. <code>POST api/v1/action/execute</code></h4>
+<div class="sect4">
+<h5 id="_request">Request</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code><br>
+<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
+<strong>Query Param</strong>: <code>action</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>type</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>java.lang.RuntimeException</code>)</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_400_bad_request_code"><code>400 Bad Request</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|ICON_MISSING|PLUGIN_MISSING</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_404_not_found_code"><code>404 Not Found</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|ICON_MISSING|PLUGIN_MISSING</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_action_index_code">1.1.2. <code>GET api/v1/action/index</code></h4>
+<div class="sect4">
+<h5 id="_request_2">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Query Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>type</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_2">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_2"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ActionList</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>items</span><span style="color:#404">&quot;</span></span>: [
+        {
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>component</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
+                {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
+                    },
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>path</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>validation</span><span style="color:#404">&quot;</span></span>: {
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>enumValues</span><span style="color:#404">&quot;</span></span>: [
+                            <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                        ],
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>max</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>maxItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>maxLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>min</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>minItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>minLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>pattern</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>required</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>uniqueItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>
+                    }
+                }
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_details_code">1.1.3. <code>GET api/v1/component/details</code></h4>
+<div class="sect4">
+<h5 id="_request_3">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Query Param</strong>: <code>identifiers</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_3">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_3"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentDetailList</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>details</span><span style="color:#404">&quot;</span></span>: [
+        {
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>actions</span><span style="color:#404">&quot;</span></span>: [
+                {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>family</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
+                        {
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
+                            },
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>path</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>validation</span><span style="color:#404">&quot;</span></span>: {
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>enumValues</span><span style="color:#404">&quot;</span></span>: [
+                                    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                                ],
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>max</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>maxItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>maxLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>min</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>minItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>minLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>pattern</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>required</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>uniqueItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>
+                            }
+                        }
+                    ],
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                }
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>icon</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span>: {
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>family</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>plugin</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+            },
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>links</span><span style="color:#404">&quot;</span></span>: [
+                {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>contentType</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>path</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                }
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
+                {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
+                    },
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>path</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>validation</span><span style="color:#404">&quot;</span></span>: {
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>enumValues</span><span style="color:#404">&quot;</span></span>: [
+                            <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                        ],
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>max</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>maxItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>maxLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>min</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>minItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>minLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>pattern</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>required</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>uniqueItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>
+                    }
+                }
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>version</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_400_bad_request_code_2"><code>400 Bad Request</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, org.talend.sdk.component.server.front.model.error.ErrorPayload&gt;</code>)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_icon_id_code">1.1.4. <code>GET api/v1/component/icon/{id}</code></h4>
+<div class="sect4">
+<h5 id="_request_4">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_4">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_4"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_404_not_found_code_2"><code>404 Not Found</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|ICON_MISSING|PLUGIN_MISSING</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_index_code">1.1.5. <code>GET api/v1/component/index</code></h4>
+<div class="sect4">
+<h5 id="_request_5">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_5">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_5"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentIndices</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>components</span><span style="color:#404">&quot;</span></span>: [
+        {
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>categories</span><span style="color:#404">&quot;</span></span>: [
+                <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>customIcon</span><span style="color:#404">&quot;</span></span>: {
+            },
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>customIconType</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>icon</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span>: {
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>family</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>plugin</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+            },
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>links</span><span style="color:#404">&quot;</span></span>: [
+                {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>contentType</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>path</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                }
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>version</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_post_api_v1_component_migrate_id_configurationversion_code">1.1.6. <code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></h4>
+<div class="sect4">
+<h5 id="_request_6">Request</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code><br>
+<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
+<strong>Path Param</strong>: <code>configurationVersion</code>, <code>int</code><br>
+<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_6">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_6"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_post_api_v1_execution_read_family_component_code">1.1.7. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
+<div class="sect4">
+<h5 id="_request_7">Request</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code><br>
+<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
+<strong>Path Param</strong>: <code>component</code>, <code>java.lang.String</code><br>
+<strong>Path Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>size</code>, <code>long</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_7">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>talend/stream</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_204_no_content_code"><code>204 No Content</code></h6>
+
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_post_api_v1_execution_write_family_component_code">1.1.8. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
+<div class="sect4">
+<h5 id="_request_8">Request</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>talend/stream</code><br>
+<strong>Request Body</strong>: (<code>java.io.InputStream</code>)
+<strong>Path Param</strong>: <code>component</code>, <code>java.lang.String</code><br>
+<strong>Path Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>group-size</code>, <code>long</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_8">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_204_no_content_code_2"><code>204 No Content</code></h6>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+to ensure the migration can be activated you need to set in the execution configuration you send to the server
+the version it was created with (component version, it is in component detail endpoint) with the key <code>tcomp::component::version</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_websocket_transport">1.2. WebSocket transport</h3>
+<div class="paragraph">
+<p>You can connect on any endpoint replacing <code>/api</code> by <code>/websocket</code> and appending <code>/&lt;http method&gt;</code> for the URL and formatting the request as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>SEND
+destination: &lt;endpoint after v1&gt;
+&lt;headers&gt;
+
+&lt;payload&gt;^@</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For instance:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>SEND
+destination: /component/index
+Accept: application/json
+
+^@</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response is formatted as follow:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>MESSAGE
+status: &lt;http status code&gt;
+&lt;headers&gt;
+
+&lt;payload&gt;^@</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+if you have a doubt about the endpoint, they are all logged during startup and you can find them in the logs.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_web_forms_and_rest_api">2. Web forms and REST API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>component-form</code> library provides a way to build a component REST API facade compatible with react form library.</p>
+</div>
+<div class="paragraph">
+<p>A trivial facade can be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Path</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">tcomp-facade</span><span style="color:#710">&quot;</span></span>)
+<span style="color:#007">@ApplicationScoped</span>
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">ComponentFacade</span> {
+
+    <span style="color:#007">@Inject</span>
+    <span style="color:#088;font-weight:bold">private</span> Client client;
+
+    <span style="color:#007">@Inject</span>
+    <span style="color:#088;font-weight:bold">private</span> UiSpecService uiSpecService;
+
+    <span style="color:#007">@Inject</span>
+    <span style="color:#088;font-weight:bold">private</span> ActionService actionService;
+
+    <span style="color:#007">@POST</span>
+    <span style="color:#007">@Path</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">action</span><span style="color:#710">&quot;</span></span>)
+    <span style="color:#088;font-weight:bold">public</span> UiActionResult action(<span style="color:#007">@QueryParam</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">family</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> family, <span style="color:#007">@QueryParam</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">type</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> type,
+            <span style="color:#007">@QueryParam</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">action</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> action, <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">Map</span>&lt;<span style="color:#0a8;font-weight:bold">String</span>, <span style="color:#0a8;font-weight:bold">Object</span>&gt; params) {
+        <span style="color:#080;font-weight:bold">try</span> {
+            <span style="color:#080;font-weight:bold">return</span> actionService.map(type, client.action(family, type, action, params));
+        } <span style="color:#080;font-weight:bold">catch</span> (<span style="color:#088;font-weight:bold">final</span> WebException exception) {
+            <span style="color:#088;font-weight:bold">final</span> UiActionResult payload = actionService.map(exception);
+            <span style="color:#080;font-weight:bold">throw</span> <span style="color:#080;font-weight:bold">new</span> WebApplicationException(Response.status(exception.getStatus()).entity(payload).build());
+        }
+    }
+
+    <span style="color:#007">@GET</span>
+    <span style="color:#007">@Path</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">index</span><span style="color:#710">&quot;</span></span>)
+    <span style="color:#088;font-weight:bold">public</span> ComponentIndices getIndex(<span style="color:#007">@QueryParam</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">language</span><span style="color:#710">&quot;</span></span>) <span style="color:#007">@DefaultValue</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">en</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> language) {
+        <span style="color:#088;font-weight:bold">final</span> ComponentIndices index = client.index(language);
+        <span style="color:#777">// our mapping is a bit different so rewrite links</span>
+        index.getComponents().stream().flatMap(c -&gt; c.getLinks().stream()).forEach(link -&gt; link.setPath(
+                link.getPath().replaceFirst(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#b0b">\\</span><span style="color:#D20">/component</span><span style="color:#b0b">\\</span><span style="color:#D20">/</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#b0b">\\</span><span style="color:#D20">/tcomp-facade</span><span style="color:#b0b">\\</span><span style="color:#D20">/</span><span style="color:#710">&quot;</span></span>).replace(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/details?identifiers=</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/detail/</span><span style="color:#710">&quot;</span></span>)));
+        <span style="color:#080;font-weight:bold">return</span> index;
+    }
+
+    <span style="color:#007">@GET</span>
+    <span style="color:#007">@Path</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">detail/{id}</span><span style="color:#710">&quot;</span></span>)
+    <span style="color:#088;font-weight:bold">public</span> UiSpecPayload getDetail(<span style="color:#007">@QueryParam</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">language</span><span style="color:#710">&quot;</span></span>) <span style="color:#007">@DefaultValue</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">en</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> language,
+            <span style="color:#007">@PathParam</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> id) {
+        <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">List</span>&lt;ComponentDetail&gt; details = client.details(language, id, <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">String</span>[<span style="color:#00D">0</span>]).getDetails();
+        <span style="color:#080;font-weight:bold">if</span> (details.isEmpty()) {
+            <span style="color:#080;font-weight:bold">throw</span> <span style="color:#080;font-weight:bold">new</span> WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+        <span style="color:#080;font-weight:bold">return</span> uiSpecService.convert(details.iterator().next());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the <code>Client</code> can be created using <code>ClientFactory.createDefault(System.getProperty("app.components.base", "http://localhost:8080/api/v1"))</code>
+and the service can be a simple <code>new UiSpecService()</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>All the conversion between component model (REST API) and uiSpec model is done through the <code>UiSpecService</code>. It is based on the object model
+which will be mapped to a ui model. The advantage to have a flat model in the component REST API is to make these layers easy to customize.</p>
+</div>
+<div class="paragraph">
+<p>You can completely control the available components, tune the rendering switching the <code>uiSchema</code> if desired or add/remove part of the form.
+You can also add custom actions/buttons for specific needs of the application.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the  <code>/migrate</code> endpoint has nothing special so was not shown in previous snippet but if you need it you must add it as well.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="row">
+          <div class="col-lg-12">
+
+            <ul class="list-unstyled">
+              <li class="pull-right"><a href="#top">Back to top</a></li>
+            </ul>
+          </div>
+        </div>
+    </footer>
+    </div>
+
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+  </body>
+</html>
+
