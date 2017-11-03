@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Talend Component Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="css/documentation.css">
+    <link rel="shortcut icon" href="images/favicon_0.ico" />
+    <style>
+    body{padding-top:50px}body>.navbar{-webkit-transition:background-color .3s ease-in;transition:background-color .3s ease-in}@media (min-width:768px){body>.navbar-transparent{background-color:transparent}body>.navbar-transparent .navbar-nav>.open>a{background-color:transparent!important}}#home{padding-top:0}#home .navbar-brand{padding:13.5px 15px 12.5px}#home .navbar-brand>img{display:inline;margin:0 10px;height:100%}#banner{min-height:300px;border-bottom:none}.table-of-contents{margin-top:1em}.page-header h1{font-size:4em}.bs-docs-section{margin-top:6em}.bs-docs-section h1{padding-top:100px}.bs-component{position:relative}.bs-component .modal{position:relative;top:auto;right:auto;left:auto;bottom:auto;z-index:1;display:block}.bs-component .modal-dialog{width:90%}.bs-component .popover{position:relative;display:inline-block;width:220px;margin:20px}#source-button{position:absolute;top:0;right:0;z-index:100;font-weight:700}.progress{margin-bottom:10px}footer{margin:5em 0}footer li{float:left;margin-right:1.5em;margin-bottom:1.5em}footer p{clear:left;margin-bottom:0}.splash{padding:9em 0 2em;background-color:#141d27;background-image:url(../img/bg.jpg);background-size:cover;background-attachment:fixed;color:#fff;text-align:center}.splash .logo{width:160px}.splash h1{font-size:3em}.splash #social{margin:2em 0}.splash .alert{margin:2em 0}.section-tout{padding:4em 0 3em;border-bottom:1px solid rgba(0,0,0,.05);background-color:#eaf1f1}.section-tout .fa{margin-right:.5em}.section-tout p{margin-bottom:3em}.section-preview{padding:4em 0 4em}.section-preview .preview{margin-bottom:4em;background-color:#eaf1f1}.section-preview .preview .image{position:relative}.section-preview .preview .image:before{box-shadow:inset 0 0 0 1px rgba(0,0,0,.1);position:absolute;top:0;left:0;width:100%;height:100%;content:"";pointer-events:none}.section-preview .preview .options{padding:1em 2em 2em;border:1px solid rgba(0,0,0,.05);border-top:none;text-align:center}.section-preview .preview .options p{margin-bottom:2em}.section-preview .dropdown-menu{text-align:left}.section-preview .lead{margin-bottom:2em}@media (max-width:767px){.section-preview .image img{width:100%}}.sponsor #carbonads{max-width:240px;margin:0 auto}.sponsor .carbon-text{display:block;margin-top:1em;font-size:12px}.sponsor .carbon-poweredby{float:right;margin-top:1em;font-size:10px}@media (max-width:767px){.splash{padding-top:4em}.splash .logo{width:100px}.splash h1{font-size:2em}#banner{margin-bottom:2em;text-align:center}}
+    </style>
+  </head>
+  <body>
+    <a class="github-fork-ribbon" target="_blank"
+        href="https://github.com/talend/component-runtime" data-ribbon="Fork me on GitHub"
+        title="Fork me on GitHub">Fork me on GitHub</a>
+    <div class="col-sm-offset-1 col-sm-10">
+
+	
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">Components</a>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="entries">Documentation <span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="entries">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/documentation-overview.html">Overview</a></li>
+            <li><a href="/getting-started.html">Getting Started</a></li>
+            <li><a href="/documentation.html">Reference</a></li>
+            <li><a href="/best-practices.html">Best Practices</a></li>
+            <li><a href="/documentation-testing.html">Testing</a></li>
+            <li><a href="/documentation-rest.html">REST API</a></li>
+            <li><a href="/wrapping-a-beam-io.html">How to wrap a Beam I/O</a></li>
+            <li><a href="/studio.html">Studio Integration</a></li>
+            <li><a href="/appendix.html">Appendix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container section-padded">
+        <div class="row title">
+            <div class='page-header'>
+              <h2>Wrapping a Beam I/O</h2>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#wrapping-a-beam-io__start">1. Limitations</a></li>
+<li><a href="#_wrap_an_input">2. Wrap an input</a></li>
+<li><a href="#_wrap_an_output">3. Wrap an output</a></li>
+<li><a href="#_tip">4. Tip</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="wrapping-a-beam-io__start">1. Limitations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This part is limited to particular kinds of <a href="https://beam.apache.org/">Beam</a> <code>PTransform</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the <code>PTransform&lt;PBegin, PCollection&lt;?&gt;&gt;</code> for the inputs</p>
+</li>
+<li>
+<p>the <code>PTransform&lt;PCollection&lt;?&gt;, PDone&gt;</code> for the outputs. The outputs also must use a single (composite or not) <code>DoFn</code> in their <code>apply</code> method.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wrap_an_input">2. Wrap an input</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Assume you want to wrap an input like this one (based on existing Beam ones):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@AutoValue</span>
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">abstract</span> [<span style="color:#088;font-weight:bold">static</span>] <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Read</span> <span style="color:#088;font-weight:bold">extends</span> PTransform&lt;PBegin, PCollection&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt;&gt; {
+
+  <span style="color:#777">// config</span>
+
+  <span style="color:#007">@Override</span>
+  <span style="color:#088;font-weight:bold">public</span> PCollection&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt; expand(<span style="color:#088;font-weight:bold">final</span> PBegin input) {
+    <span style="color:#080;font-weight:bold">return</span> input.apply(
+        org.apache.beam.sdk.io.Read.from(<span style="color:#080;font-weight:bold">new</span> BoundedElasticsearchSource(<span style="color:#950">this</span>, <span style="color:#069">null</span>)));
+  }
+
+  <span style="color:#777">// ... other transform methods</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To wrap the Read in a framework component you create a transform delegating to this one with a <code>@PartitionMapper</code> annotation
+at least (you likely want to follow the best practices as well adding <code>@Icon</code> and <code>@Version</code>) and using <code>@Option</code> constructor injections
+to configure the component:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@PartitionMapper</span>(family = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">myfamily</span><span style="color:#710">&quot;</span></span>, name = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">myname</span><span style="color:#710">&quot;</span></span>)
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">WrapRead</span> <span style="color:#088;font-weight:bold">extends</span> PTransform&lt;PBegin, PCollection&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt;&gt; {
+  <span style="color:#088;font-weight:bold">private</span> PTransform&lt;PBegin, PCollection&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt;&gt; delegate;
+
+  <span style="color:#088;font-weight:bold">public</span> WrapRead(<span style="color:#007">@Option</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">dataset</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> WrapReadDataSet dataset) {
+    delegate = TheIO.read().withConfiguration(<span style="color:#950">this</span>.createConfigurationFrom(dataset));
+  }
+
+  <span style="color:#007">@Override</span>
+  <span style="color:#088;font-weight:bold">public</span> PCollection&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt; expand(<span style="color:#088;font-weight:bold">final</span> PBegin input) {
+    <span style="color:#080;font-weight:bold">return</span> delegate.expand(input);
+  }
+
+  <span style="color:#777">// ... other methods like the mapping with the native configuration (createConfigurationFrom)</span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wrap_an_output">3. Wrap an output</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Assume you want to wrap an output like this one (based on existing Beam ones):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@AutoValue</span>
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">abstract</span> [<span style="color:#088;font-weight:bold">static</span>] <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Write</span> <span style="color:#088;font-weight:bold">extends</span> PTransform&lt;PCollection&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt;, PDone&gt; {
+
+
+    <span style="color:#777">// configuration withXXX(...)</span>
+
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> PDone expand(<span style="color:#088;font-weight:bold">final</span> PCollection&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt; input) {
+      input.apply(ParDo.of(<span style="color:#080;font-weight:bold">new</span> WriteFn(<span style="color:#950">this</span>)));
+      <span style="color:#080;font-weight:bold">return</span> PDone.in(input.getPipeline());
+    }
+
+    <span style="color:#777">// other methods of the transform</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can wrap this output exactly the same way than for the inputs but using <code>@Processor</code> this time:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@PartitionMapper</span>(family = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">myfamily</span><span style="color:#710">&quot;</span></span>, name = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">myname</span><span style="color:#710">&quot;</span></span>)
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">WrapRead</span> <span style="color:#088;font-weight:bold">extends</span> PTransform&lt;PCollection&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt;, PDone&gt; {
+  <span style="color:#088;font-weight:bold">private</span> PTransform&lt;PCollection&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt;, PDone&gt; delegate;
+
+  <span style="color:#088;font-weight:bold">public</span> WrapRead(<span style="color:#007">@Option</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">dataset</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> WrapReadDataSet dataset) {
+    delegate = TheIO.write().withConfiguration(<span style="color:#950">this</span>.createConfigurationFrom(dataset));
+  }
+
+  <span style="color:#007">@Override</span>
+  <span style="color:#088;font-weight:bold">public</span> PDone expand(<span style="color:#088;font-weight:bold">final</span> PCollection&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt; input) {
+    <span style="color:#080;font-weight:bold">return</span> delegate.expand(input);
+  }
+
+  <span style="color:#777">// ... other methods like the mapping with the native configuration (createConfigurationFrom)</span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tip">4. Tip</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Note that the class <code>org.talend.sdk.component.runtime.beam.transform.DelegatingTransform</code> fully delegates
+to another transform the "expansion". Therefore you can extend it and just implement the configuration mapping:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Processor</span>(family = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">beam</span><span style="color:#710">&quot;</span></span>, name = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">file</span><span style="color:#710">&quot;</span></span>)
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">BeamFileOutput</span> <span style="color:#088;font-weight:bold">extends</span> DelegatingTransform&lt;PCollection&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt;, PDone&gt; {
+
+    <span style="color:#088;font-weight:bold">public</span> BeamFileOutput(<span style="color:#007">@Option</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">output</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> output) {
+        <span style="color:#950">super</span>(TextIO.write()
+            .withSuffix(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">test</span><span style="color:#710">&quot;</span></span>)
+            .to(FileBasedSink.convertToFileResourceIfPossible(output)));
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="row">
+          <div class="col-lg-12">
+
+            <ul class="list-unstyled">
+              <li class="pull-right"><a href="#top">Back to top</a></li>
+            </ul>
+          </div>
+        </div>
+    </footer>
+    </div>
+
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+  </body>
+</html>
+
