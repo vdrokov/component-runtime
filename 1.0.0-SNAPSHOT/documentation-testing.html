@@ -41,16 +41,16 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="entries">Documentation <span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="entries">
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/documentation-overview.html">Overview</a></li>
-            <li><a href="/getting-started.html">Getting Started</a></li>
-            <li><a href="/documentation.html">Reference</a></li>
-            <li><a href="/best-practices.html">Best Practices</a></li>
-            <li><a href="/documentation-testing.html">Testing</a></li>
-            <li><a href="/documentation-rest.html">REST API</a></li>
-            <li><a href="/wrapping-a-beam-io.html">How to wrap a Beam I/O</a></li>
-            <li><a href="/studio.html">Studio Integration</a></li>
-            <li><a href="/appendix.html">Appendix</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="documentation-overview.html">Overview</a></li>
+            <li><a href="getting-started.html">Getting Started</a></li>
+            <li><a href="documentation.html">Reference</a></li>
+            <li><a href="best-practices.html">Best Practices</a></li>
+            <li><a href="documentation-testing.html">Testing</a></li>
+            <li><a href="documentation-rest.html">REST API</a></li>
+            <li><a href="wrapping-a-beam-io.html">How to wrap a Beam I/O</a></li>
+            <li><a href="studio.html">Studio Integration</a></li>
+            <li><a href="appendix.html">Appendix</a></li>
           </ul>
         </li>
       </ul>
@@ -297,6 +297,108 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>using <code>setInputData</code> you prepare the execution(s) to have a fake input when using "test"/"emitter" component.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creating_runtime_configuration_from_component_configuration">2.1.3. Creating runtime configuration from component configuration</h4>
+<div class="paragraph">
+<p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses
+a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility
+to get this map instance from a configuration instance.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">final</span> MyComponentConfig componentConfig = <span style="color:#080;font-weight:bold">new</span> MyComponentConfig();
+componentConfig.setUser(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">....</span><span style="color:#710">&quot;</span></span>);
+<span style="color:#777">// .. other inits</span>
+
+<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">Map</span>&lt;<span style="color:#0a8;font-weight:bold">String</span>, <span style="color:#0a8;font-weight:bold">String</span>&gt; configuration = configurationByExample(componentConfig);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_testing_a_mapper">2.1.4. Testing a Mapper</h4>
+<div class="paragraph">
+<p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarly, you can get an instance from a configuration
+and you can execute this instance to collect the output. Here is a snippet doing that:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MapperTest</span> {
+
+    <span style="color:#007">@ClassRule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> SimpleComponentRule COMPONENT_FACTORY = <span style="color:#080;font-weight:bold">new</span> SimpleComponentRule(
+            <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">org.company.talend.component</span><span style="color:#710">&quot;</span></span>);
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> mapper() {
+        <span style="color:#088;font-weight:bold">final</span> Mapper mapper = COMPONENT_FACTORY.createMapper(MyMapper.class, <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">Source</span>.Config() {{
+            values = asList(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">a</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">b</span><span style="color:#710">&quot;</span></span>);
+        }});
+        assertEquals(asList(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">a</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">b</span><span style="color:#710">&quot;</span></span>), COMPONENT_FACTORY.collectAsList(<span style="color:#0a8;font-weight:bold">String</span>.class, mapper));
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_testing_a_processor">2.1.5. Testing a Processor</h4>
+<div class="paragraph">
+<p>As for the mapper a processor is testable unitarly. The case is a bit more complex since you can have multiple
+inputs and outputs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">ProcessorTest</span> {
+
+    <span style="color:#007">@ClassRule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> SimpleComponentRule COMPONENT_FACTORY = <span style="color:#080;font-weight:bold">new</span> SimpleComponentRule(
+            <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">org.company.talend.component</span><span style="color:#710">&quot;</span></span>);
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> processor() {
+        <span style="color:#088;font-weight:bold">final</span> Processor processor = COMPONENT_FACTORY.createProcessor(Transform.class, <span style="color:#069">null</span>);
+        <span style="color:#088;font-weight:bold">final</span> SimpleComponentRule.Outputs outputs = COMPONENT_FACTORY.collect(processor,
+                <span style="color:#080;font-weight:bold">new</span> JoinInputFactory(<span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">HashMap</span>&lt;<span style="color:#0a8;font-weight:bold">String</span>, <span style="color:#0a8;font-weight:bold">Iterator</span>&lt;?&gt;&gt;() {{
+                    put(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">__default__</span><span style="color:#710">&quot;</span></span>, asList(<span style="color:#080;font-weight:bold">new</span> Transform.Record(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">a</span><span style="color:#710">&quot;</span></span>), <span style="color:#080;font-weight:bold">new</span> Transform.Record(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bb</span><span style="color:#710">&quot;</span></span>)).iterator());
+                    put(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">second</span><span style="color:#710">&quot;</span></span>, asList(<span style="color:#080;font-weight:bold">new</span> Transform.Record(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">1</span><span style="color:#710">&quot;</span></span>), <span style="color:#080;font-weight:bold">new</span> Transform.Record(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">2</span><span style="color:#710">&quot;</span></span>)).iterator());
+                }}));
+        assertEquals(<span style="color:#00D">2</span>, outputs.size());
+        assertEquals(asList(<span style="color:#00D">2</span>, <span style="color:#00D">3</span>), outputs.get(<span style="color:#0a8;font-weight:bold">Integer</span>.class, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">size</span><span style="color:#710">&quot;</span></span>));
+        assertEquals(asList(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">a1</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bb2</span><span style="color:#710">&quot;</span></span>), outputs.get(<span style="color:#0a8;font-weight:bold">String</span>.class, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">value</span><span style="color:#710">&quot;</span></span>));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here again the rule allows you to instantiate a <code>Processor</code> from your code
+and then to <code>collect</code> the output from the inputs you pass in. There are two convenient implementation
+of the input factory:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>MainInputFactory</code> for processors using only the default input.</p>
+</li>
+<li>
+<p><code>JoinInputfactory</code> for processors using multiple inputs. This one takes a map of iterators. The key is the branch name and the value the data used by the branch.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+you can also implement your own input representation if needed implementing <code>org.talend.sdk.component.junit.ControllableInputFactory</code>.
+</td>
 </tr>
 </table>
 </div>
