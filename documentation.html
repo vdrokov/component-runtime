@@ -41,16 +41,16 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="entries">Documentation <span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="entries">
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/documentation-overview.html">Overview</a></li>
-            <li><a href="/getting-started.html">Getting Started</a></li>
-            <li><a href="/documentation.html">Reference</a></li>
-            <li><a href="/best-practices.html">Best Practices</a></li>
-            <li><a href="/documentation-testing.html">Testing</a></li>
-            <li><a href="/documentation-rest.html">REST API</a></li>
-            <li><a href="/wrapping-a-beam-io.html">How to wrap a Beam I/O</a></li>
-            <li><a href="/studio.html">Studio Integration</a></li>
-            <li><a href="/appendix.html">Appendix</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="documentation-overview.html">Overview</a></li>
+            <li><a href="getting-started.html">Getting Started</a></li>
+            <li><a href="documentation.html">Reference</a></li>
+            <li><a href="best-practices.html">Best Practices</a></li>
+            <li><a href="documentation-testing.html">Testing</a></li>
+            <li><a href="documentation-rest.html">REST API</a></li>
+            <li><a href="wrapping-a-beam-io.html">How to wrap a Beam I/O</a></li>
+            <li><a href="studio.html">Studio Integration</a></li>
+            <li><a href="appendix.html">Appendix</a></li>
           </ul>
         </li>
       </ul>
@@ -142,6 +142,35 @@
 <div class="paragraph">
 <p>They can all use <code>@PostConstruct</code> and <code>@PreDestroy</code> to initialize/release
 some underlying resource at the beginning/end of the processing.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+in distributed environments class' constructor will be called on cluster manager node, methods annotated with
+<code>@PostConstruct</code> and <code>@PreDestroy</code> annotations will be called on worker nodes. Thus, partition plan computation and pipeline task
+will be performed on different nodes.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/generated-deployment-diagram.png" alt="generated deployment diagram" width="1450" height="532">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/generated-driver-processing-workflow.png" alt="generated driver processing workflow" width="330" height="266">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/generated-worker-processing-workflow.png" alt="generated worker processing workflow" width="240" height="476">
+</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -807,7 +836,7 @@ this is the mecanism to use to internationalize your own messages in your own co
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>you can use <code>@Language</code> on a <code>Locale</code> parameter to specify manually the locale to use, note that a single value will be used (the first parameter taggeg as such).</td>
+<td>you can use <code>@Language</code> on a <code>Locale</code> parameter to specify manually the locale to use, note that a single value will be used (the first parameter tagged as such).</td>
 </tr>
 </table>
 </div>
@@ -830,6 +859,14 @@ of supported keys:</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">${family}._displayName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the family</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">${family}.${configurationType}.${name}._displayName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the display name of a configuration type (dataStore or dataSet)</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${family}.${component_name}._displayName</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the component (used by the GUIs)</p></td>
@@ -1581,13 +1618,13 @@ are the:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.talend.sdk.component.api.configuration.type.DataStore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">datastore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a model (complex object) as being a datastore (connection to a backend).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"datastore":"test"}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"tcomp::configurationtype::type":"datastore","tcomp::configurationtype::name":"test"}</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">org.talend.sdk.component.api.configuration.type.DataSet</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">dataset</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a model (complex object) as being a dataset.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"dataset":"test"}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"tcomp::configurationtype::type":"dataset","tcomp::configurationtype::name":"test"}</p></td>
 </tr>
 </tbody>
 </table>
@@ -1603,6 +1640,65 @@ to the component using that configuration.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Those configuration types can be composed to provide one configuration item. For example a dataset type will often need a datastore
+type to be provided. and a datastore type (that provides the connection information) will be used to create a dataset type.</p>
+</div>
+<div class="paragraph">
+<p>Those configuration types will also be used at design time to create shared configuration that can be stored and used at runtime.</p>
+</div>
+<div class="paragraph">
+<p>For example, we can think about a relational database that support JDBC:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A datastore may provide:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>jdbc url, username, password</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>A dataset may be:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>datastore (that will provide the connection data to the database)</p>
+</li>
+<li>
+<p>table name, data []</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The component server will scan all those configuration types and provide a configuration type index. This index can be used for the integration
+into the targeted platforms (studio, web applications&#8230;&#8203;)</p>
+</div>
+<div class="paragraph">
+<p>The configuration type index is represented as a flat tree that contains all the configuration types represented as nodes and indexed by their ids.</p>
+</div>
+<div class="paragraph">
+<p>Also, every node can point to other nodes. This relation is represented as an array of edges that provide the childes ids.</p>
+</div>
+<div class="paragraph">
+<p>For example, a configuration type index for the above example will be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="json">{<span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">o</span><span style="color:#F00;background-color:#FAA">d</span><span style="color:#F00;background-color:#FAA">e</span><span style="color:#F00;background-color:#FAA">s</span>: {
+             <span style="color:#606"><span style="color:#404">&quot;</span><span>idForDstore</span><span style="color:#404">&quot;</span></span>: { <span style="color:#F00;background-color:#FAA">d</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">t</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">s</span><span style="color:#F00;background-color:#FAA">t</span><span style="color:#F00;background-color:#FAA">o</span><span style="color:#F00;background-color:#FAA">r</span><span style="color:#F00;background-color:#FAA">e</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">datastore data</span><span style="color:#710">&quot;</span></span>, <span style="color:#F00;background-color:#FAA">e</span><span style="color:#F00;background-color:#FAA">d</span><span style="color:#F00;background-color:#FAA">g</span><span style="color:#F00;background-color:#FAA">e</span><span style="color:#F00;background-color:#FAA">s</span>:[<span style="color:#F00;background-color:#FAA">i</span><span style="color:#F00;background-color:#FAA">d</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">idForDset</span><span style="color:#710">&quot;</span></span>] },
+             <span style="color:#606"><span style="color:#404">&quot;</span><span>idForDset</span><span style="color:#404">&quot;</span></span>:   { <span style="color:#F00;background-color:#FAA">d</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">t</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">s</span><span style="color:#F00;background-color:#FAA">e</span><span style="color:#F00;background-color:#FAA">t</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">dataset data</span><span style="color:#710">&quot;</span></span> }
+    }
+}</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1813,9 +1909,26 @@ with a service used to access files:
         <span style="color:#950">this</span>.service = service;
     }
 
-    <span style="color:#777">// ... use the service</span>
+    <span style="color:#777">// use the service</span>
+    <span style="color:#007">@PostConstruct</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> open() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">FileNotFoundException</span> {
+        reader = service.createInput(file);
+    }
+
 }</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+service is passed to constructor automatically, it can be used as a bean. Only call of service&#8217;s method is required.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_particular_action_types">6.1. Particular action types</h3>
@@ -2023,11 +2136,45 @@ from a version to the currently available one when needed.
 <p><code>org.talend.sdk.component.runtime.beam.TalendIO</code> provides a way to convert a partition mapper or a processor to an input or processor
 using the <code>read</code> or <code>write</code> methods.</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Main</span> {
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#339;font-weight:bold">void</span> main(<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span><span style="color:#339;font-weight:bold">[]</span> args) {
+        <span style="color:#088;font-weight:bold">final</span> ComponentManager manager = ComponentManager.instance()
+        Pipeline pipeline = Pipeline.create();
+        <span style="color:#777">//Create beam input from mapper and apply input to pipeline</span>
+        pipeline.apply(TalendIO.read(manager.findMapper(manager.findMapper(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">sample</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">reader</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">1</span>, <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">HashMap</span>&lt;<span style="color:#0a8;font-weight:bold">String</span>, <span style="color:#0a8;font-weight:bold">String</span>&gt;() {{
+                    put(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">fileprefix</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">input</span><span style="color:#710">&quot;</span></span>);
+                }}).get()))
+        <span style="color:#777">//Create beam processor from talend processor and apply to pipeline</span>
+                .apply(TalendIO.write(manager.findProcessor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">test</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">writer</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">1</span>, <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">HashMap</span>&lt;<span style="color:#0a8;font-weight:bold">String</span>, <span style="color:#0a8;font-weight:bold">String</span>&gt;() {{
+                    put(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">fileprefix</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">output</span><span style="color:#710">&quot;</span></span>);
+                }}).get(), emptyMap()));
+
+        <span style="color:#777">//... run pipeline</span>
+    }
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_processors">7.2.2. Processors</h4>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendFn</code> provides the way to wrap a processor in a Beam <code>PTransform</code> and integrate it in the pipeline.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Main</span> {
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#339;font-weight:bold">void</span> main(<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span><span style="color:#339;font-weight:bold">[]</span> args) {
+        <span style="color:#777">//Component manager and pipeline initialization...</span>
+
+        <span style="color:#777">//Create beam PTransform from processor and apply input to pipeline</span>
+        pipeline.apply(TalendFn.asFn(manager.findProcessor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">sample</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">mapper</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">1</span>, emptyMap())).get())), emptyMap());
+
+        <span style="color:#777">//... run pipeline</span>
+    }
+}</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -2164,6 +2311,11 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateActions</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Validate actions signatures for the ones not tolerating dynamic binding (<code>@HealthCheck</code>, <code>@DynamicValues</code>, &#8230;&#8203;). It is recommanded to keep it <code>true</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">validateFamily</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validate the family, i.e. the package containing the <code>@Components</code> has also a <code>@Icon</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 </tbody>
