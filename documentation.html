@@ -159,8 +159,26 @@ will be performed on different nodes.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/generated-deployment-diagram.png" alt="generated deployment diagram" width="1450" height="532">
+<img src="images/generated-deployment-diagram.png" alt="generated deployment diagram" width="490" height="392">
 </div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Created task consists of Jar file, containing class, which describes pipeline(flow) which should be processed in cluster.</p>
+</li>
+<li>
+<p>During partition plan computation step pipeline is analyzed and split into stages. Cluster Manager node instantiates mappers/processors
+gets estimated data size using mappers, splits created mappers according to the estimated data size. All instances are serialized and
+sent to Worker nodes afterwards.</p>
+</li>
+<li>
+<p>Serialized instances are received and deserialized, methods annotated with @PostConstruct annotation are called. After that,
+pipeline execution is started. Processor&#8217;s @BeforeGroup annotated method is called before processing first element in chunk.
+After processing number of records estimated as chunk size, Processor&#8217;s @AfterGroup annotated method called. Chunk size is calculated
+depending on environment the pipeline is processed by. After pipeline is processed, methods annotated with @PreDestroy annotation are called.</p>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2146,6 +2164,7 @@ using the <code>read</code> or <code>write</code> methods.</p>
         pipeline.apply(TalendIO.read(manager.findMapper(manager.findMapper(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">sample</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">reader</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">1</span>, <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">HashMap</span>&lt;<span style="color:#0a8;font-weight:bold">String</span>, <span style="color:#0a8;font-weight:bold">String</span>&gt;() {{
                     put(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">fileprefix</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">input</span><span style="color:#710">&quot;</span></span>);
                 }}).get()))
+                .apply(<span style="color:#080;font-weight:bold">new</span> ViewsMappingTransform&lt;&gt;(emptyMap())) <span style="color:#777">// prepare it for the output record format (see next part)</span>
         <span style="color:#777">//Create beam processor from talend processor and apply to pipeline</span>
                 .apply(TalendIO.write(manager.findProcessor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">test</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">writer</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">1</span>, <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">HashMap</span>&lt;<span style="color:#0a8;font-weight:bold">String</span>, <span style="color:#0a8;font-weight:bold">String</span>&gt;() {{
                     put(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">fileprefix</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">output</span><span style="color:#710">&quot;</span></span>);
@@ -2175,6 +2194,22 @@ using the <code>read</code> or <code>write</code> methods.</p>
     }
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The multiple inputs/outputs are represented by a <code>Map</code> element in beam case to avoid to use multiple inputs/outputs.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+you can use <code>ViewsMappingTransform</code> or <code>CoGroupByKeyResultMappingTransform</code> to adapt the input/output
+format to this <code>Map&lt;String, List&lt;Serializable&gt;&gt;</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
