@@ -41,7 +41,7 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="entries">Documentation <span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="entries">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/component-runtime/index.html">Home</a></li>
             <li><a href="documentation-overview.html">Overview</a></li>
             <li><a href="getting-started.html">Getting Started</a></li>
             <li><a href="documentation.html">Reference</a></li>
@@ -51,6 +51,14 @@
             <li><a href="wrapping-a-beam-io.html">How to wrap a Beam I/O</a></li>
             <li><a href="studio.html">Studio Integration</a></li>
             <li><a href="appendix.html">Appendix</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="versions">Versions <span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="versions">
+            <li><a href="/component-runtime/index.html">Current</a></li>
+            <li><a href="/component-runtime/latest/index.html">Latest</a></li>
+            
           </ul>
         </li>
       </ul>
@@ -988,19 +996,24 @@ using <code>get()</code> then <code>execute()</code>.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span style="color:#080;font-weight:bold">try</span> (<span style="color:#088;font-weight:bold">final</span> ComponentManager manager = ComponentManager.instance()) {
-    ExecutionChainBuilder.start().withConfiguration(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">SampleJob</span><span style="color:#710">&quot;</span></span>, <span style="color:#069">true</span>)
+    ExecutionChainBuilder
+            .start()
+            .withConfiguration(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">SampleJob</span><span style="color:#710">&quot;</span></span>, <span style="color:#069">true</span>)
             .fromInput(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">sample</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">reader</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">2</span>, <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">HashMap</span>&lt;<span style="color:#0a8;font-weight:bold">String</span>, <span style="color:#0a8;font-weight:bold">String</span>&gt;() {
 
                 {
                     put(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">file</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/tmp/input.csv</span><span style="color:#710">&quot;</span></span>);
                 }
-            }).toProcessor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">sample</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">mapper</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">1</span>, emptyMap())
+            })
+            .toProcessor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">sample</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">mapper</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">1</span>, emptyMap())
             .toProcessor(<span style="color:#069">null</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">sample</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">writer</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">1</span>, <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">HashMap</span>&lt;<span style="color:#0a8;font-weight:bold">String</span>, <span style="color:#0a8;font-weight:bold">String</span>&gt;() {
 
                 {
                     put(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">file</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/tmp/output.csv</span><span style="color:#710">&quot;</span></span>);
                 }
-            }).create(manager, plugin -&gt; <span style="color:#069">null</span>, <span style="color:#080;font-weight:bold">new</span> CountingSuccessListener(), <span style="color:#080;font-weight:bold">new</span> ToleratingErrorHandler(<span style="color:#00D">0</span>)).get()
+            })
+            .create(manager, plugin -&gt; <span style="color:#069">null</span>, <span style="color:#080;font-weight:bold">new</span> CountingSuccessListener(), <span style="color:#080;font-weight:bold">new</span> ToleratingErrorHandler(<span style="color:#00D">0</span>))
+            .get()
             .execute();
 }</code></pre>
 </div>
