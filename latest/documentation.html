@@ -134,9 +134,10 @@
 <li><a href="#_generate_inputs_or_outputs">8.3. Generate inputs or outputs</a></li>
 </ul>
 </li>
-<li><a href="#_advanced_define_a_custom_api">9. Advanced: define a custom API</a>
+<li><a href="#_gradle_plugin">9. Gradle Plugin</a></li>
+<li><a href="#_advanced_define_a_custom_api">10. Advanced: define a custom API</a>
 <ul class="sectlevel2">
-<li><a href="#_extending_the_ui">9.1. Extending the UI</a></li>
+<li><a href="#_extending_the_ui">10.1. Extending the UI</a></li>
 </ul>
 </li>
 </ul>
@@ -2547,7 +2548,61 @@ with a profile (adding <code>-Pstudio</code> to you build command, ex: <code>mvn
 </div>
 </div>
 <div class="sect1">
-<h2 id="_advanced_define_a_custom_api">9. Advanced: define a custom API</h2>
+<h2 id="_gradle_plugin">9. Gradle Plugin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>gradle-talend-component</code> intends to help you to write components
+validating components match best practices. It is inspired from the Maven plugin
+and adds the ability to generate automatically the <code>dependencies.txt</code> file the SDK
+uses to build the component classpath. For more information on the configuration
+you can check out the maven properties matching the attributes.</p>
+</div>
+<div class="paragraph">
+<p>Here is how to use it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+  dependencies {
+    classpath <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">org.talend.sdk.component:gradle-talend-component:</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>talendComponentVersion<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+  }
+}
+
+apply <span style="color:#606">plugin</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">org.talend.sdk.component</span><span style="color:#710">'</span></span>
+apply <span style="color:#606">plugin</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">java</span><span style="color:#710">'</span></span>
+
+<span style="color:#777">// optional customization</span>
+talendComponentKit {
+    <span style="color:#777">// dependencies.txt generation, replaces maven-dependency-plugin</span>
+    dependenciesLocation = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">TALEND-INF/dependencies.txt</span><span style="color:#710">&quot;</span></span>
+    <span style="color:#339;font-weight:bold">boolean</span> skipDependenciesFile = <span style="color:#069">false</span>;
+
+    <span style="color:#777">// classpath for validation utilities</span>
+    sdkVersion = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>talendComponentVersion<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+    apiVersion = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>talendComponentApiVersion<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+
+    <span style="color:#777">// validation</span>
+    skipValidation = <span style="color:#069">false</span>
+    validateFamily = <span style="color:#069">true</span>
+    validateSerializable = <span style="color:#069">true</span>
+    validateInternationalization = <span style="color:#069">true</span>
+    validateModel = <span style="color:#069">true</span>
+    validateMetadata = <span style="color:#069">true</span>
+    validateComponent = <span style="color:#069">true</span>
+    validateDataStore = <span style="color:#069">true</span>
+    validateDataSet = <span style="color:#069">true</span>
+    validateActions = <span style="color:#069">true</span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_define_a_custom_api">10. Advanced: define a custom API</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is possible to extend the Component API for custom front features.</p>
@@ -2560,7 +2615,7 @@ only if it targets not portable components (only used by the Studio or Beam).</p
 <p>In term of organization it is recommanded to create a custom <code>xxxx-component-api</code> module with the new set of annotations.</p>
 </div>
 <div class="sect2">
-<h3 id="_extending_the_ui">9.1. Extending the UI</h3>
+<h3 id="_extending_the_ui">10.1. Extending the UI</h3>
 <div class="paragraph">
 <p>To extend the UI just add an annotation which can be put on <code>@Option</code> fields which is decorated with <code>@Ui</code>.
 All its members will be put in the metadata of the parameter. Example:</p>
