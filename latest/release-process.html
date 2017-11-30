@@ -129,6 +129,11 @@ for the release. Here is the overall template:</p>
       <span style="color:#070;font-weight:bold">&lt;username&gt;</span>${env.TLND_JIRA_USER}<span style="color:#070;font-weight:bold">&lt;/username&gt;</span>
       <span style="color:#070;font-weight:bold">&lt;password&gt;</span>${env.TLND_JIRA_PASS}<span style="color:#070;font-weight:bold">&lt;/password&gt;</span>
     <span style="color:#070;font-weight:bold">&lt;/server&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;server&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>blackduck<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;username&gt;</span>${env.TLND_BLACKDUCK_USER}<span style="color:#070;font-weight:bold">&lt;/username&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;password&gt;</span>${env.TLND_BLACKDUCK_PASS}<span style="color:#070;font-weight:bold">&lt;/password&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/server&gt;</span>
   <span style="color:#070;font-weight:bold">&lt;/servers&gt;</span>
 
   <span style="color:#070;font-weight:bold">&lt;profiles&gt;</span>
@@ -175,6 +180,9 @@ If you don&#8217;t have it already you can ask for one at <a href="https://issue
 </li>
 <li>
 <p>The JIRA variables are your Talend account credentials with read permissions on <a href="https://jira.talendforge.org/projects/TCOMP/" class="bare">jira.talendforge.org/projects/TCOMP/</a>.</p>
+</li>
+<li>
+<p>The Blackduck configuration is used for security scans.</p>
 </li>
 <li>
 <p>The GPG variables reference the key you created in previous part.</p>
