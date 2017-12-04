@@ -808,6 +808,20 @@ if you have a doubt about the endpoint, they are all logged during startup and y
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>If you don&#8217;t want to create a pool of connection per endpoint/verb you can use the bus endpoint: <code>/websocket/v1/bus</code>.
+This endpoint requires that you add the header <code>destinationMethod</code> to each request with the verb value - default would be <code>GET</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>SEND
+destination: /component/index
+destinationMethod: GET
+Accept: application/json
+
+^@</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
