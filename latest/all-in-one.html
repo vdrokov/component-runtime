@@ -374,16 +374,22 @@
 <li><a href="#_response_10">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_post_api_v1_execution_read_family_component_code">1.1.11. <code>POST api/v1/execution/read/{family}/{component}</code></a>
+<li><a href="#_code_get_api_v1_environment_code">1.1.11. <code>GET api/v1/environment</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_11">Request</a></li>
 <li><a href="#_response_11">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_post_api_v1_execution_write_family_component_code">1.1.12. <code>POST api/v1/execution/write/{family}/{component}</code></a>
+<li><a href="#_code_post_api_v1_execution_read_family_component_code">1.1.12. <code>POST api/v1/execution/read/{family}/{component}</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_12">Request</a></li>
 <li><a href="#_response_12">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_post_api_v1_execution_write_family_component_code">1.1.13. <code>POST api/v1/execution/write/{family}/{component}</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_13">Request</a></li>
+<li><a href="#_response_13">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -4616,6 +4622,7 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
             <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
             <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
                 {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>defaultValue</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
                     },
@@ -4768,6 +4775,7 @@ don&#8217;t forget to add the component itself since it will not be part of the 
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
                         {
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>defaultValue</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                             <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                             <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
                             },
@@ -4816,6 +4824,7 @@ don&#8217;t forget to add the component itself since it will not be part of the 
             ],
             <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
                 {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>defaultValue</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
                     },
@@ -5070,12 +5079,43 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_execution_read_family_component_code">1.1.11. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
+<h4 id="_code_get_api_v1_environment_code">1.1.11. <code>GET api/v1/environment</code></h4>
+<div class="sect4">
+<h5 id="_request_11">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_11">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>*/*</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_11"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Environment</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>commit</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>latestApiVersion</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>time</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>version</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_post_api_v1_execution_read_family_component_code">1.1.12. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
 <div class="paragraph">
 <p>Read inputs from an instance of mapper. The number of returned records if enforced to be limited to 1000. The format is a JSON based format where each like is a json record.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_11">Request</h5>
+<h5 id="_request_12">Request</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code><br>
 <strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
@@ -5085,7 +5125,7 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_11">Response</h5>
+<h5 id="_response_12">Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>talend/stream</code></p>
 </div>
@@ -5096,12 +5136,12 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_execution_write_family_component_code">1.1.12. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
+<h4 id="_code_post_api_v1_execution_write_family_component_code">1.1.13. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
 <div class="paragraph">
 <p>Sends records using a processor instance. Note that the processor should have only an input. Behavior for other processors is undefined. The input format is a JSON based format where each like is a json record - same as for the symmetric endpoint.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_12">Request</h5>
+<h5 id="_request_13">Request</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>talend/stream</code><br>
 <strong>Request Body</strong>: (<code>java.io.InputStream</code>)
@@ -5111,7 +5151,7 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_12">Response</h5>
+<h5 id="_response_13">Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
