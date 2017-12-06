@@ -2425,6 +2425,178 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="_render_your_documentation">8.2.1. Render your documentation</h4>
+<div class="sect4">
+<h5 id="_html">HTML</h5>
+<div class="paragraph">
+<p>To render the generated documentation you can use the Asciidoctor Maven plugin (or Gradle equivalent):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span> (1)
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>talend-component-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${talend-component-kit.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>documentation<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;phase&gt;</span>prepare-package<span style="color:#070;font-weight:bold">&lt;/phase&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>asciidoc<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;plugin&gt;</span> (2)
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.asciidoctor<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>asciidoctor-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.5.6<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>doc-html<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;phase&gt;</span>prepare-package<span style="color:#070;font-weight:bold">&lt;/phase&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>process-asciidoc<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;configuration&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDirectory&gt;</span>${project.build.outputDirectory}/TALEND-INF<span style="color:#070;font-weight:bold">&lt;/sourceDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDocumentName&gt;</span>documentation.adoc<span style="color:#070;font-weight:bold">&lt;/sourceDocumentName&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;outputDirectory&gt;</span>${project.build.directory}/documentation<span style="color:#070;font-weight:bold">&lt;/outputDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;backend&gt;</span>html5<span style="color:#070;font-weight:bold">&lt;/backend&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/configuration&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Will generate in <code>target/classes/TALEND-INF/documentation.adoc</code> the components documentation.</p>
+</li>
+<li>
+<p>Will render the documenation as an html file in <code>target/documentation/documentation.html</code>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+ensure to execute it after the documentation generation.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_pdf">PDF</h5>
+<div class="paragraph">
+<p>If you prefer a PDF rendering you can configure the following execution
+in the asciidoctor plugin (note that you can configure both executions if you want
+both HTML and PDF rendering):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.asciidoctor<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>asciidoctor-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.5.6<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>doc-html<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;phase&gt;</span>prepare-package<span style="color:#070;font-weight:bold">&lt;/phase&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>process-asciidoc<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;configuration&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDirectory&gt;</span>${project.build.outputDirectory}/TALEND-INF<span style="color:#070;font-weight:bold">&lt;/sourceDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDocumentName&gt;</span>documentation.adoc<span style="color:#070;font-weight:bold">&lt;/sourceDocumentName&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;outputDirectory&gt;</span>${project.build.directory}/documentation<span style="color:#070;font-weight:bold">&lt;/outputDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;backend&gt;</span>pdf<span style="color:#070;font-weight:bold">&lt;/backend&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/configuration&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;dependencies&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.asciidoctor<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>asciidoctorj-pdf<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.5.0-alpha.16<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/dependencies&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_include_the_documentation_into_a_document">Include the documentation into a document</h5>
+<div class="paragraph">
+<p>If you want to add some more content or add a title, you can include the generated document into
+another document using Asciidoc <code>include</code> directive.</p>
+</div>
+<div class="paragraph">
+<p>A common example is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="adoc">= Super Components
+Super Writer
+:toc:
+:toclevels: 3
+:source-highlighter: prettify
+:numbered:
+:icons: font
+:hide-uri-scheme:
+:imagesdir: images
+
+Unresolved directive in &lt;stdin&gt; - include::{generated_doc}/documentation.adoc[]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This assumes you pass to the plugin the attribute <code>generated_doc</code>, this can be done this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.asciidoctor<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>asciidoctor-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.5.6<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>doc-html<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;phase&gt;</span>prepare-package<span style="color:#070;font-weight:bold">&lt;/phase&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>process-asciidoc<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;configuration&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDirectory&gt;</span>${project.basedir}/src/main/asciidoc<span style="color:#070;font-weight:bold">&lt;/sourceDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDocumentName&gt;</span>my-main-doc.adoc<span style="color:#070;font-weight:bold">&lt;/sourceDocumentName&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;outputDirectory&gt;</span>${project.build.directory}/documentation<span style="color:#070;font-weight:bold">&lt;/outputDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;backend&gt;</span>html5<span style="color:#070;font-weight:bold">&lt;/backend&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;attributes&gt;</span>
+          <span style="color:#070;font-weight:bold">&lt;generated_adoc&gt;</span>${project.build.outputDirectory}/TALEND-INF<span style="color:#070;font-weight:bold">&lt;/generated_adoc&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;/attributes&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/configuration&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is optional but allows to reuse maven placeholders to pass paths which is quite convenient in an automated build.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_more">More</h5>
+<div class="paragraph">
+<p>You can find more customizations on Asciidoctor <a href="http://asciidoctor.org/docs/asciidoctor-maven-plugin/">website</a>.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_prepare">8.3. Prepare</h3>
