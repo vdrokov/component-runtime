@@ -907,6 +907,10 @@ of supported keys:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${property_path}._displayName</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the option.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">${simple_class_name}.${property_name}._displayName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the option using it class name.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -916,6 +920,46 @@ of supported keys:</p>
 <div class="content">
 <pre class="CodeRay highlight"><code>memory.list._displayName = Memory List</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Configuration class are also translatable using the simple class name in the messages properties file.
+This useful when you have some common configuration shared within multiple components.</p>
+</div>
+<div class="paragraph">
+<p>If you have a configuration class like :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyConfig</span> {
+
+    <span style="color:#007">@Option</span>
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#0a8;font-weight:bold">String</span> host;
+
+    <span style="color:#007">@Option</span>
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#339;font-weight:bold">int</span> port;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can give it a translatable display name by adding ${simple_class_name}.${property_name}._displayName to Messages.properties under the same package as the config class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>MyConfig.host._displayName = Server Host Name
+MyConfig.port._displayName = Server Port</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you have a display name using the property path, it will override the display name defined using the simple class name
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
