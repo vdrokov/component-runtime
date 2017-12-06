@@ -29,7 +29,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <a href="index.html" class="navbar-brand">Components</a>
+      <a href="/component-runtime/index.html" class="navbar-brand">Component Kit</a>
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -50,6 +50,9 @@
             <li><a href="documentation-rest.html">REST API</a></li>
             <li><a href="wrapping-a-beam-io.html">How to wrap a Beam I/O</a></li>
             <li><a href="studio.html">Studio Integration</a></li>
+            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="contributors.html">Wall of Fame</a></li>
+            <li><a href="apidocs.html">API Documentation</a></li>
             <li><a href="appendix.html">Appendix</a></li>
           </ul>
         </li>
@@ -240,13 +243,15 @@
 <li><a href="#_maven_plugin">8. Maven Plugin</a>
 <ul class="sectlevel2">
 <li><a href="#_validate">8.1. Validate</a></li>
-<li><a href="#_prepare">8.2. Prepare</a></li>
-<li><a href="#_generate_inputs_or_outputs">8.3. Generate inputs or outputs</a></li>
+<li><a href="#_documentation">8.2. Documentation</a></li>
+<li><a href="#_prepare">8.3. Prepare</a></li>
+<li><a href="#_generate_inputs_or_outputs">8.4. Generate inputs or outputs</a></li>
 </ul>
 </li>
-<li><a href="#_advanced_define_a_custom_api">9. Advanced: define a custom API</a>
+<li><a href="#_gradle_plugin">9. Gradle Plugin</a></li>
+<li><a href="#_advanced_define_a_custom_api">10. Advanced: define a custom API</a>
 <ul class="sectlevel2">
-<li><a href="#_extending_the_ui">9.1. Extending the UI</a></li>
+<li><a href="#_extending_the_ui">10.1. Extending the UI</a></li>
 </ul>
 </li>
 </ul>
@@ -323,52 +328,70 @@
 <li><a href="#_response_2">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_get_api_v1_component_details_code">1.1.3. <code>GET api/v1/component/details</code></a>
+<li><a href="#_code_get_api_v1_component_dependencies_code">1.1.3. <code>GET api/v1/component/dependencies</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_3">Request</a></li>
 <li><a href="#_response_3">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_get_api_v1_component_icon_family_id_code">1.1.4. <code>GET api/v1/component/icon/family/{id}</code></a>
+<li><a href="#_code_get_api_v1_component_dependency_id_code">1.1.4. <code>GET api/v1/component/dependency/{id}</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_4">Request</a></li>
 <li><a href="#_response_4">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_get_api_v1_component_icon_id_code">1.1.5. <code>GET api/v1/component/icon/{id}</code></a>
+<li><a href="#_code_get_api_v1_component_details_code">1.1.5. <code>GET api/v1/component/details</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_5">Request</a></li>
 <li><a href="#_response_5">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_get_api_v1_component_index_code">1.1.6. <code>GET api/v1/component/index</code></a>
+<li><a href="#_code_get_api_v1_component_icon_family_id_code">1.1.6. <code>GET api/v1/component/icon/family/{id}</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_6">Request</a></li>
 <li><a href="#_response_6">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_post_api_v1_component_migrate_id_configurationversion_code">1.1.7. <code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></a>
+<li><a href="#_code_get_api_v1_component_icon_id_code">1.1.7. <code>GET api/v1/component/icon/{id}</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_7">Request</a></li>
 <li><a href="#_response_7">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_get_api_v1_configurationtype_index_code">1.1.8. <code>GET api/v1/configurationtype/index</code></a>
+<li><a href="#_code_get_api_v1_component_index_code">1.1.8. <code>GET api/v1/component/index</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_8">Request</a></li>
 <li><a href="#_response_8">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_post_api_v1_execution_read_family_component_code">1.1.9. <code>POST api/v1/execution/read/{family}/{component}</code></a>
+<li><a href="#_code_post_api_v1_component_migrate_id_configurationversion_code">1.1.9. <code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_9">Request</a></li>
 <li><a href="#_response_9">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_post_api_v1_execution_write_family_component_code">1.1.10. <code>POST api/v1/execution/write/{family}/{component}</code></a>
+<li><a href="#_code_get_api_v1_configurationtype_index_code">1.1.10. <code>GET api/v1/configurationtype/index</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_10">Request</a></li>
 <li><a href="#_response_10">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_get_api_v1_environment_code">1.1.11. <code>GET api/v1/environment</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_11">Request</a></li>
+<li><a href="#_response_11">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_post_api_v1_execution_read_family_component_code">1.1.12. <code>POST api/v1/execution/read/{family}/{component}</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_12">Request</a></li>
+<li><a href="#_response_12">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_post_api_v1_execution_write_family_component_code">1.1.13. <code>POST api/v1/execution/write/{family}/{component}</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_13">Request</a></li>
+<li><a href="#_response_13">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -378,6 +401,7 @@
 </li>
 <li><a href="#_web_forms_and_rest_api">2. Web forms and REST API</a></li>
 <li><a href="#_logging">3. Logging</a></li>
+<li><a href="#_server_configuration">4. Server Configuration</a></li>
 </ul>
 </li>
 <li><a href="#_wrapping_a_beam_i_o">Wrapping a Beam I/O</a>
@@ -748,7 +772,7 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 <pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
   <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
   <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>component-api<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${project.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${component-api.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
 <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
@@ -1870,7 +1894,7 @@ read the output of <code>maven-dependency-plugin</code> in <code>TALEND-INF/depe
 <pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span>
   <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.apache.maven.plugins<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
   <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>maven-dependency-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>3.0.1<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>3.0.2<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
   <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
     <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
       <span style="color:#070;font-weight:bold">&lt;id&gt;</span>create-TALEND-INF/dependencies.txt<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
@@ -1895,7 +1919,7 @@ read the output of <code>maven-dependency-plugin</code> in <code>TALEND-INF/depe
 
 The following files have been resolved:
    org.talend.sdk.component:component-api:jar:1.0.0-SNAPSHOT:provided
-   org.apache.geronimo.specs:geronimo-annotation_1.0_spec:jar:1.1.1:provided
+   org.apache.geronimo.specs:geronimo-annotation_1.3_spec:jar:1.0:provided
    org.superbiz:awesome-project:jar:1.2.3:compile
    junit:junit:jar:4.12:test
    org.hamcrest:hamcrest-core:jar:1.3:test</code></pre>
@@ -1907,7 +1931,7 @@ The following files have been resolved:
 <div class="ulist">
 <ul>
 <li>
-<p>the API (<code>component-api</code> and <code>geronimo-annotation_1.0_spec</code>) are <code>provided</code> because you can consider them to be there when executing (it comes with the framework)</p>
+<p>the API (<code>component-api</code> and <code>geronimo-annotation_1.3_spec</code>) are <code>provided</code> because you can consider them to be there when executing (it comes with the framework)</p>
 </li>
 <li>
 <p>your specific dependencies (<code>awesome-project</code>) is <code>compile</code>: it will be included as a needed dependency by the framework (note that using <code>runtime</code> works too).</p>
@@ -3264,7 +3288,75 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </table>
 </div>
 <div class="sect2">
-<h3 id="_prepare">8.2. Prepare</h3>
+<h3 id="_documentation">8.2. Documentation</h3>
+<div class="paragraph">
+<p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and
+<code>@Documentation</code> you can put on options and the component itself.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>talend-component-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${component.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>talend-component-documentation<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>asciidoc<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">level</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Which level are the root title</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>2 which means <code>==</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">output</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Where to store the output, it is <strong>NOT</strong> recommended to change it</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${classes}/TALEND-INF/documentation.adoc</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_prepare">8.3. Prepare</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+this goal is deprecated.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>The <code>prepare</code> goal is to build artifacts you can deploy out of the box into the studio. It is a temporarly phase
 until the framework programming model is fully integrated in Talend suite.</p>
@@ -3351,7 +3443,7 @@ with a profile (adding <code>-Pstudio</code> to you build command, ex: <code>mvn
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generate_inputs_or_outputs">8.3. Generate inputs or outputs</h3>
+<h3 id="_generate_inputs_or_outputs">8.4. Generate inputs or outputs</h3>
 <div class="paragraph">
 <p>The Mojo <code>generate</code> (maven plugin goal) of the same plugin also embeds a generator you can use to bootstrap any input or output component:</p>
 </div>
@@ -3446,7 +3538,66 @@ with a profile (adding <code>-Pstudio</code> to you build command, ex: <code>mvn
 </div>
 </div>
 <div class="sect1">
-<h2 id="_advanced_define_a_custom_api">9. Advanced: define a custom API</h2>
+<h2 id="_gradle_plugin">9. Gradle Plugin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>gradle-talend-component</code> intends to help you to write components
+validating components match best practices. It is inspired from the Maven plugin
+and adds the ability to generate automatically the <code>dependencies.txt</code> file the SDK
+uses to build the component classpath. For more information on the configuration
+you can check out the maven properties matching the attributes.</p>
+</div>
+<div class="paragraph">
+<p>Here is how to use it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+  dependencies {
+    classpath <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">org.talend.sdk.component:gradle-talend-component:</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>talendComponentVersion<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+  }
+}
+
+apply <span style="color:#606">plugin</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">org.talend.sdk.component</span><span style="color:#710">'</span></span>
+apply <span style="color:#606">plugin</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">java</span><span style="color:#710">'</span></span>
+
+<span style="color:#777">// optional customization</span>
+talendComponentKit {
+    <span style="color:#777">// dependencies.txt generation, replaces maven-dependency-plugin</span>
+    dependenciesLocation = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">TALEND-INF/dependencies.txt</span><span style="color:#710">&quot;</span></span>
+    <span style="color:#339;font-weight:bold">boolean</span> skipDependenciesFile = <span style="color:#069">false</span>;
+
+    <span style="color:#777">// classpath for validation utilities</span>
+    sdkVersion = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>talendComponentVersion<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+    apiVersion = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>talendComponentApiVersion<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+
+    <span style="color:#777">// documentation</span>
+    skipDocumentation = <span style="color:#069">false</span>
+    documentationOutput = <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">File</span>(....)
+    documentationLevel = <span style="color:#00D">2</span> <span style="color:#777">// first level will be == in the generated adoc</span>
+
+    <span style="color:#777">// validation</span>
+    skipValidation = <span style="color:#069">false</span>
+    validateFamily = <span style="color:#069">true</span>
+    validateSerializable = <span style="color:#069">true</span>
+    validateInternationalization = <span style="color:#069">true</span>
+    validateModel = <span style="color:#069">true</span>
+    validateMetadata = <span style="color:#069">true</span>
+    validateComponent = <span style="color:#069">true</span>
+    validateDataStore = <span style="color:#069">true</span>
+    validateDataSet = <span style="color:#069">true</span>
+    validateActions = <span style="color:#069">true</span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced_define_a_custom_api">10. Advanced: define a custom API</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is possible to extend the Component API for custom front features.</p>
@@ -3459,7 +3610,7 @@ only if it targets not portable components (only used by the Studio or Beam).</p
 <p>In term of organization it is recommanded to create a custom <code>xxxx-component-api</code> module with the new set of annotations.</p>
 </div>
 <div class="sect2">
-<h3 id="_extending_the_ui">9.1. Extending the UI</h3>
+<h3 id="_extending_the_ui">10.1. Extending the UI</h3>
 <div class="paragraph">
 <p>To extend the UI just add an annotation which can be put on <code>@Option</code> fields which is decorated with <code>@Ui</code>.
 All its members will be put in the metadata of the parameter. Example:</p>
@@ -4492,7 +4643,7 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">{
-    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
     <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
 }</code></pre>
 </div>
@@ -4506,7 +4657,7 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">{
-    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
     <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
 }</code></pre>
 </div>
@@ -4547,6 +4698,7 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
             <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
             <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
                 {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>defaultValue</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
                     },
@@ -4579,16 +4731,30 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_component_details_code">1.1.3. <code>GET api/v1/component/details</code></h4>
+<h4 id="_code_get_api_v1_component_dependencies_code">1.1.3. <code>GET api/v1/component/dependencies</code></h4>
 <div class="paragraph">
-<p>Returns the set of metadata about a few components identified by their 'id'.</p>
+<p>Returns a list of dependencies for the given components.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+don&#8217;t forget to add the component itself since it will not be part of the dependencies.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Then you can use /dependency/{id} to download the binary.</p>
 </div>
 <div class="sect4">
 <h5 id="_request_3">Request</h5>
 <div class="paragraph">
 <p><em>No body</em><br>
-<strong>Query Param</strong>: <code>identifiers</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
+<strong>Query Param</strong>: <code>identifier</code>, <code>java.lang.String</code><br></p>
 </div>
 </div>
 <div class="sect4">
@@ -4598,6 +4764,79 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 </div>
 <div class="sect5">
 <h6 id="_code_200_ok_code_3"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Dependencies</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>dependencies</span><span style="color:#404">&quot;</span></span>: {
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_dependency_id_code">1.1.4. <code>GET api/v1/component/dependency/{id}</code></h4>
+<div class="paragraph">
+<p>Return a binary of the dependency represented by <code>id</code>. It can be maven coordinates for dependencies or a component id.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_4">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_4">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_4"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>javax.ws.rs.core.StreamingOutput</code>)</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_404_not_found_code_2"><code>404 Not Found</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_details_code">1.1.5. <code>GET api/v1/component/details</code></h4>
+<div class="paragraph">
+<p>Returns the set of metadata about a few components identified by their 'id'.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_5">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Query Param</strong>: <code>identifiers</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_5">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_5"><code>200 OK</code></h6>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentDetailList</code>)</p>
 </div>
@@ -4612,6 +4851,7 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
                         {
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>defaultValue</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                             <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                             <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
                             },
@@ -4643,7 +4883,8 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
                 <span style="color:#606"><span style="color:#404">&quot;</span><span>family</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                 <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                 <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
-                <span style="color:#606"><span style="color:#404">&quot;</span><span>plugin</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>plugin</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>pluginLocation</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
             },
             <span style="color:#606"><span style="color:#404">&quot;</span><span>inputFlows</span><span style="color:#404">&quot;</span></span>: [
                 <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
@@ -4660,6 +4901,7 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
             ],
             <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
                 {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>defaultValue</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                     <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
                     },
@@ -4699,69 +4941,24 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_component_icon_family_id_code">1.1.4. <code>GET api/v1/component/icon/family/{id}</code></h4>
+<h4 id="_code_get_api_v1_component_icon_family_id_code">1.1.6. <code>GET api/v1/component/icon/family/{id}</code></h4>
 <div class="paragraph">
 <p>Returns a particular family icon in raw bytes.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_4">Request</h5>
+<h5 id="_request_6">Request</h5>
 <div class="paragraph">
 <p><em>No body</em><br>
 <strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_4">Response</h5>
+<h5 id="_response_6">Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect5">
-<h6 id="_code_200_ok_code_4"><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="javascript">{
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_404_not_found_code_2"><code>404 Not Found</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="javascript">{
-    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
-    <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_icon_id_code">1.1.5. <code>GET api/v1/component/icon/{id}</code></h4>
-<div class="paragraph">
-<p>Returns a particular component icon in raw bytes.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_5">Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_5">Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_5"><code>200 OK</code></h6>
+<h6 id="_code_200_ok_code_6"><code>200 OK</code></h6>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
 </div>
@@ -4780,7 +4977,7 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="javascript">{
-    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
     <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
 }</code></pre>
 </div>
@@ -4789,24 +4986,69 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_component_index_code">1.1.6. <code>GET api/v1/component/index</code></h4>
+<h4 id="_code_get_api_v1_component_icon_id_code">1.1.7. <code>GET api/v1/component/icon/{id}</code></h4>
+<div class="paragraph">
+<p>Returns a particular component icon in raw bytes.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_7">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_7">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_7"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_404_not_found_code_4"><code>404 Not Found</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_index_code">1.1.8. <code>GET api/v1/component/index</code></h4>
 <div class="paragraph">
 <p>Returns the list of available components.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_6">Request</h5>
+<h5 id="_request_8">Request</h5>
 <div class="paragraph">
 <p><em>No body</em><br>
 <strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_6">Response</h5>
+<h5 id="_response_8">Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect5">
-<h6 id="_code_200_ok_code_6"><code>200 OK</code></h6>
+<h6 id="_code_200_ok_code_8"><code>200 OK</code></h6>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentIndices</code>)</p>
 </div>
@@ -4835,7 +5077,8 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
                 <span style="color:#606"><span style="color:#404">&quot;</span><span>family</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                 <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
                 <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
-                <span style="color:#606"><span style="color:#404">&quot;</span><span>plugin</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>plugin</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>pluginLocation</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
             },
             <span style="color:#606"><span style="color:#404">&quot;</span><span>links</span><span style="color:#404">&quot;</span></span>: [
                 {
@@ -4854,12 +5097,12 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_component_migrate_id_configurationversion_code">1.1.7. <code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></h4>
+<h4 id="_code_post_api_v1_component_migrate_id_configurationversion_code">1.1.9. <code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></h4>
 <div class="paragraph">
 <p>Allows to migrate a component configuration without calling any component execution.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_7">Request</h5>
+<h5 id="_request_9">Request</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code><br>
 <strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
@@ -4868,12 +5111,12 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_7">Response</h5>
+<h5 id="_response_9">Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect5">
-<h6 id="_code_200_ok_code_7"><code>200 OK</code></h6>
+<h6 id="_code_200_ok_code_9"><code>200 OK</code></h6>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)</p>
 </div>
@@ -4881,24 +5124,24 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_configurationtype_index_code">1.1.8. <code>GET api/v1/configurationtype/index</code></h4>
+<h4 id="_code_get_api_v1_configurationtype_index_code">1.1.10. <code>GET api/v1/configurationtype/index</code></h4>
 <div class="paragraph">
 <p>Returns all available configuration type - storable models.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_8">Request</h5>
+<h5 id="_request_10">Request</h5>
 <div class="paragraph">
 <p><em>No body</em><br>
 <strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_8">Response</h5>
+<h5 id="_response_10">Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect5">
-<h6 id="_code_200_ok_code_8"><code>200 OK</code></h6>
+<h6 id="_code_200_ok_code_10"><code>200 OK</code></h6>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ConfigTypeNodes</code>)</p>
 </div>
@@ -4914,12 +5157,43 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_execution_read_family_component_code">1.1.9. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
+<h4 id="_code_get_api_v1_environment_code">1.1.11. <code>GET api/v1/environment</code></h4>
+<div class="sect4">
+<h5 id="_request_11">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_11">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>*/*</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_11"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Environment</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>commit</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>latestApiVersion</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>time</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>version</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_post_api_v1_execution_read_family_component_code">1.1.12. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
 <div class="paragraph">
 <p>Read inputs from an instance of mapper. The number of returned records if enforced to be limited to 1000. The format is a JSON based format where each like is a json record.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_9">Request</h5>
+<h5 id="_request_12">Request</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code><br>
 <strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
@@ -4929,7 +5203,7 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_9">Response</h5>
+<h5 id="_response_12">Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>talend/stream</code></p>
 </div>
@@ -4940,12 +5214,12 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_execution_write_family_component_code">1.1.10. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
+<h4 id="_code_post_api_v1_execution_write_family_component_code">1.1.13. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
 <div class="paragraph">
 <p>Sends records using a processor instance. Note that the processor should have only an input. Behavior for other processors is undefined. The input format is a JSON based format where each like is a json record - same as for the symmetric endpoint.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_10">Request</h5>
+<h5 id="_request_13">Request</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>talend/stream</code><br>
 <strong>Request Body</strong>: (<code>java.io.InputStream</code>)
@@ -4955,7 +5229,7 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_10">Response</h5>
+<h5 id="_response_13">Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
@@ -5027,6 +5301,20 @@ if you have a doubt about the endpoint, they are all logged during startup and y
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t want to create a pool of connection per endpoint/verb you can use the bus endpoint: <code>/websocket/v1/bus</code>.
+This endpoint requires that you add the header <code>destinationMethod</code> to each request with the verb value - default would be <code>GET</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>SEND
+destination: /component/index
+destinationMethod: GET
+Accept: application/json
+
+^@</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -5246,6 +5534,156 @@ of course you can compose previous layout (message format) and appenders (where 
 </tr>
 </table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_server_configuration">4. Server Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The server module contains several configuration you can set in:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Environment variables</p>
+</li>
+<li>
+<p>System properties</p>
+</li>
+<li>
+<p>A file located based on the <code>--component-configuration</code> CLI option</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the configuration is read from system properties, environment variables, &#8230;&#8203;.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.environment.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.configurationtype.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.component.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for component endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flag to set the server in debug mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">production</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [auto, console, noop, url]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
+<p class="tableblock">In <code>auto</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">${user.home}/.m2/repository</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <h1 id="_wrapping_a_beam_i_o" class="sect0">Wrapping a Beam I/O</h1>
