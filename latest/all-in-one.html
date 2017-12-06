@@ -1919,7 +1919,7 @@ read the output of <code>maven-dependency-plugin</code> in <code>TALEND-INF/depe
 
 The following files have been resolved:
    org.talend.sdk.component:component-api:jar:1.0.0-SNAPSHOT:provided
-   org.apache.geronimo.specs:geronimo-annotation_1.0_spec:jar:1.1.1:provided
+   org.apache.geronimo.specs:geronimo-annotation_1.3_spec:jar:1.0:provided
    org.superbiz:awesome-project:jar:1.2.3:compile
    junit:junit:jar:4.12:test
    org.hamcrest:hamcrest-core:jar:1.3:test</code></pre>
@@ -1931,7 +1931,7 @@ The following files have been resolved:
 <div class="ulist">
 <ul>
 <li>
-<p>the API (<code>component-api</code> and <code>geronimo-annotation_1.0_spec</code>) are <code>provided</code> because you can consider them to be there when executing (it comes with the framework)</p>
+<p>the API (<code>component-api</code> and <code>geronimo-annotation_1.3_spec</code>) are <code>provided</code> because you can consider them to be there when executing (it comes with the framework)</p>
 </li>
 <li>
 <p>your specific dependencies (<code>awesome-project</code>) is <code>compile</code>: it will be included as a needed dependency by the framework (note that using <code>runtime</code> works too).</p>
@@ -5582,14 +5582,19 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
@@ -5607,19 +5612,34 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
@@ -5645,26 +5665,6 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.mode</p></td>
