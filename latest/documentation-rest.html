@@ -1090,14 +1090,54 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.component.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for component endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
@@ -1118,41 +1158,6 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.configurationtype.rate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.component.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for component endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
@@ -1184,11 +1189,6 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${user.home}/.m2/repository</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
 </tr>
 </tbody>
 </table>
