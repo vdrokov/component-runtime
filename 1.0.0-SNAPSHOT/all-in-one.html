@@ -61,7 +61,8 @@
           <ul class="dropdown-menu" aria-labelledby="versions">
             <li><a href="/component-runtime/index.html">Current</a></li>
             <li><a href="/component-runtime/latest/index.html">Latest</a></li>
-            
+                        <li><a href="/component-runtime/apidocs/index.html">apidocs</a></li>
+
           </ul>
         </li>
       </ul>
@@ -243,7 +244,18 @@
 <li><a href="#_maven_plugin">8. Maven Plugin</a>
 <ul class="sectlevel2">
 <li><a href="#_validate">8.1. Validate</a></li>
-<li><a href="#_documentation">8.2. Documentation</a></li>
+<li><a href="#_documentation">8.2. Documentation</a>
+<ul class="sectlevel3">
+<li><a href="#_render_your_documentation">8.2.1. Render your documentation</a>
+<ul class="sectlevel4">
+<li><a href="#_html">HTML</a></li>
+<li><a href="#_pdf">PDF</a></li>
+<li><a href="#_include_the_documentation_into_a_document">Include the documentation into a document</a></li>
+<li><a href="#_more">More</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#_prepare">8.3. Prepare</a></li>
 <li><a href="#_generate_inputs_or_outputs">8.4. Generate inputs or outputs</a></li>
 </ul>
@@ -399,7 +411,11 @@
 <li><a href="#_websocket_transport">1.2. WebSocket transport</a></li>
 </ul>
 </li>
-<li><a href="#_web_forms_and_rest_api">2. Web forms and REST API</a></li>
+<li><a href="#_web_forms_and_rest_api">2. Web forms and REST API</a>
+<ul class="sectlevel2">
+<li><a href="#_use_uispec_model_without_all_the_tooling">2.1. Use UiSpec model without all the tooling</a></li>
+</ul>
+</li>
 <li><a href="#_logging">3. Logging</a></li>
 <li><a href="#_server_configuration">4. Server Configuration</a></li>
 </ul>
@@ -1824,6 +1840,10 @@ of supported keys:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${property_path}._displayName</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the option.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">${simple_class_name}.${property_name}._displayName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the option using it class name.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -1833,6 +1853,46 @@ of supported keys:</p>
 <div class="content">
 <pre class="CodeRay highlight"><code>memory.list._displayName = Memory List</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Configuration class are also translatable using the simple class name in the messages properties file.
+This useful when you have some common configuration shared within multiple components.</p>
+</div>
+<div class="paragraph">
+<p>If you have a configuration class like :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyConfig</span> {
+
+    <span style="color:#007">@Option</span>
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#0a8;font-weight:bold">String</span> host;
+
+    <span style="color:#007">@Option</span>
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#339;font-weight:bold">int</span> port;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can give it a translatable display name by adding ${simple_class_name}.${property_name}._displayName to Messages.properties under the same package as the config class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>MyConfig.host._displayName = Server Host Name
+MyConfig.port._displayName = Server Port</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you have a display name using the property path, it will override the display name defined using the simple class name
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2938,13 +2998,6 @@ for instance. Here is the list of all actions:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ValidationResult</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"comment":"Something went wrong","status":"KO"}</code></p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.service.wizard.Wizard</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">wizard</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This class marks an action taking N parameters representing N screens (sorted) to do an action</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">any</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -3340,8 +3393,205 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 <p><code>${classes}/TALEND-INF/documentation.adoc</code></p>
 </div></div></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">formats</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A map of the renderings to do, keys are the format (<code>pdf</code> or <code>html</code>) and values the output paths</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">attributes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A map of asciidoctor attributes when formats is set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">templateDir / templateEngine</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Template configuration for the rendering</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Document title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">${project.name}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">attachDocumentations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the documentations (<code>.adoc</code>, and <code>formats</code> keys) should be attached to the project (and deployed)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
 </tbody>
 </table>
+<div class="sect3">
+<h4 id="_render_your_documentation">8.2.1. Render your documentation</h4>
+<div class="sect4">
+<h5 id="_html">HTML</h5>
+<div class="paragraph">
+<p>To render the generated documentation you can use the Asciidoctor Maven plugin (or Gradle equivalent):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span> (1)
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>talend-component-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${talend-component-kit.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>documentation<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;phase&gt;</span>prepare-package<span style="color:#070;font-weight:bold">&lt;/phase&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>asciidoc<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;plugin&gt;</span> (2)
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.asciidoctor<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>asciidoctor-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.5.6<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>doc-html<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;phase&gt;</span>prepare-package<span style="color:#070;font-weight:bold">&lt;/phase&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>process-asciidoc<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;configuration&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDirectory&gt;</span>${project.build.outputDirectory}/TALEND-INF<span style="color:#070;font-weight:bold">&lt;/sourceDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDocumentName&gt;</span>documentation.adoc<span style="color:#070;font-weight:bold">&lt;/sourceDocumentName&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;outputDirectory&gt;</span>${project.build.directory}/documentation<span style="color:#070;font-weight:bold">&lt;/outputDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;backend&gt;</span>html5<span style="color:#070;font-weight:bold">&lt;/backend&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/configuration&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Will generate in <code>target/classes/TALEND-INF/documentation.adoc</code> the components documentation.</p>
+</li>
+<li>
+<p>Will render the documenation as an html file in <code>target/documentation/documentation.html</code>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+ensure to execute it after the documentation generation.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_pdf">PDF</h5>
+<div class="paragraph">
+<p>If you prefer a PDF rendering you can configure the following execution
+in the asciidoctor plugin (note that you can configure both executions if you want
+both HTML and PDF rendering):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.asciidoctor<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>asciidoctor-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.5.6<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>doc-html<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;phase&gt;</span>prepare-package<span style="color:#070;font-weight:bold">&lt;/phase&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>process-asciidoc<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;configuration&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDirectory&gt;</span>${project.build.outputDirectory}/TALEND-INF<span style="color:#070;font-weight:bold">&lt;/sourceDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDocumentName&gt;</span>documentation.adoc<span style="color:#070;font-weight:bold">&lt;/sourceDocumentName&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;outputDirectory&gt;</span>${project.build.directory}/documentation<span style="color:#070;font-weight:bold">&lt;/outputDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;backend&gt;</span>pdf<span style="color:#070;font-weight:bold">&lt;/backend&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/configuration&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;dependencies&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.asciidoctor<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>asciidoctorj-pdf<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.5.0-alpha.16<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/dependencies&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_include_the_documentation_into_a_document">Include the documentation into a document</h5>
+<div class="paragraph">
+<p>If you want to add some more content or add a title, you can include the generated document into
+another document using Asciidoc <code>include</code> directive.</p>
+</div>
+<div class="paragraph">
+<p>A common example is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="adoc">= Super Components
+Super Writer
+:toc:
+:toclevels: 3
+:source-highlighter: prettify
+:numbered:
+:icons: font
+:hide-uri-scheme:
+:imagesdir: images
+
+Unresolved directive in documentation.adoc - include::{generated_doc}/documentation.adoc[]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This assumes you pass to the plugin the attribute <code>generated_doc</code>, this can be done this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.asciidoctor<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>asciidoctor-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.5.6<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>doc-html<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;phase&gt;</span>prepare-package<span style="color:#070;font-weight:bold">&lt;/phase&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>process-asciidoc<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;configuration&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDirectory&gt;</span>${project.basedir}/src/main/asciidoc<span style="color:#070;font-weight:bold">&lt;/sourceDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;sourceDocumentName&gt;</span>my-main-doc.adoc<span style="color:#070;font-weight:bold">&lt;/sourceDocumentName&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;outputDirectory&gt;</span>${project.build.directory}/documentation<span style="color:#070;font-weight:bold">&lt;/outputDirectory&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;backend&gt;</span>html5<span style="color:#070;font-weight:bold">&lt;/backend&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;attributes&gt;</span>
+          <span style="color:#070;font-weight:bold">&lt;generated_adoc&gt;</span>${project.build.outputDirectory}/TALEND-INF<span style="color:#070;font-weight:bold">&lt;/generated_adoc&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;/attributes&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/configuration&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is optional but allows to reuse maven placeholders to pass paths which is quite convenient in an automated build.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_more">More</h5>
+<div class="paragraph">
+<p>You can find more customizations on Asciidoctor <a href="http://asciidoctor.org/docs/asciidoctor-maven-plugin/">website</a>.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_prepare">8.3. Prepare</h3>
@@ -3579,6 +3829,9 @@ talendComponentKit {
     skipDocumentation = <span style="color:#069">false</span>
     documentationOutput = <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">File</span>(....)
     documentationLevel = <span style="color:#00D">2</span> <span style="color:#777">// first level will be == in the generated adoc</span>
+    documentationTitle = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">My Component Family</span><span style="color:#710">'</span></span> <span style="color:#777">// default to project name</span>
+    documentationFormats = [:] <span style="color:#777">// adoc attributes</span>
+    documentationFormats = [:] <span style="color:#777">// renderings to do</span>
 
     <span style="color:#777">// validation</span>
     skipValidation = <span style="color:#069">false</span>
@@ -5330,7 +5583,7 @@ Accept: application/json
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Path</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">tcomp-facade</span><span style="color:#710">&quot;</span></span>)
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Path</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">tacokit-facade</span><span style="color:#710">&quot;</span></span>)
 <span style="color:#007">@ApplicationScoped</span>
 <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">ComponentFacade</span> {
 
@@ -5367,7 +5620,7 @@ Accept: application/json
 
     <span style="color:#007">@GET</span>
     <span style="color:#007">@Path</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">detail/{id}</span><span style="color:#710">&quot;</span></span>)
-    <span style="color:#088;font-weight:bold">public</span> UiSpecPayload getDetail(<span style="color:#007">@QueryParam</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">language</span><span style="color:#710">&quot;</span></span>) <span style="color:#007">@DefaultValue</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">en</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> language,
+    <span style="color:#088;font-weight:bold">public</span> Ui getDetail(<span style="color:#007">@QueryParam</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">language</span><span style="color:#710">&quot;</span></span>) <span style="color:#007">@DefaultValue</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">en</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> language,
             <span style="color:#007">@PathParam</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id</span><span style="color:#710">&quot;</span></span>) <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> id) {
         <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">List</span>&lt;ComponentDetail&gt; details = client.details(language, id, <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">String</span>[<span style="color:#00D">0</span>]).getDetails();
         <span style="color:#080;font-weight:bold">if</span> (details.isEmpty()) {
@@ -5410,6 +5663,95 @@ the  <code>/migrate</code> endpoint has nothing special so was not shown in pre
 </td>
 </tr>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_use_uispec_model_without_all_the_tooling">2.1. Use UiSpec model without all the tooling</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>component-form-model<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${talend-component-kit.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This maven dependency provides the UISpec model classes. You can use the <code>Ui</code> API (with or without the builders)
+to create UiSpec representations.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">final</span> Ui form1 = ui()
+    <span style="color:#777">// (1)</span>
+    .withJsonSchema(JsonSchema.jsonSchemaFrom(Form1.class).build())
+    <span style="color:#777">// (2)</span>
+    .withUiSchema(uiSchema()
+        .withKey(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">multiSelectTag</span><span style="color:#710">&quot;</span></span>)
+        .withRestricted(<span style="color:#069">false</span>)
+        .withTitle(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Simple multiSelectTag</span><span style="color:#710">&quot;</span></span>)
+        .withDescription(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">This datalist accepts values that are not in the list of suggestions</span><span style="color:#710">&quot;</span></span>)
+        .withWidget(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">multiSelectTag</span><span style="color:#710">&quot;</span></span>)
+        .build())
+    <span style="color:#777">// (3)</span>
+    .withProperties(myFormInstance)
+    .build();
+
+<span style="color:#777">// (4)</span>
+<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> json = jsonb.toJson(form1);</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>We extract the <code>JsonSchema</code> from reflection on the class <code>Form1</code>. Note that <code>@JsonSchemaIgnore</code> allows
+to ignore a field and <code>@JsonSchemaProperty</code> allows to rename a property,</p>
+</li>
+<li>
+<p>We build programmatically using the builder API a <code>UiSchema</code>,</p>
+</li>
+<li>
+<p>We pass an instance of the form to let the serializer extracts it JSON model,</p>
+</li>
+<li>
+<p>We serialize the <code>Ui</code> model which can be used by UiSpec compatible front widgets.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+the model uses JSON-B API to define the binding, ensure to have an implementation in your classpath.
+This can be done adding these dependencies:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.apache.geronimo.specs<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>geronimo-jsonb_1.0_spec<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.0<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.apache.geronimo.specs<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>geronimo-json_1.1_spec<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.0<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.apache.johnzon<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>johnzon-jsonb<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${johnzon.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span> <span style="color:#777">&lt;!-- 1.1.5 for instance --&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -5582,24 +5924,14 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
@@ -5607,19 +5939,34 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
@@ -5652,24 +5999,14 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.mode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Flag to set the server in debug mode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">production</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
