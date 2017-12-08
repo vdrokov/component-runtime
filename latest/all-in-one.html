@@ -61,7 +61,8 @@
           <ul class="dropdown-menu" aria-labelledby="versions">
             <li><a href="/component-runtime/index.html">Current</a></li>
             <li><a href="/component-runtime/latest/index.html">Latest</a></li>
-            
+                        <li><a href="/component-runtime/apidocs/index.html">apidocs</a></li>
+
           </ul>
         </li>
       </ul>
@@ -410,11 +411,7 @@
 <li><a href="#_websocket_transport">1.2. WebSocket transport</a></li>
 </ul>
 </li>
-<li><a href="#_web_forms_and_rest_api">2. Web forms and REST API</a>
-<ul class="sectlevel2">
-<li><a href="#_use_uispec_model_without_all_the_tooling">2.1. Use UiSpec model without all the tooling</a></li>
-</ul>
-</li>
+<li><a href="#_web_forms_and_rest_api">2. Web forms and REST API</a></li>
 <li><a href="#_logging">3. Logging</a></li>
 <li><a href="#_server_configuration">4. Server Configuration</a></li>
 </ul>
@@ -5663,95 +5660,6 @@ the  <code>/migrate</code> endpoint has nothing special so was not shown in pre
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_use_uispec_model_without_all_the_tooling">2.1. Use UiSpec model without all the tooling</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>component-form-model<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${talend-component-kit.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
-<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This maven dependency provides the UISpec model classes. You can use the <code>Ui</code> API (with or without the builders)
-to create UiSpec representations.</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">final</span> Ui form1 = ui()
-    <span style="color:#777">// (1)</span>
-    .withJsonSchema(JsonSchema.jsonSchemaFrom(Form1.class).build())
-    <span style="color:#777">// (2)</span>
-    .withUiSchema(uiSchema()
-        .withKey(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">multiSelectTag</span><span style="color:#710">&quot;</span></span>)
-        .withRestricted(<span style="color:#069">false</span>)
-        .withTitle(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Simple multiSelectTag</span><span style="color:#710">&quot;</span></span>)
-        .withDescription(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">This datalist accepts values that are not in the list of suggestions</span><span style="color:#710">&quot;</span></span>)
-        .withWidget(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">multiSelectTag</span><span style="color:#710">&quot;</span></span>)
-        .build())
-    <span style="color:#777">// (3)</span>
-    .withProperties(myFormInstance)
-    .build();
-
-<span style="color:#777">// (4)</span>
-<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> json = jsonb.toJson(form1);</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>We extract the <code>JsonSchema</code> from reflection on the class <code>Form1</code>. Note that <code>@JsonSchemaIgnore</code> allows
-to ignore a field and <code>@JsonSchemaProperty</code> allows to rename a property,</p>
-</li>
-<li>
-<p>We build programmatically using the builder API a <code>UiSchema</code>,</p>
-</li>
-<li>
-<p>We pass an instance of the form to let the serializer extracts it JSON model,</p>
-</li>
-<li>
-<p>We serialize the <code>Ui</code> model which can be used by UiSpec compatible front widgets.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-the model uses JSON-B API to define the binding, ensure to have an implementation in your classpath.
-This can be done adding these dependencies:
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.apache.geronimo.specs<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>geronimo-jsonb_1.0_spec<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.0<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
-<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span>
-<span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.apache.geronimo.specs<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>geronimo-json_1.1_spec<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>1.0<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
-<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span>
-<span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.apache.johnzon<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>johnzon-jsonb<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${johnzon.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span> <span style="color:#777">&lt;!-- 1.1.5 for instance --&gt;</span>
-<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -5923,9 +5831,9 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
@@ -5938,29 +5846,24 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.environment.rate</p></td>
@@ -6008,15 +5911,20 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [auto, console, noop, url]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
-<p class="tableblock">In <code>auto</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${user.home}/.m2/repository</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [auto, console, noop, url]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
+<p class="tableblock">In <code>auto</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
 </tr>
 </tbody>
 </table>
