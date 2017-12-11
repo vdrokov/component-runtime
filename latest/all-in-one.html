@@ -227,25 +227,26 @@
 <li><a href="#_particular_action_types">6.1. Particular action types</a></li>
 </ul>
 </li>
-<li><a href="#_creating_an_execution_chain_or_pipeline">7. Creating an execution chain or pipeline</a>
+<li><a href="#_built_in_services">7. Built in services</a></li>
+<li><a href="#_creating_an_execution_chain_or_pipeline">8. Creating an execution chain or pipeline</a>
 <ul class="sectlevel2">
-<li><a href="#_standalone_chains">7.1. Standalone chains</a></li>
-<li><a href="#_beam_case">7.2. Beam case</a>
+<li><a href="#_standalone_chains">8.1. Standalone chains</a></li>
+<li><a href="#_beam_case">8.2. Beam case</a>
 <ul class="sectlevel3">
-<li><a href="#_i_o">7.2.1. I/O</a></li>
-<li><a href="#_processors">7.2.2. Processors</a></li>
-<li><a href="#_deployment">7.2.3. Deployment</a></li>
-<li><a href="#_convert_a_beam_io_in_a_component_i_o">7.2.4. Convert a Beam.io in a component I/O</a></li>
+<li><a href="#_i_o">8.2.1. I/O</a></li>
+<li><a href="#_processors">8.2.2. Processors</a></li>
+<li><a href="#_deployment">8.2.3. Deployment</a></li>
+<li><a href="#_convert_a_beam_io_in_a_component_i_o">8.2.4. Convert a Beam.io in a component I/O</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_maven_plugin">8. Maven Plugin</a>
+<li><a href="#_maven_plugin">9. Maven Plugin</a>
 <ul class="sectlevel2">
-<li><a href="#_validate">8.1. Validate</a></li>
-<li><a href="#_documentation">8.2. Documentation</a>
+<li><a href="#_validate">9.1. Validate</a></li>
+<li><a href="#_documentation">9.2. Documentation</a>
 <ul class="sectlevel3">
-<li><a href="#_render_your_documentation">8.2.1. Render your documentation</a>
+<li><a href="#_render_your_documentation">9.2.1. Render your documentation</a>
 <ul class="sectlevel4">
 <li><a href="#_html">HTML</a></li>
 <li><a href="#_pdf">PDF</a></li>
@@ -255,14 +256,14 @@
 </li>
 </ul>
 </li>
-<li><a href="#_prepare">8.3. Prepare</a></li>
-<li><a href="#_generate_inputs_or_outputs">8.4. Generate inputs or outputs</a></li>
+<li><a href="#_prepare">9.3. Prepare</a></li>
+<li><a href="#_generate_inputs_or_outputs">9.4. Generate inputs or outputs</a></li>
 </ul>
 </li>
-<li><a href="#_gradle_plugin">9. Gradle Plugin</a></li>
-<li><a href="#_advanced_define_a_custom_api">10. Advanced: define a custom API</a>
+<li><a href="#_gradle_plugin">10. Gradle Plugin</a></li>
+<li><a href="#_advanced_define_a_custom_api">11. Advanced: define a custom API</a>
 <ul class="sectlevel2">
-<li><a href="#_extending_the_ui">10.1. Extending the UI</a></li>
+<li><a href="#_extending_the_ui">11.1. Extending the UI</a></li>
 </ul>
 </li>
 </ul>
@@ -3003,7 +3004,58 @@ for instance. Here is the list of all actions:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_an_execution_chain_or_pipeline">7. Creating an execution chain or pipeline</h2>
+<h2 id="_built_in_services">7. Built in services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The framework provides some built-in services you can inject by type in components and actions out of the box.</p>
+</div>
+<div class="paragraph">
+<p>Here is the list:</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>org.talend.sdk.component.api.service.cache.LocalCache</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides a small abstraction to cache data which don&#8217;t need to be recomputed very often. Commonly used by actions for the UI interactions.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>org.talend.sdk.component.api.service.dependency.Resolver</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Allows to resolve a dependency from its Maven coordinates.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+it assumes the dependency is locally available to the execution instance which is not guaranteed yet by the framework.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_an_execution_chain_or_pipeline">8. Creating an execution chain or pipeline</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>There are two kind of chains the framework supports:</p>
@@ -3019,7 +3071,7 @@ for instance. Here is the list of all actions:</p>
 </ol>
 </div>
 <div class="sect2">
-<h3 id="_standalone_chains">7.1. Standalone chains</h3>
+<h3 id="_standalone_chains">8.1. Standalone chains</h3>
 <div class="paragraph">
 <p>For now the standalone chains only support linear flows (more to come) and are built based on a <code>ExecutionChainBuilder</code>.</p>
 </div>
@@ -3127,12 +3179,12 @@ from a version to the currently available one when needed.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_beam_case">7.2. Beam case</h3>
+<h3 id="_beam_case">8.2. Beam case</h3>
 <div class="paragraph">
 <p>For beam case, you need to rely on beam pipeline definition and use <code>component-runtime-beam</code> dependency which provides Beam bridges.</p>
 </div>
 <div class="sect3">
-<h4 id="_i_o">7.2.1. I/O</h4>
+<h4 id="_i_o">8.2.1. I/O</h4>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendIO</code> provides a way to convert a partition mapper or a processor to an input or processor
 using the <code>read</code> or <code>write</code> methods.</p>
@@ -3160,7 +3212,7 @@ using the <code>read</code> or <code>write</code> methods.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_processors">7.2.2. Processors</h4>
+<h4 id="_processors">8.2.2. Processors</h4>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendFn</code> provides the way to wrap a processor in a Beam <code>PTransform</code> and integrate it in the pipeline.</p>
 </div>
@@ -3196,7 +3248,7 @@ format to this <code>Map&lt;String, List&lt;Serializable&gt;&gt;</code>.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_deployment">7.2.3. Deployment</h4>
+<h4 id="_deployment">8.2.3. Deployment</h4>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -3212,7 +3264,7 @@ care of providing an implicit and lazy <code>ComponentManager</code> managing th
 </div>
 </div>
 <div class="sect3">
-<h4 id="_convert_a_beam_io_in_a_component_i_o">7.2.4. Convert a Beam.io in a component I/O</h4>
+<h4 id="_convert_a_beam_io_in_a_component_i_o">8.2.4. Convert a Beam.io in a component I/O</h4>
 <div class="paragraph">
 <p>For simple I/O you can get automatic conversion of the Beam.io to a component I/O transparently if you decorated your <code>PTransform</code>
 with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
@@ -3238,7 +3290,7 @@ with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_maven_plugin">8. Maven Plugin</h2>
+<h2 id="_maven_plugin">9. Maven Plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>talend-component-maven-plugin</code> intends to help you to write components
@@ -3257,7 +3309,7 @@ validating components match best practices and also generating transparently met
 </div>
 </div>
 <div class="sect2">
-<h3 id="_validate">8.1. Validate</h3>
+<h3 id="_validate">9.1. Validate</h3>
 <div class="paragraph">
 <p>The first goal is here to help you to validate the common programming model of the component. Here is the execution definition to activate it:</p>
 </div>
@@ -3345,7 +3397,7 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </table>
 </div>
 <div class="sect2">
-<h3 id="_documentation">8.2. Documentation</h3>
+<h3 id="_documentation">9.2. Documentation</h3>
 <div class="paragraph">
 <p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and
 <code>@Documentation</code> you can put on options and the component itself.</p>
@@ -3425,7 +3477,7 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="_render_your_documentation">8.2.1. Render your documentation</h4>
+<h4 id="_render_your_documentation">9.2.1. Render your documentation</h4>
 <div class="sect4">
 <h5 id="_html">HTML</h5>
 <div class="paragraph">
@@ -3598,7 +3650,7 @@ Unresolved directive in documentation.adoc - include::{generated_doc}/documentat
 </div>
 </div>
 <div class="sect2">
-<h3 id="_prepare">8.3. Prepare</h3>
+<h3 id="_prepare">9.3. Prepare</h3>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -3697,7 +3749,7 @@ with a profile (adding <code>-Pstudio</code> to you build command, ex: <code>mvn
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generate_inputs_or_outputs">8.4. Generate inputs or outputs</h3>
+<h3 id="_generate_inputs_or_outputs">9.4. Generate inputs or outputs</h3>
 <div class="paragraph">
 <p>The Mojo <code>generate</code> (maven plugin goal) of the same plugin also embeds a generator you can use to bootstrap any input or output component:</p>
 </div>
@@ -3792,7 +3844,7 @@ with a profile (adding <code>-Pstudio</code> to you build command, ex: <code>mvn
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gradle_plugin">9. Gradle Plugin</h2>
+<h2 id="_gradle_plugin">10. Gradle Plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>gradle-talend-component</code> intends to help you to write components
@@ -3854,7 +3906,7 @@ talendComponentKit {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_advanced_define_a_custom_api">10. Advanced: define a custom API</h2>
+<h2 id="_advanced_define_a_custom_api">11. Advanced: define a custom API</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is possible to extend the Component API for custom front features.</p>
@@ -3867,7 +3919,7 @@ only if it targets not portable components (only used by the Studio or Beam).</p
 <p>In term of organization it is recommanded to create a custom <code>xxxx-component-api</code> module with the new set of annotations.</p>
 </div>
 <div class="sect2">
-<h3 id="_extending_the_ui">10.1. Extending the UI</h3>
+<h3 id="_extending_the_ui">11.1. Extending the UI</h3>
 <div class="paragraph">
 <p>To extend the UI just add an annotation which can be put on <code>@Option</code> fields which is decorated with <code>@Ui</code>.
 All its members will be put in the metadata of the parameter. Example:</p>
@@ -5928,6 +5980,11 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -6006,11 +6063,6 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
