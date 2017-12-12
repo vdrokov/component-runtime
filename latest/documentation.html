@@ -125,24 +125,25 @@
 </ul>
 </li>
 <li><a href="#_built_in_services">7. Built in services</a></li>
-<li><a href="#_creating_an_execution_chain_or_pipeline">8. Creating an execution chain or pipeline</a>
+<li><a href="#_services_and_interceptors">8. Services and interceptors</a></li>
+<li><a href="#_creating_an_execution_chain_or_pipeline">9. Creating an execution chain or pipeline</a>
 <ul class="sectlevel2">
-<li><a href="#_standalone_chains">8.1. Standalone chains</a></li>
-<li><a href="#_beam_case">8.2. Beam case</a></li>
+<li><a href="#_standalone_chains">9.1. Standalone chains</a></li>
+<li><a href="#_beam_case">9.2. Beam case</a></li>
 </ul>
 </li>
-<li><a href="#_maven_plugin">9. Maven Plugin</a>
+<li><a href="#_maven_plugin">10. Maven Plugin</a>
 <ul class="sectlevel2">
-<li><a href="#_validate">9.1. Validate</a></li>
-<li><a href="#_documentation">9.2. Documentation</a></li>
-<li><a href="#_prepare">9.3. Prepare</a></li>
-<li><a href="#_generate_inputs_or_outputs">9.4. Generate inputs or outputs</a></li>
+<li><a href="#_validate">10.1. Validate</a></li>
+<li><a href="#_documentation">10.2. Documentation</a></li>
+<li><a href="#_prepare">10.3. Prepare</a></li>
+<li><a href="#_generate_inputs_or_outputs">10.4. Generate inputs or outputs</a></li>
 </ul>
 </li>
-<li><a href="#_gradle_plugin">10. Gradle Plugin</a></li>
-<li><a href="#_advanced_define_a_custom_api">11. Advanced: define a custom API</a>
+<li><a href="#_gradle_plugin">11. Gradle Plugin</a></li>
+<li><a href="#_advanced_define_a_custom_api">12. Advanced: define a custom API</a>
 <ul class="sectlevel2">
-<li><a href="#_extending_the_ui">11.1. Extending the UI</a></li>
+<li><a href="#_extending_the_ui">12.1. Extending the UI</a></li>
 </ul>
 </li>
 </ul>
@@ -2135,6 +2136,18 @@ it is not recommanded to use it for the runtime since the local configuration is
 </td>
 </tr>
 </table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+you can also use the local cache as an interceptor with <code>@Cached</code>
+</td>
+</tr>
+</table>
 </div></div></td>
 </tr>
 </tbody>
@@ -2142,7 +2155,93 @@ it is not recommanded to use it for the runtime since the local configuration is
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_an_execution_chain_or_pipeline">8. Creating an execution chain or pipeline</h2>
+<h2 id="_services_and_interceptors">8. Services and interceptors</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For common concerns like caching, auditing etc, it can be fancy to use interceptor like API. It is enabled by the framework
+on services.</p>
+</div>
+<div class="paragraph">
+<p>An interceptor defines an annotation marked with <code>@Intercepts</code> which defines the implementation of the interceptor (an <code>InterceptorHandler</code>).</p>
+</div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Intercepts</span>(LoggingHandler.class)
+<span style="color:#007">@Target</span>({ TYPE, METHOD })
+<span style="color:#007">@Retention</span>(RUNTIME)
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#007">@interface</span> Logged {
+    <span style="color:#0a8;font-weight:bold">String</span> value();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then handler is created from its constructor and can take service injections (by type). The first parameter, however, can be
+a <code>BiFunction&lt;Method, Object[], Object&gt;</code> which representes the invocation chain if your interceptor can be used with others.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+if you do a generic interceptor it is important to pass the invoker as first parameter. If you don&#8217;t do so
+you can&#8217;t combine interceptors at all.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here is an interceptor implementation for our <code>@Logged</code> API:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">LoggingHandler</span> <span style="color:#088;font-weight:bold">implements</span> InterceptorHandler {
+    <span style="color:#777">// injected</span>
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#088;font-weight:bold">final</span> BiFunction&lt;<span style="color:#0a8;font-weight:bold">Method</span>, <span style="color:#0a8;font-weight:bold">Object</span><span style="color:#339;font-weight:bold">[]</span>, <span style="color:#0a8;font-weight:bold">Object</span>&gt; invoker;
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#088;font-weight:bold">final</span> SomeService service;
+
+    <span style="color:#777">// internal</span>
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">ConcurrentMap</span>&lt;<span style="color:#0a8;font-weight:bold">Method</span>, <span style="color:#0a8;font-weight:bold">String</span>&gt; loggerNames = <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">ConcurrentHashMap</span>&lt;&gt;();
+
+    <span style="color:#088;font-weight:bold">public</span> CacheHandler(<span style="color:#088;font-weight:bold">final</span> BiFunction&lt;<span style="color:#0a8;font-weight:bold">Method</span>, <span style="color:#0a8;font-weight:bold">Object</span><span style="color:#339;font-weight:bold">[]</span>, <span style="color:#0a8;font-weight:bold">Object</span>&gt; invoker, <span style="color:#088;font-weight:bold">final</span> SomeService service) {
+        <span style="color:#950">this</span>.invoker = invoker;
+        <span style="color:#950">this</span>.service = service;
+    }
+
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#0a8;font-weight:bold">Object</span> invoke(<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">Method</span> method, <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">Object</span><span style="color:#339;font-weight:bold">[]</span> args) {
+        <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> name = loggerNames.computeIfAbsent(method, m -&gt; findAnnotation(m, Logged.class).get().value());
+        service.getLogger(name).info(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Invoking {}</span><span style="color:#710">&quot;</span></span>, method.getName());
+        <span style="color:#080;font-weight:bold">return</span> invoker.apply(method, args);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This implementation is compatible with interceptor chains since it takes the invoker as first constructor parameter
+and it also takes a service injection. Then the implementation just does what is needed - logging the invoked method here.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the <code>findAnnotation</code> annotation - inherited from <code>InterceptorHandler</code> is an utility method to find an annotation on a method
+or class (in this order).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_an_execution_chain_or_pipeline">9. Creating an execution chain or pipeline</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>There are two kind of chains the framework supports:</p>
@@ -2158,7 +2257,7 @@ it is not recommanded to use it for the runtime since the local configuration is
 </ol>
 </div>
 <div class="sect2">
-<h3 id="_standalone_chains">8.1. Standalone chains</h3>
+<h3 id="_standalone_chains">9.1. Standalone chains</h3>
 <div class="paragraph">
 <p>For now the standalone chains only support linear flows (more to come) and are built based on a <code>ExecutionChainBuilder</code>.</p>
 </div>
@@ -2266,12 +2365,12 @@ from a version to the currently available one when needed.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_beam_case">8.2. Beam case</h3>
+<h3 id="_beam_case">9.2. Beam case</h3>
 <div class="paragraph">
 <p>For beam case, you need to rely on beam pipeline definition and use <code>component-runtime-beam</code> dependency which provides Beam bridges.</p>
 </div>
 <div class="sect3">
-<h4 id="_i_o">8.2.1. I/O</h4>
+<h4 id="_i_o">9.2.1. I/O</h4>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendIO</code> provides a way to convert a partition mapper or a processor to an input or processor
 using the <code>read</code> or <code>write</code> methods.</p>
@@ -2299,7 +2398,7 @@ using the <code>read</code> or <code>write</code> methods.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_processors">8.2.2. Processors</h4>
+<h4 id="_processors">9.2.2. Processors</h4>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendFn</code> provides the way to wrap a processor in a Beam <code>PTransform</code> and integrate it in the pipeline.</p>
 </div>
@@ -2335,7 +2434,7 @@ format to this <code>Map&lt;String, List&lt;Serializable&gt;&gt;</code>.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_deployment">8.2.3. Deployment</h4>
+<h4 id="_deployment">9.2.3. Deployment</h4>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -2351,7 +2450,7 @@ care of providing an implicit and lazy <code>ComponentManager</code> managing th
 </div>
 </div>
 <div class="sect3">
-<h4 id="_convert_a_beam_io_in_a_component_i_o">8.2.4. Convert a Beam.io in a component I/O</h4>
+<h4 id="_convert_a_beam_io_in_a_component_i_o">9.2.4. Convert a Beam.io in a component I/O</h4>
 <div class="paragraph">
 <p>For simple I/O you can get automatic conversion of the Beam.io to a component I/O transparently if you decorated your <code>PTransform</code>
 with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
@@ -2377,7 +2476,7 @@ with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_maven_plugin">9. Maven Plugin</h2>
+<h2 id="_maven_plugin">10. Maven Plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>talend-component-maven-plugin</code> intends to help you to write components
@@ -2396,7 +2495,7 @@ validating components match best practices and also generating transparently met
 </div>
 </div>
 <div class="sect2">
-<h3 id="_validate">9.1. Validate</h3>
+<h3 id="_validate">10.1. Validate</h3>
 <div class="paragraph">
 <p>The first goal is here to help you to validate the common programming model of the component. Here is the execution definition to activate it:</p>
 </div>
@@ -2484,7 +2583,7 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </table>
 </div>
 <div class="sect2">
-<h3 id="_documentation">9.2. Documentation</h3>
+<h3 id="_documentation">10.2. Documentation</h3>
 <div class="paragraph">
 <p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and
 <code>@Documentation</code> you can put on options and the component itself.</p>
@@ -2564,7 +2663,7 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="_render_your_documentation">9.2.1. Render your documentation</h4>
+<h4 id="_render_your_documentation">10.2.1. Render your documentation</h4>
 <div class="sect4">
 <h5 id="_html">HTML</h5>
 <div class="paragraph">
@@ -2737,7 +2836,7 @@ Unresolved directive in &lt;stdin&gt; - include::{generated_doc}/documentation.a
 </div>
 </div>
 <div class="sect2">
-<h3 id="_prepare">9.3. Prepare</h3>
+<h3 id="_prepare">10.3. Prepare</h3>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -2836,7 +2935,7 @@ with a profile (adding <code>-Pstudio</code> to you build command, ex: <code>mvn
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generate_inputs_or_outputs">9.4. Generate inputs or outputs</h3>
+<h3 id="_generate_inputs_or_outputs">10.4. Generate inputs or outputs</h3>
 <div class="paragraph">
 <p>The Mojo <code>generate</code> (maven plugin goal) of the same plugin also embeds a generator you can use to bootstrap any input or output component:</p>
 </div>
@@ -2931,7 +3030,7 @@ with a profile (adding <code>-Pstudio</code> to you build command, ex: <code>mvn
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gradle_plugin">10. Gradle Plugin</h2>
+<h2 id="_gradle_plugin">11. Gradle Plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>gradle-talend-component</code> intends to help you to write components
@@ -2993,7 +3092,7 @@ talendComponentKit {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_advanced_define_a_custom_api">11. Advanced: define a custom API</h2>
+<h2 id="_advanced_define_a_custom_api">12. Advanced: define a custom API</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is possible to extend the Component API for custom front features.</p>
@@ -3006,7 +3105,7 @@ only if it targets not portable components (only used by the Studio or Beam).</p
 <p>In term of organization it is recommanded to create a custom <code>xxxx-component-api</code> module with the new set of annotations.</p>
 </div>
 <div class="sect2">
-<h3 id="_extending_the_ui">11.1. Extending the UI</h3>
+<h3 id="_extending_the_ui">12.1. Extending the UI</h3>
 <div class="paragraph">
 <p>To extend the UI just add an annotation which can be put on <code>@Option</code> fields which is decorated with <code>@Ui</code>.
 All its members will be put in the metadata of the parameter. Example:</p>
