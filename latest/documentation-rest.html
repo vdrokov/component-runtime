@@ -1186,14 +1186,23 @@ the configuration is read from system properties, environment variables, &#8230;
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [auto, console, noop, url]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
-<p class="tableblock">In <code>auto</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${user.home}/.m2/repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
@@ -1209,6 +1218,16 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
@@ -1251,34 +1270,15 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [auto, console, noop, url]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
+<p class="tableblock">In <code>auto</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">${user.home}/.m2/repository</p></td>
 </tr>
 </tbody>
 </table>
