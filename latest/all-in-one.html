@@ -244,10 +244,11 @@
 </li>
 <li><a href="#_maven_plugin">10. Maven Plugin</a>
 <ul class="sectlevel2">
-<li><a href="#_validate">10.1. Validate</a></li>
-<li><a href="#_documentation">10.2. Documentation</a>
+<li><a href="#_dependencies_3">10.1. Dependencies</a></li>
+<li><a href="#_validate">10.2. Validate</a></li>
+<li><a href="#_documentation">10.3. Documentation</a>
 <ul class="sectlevel3">
-<li><a href="#_render_your_documentation">10.2.1. Render your documentation</a>
+<li><a href="#_render_your_documentation">10.3.1. Render your documentation</a>
 <ul class="sectlevel4">
 <li><a href="#_html">HTML</a></li>
 <li><a href="#_pdf">PDF</a></li>
@@ -257,8 +258,8 @@
 </li>
 </ul>
 </li>
-<li><a href="#_prepare">10.3. Prepare</a></li>
-<li><a href="#_generate_inputs_or_outputs">10.4. Generate inputs or outputs</a></li>
+<li><a href="#_prepare">10.4. Prepare</a></li>
+<li><a href="#_generate_inputs_or_outputs">10.5. Generate inputs or outputs</a></li>
 </ul>
 </li>
 <li><a href="#_gradle_plugin">11. Gradle Plugin</a></li>
@@ -1946,6 +1947,18 @@ is you don&#8217;t need to define the relationship with other plugins/dependenci
 </div>
 <div class="sect2">
 <h3 id="_packaging_a_plugin">4.1. Packaging a plugin</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+this part explains the overall way to handle dependecnies but the Talend Maven plugin provides a shortcut for that.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>A plugin is just a jar which was enriched with the list of its dependencies. By default Talend Component runtime is able to
 read the output of <code>maven-dependency-plugin</code> in <code>TALEND-INF/dependencies.txt</code> location so you just need to ensure your component defines the following plugin:</p>
@@ -3428,9 +3441,33 @@ validating components match best practices and also generating transparently met
 </div>
 </div>
 <div class="sect2">
-<h3 id="_validate">10.1. Validate</h3>
+<h3 id="_dependencies_3">10.1. Dependencies</h3>
 <div class="paragraph">
-<p>The first goal is here to help you to validate the common programming model of the component. Here is the execution definition to activate it:</p>
+<p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>, it will create the <code>TALEND-INF/dependencies.txt</code> file
+with the <code>compile</code> and <code>runtime</code> dependencies to let the component use it at runtime:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>talend-component-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${component.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>talend-dependencies<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>dependencies<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate">10.2. Validate</h3>
+<div class="paragraph">
+<p>The most important goal is here to help you to validate the common programming model of the component. Here is the execution definition to activate it:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3516,7 +3553,7 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </table>
 </div>
 <div class="sect2">
-<h3 id="_documentation">10.2. Documentation</h3>
+<h3 id="_documentation">10.3. Documentation</h3>
 <div class="paragraph">
 <p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and
 <code>@Documentation</code> you can put on options and the component itself.</p>
@@ -3596,7 +3633,7 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="_render_your_documentation">10.2.1. Render your documentation</h4>
+<h4 id="_render_your_documentation">10.3.1. Render your documentation</h4>
 <div class="sect4">
 <h5 id="_html">HTML</h5>
 <div class="paragraph">
@@ -3769,7 +3806,7 @@ Unresolved directive in documentation.adoc - include::{generated_doc}/documentat
 </div>
 </div>
 <div class="sect2">
-<h3 id="_prepare">10.3. Prepare</h3>
+<h3 id="_prepare">10.4. Prepare</h3>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -3868,7 +3905,7 @@ with a profile (adding <code>-Pstudio</code> to you build command, ex: <code>mvn
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generate_inputs_or_outputs">10.4. Generate inputs or outputs</h3>
+<h3 id="_generate_inputs_or_outputs">10.5. Generate inputs or outputs</h3>
 <div class="paragraph">
 <p>The Mojo <code>generate</code> (maven plugin goal) of the same plugin also embeds a generator you can use to bootstrap any input or output component:</p>
 </div>
@@ -6099,21 +6136,6 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.environment.rate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
@@ -6154,24 +6176,9 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
@@ -6182,6 +6189,36 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
