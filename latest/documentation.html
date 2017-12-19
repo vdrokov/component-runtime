@@ -124,7 +124,11 @@
 <li><a href="#_particular_action_types">6.1. Particular action types</a></li>
 </ul>
 </li>
-<li><a href="#_built_in_services">7. Built in services</a></li>
+<li><a href="#_built_in_services">7. Built in services</a>
+<ul class="sectlevel2">
+<li><a href="#_httpclient_usage">7.1. HttpClient usage</a></li>
+</ul>
+</li>
 <li><a href="#_services_and_interceptors">8. Services and interceptors</a></li>
 <li><a href="#_creating_an_execution_chain_or_pipeline">9. Creating an execution chain or pipeline</a>
 <ul class="sectlevel2">
@@ -2163,8 +2167,104 @@ you can also use the local cache as an interceptor with <code>@Cached</code>
 </table>
 </div></div></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Every interface that extends <code>HttpClient</code> and that contains methods annotated with <code>@Request</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>This let you define an http client in a declarative manner using an annotated interface.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+See the <a href="#_httpclient_usage">HttpClient usage</a> for details.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="_httpclient_usage">7.1. HttpClient usage</h3>
+<div class="paragraph">
+<p>Let assume that we have a REST API defined like below, and that it requires a basic authentication header.</p>
+</div>
+<div class="paragraph">
+<p>GET     <code>/api/records/{id}</code></p>
+</div>
+<div class="paragraph">
+<p>POST    <code>/api/records</code>      &#8658; with a json playload to be created <code>{"id":"some id", "data":"some data"}</code></p>
+</div>
+<div class="paragraph">
+<p>To create an http client able to consume this REST API, we will define an interface that extends <code>HttpClient</code>,</p>
+</div>
+<div class="paragraph">
+<p>The <code>HttpClient</code> interface lets you set the <code>base</code> for the http address that our client will hit.</p>
+</div>
+<div class="paragraph">
+<p>The <code>base</code> is the part of the address that we will need to add to the request path to hit the api.</p>
+</div>
+<div class="paragraph">
+<p>Every method annotated with <code>@Request</code> of our interface will define an http request.
+Also every request can have <code>@Codec</code> that let us encode and decode the request playloads.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">interface</span> <span style="color:#B06;font-weight:bold">APIClient</span> <span style="color:#088;font-weight:bold">extends</span> HttpClient {
+    <span style="color:#007">@Request</span>(path = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">api/records/{id}</span><span style="color:#710">&quot;</span></span>, method = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">GET</span><span style="color:#710">&quot;</span></span>)
+    <span style="color:#007">@Codec</span>(decoder = RecordDecoder.class) <span style="color:#777">//decoder =  decode return data to Record class</span>
+    Record getRecord(<span style="color:#007">@Header</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Authorization</span><span style="color:#710">&quot;</span></span>) <span style="color:#0a8;font-weight:bold">String</span> basicAuth, <span style="color:#007">@Path</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id</span><span style="color:#710">&quot;</span></span>) <span style="color:#339;font-weight:bold">int</span> id);
+
+    <span style="color:#007">@Request</span>(path = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">api/records</span><span style="color:#710">&quot;</span></span>, method = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">POST</span><span style="color:#710">&quot;</span></span>)
+    <span style="color:#007">@Codec</span>(encoder = RecordEncoder.class, decoder = RecordDecoder.class) <span style="color:#777">//encoder = encode record to fit request format (json n this example)</span>
+    Record createRecord(<span style="color:#007">@Header</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Authorization</span><span style="color:#710">&quot;</span></span>) <span style="color:#0a8;font-weight:bold">String</span> basicAuth, Record record);
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The interface should extends <code>HttpClient</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This interface can be injected into our Components classes or Services to consume the defined api.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Service</span>
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyService</span> {
+
+    <span style="color:#088;font-weight:bold">private</span> APIClient client;
+
+    <span style="color:#088;font-weight:bold">public</span> MyService(...,APIClient client){
+        <span style="color:#777">//...</span>
+        <span style="color:#950">this</span>.client = client;
+        client.base(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">http://localhost:8080</span><span style="color:#710">&quot;</span></span>);<span style="color:#777">// init the base of the api, ofen in a PostConstruct or init method</span>
+    }
+
+    <span style="color:#777">//...</span>
+    <span style="color:#777">// Our get request</span>
+    Record rec =  client.getRecord(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Basic MLFKG?VKFJ</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">100</span>);
+
+    <span style="color:#777">//...</span>
+    <span style="color:#777">// Our post request</span>
+    Record newRecord = client.createRecord(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Basic MLFKG?VKFJ</span><span style="color:#710">&quot;</span></span>, <span style="color:#080;font-weight:bold">new</span> Record());
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
