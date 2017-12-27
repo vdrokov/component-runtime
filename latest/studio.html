@@ -142,6 +142,11 @@ your local maven repository.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Default</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component.kit.skip</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code> the plugin is not active. Useful if you don&#8217;t have any component develop with the framework.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.java.options</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">JVM options to pass to the component server</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-Xmx256m</p></td>
@@ -181,6 +186,18 @@ your local maven repository.
 <div class="paragraph">
 <p>If you want to customize the server logs you can create a <code>$STUDIO_HOME/configuration/log4j2-components.xml</code> file
 containing a <a href="https://logging.apache.org/log4j/2.x/">Log4j2</a> configuration.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+to activate the plugin and be able to deploy your component, don&#8217;t forget to set <code>component.kit.skip</code> to <code>true</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
