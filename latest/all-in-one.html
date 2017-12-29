@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2017-12-363 15:34:12" scheme="YYYY-MM-DD HH:mm:ss">
+    <meta name="date" content="2017-12-363 15:47:35" scheme="YYYY-MM-DD HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -333,7 +333,95 @@
 <ul class="sectlevel1">
 <li><a href="#_rest_api">1. REST API</a>
 <ul class="sectlevel2">
-<li><a href="#_websocket_transport">1.1. WebSocket transport</a></li>
+<li><a href="#_rest_resources_of_component_runtime_server">1.1. REST resources of Component Runtime :: Server</a>
+<ul class="sectlevel3">
+<li><a href="#_code_post_api_v1_action_execute_code">1.1.1. <code>POST api/v1/action/execute</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request">Request</a></li>
+<li><a href="#_response">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_get_api_v1_action_index_code">1.1.2. <code>GET api/v1/action/index</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_2">Request</a></li>
+<li><a href="#_response_2">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_get_api_v1_component_dependencies_code">1.1.3. <code>GET api/v1/component/dependencies</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_3">Request</a></li>
+<li><a href="#_response_3">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_get_api_v1_component_dependency_id_code">1.1.4. <code>GET api/v1/component/dependency/{id}</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_4">Request</a></li>
+<li><a href="#_response_4">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_get_api_v1_component_details_code">1.1.5. <code>GET api/v1/component/details</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_5">Request</a></li>
+<li><a href="#_response_5">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_get_api_v1_component_icon_family_id_code">1.1.6. <code>GET api/v1/component/icon/family/{id}</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_6">Request</a></li>
+<li><a href="#_response_6">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_get_api_v1_component_icon_id_code">1.1.7. <code>GET api/v1/component/icon/{id}</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_7">Request</a></li>
+<li><a href="#_response_7">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_get_api_v1_component_index_code">1.1.8. <code>GET api/v1/component/index</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_8">Request</a></li>
+<li><a href="#_response_8">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_post_api_v1_component_migrate_id_configurationversion_code">1.1.9. <code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_9">Request</a></li>
+<li><a href="#_response_9">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_get_api_v1_configurationtype_index_code">1.1.10. <code>GET api/v1/configurationtype/index</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_10">Request</a></li>
+<li><a href="#_response_10">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_get_api_v1_documentation_component_id_code">1.1.11. <code>GET api/v1/documentation/component/{id}</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_11">Request</a></li>
+<li><a href="#_response_11">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_get_api_v1_environment_code">1.1.12. <code>GET api/v1/environment</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_12">Request</a></li>
+<li><a href="#_response_12">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_post_api_v1_execution_read_family_component_code">1.1.13. <code>POST api/v1/execution/read/{family}/{component}</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_13">Request</a></li>
+<li><a href="#_response_13">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_post_api_v1_execution_write_family_component_code">1.1.14. <code>POST api/v1/execution/write/{family}/{component}</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_14">Request</a></li>
+<li><a href="#_response_14">Response</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_websocket_transport">1.2. WebSocket transport</a></li>
 </ul>
 </li>
 <li><a href="#_web_forms_and_rest_api">2. Web forms and REST API</a>
@@ -5138,9 +5226,672 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 <div class="paragraph">
 <p>Here is the API:</p>
 </div>
+<div class="sect2">
+<h3 id="_rest_resources_of_component_runtime_server">1.1. REST resources of Component Runtime :: Server</h3>
 <div class="paragraph">
-<p>Unresolved directive in documentation-rest.adoc - include::../../../../../component-server/target/jaxrs-analyzer/rest-resources.adoc[leveloffset=2]</p>
+<p>1.0.0-SNAPSHOT</p>
 </div>
+<div class="sect3">
+<h4 id="_code_post_api_v1_action_execute_code">1.1.1. <code>POST api/v1/action/execute</code></h4>
+<div class="paragraph">
+<p>This endpoint will execute any UI action and serialize the response as a JSON (pojo model). It takes as input the family, type and name of the related action to identify it and its configuration as a flat key value set using the same kind of mapping than for components (option path as key).</p>
+</div>
+<div class="sect4">
+<h5 id="_request">Request</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code><br>
+<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
+<strong>Query Param</strong>: <code>action</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>type</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>java.lang.RuntimeException</code>)</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_400_bad_request_code"><code>400 Bad Request</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_404_not_found_code"><code>404 Not Found</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_action_index_code">1.1.2. <code>GET api/v1/action/index</code></h4>
+<div class="paragraph">
+<p>This endpoint returns the list of available actions for a certain falimy and potentially filters the output limiting it to some falimies and types of actions.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_2">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Query Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>type</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_2">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_2"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ActionList</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>items</span><span style="color:#404">&quot;</span></span>: [
+        {
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>component</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
+                {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>defaultValue</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
+                    },
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>path</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>validation</span><span style="color:#404">&quot;</span></span>: {
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>enumValues</span><span style="color:#404">&quot;</span></span>: [
+                            <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                        ],
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>max</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>maxItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>maxLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>min</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>minItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>minLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>pattern</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>required</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>uniqueItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>
+                    }
+                }
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_dependencies_code">1.1.3. <code>GET api/v1/component/dependencies</code></h4>
+<div class="paragraph">
+<p>Returns a list of dependencies for the given components.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+don&#8217;t forget to add the component itself since it will not be part of the dependencies.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Then you can use /dependency/{id} to download the binary.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_3">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Query Param</strong>: <code>identifier</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_3">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_3"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Dependencies</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>dependencies</span><span style="color:#404">&quot;</span></span>: {
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_dependency_id_code">1.1.4. <code>GET api/v1/component/dependency/{id}</code></h4>
+<div class="paragraph">
+<p>Return a binary of the dependency represented by <code>id</code>. It can be maven coordinates for dependencies or a component id.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_4">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_4">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_4"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>javax.ws.rs.core.StreamingOutput</code>)</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_404_not_found_code_2"><code>404 Not Found</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_details_code">1.1.5. <code>GET api/v1/component/details</code></h4>
+<div class="paragraph">
+<p>Returns the set of metadata about a few components identified by their 'id'.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_5">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Query Param</strong>: <code>identifiers</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_5">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_5"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentDetailList</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>details</span><span style="color:#404">&quot;</span></span>: [
+        {
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>actions</span><span style="color:#404">&quot;</span></span>: [
+                {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>family</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
+                        {
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>defaultValue</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
+                            },
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>path</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                            <span style="color:#606"><span style="color:#404">&quot;</span><span>validation</span><span style="color:#404">&quot;</span></span>: {
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>enumValues</span><span style="color:#404">&quot;</span></span>: [
+                                    <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                                ],
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>max</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>maxItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>maxLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>min</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>minItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>minLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>pattern</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>required</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>,
+                                <span style="color:#606"><span style="color:#404">&quot;</span><span>uniqueItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>
+                            }
+                        }
+                    ],
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                }
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>icon</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span>: {
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>family</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>plugin</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>pluginLocation</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+            },
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>inputFlows</span><span style="color:#404">&quot;</span></span>: [
+                <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>links</span><span style="color:#404">&quot;</span></span>: [
+                {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>contentType</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>path</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                }
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>outputFlows</span><span style="color:#404">&quot;</span></span>: [
+                <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>properties</span><span style="color:#404">&quot;</span></span>: [
+                {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>defaultValue</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>metadata</span><span style="color:#404">&quot;</span></span>: {
+                    },
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>path</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>validation</span><span style="color:#404">&quot;</span></span>: {
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>enumValues</span><span style="color:#404">&quot;</span></span>: [
+                            <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                        ],
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>max</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>maxItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>maxLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>min</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>minItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>minLength</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>pattern</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>required</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>,
+                        <span style="color:#606"><span style="color:#404">&quot;</span><span>uniqueItems</span><span style="color:#404">&quot;</span></span>: <span style="color:#069">false</span>
+                    }
+                }
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>version</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_400_bad_request_code_2"><code>400 Bad Request</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, org.talend.sdk.component.server.front.model.error.ErrorPayload&gt;</code>)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_icon_family_id_code">1.1.6. <code>GET api/v1/component/icon/family/{id}</code></h4>
+<div class="paragraph">
+<p>Returns a particular family icon in raw bytes.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_6">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_6">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_6"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_404_not_found_code_3"><code>404 Not Found</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_icon_id_code">1.1.7. <code>GET api/v1/component/icon/{id}</code></h4>
+<div class="paragraph">
+<p>Returns a particular component icon in raw bytes.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_7">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_7">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_7"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_404_not_found_code_4"><code>404 Not Found</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>code</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|DESIGN_MODEL_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>description</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_component_index_code">1.1.8. <code>GET api/v1/component/index</code></h4>
+<div class="paragraph">
+<p>Returns the list of available components.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_8">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Query Param</strong>: <code>includeIconContent</code>, <code>boolean</code><br>
+<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_8">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_8"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentIndices</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>components</span><span style="color:#404">&quot;</span></span>: [
+        {
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>categories</span><span style="color:#404">&quot;</span></span>: [
+                <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>displayName</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>icon</span><span style="color:#404">&quot;</span></span>: {
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>customIcon</span><span style="color:#404">&quot;</span></span>: {
+                },
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>customIconType</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>icon</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+            },
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>iconFamily</span><span style="color:#404">&quot;</span></span>: {
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>customIcon</span><span style="color:#404">&quot;</span></span>: {
+                },
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>customIconType</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>icon</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+            },
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span>: {
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>family</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>plugin</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                <span style="color:#606"><span style="color:#404">&quot;</span><span>pluginLocation</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+            },
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>links</span><span style="color:#404">&quot;</span></span>: [
+                {
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>contentType</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>name</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+                    <span style="color:#606"><span style="color:#404">&quot;</span><span>path</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+                }
+            ],
+            <span style="color:#606"><span style="color:#404">&quot;</span><span>version</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_post_api_v1_component_migrate_id_configurationversion_code">1.1.9. <code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></h4>
+<div class="paragraph">
+<p>Allows to migrate a component configuration without calling any component execution.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_9">Request</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code><br>
+<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
+<strong>Path Param</strong>: <code>configurationVersion</code>, <code>int</code><br>
+<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_9">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_9"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_configurationtype_index_code">1.1.10. <code>GET api/v1/configurationtype/index</code></h4>
+<div class="paragraph">
+<p>Returns all available configuration type - storable models.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_10">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_10">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_10"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ConfigTypeNodes</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>nodes</span><span style="color:#404">&quot;</span></span>: {
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_documentation_component_id_code">1.1.11. <code>GET api/v1/documentation/component/{id}</code></h4>
+<div class="paragraph">
+<p>Returns an asciidoctor version of the documentation for the component represented by its identifier <code>id</code>.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_11">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br>
+<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_11">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_11"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.DocumentationContent</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>source</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_environment_code">1.1.12. <code>GET api/v1/environment</code></h4>
+<div class="sect4">
+<h5 id="_request_12">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_12">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>*/*</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_12"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Environment</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>commit</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>latestApiVersion</span><span style="color:#404">&quot;</span></span>: <span style="color:#00D">0</span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>time</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>version</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_post_api_v1_execution_read_family_component_code">1.1.13. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
+<div class="paragraph">
+<p>Read inputs from an instance of mapper. The number of returned records if enforced to be limited to 1000. The format is a JSON based format where each like is a json record.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_13">Request</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code><br>
+<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
+<strong>Path Param</strong>: <code>component</code>, <code>java.lang.String</code><br>
+<strong>Path Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>size</code>, <code>long</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_13">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>talend/stream</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_204_no_content_code"><code>204 No Content</code></h6>
+
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_post_api_v1_execution_write_family_component_code">1.1.14. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
+<div class="paragraph">
+<p>Sends records using a processor instance. Note that the processor should have only an input. Behavior for other processors is undefined. The input format is a JSON based format where each like is a json record - same as for the symmetric endpoint.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_14">Request</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>talend/stream</code><br>
+<strong>Request Body</strong>: (<code>java.io.InputStream</code>)
+<strong>Path Param</strong>: <code>component</code>, <code>java.lang.String</code><br>
+<strong>Path Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>group-size</code>, <code>long</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_14">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_204_no_content_code_2"><code>204 No Content</code></h6>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -5154,8 +5905,12 @@ the version it was created with (component version, it is in component detail en
 </tr>
 </table>
 </div>
+</div>
+</div>
+</div>
+</div>
 <div class="sect2">
-<h3 id="_websocket_transport">1.1. WebSocket transport</h3>
+<h3 id="_websocket_transport">1.2. WebSocket transport</h3>
 <div class="paragraph">
 <p>You can connect on any endpoint replacing <code>/api</code> by <code>/websocket</code> and appending <code>/&lt;http method&gt;</code> for the URL and formatting the request as:</p>
 </div>
@@ -5584,21 +6339,6 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">${user.home}/.m2/repository</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
@@ -5612,6 +6352,11 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
@@ -5669,9 +6414,19 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 </tbody>
 </table>
