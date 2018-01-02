@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-01-02 09:14:57" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-01-02 16:05:00" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -92,6 +92,7 @@
 <ul class="sectlevel2">
 <li><a href="#_component_runtime_junit">2.1. component-runtime-junit</a></li>
 <li><a href="#_component_runtime_testing_spark">2.2. component-runtime-testing-spark</a></li>
+<li><a href="#_component_runtime_http_junit">2.3. component-runtime-http-junit</a></li>
 </ul>
 </li>
 <li><a href="#_beam_testing">3. Beam testing</a></li>
@@ -568,6 +569,149 @@ you can poll it to check. The best at the moment is to ensure the output of your
         () -&gt; out.exists() ? Files.readAllLines(out.toPath()).stream().collect(joining(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#b0b">\n</span><span style="color:#710">&quot;</span></span>)).trim() : <span style="color:#069">null</span>,
         equalTo(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">the expected content of the file</span><span style="color:#710">&quot;</span></span>));</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_component_runtime_http_junit">2.3. component-runtime-http-junit</h3>
+<div class="paragraph">
+<p>The HTTP JUnit module allows you to mock REST API very easily. Here are its coordinates:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>component-runtime-junit<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${talend-component.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;scope&gt;</span>test<span style="color:#070;font-weight:bold">&lt;/scope&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It supports JUnit 4 and JUnit 5 as well but the overall concept is the exact same one: the extension/rule
+is able to serve precomputed responses saved in the classpath.</p>
+</div>
+<div class="paragraph">
+<p>You can plug your own <code>ResponseLocator</code> to map a request to a response but the default implementation - which should be sufficient
+in most cases - will look in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it
+in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_junit_4_2">2.3.1. JUnit 4</h4>
+<div class="paragraph">
+<p>JUnit 4 setup is done through two rules: <code>JUnit4HttpApi</code> which is responsible to start the server and <code>JUnit4HttpApiPerMethodConfigurator</code>
+which is responsible to configure the server per test and also handle the capture mode (see later).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the capture feature will be deactivated and the per test mocking will not be available.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Most of the test will look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyRESTApiTest</span> {
+    <span style="color:#007">@ClassRule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApi API = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApi();
+
+    <span style="color:#007">@Rule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApiPerMethodConfigurator configurator = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApiPerMethodConfigurator(API);
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> direct() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// ... do your requests</span>
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_junit_5_2">2.3.2. JUnit 5</h4>
+<div class="paragraph">
+<p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation you can put on your test class. You can inject
+the test handler (which has some utilities for advanced cases) through <code>@HttpApiInject</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@HttpApi</span>
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">JUnit5HttpApiTest</span> {
+    <span style="color:#007">@HttpApiInject</span>
+    <span style="color:#088;font-weight:bold">private</span> HttpApiHandler&lt;?&gt; handler;
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#339;font-weight:bold">void</span> getProxy() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// .... do your requests</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the injection is optional and the <code>@HttpApi</code> allows you to configure several behaviors of the test.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_capturing_mode">2.3.3. Capturing mode</h4>
+<div class="paragraph">
+<p>The strength of this implementation is to run a small proxy server and auto configure the JVM:
+<code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code>
+are auto configured to work out of the box with the proxy.</p>
+</div>
+<div class="paragraph">
+<p>It allows you to keep in your tests the native and real URLs. For instance this test is perfectlt valid:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">GoogleTest</span> {
+    <span style="color:#007">@ClassRule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApi API = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApi();
+
+    <span style="color:#007">@Rule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApiPerMethodConfigurator configurator = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApiPerMethodConfigurator(API);
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> google() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        assertEquals(<span style="color:#0a8;font-weight:bold">HttpURLConnection</span>.HTTP_OK, get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">https://google.fr?q=Talend</span><span style="color:#710">&quot;</span></span>));
+    }
+
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#339;font-weight:bold">int</span> get(<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> uri) <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// do the GET request, skipped for brievity</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you execute this test, it will fail with a HTTP 400 because the proxy doesn&#8217;t find the mocked response.
+You can create it manually as seen in the introduction of the module but you can also set the property <code>talend.junit.http.capture</code>
+to the folder where to store the captures. It must be the root folder and not the folder where the json are (ie not prefixed by <code>talend/testing/http</code> by default).</p>
+</div>
+<div class="paragraph">
+<p>Generally you will want to use <code>src/test/resources</code>. If <code>new File("src/test/resources")</code> resolves to the valid folder when executing your test (Maven default),
+then you can just set the system property to true, otherwise you need to adjust accordingly the system property value.</p>
+</div>
+<div class="paragraph">
+<p>Once you ran the tests with this system property, the testing framework will have created the correct mock response files and you can
+remove the system property. The test will still pass, using <code>google.com</code>&#8230;&#8203;even if you disconnect your machine from the internet.</p>
+</div>
+<div class="paragraph">
+<p>The rule (extension) is doing all the work for you :).</p>
 </div>
 </div>
 </div>

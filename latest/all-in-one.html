@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-01-02 09:14:57" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-01-02 16:05:00" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -298,6 +298,13 @@
 <li><a href="#_component_runtime_testing_spark">2.2. component-runtime-testing-spark</a>
 <ul class="sectlevel3">
 <li><a href="#_how_to_know_the_job_is_done">2.2.1. How to know the job is done</a></li>
+</ul>
+</li>
+<li><a href="#_component_runtime_http_junit">2.3. component-runtime-http-junit</a>
+<ul class="sectlevel3">
+<li><a href="#_junit_4_2">2.3.1. JUnit 4</a></li>
+<li><a href="#_junit_5_2">2.3.2. JUnit 5</a></li>
+<li><a href="#_capturing_mode">2.3.3. Capturing mode</a></li>
 </ul>
 </li>
 </ul>
@@ -4725,6 +4732,149 @@ you can poll it to check. The best at the moment is to ensure the output of your
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_component_runtime_http_junit">2.3. component-runtime-http-junit</h3>
+<div class="paragraph">
+<p>The HTTP JUnit module allows you to mock REST API very easily. Here are its coordinates:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>component-runtime-junit<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${talend-component.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;scope&gt;</span>test<span style="color:#070;font-weight:bold">&lt;/scope&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It supports JUnit 4 and JUnit 5 as well but the overall concept is the exact same one: the extension/rule
+is able to serve precomputed responses saved in the classpath.</p>
+</div>
+<div class="paragraph">
+<p>You can plug your own <code>ResponseLocator</code> to map a request to a response but the default implementation - which should be sufficient
+in most cases - will look in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it
+in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_junit_4_2">2.3.1. JUnit 4</h4>
+<div class="paragraph">
+<p>JUnit 4 setup is done through two rules: <code>JUnit4HttpApi</code> which is responsible to start the server and <code>JUnit4HttpApiPerMethodConfigurator</code>
+which is responsible to configure the server per test and also handle the capture mode (see later).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the capture feature will be deactivated and the per test mocking will not be available.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Most of the test will look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyRESTApiTest</span> {
+    <span style="color:#007">@ClassRule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApi API = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApi();
+
+    <span style="color:#007">@Rule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApiPerMethodConfigurator configurator = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApiPerMethodConfigurator(API);
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> direct() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// ... do your requests</span>
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_junit_5_2">2.3.2. JUnit 5</h4>
+<div class="paragraph">
+<p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation you can put on your test class. You can inject
+the test handler (which has some utilities for advanced cases) through <code>@HttpApiInject</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@HttpApi</span>
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">JUnit5HttpApiTest</span> {
+    <span style="color:#007">@HttpApiInject</span>
+    <span style="color:#088;font-weight:bold">private</span> HttpApiHandler&lt;?&gt; handler;
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#339;font-weight:bold">void</span> getProxy() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// .... do your requests</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the injection is optional and the <code>@HttpApi</code> allows you to configure several behaviors of the test.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_capturing_mode">2.3.3. Capturing mode</h4>
+<div class="paragraph">
+<p>The strength of this implementation is to run a small proxy server and auto configure the JVM:
+<code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code>
+are auto configured to work out of the box with the proxy.</p>
+</div>
+<div class="paragraph">
+<p>It allows you to keep in your tests the native and real URLs. For instance this test is perfectlt valid:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">GoogleTest</span> {
+    <span style="color:#007">@ClassRule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApi API = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApi();
+
+    <span style="color:#007">@Rule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApiPerMethodConfigurator configurator = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApiPerMethodConfigurator(API);
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> google() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        assertEquals(<span style="color:#0a8;font-weight:bold">HttpURLConnection</span>.HTTP_OK, get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">https://google.fr?q=Talend</span><span style="color:#710">&quot;</span></span>));
+    }
+
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#339;font-weight:bold">int</span> get(<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> uri) <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// do the GET request, skipped for brievity</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you execute this test, it will fail with a HTTP 400 because the proxy doesn&#8217;t find the mocked response.
+You can create it manually as seen in the introduction of the module but you can also set the property <code>talend.junit.http.capture</code>
+to the folder where to store the captures. It must be the root folder and not the folder where the json are (ie not prefixed by <code>talend/testing/http</code> by default).</p>
+</div>
+<div class="paragraph">
+<p>Generally you will want to use <code>src/test/resources</code>. If <code>new File("src/test/resources")</code> resolves to the valid folder when executing your test (Maven default),
+then you can just set the system property to true, otherwise you need to adjust accordingly the system property value.</p>
+</div>
+<div class="paragraph">
+<p>Once you ran the tests with this system property, the testing framework will have created the correct mock response files and you can
+remove the system property. The test will still pass, using <code>google.com</code>&#8230;&#8203;even if you disconnect your machine from the internet.</p>
+</div>
+<div class="paragraph">
+<p>The rule (extension) is doing all the work for you :).</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -6393,22 +6543,6 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [auto, console, noop, url]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
-<p class="tableblock">In <code>auto</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${user.home}/.m2/repository</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
@@ -6492,6 +6626,22 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [auto, console, noop, url]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
+<p class="tableblock">In <code>auto</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">${user.home}/.m2/repository</p></td>
 </tr>
 </tbody>
 </table>
