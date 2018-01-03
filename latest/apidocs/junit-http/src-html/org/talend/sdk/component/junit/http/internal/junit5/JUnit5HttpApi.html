@@ -40,8 +40,8 @@
 <span class="sourceLineNo">032</span>import org.talend.sdk.component.junit.http.api.HttpApiHandler;<a name="line.32"></a>
 <span class="sourceLineNo">033</span>import org.talend.sdk.component.junit.http.api.ResponseLocator;<a name="line.33"></a>
 <span class="sourceLineNo">034</span>import org.talend.sdk.component.junit.http.internal.impl.DefaultResponseLocator;<a name="line.34"></a>
-<span class="sourceLineNo">035</span>import org.talend.sdk.component.junit.http.internal.impl.DefaultResponseLocatorCapturingHandler;<a name="line.35"></a>
-<span class="sourceLineNo">036</span>import org.talend.sdk.component.junit.http.internal.impl.HandlerImpl;<a name="line.36"></a>
+<span class="sourceLineNo">035</span>import org.talend.sdk.component.junit.http.internal.impl.HandlerImpl;<a name="line.35"></a>
+<span class="sourceLineNo">036</span>import org.talend.sdk.component.junit.http.internal.impl.Handlers;<a name="line.36"></a>
 <span class="sourceLineNo">037</span>import org.talend.sdk.component.junit.http.junit5.HttpApi;<a name="line.37"></a>
 <span class="sourceLineNo">038</span>import org.talend.sdk.component.junit.http.junit5.HttpApiInject;<a name="line.38"></a>
 <span class="sourceLineNo">039</span><a name="line.39"></a>
@@ -112,12 +112,12 @@
 <span class="sourceLineNo">104</span><a name="line.104"></a>
 <span class="sourceLineNo">105</span>    @Override<a name="line.105"></a>
 <span class="sourceLineNo">106</span>    public void afterEach(final ExtensionContext extensionContext) {<a name="line.106"></a>
-<span class="sourceLineNo">107</span>        if (DefaultResponseLocatorCapturingHandler.isActive()) {<a name="line.107"></a>
+<span class="sourceLineNo">107</span>        if (Handlers.isActive("capture")) {<a name="line.107"></a>
 <span class="sourceLineNo">108</span>            Optional<a name="line.108"></a>
 <span class="sourceLineNo">109</span>                    .of(getResponseLocator())<a name="line.109"></a>
 <span class="sourceLineNo">110</span>                    .filter(DefaultResponseLocator.class::isInstance)<a name="line.110"></a>
 <span class="sourceLineNo">111</span>                    .map(DefaultResponseLocator.class::cast)<a name="line.111"></a>
-<span class="sourceLineNo">112</span>                    .ifPresent(r -&gt; r.flush(DefaultResponseLocatorCapturingHandler.getBaseCapture()));<a name="line.112"></a>
+<span class="sourceLineNo">112</span>                    .ifPresent(r -&gt; r.flush(Handlers.getBaseCapture()));<a name="line.112"></a>
 <span class="sourceLineNo">113</span>        }<a name="line.113"></a>
 <span class="sourceLineNo">114</span>    }<a name="line.114"></a>
 <span class="sourceLineNo">115</span><a name="line.115"></a>

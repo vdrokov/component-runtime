@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-01-03 09:40:02" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-01-03 09:49:22" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -313,6 +313,7 @@
 </ul>
 </li>
 <li><a href="#_capturing_mode">2.3.3. Capturing mode</a></li>
+<li><a href="#_passthrough_mode">2.3.4. Passthrough mode</a></li>
 </ul>
 </li>
 </ul>
@@ -4755,6 +4756,19 @@ you can poll it to check. The best at the moment is to ensure the output of your
 <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+this module uses Apache Johnzon and Netty, if you have any conflict (in particular with netty) you can add the classifier <code>shaded</code>
+to the dependency and the two dependencies are shaded avoiding the conflicts with your component.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>It supports JUnit 4 and JUnit 5 as well but the overall concept is the exact same one: the extension/rule
 is able to serve precomputed responses saved in the classpath.</p>
@@ -4927,6 +4941,13 @@ remove the system property. The test will still pass, using <code>google.com</co
 </div>
 <div class="paragraph">
 <p>The rule (extension) is doing all the work for you :).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_passthrough_mode">2.3.4. Passthrough mode</h4>
+<div class="paragraph">
+<p>Setting <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server will just be a proxy and will execute each request
+to the actual server - like in capturing mode.</p>
 </div>
 </div>
 </div>
@@ -6598,51 +6619,6 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.component.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for component endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.documentation.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for documentation endpoint.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -6686,6 +6662,51 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.configurationtype.rate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.component.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for component endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.documentation.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for documentation endpoint.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
