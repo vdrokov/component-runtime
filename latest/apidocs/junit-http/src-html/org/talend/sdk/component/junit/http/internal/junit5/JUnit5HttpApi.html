@@ -41,92 +41,99 @@
 <span class="sourceLineNo">033</span>import org.talend.sdk.component.junit.http.api.ResponseLocator;<a name="line.33"></a>
 <span class="sourceLineNo">034</span>import org.talend.sdk.component.junit.http.internal.impl.DefaultResponseLocator;<a name="line.34"></a>
 <span class="sourceLineNo">035</span>import org.talend.sdk.component.junit.http.internal.impl.DefaultResponseLocatorCapturingHandler;<a name="line.35"></a>
-<span class="sourceLineNo">036</span>import org.talend.sdk.component.junit.http.junit5.HttpApi;<a name="line.36"></a>
-<span class="sourceLineNo">037</span>import org.talend.sdk.component.junit.http.junit5.HttpApiInject;<a name="line.37"></a>
-<span class="sourceLineNo">038</span><a name="line.38"></a>
-<span class="sourceLineNo">039</span>public class JUnit5HttpApi extends HttpApiHandler&lt;JUnit5HttpApi&gt;<a name="line.39"></a>
-<span class="sourceLineNo">040</span>        implements BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {<a name="line.40"></a>
-<span class="sourceLineNo">041</span><a name="line.41"></a>
-<span class="sourceLineNo">042</span>    private static final ExtensionContext.Namespace NAMESPACE =<a name="line.42"></a>
-<span class="sourceLineNo">043</span>            ExtensionContext.Namespace.create(JUnit5HttpApi.class.getName());<a name="line.43"></a>
-<span class="sourceLineNo">044</span><a name="line.44"></a>
-<span class="sourceLineNo">045</span>    @Override<a name="line.45"></a>
-<span class="sourceLineNo">046</span>    public void beforeAll(final ExtensionContext extensionContext) {<a name="line.46"></a>
-<span class="sourceLineNo">047</span>        final HttpApi config = extensionContext.getElement().map(c -&gt; c.getAnnotation(HttpApi.class)).orElse(null);<a name="line.47"></a>
-<span class="sourceLineNo">048</span>        if (config != null) {<a name="line.48"></a>
-<span class="sourceLineNo">049</span>            setGlobalProxyConfiguration(config.globalProxyConfiguration());<a name="line.49"></a>
-<span class="sourceLineNo">050</span>            setLogLevel(config.logLevel());<a name="line.50"></a>
-<span class="sourceLineNo">051</span>            setPort(config.port());<a name="line.51"></a>
-<span class="sourceLineNo">052</span>            newInstance(config.responseLocator(), ResponseLocator.class).ifPresent(this::setResponseLocator);<a name="line.52"></a>
-<span class="sourceLineNo">053</span>            newInstance(config.headerFilter(), Predicate.class).ifPresent(this::setHeaderFilter);<a name="line.53"></a>
-<span class="sourceLineNo">054</span>            newInstance(config.executor(), Executor.class).ifPresent(this::setExecutor);<a name="line.54"></a>
-<span class="sourceLineNo">055</span>            newInstance(config.sslContext(), Supplier.class).map(s -&gt; SSLContext.class.cast(s.get())).ifPresent(<a name="line.55"></a>
-<span class="sourceLineNo">056</span>                    this::setSslContext);<a name="line.56"></a>
-<span class="sourceLineNo">057</span>        }<a name="line.57"></a>
-<span class="sourceLineNo">058</span>        extensionContext.getStore(NAMESPACE).put(HttpApiHandler.class.getName(), this);<a name="line.58"></a>
-<span class="sourceLineNo">059</span>        start();<a name="line.59"></a>
-<span class="sourceLineNo">060</span>    }<a name="line.60"></a>
-<span class="sourceLineNo">061</span><a name="line.61"></a>
-<span class="sourceLineNo">062</span>    @Override<a name="line.62"></a>
-<span class="sourceLineNo">063</span>    public void afterAll(final ExtensionContext extensionContext) {<a name="line.63"></a>
-<span class="sourceLineNo">064</span>        close();<a name="line.64"></a>
-<span class="sourceLineNo">065</span>    }<a name="line.65"></a>
-<span class="sourceLineNo">066</span><a name="line.66"></a>
-<span class="sourceLineNo">067</span>    @Override<a name="line.67"></a>
-<span class="sourceLineNo">068</span>    public void beforeEach(final ExtensionContext extensionContext) {<a name="line.68"></a>
-<span class="sourceLineNo">069</span>        // injection<a name="line.69"></a>
-<span class="sourceLineNo">070</span>        Class&lt;?&gt; testClass = extensionContext.getRequiredTestClass();<a name="line.70"></a>
-<span class="sourceLineNo">071</span>        while (testClass != Object.class) {<a name="line.71"></a>
-<span class="sourceLineNo">072</span>            Stream.of(testClass.getDeclaredFields()).filter(c -&gt; c.isAnnotationPresent(HttpApiInject.class)).forEach(<a name="line.72"></a>
-<span class="sourceLineNo">073</span>                    f -&gt; {<a name="line.73"></a>
-<span class="sourceLineNo">074</span>                        f.setAccessible(true);<a name="line.74"></a>
-<span class="sourceLineNo">075</span>                        if (f.getType() != HttpApiHandler.class) {<a name="line.75"></a>
-<span class="sourceLineNo">076</span>                            throw new IllegalArgumentException(<a name="line.76"></a>
-<span class="sourceLineNo">077</span>                                    "@HttpApiInject not supported on " + f + ", type should be HttpApiHandler&lt;?&gt;");<a name="line.77"></a>
-<span class="sourceLineNo">078</span>                        }<a name="line.78"></a>
-<span class="sourceLineNo">079</span>                        try {<a name="line.79"></a>
-<span class="sourceLineNo">080</span>                            f.set(extensionContext.getRequiredTestInstance(), JUnit5HttpApi.this);<a name="line.80"></a>
-<span class="sourceLineNo">081</span>                        } catch (final IllegalAccessException e) {<a name="line.81"></a>
-<span class="sourceLineNo">082</span>                            throw new IllegalStateException(e);<a name="line.82"></a>
-<span class="sourceLineNo">083</span>                        }<a name="line.83"></a>
-<span class="sourceLineNo">084</span>                    });<a name="line.84"></a>
-<span class="sourceLineNo">085</span>            testClass = testClass.getSuperclass();<a name="line.85"></a>
-<span class="sourceLineNo">086</span>        }<a name="line.86"></a>
-<span class="sourceLineNo">087</span><a name="line.87"></a>
-<span class="sourceLineNo">088</span>        // test name<a name="line.88"></a>
-<span class="sourceLineNo">089</span>        final ResponseLocator responseLocator = getResponseLocator();<a name="line.89"></a>
-<span class="sourceLineNo">090</span>        if (!DefaultResponseLocator.class.isInstance(responseLocator)) {<a name="line.90"></a>
-<span class="sourceLineNo">091</span>            return;<a name="line.91"></a>
-<span class="sourceLineNo">092</span>        }<a name="line.92"></a>
-<span class="sourceLineNo">093</span>        DefaultResponseLocator.class.cast(responseLocator).setTest(<a name="line.93"></a>
-<span class="sourceLineNo">094</span>                extensionContext.getTestMethod().map(m -&gt; m.getDeclaringClass().getName() + "_" + m.getName()).orElse(<a name="line.94"></a>
-<span class="sourceLineNo">095</span>                        null));<a name="line.95"></a>
-<span class="sourceLineNo">096</span>    }<a name="line.96"></a>
-<span class="sourceLineNo">097</span><a name="line.97"></a>
-<span class="sourceLineNo">098</span>    @Override<a name="line.98"></a>
-<span class="sourceLineNo">099</span>    public void afterEach(final ExtensionContext extensionContext) {<a name="line.99"></a>
-<span class="sourceLineNo">100</span>        if (DefaultResponseLocatorCapturingHandler.isActive()) {<a name="line.100"></a>
-<span class="sourceLineNo">101</span>            Optional<a name="line.101"></a>
-<span class="sourceLineNo">102</span>                    .of(getResponseLocator())<a name="line.102"></a>
-<span class="sourceLineNo">103</span>                    .filter(DefaultResponseLocator.class::isInstance)<a name="line.103"></a>
-<span class="sourceLineNo">104</span>                    .map(DefaultResponseLocator.class::cast)<a name="line.104"></a>
-<span class="sourceLineNo">105</span>                    .ifPresent(r -&gt; r.flush(DefaultResponseLocatorCapturingHandler.getBaseCapture()));<a name="line.105"></a>
-<span class="sourceLineNo">106</span>        }<a name="line.106"></a>
-<span class="sourceLineNo">107</span>    }<a name="line.107"></a>
-<span class="sourceLineNo">108</span><a name="line.108"></a>
-<span class="sourceLineNo">109</span>    private static &lt;T&gt; Optional&lt;T&gt; newInstance(final Class&lt;?&gt; type, final Class&lt;T&gt; api) {<a name="line.109"></a>
-<span class="sourceLineNo">110</span>        if (api == type) {<a name="line.110"></a>
-<span class="sourceLineNo">111</span>            return Optional.empty();<a name="line.111"></a>
-<span class="sourceLineNo">112</span>        }<a name="line.112"></a>
-<span class="sourceLineNo">113</span>        try {<a name="line.113"></a>
-<span class="sourceLineNo">114</span>            return Optional.of(api.cast(type.getConstructor().newInstance()));<a name="line.114"></a>
-<span class="sourceLineNo">115</span>        } catch (final NoSuchMethodException | InstantiationException | IllegalAccessException e) {<a name="line.115"></a>
-<span class="sourceLineNo">116</span>            throw new IllegalArgumentException(e);<a name="line.116"></a>
-<span class="sourceLineNo">117</span>        } catch (final InvocationTargetException e) {<a name="line.117"></a>
-<span class="sourceLineNo">118</span>            throw new IllegalStateException(e.getTargetException());<a name="line.118"></a>
+<span class="sourceLineNo">036</span>import org.talend.sdk.component.junit.http.internal.impl.HandlerImpl;<a name="line.36"></a>
+<span class="sourceLineNo">037</span>import org.talend.sdk.component.junit.http.junit5.HttpApi;<a name="line.37"></a>
+<span class="sourceLineNo">038</span>import org.talend.sdk.component.junit.http.junit5.HttpApiInject;<a name="line.38"></a>
+<span class="sourceLineNo">039</span><a name="line.39"></a>
+<span class="sourceLineNo">040</span>public class JUnit5HttpApi extends HttpApiHandler&lt;JUnit5HttpApi&gt;<a name="line.40"></a>
+<span class="sourceLineNo">041</span>        implements BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {<a name="line.41"></a>
+<span class="sourceLineNo">042</span><a name="line.42"></a>
+<span class="sourceLineNo">043</span>    private static final ExtensionContext.Namespace NAMESPACE =<a name="line.43"></a>
+<span class="sourceLineNo">044</span>            ExtensionContext.Namespace.create(JUnit5HttpApi.class.getName());<a name="line.44"></a>
+<span class="sourceLineNo">045</span><a name="line.45"></a>
+<span class="sourceLineNo">046</span>    @Override<a name="line.46"></a>
+<span class="sourceLineNo">047</span>    public void beforeAll(final ExtensionContext extensionContext) {<a name="line.47"></a>
+<span class="sourceLineNo">048</span>        final HttpApi config = extensionContext.getElement().map(c -&gt; c.getAnnotation(HttpApi.class)).orElse(null);<a name="line.48"></a>
+<span class="sourceLineNo">049</span>        if (config != null) {<a name="line.49"></a>
+<span class="sourceLineNo">050</span>            setGlobalProxyConfiguration(config.globalProxyConfiguration());<a name="line.50"></a>
+<span class="sourceLineNo">051</span>            setLogLevel(config.logLevel());<a name="line.51"></a>
+<span class="sourceLineNo">052</span>            setPort(config.port());<a name="line.52"></a>
+<span class="sourceLineNo">053</span>            newInstance(config.responseLocator(), ResponseLocator.class).ifPresent(this::setResponseLocator);<a name="line.53"></a>
+<span class="sourceLineNo">054</span>            newInstance(config.headerFilter(), Predicate.class).ifPresent(this::setHeaderFilter);<a name="line.54"></a>
+<span class="sourceLineNo">055</span>            newInstance(config.executor(), Executor.class).ifPresent(this::setExecutor);<a name="line.55"></a>
+<span class="sourceLineNo">056</span>            newInstance(config.sslContext(), Supplier.class).map(s -&gt; SSLContext.class.cast(s.get())).ifPresent(<a name="line.56"></a>
+<span class="sourceLineNo">057</span>                    this::setSslContext);<a name="line.57"></a>
+<span class="sourceLineNo">058</span>            setSkipProxyHeaders(config.skipProxyHeaders());<a name="line.58"></a>
+<span class="sourceLineNo">059</span>            if (config.useSsl()) {<a name="line.59"></a>
+<span class="sourceLineNo">060</span>                activeSsl();<a name="line.60"></a>
+<span class="sourceLineNo">061</span>            }<a name="line.61"></a>
+<span class="sourceLineNo">062</span>        }<a name="line.62"></a>
+<span class="sourceLineNo">063</span>        extensionContext.getStore(NAMESPACE).put(HttpApiHandler.class.getName(), this);<a name="line.63"></a>
+<span class="sourceLineNo">064</span>        final HandlerImpl&lt;JUnit5HttpApi&gt; handler = new HandlerImpl&lt;&gt;(this, null, null);<a name="line.64"></a>
+<span class="sourceLineNo">065</span>        extensionContext.getStore(NAMESPACE).put(HandlerImpl.class.getName(), handler);<a name="line.65"></a>
+<span class="sourceLineNo">066</span>        handler.start();<a name="line.66"></a>
+<span class="sourceLineNo">067</span>    }<a name="line.67"></a>
+<span class="sourceLineNo">068</span><a name="line.68"></a>
+<span class="sourceLineNo">069</span>    @Override<a name="line.69"></a>
+<span class="sourceLineNo">070</span>    public void afterAll(final ExtensionContext extensionContext) {<a name="line.70"></a>
+<span class="sourceLineNo">071</span>        HandlerImpl.class.cast(extensionContext.getStore(NAMESPACE).get(HandlerImpl.class.getName())).close();<a name="line.71"></a>
+<span class="sourceLineNo">072</span>    }<a name="line.72"></a>
+<span class="sourceLineNo">073</span><a name="line.73"></a>
+<span class="sourceLineNo">074</span>    @Override<a name="line.74"></a>
+<span class="sourceLineNo">075</span>    public void beforeEach(final ExtensionContext extensionContext) {<a name="line.75"></a>
+<span class="sourceLineNo">076</span>        // injection<a name="line.76"></a>
+<span class="sourceLineNo">077</span>        Class&lt;?&gt; testClass = extensionContext.getRequiredTestClass();<a name="line.77"></a>
+<span class="sourceLineNo">078</span>        while (testClass != Object.class) {<a name="line.78"></a>
+<span class="sourceLineNo">079</span>            Stream.of(testClass.getDeclaredFields()).filter(c -&gt; c.isAnnotationPresent(HttpApiInject.class)).forEach(<a name="line.79"></a>
+<span class="sourceLineNo">080</span>                    f -&gt; {<a name="line.80"></a>
+<span class="sourceLineNo">081</span>                        f.setAccessible(true);<a name="line.81"></a>
+<span class="sourceLineNo">082</span>                        if (f.getType() != HttpApiHandler.class) {<a name="line.82"></a>
+<span class="sourceLineNo">083</span>                            throw new IllegalArgumentException(<a name="line.83"></a>
+<span class="sourceLineNo">084</span>                                    "@HttpApiInject not supported on " + f + ", type should be HttpApiHandler&lt;?&gt;");<a name="line.84"></a>
+<span class="sourceLineNo">085</span>                        }<a name="line.85"></a>
+<span class="sourceLineNo">086</span>                        try {<a name="line.86"></a>
+<span class="sourceLineNo">087</span>                            f.set(extensionContext.getRequiredTestInstance(), JUnit5HttpApi.this);<a name="line.87"></a>
+<span class="sourceLineNo">088</span>                        } catch (final IllegalAccessException e) {<a name="line.88"></a>
+<span class="sourceLineNo">089</span>                            throw new IllegalStateException(e);<a name="line.89"></a>
+<span class="sourceLineNo">090</span>                        }<a name="line.90"></a>
+<span class="sourceLineNo">091</span>                    });<a name="line.91"></a>
+<span class="sourceLineNo">092</span>            testClass = testClass.getSuperclass();<a name="line.92"></a>
+<span class="sourceLineNo">093</span>        }<a name="line.93"></a>
+<span class="sourceLineNo">094</span><a name="line.94"></a>
+<span class="sourceLineNo">095</span>        // test name<a name="line.95"></a>
+<span class="sourceLineNo">096</span>        final ResponseLocator responseLocator = getResponseLocator();<a name="line.96"></a>
+<span class="sourceLineNo">097</span>        if (!DefaultResponseLocator.class.isInstance(responseLocator)) {<a name="line.97"></a>
+<span class="sourceLineNo">098</span>            return;<a name="line.98"></a>
+<span class="sourceLineNo">099</span>        }<a name="line.99"></a>
+<span class="sourceLineNo">100</span>        DefaultResponseLocator.class.cast(responseLocator).setTest(<a name="line.100"></a>
+<span class="sourceLineNo">101</span>                extensionContext.getTestMethod().map(m -&gt; m.getDeclaringClass().getName() + "_" + m.getName()).orElse(<a name="line.101"></a>
+<span class="sourceLineNo">102</span>                        null));<a name="line.102"></a>
+<span class="sourceLineNo">103</span>    }<a name="line.103"></a>
+<span class="sourceLineNo">104</span><a name="line.104"></a>
+<span class="sourceLineNo">105</span>    @Override<a name="line.105"></a>
+<span class="sourceLineNo">106</span>    public void afterEach(final ExtensionContext extensionContext) {<a name="line.106"></a>
+<span class="sourceLineNo">107</span>        if (DefaultResponseLocatorCapturingHandler.isActive()) {<a name="line.107"></a>
+<span class="sourceLineNo">108</span>            Optional<a name="line.108"></a>
+<span class="sourceLineNo">109</span>                    .of(getResponseLocator())<a name="line.109"></a>
+<span class="sourceLineNo">110</span>                    .filter(DefaultResponseLocator.class::isInstance)<a name="line.110"></a>
+<span class="sourceLineNo">111</span>                    .map(DefaultResponseLocator.class::cast)<a name="line.111"></a>
+<span class="sourceLineNo">112</span>                    .ifPresent(r -&gt; r.flush(DefaultResponseLocatorCapturingHandler.getBaseCapture()));<a name="line.112"></a>
+<span class="sourceLineNo">113</span>        }<a name="line.113"></a>
+<span class="sourceLineNo">114</span>    }<a name="line.114"></a>
+<span class="sourceLineNo">115</span><a name="line.115"></a>
+<span class="sourceLineNo">116</span>    private static &lt;T&gt; Optional&lt;T&gt; newInstance(final Class&lt;?&gt; type, final Class&lt;T&gt; api) {<a name="line.116"></a>
+<span class="sourceLineNo">117</span>        if (api == type) {<a name="line.117"></a>
+<span class="sourceLineNo">118</span>            return Optional.empty();<a name="line.118"></a>
 <span class="sourceLineNo">119</span>        }<a name="line.119"></a>
-<span class="sourceLineNo">120</span>    }<a name="line.120"></a>
-<span class="sourceLineNo">121</span>}<a name="line.121"></a>
+<span class="sourceLineNo">120</span>        try {<a name="line.120"></a>
+<span class="sourceLineNo">121</span>            return Optional.of(api.cast(type.getConstructor().newInstance()));<a name="line.121"></a>
+<span class="sourceLineNo">122</span>        } catch (final NoSuchMethodException | InstantiationException | IllegalAccessException e) {<a name="line.122"></a>
+<span class="sourceLineNo">123</span>            throw new IllegalArgumentException(e);<a name="line.123"></a>
+<span class="sourceLineNo">124</span>        } catch (final InvocationTargetException e) {<a name="line.124"></a>
+<span class="sourceLineNo">125</span>            throw new IllegalStateException(e.getTargetException());<a name="line.125"></a>
+<span class="sourceLineNo">126</span>        }<a name="line.126"></a>
+<span class="sourceLineNo">127</span>    }<a name="line.127"></a>
+<span class="sourceLineNo">128</span>}<a name="line.128"></a>
 
 
 
