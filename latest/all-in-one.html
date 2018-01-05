@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-01-04 17:43:26" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-01-05 15:27:34" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -291,15 +291,20 @@
 <ul class="sectlevel1">
 <li><a href="#documentation-testing-start">1. Best practises</a>
 <ul class="sectlevel2">
-<li><a href="#_parameterized_tests">1.1. Parameterized tests</a></li>
+<li><a href="#_parameterized_tests">1.1. Parameterized tests</a>
+<ul class="sectlevel3">
+<li><a href="#_junit_4">1.1.1. JUnit 4</a></li>
+<li><a href="#_junit_5">1.1.2. JUnit 5</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_component_runtime_testing">2. component-runtime-testing</a>
 <ul class="sectlevel2">
 <li><a href="#_component_runtime_junit">2.1. component-runtime-junit</a>
 <ul class="sectlevel3">
-<li><a href="#_junit_4">2.1.1. JUnit 4</a></li>
-<li><a href="#_junit_5">2.1.2. JUnit 5</a></li>
+<li><a href="#_junit_4_2">2.1.1. JUnit 4</a></li>
+<li><a href="#_junit_5_2">2.1.2. JUnit 5</a></li>
 <li><a href="#_mocking_the_output">2.1.3. Mocking the output</a></li>
 <li><a href="#_mocking_the_input">2.1.4. Mocking the input</a></li>
 <li><a href="#_creating_runtime_configuration_from_component_configuration">2.1.5. Creating runtime configuration from component configuration</a></li>
@@ -309,17 +314,19 @@
 </li>
 <li><a href="#_component_runtime_testing_spark">2.2. component-runtime-testing-spark</a>
 <ul class="sectlevel3">
-<li><a href="#_how_to_know_the_job_is_done">2.2.1. How to know the job is done</a></li>
+<li><a href="#_junit_4_3">2.2.1. JUnit 4</a></li>
+<li><a href="#_junit_5_3">2.2.2. JUnit 5</a></li>
+<li><a href="#_how_to_know_the_job_is_done">2.2.3. How to know the job is done</a></li>
 </ul>
 </li>
 <li><a href="#_component_runtime_http_junit">2.3. component-runtime-http-junit</a>
 <ul class="sectlevel3">
-<li><a href="#_junit_4_2">2.3.1. JUnit 4</a>
+<li><a href="#_junit_4_4">2.3.1. JUnit 4</a>
 <ul class="sectlevel4">
 <li><a href="#_ssl">SSL</a></li>
 </ul>
 </li>
-<li><a href="#_junit_5_2">2.3.2. JUnit 5</a>
+<li><a href="#_junit_5_4">2.3.2. JUnit 5</a>
 <ul class="sectlevel4">
 <li><a href="#_ssl_2">SSL</a></li>
 </ul>
@@ -4341,6 +4348,8 @@ as well, check out the documentation if you need to use TestNG.
 is to define a test scenario (<code>I test function F</code>) and to make the input/output data
 dynamic.</p>
 </div>
+<div class="sect3">
+<h4 id="_junit_4">1.1.1. JUnit 4</h4>
 <div class="paragraph">
 <p>Here is an example. Let&#8217;s assume we have this test which validates the connection URI using <code>ConnectionService</code>:</p>
 </div>
@@ -4422,6 +4431,56 @@ you don&#8217;t have to define a single <code>@Test</code> method, if you define
 </table>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_junit_5">1.1.2. JUnit 5</h4>
+<div class="paragraph">
+<p>JUnit 5 reworked this feature to make it way easier to use. The full documentation is available at <a href="http://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests" class="bare">junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests</a>.</p>
+</div>
+<div class="paragraph">
+<p>The main difference is you can also define inline on the test method that it is a parameterized test and which are the values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@ParameterizedTest</span>
+<span style="color:#007">@ValueSource</span>(strings = { <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">racecar</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">radar</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">able was I ere I saw elba</span><span style="color:#710">&quot;</span></span> })
+<span style="color:#339;font-weight:bold">void</span> mytest(<span style="color:#0a8;font-weight:bold">String</span> currentValue) {
+    <span style="color:#777">// do test</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However you can still use the previous behavior using a method binding configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@ParameterizedTest</span>
+<span style="color:#007">@MethodSource</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">stringProvider</span><span style="color:#710">&quot;</span></span>)
+<span style="color:#339;font-weight:bold">void</span> mytest(<span style="color:#0a8;font-weight:bold">String</span> currentValue) {
+    <span style="color:#777">// do test</span>
+}
+
+<span style="color:#088;font-weight:bold">static</span> Stream&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt; stringProvider() {
+    <span style="color:#080;font-weight:bold">return</span> Stream.of(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">foo</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bar</span><span style="color:#710">&quot;</span></span>);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This last option allows you to inject any type of value - not only primitives - which is very common to define scenarii.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefit from this feature.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -4446,7 +4505,7 @@ you don&#8217;t have to define a single <code>@Test</code> method, if you define
 </div>
 </div>
 <div class="sect3">
-<h4 id="_junit_4">2.1.1. JUnit 4</h4>
+<h4 id="_junit_4_2">2.1.1. JUnit 4</h4>
 <div class="paragraph">
 <p>Then you can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
 </div>
@@ -4491,7 +4550,7 @@ you don&#8217;t have to define a single <code>@Test</code> method, if you define
 </div>
 </div>
 <div class="sect3">
-<h4 id="_junit_5">2.1.2. JUnit 5</h4>
+<h4 id="_junit_5_2">2.1.2. JUnit 5</h4>
 <div class="paragraph">
 <p>The JUnit 5 integration is mainly the same as for JUnit 4 except it uses the new JUnit 5 extension mecanism.</p>
 </div>
@@ -4714,6 +4773,8 @@ you can also implement your own input representation if needed implementing <cod
 <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_junit_4_3">2.2.1. JUnit 4</h4>
 <div class="paragraph">
 <p>The usage relies on a JUnit <code>TestRule</code>. It is recommanded to use it as a <code>@ClassRule</code> to ensure
 a single instance of a spark cluster is built but you can also use it as a simple <code>@Rule</code> which means
@@ -4755,8 +4816,43 @@ this is working with <code>@Parameterized</code> so you can submit a bunch of jo
 </tr>
 </table>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_how_to_know_the_job_is_done">2.2.1. How to know the job is done</h4>
+<h4 id="_junit_5_3">2.2.2. JUnit 5</h4>
+<div class="paragraph">
+<p>The integration with JUnit 5 of that spark cluster logic uses <code>@WithSpark</code> marker for the extension
+and let you, optionally, inject through <code>@SparkInject</code>, the <code>BaseSpark&lt;?&gt;</code> handler to access te spark cluster
+meta information - like its host/port.</p>
+</div>
+<div class="paragraph">
+<p>Here is a basic test using it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@WithSpark</span>
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">SparkExtensionTest</span> {
+
+    <span style="color:#007">@SparkInject</span>
+    <span style="color:#088;font-weight:bold">private</span> BaseSpark&lt;?&gt; spark;
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#339;font-weight:bold">void</span> classpathSubmit() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">IOException</span> {
+        <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">File</span> out = <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">File</span>(jarLocation(SparkClusterRuleTest.class).getParentFile(), <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">classpathSubmitJunit5.out</span><span style="color:#710">&quot;</span></span>);
+        <span style="color:#080;font-weight:bold">if</span> (out.exists()) {
+            out.delete();
+        }
+        spark.submitClasspath(SparkClusterRuleTest.SubmittableMain.class, spark.getSparkMaster(), out.getAbsolutePath());
+
+        await().atMost(<span style="color:#00D">5</span>, MINUTES).until(
+                () -&gt; out.exists() ? Files.readAllLines(out.toPath()).stream().collect(joining(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#b0b">\n</span><span style="color:#710">&quot;</span></span>)).trim() : <span style="color:#069">null</span>,
+                equalTo(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">b -&gt; 1</span><span style="color:#b0b">\n</span><span style="color:#D20">a -&gt; 1</span><span style="color:#710">&quot;</span></span>));
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_how_to_know_the_job_is_done">2.2.3. How to know the job is done</h4>
 <div class="paragraph">
 <p>In current state, <code>SparkClusterRule</code> doesn&#8217;t allow to know a job execution is done - even if it exposes the webui url so
 you can poll it to check. The best at the moment is to ensure the output of your job exists and contains the right value.</p>
@@ -4829,7 +4925,7 @@ in most cases - will look in <code>talend/testing/http/&lt;class name&gt;_&lt;me
 in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="_junit_4_2">2.3.1. JUnit 4</h4>
+<h4 id="_junit_4_4">2.3.1. JUnit 4</h4>
 <div class="paragraph">
 <p>JUnit 4 setup is done through two rules: <code>JUnit4HttpApi</code> which is responsible to start the server and <code>JUnit4HttpApiPerMethodConfigurator</code>
 which is responsible to configure the server per test and also handle the capture mode (see later).</p>
@@ -4889,7 +4985,7 @@ if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_junit_5_2">2.3.2. JUnit 5</h4>
+<h4 id="_junit_5_4">2.3.2. JUnit 5</h4>
 <div class="paragraph">
 <p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation you can put on your test class. You can inject
 the test handler (which has some utilities for advanced cases) through <code>@HttpApiInject</code>:</p>
@@ -6703,6 +6799,46 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.environment.rate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
@@ -6751,46 +6887,6 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
