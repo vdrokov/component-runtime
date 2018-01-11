@@ -3,9 +3,18 @@
 
 <html lang="en">
   <head>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111939683-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-111939683-1');
+      </script>
+
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="date" content="2018-01-11 11:31:26" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -91,10 +100,12 @@
 <ul class="sectlevel2">
 <li><a href="#_component_runtime_junit">2.1. component-runtime-junit</a></li>
 <li><a href="#_component_runtime_testing_spark">2.2. component-runtime-testing-spark</a></li>
+<li><a href="#_component_runtime_http_junit">2.3. component-runtime-http-junit</a></li>
 </ul>
 </li>
 <li><a href="#_beam_testing">3. Beam testing</a></li>
-<li><a href="#_generating_data">4. Generating data?</a></li>
+<li><a href="#_secrets_passwords_and_maven">4. Secrets/Passwords and Maven</a></li>
+<li><a href="#_generating_data">5. Generating data?</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -120,6 +131,8 @@ as well, check out the documentation if you need to use TestNG.
 is to define a test scenario (<code>I test function F</code>) and to make the input/output data
 dynamic.</p>
 </div>
+<div class="sect3">
+<h4 id="_junit_4">1.1.1. JUnit 4</h4>
 <div class="paragraph">
 <p>Here is an example. Let&#8217;s assume we have this test which validates the connection URI using <code>ConnectionService</code>:</p>
 </div>
@@ -201,6 +214,56 @@ you don&#8217;t have to define a single <code>@Test</code> method, if you define
 </table>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_junit_5">1.1.2. JUnit 5</h4>
+<div class="paragraph">
+<p>JUnit 5 reworked this feature to make it way easier to use. The full documentation is available at <a href="http://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests" class="bare">junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests</a>.</p>
+</div>
+<div class="paragraph">
+<p>The main difference is you can also define inline on the test method that it is a parameterized test and which are the values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@ParameterizedTest</span>
+<span style="color:#007">@ValueSource</span>(strings = { <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">racecar</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">radar</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">able was I ere I saw elba</span><span style="color:#710">&quot;</span></span> })
+<span style="color:#339;font-weight:bold">void</span> mytest(<span style="color:#0a8;font-weight:bold">String</span> currentValue) {
+    <span style="color:#777">// do test</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However you can still use the previous behavior using a method binding configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@ParameterizedTest</span>
+<span style="color:#007">@MethodSource</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">stringProvider</span><span style="color:#710">&quot;</span></span>)
+<span style="color:#339;font-weight:bold">void</span> mytest(<span style="color:#0a8;font-weight:bold">String</span> currentValue) {
+    <span style="color:#777">// do test</span>
+}
+
+<span style="color:#088;font-weight:bold">static</span> Stream&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt; stringProvider() {
+    <span style="color:#080;font-weight:bold">return</span> Stream.of(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">foo</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bar</span><span style="color:#710">&quot;</span></span>);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This last option allows you to inject any type of value - not only primitives - which is very common to define scenarii.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefit from this feature.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -224,6 +287,8 @@ you don&#8217;t have to define a single <code>@Test</code> method, if you define
 <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_junit_4_2">2.1.1. JUnit 4</h4>
 <div class="paragraph">
 <p>Then you can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
 </div>
@@ -266,8 +331,69 @@ you don&#8217;t have to define a single <code>@Test</code> method, if you define
 </tr>
 </table>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_mocking_the_output">2.1.1. Mocking the output</h4>
+<h4 id="_junit_5_2">2.1.2. JUnit 5</h4>
+<div class="paragraph">
+<p>The JUnit 5 integration is mainly the same as for JUnit 4 except it uses the new JUnit 5 extension mecanism.</p>
+</div>
+<div class="paragraph">
+<p>The entry point is the <code>@WithComponents</code> annotation you put on your test class which takes the
+component package you want to test and you can use <code>@Injected</code> to inject in a test class field an instance of <code>ComponentsHandler</code>
+which exposes the same utilities than the JUnit 4 rule:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@WithComponents</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">org.talend.sdk.component.junit.component</span><span style="color:#710">&quot;</span></span>) <i class="conum" data-value="1"></i><b>(1)</b>
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">ComponentExtensionTest</span> {
+    <span style="color:#007">@Injected</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span style="color:#088;font-weight:bold">private</span> ComponentsHandler handler;
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> manualMapper() {
+        <span style="color:#088;font-weight:bold">final</span> Mapper mapper = handler.createMapper(<span style="color:#0a8;font-weight:bold">Source</span>.class, <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">Source</span>.Config() {
+
+            {
+                values = asList(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">a</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">b</span><span style="color:#710">&quot;</span></span>);
+            }
+        });
+        assertFalse(mapper.isStream());
+        <span style="color:#088;font-weight:bold">final</span> Input input = mapper.create();
+        assertEquals(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">a</span><span style="color:#710">&quot;</span></span>, input.next());
+        assertEquals(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">b</span><span style="color:#710">&quot;</span></span>, input.next());
+        assertNull(input.next());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The annotation defines which components to register in the test context.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The field allows to get the handler to be able to orchestrate the tests.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+if it is the first time you use JUnit 5, don&#8217;t forget the imports changed and you must use <code>org.junit.jupiter.api.Test</code> instead of <code>org.junit.Test</code>.
+Some IDE versions and <code>surefire</code> versions can also need you to install either a plugin or a specific configuration.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mocking_the_output">2.1.3. Mocking the output</h4>
 <div class="paragraph">
 <p>Using the component "test"/"collector" as in previous sample stores all records emitted by the chain (typically your source)
 in memory, you can then access them using <code>theSimpleComponentRule.getCollectoedRecord(type)</code>. Note that this method filters by type,
@@ -275,7 +401,7 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_mocking_the_input">2.1.2. Mocking the input</h4>
+<h4 id="_mocking_the_input">2.1.4. Mocking the input</h4>
 <div class="paragraph">
 <p>The input mocking is symmetric to the output but here you provide the data you want to inject:</p>
 </div>
@@ -313,7 +439,7 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_creating_runtime_configuration_from_component_configuration">2.1.3. Creating runtime configuration from component configuration</h4>
+<h4 id="_creating_runtime_configuration_from_component_configuration">2.1.5. Creating runtime configuration from component configuration</h4>
 <div class="paragraph">
 <p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses
 a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility
@@ -333,7 +459,7 @@ componentConfig.setUser(<span style="background-color:hsla(0,100%,50%,0.05)"><sp
 </div>
 </div>
 <div class="sect3">
-<h4 id="_testing_a_mapper">2.1.4. Testing a Mapper</h4>
+<h4 id="_testing_a_mapper">2.1.6. Testing a Mapper</h4>
 <div class="paragraph">
 <p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarly, you can get an instance from a configuration
 and you can execute this instance to collect the output. Here is a snippet doing that:</p>
@@ -358,7 +484,7 @@ and you can execute this instance to collect the output. Here is a snippet doing
 </div>
 </div>
 <div class="sect3">
-<h4 id="_testing_a_processor">2.1.5. Testing a Processor</h4>
+<h4 id="_testing_a_processor">2.1.7. Testing a Processor</h4>
 <div class="paragraph">
 <p>As for the mapper a processor is testable unitary. The case is a bit more complex since you can have multiple
 inputs and outputs:</p>
@@ -430,6 +556,8 @@ you can also implement your own input representation if needed implementing <cod
 <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_junit_4_3">2.2.1. JUnit 4</h4>
 <div class="paragraph">
 <p>The usage relies on a JUnit <code>TestRule</code>. It is recommanded to use it as a <code>@ClassRule</code> to ensure
 a single instance of a spark cluster is built but you can also use it as a simple <code>@Rule</code> which means
@@ -471,8 +599,43 @@ this is working with <code>@Parameterized</code> so you can submit a bunch of jo
 </tr>
 </table>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_how_to_know_the_job_is_done">2.2.1. How to know the job is done</h4>
+<h4 id="_junit_5_3">2.2.2. JUnit 5</h4>
+<div class="paragraph">
+<p>The integration with JUnit 5 of that spark cluster logic uses <code>@WithSpark</code> marker for the extension
+and let you, optionally, inject through <code>@SparkInject</code>, the <code>BaseSpark&lt;?&gt;</code> handler to access te spark cluster
+meta information - like its host/port.</p>
+</div>
+<div class="paragraph">
+<p>Here is a basic test using it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@WithSpark</span>
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">SparkExtensionTest</span> {
+
+    <span style="color:#007">@SparkInject</span>
+    <span style="color:#088;font-weight:bold">private</span> BaseSpark&lt;?&gt; spark;
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#339;font-weight:bold">void</span> classpathSubmit() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">IOException</span> {
+        <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">File</span> out = <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">File</span>(jarLocation(SparkClusterRuleTest.class).getParentFile(), <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">classpathSubmitJunit5.out</span><span style="color:#710">&quot;</span></span>);
+        <span style="color:#080;font-weight:bold">if</span> (out.exists()) {
+            out.delete();
+        }
+        spark.submitClasspath(SparkClusterRuleTest.SubmittableMain.class, spark.getSparkMaster(), out.getAbsolutePath());
+
+        await().atMost(<span style="color:#00D">5</span>, MINUTES).until(
+                () -&gt; out.exists() ? Files.readAllLines(out.toPath()).stream().collect(joining(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#b0b">\n</span><span style="color:#710">&quot;</span></span>)).trim() : <span style="color:#069">null</span>,
+                equalTo(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">b -&gt; 1</span><span style="color:#b0b">\n</span><span style="color:#D20">a -&gt; 1</span><span style="color:#710">&quot;</span></span>));
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_how_to_know_the_job_is_done">2.2.3. How to know the job is done</h4>
 <div class="paragraph">
 <p>In current state, <code>SparkClusterRule</code> doesn&#8217;t allow to know a job execution is done - even if it exposes the webui url so
 you can poll it to check. The best at the moment is to ensure the output of your job exists and contains the right value.</p>
@@ -507,6 +670,216 @@ you can poll it to check. The best at the moment is to ensure the output of your
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_component_runtime_http_junit">2.3. component-runtime-http-junit</h3>
+<div class="paragraph">
+<p>The HTTP JUnit module allows you to mock REST API very easily. Here are its coordinates:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>component-runtime-junit<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${talend-component.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;scope&gt;</span>test<span style="color:#070;font-weight:bold">&lt;/scope&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+this module uses Apache Johnzon and Netty, if you have any conflict (in particular with netty) you can add the classifier <code>shaded</code>
+to the dependency and the two dependencies are shaded avoiding the conflicts with your component.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It supports JUnit 4 and JUnit 5 as well but the overall concept is the exact same one: the extension/rule
+is able to serve precomputed responses saved in the classpath.</p>
+</div>
+<div class="paragraph">
+<p>You can plug your own <code>ResponseLocator</code> to map a request to a response but the default implementation - which should be sufficient
+in most cases - will look in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it
+in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_junit_4_4">2.3.1. JUnit 4</h4>
+<div class="paragraph">
+<p>JUnit 4 setup is done through two rules: <code>JUnit4HttpApi</code> which is responsible to start the server and <code>JUnit4HttpApiPerMethodConfigurator</code>
+which is responsible to configure the server per test and also handle the capture mode (see later).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the capture feature will be deactivated and the per test mocking will not be available.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Most of the test will look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyRESTApiTest</span> {
+    <span style="color:#007">@ClassRule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApi API = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApi();
+
+    <span style="color:#007">@Rule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApiPerMethodConfigurator configurator = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApiPerMethodConfigurator(API);
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> direct() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// ... do your requests</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ssl">SSL</h5>
+<div class="paragraph">
+<p>For tests using SSL based services, you will need to use <code>activeSsl()</code> on the <code>JUnit4HttpApi</code> rule.</p>
+</div>
+<div class="paragraph">
+<p>If you need to access the server ssl socket factory you can do it from the <code>HttpApiHandler</code> (the rule):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@ClassRule</span>
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApi API = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApi()<strong>.activeSsl()</strong>;
+
+<span style="color:#007">@Test</span>
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> test() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+    <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">HttpsURLConnection</span> connection = getHttpsConnection();
+    connection.setSSLSocketFactory(API.getSslContext().getSocketFactory());
+    <span style="color:#777">// ....</span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_junit_5_4">2.3.2. JUnit 5</h4>
+<div class="paragraph">
+<p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation you can put on your test class. You can inject
+the test handler (which has some utilities for advanced cases) through <code>@HttpApiInject</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@HttpApi</span>
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">JUnit5HttpApiTest</span> {
+    <span style="color:#007">@HttpApiInject</span>
+    <span style="color:#088;font-weight:bold">private</span> HttpApiHandler&lt;?&gt; handler;
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#339;font-weight:bold">void</span> getProxy() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// .... do your requests</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the injection is optional and the <code>@HttpApi</code> allows you to configure several behaviors of the test.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_ssl_2">SSL</h5>
+<div class="paragraph">
+<p>For tests using SSL based services, you will need to use <code>@HttpApi(useSsl = true)</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can access the client SSL socket factory through the api handler:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@HttpApi</span><strong>(useSsl = <span style="color:#069">true</span>)</strong>
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyHttpsApiTest</span> {
+    <span style="color:#007">@HttpApiInject</span>
+    <span style="color:#088;font-weight:bold">private</span> HttpApiHandler&lt;?&gt; handler;
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#339;font-weight:bold">void</span> test() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">HttpsURLConnection</span> connection = getHttpsConnection();
+        connection.setSSLSocketFactory(handler.getSslContext().getSocketFactory());
+        <span style="color:#777">// ....</span>
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_capturing_mode">2.3.3. Capturing mode</h4>
+<div class="paragraph">
+<p>The strength of this implementation is to run a small proxy server and auto configure the JVM:
+<code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code>
+are auto configured to work out of the box with the proxy.</p>
+</div>
+<div class="paragraph">
+<p>It allows you to keep in your tests the native and real URLs. For instance this test is perfectlt valid:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">GoogleTest</span> {
+    <span style="color:#007">@ClassRule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApi API = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApi();
+
+    <span style="color:#007">@Rule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApiPerMethodConfigurator configurator = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApiPerMethodConfigurator(API);
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> google() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        assertEquals(<span style="color:#0a8;font-weight:bold">HttpURLConnection</span>.HTTP_OK, get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">https://google.fr?q=Talend</span><span style="color:#710">&quot;</span></span>));
+    }
+
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#339;font-weight:bold">int</span> get(<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> uri) <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// do the GET request, skipped for brievity</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you execute this test, it will fail with a HTTP 400 because the proxy doesn&#8217;t find the mocked response.
+You can create it manually as seen in the introduction of the module but you can also set the property <code>talend.junit.http.capture</code>
+to the folder where to store the captures. It must be the root folder and not the folder where the json are (ie not prefixed by <code>talend/testing/http</code> by default).</p>
+</div>
+<div class="paragraph">
+<p>Generally you will want to use <code>src/test/resources</code>. If <code>new File("src/test/resources")</code> resolves to the valid folder when executing your test (Maven default),
+then you can just set the system property to true, otherwise you need to adjust accordingly the system property value.</p>
+</div>
+<div class="paragraph">
+<p>Once you ran the tests with this system property, the testing framework will have created the correct mock response files and you can
+remove the system property. The test will still pass, using <code>google.com</code>&#8230;&#8203;even if you disconnect your machine from the internet.</p>
+</div>
+<div class="paragraph">
+<p>The rule (extension) is doing all the work for you :).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_passthrough_mode">2.3.4. Passthrough mode</h4>
+<div class="paragraph">
+<p>Setting <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server will just be a proxy and will execute each request
+to the actual server - like in capturing mode.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -521,7 +894,41 @@ you can poll it to check. The best at the moment is to ensure the output of your
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generating_data">4. Generating data?</h2>
+<h2 id="_secrets_passwords_and_maven">4. Secrets/Passwords and Maven</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you desire you can reuse your Maven <code>settings.xml</code> servers - including the encrypted ones.
+<code>org.talend.sdk.component.maven.MavenDecrypter</code> will give you the ability to find a server <code>username</code>/<code>password</code> from
+a server identifier:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">final</span> MavenDecrypter decrypter = <span style="color:#080;font-weight:bold">new</span> MavenDecrypter();
+<span style="color:#088;font-weight:bold">final</span> Server decrypted = decrypter.find(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">my-test-server</span><span style="color:#710">&quot;</span></span>);
+<span style="color:#777">// decrypted.getUsername();</span>
+<span style="color:#777">// decrypted.getPassword();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is very useful to not store secrets and test on real systems on a continuous integration platform.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+even if you don&#8217;t use maven on the platform you can generate the <code>settings.xml</code> and <code>settings-security.xml</code> files
+to use that feature. See <a href="https://maven.apache.org/guides/mini/guide-encryption.html" class="bare">maven.apache.org/guides/mini/guide-encryption.html</a> for more details.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_generating_data">5. Generating data?</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Several data generator exists if you want to populate objects with a semantic a bit more evolved than a plain random string

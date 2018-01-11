@@ -3,9 +3,18 @@
 
 <html lang="en">
   <head>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111939683-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-111939683-1');
+      </script>
+
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="date" content="2018-01-11 11:31:26" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -227,25 +236,36 @@
 <li><a href="#_particular_action_types">6.1. Particular action types</a></li>
 </ul>
 </li>
-<li><a href="#_creating_an_execution_chain_or_pipeline">7. Creating an execution chain or pipeline</a>
+<li><a href="#_built_in_services">7. Built in services</a>
 <ul class="sectlevel2">
-<li><a href="#_standalone_chains">7.1. Standalone chains</a></li>
-<li><a href="#_beam_case">7.2. Beam case</a>
+<li><a href="#_httpclient_usage">7.1. HttpClient usage</a>
 <ul class="sectlevel3">
-<li><a href="#_i_o">7.2.1. I/O</a></li>
-<li><a href="#_processors">7.2.2. Processors</a></li>
-<li><a href="#_deployment">7.2.3. Deployment</a></li>
-<li><a href="#_convert_a_beam_io_in_a_component_i_o">7.2.4. Convert a Beam.io in a component I/O</a></li>
+<li><a href="#_advanced_http_client_request_customization">7.1.1. Advanced HTTP client request customization</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_maven_plugin">8. Maven Plugin</a>
+<li><a href="#_services_and_interceptors">8. Services and interceptors</a></li>
+<li><a href="#_creating_an_execution_chain_or_pipeline">9. Creating an execution chain or pipeline</a>
 <ul class="sectlevel2">
-<li><a href="#_validate">8.1. Validate</a></li>
-<li><a href="#_documentation">8.2. Documentation</a>
+<li><a href="#_standalone_chains">9.1. Standalone chains</a></li>
+<li><a href="#_beam_case">9.2. Beam case</a>
 <ul class="sectlevel3">
-<li><a href="#_render_your_documentation">8.2.1. Render your documentation</a>
+<li><a href="#_i_o">9.2.1. I/O</a></li>
+<li><a href="#_processors">9.2.2. Processors</a></li>
+<li><a href="#_deployment">9.2.3. Deployment</a></li>
+<li><a href="#_convert_a_beam_io_in_a_component_i_o">9.2.4. Convert a Beam.io in a component I/O</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_maven_plugin">10. Maven Plugin</a>
+<ul class="sectlevel2">
+<li><a href="#_dependencies_3">10.1. Dependencies</a></li>
+<li><a href="#_validate">10.2. Validate</a></li>
+<li><a href="#_documentation">10.3. Documentation</a>
+<ul class="sectlevel3">
+<li><a href="#_render_your_documentation">10.3.1. Render your documentation</a>
 <ul class="sectlevel4">
 <li><a href="#_html">HTML</a></li>
 <li><a href="#_pdf">PDF</a></li>
@@ -255,14 +275,14 @@
 </li>
 </ul>
 </li>
-<li><a href="#_prepare">8.3. Prepare</a></li>
-<li><a href="#_generate_inputs_or_outputs">8.4. Generate inputs or outputs</a></li>
+<li><a href="#_prepare">10.4. Prepare</a></li>
+<li><a href="#_generate_inputs_or_outputs">10.5. Generate inputs or outputs</a></li>
 </ul>
 </li>
-<li><a href="#_gradle_plugin">9. Gradle Plugin</a></li>
-<li><a href="#_advanced_define_a_custom_api">10. Advanced: define a custom API</a>
+<li><a href="#_gradle_plugin">11. Gradle Plugin</a></li>
+<li><a href="#_advanced_define_a_custom_api">12. Advanced: define a custom API</a>
 <ul class="sectlevel2">
-<li><a href="#_extending_the_ui">10.1. Extending the UI</a></li>
+<li><a href="#_extending_the_ui">12.1. Extending the UI</a></li>
 </ul>
 </li>
 </ul>
@@ -271,29 +291,55 @@
 <ul class="sectlevel1">
 <li><a href="#documentation-testing-start">1. Best practises</a>
 <ul class="sectlevel2">
-<li><a href="#_parameterized_tests">1.1. Parameterized tests</a></li>
+<li><a href="#_parameterized_tests">1.1. Parameterized tests</a>
+<ul class="sectlevel3">
+<li><a href="#_junit_4">1.1.1. JUnit 4</a></li>
+<li><a href="#_junit_5">1.1.2. JUnit 5</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_component_runtime_testing">2. component-runtime-testing</a>
 <ul class="sectlevel2">
 <li><a href="#_component_runtime_junit">2.1. component-runtime-junit</a>
 <ul class="sectlevel3">
-<li><a href="#_mocking_the_output">2.1.1. Mocking the output</a></li>
-<li><a href="#_mocking_the_input">2.1.2. Mocking the input</a></li>
-<li><a href="#_creating_runtime_configuration_from_component_configuration">2.1.3. Creating runtime configuration from component configuration</a></li>
-<li><a href="#_testing_a_mapper">2.1.4. Testing a Mapper</a></li>
-<li><a href="#_testing_a_processor">2.1.5. Testing a Processor</a></li>
+<li><a href="#_junit_4_2">2.1.1. JUnit 4</a></li>
+<li><a href="#_junit_5_2">2.1.2. JUnit 5</a></li>
+<li><a href="#_mocking_the_output">2.1.3. Mocking the output</a></li>
+<li><a href="#_mocking_the_input">2.1.4. Mocking the input</a></li>
+<li><a href="#_creating_runtime_configuration_from_component_configuration">2.1.5. Creating runtime configuration from component configuration</a></li>
+<li><a href="#_testing_a_mapper">2.1.6. Testing a Mapper</a></li>
+<li><a href="#_testing_a_processor">2.1.7. Testing a Processor</a></li>
 </ul>
 </li>
 <li><a href="#_component_runtime_testing_spark">2.2. component-runtime-testing-spark</a>
 <ul class="sectlevel3">
-<li><a href="#_how_to_know_the_job_is_done">2.2.1. How to know the job is done</a></li>
+<li><a href="#_junit_4_3">2.2.1. JUnit 4</a></li>
+<li><a href="#_junit_5_3">2.2.2. JUnit 5</a></li>
+<li><a href="#_how_to_know_the_job_is_done">2.2.3. How to know the job is done</a></li>
+</ul>
+</li>
+<li><a href="#_component_runtime_http_junit">2.3. component-runtime-http-junit</a>
+<ul class="sectlevel3">
+<li><a href="#_junit_4_4">2.3.1. JUnit 4</a>
+<ul class="sectlevel4">
+<li><a href="#_ssl">SSL</a></li>
+</ul>
+</li>
+<li><a href="#_junit_5_4">2.3.2. JUnit 5</a>
+<ul class="sectlevel4">
+<li><a href="#_ssl_2">SSL</a></li>
+</ul>
+</li>
+<li><a href="#_capturing_mode">2.3.3. Capturing mode</a></li>
+<li><a href="#_passthrough_mode">2.3.4. Passthrough mode</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#_beam_testing">3. Beam testing</a></li>
-<li><a href="#_generating_data">4. Generating data?</a></li>
+<li><a href="#_secrets_passwords_and_maven">4. Secrets/Passwords and Maven</a></li>
+<li><a href="#_generating_data">5. Generating data?</a></li>
 </ul>
 </li>
 <li><a href="#_talend_component_best_practices">Talend Component Best Practices</a>
@@ -387,22 +433,28 @@
 <li><a href="#_response_10">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_get_api_v1_environment_code">1.1.11. <code>GET api/v1/environment</code></a>
+<li><a href="#_code_get_api_v1_documentation_component_id_code">1.1.11. <code>GET api/v1/documentation/component/{id}</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_11">Request</a></li>
 <li><a href="#_response_11">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_post_api_v1_execution_read_family_component_code">1.1.12. <code>POST api/v1/execution/read/{family}/{component}</code></a>
+<li><a href="#_code_get_api_v1_environment_code">1.1.12. <code>GET api/v1/environment</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_12">Request</a></li>
 <li><a href="#_response_12">Response</a></li>
 </ul>
 </li>
-<li><a href="#_code_post_api_v1_execution_write_family_component_code">1.1.13. <code>POST api/v1/execution/write/{family}/{component}</code></a>
+<li><a href="#_code_post_api_v1_execution_read_family_component_code">1.1.13. <code>POST api/v1/execution/read/{family}/{component}</code></a>
 <ul class="sectlevel4">
 <li><a href="#_request_13">Request</a></li>
 <li><a href="#_response_13">Response</a></li>
+</ul>
+</li>
+<li><a href="#_code_post_api_v1_execution_write_family_component_code">1.1.14. <code>POST api/v1/execution/write/{family}/{component}</code></a>
+<ul class="sectlevel4">
+<li><a href="#_request_14">Request</a></li>
+<li><a href="#_response_14">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -1944,6 +1996,18 @@ is you don&#8217;t need to define the relationship with other plugins/dependenci
 </div>
 <div class="sect2">
 <h3 id="_packaging_a_plugin">4.1. Packaging a plugin</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+this part explains the overall way to handle dependecnies but the Talend Maven plugin provides a shortcut for that.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>A plugin is just a jar which was enriched with the list of its dependencies. By default Talend Component runtime is able to
 read the output of <code>maven-dependency-plugin</code> in <code>TALEND-INF/dependencies.txt</code> location so you just need to ensure your component defines the following plugin:</p>
@@ -2738,6 +2802,11 @@ into the targeted platforms (studio, web applications&#8230;&#8203;)</p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Target element location is specified as a relative path to current location using Unix path characters.
+Configuration class delimiter is <code>/</code>. Parent configuration class is specified by <code>..</code>.
+Thus <code>../targetProperty</code> denotes a property, which is located in parent configuration class and has name <code>targetProperty</code>.</p>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -2822,6 +2891,11 @@ wants to influence the UI rendering - you can use a particular set of annotation
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.widget.Credential</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being a credential. It is typically used to hide the value in the UI.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::credential":"true"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.widget.Structure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a List&lt;String&gt; or Map&lt;String, String&gt; field as being represented as the component data selector (field names generally or field names as key and type as value).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::structure::type":"null","ui::structure::value":"test"}</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.widget.TextArea</p></td>
@@ -3003,7 +3077,321 @@ for instance. Here is the list of all actions:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_an_execution_chain_or_pipeline">7. Creating an execution chain or pipeline</h2>
+<h2 id="_built_in_services">7. Built in services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The framework provides some built-in services you can inject by type in components and actions out of the box.</p>
+</div>
+<div class="paragraph">
+<p>Here is the list:</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>org.talend.sdk.component.api.service.cache.LocalCache</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides a small abstraction to cache data which don&#8217;t need to be recomputed very often. Commonly used by actions for the UI interactions.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>org.talend.sdk.component.api.service.dependency.Resolver</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Allows to resolve a dependency from its Maven coordinates.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+it assumes the dependency is locally available to the execution instance which is not guaranteed yet by the framework.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>org.talend.sdk.component.api.service.configuration.LocalConfiguration</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Represents the local configuration which can be used during the design.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+it is not recommanded to use it for the runtime since the local configuration is generally different and the instances are distincts.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+you can also use the local cache as an interceptor with <code>@Cached</code>
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Every interface that extends <code>HttpClient</code> and that contains methods annotated with <code>@Request</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>This let you define an http client in a declarative manner using an annotated interface.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+See the <a href="#_httpclient_usage">HttpClient usage</a> for details.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_httpclient_usage">7.1. HttpClient usage</h3>
+<div class="paragraph">
+<p>Let assume that we have a REST API defined like below, and that it requires a basic authentication header.</p>
+</div>
+<div class="paragraph">
+<p>GET     <code>/api/records/{id}</code></p>
+</div>
+<div class="paragraph">
+<p>POST    <code>/api/records</code>      &#8658; with a json playload to be created <code>{"id":"some id", "data":"some data"}</code></p>
+</div>
+<div class="paragraph">
+<p>To create an http client able to consume this REST API, we will define an interface that extends <code>HttpClient</code>,</p>
+</div>
+<div class="paragraph">
+<p>The <code>HttpClient</code> interface lets you set the <code>base</code> for the http address that our client will hit.</p>
+</div>
+<div class="paragraph">
+<p>The <code>base</code> is the part of the address that we will need to add to the request path to hit the api.</p>
+</div>
+<div class="paragraph">
+<p>Every method annotated with <code>@Request</code> of our interface will define an http request.
+Also every request can have <code>@Codec</code> that let us encode/decode the request/response playloads.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+if your payload(s) is(are) <code>String</code> or <code>Void</code> you can ignore the coder/decoder.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">interface</span> <span style="color:#B06;font-weight:bold">APIClient</span> <span style="color:#088;font-weight:bold">extends</span> HttpClient {
+    <span style="color:#007">@Request</span>(path = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">api/records/{id}</span><span style="color:#710">&quot;</span></span>, method = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">GET</span><span style="color:#710">&quot;</span></span>)
+    <span style="color:#007">@Codec</span>(decoder = RecordDecoder.class) <span style="color:#777">//decoder =  decode return data to Record class</span>
+    Record getRecord(<span style="color:#007">@Header</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Authorization</span><span style="color:#710">&quot;</span></span>) <span style="color:#0a8;font-weight:bold">String</span> basicAuth, <span style="color:#007">@Path</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id</span><span style="color:#710">&quot;</span></span>) <span style="color:#339;font-weight:bold">int</span> id);
+
+    <span style="color:#007">@Request</span>(path = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">api/records</span><span style="color:#710">&quot;</span></span>, method = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">POST</span><span style="color:#710">&quot;</span></span>)
+    <span style="color:#007">@Codec</span>(encoder = RecordEncoder.class, decoder = RecordDecoder.class) <span style="color:#777">//encoder = encode record to fit request format (json n this example)</span>
+    Record createRecord(<span style="color:#007">@Header</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Authorization</span><span style="color:#710">&quot;</span></span>) <span style="color:#0a8;font-weight:bold">String</span> basicAuth, Record record);
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The interface should extends <code>HttpClient</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This interface can be injected into our Components classes or Services to consume the defined api.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Service</span>
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyService</span> {
+
+    <span style="color:#088;font-weight:bold">private</span> APIClient client;
+
+    <span style="color:#088;font-weight:bold">public</span> MyService(...,APIClient client){
+        <span style="color:#777">//...</span>
+        <span style="color:#950">this</span>.client = client;
+        client.base(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">http://localhost:8080</span><span style="color:#710">&quot;</span></span>);<span style="color:#777">// init the base of the api, ofen in a PostConstruct or init method</span>
+    }
+
+    <span style="color:#777">//...</span>
+    <span style="color:#777">// Our get request</span>
+    Record rec =  client.getRecord(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Basic MLFKG?VKFJ</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">100</span>);
+
+    <span style="color:#777">//...</span>
+    <span style="color:#777">// Our post request</span>
+    Record newRecord = client.createRecord(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Basic MLFKG?VKFJ</span><span style="color:#710">&quot;</span></span>, <span style="color:#080;font-weight:bold">new</span> Record());
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_advanced_http_client_request_customization">7.1.1. Advanced HTTP client request customization</h4>
+<div class="paragraph">
+<p>For advanced cases you can customize the <code>HttpUrlConnection</code> directly using <code>@UseConfigurer</code> on the method.
+It will call your custom instance of <code>Configurer</code>. Note that you can use some <code>@ConfigurerOption</code> in the method
+signature to pass some configurer configuration.</p>
+</div>
+<div class="paragraph">
+<p>For instance if you have this configurer:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">BasicConfigurer</span> <span style="color:#088;font-weight:bold">implements</span> Configurer {
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> configure(<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">HttpURLConnection</span> connection, <span style="color:#088;font-weight:bold">final</span> ConfigurerConfiguration configuration) {
+        <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> user = configuration.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">username</span><span style="color:#710">&quot;</span></span>, <span style="color:#0a8;font-weight:bold">String</span>.class);
+        <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> pwd = configuration.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">password</span><span style="color:#710">&quot;</span></span>, <span style="color:#0a8;font-weight:bold">String</span>.class);
+        connection.setRequestProperty(
+            <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Authorization</span><span style="color:#710">&quot;</span></span>,
+            Base64.getEncoder().encodeToString((user + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">:</span><span style="color:#710">'</span></span> + pwd).getBytes(StandardCharsets.UTF_8)));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can then set it on a method to automatically add the basic header with this kind of API usage:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">interface</span> <span style="color:#B06;font-weight:bold">APIClient</span> <span style="color:#088;font-weight:bold">extends</span> HttpClient {
+    <span style="color:#007">@Request</span>(path = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">...</span><span style="color:#710">&quot;</span></span>)
+    <span style="color:#007">@UseConfigurer</span>(BasicConfigurer.class)
+    Record findRecord(<span style="color:#007">@ConfigurerOption</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">username</span><span style="color:#710">&quot;</span></span>) <span style="color:#0a8;font-weight:bold">String</span> user, <span style="color:#007">@ConfigurerOption</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">password</span><span style="color:#710">&quot;</span></span>) <span style="color:#0a8;font-weight:bold">String</span> pwd);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_services_and_interceptors">8. Services and interceptors</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For common concerns like caching, auditing etc, it can be fancy to use interceptor like API. It is enabled by the framework
+on services.</p>
+</div>
+<div class="paragraph">
+<p>An interceptor defines an annotation marked with <code>@Intercepts</code> which defines the implementation of the interceptor (an <code>InterceptorHandler</code>).</p>
+</div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Intercepts</span>(LoggingHandler.class)
+<span style="color:#007">@Target</span>({ TYPE, METHOD })
+<span style="color:#007">@Retention</span>(RUNTIME)
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#007">@interface</span> Logged {
+    <span style="color:#0a8;font-weight:bold">String</span> value();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then handler is created from its constructor and can take service injections (by type). The first parameter, however, can be
+a <code>BiFunction&lt;Method, Object[], Object&gt;</code> which representes the invocation chain if your interceptor can be used with others.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+if you do a generic interceptor it is important to pass the invoker as first parameter. If you don&#8217;t do so
+you can&#8217;t combine interceptors at all.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here is an interceptor implementation for our <code>@Logged</code> API:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">LoggingHandler</span> <span style="color:#088;font-weight:bold">implements</span> InterceptorHandler {
+    <span style="color:#777">// injected</span>
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#088;font-weight:bold">final</span> BiFunction&lt;<span style="color:#0a8;font-weight:bold">Method</span>, <span style="color:#0a8;font-weight:bold">Object</span><span style="color:#339;font-weight:bold">[]</span>, <span style="color:#0a8;font-weight:bold">Object</span>&gt; invoker;
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#088;font-weight:bold">final</span> SomeService service;
+
+    <span style="color:#777">// internal</span>
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">ConcurrentMap</span>&lt;<span style="color:#0a8;font-weight:bold">Method</span>, <span style="color:#0a8;font-weight:bold">String</span>&gt; loggerNames = <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">ConcurrentHashMap</span>&lt;&gt;();
+
+    <span style="color:#088;font-weight:bold">public</span> CacheHandler(<span style="color:#088;font-weight:bold">final</span> BiFunction&lt;<span style="color:#0a8;font-weight:bold">Method</span>, <span style="color:#0a8;font-weight:bold">Object</span><span style="color:#339;font-weight:bold">[]</span>, <span style="color:#0a8;font-weight:bold">Object</span>&gt; invoker, <span style="color:#088;font-weight:bold">final</span> SomeService service) {
+        <span style="color:#950">this</span>.invoker = invoker;
+        <span style="color:#950">this</span>.service = service;
+    }
+
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#0a8;font-weight:bold">Object</span> invoke(<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">Method</span> method, <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">Object</span><span style="color:#339;font-weight:bold">[]</span> args) {
+        <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> name = loggerNames.computeIfAbsent(method, m -&gt; findAnnotation(m, Logged.class).get().value());
+        service.getLogger(name).info(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Invoking {}</span><span style="color:#710">&quot;</span></span>, method.getName());
+        <span style="color:#080;font-weight:bold">return</span> invoker.apply(method, args);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This implementation is compatible with interceptor chains since it takes the invoker as first constructor parameter
+and it also takes a service injection. Then the implementation just does what is needed - logging the invoked method here.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the <code>findAnnotation</code> annotation - inherited from <code>InterceptorHandler</code> is an utility method to find an annotation on a method
+or class (in this order).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_an_execution_chain_or_pipeline">9. Creating an execution chain or pipeline</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>There are two kind of chains the framework supports:</p>
@@ -3019,7 +3407,7 @@ for instance. Here is the list of all actions:</p>
 </ol>
 </div>
 <div class="sect2">
-<h3 id="_standalone_chains">7.1. Standalone chains</h3>
+<h3 id="_standalone_chains">9.1. Standalone chains</h3>
 <div class="paragraph">
 <p>For now the standalone chains only support linear flows (more to come) and are built based on a <code>ExecutionChainBuilder</code>.</p>
 </div>
@@ -3127,12 +3515,12 @@ from a version to the currently available one when needed.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_beam_case">7.2. Beam case</h3>
+<h3 id="_beam_case">9.2. Beam case</h3>
 <div class="paragraph">
 <p>For beam case, you need to rely on beam pipeline definition and use <code>component-runtime-beam</code> dependency which provides Beam bridges.</p>
 </div>
 <div class="sect3">
-<h4 id="_i_o">7.2.1. I/O</h4>
+<h4 id="_i_o">9.2.1. I/O</h4>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendIO</code> provides a way to convert a partition mapper or a processor to an input or processor
 using the <code>read</code> or <code>write</code> methods.</p>
@@ -3160,7 +3548,7 @@ using the <code>read</code> or <code>write</code> methods.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_processors">7.2.2. Processors</h4>
+<h4 id="_processors">9.2.2. Processors</h4>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendFn</code> provides the way to wrap a processor in a Beam <code>PTransform</code> and integrate it in the pipeline.</p>
 </div>
@@ -3196,7 +3584,7 @@ format to this <code>Map&lt;String, List&lt;Serializable&gt;&gt;</code>.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_deployment">7.2.3. Deployment</h4>
+<h4 id="_deployment">9.2.3. Deployment</h4>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -3212,7 +3600,7 @@ care of providing an implicit and lazy <code>ComponentManager</code> managing th
 </div>
 </div>
 <div class="sect3">
-<h4 id="_convert_a_beam_io_in_a_component_i_o">7.2.4. Convert a Beam.io in a component I/O</h4>
+<h4 id="_convert_a_beam_io_in_a_component_i_o">9.2.4. Convert a Beam.io in a component I/O</h4>
 <div class="paragraph">
 <p>For simple I/O you can get automatic conversion of the Beam.io to a component I/O transparently if you decorated your <code>PTransform</code>
 with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
@@ -3238,7 +3626,7 @@ with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_maven_plugin">8. Maven Plugin</h2>
+<h2 id="_maven_plugin">10. Maven Plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>talend-component-maven-plugin</code> intends to help you to write components
@@ -3256,10 +3644,49 @@ validating components match best practices and also generating transparently met
 <span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_validate">8.1. Validate</h3>
 <div class="paragraph">
-<p>The first goal is here to help you to validate the common programming model of the component. Here is the execution definition to activate it:</p>
+<p>Note that this plugin is also an extension so you can declare it in your <code>build/extensions</code> block as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;extension&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>talend-component-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${component.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/extension&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Used as an extension, <code>dependencies</code>, <code>validate</code> and <code>documentation</code> goals will be set up.</p>
+</div>
+<div class="sect2">
+<h3 id="_dependencies_3">10.1. Dependencies</h3>
+<div class="paragraph">
+<p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>, it will create the <code>TALEND-INF/dependencies.txt</code> file
+with the <code>compile</code> and <code>runtime</code> dependencies to let the component use it at runtime:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>talend-component-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${component.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>talend-dependencies<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>dependencies<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate">10.2. Validate</h3>
+<div class="paragraph">
+<p>The most important goal is here to help you to validate the common programming model of the component. Here is the execution definition to activate it:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3336,11 +3763,16 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 <td class="tableblock halign-left valign-top"><p class="tableblock">Validate the family, i.e. the package containing the <code>@Components</code> has also a <code>@Icon</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">validateDocumentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure all 1. components and 2. <code>@Option</code> properties have a documentation using <code>@Documentation</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_documentation">8.2. Documentation</h3>
+<h3 id="_documentation">10.3. Documentation</h3>
 <div class="paragraph">
 <p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and
 <code>@Documentation</code> you can put on options and the component itself.</p>
@@ -3419,8 +3851,21 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+if you use the extension you can add the property <code>talend.documentation.htmlAndPdf</code> and set it to <code>true</code> in your project
+to automatically get a html and PDF rendering of the documentation.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
-<h4 id="_render_your_documentation">8.2.1. Render your documentation</h4>
+<h4 id="_render_your_documentation">10.3.1. Render your documentation</h4>
 <div class="sect4">
 <h5 id="_html">HTML</h5>
 <div class="paragraph">
@@ -3593,7 +4038,7 @@ Unresolved directive in documentation.adoc - include::{generated_doc}/documentat
 </div>
 </div>
 <div class="sect2">
-<h3 id="_prepare">8.3. Prepare</h3>
+<h3 id="_prepare">10.4. Prepare</h3>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -3692,7 +4137,7 @@ with a profile (adding <code>-Pstudio</code> to you build command, ex: <code>mvn
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generate_inputs_or_outputs">8.4. Generate inputs or outputs</h3>
+<h3 id="_generate_inputs_or_outputs">10.5. Generate inputs or outputs</h3>
 <div class="paragraph">
 <p>The Mojo <code>generate</code> (maven plugin goal) of the same plugin also embeds a generator you can use to bootstrap any input or output component:</p>
 </div>
@@ -3787,7 +4232,7 @@ with a profile (adding <code>-Pstudio</code> to you build command, ex: <code>mvn
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gradle_plugin">9. Gradle Plugin</h2>
+<h2 id="_gradle_plugin">11. Gradle Plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>gradle-talend-component</code> intends to help you to write components
@@ -3849,7 +4294,7 @@ talendComponentKit {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_advanced_define_a_custom_api">10. Advanced: define a custom API</h2>
+<h2 id="_advanced_define_a_custom_api">12. Advanced: define a custom API</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is possible to extend the Component API for custom front features.</p>
@@ -3862,7 +4307,7 @@ only if it targets not portable components (only used by the Studio or Beam).</p
 <p>In term of organization it is recommanded to create a custom <code>xxxx-component-api</code> module with the new set of annotations.</p>
 </div>
 <div class="sect2">
-<h3 id="_extending_the_ui">10.1. Extending the UI</h3>
+<h3 id="_extending_the_ui">12.1. Extending the UI</h3>
 <div class="paragraph">
 <p>To extend the UI just add an annotation which can be put on <code>@Option</code> fields which is decorated with <code>@Ui</code>.
 All its members will be put in the metadata of the parameter. Example:</p>
@@ -3903,6 +4348,8 @@ as well, check out the documentation if you need to use TestNG.
 is to define a test scenario (<code>I test function F</code>) and to make the input/output data
 dynamic.</p>
 </div>
+<div class="sect3">
+<h4 id="_junit_4">1.1.1. JUnit 4</h4>
 <div class="paragraph">
 <p>Here is an example. Let&#8217;s assume we have this test which validates the connection URI using <code>ConnectionService</code>:</p>
 </div>
@@ -3984,6 +4431,56 @@ you don&#8217;t have to define a single <code>@Test</code> method, if you define
 </table>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_junit_5">1.1.2. JUnit 5</h4>
+<div class="paragraph">
+<p>JUnit 5 reworked this feature to make it way easier to use. The full documentation is available at <a href="http://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests" class="bare">junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests</a>.</p>
+</div>
+<div class="paragraph">
+<p>The main difference is you can also define inline on the test method that it is a parameterized test and which are the values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@ParameterizedTest</span>
+<span style="color:#007">@ValueSource</span>(strings = { <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">racecar</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">radar</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">able was I ere I saw elba</span><span style="color:#710">&quot;</span></span> })
+<span style="color:#339;font-weight:bold">void</span> mytest(<span style="color:#0a8;font-weight:bold">String</span> currentValue) {
+    <span style="color:#777">// do test</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However you can still use the previous behavior using a method binding configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@ParameterizedTest</span>
+<span style="color:#007">@MethodSource</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">stringProvider</span><span style="color:#710">&quot;</span></span>)
+<span style="color:#339;font-weight:bold">void</span> mytest(<span style="color:#0a8;font-weight:bold">String</span> currentValue) {
+    <span style="color:#777">// do test</span>
+}
+
+<span style="color:#088;font-weight:bold">static</span> Stream&lt;<span style="color:#0a8;font-weight:bold">String</span>&gt; stringProvider() {
+    <span style="color:#080;font-weight:bold">return</span> Stream.of(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">foo</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">bar</span><span style="color:#710">&quot;</span></span>);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This last option allows you to inject any type of value - not only primitives - which is very common to define scenarii.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefit from this feature.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -4007,6 +4504,8 @@ you don&#8217;t have to define a single <code>@Test</code> method, if you define
 <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_junit_4_2">2.1.1. JUnit 4</h4>
 <div class="paragraph">
 <p>Then you can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
 </div>
@@ -4049,8 +4548,69 @@ you don&#8217;t have to define a single <code>@Test</code> method, if you define
 </tr>
 </table>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_mocking_the_output">2.1.1. Mocking the output</h4>
+<h4 id="_junit_5_2">2.1.2. JUnit 5</h4>
+<div class="paragraph">
+<p>The JUnit 5 integration is mainly the same as for JUnit 4 except it uses the new JUnit 5 extension mecanism.</p>
+</div>
+<div class="paragraph">
+<p>The entry point is the <code>@WithComponents</code> annotation you put on your test class which takes the
+component package you want to test and you can use <code>@Injected</code> to inject in a test class field an instance of <code>ComponentsHandler</code>
+which exposes the same utilities than the JUnit 4 rule:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@WithComponents</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">org.talend.sdk.component.junit.component</span><span style="color:#710">&quot;</span></span>) <i class="conum" data-value="1"></i><b>(1)</b>
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">ComponentExtensionTest</span> {
+    <span style="color:#007">@Injected</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span style="color:#088;font-weight:bold">private</span> ComponentsHandler handler;
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> manualMapper() {
+        <span style="color:#088;font-weight:bold">final</span> Mapper mapper = handler.createMapper(<span style="color:#0a8;font-weight:bold">Source</span>.class, <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">Source</span>.Config() {
+
+            {
+                values = asList(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">a</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">b</span><span style="color:#710">&quot;</span></span>);
+            }
+        });
+        assertFalse(mapper.isStream());
+        <span style="color:#088;font-weight:bold">final</span> Input input = mapper.create();
+        assertEquals(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">a</span><span style="color:#710">&quot;</span></span>, input.next());
+        assertEquals(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">b</span><span style="color:#710">&quot;</span></span>, input.next());
+        assertNull(input.next());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The annotation defines which components to register in the test context.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The field allows to get the handler to be able to orchestrate the tests.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+if it is the first time you use JUnit 5, don&#8217;t forget the imports changed and you must use <code>org.junit.jupiter.api.Test</code> instead of <code>org.junit.Test</code>.
+Some IDE versions and <code>surefire</code> versions can also need you to install either a plugin or a specific configuration.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mocking_the_output">2.1.3. Mocking the output</h4>
 <div class="paragraph">
 <p>Using the component "test"/"collector" as in previous sample stores all records emitted by the chain (typically your source)
 in memory, you can then access them using <code>theSimpleComponentRule.getCollectoedRecord(type)</code>. Note that this method filters by type,
@@ -4058,7 +4618,7 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_mocking_the_input">2.1.2. Mocking the input</h4>
+<h4 id="_mocking_the_input">2.1.4. Mocking the input</h4>
 <div class="paragraph">
 <p>The input mocking is symmetric to the output but here you provide the data you want to inject:</p>
 </div>
@@ -4096,7 +4656,7 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_creating_runtime_configuration_from_component_configuration">2.1.3. Creating runtime configuration from component configuration</h4>
+<h4 id="_creating_runtime_configuration_from_component_configuration">2.1.5. Creating runtime configuration from component configuration</h4>
 <div class="paragraph">
 <p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses
 a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility
@@ -4116,7 +4676,7 @@ componentConfig.setUser(<span style="background-color:hsla(0,100%,50%,0.05)"><sp
 </div>
 </div>
 <div class="sect3">
-<h4 id="_testing_a_mapper">2.1.4. Testing a Mapper</h4>
+<h4 id="_testing_a_mapper">2.1.6. Testing a Mapper</h4>
 <div class="paragraph">
 <p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarly, you can get an instance from a configuration
 and you can execute this instance to collect the output. Here is a snippet doing that:</p>
@@ -4141,7 +4701,7 @@ and you can execute this instance to collect the output. Here is a snippet doing
 </div>
 </div>
 <div class="sect3">
-<h4 id="_testing_a_processor">2.1.5. Testing a Processor</h4>
+<h4 id="_testing_a_processor">2.1.7. Testing a Processor</h4>
 <div class="paragraph">
 <p>As for the mapper a processor is testable unitary. The case is a bit more complex since you can have multiple
 inputs and outputs:</p>
@@ -4213,6 +4773,8 @@ you can also implement your own input representation if needed implementing <cod
 <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_junit_4_3">2.2.1. JUnit 4</h4>
 <div class="paragraph">
 <p>The usage relies on a JUnit <code>TestRule</code>. It is recommanded to use it as a <code>@ClassRule</code> to ensure
 a single instance of a spark cluster is built but you can also use it as a simple <code>@Rule</code> which means
@@ -4254,8 +4816,43 @@ this is working with <code>@Parameterized</code> so you can submit a bunch of jo
 </tr>
 </table>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_how_to_know_the_job_is_done">2.2.1. How to know the job is done</h4>
+<h4 id="_junit_5_3">2.2.2. JUnit 5</h4>
+<div class="paragraph">
+<p>The integration with JUnit 5 of that spark cluster logic uses <code>@WithSpark</code> marker for the extension
+and let you, optionally, inject through <code>@SparkInject</code>, the <code>BaseSpark&lt;?&gt;</code> handler to access te spark cluster
+meta information - like its host/port.</p>
+</div>
+<div class="paragraph">
+<p>Here is a basic test using it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@WithSpark</span>
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">SparkExtensionTest</span> {
+
+    <span style="color:#007">@SparkInject</span>
+    <span style="color:#088;font-weight:bold">private</span> BaseSpark&lt;?&gt; spark;
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#339;font-weight:bold">void</span> classpathSubmit() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">IOException</span> {
+        <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">File</span> out = <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">File</span>(jarLocation(SparkClusterRuleTest.class).getParentFile(), <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">classpathSubmitJunit5.out</span><span style="color:#710">&quot;</span></span>);
+        <span style="color:#080;font-weight:bold">if</span> (out.exists()) {
+            out.delete();
+        }
+        spark.submitClasspath(SparkClusterRuleTest.SubmittableMain.class, spark.getSparkMaster(), out.getAbsolutePath());
+
+        await().atMost(<span style="color:#00D">5</span>, MINUTES).until(
+                () -&gt; out.exists() ? Files.readAllLines(out.toPath()).stream().collect(joining(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#b0b">\n</span><span style="color:#710">&quot;</span></span>)).trim() : <span style="color:#069">null</span>,
+                equalTo(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">b -&gt; 1</span><span style="color:#b0b">\n</span><span style="color:#D20">a -&gt; 1</span><span style="color:#710">&quot;</span></span>));
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_how_to_know_the_job_is_done">2.2.3. How to know the job is done</h4>
 <div class="paragraph">
 <p>In current state, <code>SparkClusterRule</code> doesn&#8217;t allow to know a job execution is done - even if it exposes the webui url so
 you can poll it to check. The best at the moment is to ensure the output of your job exists and contains the right value.</p>
@@ -4290,6 +4887,216 @@ you can poll it to check. The best at the moment is to ensure the output of your
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_component_runtime_http_junit">2.3. component-runtime-http-junit</h3>
+<div class="paragraph">
+<p>The HTTP JUnit module allows you to mock REST API very easily. Here are its coordinates:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>component-runtime-junit<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${talend-component.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;scope&gt;</span>test<span style="color:#070;font-weight:bold">&lt;/scope&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+this module uses Apache Johnzon and Netty, if you have any conflict (in particular with netty) you can add the classifier <code>shaded</code>
+to the dependency and the two dependencies are shaded avoiding the conflicts with your component.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It supports JUnit 4 and JUnit 5 as well but the overall concept is the exact same one: the extension/rule
+is able to serve precomputed responses saved in the classpath.</p>
+</div>
+<div class="paragraph">
+<p>You can plug your own <code>ResponseLocator</code> to map a request to a response but the default implementation - which should be sufficient
+in most cases - will look in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it
+in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_junit_4_4">2.3.1. JUnit 4</h4>
+<div class="paragraph">
+<p>JUnit 4 setup is done through two rules: <code>JUnit4HttpApi</code> which is responsible to start the server and <code>JUnit4HttpApiPerMethodConfigurator</code>
+which is responsible to configure the server per test and also handle the capture mode (see later).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the capture feature will be deactivated and the per test mocking will not be available.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Most of the test will look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyRESTApiTest</span> {
+    <span style="color:#007">@ClassRule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApi API = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApi();
+
+    <span style="color:#007">@Rule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApiPerMethodConfigurator configurator = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApiPerMethodConfigurator(API);
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> direct() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// ... do your requests</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ssl">SSL</h5>
+<div class="paragraph">
+<p>For tests using SSL based services, you will need to use <code>activeSsl()</code> on the <code>JUnit4HttpApi</code> rule.</p>
+</div>
+<div class="paragraph">
+<p>If you need to access the server ssl socket factory you can do it from the <code>HttpApiHandler</code> (the rule):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@ClassRule</span>
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApi API = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApi()<strong>.activeSsl()</strong>;
+
+<span style="color:#007">@Test</span>
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> test() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+    <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">HttpsURLConnection</span> connection = getHttpsConnection();
+    connection.setSSLSocketFactory(API.getSslContext().getSocketFactory());
+    <span style="color:#777">// ....</span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_junit_5_4">2.3.2. JUnit 5</h4>
+<div class="paragraph">
+<p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation you can put on your test class. You can inject
+the test handler (which has some utilities for advanced cases) through <code>@HttpApiInject</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@HttpApi</span>
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">JUnit5HttpApiTest</span> {
+    <span style="color:#007">@HttpApiInject</span>
+    <span style="color:#088;font-weight:bold">private</span> HttpApiHandler&lt;?&gt; handler;
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#339;font-weight:bold">void</span> getProxy() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// .... do your requests</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the injection is optional and the <code>@HttpApi</code> allows you to configure several behaviors of the test.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_ssl_2">SSL</h5>
+<div class="paragraph">
+<p>For tests using SSL based services, you will need to use <code>@HttpApi(useSsl = true)</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can access the client SSL socket factory through the api handler:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@HttpApi</span><strong>(useSsl = <span style="color:#069">true</span>)</strong>
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyHttpsApiTest</span> {
+    <span style="color:#007">@HttpApiInject</span>
+    <span style="color:#088;font-weight:bold">private</span> HttpApiHandler&lt;?&gt; handler;
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#339;font-weight:bold">void</span> test() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">HttpsURLConnection</span> connection = getHttpsConnection();
+        connection.setSSLSocketFactory(handler.getSslContext().getSocketFactory());
+        <span style="color:#777">// ....</span>
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_capturing_mode">2.3.3. Capturing mode</h4>
+<div class="paragraph">
+<p>The strength of this implementation is to run a small proxy server and auto configure the JVM:
+<code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code>
+are auto configured to work out of the box with the proxy.</p>
+</div>
+<div class="paragraph">
+<p>It allows you to keep in your tests the native and real URLs. For instance this test is perfectlt valid:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">GoogleTest</span> {
+    <span style="color:#007">@ClassRule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApi API = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApi();
+
+    <span style="color:#007">@Rule</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#088;font-weight:bold">final</span> JUnit4HttpApiPerMethodConfigurator configurator = <span style="color:#080;font-weight:bold">new</span> JUnit4HttpApiPerMethodConfigurator(API);
+
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> google() <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        assertEquals(<span style="color:#0a8;font-weight:bold">HttpURLConnection</span>.HTTP_OK, get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">https://google.fr?q=Talend</span><span style="color:#710">&quot;</span></span>));
+    }
+
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#339;font-weight:bold">int</span> get(<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> uri) <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">Exception</span> {
+        <span style="color:#777">// do the GET request, skipped for brievity</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you execute this test, it will fail with a HTTP 400 because the proxy doesn&#8217;t find the mocked response.
+You can create it manually as seen in the introduction of the module but you can also set the property <code>talend.junit.http.capture</code>
+to the folder where to store the captures. It must be the root folder and not the folder where the json are (ie not prefixed by <code>talend/testing/http</code> by default).</p>
+</div>
+<div class="paragraph">
+<p>Generally you will want to use <code>src/test/resources</code>. If <code>new File("src/test/resources")</code> resolves to the valid folder when executing your test (Maven default),
+then you can just set the system property to true, otherwise you need to adjust accordingly the system property value.</p>
+</div>
+<div class="paragraph">
+<p>Once you ran the tests with this system property, the testing framework will have created the correct mock response files and you can
+remove the system property. The test will still pass, using <code>google.com</code>&#8230;&#8203;even if you disconnect your machine from the internet.</p>
+</div>
+<div class="paragraph">
+<p>The rule (extension) is doing all the work for you :).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_passthrough_mode">2.3.4. Passthrough mode</h4>
+<div class="paragraph">
+<p>Setting <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server will just be a proxy and will execute each request
+to the actual server - like in capturing mode.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -4304,7 +5111,41 @@ you can poll it to check. The best at the moment is to ensure the output of your
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generating_data">4. Generating data?</h2>
+<h2 id="_secrets_passwords_and_maven">4. Secrets/Passwords and Maven</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you desire you can reuse your Maven <code>settings.xml</code> servers - including the encrypted ones.
+<code>org.talend.sdk.component.maven.MavenDecrypter</code> will give you the ability to find a server <code>username</code>/<code>password</code> from
+a server identifier:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">final</span> MavenDecrypter decrypter = <span style="color:#080;font-weight:bold">new</span> MavenDecrypter();
+<span style="color:#088;font-weight:bold">final</span> Server decrypted = decrypter.find(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">my-test-server</span><span style="color:#710">&quot;</span></span>);
+<span style="color:#777">// decrypted.getUsername();</span>
+<span style="color:#777">// decrypted.getPassword();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is very useful to not store secrets and test on real systems on a continuous integration platform.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+even if you don&#8217;t use maven on the platform you can generate the <code>settings.xml</code> and <code>settings-security.xml</code> files
+to use that feature. See <a href="https://maven.apache.org/guides/mini/guide-encryption.html" class="bare">maven.apache.org/guides/mini/guide-encryption.html</a> for more details.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_generating_data">5. Generating data?</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Several data generator exists if you want to populate objects with a semantic a bit more evolved than a plain random string
@@ -5291,6 +6132,7 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 <h5 id="_request_8">Request</h5>
 <div class="paragraph">
 <p><em>No body</em><br>
+<strong>Query Param</strong>: <code>includeIconContent</code>, <code>boolean</code><br>
 <strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
 </div>
 </div>
@@ -5409,20 +6251,54 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_environment_code">1.1.11. <code>GET api/v1/environment</code></h4>
+<h4 id="_code_get_api_v1_documentation_component_id_code">1.1.11. <code>GET api/v1/documentation/component/{id}</code></h4>
+<div class="paragraph">
+<p>Returns an asciidoctor version of the documentation for the component represented by its identifier <code>id</code>.</p>
+</div>
 <div class="sect4">
 <h5 id="_request_11">Request</h5>
 <div class="paragraph">
-<p><em>No body</em><br></p>
+<p><em>No body</em><br>
+<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_response_11">Response</h5>
 <div class="paragraph">
-<p><strong>Content-Type</strong>: <code>*/*</code></p>
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect5">
 <h6 id="_code_200_ok_code_11"><code>200 OK</code></h6>
+<div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.DocumentationContent</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript">{
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>source</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>type</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">string</span><span style="color:#710">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_get_api_v1_environment_code">1.1.12. <code>GET api/v1/environment</code></h4>
+<div class="sect4">
+<h5 id="_request_12">Request</h5>
+<div class="paragraph">
+<p><em>No body</em><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_12">Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>*/*</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_12"><code>200 OK</code></h6>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Environment</code>)</p>
 </div>
@@ -5440,12 +6316,12 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_execution_read_family_component_code">1.1.12. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
+<h4 id="_code_post_api_v1_execution_read_family_component_code">1.1.13. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
 <div class="paragraph">
 <p>Read inputs from an instance of mapper. The number of returned records if enforced to be limited to 1000. The format is a JSON based format where each like is a json record.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_12">Request</h5>
+<h5 id="_request_13">Request</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code><br>
 <strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
@@ -5455,7 +6331,7 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_12">Response</h5>
+<h5 id="_response_13">Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>talend/stream</code></p>
 </div>
@@ -5466,12 +6342,12 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_execution_write_family_component_code">1.1.13. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
+<h4 id="_code_post_api_v1_execution_write_family_component_code">1.1.14. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
 <div class="paragraph">
 <p>Sends records using a processor instance. Note that the processor should have only an input. Behavior for other processors is undefined. The input format is a JSON based format where each like is a json record - same as for the symmetric endpoint.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_13">Request</h5>
+<h5 id="_request_14">Request</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>talend/stream</code><br>
 <strong>Request Body</strong>: (<code>java.io.InputStream</code>)
@@ -5481,7 +6357,7 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_13">Response</h5>
+<h5 id="_response_14">Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
@@ -5923,24 +6799,14 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
@@ -5953,14 +6819,64 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.component.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for component endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.documentation.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for documentation endpoint.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.environment.rate</p></td>
@@ -5971,41 +6887,6 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.configurationtype.rate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.component.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for component endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
