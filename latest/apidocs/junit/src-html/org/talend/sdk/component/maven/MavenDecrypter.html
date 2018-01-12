@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="fr">
+<html lang="en">
 <head>
 <title>Source code</title>
 <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
@@ -177,7 +177,7 @@
 <span class="sourceLineNo">169</span>                throw new IllegalArgumentException("Unsupported encryption for " + value);<a name="line.169"></a>
 <span class="sourceLineNo">170</span>            }<a name="line.170"></a>
 <span class="sourceLineNo">171</span><a name="line.171"></a>
-<span class="sourceLineNo">172</span>            final byte[] allEncryptedBytes = Base64.getDecoder().decode(value);<a name="line.172"></a>
+<span class="sourceLineNo">172</span>            final byte[] allEncryptedBytes = Base64.getMimeDecoder().decode(value);<a name="line.172"></a>
 <span class="sourceLineNo">173</span>            final int totalLen = allEncryptedBytes.length;<a name="line.173"></a>
 <span class="sourceLineNo">174</span>            final byte[] salt = new byte[8];<a name="line.174"></a>
 <span class="sourceLineNo">175</span>            System.arraycopy(allEncryptedBytes, 0, salt, 0, 8);<a name="line.175"></a>
