@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-01-12 15:20:33" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-01-12 16:07:10" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -104,8 +104,16 @@
 </ul>
 </li>
 <li><a href="#_beam_testing">3. Beam testing</a></li>
-<li><a href="#_secrets_passwords_and_maven">4. Secrets/Passwords and Maven</a></li>
-<li><a href="#_generating_data">5. Generating data?</a></li>
+<li><a href="#_multiple_environments_for_the_same_tests">4. Multiple environments for the same tests</a>
+<ul class="sectlevel2">
+<li><a href="#_junit_4_5">4.1. JUnit 4</a></li>
+<li><a href="#_junit_5_5">4.2. JUnit 5</a></li>
+<li><a href="#_provided_environments">4.3. Provided environments</a></li>
+<li><a href="#_configuring_environments">4.4. Configuring environments</a></li>
+</ul>
+</li>
+<li><a href="#_secrets_passwords_and_maven">5. Secrets/Passwords and Maven</a></li>
+<li><a href="#_generating_data">6. Generating data?</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -894,7 +902,171 @@ to the actual server - like in capturing mode.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_secrets_passwords_and_maven">4. Secrets/Passwords and Maven</h2>
+<h2 id="_multiple_environments_for_the_same_tests">4. Multiple environments for the same tests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JUnit (4 or 5) already provides some ways to parameterized tests and execute the same "test logic"
+against several data. However it is not that convenient to test multiple environments.</p>
+</div>
+<div class="paragraph">
+<p>For instance, with Beam, you can desire to test against multiple runners your code
+and it requires to solve conflicts between runner dependencies, setup the correct classloaders
+etc&#8230;&#8203;It is a lot of work!</p>
+</div>
+<div class="paragraph">
+<p>To simplify such cases, the framework provides you a multi-environment support for your tests.</p>
+</div>
+<div class="paragraph">
+<p>It is in the junit module and is usable with JUnit 4 and JUnit 5.</p>
+</div>
+<div class="sect2">
+<h3 id="_junit_4_5">4.1. JUnit 4</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@RunWith</span>(MultiEnvironmentsRunner.class)
+<span style="color:#007">@Environment</span>(Env1.class)
+<span style="color:#007">@Environment</span>(Env1.class)
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">TheTest</span> {
+    <span style="color:#007">@Test</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> test1() {
+        <span style="color:#777">// ...</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>MultiEnvironmentsRunner</code> will execute the test(s) for each defined environments. It means it will
+run <code>test1</code> for <code>Env1</code> and <code>Env2</code> in previous example.</p>
+</div>
+<div class="paragraph">
+<p>By default <code>JUnit4</code> runner will be used to execute the tests in one environment but you can use <code>@DelegateRunWith</code>
+to use another runner.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_junit_5_5">4.2. JUnit 5</h3>
+<div class="paragraph">
+<p>JUnit 5 configuration is close to JUnit 4 one:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Environment</span>(EnvironmentsExtensionTest.E1.class)
+<span style="color:#007">@Environment</span>(EnvironmentsExtensionTest.E2.class)
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">TheTest</span> {
+
+    <span style="color:#007">@EnvironmentalTest</span>
+    <span style="color:#339;font-weight:bold">void</span> test1() {
+        <span style="color:#777">// ...</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main difference is you don&#8217;t use a runner (it doesn&#8217;t exist in JUnit 5) and you replace <code>@Test</code> by <code>@EnvironmentalTest</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+the main difference with JUnit 4 integration is that the tests are execute one after each other for all environments
+instead of running all tests in each environments sequentially. It means, for instance, that <code>@BeforeAll</code> and <code>@AfterAll</code> are executed
+once for all runners.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_provided_environments">4.3. Provided environments</h3>
+<div class="paragraph">
+<p>The provided environment setup the contextual classloader to load the related runner of Apache Beam.</p>
+</div>
+<div class="paragraph">
+<p>Package: <code>org.talend.sdk.component.junit.environment.builtin.beam</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the configuration is read from system properties, environment variables, &#8230;&#8203;.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Class</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DirectRunnerEnvironment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Direct</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Direct runner</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FlinkRunnerEnvironment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flink</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flink runner</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SparkRunnerEnvironment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spark</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spark runner</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_configuring_environments">4.4. Configuring environments</h3>
+<div class="paragraph">
+<p>If the environment extends <code>BaseEnvironmentProvider</code> and therefore defines an environment name - which is the case of the default ones, you can use <code>EnvironmentConfiguration</code>
+to customize the system properties used for that environment:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Environment</span>(DirectRunnerEnvironment.class)
+<span style="color:#007">@EnvironmentConfiguration</span>(
+    environment = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Direct</span><span style="color:#710">&quot;</span></span>,
+    systemProperties = <span style="color:#007">@EnvironmentConfiguration</span>.Property(key = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">beamTestPipelineOptions</span><span style="color:#710">&quot;</span></span>, value = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">...</span><span style="color:#710">&quot;</span></span>))
+
+<span style="color:#007">@Environment</span>(SparkRunnerEnvironment.class)
+<span style="color:#007">@EnvironmentConfiguration</span>(
+    environment = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Spark</span><span style="color:#710">&quot;</span></span>,
+    systemProperties = <span style="color:#007">@EnvironmentConfiguration</span>.Property(key = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">beamTestPipelineOptions</span><span style="color:#710">&quot;</span></span>, value = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">...</span><span style="color:#710">&quot;</span></span>))
+
+<span style="color:#007">@Environment</span>(FlinkRunnerEnvironment.class)
+<span style="color:#007">@EnvironmentConfiguration</span>(
+    environment = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Flink</span><span style="color:#710">&quot;</span></span>,
+    systemProperties = <span style="color:#007">@EnvironmentConfiguration</span>.Property(key = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">beamTestPipelineOptions</span><span style="color:#710">&quot;</span></span>, value = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">...</span><span style="color:#710">&quot;</span></span>))
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyBeamTest</span> {
+
+    <span style="color:#007">@EnvironmentalTest</span>
+    <span style="color:#339;font-weight:bold">void</span> execute() {
+        <span style="color:#777">// run some pipeline</span>
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_secrets_passwords_and_maven">5. Secrets/Passwords and Maven</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you desire you can reuse your Maven <code>settings.xml</code> servers - including the encrypted ones.
@@ -928,7 +1100,7 @@ to use that feature. See <a href="https://maven.apache.org/guides/mini/guide-enc
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generating_data">5. Generating data?</h2>
+<h2 id="_generating_data">6. Generating data?</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Several data generator exists if you want to populate objects with a semantic a bit more evolved than a plain random string
