@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-01-19 08:45:48" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-01-19 10:34:22" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -92,7 +92,7 @@
                 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_rest_api">1. REST API</a>
+<li><a href="#_http_api">1. HTTP API</a>
 <ul class="sectlevel2">
 <li><a href="#_rest_resources_of_component_runtime_server">1.1. REST resources of Component Runtime :: Server</a></li>
 <li><a href="#_websocket_transport">1.2. WebSocket transport</a></li>
@@ -101,6 +101,7 @@
 <li><a href="#_web_forms_and_rest_api">2. Web forms and REST API</a>
 <ul class="sectlevel2">
 <li><a href="#_use_uispec_model_without_all_the_tooling">2.1. Use UiSpec model without all the tooling</a></li>
+<li><a href="#_javascript_integration">2.2. Javascript integration</a></li>
 </ul>
 </li>
 <li><a href="#_logging">3. Logging</a></li>
@@ -108,10 +109,10 @@
 </ul>
 </div>
 <div class="sect1">
-<h2 id="_rest_api">1. REST API</h2>
+<h2 id="_http_api">1. HTTP API</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The REST API intends to expose over HTTP most of Talend Component features, it is a standalone Java HTTP server.</p>
+<p>The HTTP API intends to expose over HTTP most of Talend Component features, it is a standalone Java HTTP server.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1059,6 +1060,54 @@ This can be done adding these dependencies:
   <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>johnzon-jsonb<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
   <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${johnzon.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span> <span style="color:#777">&lt;!-- 1.1.5 for instance --&gt;</span>
 <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_javascript_integration">2.2. Javascript integration</h3>
+<div class="paragraph">
+<p>Default javascript integration goes through <a href="https://github.com/Talend/ui/tree/master/packages/forms">Talend UI Forms</a> library.</p>
+</div>
+<div class="paragraph">
+<p>It is bundled as a NPM module called  <code>component-kit.js</code>. It provides a default trigger implementation for the <code>UIForm</code>.</p>
+</div>
+<div class="paragraph">
+<p>Here is how to use it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="javascript"><span style="color:#080;font-weight:bold">import</span> React from <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">react</span><span style="color:#710">'</span></span>;
+<span style="color:#080;font-weight:bold">import</span> UIForm from <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">@talend/react-forms/lib/UIForm/UIForm.container</span><span style="color:#710">'</span></span>;
+<span style="color:#080;font-weight:bold">import</span> TalendComponentKitTrigger from <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">component-kit.js</span><span style="color:#710">'</span></span>;
+
+<span style="color:#080;font-weight:bold">export</span> <span style="color:#080;font-weight:bold">default</span> <span style="color:#080;font-weight:bold">class</span> ComponentKitForm <span style="color:#080;font-weight:bold">extends</span> React.Component {
+  constructor(props) {
+    <span style="color:#080;font-weight:bold">super</span>(props);
+    <span style="color:#950">this</span>.trigger = <span style="color:#080;font-weight:bold">new</span> TalendComponentKitTrigger({ <span style="color:#606">url</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">/api/to/component/server/proxy</span><span style="color:#710">'</span></span> });
+    <span style="color:#950">this</span>.onTrigger = <span style="color:#950">this</span>.onTrigger.bind(<span style="color:#950">this</span>);
+    <span style="color:#777">// ...</span>
+  }
+
+  onTrigger(event, payload) {
+    <span style="color:#080;font-weight:bold">return</span> <span style="color:#950">this</span>.trigger.onDefaultTrigger(event, payload);
+  }
+
+  <span style="color:#777">// ...</span>
+
+  render() {
+    <span style="color:#080;font-weight:bold">if</span>(! <span style="color:#950">this</span>.state.uiSpec) {
+      <span style="color:#080;font-weight:bold">return</span> (&lt;div&gt;Loading ...&lt;<span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">div&gt;);
+    }
+
+    return (
+        &lt;UIForm
+          data={this.state.uiSpec}
+          onTrigger={this.onTrigger}
+          onSubmit={this.onSubmit}
+        </span><span style="color:#404">/</span></span>&gt;
+    );
+  }
+}</code></pre>
 </div>
 </div>
 </div>
