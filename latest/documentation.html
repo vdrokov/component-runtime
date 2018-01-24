@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-01-24 14:38:18" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-01-24 18:34:47" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -2257,11 +2257,11 @@ if your payload(s) is(are) <code>String</code> or <code>Void</code> you can igno
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">interface</span> <span style="color:#B06;font-weight:bold">APIClient</span> <span style="color:#088;font-weight:bold">extends</span> HttpClient {
     <span style="color:#007">@Request</span>(path = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">api/records/{id}</span><span style="color:#710">&quot;</span></span>, method = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">GET</span><span style="color:#710">&quot;</span></span>)
-    <span style="color:#007">@Codec</span>(decoder = RecordDecoder.class) <span style="color:#777">//decoder =  decode return data to Record class</span>
+    <span style="color:#007">@Codec</span>(decoder = RecordDecoder.class) <span style="color:#777">//decoder =  decode returned data to Record class</span>
     Record getRecord(<span style="color:#007">@Header</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Authorization</span><span style="color:#710">&quot;</span></span>) <span style="color:#0a8;font-weight:bold">String</span> basicAuth, <span style="color:#007">@Path</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">id</span><span style="color:#710">&quot;</span></span>) <span style="color:#339;font-weight:bold">int</span> id);
 
     <span style="color:#007">@Request</span>(path = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">api/records</span><span style="color:#710">&quot;</span></span>, method = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">POST</span><span style="color:#710">&quot;</span></span>)
-    <span style="color:#007">@Codec</span>(encoder = RecordEncoder.class, decoder = RecordDecoder.class) <span style="color:#777">//encoder = encode record to fit request format (json n this example)</span>
+    <span style="color:#007">@Codec</span>(encoder = RecordEncoder.class, decoder = RecordDecoder.class) <span style="color:#777">//encoder = encode record to fit request format (json in this example)</span>
     Record createRecord(<span style="color:#007">@Header</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Authorization</span><span style="color:#710">&quot;</span></span>) <span style="color:#0a8;font-weight:bold">String</span> basicAuth, Record record);
 }</code></pre>
 </div>
@@ -2277,6 +2277,10 @@ The interface should extends <code>HttpClient</code>.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>In the codec classes (class that implement Encoder/Decoder) you can inject any of your services annotated with <code>@Service</code> or <code>@Internationalized</code> into the constructor.
+The i18n services can be useful to have i18n messages for errors handling for example.</p>
 </div>
 <div class="paragraph">
 <p>This interface can be injected into our Components classes or Services to consume the defined api.</p>
