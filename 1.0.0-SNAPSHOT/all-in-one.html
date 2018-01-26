@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-01-26 14:01:03" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-01-26 14:13:41" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -287,7 +287,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#_prepare">10.4. Prepare</a></li>
+<li><a href="#_web">10.4. Web</a></li>
 <li><a href="#_generate_inputs_or_outputs">10.5. Generate inputs or outputs</a></li>
 </ul>
 </li>
@@ -4077,102 +4077,26 @@ Unresolved directive in documentation.adoc - include::{generated_doc}/documentat
 </div>
 </div>
 <div class="sect2">
-<h3 id="_prepare">10.4. Prepare</h3>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-this goal is deprecated.
-</td>
-</tr>
-</table>
-</div>
+<h3 id="_web">10.4. Web</h3>
 <div class="paragraph">
-<p>The <code>prepare</code> goal is to build artifacts you can deploy out of the box into the studio. It is a temporarly phase
-until the framework programming model is fully integrated in Talend suite.</p>
+<p>Testing the rendering of your component(s) configuration into the Studio is just a matter of deploying a component
+in Talend Studio (you can have a look to link::studio.html[Studio Documentation] page. But don&#8217;t forget
+the component can also be deployed into a Cloud (web) environment. To ease the testing of the related rendering,
+you can use the goal <code>web</code> of the plugin:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.talend.sdk.component<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>talend-component-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${component.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
-    <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
-      <span style="color:#070;font-weight:bold">&lt;id&gt;</span>talend-component-prepare<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
-      <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
-        <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>prepare<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
-      <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
-    <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
-<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
+<pre class="CodeRay highlight"><code>mvn talend-component:web</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It will generate a maven project in <code>${project.build.directory}/oldtcomponentbridgemojo_workdir</code> which contains the artifacts
-you can deploy to the studio. Here is the associated configuration:</p>
+<p>Then you can test your component going on <a href="http://localhost:8080" class="bare">localhost:8080</a>. You need to select which component form you want
+to see using the treeview on the left, then on the right the form will be displayed.</p>
 </div>
-<table class="tableblock frame-all grid-all">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">attach</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">attach the built virtual artifacts (definition and runtime modules) to the build/project (enables to deploy them)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">componentNgApiVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The component API version, if set to <code>auto</code> uses the one of the plugin (recommanded)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">componentsApiVersion</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The bridge component API version, if set to <code>auto</code> uses the one of the plugin (recommanded)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">studioHome</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set and <code>attach</code> is true, the created component will be installed in the studio located at that path</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-if you configure a <code>studio</code> profile in your ~/.m2/settings.xml, you can activate/deactivate the deployment into the studio of your component
-with a profile (adding <code>-Pstudio</code> to you build command, ex: <code>mvn clean install -Pstudio</code>). Here is a sample declaration of such a profile:
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;profile&gt;</span> <span style="color:#777">&lt;!-- to deploy in the studio at build time: mvn clean install -Pstudio --&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;id&gt;</span>studio<span style="color:#070;font-weight:bold">&lt;/id&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;properties&gt;</span>
-    <span style="color:#070;font-weight:bold">&lt;talend.component.studioHome&gt;</span>/opt/talend/TOS_DI-V6.5.0<span style="color:#070;font-weight:bold">&lt;/talend.component.studioHome&gt;</span>
-  <span style="color:#070;font-weight:bold">&lt;/properties&gt;</span>
-<span style="color:#070;font-weight:bold">&lt;/profile&gt;</span></code></pre>
-</div>
+<div class="paragraph">
+<p>The two available configurations of the plugin are <code>serverPort</code> which is a shortcut to change the default, 8080, port
+of the embedded server and <code>serverArguments</code> to pass Meecrowave options to the server. More on that configuration
+is available at <a href="http://openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html" class="bare">openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -4327,6 +4251,10 @@ talendComponentKit {
     validateDataStore = <span style="color:#069">true</span>
     validateDataSet = <span style="color:#069">true</span>
     validateActions = <span style="color:#069">true</span>
+
+    <span style="color:#777">// web</span>
+    serverArguments = <span style="color:#339;font-weight:bold">[]</span>
+    serverPort = <span style="color:#00D">8080</span>
 }</code></pre>
 </div>
 </div>
@@ -7045,11 +6973,6 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
@@ -7058,22 +6981,6 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [auto, console, noop, url]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
-<p class="tableblock">In <code>auto</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${user.home}/.m2/repository</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
@@ -7094,6 +7001,16 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
@@ -7144,6 +7061,17 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.configurationtype.rate</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [auto, console, noop, url]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
+<p class="tableblock">In <code>auto</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">auto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">${user.home}/.m2/repository</p></td>
 </tr>
 </tbody>
 </table>
