@@ -103,9 +103,9 @@
 <span class="sourceLineNo">095</span>    /**<a name="line.95"></a>
 <span class="sourceLineNo">096</span>     * Collects all outputs of a processor.<a name="line.96"></a>
 <span class="sourceLineNo">097</span>     *<a name="line.97"></a>
-<span class="sourceLineNo">098</span>     * @param processor  the processor to run while there are inputs.<a name="line.98"></a>
-<span class="sourceLineNo">099</span>     * @param inputs     the input factory, when an input will return null it will stop the<a name="line.99"></a>
-<span class="sourceLineNo">100</span>     *                   processing.<a name="line.100"></a>
+<span class="sourceLineNo">098</span>     * @param processor the processor to run while there are inputs.<a name="line.98"></a>
+<span class="sourceLineNo">099</span>     * @param inputs the input factory, when an input will return null it will stop the<a name="line.99"></a>
+<span class="sourceLineNo">100</span>     * processing.<a name="line.100"></a>
 <span class="sourceLineNo">101</span>     * @param bundleSize the bundle size to use.<a name="line.101"></a>
 <span class="sourceLineNo">102</span>     * @return a map where the key is the output name and the value a stream of the<a name="line.102"></a>
 <span class="sourceLineNo">103</span>     * output values.<a name="line.103"></a>
@@ -141,12 +141,12 @@
 <span class="sourceLineNo">133</span>     * IMPORTANT: don't forget to consume all the stream to ensure the underlying<a name="line.133"></a>
 <span class="sourceLineNo">134</span>     * { @see org.talend.sdk.component.runtime.input.Input} is closed.<a name="line.134"></a>
 <span class="sourceLineNo">135</span>     *<a name="line.135"></a>
-<span class="sourceLineNo">136</span>     * @param recordType  the record type to use to type the returned type.<a name="line.136"></a>
-<span class="sourceLineNo">137</span>     * @param mapper      the mapper to go through.<a name="line.137"></a>
-<span class="sourceLineNo">138</span>     * @param maxRecords  maximum number of records, allows to stop the source when<a name="line.138"></a>
-<span class="sourceLineNo">139</span>     *                    infinite.<a name="line.139"></a>
+<span class="sourceLineNo">136</span>     * @param recordType the record type to use to type the returned type.<a name="line.136"></a>
+<span class="sourceLineNo">137</span>     * @param mapper the mapper to go through.<a name="line.137"></a>
+<span class="sourceLineNo">138</span>     * @param maxRecords maximum number of records, allows to stop the source when<a name="line.138"></a>
+<span class="sourceLineNo">139</span>     * infinite.<a name="line.139"></a>
 <span class="sourceLineNo">140</span>     * @param concurrency requested (1 can be used instead if &amp;lt;= 0) concurrency for the reader execution.<a name="line.140"></a>
-<span class="sourceLineNo">141</span>     * @param &lt;T&gt;         the returned type of the records of the mapper.<a name="line.141"></a>
+<span class="sourceLineNo">141</span>     * @param &lt;T&gt; the returned type of the records of the mapper.<a name="line.141"></a>
 <span class="sourceLineNo">142</span>     * @return all the records emitted by the mapper.<a name="line.142"></a>
 <span class="sourceLineNo">143</span>     */<a name="line.143"></a>
 <span class="sourceLineNo">144</span>    @Override<a name="line.144"></a>
@@ -365,99 +365,103 @@
 <span class="sourceLineNo">357</span>    }<a name="line.357"></a>
 <span class="sourceLineNo">358</span><a name="line.358"></a>
 <span class="sourceLineNo">359</span>    public &lt;T&gt; T findService(final String plugin, final Class&lt;T&gt; serviceClass) {<a name="line.359"></a>
-<span class="sourceLineNo">360</span>        return serviceClass.cast(asManager().findPlugin(plugin)<a name="line.360"></a>
-<span class="sourceLineNo">361</span>                .orElseThrow(() -&gt; new IllegalArgumentException("cant find plugin '" + plugin + "'"))<a name="line.361"></a>
-<span class="sourceLineNo">362</span>                .get(ComponentManager.AllServices.class)<a name="line.362"></a>
-<span class="sourceLineNo">363</span>                .getServices()<a name="line.363"></a>
-<span class="sourceLineNo">364</span>                .get(serviceClass));<a name="line.364"></a>
-<span class="sourceLineNo">365</span>    }<a name="line.365"></a>
-<span class="sourceLineNo">366</span><a name="line.366"></a>
-<span class="sourceLineNo">367</span>    public &lt;T&gt; T findService(final Class&lt;T&gt; serviceClass) {<a name="line.367"></a>
-<span class="sourceLineNo">368</span>        return findService(Optional.of(getTestPlugins()).filter(c -&gt; !c.isEmpty()).map(c -&gt; c.iterator().next())<a name="line.368"></a>
-<span class="sourceLineNo">369</span>                .orElseThrow(() -&gt; new IllegalStateException("No component plugin found")), serviceClass);<a name="line.369"></a>
-<span class="sourceLineNo">370</span>    }<a name="line.370"></a>
-<span class="sourceLineNo">371</span><a name="line.371"></a>
-<span class="sourceLineNo">372</span>    public Set&lt;String&gt; getTestPlugins() {<a name="line.372"></a>
-<span class="sourceLineNo">373</span>        return EmbeddedComponentManager.class.cast(asManager()).testPlugins;<a name="line.373"></a>
-<span class="sourceLineNo">374</span>    }<a name="line.374"></a>
-<span class="sourceLineNo">375</span><a name="line.375"></a>
-<span class="sourceLineNo">376</span>    @Override<a name="line.376"></a>
-<span class="sourceLineNo">377</span>    public &lt;T&gt; void setInputData(final Iterable&lt;T&gt; data) {<a name="line.377"></a>
-<span class="sourceLineNo">378</span>        initState.get().emitter = data.iterator();<a name="line.378"></a>
-<span class="sourceLineNo">379</span>    }<a name="line.379"></a>
-<span class="sourceLineNo">380</span><a name="line.380"></a>
-<span class="sourceLineNo">381</span>    @Override<a name="line.381"></a>
-<span class="sourceLineNo">382</span>    public &lt;T&gt; List&lt;T&gt; getCollectedData(final Class&lt;T&gt; recordType) {<a name="line.382"></a>
-<span class="sourceLineNo">383</span>        return STATE.get().collector.stream().filter(recordType::isInstance).map(recordType::cast).collect(toList());<a name="line.383"></a>
-<span class="sourceLineNo">384</span>    }<a name="line.384"></a>
-<span class="sourceLineNo">385</span><a name="line.385"></a>
-<span class="sourceLineNo">386</span>    static class PreState {<a name="line.386"></a>
-<span class="sourceLineNo">387</span><a name="line.387"></a>
-<span class="sourceLineNo">388</span>        Iterator&lt;?&gt; emitter;<a name="line.388"></a>
-<span class="sourceLineNo">389</span>    }<a name="line.389"></a>
+<span class="sourceLineNo">360</span>        return serviceClass.cast(asManager()<a name="line.360"></a>
+<span class="sourceLineNo">361</span>                .findPlugin(plugin)<a name="line.361"></a>
+<span class="sourceLineNo">362</span>                .orElseThrow(() -&gt; new IllegalArgumentException("cant find plugin '" + plugin + "'"))<a name="line.362"></a>
+<span class="sourceLineNo">363</span>                .get(ComponentManager.AllServices.class)<a name="line.363"></a>
+<span class="sourceLineNo">364</span>                .getServices()<a name="line.364"></a>
+<span class="sourceLineNo">365</span>                .get(serviceClass));<a name="line.365"></a>
+<span class="sourceLineNo">366</span>    }<a name="line.366"></a>
+<span class="sourceLineNo">367</span><a name="line.367"></a>
+<span class="sourceLineNo">368</span>    public &lt;T&gt; T findService(final Class&lt;T&gt; serviceClass) {<a name="line.368"></a>
+<span class="sourceLineNo">369</span>        return findService(<a name="line.369"></a>
+<span class="sourceLineNo">370</span>                Optional.of(getTestPlugins()).filter(c -&gt; !c.isEmpty()).map(c -&gt; c.iterator().next()).orElseThrow(<a name="line.370"></a>
+<span class="sourceLineNo">371</span>                        () -&gt; new IllegalStateException("No component plugin found")),<a name="line.371"></a>
+<span class="sourceLineNo">372</span>                serviceClass);<a name="line.372"></a>
+<span class="sourceLineNo">373</span>    }<a name="line.373"></a>
+<span class="sourceLineNo">374</span><a name="line.374"></a>
+<span class="sourceLineNo">375</span>    public Set&lt;String&gt; getTestPlugins() {<a name="line.375"></a>
+<span class="sourceLineNo">376</span>        return EmbeddedComponentManager.class.cast(asManager()).testPlugins;<a name="line.376"></a>
+<span class="sourceLineNo">377</span>    }<a name="line.377"></a>
+<span class="sourceLineNo">378</span><a name="line.378"></a>
+<span class="sourceLineNo">379</span>    @Override<a name="line.379"></a>
+<span class="sourceLineNo">380</span>    public &lt;T&gt; void setInputData(final Iterable&lt;T&gt; data) {<a name="line.380"></a>
+<span class="sourceLineNo">381</span>        initState.get().emitter = data.iterator();<a name="line.381"></a>
+<span class="sourceLineNo">382</span>    }<a name="line.382"></a>
+<span class="sourceLineNo">383</span><a name="line.383"></a>
+<span class="sourceLineNo">384</span>    @Override<a name="line.384"></a>
+<span class="sourceLineNo">385</span>    public &lt;T&gt; List&lt;T&gt; getCollectedData(final Class&lt;T&gt; recordType) {<a name="line.385"></a>
+<span class="sourceLineNo">386</span>        return STATE.get().collector.stream().filter(recordType::isInstance).map(recordType::cast).collect(toList());<a name="line.386"></a>
+<span class="sourceLineNo">387</span>    }<a name="line.387"></a>
+<span class="sourceLineNo">388</span><a name="line.388"></a>
+<span class="sourceLineNo">389</span>    static class PreState {<a name="line.389"></a>
 <span class="sourceLineNo">390</span><a name="line.390"></a>
-<span class="sourceLineNo">391</span>    @RequiredArgsConstructor<a name="line.391"></a>
-<span class="sourceLineNo">392</span>    static class State {<a name="line.392"></a>
+<span class="sourceLineNo">391</span>        Iterator&lt;?&gt; emitter;<a name="line.391"></a>
+<span class="sourceLineNo">392</span>    }<a name="line.392"></a>
 <span class="sourceLineNo">393</span><a name="line.393"></a>
-<span class="sourceLineNo">394</span>        final ComponentManager manager;<a name="line.394"></a>
-<span class="sourceLineNo">395</span><a name="line.395"></a>
-<span class="sourceLineNo">396</span>        final Collection&lt;Object&gt; collector;<a name="line.396"></a>
-<span class="sourceLineNo">397</span><a name="line.397"></a>
-<span class="sourceLineNo">398</span>        final Iterator&lt;?&gt; emitter;<a name="line.398"></a>
-<span class="sourceLineNo">399</span>    }<a name="line.399"></a>
+<span class="sourceLineNo">394</span>    @RequiredArgsConstructor<a name="line.394"></a>
+<span class="sourceLineNo">395</span>    static class State {<a name="line.395"></a>
+<span class="sourceLineNo">396</span><a name="line.396"></a>
+<span class="sourceLineNo">397</span>        final ComponentManager manager;<a name="line.397"></a>
+<span class="sourceLineNo">398</span><a name="line.398"></a>
+<span class="sourceLineNo">399</span>        final Collection&lt;Object&gt; collector;<a name="line.399"></a>
 <span class="sourceLineNo">400</span><a name="line.400"></a>
-<span class="sourceLineNo">401</span>    public static class EmbeddedComponentManager extends ComponentManager {<a name="line.401"></a>
-<span class="sourceLineNo">402</span><a name="line.402"></a>
-<span class="sourceLineNo">403</span>        private final ComponentManager oldInstance;<a name="line.403"></a>
-<span class="sourceLineNo">404</span><a name="line.404"></a>
-<span class="sourceLineNo">405</span>        private final Set&lt;String&gt; testPlugins;<a name="line.405"></a>
-<span class="sourceLineNo">406</span><a name="line.406"></a>
-<span class="sourceLineNo">407</span>        private EmbeddedComponentManager(final String componentPackage) {<a name="line.407"></a>
-<span class="sourceLineNo">408</span>            super(findM2(), "TALEND-INF/dependencies.txt", "org.talend.sdk.component:type=component,value=%s");<a name="line.408"></a>
-<span class="sourceLineNo">409</span>            testPlugins = addJarContaining(Thread.currentThread().getContextClassLoader(), componentPackage.replace('.', '/'));<a name="line.409"></a>
-<span class="sourceLineNo">410</span>            container.create("component-runtime-junit.jar", jarLocation(SimpleCollector.class).getAbsolutePath());<a name="line.410"></a>
-<span class="sourceLineNo">411</span>            oldInstance = CONTEXTUAL_INSTANCE.get();<a name="line.411"></a>
-<span class="sourceLineNo">412</span>            CONTEXTUAL_INSTANCE.set(this);<a name="line.412"></a>
-<span class="sourceLineNo">413</span>        }<a name="line.413"></a>
-<span class="sourceLineNo">414</span><a name="line.414"></a>
-<span class="sourceLineNo">415</span>        @Override<a name="line.415"></a>
-<span class="sourceLineNo">416</span>        public void close() {<a name="line.416"></a>
-<span class="sourceLineNo">417</span>            try {<a name="line.417"></a>
-<span class="sourceLineNo">418</span>                super.close();<a name="line.418"></a>
-<span class="sourceLineNo">419</span>            } finally {<a name="line.419"></a>
-<span class="sourceLineNo">420</span>                CONTEXTUAL_INSTANCE.compareAndSet(this, oldInstance);<a name="line.420"></a>
-<span class="sourceLineNo">421</span>            }<a name="line.421"></a>
-<span class="sourceLineNo">422</span>        }<a name="line.422"></a>
-<span class="sourceLineNo">423</span><a name="line.423"></a>
-<span class="sourceLineNo">424</span>        @Override<a name="line.424"></a>
-<span class="sourceLineNo">425</span>        protected boolean isContainerClass(final String name) {<a name="line.425"></a>
-<span class="sourceLineNo">426</span>            /*<a name="line.426"></a>
-<span class="sourceLineNo">427</span>             * return super.isContainerClass(value) || value.startsWith(componentPackage) ||<a name="line.427"></a>
-<span class="sourceLineNo">428</span>             * value.startsWith("org.junit.") ||<a name="line.428"></a>
-<span class="sourceLineNo">429</span>             * value.startsWith("org.talend.sdk.component.junit");<a name="line.429"></a>
-<span class="sourceLineNo">430</span>             */<a name="line.430"></a>
-<span class="sourceLineNo">431</span>            return true; // embedded mode (no plugin structure) so just run with all classes in parent<a name="line.431"></a>
-<span class="sourceLineNo">432</span>            // classloader<a name="line.432"></a>
-<span class="sourceLineNo">433</span>        }<a name="line.433"></a>
-<span class="sourceLineNo">434</span>    }<a name="line.434"></a>
-<span class="sourceLineNo">435</span><a name="line.435"></a>
-<span class="sourceLineNo">436</span>    public static class Outputs {<a name="line.436"></a>
-<span class="sourceLineNo">437</span><a name="line.437"></a>
-<span class="sourceLineNo">438</span>        private final Map&lt;String, List&lt;?&gt;&gt; data = new HashMap&lt;&gt;();<a name="line.438"></a>
+<span class="sourceLineNo">401</span>        final Iterator&lt;?&gt; emitter;<a name="line.401"></a>
+<span class="sourceLineNo">402</span>    }<a name="line.402"></a>
+<span class="sourceLineNo">403</span><a name="line.403"></a>
+<span class="sourceLineNo">404</span>    public static class EmbeddedComponentManager extends ComponentManager {<a name="line.404"></a>
+<span class="sourceLineNo">405</span><a name="line.405"></a>
+<span class="sourceLineNo">406</span>        private final ComponentManager oldInstance;<a name="line.406"></a>
+<span class="sourceLineNo">407</span><a name="line.407"></a>
+<span class="sourceLineNo">408</span>        private final Set&lt;String&gt; testPlugins;<a name="line.408"></a>
+<span class="sourceLineNo">409</span><a name="line.409"></a>
+<span class="sourceLineNo">410</span>        private EmbeddedComponentManager(final String componentPackage) {<a name="line.410"></a>
+<span class="sourceLineNo">411</span>            super(findM2(), "TALEND-INF/dependencies.txt", "org.talend.sdk.component:type=component,value=%s");<a name="line.411"></a>
+<span class="sourceLineNo">412</span>            testPlugins = addJarContaining(Thread.currentThread().getContextClassLoader(),<a name="line.412"></a>
+<span class="sourceLineNo">413</span>                    componentPackage.replace('.', '/'));<a name="line.413"></a>
+<span class="sourceLineNo">414</span>            container.create("component-runtime-junit.jar", jarLocation(SimpleCollector.class).getAbsolutePath());<a name="line.414"></a>
+<span class="sourceLineNo">415</span>            oldInstance = CONTEXTUAL_INSTANCE.get();<a name="line.415"></a>
+<span class="sourceLineNo">416</span>            CONTEXTUAL_INSTANCE.set(this);<a name="line.416"></a>
+<span class="sourceLineNo">417</span>        }<a name="line.417"></a>
+<span class="sourceLineNo">418</span><a name="line.418"></a>
+<span class="sourceLineNo">419</span>        @Override<a name="line.419"></a>
+<span class="sourceLineNo">420</span>        public void close() {<a name="line.420"></a>
+<span class="sourceLineNo">421</span>            try {<a name="line.421"></a>
+<span class="sourceLineNo">422</span>                super.close();<a name="line.422"></a>
+<span class="sourceLineNo">423</span>            } finally {<a name="line.423"></a>
+<span class="sourceLineNo">424</span>                CONTEXTUAL_INSTANCE.compareAndSet(this, oldInstance);<a name="line.424"></a>
+<span class="sourceLineNo">425</span>            }<a name="line.425"></a>
+<span class="sourceLineNo">426</span>        }<a name="line.426"></a>
+<span class="sourceLineNo">427</span><a name="line.427"></a>
+<span class="sourceLineNo">428</span>        @Override<a name="line.428"></a>
+<span class="sourceLineNo">429</span>        protected boolean isContainerClass(final String name) {<a name="line.429"></a>
+<span class="sourceLineNo">430</span>            /*<a name="line.430"></a>
+<span class="sourceLineNo">431</span>             * return super.isContainerClass(value) || value.startsWith(componentPackage) ||<a name="line.431"></a>
+<span class="sourceLineNo">432</span>             * value.startsWith("org.junit.") ||<a name="line.432"></a>
+<span class="sourceLineNo">433</span>             * value.startsWith("org.talend.sdk.component.junit");<a name="line.433"></a>
+<span class="sourceLineNo">434</span>             */<a name="line.434"></a>
+<span class="sourceLineNo">435</span>            return true; // embedded mode (no plugin structure) so just run with all classes in parent<a name="line.435"></a>
+<span class="sourceLineNo">436</span>            // classloader<a name="line.436"></a>
+<span class="sourceLineNo">437</span>        }<a name="line.437"></a>
+<span class="sourceLineNo">438</span>    }<a name="line.438"></a>
 <span class="sourceLineNo">439</span><a name="line.439"></a>
-<span class="sourceLineNo">440</span>        public int size() {<a name="line.440"></a>
-<span class="sourceLineNo">441</span>            return data.size();<a name="line.441"></a>
-<span class="sourceLineNo">442</span>        }<a name="line.442"></a>
+<span class="sourceLineNo">440</span>    public static class Outputs {<a name="line.440"></a>
+<span class="sourceLineNo">441</span><a name="line.441"></a>
+<span class="sourceLineNo">442</span>        private final Map&lt;String, List&lt;?&gt;&gt; data = new HashMap&lt;&gt;();<a name="line.442"></a>
 <span class="sourceLineNo">443</span><a name="line.443"></a>
-<span class="sourceLineNo">444</span>        public Set&lt;String&gt; keys() {<a name="line.444"></a>
-<span class="sourceLineNo">445</span>            return data.keySet();<a name="line.445"></a>
+<span class="sourceLineNo">444</span>        public int size() {<a name="line.444"></a>
+<span class="sourceLineNo">445</span>            return data.size();<a name="line.445"></a>
 <span class="sourceLineNo">446</span>        }<a name="line.446"></a>
 <span class="sourceLineNo">447</span><a name="line.447"></a>
-<span class="sourceLineNo">448</span>        public &lt;T&gt; List&lt;T&gt; get(final Class&lt;T&gt; type, final String name) {<a name="line.448"></a>
-<span class="sourceLineNo">449</span>            return (List&lt;T&gt;) data.get(name);<a name="line.449"></a>
+<span class="sourceLineNo">448</span>        public Set&lt;String&gt; keys() {<a name="line.448"></a>
+<span class="sourceLineNo">449</span>            return data.keySet();<a name="line.449"></a>
 <span class="sourceLineNo">450</span>        }<a name="line.450"></a>
-<span class="sourceLineNo">451</span>    }<a name="line.451"></a>
-<span class="sourceLineNo">452</span>}<a name="line.452"></a>
+<span class="sourceLineNo">451</span><a name="line.451"></a>
+<span class="sourceLineNo">452</span>        public &lt;T&gt; List&lt;T&gt; get(final Class&lt;T&gt; type, final String name) {<a name="line.452"></a>
+<span class="sourceLineNo">453</span>            return (List&lt;T&gt;) data.get(name);<a name="line.453"></a>
+<span class="sourceLineNo">454</span>        }<a name="line.454"></a>
+<span class="sourceLineNo">455</span>    }<a name="line.455"></a>
+<span class="sourceLineNo">456</span>}<a name="line.456"></a>
 
 
 
