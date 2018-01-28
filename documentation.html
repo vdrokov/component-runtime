@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-01-26 17:09:33" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-01-28 14:46:57" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -2328,7 +2328,7 @@ The i18n services can be useful to have i18n messages for errors handling for ex
 <div class="sect3">
 <h4 id="_advanced_http_client_request_customization">7.1.1. Advanced HTTP client request customization</h4>
 <div class="paragraph">
-<p>For advanced cases you can customize the <code>HttpUrlConnection</code> directly using <code>@UseConfigurer</code> on the method.
+<p>For advanced cases you can customize the <code>Connection</code> directly using <code>@UseConfigurer</code> on the method.
 It will call your custom instance of <code>Configurer</code>. Note that you can use some <code>@ConfigurerOption</code> in the method
 signature to pass some configurer configuration.</p>
 </div>
@@ -2339,10 +2339,10 @@ signature to pass some configurer configuration.</p>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">BasicConfigurer</span> <span style="color:#088;font-weight:bold">implements</span> Configurer {
     <span style="color:#007">@Override</span>
-    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> configure(<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">HttpURLConnection</span> connection, <span style="color:#088;font-weight:bold">final</span> ConfigurerConfiguration configuration) {
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> configure(<span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">Connection</span> connection, <span style="color:#088;font-weight:bold">final</span> ConfigurerConfiguration configuration) {
         <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> user = configuration.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">username</span><span style="color:#710">&quot;</span></span>, <span style="color:#0a8;font-weight:bold">String</span>.class);
         <span style="color:#088;font-weight:bold">final</span> <span style="color:#0a8;font-weight:bold">String</span> pwd = configuration.get(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">password</span><span style="color:#710">&quot;</span></span>, <span style="color:#0a8;font-weight:bold">String</span>.class);
-        connection.setRequestProperty(
+        connection.withHeader(
             <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Authorization</span><span style="color:#710">&quot;</span></span>,
             Base64.getEncoder().encodeToString((user + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">:</span><span style="color:#710">'</span></span> + pwd).getBytes(StandardCharsets.UTF_8)));
     }
