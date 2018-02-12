@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-02-12 14:20:29" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-02-12 14:57:14" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -850,6 +850,21 @@ from a version to the currently available one when needed.
 </td>
 </tr>
 </table>
+</div>
+<div class="sect3">
+<h4 id="_string_based_dsl">5.1.1. String based DSL</h4>
+<div class="paragraph">
+<p><code>ExecutionChainDsl</code> exposes a way to define pipeline based on URI instead of previous syntax:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">from(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">chain://list?__version=1&amp;values[0]=a&amp;values[1]=bb&amp;values[2]=ccc</span><span style="color:#710">&quot;</span></span>)
+    .to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">chain://count?__version=1</span><span style="color:#710">&quot;</span></span>)
+    .to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">chain://file?__version=1&amp;file=</span><span style="color:#710">&quot;</span></span> + output.getAbsolutePath())
+    .create()
+    .execute();</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
