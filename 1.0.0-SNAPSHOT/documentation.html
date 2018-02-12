@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-02-11 13:54:35" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-02-12 10:19:26" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -217,6 +217,7 @@
 </li>
 <li><a href="#_web">1.4. Web</a></li>
 <li><a href="#_generate_inputs_or_outputs">1.5. Generate inputs or outputs</a></li>
+<li><a href="#_talend_component_archive">1.6. Talend Component Archive</a></li>
 </ul>
 </li>
 <li><a href="#_gradle_plugin">2. Gradle Plugin</a></li>
@@ -2842,6 +2843,31 @@ is available at <a href="http://openwebbeans.apache.org/meecrowave/meecrowave-co
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_talend_component_archive">1.6. Talend Component Archive</h3>
+<div class="paragraph">
+<p>Component ARchive (<code>.car</code>) is the way to bundle a component to share it in Talend ecosystem. It is a plain Java ARchive (<code>.jar</code>)
+containing a metadata file and a nested maven repository containing the component and its depenencies.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>mvn talend-component:car</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It will create a <code>.car</code> in your build directory which is shareable on Talend platforms.</p>
+</div>
+<div class="paragraph">
+<p>Note that this CAR is executable and exposes the command <code>studio-deploy</code> which takes as parameter
+a Talend Studio home location. Executed it will install the dependencies into the studio and register the component
+in your instance. Here is a sample launch command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="sh">java -jar mycomponent.car studio-deploy /path/to/my/studio</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2905,6 +2931,10 @@ talendComponentKit {
     <span style="color:#777">// web</span>
     serverArguments = <span style="color:#339;font-weight:bold">[]</span>
     serverPort = <span style="color:#00D">8080</span>
+
+    <span style="color:#777">// car</span>
+    carOutput = <span style="color:#080;font-weight:bold">new</span> <span style="color:#0a8;font-weight:bold">File</span>(....)
+    carMetadata = [:] <span style="color:#777">// custom meta (string key-value pairs)</span>
 }</code></pre>
 </div>
 </div>
