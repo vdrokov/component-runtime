@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-02-13 11:24:10" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-02-13 17:49:41" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -1025,6 +1025,11 @@ the configuration is read from system properties, environment variables, &#8230;
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ContextualEnvironment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contextual</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contextual runner</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DirectRunnerEnvironment</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Direct</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Direct runner</p></td>
@@ -1084,6 +1089,93 @@ if you set the system property <code>&lt;environment name&gt;.skip=true</code> t
 </td>
 </tr>
 </table>
+</div>
+<div class="sect3">
+<h4 id="_advanced_usage">4.4.1. Advanced usage</h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+this usage assumes Beam 2.4.0 is in used and the classloader fix about the <code>PipelineOptions</code> is merged.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+    &lt;artifactId&gt;component-runtime-junit&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+    &lt;artifactId&gt;junit-jupiter-api&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.jboss.shrinkwrap.resolver&lt;/groupId&gt;
+    &lt;artifactId&gt;shrinkwrap-resolver-impl-maven&lt;/artifactId&gt;
+    &lt;version&gt;<span style="color:#60E">3.0</span><span style="color:#60E">.1</span>&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+    &lt;artifactId&gt;component-runtime-beam&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+    &lt;artifactId&gt;component-runtime-standalone&lt;/artifactId&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These dependencies brings into the test scope the JUnit testing toolkit,
+the Beam integration and the multi-environment testing toolkit for JUnit.</p>
+</div>
+<div class="paragraph">
+<p>Then using the fluent DSL to define jobs - which assumes your job is linear and
+each step sends a single value (no multi-input/multi-output), you can write this kind of test:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Environment</span>(ContextualEnvironment.class)
+<span style="color:#007">@Environment</span>(DirectRunnerEnvironment.class)
+<span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">TheComponentTest</span> {
+    <span style="color:#007">@EnvironmentalTest</span>
+    <span style="color:#339;font-weight:bold">void</span> testWithStandaloneAndBeamEnvironments() {
+        from(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">myfamily://in?config=xxxx</span><span style="color:#710">&quot;</span></span>)
+            .to(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">myfamily://out</span><span style="color:#710">&quot;</span></span>)
+            .create()
+            .execute();
+        <span style="color:#777">// add asserts on the output if needed</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It will execute the chain twice:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>with a standalone environment to simulate the studio</p>
+</li>
+<li>
+<p>with a beam (direct runner) environment to ensure the portability of your job</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
