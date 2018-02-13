@@ -10,12 +10,11 @@
       gtag('js', new Date());
       gtag('config', 'GTM-PSBN');
     </script>
-    <script async type="text/javascript" src="https://cse.google.com/cse.js?cx=005944347463368867332:ghrpamlmyqy"></script>
 
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-02-12 14:57:14" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-02-13 09:38:49" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -94,7 +93,7 @@
     <div class="container section-padded">
         <div class="row title">
             <div class='page-header'>
-              <h2>null</h2>
+              <h2>Multiple environments for the same tests</h2>
             </div>
         </div>
         <div class="row">
@@ -103,18 +102,13 @@
                 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_multiple_environments_for_the_same_tests">1. Multiple environments for the same tests</a>
-<ul class="sectlevel2">
-<li><a href="#_junit_4">1.1. JUnit 4</a></li>
-<li><a href="#_junit_5">1.2. JUnit 5</a></li>
-<li><a href="#_provided_environments">1.3. Provided environments</a></li>
-<li><a href="#_configuring_environments">1.4. Configuring environments</a></li>
-</ul>
-</li>
+<li><a href="#_junit_4">1. JUnit 4</a></li>
+<li><a href="#_junit_5">2. JUnit 5</a></li>
+<li><a href="#_provided_environments">3. Provided environments</a></li>
+<li><a href="#_configuring_environments">4. Configuring environments</a></li>
 </ul>
 </div>
-<div class="sect1">
-<h2 id="_multiple_environments_for_the_same_tests">1. Multiple environments for the same tests</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>JUnit (4 or 5) already provides some ways to parameterized tests and execute the same "test logic"
@@ -131,8 +125,11 @@ etc&#8230;&#8203;It is a lot of work!</p>
 <div class="paragraph">
 <p>It is in the junit module and is usable with JUnit 4 and JUnit 5.</p>
 </div>
-<div class="sect2">
-<h3 id="_junit_4">1.1. JUnit 4</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_junit_4">1. JUnit 4</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@RunWith</span>(MultiEnvironmentsRunner.class)
@@ -155,8 +152,10 @@ run <code>test1</code> for <code>Env1</code> and <code>Env2</code> in previous e
 to use another runner.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_junit_5">1.2. JUnit 5</h3>
+</div>
+<div class="sect1">
+<h2 id="_junit_5">2. JUnit 5</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>JUnit 5 configuration is close to JUnit 4 one:</p>
 </div>
@@ -191,8 +190,10 @@ once for all runners.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_provided_environments">1.3. Provided environments</h3>
+</div>
+<div class="sect1">
+<h2 id="_provided_environments">3. Provided environments</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The provided environment setup the contextual classloader to load the related runner of Apache Beam.</p>
 </div>
@@ -243,8 +244,10 @@ the configuration is read from system properties, environment variables, &#8230;
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_configuring_environments">1.4. Configuring environments</h3>
+</div>
+<div class="sect1">
+<h2 id="_configuring_environments">4. Configuring environments</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If the environment extends <code>BaseEnvironmentProvider</code> and therefore defines an environment name - which is the case of the default ones, you can use <code>EnvironmentConfiguration</code>
 to customize the system properties used for that environment:</p>
@@ -285,7 +288,6 @@ if you set the system property <code>&lt;environment name&gt;.skip=true</code> t
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>

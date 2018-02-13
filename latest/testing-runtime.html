@@ -10,12 +10,11 @@
       gtag('js', new Date());
       gtag('config', 'GTM-PSBN');
     </script>
-    <script async type="text/javascript" src="https://cse.google.com/cse.js?cx=005944347463368867332:ghrpamlmyqy"></script>
 
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-02-12 14:57:14" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-02-13 09:38:49" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -94,7 +93,7 @@
     <div class="container section-padded">
         <div class="row title">
             <div class='page-header'>
-              <h2>null</h2>
+              <h2>component-runtime-testing</h2>
             </div>
         </div>
         <div class="row">
@@ -103,20 +102,37 @@
                 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_component_runtime_testing">1. component-runtime-testing</a>
+<li><a href="#_component_runtime_junit">1. component-runtime-junit</a>
 <ul class="sectlevel2">
-<li><a href="#_component_runtime_junit">1.1. component-runtime-junit</a></li>
-<li><a href="#_component_runtime_testing_spark">1.2. component-runtime-testing-spark</a></li>
-<li><a href="#_component_runtime_http_junit">1.3. component-runtime-http-junit</a></li>
+<li><a href="#_junit_4">1.1. JUnit 4</a></li>
+<li><a href="#_junit_5">1.2. JUnit 5</a></li>
+<li><a href="#_mocking_the_output">1.3. Mocking the output</a></li>
+<li><a href="#_mocking_the_input">1.4. Mocking the input</a></li>
+<li><a href="#_creating_runtime_configuration_from_component_configuration">1.5. Creating runtime configuration from component configuration</a></li>
+<li><a href="#_testing_a_mapper">1.6. Testing a Mapper</a></li>
+<li><a href="#_testing_a_processor">1.7. Testing a Processor</a></li>
+</ul>
+</li>
+<li><a href="#_component_runtime_testing_spark">2. component-runtime-testing-spark</a>
+<ul class="sectlevel2">
+<li><a href="#_junit_4_2">2.1. JUnit 4</a></li>
+<li><a href="#_junit_5_2">2.2. JUnit 5</a></li>
+<li><a href="#_how_to_know_the_job_is_done">2.3. How to know the job is done</a></li>
+</ul>
+</li>
+<li><a href="#_component_runtime_http_junit">3. component-runtime-http-junit</a>
+<ul class="sectlevel2">
+<li><a href="#_junit_4_3">3.1. JUnit 4</a></li>
+<li><a href="#_junit_5_3">3.2. JUnit 5</a></li>
+<li><a href="#_capturing_mode">3.3. Capturing mode</a></li>
+<li><a href="#_passthrough_mode">3.4. Passthrough mode</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="sect1">
-<h2 id="_component_runtime_testing">1. component-runtime-testing</h2>
+<h2 id="_component_runtime_junit">1. component-runtime-junit</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_component_runtime_junit">1.1. component-runtime-junit</h3>
 <div class="paragraph">
 <p><code>component-runtime-junit</code> is a small test library allowing you to validate simple logic based on Talend Component tooling.</p>
 </div>
@@ -133,8 +149,8 @@
 <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_junit_4">1.1.1. JUnit 4</h4>
+<div class="sect2">
+<h3 id="_junit_4">1.1. JUnit 4</h3>
 <div class="paragraph">
 <p>Then you can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
 </div>
@@ -178,8 +194,8 @@
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_junit_5">1.1.2. JUnit 5</h4>
+<div class="sect2">
+<h3 id="_junit_5">1.2. JUnit 5</h3>
 <div class="paragraph">
 <p>The JUnit 5 integration is mainly the same as for JUnit 4 except it uses the new JUnit 5 extension mecanism.</p>
 </div>
@@ -238,16 +254,16 @@ Some IDE versions and <code>surefire</code> versions can also need you to instal
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_mocking_the_output">1.1.3. Mocking the output</h4>
+<div class="sect2">
+<h3 id="_mocking_the_output">1.3. Mocking the output</h3>
 <div class="paragraph">
 <p>Using the component "test"/"collector" as in previous sample stores all records emitted by the chain (typically your source)
 in memory, you can then access them using <code>theSimpleComponentRule.getCollectoedRecord(type)</code>. Note that this method filters by type,
 if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_mocking_the_input">1.1.4. Mocking the input</h4>
+<div class="sect2">
+<h3 id="_mocking_the_input">1.4. Mocking the input</h3>
 <div class="paragraph">
 <p>The input mocking is symmetric to the output but here you provide the data you want to inject:</p>
 </div>
@@ -284,8 +300,8 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_creating_runtime_configuration_from_component_configuration">1.1.5. Creating runtime configuration from component configuration</h4>
+<div class="sect2">
+<h3 id="_creating_runtime_configuration_from_component_configuration">1.5. Creating runtime configuration from component configuration</h3>
 <div class="paragraph">
 <p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses
 a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility
@@ -304,8 +320,8 @@ componentConfig.setUser(<span style="background-color:hsla(0,100%,50%,0.05)"><sp
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_testing_a_mapper">1.1.6. Testing a Mapper</h4>
+<div class="sect2">
+<h3 id="_testing_a_mapper">1.6. Testing a Mapper</h3>
 <div class="paragraph">
 <p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarly, you can get an instance from a configuration
 and you can execute this instance to collect the output. Here is a snippet doing that:</p>
@@ -329,8 +345,8 @@ and you can execute this instance to collect the output. Here is a snippet doing
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_testing_a_processor">1.1.7. Testing a Processor</h4>
+<div class="sect2">
+<h3 id="_testing_a_processor">1.7. Testing a Processor</h3>
 <div class="paragraph">
 <p>As for the mapper a processor is testable unitary. The case is a bit more complex since you can have multiple
 inputs and outputs:</p>
@@ -387,8 +403,10 @@ you can also implement your own input representation if needed implementing <cod
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_component_runtime_testing_spark">1.2. component-runtime-testing-spark</h3>
+</div>
+<div class="sect1">
+<h2 id="_component_runtime_testing_spark">2. component-runtime-testing-spark</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The folowing artifact will allow you to test against a spark cluster:</p>
 </div>
@@ -402,8 +420,8 @@ you can also implement your own input representation if needed implementing <cod
 <span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_junit_4_2">1.2.1. JUnit 4</h4>
+<div class="sect2">
+<h3 id="_junit_4_2">2.1. JUnit 4</h3>
 <div class="paragraph">
 <p>The usage relies on a JUnit <code>TestRule</code>. It is recommanded to use it as a <code>@ClassRule</code> to ensure
 a single instance of a spark cluster is built but you can also use it as a simple <code>@Rule</code> which means
@@ -446,8 +464,8 @@ this is working with <code>@Parameterized</code> so you can submit a bunch of jo
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_junit_5_2">1.2.2. JUnit 5</h4>
+<div class="sect2">
+<h3 id="_junit_5_2">2.2. JUnit 5</h3>
 <div class="paragraph">
 <p>The integration with JUnit 5 of that spark cluster logic uses <code>@WithSpark</code> marker for the extension
 and let you, optionally, inject through <code>@SparkInject</code>, the <code>BaseSpark&lt;?&gt;</code> handler to access te spark cluster
@@ -480,8 +498,8 @@ meta information - like its host/port.</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_how_to_know_the_job_is_done">1.2.3. How to know the job is done</h4>
+<div class="sect2">
+<h3 id="_how_to_know_the_job_is_done">2.3. How to know the job is done</h3>
 <div class="paragraph">
 <p>In current state, <code>SparkClusterRule</code> doesn&#8217;t allow to know a job execution is done - even if it exposes the webui url so
 you can poll it to check. The best at the moment is to ensure the output of your job exists and contains the right value.</p>
@@ -516,8 +534,10 @@ you can poll it to check. The best at the moment is to ensure the output of your
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_component_runtime_http_junit">1.3. component-runtime-http-junit</h3>
+</div>
+<div class="sect1">
+<h2 id="_component_runtime_http_junit">3. component-runtime-http-junit</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The HTTP JUnit module allows you to mock REST API very easily. Here are its coordinates:</p>
 </div>
@@ -553,8 +573,8 @@ is able to serve precomputed responses saved in the classpath.</p>
 in most cases - will look in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it
 in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
 </div>
-<div class="sect3">
-<h4 id="_junit_4_3">1.3.1. JUnit 4</h4>
+<div class="sect2">
+<h3 id="_junit_4_3">3.1. JUnit 4</h3>
 <div class="paragraph">
 <p>JUnit 4 setup is done through two rules: <code>JUnit4HttpApi</code> which is responsible to start the server and <code>JUnit4HttpApiPerMethodConfigurator</code>
 which is responsible to configure the server per test and also handle the capture mode (see later).</p>
@@ -590,8 +610,8 @@ if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the 
 }</code></pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_ssl">SSL</h5>
+<div class="sect3">
+<h4 id="_ssl">3.1.1. SSL</h4>
 <div class="paragraph">
 <p>For tests using SSL based services, you will need to use <code>activeSsl()</code> on the <code>JUnit4HttpApi</code> rule.</p>
 </div>
@@ -613,8 +633,8 @@ if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the 
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_junit_5_3">1.3.2. JUnit 5</h4>
+<div class="sect2">
+<h3 id="_junit_5_3">3.2. JUnit 5</h3>
 <div class="paragraph">
 <p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation you can put on your test class. You can inject
 the test handler (which has some utilities for advanced cases) through <code>@HttpApiInject</code>:</p>
@@ -645,8 +665,8 @@ the injection is optional and the <code>@HttpApi</code> allows you to configure 
 </tr>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_ssl_2">SSL</h5>
+<div class="sect3">
+<h4 id="_ssl_2">3.2.1. SSL</h4>
 <div class="paragraph">
 <p>For tests using SSL based services, you will need to use <code>@HttpApi(useSsl = true)</code>.</p>
 </div>
@@ -671,8 +691,8 @@ the injection is optional and the <code>@HttpApi</code> allows you to configure 
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_capturing_mode">1.3.3. Capturing mode</h4>
+<div class="sect2">
+<h3 id="_capturing_mode">3.3. Capturing mode</h3>
 <div class="paragraph">
 <p>The strength of this implementation is to run a small proxy server and auto configure the JVM:
 <code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code>
@@ -718,12 +738,11 @@ remove the system property. The test will still pass, using <code>google.com</co
 <p>The rule (extension) is doing all the work for you :).</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_passthrough_mode">1.3.4. Passthrough mode</h4>
+<div class="sect2">
+<h3 id="_passthrough_mode">3.4. Passthrough mode</h3>
 <div class="paragraph">
 <p>Setting <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server will just be a proxy and will execute each request
 to the actual server - like in capturing mode.</p>
-</div>
 </div>
 </div>
 </div>
