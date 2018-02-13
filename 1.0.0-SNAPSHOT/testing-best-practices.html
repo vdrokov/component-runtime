@@ -10,12 +10,11 @@
       gtag('js', new Date());
       gtag('config', 'GTM-PSBN');
     </script>
-    <script async type="text/javascript" src="https://cse.google.com/cse.js?cx=005944347463368867332:ghrpamlmyqy"></script>
 
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-02-12 14:57:14" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-02-13 09:38:49" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -94,7 +93,7 @@
     <div class="container section-padded">
         <div class="row title">
             <div class='page-header'>
-              <h2>null</h2>
+              <h2>Best practises</h2>
             </div>
         </div>
         <div class="row">
@@ -103,15 +102,15 @@
                 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_best_practises">1. Best practises</a>
+<li><a href="#_parameterized_tests">1. Parameterized tests</a>
 <ul class="sectlevel2">
-<li><a href="#_parameterized_tests">1.1. Parameterized tests</a></li>
+<li><a href="#_junit_4">1.1. JUnit 4</a></li>
+<li><a href="#_junit_5">1.2. JUnit 5</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="sect1">
-<h2 id="_best_practises">1. Best practises</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -126,15 +125,18 @@ as well, check out the documentation if you need to use TestNG.
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_parameterized_tests">1.1. Parameterized tests</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parameterized_tests">1. Parameterized tests</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This is a great solution to repeat the same test multiple times. Overall idea
 is to define a test scenario (<code>I test function F</code>) and to make the input/output data
 dynamic.</p>
 </div>
-<div class="sect3">
-<h4 id="_junit_4">1.1.1. JUnit 4</h4>
+<div class="sect2">
+<h3 id="_junit_4">1.1. JUnit 4</h3>
 <div class="paragraph">
 <p>Here is an example. Let&#8217;s assume we have this test which validates the connection URI using <code>ConnectionService</code>:</p>
 </div>
@@ -216,8 +218,8 @@ you don&#8217;t have to define a single <code>@Test</code> method, if you define
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_junit_5">1.1.2. JUnit 5</h4>
+<div class="sect2">
+<h3 id="_junit_5">1.2. JUnit 5</h3>
 <div class="paragraph">
 <p>JUnit 5 reworked this feature to make it way easier to use. The full documentation is available at <a href="http://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests" class="bare">junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests</a>.</p>
 </div>
@@ -263,7 +265,6 @@ don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefi
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>

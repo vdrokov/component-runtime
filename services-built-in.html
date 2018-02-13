@@ -10,12 +10,11 @@
       gtag('js', new Date());
       gtag('config', 'GTM-PSBN');
     </script>
-    <script async type="text/javascript" src="https://cse.google.com/cse.js?cx=005944347463368867332:ghrpamlmyqy"></script>
 
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-02-12 14:57:14" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-02-13 09:38:49" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -94,7 +93,7 @@
     <div class="container section-padded">
         <div class="row title">
             <div class='page-header'>
-              <h2>null</h2>
+              <h2>Built in services</h2>
             </div>
         </div>
         <div class="row">
@@ -103,15 +102,14 @@
                 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_built_in_services">1. Built in services</a>
+<li><a href="#_httpclient_usage">1. HttpClient usage</a>
 <ul class="sectlevel2">
-<li><a href="#_httpclient_usage">1.1. HttpClient usage</a></li>
+<li><a href="#_advanced_http_client_request_customization">1.1. Advanced HTTP client request customization</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="sect1">
-<h2 id="_built_in_services">1. Built in services</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>The framework provides some built-in services you can inject by type in components and actions out of the box.</p>
@@ -259,8 +257,11 @@ See the <a href="#_httpclient_usage">HttpClient usage</a> for details.
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="_httpclient_usage">1.1. HttpClient usage</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_httpclient_usage">1. HttpClient usage</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Let assume that we have a REST API defined like below, and that it requires a basic authentication header.</p>
 </div>
@@ -363,8 +364,8 @@ The i18n services can be useful to have i18n messages for errors handling for ex
 <div class="paragraph">
 <p>Note: by default <code><strong>/</strong>+json</code> are mapped to JSON-P and <code><strong>/</strong>+xml</code> to JAX-B if the model has a <code>@XmlRootElement</code> annotation.</p>
 </div>
-<div class="sect3">
-<h4 id="_advanced_http_client_request_customization">1.1.1. Advanced HTTP client request customization</h4>
+<div class="sect2">
+<h3 id="_advanced_http_client_request_customization">1.1. Advanced HTTP client request customization</h3>
 <div class="paragraph">
 <p>For advanced cases you can customize the <code>Connection</code> directly using <code>@UseConfigurer</code> on the method.
 It will call your custom instance of <code>Configurer</code>. Note that you can use some <code>@ConfigurerOption</code> in the method
@@ -397,7 +398,6 @@ signature to pass some configurer configuration.</p>
     <span style="color:#007">@UseConfigurer</span>(BasicConfigurer.class)
     Record findRecord(<span style="color:#007">@ConfigurerOption</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">username</span><span style="color:#710">&quot;</span></span>) <span style="color:#0a8;font-weight:bold">String</span> user, <span style="color:#007">@ConfigurerOption</span>(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">password</span><span style="color:#710">&quot;</span></span>) <span style="color:#0a8;font-weight:bold">String</span> pwd);
 }</code></pre>
-</div>
 </div>
 </div>
 </div>

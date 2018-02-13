@@ -10,12 +10,11 @@
       gtag('js', new Date());
       gtag('config', 'GTM-PSBN');
     </script>
-    <script async type="text/javascript" src="https://cse.google.com/cse.js?cx=005944347463368867332:ghrpamlmyqy"></script>
 
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-02-12 14:57:14" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-02-13 09:38:49" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -94,7 +93,7 @@
     <div class="container section-padded">
         <div class="row title">
             <div class='page-header'>
-              <h2>null</h2>
+              <h2>Registering components</h2>
             </div>
         </div>
         <div class="row">
@@ -103,15 +102,16 @@
                 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_registering_components">1. Registering components</a>
+<li><a href="#_components_metadata">1. Components metadata</a>
 <ul class="sectlevel2">
-<li><a href="#_components_metadata">1.1. Components metadata</a></li>
+<li><a href="#_management_of_configuration_versions">1.1. Management of configuration versions</a></li>
+<li><a href="#_partitionmapper">1.2. @PartitionMapper</a></li>
+<li><a href="#_processor">1.3. @Processor</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="sect1">
-<h2 id="_registering_components">1. Registering components</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>As seen in the <a href="getting-started.html#getting-started-first-quick-start">Getting Started</a>, you need an annotation to register
@@ -142,8 +142,11 @@ the categories the component belongs to (default is <code>Misc</code> if not set
 <span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">org.talend.sdk.component.api.component.Components</span>;</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_components_metadata">1.1. Components metadata</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_components_metadata">1. Components metadata</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Components can require a few metadata to be integrated in Talend Studio or Cloud platform. Here is how to provide these information.
 These metadata are set on the component class and belongs to <code>org.talend.sdk.component.api.component</code> package.</p>
@@ -182,8 +185,8 @@ These metadata are set on the component class and belongs to <code>org.talend.sd
 }</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_management_of_configuration_versions">1.1.1. Management of configuration versions</h4>
+<div class="sect2">
+<h3 id="_management_of_configuration_versions">1.1. Management of configuration versions</h3>
 <div class="paragraph">
 <p>If some impacting changes happen on the configuration they can be manage through a migration handler at <strong>component</strong> level (to enable
 to support trans-model migration).</p>
@@ -249,8 +252,8 @@ and adjust the migration code structure you need behind the <code>MigrationHandl
 component requirements. The service injection enables you to do so.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_partitionmapper">1.1.2. @PartitionMapper</h4>
+<div class="sect2">
+<h3 id="_partitionmapper">1.2. @PartitionMapper</h3>
 <div class="paragraph">
 <p><code>@PartitionMapper</code> will obviously mark a partition mapper:</p>
 </div>
@@ -261,8 +264,8 @@ component requirements. The service injection enables you to do so.</p>
 }</code></pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_emitter">@Emitter</h5>
+<div class="sect3">
+<h4 id="_emitter">1.2.1. @Emitter</h4>
 <div class="paragraph">
 <p><code>@Emitter</code> is a shortcut for <code>@PartitionMapper</code> when you don&#8217;t support distribution. Said otherwise it will enforce an implicit
 partition mapper execution with an assessor size of 1 and a split returning itself.</p>
@@ -276,8 +279,8 @@ partition mapper execution with an assessor size of 1 and a split returning itse
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_processor">1.1.3. @Processor</h4>
+<div class="sect2">
+<h3 id="_processor">1.3. @Processor</h3>
 <div class="paragraph">
 <p>A method decorated with <code>@Processor</code> will be considered as a producer factory:</p>
 </div>
@@ -286,7 +289,6 @@ partition mapper execution with an assessor size of 1 and a split returning itse
 <pre class="CodeRay highlight"><code data-lang="java"><span style="color:#007">@Processor</span>(family = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">demo</span><span style="color:#710">&quot;</span></span>, name = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">my_processor</span><span style="color:#710">&quot;</span></span>)
 <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">MyProcessor</span> {
 }</code></pre>
-</div>
 </div>
 </div>
 </div>

@@ -10,12 +10,11 @@
       gtag('js', new Date());
       gtag('config', 'GTM-PSBN');
     </script>
-    <script async type="text/javascript" src="https://cse.google.com/cse.js?cx=005944347463368867332:ghrpamlmyqy"></script>
 
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-02-12 14:57:14" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-02-13 09:38:49" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -94,7 +93,7 @@
     <div class="container section-padded">
         <div class="row title">
             <div class='page-header'>
-              <h2>null</h2>
+              <h2>Component Loading</h2>
             </div>
         </div>
         <div class="row">
@@ -103,16 +102,17 @@
                 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_component_loading">1. Component loading</a>
+<li><a href="#_packaging_a_plugin">1. Packaging a plugin</a></li>
+<li><a href="#_packaging_an_application">2. Packaging an application</a>
 <ul class="sectlevel2">
-<li><a href="#_packaging_a_plugin">1.1. Packaging a plugin</a></li>
-<li><a href="#_packaging_an_application">1.2. Packaging an application</a></li>
+<li><a href="#_dependencies">2.1. Dependencies</a></li>
+<li><a href="#_listing_needed_plugins">2.2. Listing needed plugins</a></li>
+<li><a href="#_code_maven_shade_plugin_code_extensions">2.3. <code>maven-shade-plugin</code> extensions</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="sect1">
-<h2 id="_component_loading">1. Component loading</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Talend Component scanning is based on a plugin concept. To ensure plugins can be developped in parallel and avoid conflicts
@@ -157,8 +157,11 @@ is you don&#8217;t need to define the relationship with other plugins/dependenci
 <div class="paragraph">
 <p>Then each plugins will be loaded in their own classloader with their dependencies.</p>
 </div>
-<div class="sect2">
-<h3 id="_packaging_a_plugin">1.1. Packaging a plugin</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_packaging_a_plugin">1. Packaging a plugin</h2>
+<div class="sectionbody">
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -228,13 +231,15 @@ The following files have been resolved:
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_packaging_an_application">1.2. Packaging an application</h3>
+</div>
+<div class="sect1">
+<h2 id="_packaging_an_application">2. Packaging an application</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Even if a flat classpath deployment is possible, it is not recommanded because it would then reduce the capabilities of the components.</p>
 </div>
-<div class="sect3">
-<h4 id="_dependencies">1.2.1. Dependencies</h4>
+<div class="sect2">
+<h3 id="_dependencies">2.1. Dependencies</h3>
 <div class="paragraph">
 <p>The way the framework resolves dependencies is based on a local maven repository layout. As a quick reminder it looks like:</p>
 </div>
@@ -274,8 +279,8 @@ to the path in the repository.</p>
 <p>The first option will use either - by default - <code>${user.home}/.m2/repository</code> or a specific path configured when creating a <code>ComponentManager</code>.
 The nested repository option will need some configuration during the packaging to ensure the repository is well created.</p>
 </div>
-<div class="sect4">
-<h5 id="_create_a_nested_maven_repository_with_maven_shade_plugin">Create a nested maven repository with maven-shade-plugin</h5>
+<div class="sect3">
+<h4 id="_create_a_nested_maven_repository_with_maven_shade_plugin">2.1.1. Create a nested maven repository with maven-shade-plugin</h4>
 <div class="paragraph">
 <p>To create the nested <code>MAVEN-INF/repository</code> repository you can use <code>nested-maven-repository</code> extension:</p>
 </div>
@@ -312,8 +317,8 @@ The nested repository option will need some configuration during the packaging t
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_listing_needed_plugins">1.2.2. Listing needed plugins</h4>
+<div class="sect2">
+<h3 id="_listing_needed_plugins">2.2. Listing needed plugins</h3>
 <div class="paragraph">
 <p>Plugin are programmatically registered in general but if you want to make some of them automatically available you
 need to generate a <code>TALEND-INF/plugins.properties</code> which will map a plugin name to coordinates found with the maven mecanism
@@ -354,8 +359,8 @@ we just talked about.</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_code_maven_shade_plugin_code_extensions">1.2.3. <code>maven-shade-plugin</code> extensions</h4>
+<div class="sect2">
+<h3 id="_code_maven_shade_plugin_code_extensions">2.3. <code>maven-shade-plugin</code> extensions</h3>
 <div class="paragraph">
 <p>Here is a final job/application bundle based on maven shade plugin:</p>
 </div>
@@ -485,8 +490,8 @@ practise is to use <code>userArtifacts</code> for the components and not the pro
 </tr>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_containerdependenciestransformer">ContainerDependenciesTransformer</h5>
+<div class="sect3">
+<h4 id="_containerdependenciestransformer">2.3.1. ContainerDependenciesTransformer</h4>
 <div class="paragraph">
 <p><code>ContainerDependenciesTransformer</code> specific configuration is the following one:</p>
 </div>
@@ -501,8 +506,8 @@ practise is to use <code>userArtifacts</code> for the components and not the pro
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_plugintransformer">PluginTransformer</h5>
+<div class="sect3">
+<h4 id="_plugintransformer">2.3.2. PluginTransformer</h4>
 <div class="paragraph">
 <p><code>ContainerDependenciesTransformer</code> specific configuration is the following one:</p>
 </div>
@@ -522,7 +527,6 @@ practise is to use <code>userArtifacts</code> for the components and not the pro
   <span style="color:#070;font-weight:bold">&lt;session&gt;</span>${session}<span style="color:#070;font-weight:bold">&lt;/session&gt;</span>
   <span style="color:#070;font-weight:bold">&lt;include&gt;</span>org.talend.sdk.component:component-x,org.talend.sdk.component:component-y,org.talend.sdk.component:component-z<span style="color:#070;font-weight:bold">&lt;/include&gt;</span>
 <span style="color:#070;font-weight:bold">&lt;/transformer&gt;</span></code></pre>
-</div>
 </div>
 </div>
 </div>

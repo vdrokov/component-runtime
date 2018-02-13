@@ -10,12 +10,11 @@
       gtag('js', new Date());
       gtag('config', 'GTM-PSBN');
     </script>
-    <script async type="text/javascript" src="https://cse.google.com/cse.js?cx=005944347463368867332:ghrpamlmyqy"></script>
 
     <meta charset="utf-8">
     <title>Talend Component Documentation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="date" content="2018-02-12 14:57:14" scheme="YYYY-MM-dd HH:mm:ss">
+    <meta name="date" content="2018-02-13 09:38:48" scheme="YYYY-MM-dd HH:mm:ss">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.0/css/font-awesome.min.css" integrity="sha256-MUe1D3T3ocGLZQ2h8wgpcIz5BoTu1OZo8q0BjK5u/o0=" crossorigin="anonymous" />
@@ -94,7 +93,7 @@
     <div class="container section-padded">
         <div class="row title">
             <div class='page-header'>
-              <h2>null</h2>
+              <h2>Maven Plugin</h2>
             </div>
         </div>
         <div class="row">
@@ -103,20 +102,19 @@
                 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_maven_plugin">1. Maven Plugin</a>
+<li><a href="#_dependencies">1. Dependencies</a></li>
+<li><a href="#_validate">2. Validate</a></li>
+<li><a href="#_documentation">3. Documentation</a>
 <ul class="sectlevel2">
-<li><a href="#_dependencies">1.1. Dependencies</a></li>
-<li><a href="#_validate">1.2. Validate</a></li>
-<li><a href="#_documentation">1.3. Documentation</a></li>
-<li><a href="#_web">1.4. Web</a></li>
-<li><a href="#_generate_inputs_or_outputs">1.5. Generate inputs or outputs</a></li>
-<li><a href="#_talend_component_archive">1.6. Talend Component Archive</a></li>
+<li><a href="#_render_your_documentation">3.1. Render your documentation</a></li>
 </ul>
 </li>
+<li><a href="#_web">4. Web</a></li>
+<li><a href="#_generate_inputs_or_outputs">5. Generate inputs or outputs</a></li>
+<li><a href="#_talend_component_archive">6. Talend Component Archive</a></li>
 </ul>
 </div>
-<div class="sect1">
-<h2 id="_maven_plugin">1. Maven Plugin</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>talend-component-maven-plugin</code> intends to help you to write components
@@ -149,8 +147,11 @@ validating components match best practices and also generating transparently met
 <div class="paragraph">
 <p>Used as an extension, <code>dependencies</code>, <code>validate</code> and <code>documentation</code> goals will be set up.</p>
 </div>
-<div class="sect2">
-<h3 id="_dependencies">1.1. Dependencies</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dependencies">1. Dependencies</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>, it will create the <code>TALEND-INF/dependencies.txt</code> file
 with the <code>compile</code> and <code>runtime</code> dependencies to let the component use it at runtime:</p>
@@ -173,8 +174,10 @@ with the <code>compile</code> and <code>runtime</code> dependencies to let the c
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_validate">1.2. Validate</h3>
+</div>
+<div class="sect1">
+<h2 id="_validate">2. Validate</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The most important goal is here to help you to validate the common programming model of the component. Here is the execution definition to activate it:</p>
 </div>
@@ -261,8 +264,10 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_documentation">1.3. Documentation</h3>
+</div>
+<div class="sect1">
+<h2 id="_documentation">3. Documentation</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and
 <code>@Documentation</code> you can put on options and the component itself.</p>
@@ -354,10 +359,10 @@ to automatically get a html and PDF rendering of the documentation.
 </tr>
 </table>
 </div>
+<div class="sect2">
+<h3 id="_render_your_documentation">3.1. Render your documentation</h3>
 <div class="sect3">
-<h4 id="_render_your_documentation">1.3.1. Render your documentation</h4>
-<div class="sect4">
-<h5 id="_html">HTML</h5>
+<h4 id="_html">3.1.1. HTML</h4>
 <div class="paragraph">
 <p>To render the generated documentation you can use the Asciidoctor Maven plugin (or Gradle equivalent):</p>
 </div>
@@ -422,8 +427,8 @@ ensure to execute it after the documentation generation.
 </table>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_pdf">PDF</h5>
+<div class="sect3">
+<h4 id="_pdf">3.1.2. PDF</h4>
 <div class="paragraph">
 <p>If you prefer a PDF rendering you can configure the following execution
 in the asciidoctor plugin (note that you can configure both executions if you want
@@ -461,8 +466,8 @@ both HTML and PDF rendering):</p>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_include_the_documentation_into_a_document">Include the documentation into a document</h5>
+<div class="sect3">
+<h4 id="_include_the_documentation_into_a_document">3.1.3. Include the documentation into a document</h4>
 <div class="paragraph">
 <p>If you want to add some more content or add a title, you can include the generated document into
 another document using Asciidoc <code>include</code> directive.</p>
@@ -519,16 +524,18 @@ Unresolved directive in &lt;stdin&gt; - include::{generated_doc}/documentation.a
 <p>This is optional but allows to reuse maven placeholders to pass paths which is quite convenient in an automated build.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_more">More</h5>
+<div class="sect3">
+<h4 id="_more">3.1.4. More</h4>
 <div class="paragraph">
 <p>You can find more customizations on Asciidoctor <a href="http://asciidoctor.org/docs/asciidoctor-maven-plugin/">website</a>.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_web">1.4. Web</h3>
+</div>
+<div class="sect1">
+<h2 id="_web">4. Web</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Testing the rendering of your component(s) configuration into the Studio is just a matter of deploying a component
 in Talend Studio (you can have a look to link::studio.html[Studio Documentation] page. But don&#8217;t forget
@@ -550,8 +557,10 @@ of the embedded server and <code>serverArguments</code> to pass Meecrowave optio
 is available at <a href="http://openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html" class="bare">openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html</a>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_generate_inputs_or_outputs">1.5. Generate inputs or outputs</h3>
+</div>
+<div class="sect1">
+<h2 id="_generate_inputs_or_outputs">5. Generate inputs or outputs</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The Mojo <code>generate</code> (maven plugin goal) of the same plugin also embeds a generator you can use to bootstrap any input or output component:</p>
 </div>
@@ -643,8 +652,10 @@ is available at <a href="http://openwebbeans.apache.org/meecrowave/meecrowave-co
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_talend_component_archive">1.6. Talend Component Archive</h3>
+</div>
+<div class="sect1">
+<h2 id="_talend_component_archive">6. Talend Component Archive</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Component ARchive (<code>.car</code>) is the way to bundle a component to share it in Talend ecosystem. It is a plain Java ARchive (<code>.jar</code>)
 containing a metadata file and a nested maven repository containing the component and its depenencies.</p>
@@ -665,7 +676,6 @@ in your instance. Here is a sample launch command:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="sh">java -jar mycomponent.car studio-deploy /path/to/my/studio</code></pre>
-</div>
 </div>
 </div>
 </div>
