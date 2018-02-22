@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registering components :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.0/component-registering.html">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-02-22T14:03:14.688Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>function gtag(){$gtag.push(arguments)}$gtag=window.dataLayer||[],gtag("js",new Date),gtag("config","GTM-PSBN");</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="current">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+  </ul>
+</nav>
+    </div>
+<article class="doc">
+        <h1>Registering components</h1>
+        <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>As seen in the <a href="getting-started.html#getting-started-first-quick-start" class="page">Getting Started</a>, you need an annotation to register
+your component through <code>family</code> method. Multiple components can use the same <code>family</code> value but the pair <code>family</code>+<code>name</code>
+<code>MUST</code> be unique for the system.</p>
+</div>
+<div class="paragraph">
+<p>If you desire (recommended) to share the same component family name instead of repeating yourself in all <code>family</code> methods,
+you can use <code>@Components</code> annotation on the root package of you component, it will enable you to define the component family and
+the categories the component belongs to (default is <code>Misc</code> if not set). Here is a sample <code>package-info.java</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Components(name = "my_component_family", categories = "My Category")
+package org.talend.sdk.component.sample;
+
+import org.talend.sdk.component.api.component.Components;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For an existing component it can look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Components(name = "Salesforce", categories = {"Business", "Cloud"})
+package org.talend.sdk.component.sample;
+
+import org.talend.sdk.component.api.component.Components;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_components_metadata"><a class="anchor" href="#_components_metadata"></a>1. Components metadata</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Components can require a few metadata to be integrated in Talend Studio or Cloud platform. Here is how to provide these information.
+These metadata are set on the component class and belongs to <code>org.talend.sdk.component.api.component</code> package.</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">API</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@Icon</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set an icon key used to represent the component. Note you can use a custom key with <code>custom()</code> method but it is not guaranteed the icon will be rendered properly.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set the component version, default to 1.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Icon(FILE_XML_O)
+@PartitionMapper(name = "jaxbInput")
+public class JaxbPartitionMapper implements Serializable {
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_management_of_configuration_versions"><a class="anchor" href="#_management_of_configuration_versions"></a>1.1. Management of configuration versions</h3>
+<div class="paragraph">
+<p>If some impacting changes happen on the configuration they can be manage through a migration handler at <strong>component</strong> level (to enable
+to support trans-model migration).</p>
+</div>
+<div class="paragraph">
+<p>The <code>@Version</code> annotation supports a <code>migrationHandler</code> method which will take the implementation migrating the incoming configuration
+to the current model.</p>
+</div>
+<div class="paragraph">
+<p>For instance if <code>filepath</code> configuration entry from v1 changed to <code>location</code> in v2 you can remap the value to the right key in your
+<code>MigrationHandler</code> implementation.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+it is recommanded to not manage all migrations in the handler but rather split it in services you inject in the migration handler
+(through constructor):
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// full component code structure skipped for brievity, kept only migration part
+@Version(value = 3, migrationHandler = MyComponent.Migrations.class)
+public class MyComponent {
+    // the component code...
+
+
+    private interface VersionConfigurationHandler {
+        Map&lt;String, String&gt; migrate(Map&lt;String, String&gt; incomingData);
+    }
+
+    public static class Migrations {
+        private final List&lt;VersionConfigurationHandler&gt; handlers;
+
+        // VersionConfigurationHandler implementations are decorated with @Service
+        public Migrations(final List&lt;VersionConfigurationHandler&gt; migrations) {
+            this.handlers = migrations;
+            this.handlers.sort(/*some custom logic*/);
+        }
+
+        @Override
+        public Map&lt;String, String&gt; migrate(int incomingVersion, Map&lt;String, String&gt; incomingData) {
+            Map&lt;String, String&gt; out = incomingData;
+            for (MigrationHandler handler : handlers) {
+                out = handler.migrate(out);
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What is important in this snippet is not much the way the code is organized but rather the fact you organize your migrations the way which fits the best
+your component. If migrations are not conflicting no need of something fancy, just apply them all but if you need to apply them in order
+you need to ensure they are sorted. Said otherwise: don&#8217;t see this API as a migration API but as a migration callback
+and adjust the migration code structure you need behind the <code>MigrationHandler</code> based on your
+component requirements. The service injection enables you to do so.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_partitionmapper"><a class="anchor" href="#_partitionmapper"></a>1.2. @PartitionMapper</h3>
+<div class="paragraph">
+<p><code>@PartitionMapper</code> will obviously mark a partition mapper:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PartitionMapper(family = "demo", name = "my_mapper")
+public class MyMapper {
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_emitter"><a class="anchor" href="#_emitter"></a>1.2.1. @Emitter</h4>
+<div class="paragraph">
+<p><code>@Emitter</code> is a shortcut for <code>@PartitionMapper</code> when you don&#8217;t support distribution. Said otherwise it will enforce an implicit
+partition mapper execution with an assessor size of 1 and a split returning itself.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Emitter(family = "demo", name = "my_input")
+public class MyInput {
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_processor"><a class="anchor" href="#_processor"></a>1.3. @Processor</h3>
+<div class="paragraph">
+<p>A method decorated with <code>@Processor</code> will be considered as a producer factory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Processor(family = "demo", name = "my_processor")
+public class MyProcessor {
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

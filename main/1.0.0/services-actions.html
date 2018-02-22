@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Providing some actions for consumers/clients :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.0/services-actions.html">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-02-22T14:03:14.702Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>function gtag(){$gtag.push(arguments)}$gtag=window.dataLayer||[],gtag("js",new Date),gtag("config","GTM-PSBN");</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="current">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">1.0.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+  </ul>
+</nav>
+    </div>
+<article class="doc">
+        <h1>Providing some actions for consumers/clients</h1>
+        <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In some cases you will desire to add some actions unrelated to the runtime. A simple example
+is to enable clients - the users of the plugin/library - to test if a connection works. Even more concretely: <em>does my database is up?</em>.</p>
+</div>
+<div class="paragraph">
+<p>To do so you need to define an <code>@Action</code> which is a method with a name (representing the event name) in a class decorated with <code>@Service</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Service
+public class MyDbTester {
+    @Action(family = "mycomp", "test")
+    public Status doTest(final IncomingData data) {
+        return ...;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+services are singleton so if you need some thread safety ensure they match that requirement. They
+shouldn&#8217;t store any state too (state is held by the component) since they can be serialized any time.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+services are usable in components as well (matched by type) and allow to reuse some shared logic like a client. Here is a sample
+with a service used to access files:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Emitter(family = "sample", name = "reader")
+public class PersonReader implements Serializable {
+    // attributes skipped to be concise
+
+    public PersonReader(@Option("file") final File file,
+                        final FileService service) {
+        this.file = file;
+        this.service = service;
+    }
+
+    // use the service
+    @PostConstruct
+    public void open() throws FileNotFoundException {
+        reader = service.createInput(file);
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+service is passed to constructor automatically, it can be used as a bean. Only call of service&#8217;s method is required.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_particular_action_types"><a class="anchor" href="#_particular_action_types"></a>1. Particular action types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Some actions are that common and need a clear contract so they are defined as API first citizen, this is the case for wizards or healthchecks
+for instance. Here is the list of all actions:</p>
+</div>
+<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">API</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Return type</th>
+<th class="tableblock halign-left valign-top">Sample returned type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.service.completion.DynamicValues</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dynamic_values</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a method as being useful to fill potential values of a string option for a property denoted by its value. You can link a field as being completable using @Proposable(value). The resolution of the completion action is then done through the component family and value of the action. The callback doesn&#8217;t take any parameter.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Values</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"items":[{"id":"value","label":"label"}]}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.service.healthcheck.HealthCheck</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">healthcheck</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This class marks an action doing a connection test</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HealthCheckStatus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"comment":"Something went wrong","status":"KO"}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.service.schema.DiscoverSchema</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">schema</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark an action as returning a discovered schema. Its parameter MUST be the type decorated with <code>@Discoverable</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Schema</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"entries":[{"name":"column1","type":"STRING"}]}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.service.Action</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">any</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.service.asyncvalidation.AsyncValidation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">validation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a method as being used to validate a configuration. IMPORTANT: this is a server validation so only use it if you can&#8217;t use other client side validation to implement it.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ValidationResult</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"comment":"Something went wrong","status":"KO"}</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
