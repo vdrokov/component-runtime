@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services and interceptors :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.0-SNAPSHOT/services-interceptors.html">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-02-22T13:46:54.940Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>function gtag(){$gtag.push(arguments)}$gtag=window.dataLayer||[],gtag("js",new Date),gtag("config","GTM-PSBN");</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="current">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">1.0.0-SNAPSHOT</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.0-SNAPSHOT</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+  </ul>
+</nav>
+    </div>
+<article class="doc">
+        <h1>Services and interceptors</h1>
+        <div class="paragraph">
+<p>For common concerns like caching, auditing etc, it can be fancy to use interceptor like API. It is enabled by the framework
+on services.</p>
+</div>
+<div class="paragraph">
+<p>An interceptor defines an annotation marked with <code>@Intercepts</code> which defines the implementation of the interceptor (an <code>InterceptorHandler</code>).</p>
+</div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Intercepts(LoggingHandler.class)
+@Target({ TYPE, METHOD })
+@Retention(RUNTIME)
+public @interface Logged {
+    String value();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then handler is created from its constructor and can take service injections (by type). The first parameter, however, can be
+a <code>BiFunction&lt;Method, Object[], Object&gt;</code> which representes the invocation chain if your interceptor can be used with others.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+if you do a generic interceptor it is important to pass the invoker as first parameter. If you don&#8217;t do so
+you can&#8217;t combine interceptors at all.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here is an interceptor implementation for our <code>@Logged</code> API:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class LoggingHandler implements InterceptorHandler {
+    // injected
+    private final BiFunction&lt;Method, Object[], Object&gt; invoker;
+    private final SomeService service;
+
+    // internal
+    private final ConcurrentMap&lt;Method, String&gt; loggerNames = new ConcurrentHashMap&lt;&gt;();
+
+    public CacheHandler(final BiFunction&lt;Method, Object[], Object&gt; invoker, final SomeService service) {
+        this.invoker = invoker;
+        this.service = service;
+    }
+
+    @Override
+    public Object invoke(final Method method, final Object[] args) {
+        final String name = loggerNames.computeIfAbsent(method, m -&gt; findAnnotation(m, Logged.class).get().value());
+        service.getLogger(name).info("Invoking {}", method.getName());
+        return invoker.apply(method, args);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This implementation is compatible with interceptor chains since it takes the invoker as first constructor parameter
+and it also takes a service injection. Then the implementation just does what is needed - logging the invoked method here.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the <code>findAnnotation</code> annotation - inherited from <code>InterceptorHandler</code> is an utility method to find an annotation on a method
+or class (in this order).
+</td>
+</tr>
+</table>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
