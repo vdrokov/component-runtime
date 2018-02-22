@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Studio Integration :: Talend Component Kit Developer Reference Guide</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.0/studio.html">
+    <title>Untitled :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.0/testing-spark.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-02-22T16:25:13.723Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-02-22T16:25:13.746Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
     <script>function gtag(){$gtag.push(arguments)}$gtag=window.dataLayer||[],gtag("js",new Date),gtag("config","GTM-PSBN");</script>
@@ -145,7 +145,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="testing-beam.html">Beam case</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="testing-spark.html">Spark and JUnit</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -187,31 +187,58 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb">Testing</li>
+    <li class="crumb"><a href="testing-spark.html">Spark and JUnit</a></li>
   </ul>
 </nav>
     </div>
 <article class="doc">
-        <h1>Talend Component Studio Integration</h1>
         <div class="sect1">
-<h2 id="_design"><a class="anchor" href="#_design"></a>1. Design</h2>
+<h2 id="_component_runtime_testing_spark"><a class="anchor" href="#_component_runtime_testing_spark"></a>1. component-runtime-testing-spark</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The studio integration relies on Component Server (see <a href="documentation-rest.html" class="page">Web</a> for more details).</p>
+<p>The folowing artifact will allow you to test against a spark cluster:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+  &lt;artifactId&gt;component-runtime-testing-spark&lt;/artifactId&gt;
+  &lt;version&gt;${talend-component.version}&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1. JUnit 4</h3>
+<div class="paragraph">
+<p>The usage relies on a JUnit <code>TestRule</code>. It is recommanded to use it as a <code>@ClassRule</code> to ensure
+a single instance of a spark cluster is built but you can also use it as a simple <code>@Rule</code> which means
+it will be created per method instead of per test class.</p>
 </div>
 <div class="paragraph">
-<p>When the plugin is deployed it starts a local server the Studio uses to gather data about the components.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_installation"><a class="anchor" href="#_installation"></a>2. Installation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Copy <code>org.talend.sdk.component.studio-integration.jar</code> in the <code>$STUDIO_HOME/plugins</code> directory and restart the studio.</p>
+<p>It takes as parameter the spark and scala version to use. It will then fork a master and N slaves.
+Finally it will give you <code>submit*</code> method allowing you to send jobs either from the test classpath
+or from a shade if you run it as an integration test.</p>
 </div>
 <div class="paragraph">
-<p>Also ensure the <code>component-server</code> dependencies  and <code>commons-cli</code> 1.4 are into the Studio maven repository. If you install any component,
-ensure its dependencies are in the repository as well.</p>
+<p>Here is a sample:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SparkClusterRuleTest {
+
+    @ClassRule
+    public static final SparkClusterRule SPARK = new SparkClusterRule("2.10", "1.6.3", 1);
+
+    @Test
+    public void classpathSubmit() throws IOException {
+        SPARK.submitClasspath(SubmittableMain.class, getMainArgs());
+
+        // do wait the test passed
+    }
+}</code></pre>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -220,108 +247,79 @@ ensure its dependencies are in the repository as well.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-you can set in <code>$STUDIO_HOME/configuration/config.ini</code> the value <code>maven.repository</code> to <code>global</code> to reuse
-your local maven repository.
+this is working with <code>@Parameterized</code> so you can submit a bunch of jobs with different args and even combine it with beam <code>TestPipeline</code> if you make it <code>transient</code>!
 </td>
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>3. Configuration</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The configuration goes into <code>$STUDIO_HOME/configuration/config.ini</code>.</p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.debounce.timeout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies timeout in milliseconds before calling listeners in components Text fields</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">750</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.kit.skip</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code> the plugin is not active. Useful if you don&#8217;t have any component develop with the framework.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.arguments</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Component server additional options</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.m2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The maven repository the server uses to resolve components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">default to global Studio configuration</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A list of comma separated GAV (groupId:artifactId:version) of components to register</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.registry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A properties file with values matching component GAV (groupId:artifactId:version) which are registered at startup</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.port</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set a port to use for the server</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">random</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">components.server.beam.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Active, if set to true, beam support (<em>Experimental</em>). It requires beam sdk java core dependencies to be available.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-to activate the plugin and be able to deploy your component, don&#8217;t forget to set <code>component.kit.skip</code> to <code>true</code>.
-</td>
-</tr>
-</table>
 </div>
 <div class="sect2">
-<h3 id="_random_port_when_running_concurrent_studio_instances"><a class="anchor" href="#_random_port_when_running_concurrent_studio_instances"></a>3.1. Random port when running concurrent studio instances</h3>
+<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
 <div class="paragraph">
-<p>If you run multiple Studio instance automatically in parallel you can have some issues with the random port computation
-(can happen on a CI platform). For that purpose you can create the file <code>$HOME/.talend/locks/org.talend.sdk.component.studio-integration.lock</code>.</p>
+<p>The integration with JUnit 5 of that spark cluster logic uses <code>@WithSpark</code> marker for the extension
+and let you, optionally, inject through <code>@SparkInject</code>, the <code>BaseSpark&lt;?&gt;</code> handler to access te spark cluster
+meta information - like its host/port.</p>
 </div>
 <div class="paragraph">
-<p>When a server will start it will acquire a lock on that file and prevent another one to get a port until it is started. It ensures
-you can&#8217;t get two concurrent processes getting the same allocated port.</p>
+<p>Here is a basic test using it:</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-it is highly unlikely it happens on a desktop and forcing a different value through <code>component.java.port</code> in your <code>config.ini</code> is likely a better
-solution for local installations.
-</td>
-</tr>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WithSpark
+class SparkExtensionTest {
+
+    @SparkInject
+    private BaseSpark&lt;?&gt; spark;
+
+    @Test
+    void classpathSubmit() throws IOException {
+        final File out = new File(jarLocation(SparkClusterRuleTest.class).getParentFile(), "classpathSubmitJunit5.out");
+        if (out.exists()) {
+            out.delete();
+        }
+        spark.submitClasspath(SparkClusterRuleTest.SubmittableMain.class, spark.getSparkMaster(), out.getAbsolutePath());
+
+        await().atMost(5, MINUTES).until(
+                () -&gt; out.exists() ? Files.readAllLines(out.toPath()).stream().collect(joining("\n")).trim() : null,
+                equalTo("b -&gt; 1\na -&gt; 1"));
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_know_the_job_is_done"><a class="anchor" href="#_how_to_know_the_job_is_done"></a>1.3. How to know the job is done</h3>
+<div class="paragraph">
+<p>In current state, <code>SparkClusterRule</code> doesn&#8217;t allow to know a job execution is done - even if it exposes the webui url so
+you can poll it to check. The best at the moment is to ensure the output of your job exists and contains the right value.</p>
+</div>
+<div class="paragraph">
+<p><code>awaitability</code> or equivalent library can help you to write such logic.</p>
+</div>
+<div class="paragraph">
+<p>Here are the coordinates of the artifact:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.awaitility&lt;/groupId&gt;
+  &lt;artifactId&gt;awaitility&lt;/artifactId&gt;
+  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And here is how to wait a file exists and its content (for instance) is the expected one:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">await()
+    .atMost(5, MINUTES)
+    .until(
+        () -&gt; out.exists() ? Files.readAllLines(out.toPath()).stream().collect(joining("\n")).trim() : null,
+        equalTo("the expected content of the file"));</code></pre>
+</div>
 </div>
 </div>
 </div>

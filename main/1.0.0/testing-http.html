@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Studio Integration :: Talend Component Kit Developer Reference Guide</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.0/studio.html">
+    <title>Untitled :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.0/testing-http.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-02-22T16:25:13.723Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-02-22T16:25:13.732Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
     <script>function gtag(){$gtag.push(arguments)}$gtag=window.dataLayer||[],gtag("js",new Date),gtag("config","GTM-PSBN");</script>
@@ -191,27 +191,21 @@
 </nav>
     </div>
 <article class="doc">
-        <h1>Talend Component Studio Integration</h1>
         <div class="sect1">
-<h2 id="_design"><a class="anchor" href="#_design"></a>1. Design</h2>
+<h2 id="_component_runtime_http_junit"><a class="anchor" href="#_component_runtime_http_junit"></a>1. component-runtime-http-junit</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The studio integration relies on Component Server (see <a href="documentation-rest.html" class="page">Web</a> for more details).</p>
+<p>The HTTP JUnit module allows you to mock REST API very easily. Here are its coordinates:</p>
 </div>
-<div class="paragraph">
-<p>When the plugin is deployed it starts a local server the Studio uses to gather data about the components.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+  &lt;artifactId&gt;component-runtime-junit&lt;/artifactId&gt;
+  &lt;version&gt;${talend-component.version}&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_installation"><a class="anchor" href="#_installation"></a>2. Installation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Copy <code>org.talend.sdk.component.studio-integration.jar</code> in the <code>$STUDIO_HOME/plugins</code> directory and restart the studio.</p>
-</div>
-<div class="paragraph">
-<p>Also ensure the <code>component-server</code> dependencies  and <code>commons-cli</code> 1.4 are into the Studio maven repository. If you install any component,
-ensure its dependencies are in the repository as well.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -220,95 +214,26 @@ ensure its dependencies are in the repository as well.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-you can set in <code>$STUDIO_HOME/configuration/config.ini</code> the value <code>maven.repository</code> to <code>global</code> to reuse
-your local maven repository.
+this module uses Apache Johnzon and Netty, if you have any conflict (in particular with netty) you can add the classifier <code>shaded</code>
+to the dependency and the two dependencies are shaded avoiding the conflicts with your component.
 </td>
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>3. Configuration</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The configuration goes into <code>$STUDIO_HOME/configuration/config.ini</code>.</p>
+<p>It supports JUnit 4 and JUnit 5 as well but the overall concept is the exact same one: the extension/rule
+is able to serve precomputed responses saved in the classpath.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.debounce.timeout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies timeout in milliseconds before calling listeners in components Text fields</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">750</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.kit.skip</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code> the plugin is not active. Useful if you don&#8217;t have any component develop with the framework.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.arguments</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Component server additional options</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.m2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The maven repository the server uses to resolve components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">default to global Studio configuration</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A list of comma separated GAV (groupId:artifactId:version) of components to register</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.registry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A properties file with values matching component GAV (groupId:artifactId:version) which are registered at startup</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.port</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set a port to use for the server</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">random</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">components.server.beam.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Active, if set to true, beam support (<em>Experimental</em>). It requires beam sdk java core dependencies to be available.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-to activate the plugin and be able to deploy your component, don&#8217;t forget to set <code>component.kit.skip</code> to <code>true</code>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>You can plug your own <code>ResponseLocator</code> to map a request to a response but the default implementation - which should be sufficient
+in most cases - will look in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it
+in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="_random_port_when_running_concurrent_studio_instances"><a class="anchor" href="#_random_port_when_running_concurrent_studio_instances"></a>3.1. Random port when running concurrent studio instances</h3>
+<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1. JUnit 4</h3>
 <div class="paragraph">
-<p>If you run multiple Studio instance automatically in parallel you can have some issues with the random port computation
-(can happen on a CI platform). For that purpose you can create the file <code>$HOME/.talend/locks/org.talend.sdk.component.studio-integration.lock</code>.</p>
-</div>
-<div class="paragraph">
-<p>When a server will start it will acquire a lock on that file and prevent another one to get a port until it is started. It ensures
-you can&#8217;t get two concurrent processes getting the same allocated port.</p>
+<p>JUnit 4 setup is done through two rules: <code>JUnit4HttpApi</code> which is responsible to start the server and <code>JUnit4HttpApiPerMethodConfigurator</code>
+which is responsible to configure the server per test and also handle the capture mode (see later).</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -317,11 +242,163 @@ you can&#8217;t get two concurrent processes getting the same allocated port.</p
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-it is highly unlikely it happens on a desktop and forcing a different value through <code>component.java.port</code> in your <code>config.ini</code> is likely a better
-solution for local installations.
+if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the capture feature will be deactivated and the per test mocking will not be available.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Most of the test will look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyRESTApiTest {
+    @ClassRule
+    public static final JUnit4HttpApi API = new JUnit4HttpApi();
+
+    @Rule
+    public final JUnit4HttpApiPerMethodConfigurator configurator = new JUnit4HttpApiPerMethodConfigurator(API);
+
+    @Test
+    public void direct() throws Exception {
+        // ... do your requests
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ssl"><a class="anchor" href="#_ssl"></a>1.1.1. SSL</h4>
+<div class="paragraph">
+<p>For tests using SSL based services, you will need to use <code>activeSsl()</code> on the <code>JUnit4HttpApi</code> rule.</p>
+</div>
+<div class="paragraph">
+<p>If you need to access the server ssl socket factory you can do it from the <code>HttpApiHandler</code> (the rule):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ClassRule
+public static final JUnit4HttpApi API = new JUnit4HttpApi()<strong>.activeSsl()</strong>;
+
+@Test
+public void test() throws Exception {
+    final HttpsURLConnection connection = getHttpsConnection();
+    connection.setSSLSocketFactory(API.getSslContext().getSocketFactory());
+    // ....
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
+<div class="paragraph">
+<p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation you can put on your test class. You can inject
+the test handler (which has some utilities for advanced cases) through <code>@HttpApiInject</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HttpApi
+class JUnit5HttpApiTest {
+    @HttpApiInject
+    private HttpApiHandler&lt;?&gt; handler;
+
+    @Test
+    void getProxy() throws Exception {
+        // .... do your requests
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the injection is optional and the <code>@HttpApi</code> allows you to configure several behaviors of the test.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_ssl_2"><a class="anchor" href="#_ssl_2"></a>1.2.1. SSL</h4>
+<div class="paragraph">
+<p>For tests using SSL based services, you will need to use <code>@HttpApi(useSsl = true)</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can access the client SSL socket factory through the api handler:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HttpApi*(useSsl = true)*
+class MyHttpsApiTest {
+    @HttpApiInject
+    private HttpApiHandler&lt;?&gt; handler;
+
+    @Test
+    void test() throws Exception {
+        final HttpsURLConnection connection = getHttpsConnection();
+        connection.setSSLSocketFactory(handler.getSslContext().getSocketFactory());
+        // ....
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_capturing_mode"><a class="anchor" href="#_capturing_mode"></a>1.3. Capturing mode</h3>
+<div class="paragraph">
+<p>The strength of this implementation is to run a small proxy server and auto configure the JVM:
+<code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code>
+are auto configured to work out of the box with the proxy.</p>
+</div>
+<div class="paragraph">
+<p>It allows you to keep in your tests the native and real URLs. For instance this test is perfectlt valid:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class GoogleTest {
+    @ClassRule
+    public static final JUnit4HttpApi API = new JUnit4HttpApi();
+
+    @Rule
+    public final JUnit4HttpApiPerMethodConfigurator configurator = new JUnit4HttpApiPerMethodConfigurator(API);
+
+    @Test
+    public void google() throws Exception {
+        assertEquals(HttpURLConnection.HTTP_OK, get("https://google.fr?q=Talend"));
+    }
+
+    private int get(final String uri) throws Exception {
+        // do the GET request, skipped for brievity
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you execute this test, it will fail with a HTTP 400 because the proxy doesn&#8217;t find the mocked response.
+You can create it manually as seen in the introduction of the module but you can also set the property <code>talend.junit.http.capture</code>
+to the folder where to store the captures. It must be the root folder and not the folder where the json are (ie not prefixed by <code>talend/testing/http</code> by default).</p>
+</div>
+<div class="paragraph">
+<p>Generally you will want to use <code>src/test/resources</code>. If <code>new File("src/test/resources")</code> resolves to the valid folder when executing your test (Maven default),
+then you can just set the system property to true, otherwise you need to adjust accordingly the system property value.</p>
+</div>
+<div class="paragraph">
+<p>Once you ran the tests with this system property, the testing framework will have created the correct mock response files and you can
+remove the system property. The test will still pass, using <code>google.com</code>&#8230;&#8203;even if you disconnect your machine from the internet.</p>
+</div>
+<div class="paragraph">
+<p>The rule (extension) is doing all the work for you :).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_passthrough_mode"><a class="anchor" href="#_passthrough_mode"></a>1.4. Passthrough mode</h3>
+<div class="paragraph">
+<p>Setting <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server will just be a proxy and will execute each request
+to the actual server - like in capturing mode.</p>
 </div>
 </div>
 </div>
