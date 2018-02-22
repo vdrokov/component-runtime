@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradle Plugin :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.0-SNAPSHOT/build-tools-gradle.html">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-02-22T13:38:59.884Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/talend.css">    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>function gtag(){$gtag.push(arguments)}$gtag=window.dataLayer||[],gtag("js",new Date),gtag("config","GTM-PSBN");</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="current">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">1.0.0-SNAPSHOT</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.0-SNAPSHOT</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+  </ul>
+</nav>
+    </div>
+<article class="doc">
+        <h1>Gradle Plugin</h1>
+        <div class="paragraph">
+<p><code>gradle-talend-component</code> intends to help you to write components
+validating components match best practices. It is inspired from the Maven plugin
+and adds the ability to generate automatically the <code>dependencies.txt</code> file the SDK
+uses to build the component classpath. For more information on the configuration
+you can check out the maven properties matching the attributes.</p>
+</div>
+<div class="paragraph">
+<p>Here is how to use it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+  dependencies {
+    classpath "org.talend.sdk.component:gradle-talend-component:${talendComponentVersion}"
+  }
+}
+
+apply plugin: 'org.talend.sdk.component'
+apply plugin: 'java'
+
+// optional customization
+talendComponentKit {
+    // dependencies.txt generation, replaces maven-dependency-plugin
+    dependenciesLocation = "TALEND-INF/dependencies.txt"
+    boolean skipDependenciesFile = false;
+
+    // classpath for validation utilities
+    sdkVersion = "${talendComponentVersion}"
+    apiVersion = "${talendComponentApiVersion}"
+
+    // documentation
+    skipDocumentation = false
+    documentationOutput = new File(....)
+    documentationLevel = 2 // first level will be == in the generated adoc
+    documentationTitle = 'My Component Family' // default to project name
+    documentationFormats = [:] // adoc attributes
+    documentationFormats = [:] // renderings to do
+
+    // validation
+    skipValidation = false
+    validateFamily = true
+    validateSerializable = true
+    validateInternationalization = true
+    validateModel = true
+    validateMetadata = true
+    validateComponent = true
+    validateDataStore = true
+    validateDataSet = true
+    validateActions = true
+
+    // web
+    serverArguments = []
+    serverPort = 8080
+
+    // car
+    carOutput = new File(....)
+    carMetadata = [:] // custom meta (string key-value pairs)
+}</code></pre>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
