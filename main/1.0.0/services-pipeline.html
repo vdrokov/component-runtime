@@ -6,7 +6,7 @@
     <title>Creating a job pipeline :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.0/services-pipeline.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-02-23T13:29:49.800Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-02-23T15:01:48.954Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -200,7 +200,7 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <code>Job</code> builder let you create a job pipeline programmatically using Talend components
-(<a href="latest/component-definition.html">Producers and Processors</a>).
+(<a href="#component-definition.html">Producers and Processors</a>).
 The job pipeline is an acyclic graph, so you can built complex pipelines.</p>
 </div>
 <div class="paragraph">
@@ -222,12 +222,14 @@ the result to a file.</p>
     .run(); <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Step by step explanation :</p>
-</div>
-<div class="paragraph">
-<p>(1) We define all the components that will be used in the job pipeline.
-Every component is defined by an unique <code>id</code> and an URI that identify the component.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We define all the components that will be used in the job pipeline.
+Every component is defined by an unique <code>id</code> and an URI that identify the component.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The URI follow the form : <code>[family]://[component][?version][&amp;configuration]</code></p>
@@ -266,9 +268,14 @@ configuration parameters must be URI/URL encoded.
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>(2) Then, we define the connections between the components to construct the job pipeline.
-the links <code>from</code> &#8594; <code>to</code> use the component id and the default input/output branches.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Then, we define the connections between the components to construct the job pipeline.
+the links <code>from</code> &#8594; <code>to</code> use the component id and the default input/output branches.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>You can also connect a specific branch of a component if it has multiple or named inputs/outputs branches
@@ -277,9 +284,11 @@ using the methods <code>from(id, branchName)</code> &#8594; <code>to(id, branchN
 <div class="paragraph">
 <p>In the example above, the concat component have to inputs (string1 and string2).</p>
 </div>
-<div class="paragraph">
-<p>(3) In this step, we validate the job pipeline by asserting that :</p>
-</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>In this step, we validate the job pipeline by asserting that :
 <div class="ulist">
 <ul>
 <li>
@@ -295,9 +304,13 @@ using the methods <code>from(id, branchName)</code> &#8594; <code>to(id, branchN
 <p>The connection is used only once. you can&#8217;t connect a component input/output branch twice.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>(4) We run the job pipeline.</p>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We run the job pipeline.</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -311,6 +324,60 @@ may be independents.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The job builder let you provide some job properties :</p>
+</div>
+<div class="sect3">
+<h4 id="_key_provider"><a class="anchor" href="#_key_provider"></a>1.1. Key Provider</h4>
+<div class="paragraph">
+<p>The job builder let you set a key provider to join your data when a component has multiple inputs.
+The key provider can be set contextually to a component or globally to the job</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Job.components()
+        .component("employee","db://input")
+            .property(GroupKeyProvider.class.getName(),
+                 (GroupKeyProvider) context -&gt; context.getData().getString("id")) <i class="conum" data-value="1"></i><b>(1)</b>
+        .component("salary", "db://input")
+        .component("concat", "transform://concat?separator=;")
+    .connections()
+        .from("employee").to("concat", "string1")
+        .from("salary").to("concat", "string2")
+    .build()
+    .property(GroupKeyProvider.class.getName(), <i class="conum" data-value="2"></i><b>(2)</b>
+                 (GroupKeyProvider) context -&gt; context.getData().getString("employee_id"))
+    .run();</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Here we have defined a key provider for the data produced by the component <code>employee</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Here we have defined a key provider for all the data manipulated in this job.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the incoming data has different ids you can provide a complex global key provider relaying on the context that give you the <code>component id</code>
+and the <code>branch Name</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">GroupKeyProvider keyProvider = (GroupKeyProvider) context -&gt; {
+            if ("employee".equals(context.getComponentId())) {
+                return context.getData().getString("id");
+            }
+
+            return context.getData().getString("employee_id");
+          };</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
