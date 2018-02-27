@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registering components :: Talend Component Kit Developer Reference Guide</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.1/component-registering.html">
+    <title>Mask your configuration sensitive data :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.1/tutorial-configuration-sensitive-data.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-02-27T17:18:11.959Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-02-27T17:18:12.015Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -68,7 +68,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="component-configuration.html">Configuration</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="component-registering.html">Registration</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -182,7 +182,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
   </li>
 </ul>
@@ -215,193 +215,134 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
-    <li class="crumb">Programming Model</li>
-    <li class="crumb"><a href="component-registering.html">Registration</a></li>
+    <li class="crumb">Tutorials</li>
+    <li class="crumb"><a href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a></li>
   </ul>
 </nav>
     </div>
 <article class="doc">
-        <h1>Registering components</h1>
+        <h1>Mask your configuration sensitive data</h1>
         <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>As seen in the <a href="getting-started.html#getting-started-first-quick-start" class="page">Getting Started</a>, you need an annotation to register
-your component through <code>family</code> method. Multiple components can use the same <code>family</code> value but the pair <code>family</code>+<code>name</code>
-<code>MUST</code> be unique for the system.</p>
-</div>
-<div class="paragraph">
-<p>If you desire (recommended) to share the same component family name instead of repeating yourself in all <code>family</code> methods,
-you can use <code>@Components</code> annotation on the root package of you component, it will enable you to define the component family and
-the categories the component belongs to (default is <code>Misc</code> if not set). Here is a sample <code>package-info.java</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Components(name = "my_component_family", categories = "My Category")
-package org.talend.sdk.component.sample;
-
-import org.talend.sdk.component.api.component.Components;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For an existing component it can look like:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Components(name = "Salesforce", categories = {"Business", "Cloud"})
-package org.talend.sdk.component.sample;
-
-import org.talend.sdk.component.api.component.Components;</code></pre>
-</div>
+<div id="tutorial-configuration-sensitive-data" class="paragraph">
+<p>In this tutorial we will see how to ensure the sensitive data of a component configuration
+is correctly handled.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_components_metadata"><a class="anchor" href="#_components_metadata"></a>1. Components metadata</h2>
+<h2 id="_the_component_configuration"><a class="anchor" href="#_the_component_configuration"></a>1. The component configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Components can require a few metadata to be integrated in Talend Studio or Cloud platform. Here is how to provide these information.
-These metadata are set on the component class and belongs to <code>org.talend.sdk.component.api.component</code> package.</p>
+<p>It is very common to define credentials in a component configuration. Most known use cases will be:</p>
 </div>
-<table class="tableblock frame-all grid-all">
-<colgroup>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">API</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@Icon</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set an icon key used to represent the component. Note you can use a custom key with <code>custom()</code> method but it is not guaranteed the icon will be rendered properly.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@Version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set the component version, default to 1.</p></td>
-</tr>
-</tbody>
-</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Passwords,</p>
+</li>
+<li>
+<p>Secrets,</p>
+</li>
+<li>
+<p>Potentially keys (it is also common to show them in plain text in a textarea),</p>
+</li>
+<li>
+<p>Tokens</p>
+</li>
+</ol>
+</div>
 <div class="paragraph">
-<p>Example:</p>
+<p>To illustrate that we will use a REST client configuration which takes a
+username, password and token to connect to the REST API:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Icon(FILE_XML_O)
-@PartitionMapper(name = "jaxbInput")
-public class JaxbPartitionMapper implements Serializable {
-    // ...
-}</code></pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_management_of_configuration_versions"><a class="anchor" href="#_management_of_configuration_versions"></a>1.1. Management of configuration versions</h3>
-<div class="paragraph">
-<p>If some impacting changes happen on the configuration they can be manage through a migration handler at <strong>component</strong> level (to enable
-to support trans-model migration).</p>
-</div>
-<div class="paragraph">
-<p>The <code>@Version</code> annotation supports a <code>migrationHandler</code> method which will take the implementation migrating the incoming configuration
-to the current model.</p>
-</div>
-<div class="paragraph">
-<p>For instance if <code>filepath</code> configuration entry from v1 changed to <code>location</code> in v2 you can remap the value to the right key in your
-<code>MigrationHandler</code> implementation.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-it is recommanded to not manage all migrations in the handler but rather split it in services you inject in the migration handler
-(through constructor):
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// full component code structure skipped for brievity, kept only migration part
-@Version(value = 3, migrationHandler = MyComponent.Migrations.class)
-public class MyComponent {
-    // the component code...
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Data // or getters/setters if you don't use lombok
+@GridLayout({
+        @GridLayout.Row({ "username", "password" }),
+        @GridLayout.Row("token")
+})
+public class RestApiConfiguration implements Serializable {
 
+    @Option
+    private String username;
 
-    private interface VersionConfigurationHandler {
-        Map&lt;String, String&gt; migrate(Map&lt;String, String&gt; incomingData);
-    }
+    @Option
+    private String password;
 
-    public static class Migrations {
-        private final List&lt;VersionConfigurationHandler&gt; handlers;
-
-        // VersionConfigurationHandler implementations are decorated with @Service
-        public Migrations(final List&lt;VersionConfigurationHandler&gt; migrations) {
-            this.handlers = migrations;
-            this.handlers.sort(/*some custom logic*/);
-        }
-
-        @Override
-        public Map&lt;String, String&gt; migrate(int incomingVersion, Map&lt;String, String&gt; incomingData) {
-            Map&lt;String, String&gt; out = incomingData;
-            for (MigrationHandler handler : handlers) {
-                out = handler.migrate(out);
-            }
-        }
-    }
+    @Option
+    private String token;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>What is important in this snippet is not much the way the code is organized but rather the fact you organize your migrations the way which fits the best
-your component. If migrations are not conflicting no need of something fancy, just apply them all but if you need to apply them in order
-you need to ensure they are sorted. Said otherwise: don&#8217;t see this API as a migration API but as a migration callback
-and adjust the migration code structure you need behind the <code>MigrationHandler</code> based on your
-component requirements. The service injection enables you to do so.</p>
+<p>This simple configuration defines three <code>String</code> without any specific widget
+so they will be represented as plain inputs.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_partitionmapper"><a class="anchor" href="#_partitionmapper"></a>1.2. @PartitionMapper</h3>
 <div class="paragraph">
-<p><code>@PartitionMapper</code> will obviously mark a partition mapper:</p>
+<p>There are two major consequences you probably want to avoid:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The password and token will be clearly readable in all Talend user interfaces (Studio or Web),</p>
+</li>
+<li>
+<p>The password and token will be potentially stored in clear.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mark_sensitive_data"><a class="anchor" href="#_mark_sensitive_data"></a>2. Mark sensitive data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To solve that, Talend Component Kit provides you <code>@Credential</code> marker you can use
+on any <code>@Option</code>. This marker will have two effects:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Replace the default input widget by a password oriented one (<a href="gallery.html" class="page">See widgets gallery for screenshots</a>),</p>
+</li>
+<li>
+<p>Request the Studio or the Talend Cloud products to store the data as sensitive data (as encrypted values).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To ensure our <code>password</code> and <code>token</code> are never stored in clear or shown in the code
+we migrate our previous model to the following one:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PartitionMapper(family = "demo", name = "my_mapper")
-public class MyMapper {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Data // or getters/setters if you don't use lombok
+@GridLayout({
+        @GridLayout.Row({ "username", "password" }),
+        @GridLayout.Row("token")
+})
+public class RestApiConfiguration implements Serializable {
+
+    @Option
+    private String username;
+
+    @Option
+    @Credential
+    private String password;
+
+    @Option
+    @Credential
+    private String token;
 }</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_emitter"><a class="anchor" href="#_emitter"></a>1.2.1. @Emitter</h4>
 <div class="paragraph">
-<p><code>@Emitter</code> is a shortcut for <code>@PartitionMapper</code> when you don&#8217;t support distribution. Said otherwise it will enforce an implicit
-partition mapper execution with an assessor size of 1 and a split returning itself.</p>
+<p>And that it is! Now your password and token will not be accessible by error anymore :).</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Emitter(family = "demo", name = "my_input")
-public class MyInput {
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_processor"><a class="anchor" href="#_processor"></a>1.3. @Processor</h3>
 <div class="paragraph">
-<p>A method decorated with <code>@Processor</code> will be considered as a producer factory:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Processor(family = "demo", name = "my_processor")
-public class MyProcessor {
-}</code></pre>
-</div>
-</div>
+<p><a href="component-configuration.html" class="page">Read more about the component configuration&#8230;&#8203;</a></p>
 </div>
 </div>
 </div>
