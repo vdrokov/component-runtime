@@ -6,7 +6,7 @@
     <title>Create an input component :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.1/tutorial-create-an-input-component.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-02-27T17:18:12.016Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-02-27T17:23:16.966Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -225,11 +225,16 @@
         <div id="preamble">
 <div class="sectionbody">
 <div id="tutorial-create-an-input-component" class="paragraph">
-<p>In this tutorial we will create a complete working input component for <a href="#https://hazelcast.org/">hazelcast</a>.
-This will include :</p>
+<p>In this tutorial we will create a complete working input component for <a href="#https://hazelcast.org/">hazelcast</a>.</p>
+</div>
+<div class="paragraph">
+<p>This will include :</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
+<li>
+<p>The component family registration.</p>
+</li>
 <li>
 <p>The component configuration and the UI layout</p>
 </li>
@@ -241,10 +246,50 @@ This will include :</p>
 </li>
 </ol>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Getter and Setter methods are omitted for simplicity in this tutorial
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_component_configuration"><a class="anchor" href="#_the_component_configuration"></a>1. The component configuration</h2>
+<h2 id="_the_component_family_registration"><a class="anchor" href="#_the_component_family_registration"></a>1. The component family registration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We register the component family via a the <code>package-info.java</code> file in the package of the component.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Icon(value = Icon.IconType.CUSTOM, custom = "hazelcast") <i class="conum" data-value="1"></i><b>(1)</b>
+@Components(family = "Hazelcast", categories = "IMDG") <i class="conum" data-value="2"></i><b>(2)</b>
+package org.talend.hazelcast;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This define the family icon.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>In this line we define the component family and the component categories.
+Those information are used in the web and studio applications to group the components.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_component_configuration"><a class="anchor" href="#_the_component_configuration"></a>2. The component configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The component configuration define the configurable part of the component in addition to the configuration type and the UI layout.
@@ -254,9 +299,8 @@ Here is the configuration of our component, that we will explain in details.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GridLayout({ <i class="conum" data-value="1"></i><b>(1)</b>
-        @GridLayout.Row({ "hazelcastXml" }),
-        @GridLayout.Row({ "mapName" }),
-        @GridLayout.Row({ "timeout", "executorService" })
+        @GridLayout.Row({ "hazelcastXml", "mapName" }),
+        @GridLayout.Row({ "executorService" }),
 })
 public class HazelcastConfiguration implements Serializable {
 
@@ -264,15 +308,12 @@ public class HazelcastConfiguration implements Serializable {
     private String hazelcastXml; <i class="conum" data-value="3"></i><b>(3)</b>
 
     @Option
-    private long timeout = 60; <i class="conum" data-value="4"></i><b>(4)</b>
+    private String mapName; <i class="conum" data-value="4"></i><b>(4)</b>
 
     @Option
-    private String mapName; <i class="conum" data-value="5"></i><b>(5)</b>
+    private String executorService = "default"; <i class="conum" data-value="5"></i><b>(5)</b>
 
-    @Option
-    private String executorService = "default"; <i class="conum" data-value="6"></i><b>(6)</b>
-
-    ClientConfig newConfig() throws IOException { <i class="conum" data-value="7"></i><b>(7)</b>
+    ClientConfig newConfig() throws IOException { <i class="conum" data-value="6"></i><b>(6)</b>
         final ClientConfig newconfig = hazelcastXml == null ? new XmlClientConfigBuilder().build() :
                 new XmlClientConfigBuilder(hazelcastXml).build();
 
@@ -301,18 +342,14 @@ at least a specific widget is explicitly declared <a href="gallery.html" class="
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The timeout with a default value of 60</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
 <td>The name of the map to be read.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
 <td>The name of the executor service with a default name: <code>default</code>.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>This only a simple utility method that convert our configuration to a hazelcast client configuration object</td>
 </tr>
 </table>
@@ -323,7 +360,7 @@ at least a specific widget is explicitly declared <a href="gallery.html" class="
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_partition_mapper"><a class="anchor" href="#_the_partition_mapper"></a>2. The Partition Mapper</h2>
+<h2 id="_the_partition_mapper"><a class="anchor" href="#_the_partition_mapper"></a>3. The Partition Mapper</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>As our component need to work first in distributed environments. Every input component has to define a partition mapper
@@ -413,14 +450,12 @@ here we will shutdown the hazelcast instance loaded in the post Construct method
 <p>Now that we know what we need to implement and why. Let&#8217;s start coding those methods one by one.</p>
 </div>
 <div class="sect2">
-<h3 id="_the_constructor"><a class="anchor" href="#_the_constructor"></a>2.1. The constructor</h3>
+<h3 id="_the_constructor"><a class="anchor" href="#_the_constructor"></a>3.1. The constructor</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// We will need the list of hazecast memebers later
-// So we add a collection attribute to the mapper
-private final Collection&lt;String&gt; members;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private final Collection&lt;String&gt; members; <i class="conum" data-value="1"></i><b>(1)</b>
 
-// framework API
+<i class="conum" data-value="2"></i><b>(2)</b>
 public HazelcastMapper(@Option("configuration") final HazelcastConfiguration configuration,
         final JsonBuilderFactory jsonFactory,
         final Jsonb jsonb,
@@ -428,7 +463,7 @@ public HazelcastMapper(@Option("configuration") final HazelcastConfiguration con
     this(configuration, jsonFactory, jsonb, service, emptyList());
 }
 
-// internal
+// internal <i class="conum" data-value="3"></i><b>(3)</b>
 protected HazelcastMapper(final HazelcastConfiguration configuration,
         final JsonBuilderFactory jsonFactory,
         final Jsonb jsonb,
@@ -442,20 +477,32 @@ protected HazelcastMapper(final HazelcastConfiguration configuration,
 }</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We will need the list of hazecast members later. So we add a collection attribute to the mapper</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The component public constructor, responsible for injecting configuration and services.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>An internal constructor that get a collection of members in addition to previous parameters. This will be useful later in this tutorial.</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_the_postconstruct_method"><a class="anchor" href="#_the_postconstruct_method"></a>2.2. The PostConstruct method</h3>
+<h3 id="_the_postconstruct_method"><a class="anchor" href="#_the_postconstruct_method"></a>3.2. The PostConstruct method</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//We will need Hazelcast instance. we add this as an attribute to the mapper.
-private transient HazelcastInstance instance;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private transient HazelcastInstance instance; <i class="conum" data-value="1"></i><b>(1)</b>
 
 @PostConstruct
 public void init() throws IOException {
-    // Here we create an instance of hazelcast according to the provided configuration
-    // Here you can notice that we use the injected HazelcastService instance to perform that.
-    // This service is implemented in the project. See the implementation in <i class="conum" data-value="1"></i><b>(1)</b>
-    instance = service.findInstance(configuration.newConfig());
+    instance = service.findInstance(configuration.newConfig()); <i class="conum" data-value="2"></i><b>(2)</b>
 }</code></pre>
 </div>
 </div>
@@ -463,10 +510,19 @@ public void init() throws IOException {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Here is the HazelcastService implementation.
-Every class annotated with <code>@Service</code> can be injected to the component via it&#8217;s constructor.</td>
+<td>We will need Hazelcast instance. we add this as an attribute to the mapper.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Here we create an instance of hazelcast according to the provided configuration.
+You can notice that we use the injected HazelcastService instance to perform that.
+This service is implemented in the project.</td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Here is the HazelcastService implementation.
+Every class annotated with <code>@Service</code> can be injected to the component via it&#8217;s constructor.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -475,43 +531,82 @@ Every class annotated with <code>@Service</code> can be injected to the componen
 @Service
 public class HazelcastService {
     public HazelcastInstance findInstance(final ClientConfig config) {
-        return HazelcastClient.newHazelcastClient(config);
+        return HazelcastClient.newHazelcastClient(config); <i class="conum" data-value="1"></i><b>(1)</b>
     }
 }</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We create a new instance of hazelcast client.</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_the_predestroy_method"><a class="anchor" href="#_the_predestroy_method"></a>2.3. The PreDestroy method</h3>
+<h3 id="_the_predestroy_method"><a class="anchor" href="#_the_predestroy_method"></a>3.3. The PreDestroy method</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//This execution service will be used in our mapper. So we add it as an attribute
-private transient IExecutorService executorService;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private transient IExecutorService executorService; <i class="conum" data-value="1"></i><b>(1)</b>
 
 @PreDestroy
-public void close() {
-    // Here we shutdown the instance that we have created in the PostConstruct.
-    // and we free the executorService reference
+public void close() { <i class="conum" data-value="2"></i><b>(2)</b>
     instance.getLifecycleService().shutdown();
     executorService = null;
 }</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This execution service will be used in our mapper. So we add it as an attribute.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Here we shutdown the instance that we have created in the PostConstruct. and we also free the executorService reference</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_the_assessor_method"><a class="anchor" href="#_the_assessor_method"></a>2.4. The Assessor method</h3>
+<h3 id="_the_assessor_method"><a class="anchor" href="#_the_assessor_method"></a>3.4. The Assessor method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Assessor
 public long estimateSize() {
-    // Here we calculate the hole size of all memebers
-    return getSizeByMembers().values().stream()
-            .mapToLong(this::getFutureValue)
-            .sum();
-}
-
-// This method return a map of size by memeber of hazelcast cluster
-private Map&lt;Member, Future&lt;Long&gt;&gt; getSizeByMembers() {
+    return getSizeByMembers() <i class="conum" data-value="1"></i><b>(1)</b>
+                    .values().stream()
+                    .mapToLong(this::getFutureValue) <i class="conum" data-value="2"></i><b>(2)</b>
+                    .sum(); <i class="conum" data-value="3"></i><b>(3)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We get the size of all members by calling the method <code>getSizeByMembers</code>.
+This method submit a task to the cluster member that will calculate the member size locally and asynchronously.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We get the the size of the member from the callable task that we have submitted.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We sum the size of all the members</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here is the implementation of the two methods used above</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private Map&lt;Member, Future&lt;Long&gt;&gt; getSizeByMembers() {
     final IExecutorService executorService = getExecutorService();
     final SerializableTask&lt;Long&gt; sizeComputation = new SerializableTask&lt;Long&gt;() {
 
@@ -521,7 +616,7 @@ private Map&lt;Member, Future&lt;Long&gt;&gt; getSizeByMembers() {
             return localInstance.getMap(configuration.getMapName()).getLocalMapStats().getHeapCost();
         }
     };
-    if (members.isEmpty()) { // == if no specific memebers defined, apply on all the cluster
+    if (members.isEmpty()) { // == if no specific members defined, apply on all the cluster
         return executorService.submitToAllMembers(sizeComputation);
     }
     final Set&lt;Member&gt; members = instance.getCluster().getMembers().stream()
@@ -539,12 +634,11 @@ private IExecutorService getExecutorService() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_split_method"><a class="anchor" href="#_the_split_method"></a>2.5. The Split method</h3>
+<h3 id="_the_split_method"><a class="anchor" href="#_the_split_method"></a>3.5. The Split method</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// This method create a collection of mapper according to the requested bundleSize and the dataset size
-@Split
-public List&lt;HazelcastMapper&gt; split(@PartitionSize final long bundleSize) {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Split
+public List&lt;HazelcastMapper&gt; split(@PartitionSize final long bundleSize) { <i class="conum" data-value="1"></i><b>(1)</b>
     final List&lt;HazelcastMapper&gt; partitions = new ArrayList&lt;&gt;();
     final Collection&lt;Member&gt; members = new ArrayList&lt;&gt;();
     long current = 0;
@@ -569,40 +663,40 @@ public List&lt;HazelcastMapper&gt; split(@PartitionSize final long bundleSize) {
         partitions.add(this);
     }
     return partitions;
-}
-
-private Set&lt;String&gt; toIdentifiers(final Collection&lt;Member&gt; members) {
-    return members.stream().map(Member::getUuid).collect(toSet());
-}
-
-private long getFutureValue(final Future&lt;Long&gt; future) {
-    try {
-        return future.get(configuration.getTimeout(), SECONDS);
-    } catch (final InterruptedException e) {
-        Thread.currentThread().interrupt();
-        throw new IllegalStateException(e);
-    } catch (final ExecutionException | TimeoutException e) {
-        throw new IllegalArgumentException(e);
-    }
 }</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This method create a collection of mapper according to the requested bundleSize and the dataset size.</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_the_emitter_method"><a class="anchor" href="#_the_emitter_method"></a>2.6. The Emitter method</h3>
+<h3 id="_the_emitter_method"><a class="anchor" href="#_the_emitter_method"></a>3.6. The Emitter method</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//After we have splited the mapper. now every mapper will create an emitter that
-// will read the records according to the provided configuration
-@Emitter
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Emitter
 public HazelcastSource createSource() {
-    return new HazelcastSource(configuration, jsonFactory, jsonb, service, members);
+    return new HazelcastSource(configuration, jsonFactory, jsonb, service, members); <i class="conum" data-value="1"></i><b>(1)</b>
 }</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>After we have split the mapper. now every mapper will create a producer
+that will read the records according to the provided configuration.</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_the_full_implementation_of_the_partition_mapper"><a class="anchor" href="#_the_full_implementation_of_the_partition_mapper"></a>2.7. The full implementation of the Partition Mapper</h3>
+<h3 id="_the_full_implementation_of_the_partition_mapper"><a class="anchor" href="#_the_full_implementation_of_the_partition_mapper"></a>3.7. The full implementation of the Partition Mapper</h3>
 <div class="paragraph">
 <p>Here is the full code source for the partition mapper to have a global view of it.
 <a href="component-definition.html#_partitionmapper" class="page">Read more about partition mapper&#8230;&#8203;</a></p>
@@ -749,7 +843,7 @@ public class HazelcastMapper implements Serializable {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_producer_source"><a class="anchor" href="#_the_producer_source"></a>3. The Producer (Source)</h2>
+<h2 id="_the_producer_source"><a class="anchor" href="#_the_producer_source"></a>4. The Producer (Source)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Now that we have setup our component configuration and written our partition mapper that will create our producers.
@@ -767,7 +861,7 @@ To implement a source we need to implement the producer method that will produce
     private transient HazelcastInstance instance;
     private transient BufferizedProducerSupport&lt;JsonObject&gt; buffer; <i class="conum" data-value="1"></i><b>(1)</b>
 
-    // The constructor omited to reduce the code
+    // The constructor was omited to reduce the code
 
     @PostConstruct <i class="conum" data-value="2"></i><b>(2)</b>
     public void createInstance() throws IOException {
