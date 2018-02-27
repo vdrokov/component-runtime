@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="fr">
+<html lang="en">
 <head>
 <title>Source code</title>
 <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
@@ -371,7 +371,7 @@
 <span class="sourceLineNo">363</span>                                        .entrySet()<a name="line.363"></a>
 <span class="sourceLineNo">364</span>                                        .stream()<a name="line.364"></a>
 <span class="sourceLineNo">365</span>                                        .map(entry -&gt; entry.getKey() + "=" + entry.getValue())<a name="line.365"></a>
-<span class="sourceLineNo">366</span>                                        .collect(joining("&amp;")))<a name="line.366"></a>
+<span class="sourceLineNo">366</span>                                        .collect(joining("&amp;", "&amp;", "")))<a name="line.366"></a>
 <span class="sourceLineNo">367</span>                .component("collector", "test://collector")<a name="line.367"></a>
 <span class="sourceLineNo">368</span>                .connections()<a name="line.368"></a>
 <span class="sourceLineNo">369</span>                .from("in")<a name="line.369"></a>
@@ -396,7 +396,7 @@
 <span class="sourceLineNo">388</span>                                        .entrySet()<a name="line.388"></a>
 <span class="sourceLineNo">389</span>                                        .stream()<a name="line.389"></a>
 <span class="sourceLineNo">390</span>                                        .map(entry -&gt; entry.getKey() + "=" + entry.getValue())<a name="line.390"></a>
-<span class="sourceLineNo">391</span>                                        .collect(joining("&amp;")))<a name="line.391"></a>
+<span class="sourceLineNo">391</span>                                        .collect(joining("&amp;", "&amp;", "")))<a name="line.391"></a>
 <span class="sourceLineNo">392</span>                .connections()<a name="line.392"></a>
 <span class="sourceLineNo">393</span>                .from("emitter")<a name="line.393"></a>
 <span class="sourceLineNo">394</span>                .to("out")<a name="line.394"></a>
