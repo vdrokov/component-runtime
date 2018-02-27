@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Reference Guide</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.1/index.html">
+    <title>Test your components :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.1/tutorial-test-your-components.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-02-27T16:33:47.579Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-02-27T16:33:47.600Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -179,7 +179,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="tutorial-create-an-input-component.html">Create an Input component</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
   </li>
 </ul>
@@ -212,96 +212,110 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb">Tutorials</li>
+    <li class="crumb"><a href="tutorial-test-your-components.html">Test your components</a></li>
   </ul>
 </nav>
     </div>
 <article class="doc">
-        <h1>Talend Component Kit Developer Reference Guide</h1>
-        <div id="preamble">
-<div class="sectionbody">
-<div class="admonitionblock important">
+        <h1>Test your components</h1>
+        <div id="tutorial-test-your-components" class="paragraph">
+<p>In a <a href="tutorial-create-an-input-component.html" class="page">previous tutorial</a> we have created an input component for hazelcast. In this one we will show how to write some
+unit tests for it.</p>
+</div>
+<div class="paragraph">
+<p>In this tutorial we will cover :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>How to load components in a unit test.</p>
+</li>
+<li>
+<p>How to create a job pipeline.</p>
+</li>
+<li>
+<p>How to run the test in standalone mode.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Here is our test class. let&#8217;s examine it in details.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class HazelcastMapperTest {
+
+    @ClassRule
+    public static final SimpleComponentRule COMPONENTS = new SimpleComponentRule(HazelcastMapperTest.class
+                                                                                    .getPackage().getName()); <i class="conum" data-value="1"></i><b>(1)</b>
+
+    private static HazelcastInstance instance; <i class="conum" data-value="2"></i><b>(2)</b>
+
+    @BeforeClass
+    public static void startInstanceWithData() { <i class="conum" data-value="3"></i><b>(3)</b>
+        instance = Hazelcast.newHazelcastInstance();
+        final IMap&lt;Object, Object&gt; map = instance.getMap(HazelcastMapperTest.class.getSimpleName());
+        IntStream.range(0, 100).forEach(i -&gt; map.put("test_" + i, "value #" + i));
+    }
+
+    @AfterClass
+    public static void stopInstance() { <i class="conum" data-value="4"></i><b>(4)</b>
+        instance.getLifecycleService().shutdown();
+    }
+
+    @Test
+    public void run() { <i class="conum" data-value="5"></i><b>(5)</b>
+        Job.components() <i class="conum" data-value="6"></i><b>(6)</b>
+                .component("source", "Hazelcast://Input?configuration.mapName=" + HazelcastMapperTest.class.getSimpleName())
+                .component("output", "test://collector")
+            .connections()
+                .from("source").to("output")
+            .build()
+            .run();
+
+        final List&lt;JsonObject&gt; outputs = COMPONENTS.getCollectedData(JsonObject.class); <i class="conum" data-value="7"></i><b>(7)</b>
+        assertEquals(100, outputs.size());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
 <table>
 <tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-this is a version under development which has not yet been deployed.
-You can however use it using the <code>-SNAPSHOT</code> version and Sonatype snapshot <a href="https://oss.sonatype.org/content/repositories/snapshots/">repository</a>.
-</td>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>SimpleComponentRule</code> is a junit rule that let you load your component from a package.
+This rule also provide some tests components like <code>emitter</code> and <code>collector</code> <a href="testing-junit.html#_component_runtime_junit" class="page">Read more&#8230;&#8203;</a>.</td>
 </tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
 <tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-if you want a PDF version of that page you can find it in our snapshots:
-<a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation&amp;v=0.0.1-SNAPSHOT&amp;e=pdf&amp;c=all-in-one">PDF</a>.
-</td>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>An embedded hazelcast instance that we will use to test our input component.</td>
 </tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-if you prefer you can use the <a href="all-in-one.html" class="page">single page</a> documentation.
-</td>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Here we create an embedded hazelcast instance and we fill it with some test data. We create a map with the name of our test class
+and add some data to it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>We clean up the instance after the end o the tests.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>This is our unit test. Here we will create a job pipeline that use our input component.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>We use the <code>Job</code> <a href="services-pipeline.html" class="page">pipeline builder</a> to create a job. It contains two components
+the input component and the test collector component. We connect the input component to the collector component, build the job
+and run it locally.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>After the job has finished running. We simply use the COMPONENTS rule instance to get the collected data from the <code>collector</code> component.
+Then we can do some assertion on the collected data.</td>
 </tr>
 </table>
-</div>
-</div>
-</div>
-<h1 id="_table_of_contents" class="sect0"><a class="anchor" href="#_table_of_contents"></a>Table Of Contents</h1>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="documentation-overview.html" class="page">Overview</a></p>
-</li>
-<li>
-<p><a href="getting-started.html" class="page">Getting Started</a></p>
-</li>
-<li>
-<p><a href="documentation.html" class="page">Reference Guide</a></p>
-</li>
-<li>
-<p><a href="documentation-testing.html" class="page">Testing</a></p>
-</li>
-<li>
-<p><a href="best-practices.html" class="page">Best Practices</a></p>
-</li>
-<li>
-<p><a href="design.html" class="page">Design choices</a></p>
-</li>
-<li>
-<p><a href="wrapping-a-beam-io.html" class="page">How to wrap a Beam I/O</a></p>
-</li>
-<li>
-<p><a href="documentation-rest.html" class="page">Web</a></p>
-</li>
-<li>
-<p><a href="studio.html" class="page">Experimental Talend Studio Integration</a></p>
-</li>
-<li>
-<p><a href="changelog.html" class="page">Changelog</a></p>
-</li>
-<li>
-<p><a href="contributors.html" class="page">Wall Of Fame</a></p>
-</li>
-<li>
-<p><a href="apidocs.html" class="page">API Documentation</a></p>
-</li>
-<li>
-<p><a href="appendix.html" class="page">Appendix</a></p>
-</li>
-</ul>
 </div>
     </article>
   </main>

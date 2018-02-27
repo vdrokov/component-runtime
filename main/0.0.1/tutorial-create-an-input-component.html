@@ -6,7 +6,7 @@
     <title>Create an input component :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.1/tutorial-create-an-input-component.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-02-27T15:57:48.073Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-02-27T16:33:47.598Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -174,10 +174,13 @@
     <span class="nav-text">Tutorials</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a project using the component starter</a>
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="tutorial-create-an-input-component.html">Create an Input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
   </li>
 </ul>
   </li>
@@ -601,7 +604,7 @@ public HazelcastSource createSource() {
 <p>Here is the full code source for the partition mapper to have a global view of it.
 <a href="component-definition.html#_partitionmapper" class="page">Read more about partition mapper&#8230;&#8203;</a></p>
 </div>
-<div class="listingblock">
+<div class="listingblock initial-block-closed">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(1) <i class="conum" data-value="1"></i><b>(1)</b>
 @Icon(Icon.IconType.DB_INPUT) <i class="conum" data-value="2"></i><b>(2)</b>
@@ -750,7 +753,7 @@ public class HazelcastMapper implements Serializable {
 Let implement the source logic that will use the configuration provided by the mapper to read the records from the data source.
 To implement a source we need to implement the producer method that will produce a record every time it&#8217;s invoked.</p>
 </div>
-<div class="listingblock collapse-source">
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class HazelcastSource implements Serializable {
     private final HazelcastConfiguration configuration;
@@ -854,8 +857,8 @@ In our case we are shutting down the hazelcast instance that we have created in 
 <p><a href="component-definition.html#_producer" class="page">Read more about source &#8230;&#8203;</a></p>
 </div>
 <div class="paragraph">
-<p>We have seen how to create a complete working input in this tutorial. In the next one we will explain how to create some unit
-tests for it.</p>
+<p>We have seen how to create a complete working input in this tutorial. <a href="tutorial-test-your-components.html" class="page">In the next one we will explain how to create some unit
+tests for it</a>.</p>
 </div>
 </div>
 </div>
