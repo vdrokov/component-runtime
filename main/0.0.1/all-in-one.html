@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Reference Guide</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.1/all-in-one.html">
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.2/all-in-one.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-02-28T12:33:37.038Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-02-28T13:38:37.610Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -56,7 +56,7 @@
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+    <h3 class="title"><a href="../0.0.2/index.html">Talend Component Kit Developer Reference Guide</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
     <button class="nav-toggle"></button>
@@ -202,7 +202,10 @@
     <li class="component is-current">
       <span class="title">Talend Component Kit Developer Reference Guide</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">0.0.1</a>
         </li>
       </ul>
@@ -217,10 +220,17 @@
     <button class="navigation-toggle"></button>
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb"><a href="../0.0.2/index.html">Talend Component Kit Developer Reference Guide</a></li>
   </ul>
 </nav>
-    </div>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">0.0.1</button>
+  <div class="versions-menu">
+    <a class="version" href="../0.0.2/all-in-one.html">0.0.2</a>
+    <a class="version is-current" href="all-in-one.html">0.0.1</a>
+  </div>
+</div>
+</div>
 <article class="doc">
         <h1>Talend Component Kit Developer Reference Guide</h1>
         <div class="sect1">
@@ -506,24 +516,334 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 </div>
 <div class="sect2">
 <h3 id="getting-started-first-quick-start"><a class="anchor" href="#getting-started-first-quick-start"></a>3.3. Quick Start</h3>
+<div class="paragraph">
+<p>For our quick start, we&#8217;ll develop three components:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="tutorial-generate-project-using-starter.html" class="page">Generate a component</a></p>
+<p>one reading from a file and building <code>Person</code> records</p>
 </li>
 <li>
-<p><a href="tutorial-create-an-input-component.html" class="page">Create an input component</a></p>
+<p>one converting the <code>Person</code> in a <code>User</code> based on the incoming data and conventions</p>
 </li>
 <li>
-<p><a href="tutorial-create-an-output-component.html" class="page">Create an output component</a></p>
-</li>
-<li>
-<p><a href="tutorial-test-your-components.html" class="page">Test your components</a></p>
-</li>
-<li>
-<p><a href="tutorial-configuration-sensitive-data.html" class="page">Configuration and sensitive data</a></p>
+<p>one writing the `User`s in a file</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Before we start checking how to implement it, let&#8217;s just have a quick look to our data structure (records):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class Person {
+
+    private String name;
+
+    private int age;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class User implements Serializable {
+
+    private String id;
+
+    private String name;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can note these classes are <code>Serializable</code>. This is mainly for <code>BEAM</code> case but we&#8217;ll get back on this point later.</p>
+</div>
+<div class="sect3">
+<h4 id="_dependencies"><a class="anchor" href="#_dependencies"></a>3.3.1. Dependencies</h4>
+<div class="paragraph">
+<p>To code a component the only needed dependency is the API:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+  &lt;artifactId&gt;component-api&lt;/artifactId&gt;
+  &lt;version&gt;${component-api.version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inputs"><a class="anchor" href="#_inputs"></a>3.3.2. Inputs</h4>
+<div class="paragraph">
+<p>The inputs often require to open/close a connection and then just work on that connection.</p>
+</div>
+<div class="paragraph">
+<p>Opening the connection can be done in a method decorated with <code>@PostConstruct</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PostConstruct
+public void open() throws FileNotFoundException {
+    reader = service.createInput(file);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we have a <em>connection</em> we can read records. For our simple case we&#8217;ll just read a kind of CSV file containing per row the name and age of a <code>Person</code>.
+This is done in a method dedicated to read <strong>next</strong> element which is decorated with <code>@Producer</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Producer
+public Person readNext() throws IOException {
+    final String line = reader.readLine();
+    if (line == null) { // end of the data is marked with null
+        return null;
+    }
+    final String[] info = line.split(";"); // poor csv parser
+    return new Person(info[0], Integer.parseInt(info[1].trim()));
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+if you need to rely on a buffer because you load multiple data at once you can reuse <code>org.talend.sdk.component.api.base.BufferizedProducerSupport</code> class
+to implement your producer method.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Finally closing the connection once work was done (dataset was completely browsed) can be done in a method decorated with <code>@PreDestroy</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PreDestroy
+public void close() throws IOException {
+    if (reader != null) {
+        reader.close();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+there is another type of input called <code>PartitionMapper</code> which allows to map (in the map/reduce sense) an input but it will be tackled later.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_a_processor"><a class="anchor" href="#_a_processor"></a>3.3.3. A Processor</h4>
+<div class="paragraph">
+<p>A processor is imply a task taking an input and converting it to another one. In our case it will just take a person and convert it to a user
+which has a name copied form the person and an id generated from the name and age of the user.</p>
+</div>
+<div class="paragraph">
+<p>Exactly as the input we just write you can use <code>@PostConstruct</code> and <code>@PreDestroy</code> if you need to do some initializations but a processor
+also has a particular pair of methods to handle the flow lifecycle: <code>@BeforeGroup</code> and <code>@AfterGroup</code>. This is the same idea but it is to mark
+smaller chunks of data. It is close to the idea we have of a batch but without any guarantee of the associated size.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+it is highly inspired from <code>BEAM</code> <code>bundles</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To get started we don&#8217;t need to be so advanced and just need to take a <code>Person</code> and return a <code>User</code> in a method. This can be done decorating
+a method with <code>@ElementListener</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public User map(final Person person) throws IOException {
+    if (log.isDebugEnabled()) {
+        log.debug("Handling {}", person);
+    }
+    return new User(generateId(person), person.getName());
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_an_output"><a class="anchor" href="#_an_output"></a>3.3.4. An output</h4>
+<div class="paragraph">
+<p>Now we read our <code>Person</code>, mapped it to a <code>User</code>, we just need to write back the <code>User</code> to another file.</p>
+</div>
+<div class="paragraph">
+<p>To keep it simple we&#8217;ll do the symmetric operation of our input, i.e. writing a kind of CSV file representing the users.</p>
+</div>
+<div class="paragraph">
+<p>How to implement an output then? An output is just a processor not returning any data.</p>
+</div>
+<div class="paragraph">
+<p>Same as for our reader, we&#8217;ll define an open and close methods to handle the interaction with the output stream:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PostConstruct
+public void open() throws FileNotFoundException {
+    writer = service.createOutput(file);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PreDestroy
+public void close() throws IOException {
+    if (writer != null) {
+        writer.close();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the method handling the write will just be an <code>@ElementListener</code> method returning <code>void</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public void write(final User user) throws IOException {
+    writer.println(user.getId() + ";" + user.getName());
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="getting-started-components"><a class="anchor" href="#getting-started-components"></a>3.3.5. Registering our components</h4>
+<div class="paragraph">
+<p>You probably noticed our components have some configuration. Typically the file related components take a <code>File</code> as configuration.
+To make it work we need to add a <em>factory</em> for these instances which will link the user configuration to the instances.</p>
+</div>
+<div class="paragraph">
+<p>This is simply done through the component constructor themselves. To instantiate a component, the framework will
+select the constructor using the most <code>@Option</code> and if not the one with the most parameters.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+if your component needs to be serialized (like inputs, processors) don&#8217;t forget to ensure you match the java
+serialization rules like for instance having a <code>protected</code> no-arg constructor if you have a parent which is not <code>Object</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Each type of component has a specific marker annotation taking the name of the component as parameter to declare
+a component and a <code>component</code> method to declare the name of the component family:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@Emitter</code> for producers (inputs)</p>
+</li>
+<li>
+<p><code>@Processor</code> for processors (output or not)</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>component</code> is a way to group together (logically) components, for instance <code>FlatFile</code> can be used in <code>component</code> and
+<code>reader</code>/<code>writer</code> as name to have a group of two components related to flat files.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The constructor is responsible to do the link between the configuration and the instance of the component.
+The configuration is injected through its parameters. Each parameter is marked with <code>@Option</code> which enables you to define a name
+to the parameter (if not the framework will use the reflection parameter name, ie <code>arg0</code>, <code>arg1</code>, <code>arg2</code>, &#8230;&#8203; if you didn&#8217;t activate the
+<code>-parameters</code> flag at compile time or it will be the actual parameter name otherwise).</p>
+</div>
+<div class="paragraph">
+<p>The instantiation mechanism will be explained in details later but for this sample we just need to know a <code>File</code> is a valid parameter type.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="getting-started-first-quick-start-run"><a class="anchor" href="#getting-started-first-quick-start-run"></a>3.3.6. Run the quick start example</h4>
+<div class="paragraph">
+<p>To run the code we just created you will need the runtime dependency of the framework:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+  &lt;artifactId&gt;component-runtime-manager&lt;/artifactId&gt;
+  &lt;version&gt;${talend-component-runtime.version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then you have access to the <code>ComponentManager</code> which handles the research of the components and their instantiation.
+We&#8217;ll dig into the way it finds the plugins later but for our sample we just need to know that using the default constructor
+the calling jar (the jar containing the Main) will be considered as a plugin if it has some components.</p>
+</div>
+<div class="paragraph">
+<p>Now we have a component manager, we just need to build our execution chain. For that purpose we can use the <code>ExecutionChainBuilder</code>.
+This builder provides a DSL enforcing you to configure the job (with a name and if the system properties can override each component configuration),
+then the input and finally the chain of processors. Once we have that the builder can create a <code>Supplier&lt;ExecutionChain&gt;</code> you can call immediately
+using <code>get()</code> then <code>execute()</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">try (final ComponentManager manager = ComponentManager.instance()) {
+    components() // from Job DSL
+        .component("reader", "sample://reader?file=/tmp/input.csv")
+        .component("mapper", "sample://mapper")
+        .component("writer", "sample://writer?file=/tmp/output.csv")
+    .connections()
+        .from("reader").to("mapper")
+        .from("mapper").to("writer")
+    .build()
+    .run();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now if you create a <code>/tmp/input.csv</code> containing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">normal;6
+marilyn;36</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then if you run the previous <code>Main</code> you can check there is now a <code>/tmp/output.csv</code> containing as expected:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">a6normal;normal
+a36marilyn;marilyn</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2204,7 +2524,7 @@ The following files have been resolved:
 <p>Even if a flat classpath deployment is possible, it is not recommanded because it would then reduce the capabilities of the components.</p>
 </div>
 <div class="sect5">
-<h6 id="_dependencies"><a class="anchor" href="#_dependencies"></a>Dependencies</h6>
+<h6 id="_dependencies_2"><a class="anchor" href="#_dependencies_2"></a>Dependencies</h6>
 <div class="paragraph">
 <p>The way the framework resolves dependencies is based on a local maven repository layout. As a quick reminder it looks like:</p>
 </div>
@@ -2535,7 +2855,7 @@ validating components match best practices and also generating transparently met
 <p>Used as an extension, <code>dependencies</code>, <code>validate</code> and <code>documentation</code> goals will be set up.</p>
 </div>
 <div class="sect4">
-<h5 id="_dependencies_2"><a class="anchor" href="#_dependencies_2"></a>Dependencies</h5>
+<h5 id="_dependencies_3"><a class="anchor" href="#_dependencies_3"></a>Dependencies</h5>
 <div class="paragraph">
 <p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>, it will create the <code>TALEND-INF/dependencies.txt</code> file
 with the <code>compile</code> and <code>runtime</code> dependencies to let the component use it at runtime:</p>
