@@ -6,7 +6,7 @@
     <title>How to test a REST API :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.2/tutorial-test-rest-api.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-03-07T15:57:45.426Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-03-07T16:39:18.774Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -291,10 +291,10 @@ You can read how to create a simple unit test in <a href="tutorial-test-your-com
         BasicAuth basicAuth = new BasicAuth("https://instance.zendesk.com", "username", "password");
         final SearchQuery searchQuery = new SearchQuery(basicAuth, "type:ticket status:open", "created_at", "desc");
 
-        // We convert our configuration instance to key value configuration <i class="conum" data-value="2"></i><b>(2)</b>
-        final Map&lt;String, String&gt; kvConf = SimpleFactory.configurationByExample(searchQuery);
-        final String uriConfig = kvConf.keySet().stream()
-                .map(k -&gt; k + "=" + uriEncode(kvConf.get(k))).collect(joining("&amp;"));
+        // We convert our configuration instance to URI configuration <i class="conum" data-value="2"></i><b>(2)</b>
+        final String uriConfig = SimpleFactory.configurationByExample()
+                        .forInstance(searchQuery)
+                        .configured().toQueryString();
 
         // We create our job test pipeline <i class="conum" data-value="3"></i><b>(3)</b>
         Job.components()
@@ -319,9 +319,8 @@ We also initiate our search query configuration. We want to get all the open tic
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Here we perform a simple conversion of our configuration to key value using <code>SimpleFactory</code> class provided by the component framework.
-Then, we use the key value configuration to create a configuration URI that we will use in the job test pipeline.
-<a href="services-pipeline.html#_job_builder" class="page">Read more about job pipeline</a>.</td>
+<td>Here we perform a simple conversion of our configuration to URI format, that we will use in the job test pipeline,
+using <code>SimpleFactory</code> class provided by the component framework. <a href="services-pipeline.html#_job_builder" class="page">Read more about job pipeline</a>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
