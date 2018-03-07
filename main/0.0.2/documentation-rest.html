@@ -6,7 +6,7 @@
     <title>Talend Component REST API Documentation :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.2/documentation-rest.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-03-07T08:29:55.922Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-03-07T10:21:37.403Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -848,13 +848,15 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 <div class="sect3">
 <h4 id="_code_get_api_v1_documentation_component_id_code"><a class="anchor" href="#_code_get_api_v1_documentation_component_id_code"></a>1.1.12. <code>GET api/v1/documentation/component/{id}</code></h4>
 <div class="paragraph">
-<p>Returns an asciidoctor version of the documentation for the component represented by its identifier <code>id</code>.</p>
+<p>Returns an asciidoctor version of the documentation for the component represented by its identifier <code>id</code>.
+Format can be either asciidoc or html - if not it will fallback on asciidoc - and if html is selected you get a partial document.</p>
 </div>
 <div class="sect4">
 <h5 id="_request_12"><a class="anchor" href="#_request_12"></a>Request</h5>
 <div class="paragraph">
 <p><em>No body</em><br>
 <strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>format</code>, <code>java.lang.String</code><br>
 <strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
 </div>
 </div>
