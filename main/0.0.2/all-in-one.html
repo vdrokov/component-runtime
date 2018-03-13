@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.2/all-in-one.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-03-13T16:09:57.456Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-03-13T16:51:33.212Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -6920,7 +6920,9 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 <div class="sect4">
 <h5 id="_code_post_api_v1_action_execute_code"><a class="anchor" href="#_code_post_api_v1_action_execute_code"></a><code>POST api/v1/action/execute</code></h5>
 <div class="paragraph">
-<p>This endpoint will execute any UI action and serialize the response as a JSON (pojo model). It takes as input the family, type and name of the related action to identify it and its configuration as a flat key value set using the same kind of mapping than for components (option path as key).</p>
+<p>This endpoint will execute any UI action and serialize the response as a JSON (pojo model)
+It takes as input the family, type and name of the related action to identify it and its configuration
+as a flat key value set using the same kind of mapping than for components (option path as key).</p>
 </div>
 <div class="sect5">
 <h6 id="_request"><a class="anchor" href="#_request"></a>Request</h6>
@@ -6976,7 +6978,8 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 <div class="sect4">
 <h5 id="_code_get_api_v1_action_index_code"><a class="anchor" href="#_code_get_api_v1_action_index_code"></a><code>GET api/v1/action/index</code></h5>
 <div class="paragraph">
-<p>This endpoint returns the list of available actions for a certain falimy and potentially filters the output limiting it to some falimies and types of actions.</p>
+<p>This endpoint returns the list of available actions for a certain falimy and potentially filters the "
+output limiting it to some families and types of actions.</p>
 </div>
 <div class="sect5">
 <h6 id="_request_2"><a class="anchor" href="#_request_2"></a>Request</h6>
@@ -7090,7 +7093,8 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 <div class="sect4">
 <h5 id="_code_get_api_v1_component_dependency_id_code"><a class="anchor" href="#_code_get_api_v1_component_dependency_id_code"></a><code>GET api/v1/component/dependency/{id}</code></h5>
 <div class="paragraph">
-<p>Return a binary of the dependency represented by <code>id</code>. It can be maven coordinates for dependencies or a component id.</p>
+<p>Return a binary of the dependency represented by <code>id</code>.
+It can be maven coordinates for dependencies or a component id.</p>
 </div>
 <div class="sect5">
 <h6 id="_request_4"><a class="anchor" href="#_request_4"></a>Request</h6>
@@ -7501,8 +7505,28 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 <div class="sect4">
 <h5 id="_code_get_api_v1_documentation_component_id_code"><a class="anchor" href="#_code_get_api_v1_documentation_component_id_code"></a><code>GET api/v1/documentation/component/{id}</code></h5>
 <div class="paragraph">
-<p>Returns an asciidoctor version of the documentation for the component represented by its identifier <code>id</code>.
-Format can be either asciidoc or html - if not it will fallback on asciidoc - and if html is selected you get a partial document.</p>
+<p>Returns an asciidoctor version of the documentation for the component represented by its identifier <code>id</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format can be either asciidoc or html - if not it will fallback on asciidoc - and if html is selected you get
+a partial document.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+it is recommanded to use asciidoc format and handle the conversion on your side if you can,
+the html flavor handdles a limited set of the asciidoc syntax only like plain arrays, paragraph and titles.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The documentation will likely be the family documentation but you can use anchors to access a particular
+component (_componentname_inlowercase).</p>
 </div>
 <div class="sect5">
 <h6 id="_request_12"><a class="anchor" href="#_request_12"></a>Request</h6>
@@ -7536,6 +7560,9 @@ Format can be either asciidoc or html - if not it will fallback on asciidoc - an
 </div>
 <div class="sect4">
 <h5 id="_code_get_api_v1_environment_code"><a class="anchor" href="#_code_get_api_v1_environment_code"></a><code>GET api/v1/environment</code></h5>
+<div class="paragraph">
+<p>Returns the environment of this instance. Useful to check the version or configure a healthcheck for the server.</p>
+</div>
 <div class="sect5">
 <h6 id="_request_13"><a class="anchor" href="#_request_13"></a>Request</h6>
 <div class="paragraph">
@@ -7567,8 +7594,21 @@ Format can be either asciidoc or html - if not it will fallback on asciidoc - an
 </div>
 <div class="sect4">
 <h5 id="_code_post_api_v1_execution_read_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_read_family_component_code"></a><code>POST api/v1/execution/read/{family}/{component}</code></h5>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+deprecated
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Read inputs from an instance of mapper. The number of returned records if enforced to be limited to 1000. The format is a JSON based format where each like is a json record.</p>
+<p>Read inputs from an instance of mapper. The number of returned records if enforced to be limited to 1000.
+The format is a JSON based format where each like is a json record.</p>
 </div>
 <div class="sect5">
 <h6 id="_request_14"><a class="anchor" href="#_request_14"></a>Request</h6>
@@ -7593,8 +7633,22 @@ Format can be either asciidoc or html - if not it will fallback on asciidoc - an
 </div>
 <div class="sect4">
 <h5 id="_code_post_api_v1_execution_write_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_write_family_component_code"></a><code>POST api/v1/execution/write/{family}/{component}</code></h5>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+deprecated
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Sends records using a processor instance. Note that the processor should have only an input. Behavior for other processors is undefined. The input format is a JSON based format where each like is a json record - same as for the symmetric endpoint.</p>
+<p>Sends records using a processor instance. Note that the processor should have only an input.
+Behavior for other processors is undefined.
+The input format is a JSON based format where each like is a json record - same as for the symmetric endpoint.</p>
 </div>
 <div class="sect5">
 <h6 id="_request_15"><a class="anchor" href="#_request_15"></a>Request</h6>
