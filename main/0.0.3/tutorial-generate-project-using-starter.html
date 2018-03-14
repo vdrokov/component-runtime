@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate a project using the component starter :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.3/tutorial-generate-project-using-starter.html">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-03-14T16:33:38.500Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/idea.css">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>function gtag(){$gtag.push(arguments)}$gtag=window.dataLayer||[],gtag("js",new Date),gtag("config","GTM-PSBN");</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-definition.html">Definition Model</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-registering.html">Registration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gallery.html">Widget Gallery</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-internationalization.html">Labels and i18n</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-loading.html">Loading</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-gradle.html">Gradle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-internationalization.html">Internationalization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-actions.html">Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-built-in.html">Built-in services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-interceptors.html">Interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-custom-api.html">Extend the API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Execute</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-best-practices.html">JUnit Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-junit.html">Testing HTTP API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-beam.html">Beam case</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-spark.html">Spark and JUnit</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-multiple-envs.html">Multiple environments for the same tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-maven-passwords.html">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-generating-data.html">Generating data?</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="current">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">0.0.3</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb">Tutorials</li>
+    <li class="crumb"><a href="tutorial-generate-project-using-starter.html">Generate a component</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">0.0.3</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="tutorial-generate-project-using-starter.html">0.0.3</a>
+    <a class="version" href="../0.0.2/tutorial-generate-project-using-starter.html">0.0.2</a>
+    <a class="version" href="../0.0.1/tutorial-generate-project-using-starter.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Generate a project using the component starter</h1>
+        <div id="preamble">
+<div class="sectionbody">
+<div id="tutorial-generate-project-using-starter" class="paragraph">
+<p>The component starter let you design your components configuration and generate a ready to implement project structure.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In this tutorial, we will use the component starter to generate some components for MySQL database.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_project_configuration"><a class="anchor" href="#_project_configuration"></a>1. Project configuration</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/starter/starter_project-config.png" alt="Project configuration">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose your favorite build tool. we will use maven in this tutorial but you can select gradle if you prefer.</p>
+</li>
+<li>
+<p>We add the <strong>test facet</strong> to get some unit tests generated automatically for the component that we will create after.</p>
+</li>
+<li>
+<p>Complete the component description (family, and category).</p>
+</li>
+<li>
+<p>Complete the project metadata. the groupId, ArtifactId and the package.</p>
+</li>
+<li>
+<p>Click <strong>ADD A COMPONENT</strong> button to start designing your components.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_an_input_component"><a class="anchor" href="#_create_an_input_component"></a>2. Create an input component</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s create an input component that will connect to a MySQL database, execute a SQL query and get the result.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/starter/starter_input-config.png" alt="Input configuration">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>We choose the component type. <strong>INPUT</strong> in this case.</p>
+</li>
+<li>
+<p>Give the component a cool name. <em>MySQLInput</em> is good enough.</p>
+</li>
+<li>
+<p>This button will let us create the required configuration for our component. To be able to execute a SQL query, we will need a connection url, the username and the password for the database and the SQL query to be executed. Click the <strong>(+)</strong> button on the right to add a field and chose it type.</p>
+</li>
+<li>
+<p>Our component will be an ordinary (non streaming) component. so just let this toggle button off.</p>
+</li>
+<li>
+<p>Here we define the record type that this component will produce.
+we let it generic for now. as our component will generate some json records.
+You can also choose a custom type to define a POJO that will represent your records.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_a_processor_component"><a class="anchor" href="#_create_a_processor_component"></a>3. Create a Processor component</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this step we will create a very simple processor component that will receive a record, log it and return it at is.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/starter/starter_processor-config.png" alt="Processor configuration">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose the component type. <strong>PROCESSOR/OUTPUT</strong> in this case.</p>
+</li>
+<li>
+<p>Give an explicit name to the component. <em>RecordLogger</em>, as our processor will log the records.</p>
+</li>
+<li>
+<p>This is the configuration button. this component don&#8217;t need any configuration. so we just skip this step.</p>
+</li>
+<li>
+<p>Here we define the inputs of the component. so click <strong>ADD INPUT</strong> button to create an input. In this component we will have only one input that will receive the record to be log.</p>
+</li>
+<li>
+<p>click the input name to access it configuration. you can change the name and define the record model.
+Here we will use a generic record. otherwise you can use a POJO to represent the record.</p>
+</li>
+<li>
+<p>Click <strong>ADD OUTPUT</strong> to create an output for this processor. we will need only one output as our logger only emit the received record.
+NOTE: the outputs are also configurable in the same way as the inputs (as explained in <strong>5</strong>).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_an_output_component"><a class="anchor" href="#_create_an_output_component"></a>4. Create an Output component</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now we will create an output component that will receive a record and insert it into a database table.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Output</strong> components are <strong>Processors</strong> without outputs. In other words, the output is a processor
+that don&#8217;t produce any records.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/starter/starter_output-config.png" alt="Output configuration">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Choose the component type. <strong>PROCESSOR/OUTPUT</strong> in this case.</p>
+</li>
+<li>
+<p>Give the component a name. <strong>MySQLOutput</strong></p>
+</li>
+<li>
+<p>Create the component configuration. in this case we will need the connection url, the credentials of the database and the table name to insert the record in.</p>
+</li>
+<li>
+<p>Like what we have done for the processor component above. we add an input</p>
+</li>
+<li>
+<p>We make our input generic as we want to handle generic records in this component.</p>
+</li>
+<li>
+<p>We don&#8217;t create any outputs for this component as it will not produce any records. this is the only difference betweene an output an a processor.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_generate_and_download_the_final_project"><a class="anchor" href="#_generate_and_download_the_final_project"></a>5. Generate and download the final project.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the previous steps we have configured a project and created 3 components of different types (input, processor and output).
+Now click the <strong>GO TO FINISH</strong> button beside the <strong>ADD A COMPONENT</strong> button.
+You will be redirected to a summary page that shows :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/starter/starter_project-download.png" alt="Output configuration">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Project configuration summary.</p>
+</li>
+<li>
+<p>The list of the created components at the left panel.</p>
+</li>
+<li>
+<p>You have two options to get the generated project. Download it locally as a zip file using the <strong>DOWNLOAD AS ZIP</strong></p>
+</li>
+<li>
+<p>Create a github repository and push the project to it using the button <strong>CREATE ON GITHUB</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compile_and_explore_the_generated_project_files"><a class="anchor" href="#_compile_and_explore_the_generated_project_files"></a>6. Compile and explore the generated project files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Download the project as a zip to your local machine or clone it if you have created a github project.</p>
+</div>
+<div class="paragraph">
+<p>As we have created a maven project here, we will use maven command to compile the project.
+In the project directory we execute the command <code>mvn package</code></p>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t have Maven installed on your machine, you can use the maven wrapper provided in the generated project.
+All you need is to execute the command: <code>./mvnw package</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you have created a gradle project you can compile with <code>gradle build</code> or use the gradle wrapper <code>./gradlew build</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The generated project code contains documentation that will guide you to implement the component logic.
+so import the project to your favorite IDE and start implementing coding.</p>
+</div>
+<div class="paragraph">
+<p>In the next tutorial, we will explain how to implement an Input component in details.</p>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/tacokit.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+(function (window, document) {
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {
+        return;
+      }
+      var code = pre.querySelector('code.hljs');
+      if (!code) {
+        return;
+      }
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {
+        code.style.height = closedSize;
+      }
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>
