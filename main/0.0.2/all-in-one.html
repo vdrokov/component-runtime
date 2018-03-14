@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.2/all-in-one.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-03-14T14:23:32.400Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-03-14T14:38:48.765Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -486,7 +486,7 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 </li>
 <li>
 <p><strong>Advanced:</strong>
-<a href="#documentation-testing-start">Testing</a></p>
+<a href="documentation-testing.html" class="page">Testing</a></p>
 </li>
 </ul>
 </div>
@@ -2893,7 +2893,9 @@ Super Writer
 :numbered:
 :icons: font
 :hide-uri-scheme:
-:imagesdir: images</code></pre>
+:imagesdir: images
+
+include::{generated_doc}/documentation.adoc[]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3768,6 +3770,52 @@ The job pipeline is an acyclic graph, so you can built complex pipelines.</p>
 <p>Let&#8217;s take a simple use case where we will have 2 data source (employee and salary) that we will format to csv and write
 the result to a file.</p>
 </div>
+<div class="paragraph">
+<p>A job is defined based on components (nodes) and links (edges) to connect their branches together.</p>
+</div>
+<div class="paragraph">
+<p>Every component is defined by an unique <code>id</code> and an URI that identify the component.</p>
+</div>
+<div class="paragraph">
+<p>The URI follow the form : <code>[family]://[component][?version][&amp;configuration]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>family</strong>: the name of the component family</p>
+</li>
+<li>
+<p><strong>component</strong>: the name of the component</p>
+</li>
+<li>
+<p><strong>version</strong> : the version of the component, it&#8217;s represented in a key=value format. where the key is <code>__version</code> and the value is a number.</p>
+</li>
+<li>
+<p><strong>configuration</strong>: here you can provide the component configuration as key=value tuple where the key is the path of the configuration and the value is the configuration value in string format.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">URI Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>job://csvFileGen?__version=1&amp;path=/temp/result.csv&amp;encoding=utf-8"</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+configuration parameters must be URI/URL encoded.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here is a more concrete job example:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Job.components()   <i class="conum" data-value="1"></i><b>(1)</b>
@@ -3787,68 +3835,18 @@ the result to a file.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>We define all the components that will be used in the job pipeline.
-Every component is defined by an unique <code>id</code> and an URI that identify the component.</td>
+<td>We define all the components that will be used in the job pipeline.</td>
 </tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The URI follow the form : <code>[family]://[component][?version][&amp;configuration]</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>family</strong>: the name of the component family</p>
-</li>
-<li>
-<p><strong>component</strong>: the name of the component</p>
-</li>
-<li>
-<p><strong>version</strong> : the version of the component, it&#8217;s represented in a key=value format. where the key is <code>__version</code> and the value is a number.</p>
-</li>
-<li>
-<p><strong>configuration</strong>: here you can provide the component configuration as key=value tuple.
-where the key is the path of the configuration and the value is the configuration value in string format.</p>
-<div class="literalblock">
-<div class="content">
-<pre>EXAMPLE: "job://csvFileGen?__version=1&amp;path=/temp/result.csv&amp;encoding=utf-8"</pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
 <tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-configuration parameters must be URI/URL encoded.
-</td>
-</tr>
-</table>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Then, we define the connections between the components to construct the job pipeline.
-the links <code>from</code> &#8594; <code>to</code> use the component id and the default input/output branches.</td>
+the links <code>from</code> &#8594; <code>to</code> use the component id and the default input/output branches.
+You can also connect a specific branch of a component if it has multiple or named inputs/outputs branches
+using the methods <code>from(id, branchName)</code> &#8594; <code>to(id, branchName)</code>.
+In the example above, the concat component have to inputs (string1 and string2).</td>
 </tr>
-</table>
-</div>
-<div class="paragraph">
-<p>You can also connect a specific branch of a component if it has multiple or named inputs/outputs branches
-using the methods <code>from(id, branchName)</code> &#8594; <code>to(id, branchName)</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the example above, the concat component have to inputs (string1 and string2).</p>
-</div>
-<div class="colist arabic">
-<table>
 <tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>In this step, we validate the job pipeline by asserting that :
 <div class="ulist">
 <ul>
@@ -3868,7 +3866,7 @@ using the methods <code>from(id, branchName)</code> &#8594; <code>to(id, branchN
 </div></td>
 </tr>
 <tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
 <td>We run the job pipeline.</td>
 </tr>
 </table>
@@ -3886,8 +3884,8 @@ may be independents.
 </tr>
 </table>
 </div>
-<div class="sect6">
-<h7 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>Environment/Runner</h7>
+<div class="sect5">
+<h6 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>Environment/Runner</h6>
 <div class="paragraph">
 <p>Depending the configuration you can select which environment you execute your job in.</p>
 </div>
@@ -3912,8 +3910,8 @@ may be independents.
 by <code>talend.beam.job.</code>. For instance to set <code>appName</code> option you will set <code>-Dtalend.beam.job.appName=mytest</code>.</p>
 </div>
 </div>
-<div class="sect6">
-<h7 id="_key_provider"><a class="anchor" href="#_key_provider"></a>Key Provider</h7>
+<div class="sect5">
+<h6 id="_key_provider"><a class="anchor" href="#_key_provider"></a>Key Provider</h6>
 <div class="paragraph">
 <p>The job builder let you set a key provider to join your data when a component has multiple inputs.
 The key provider can be set contextually to a component or globally to the job</p>
@@ -4109,7 +4107,7 @@ public @interface MyLayout {
 <div class="sect2">
 <h3 id="_talend_component_testing_documentation"><a class="anchor" href="#_talend_component_testing_documentation"></a>4.5. Talend Component Testing Documentation</h3>
 <div class="sect3">
-<h4 id="documentation-testing-start"><a class="anchor" href="#documentation-testing-start"></a>4.5.1. Best practises</h4>
+<h4 id="_best_practises"><a class="anchor" href="#_best_practises"></a>4.5.1. Best practises</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5294,7 +5292,7 @@ which is pretty good on that topic.</p>
 <h2 id="_talend_component_testing_documentation_2"><a class="anchor" href="#_talend_component_testing_documentation_2"></a>5. Talend Component Testing Documentation</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="documentation-testing-start"><a class="anchor" href="#documentation-testing-start"></a>5.1. Best practises</h3>
+<h3 id="_best_practises_2"><a class="anchor" href="#_best_practises_2"></a>5.1. Best practises</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -8175,6 +8173,11 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.documentation.active</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
@@ -8249,11 +8252,6 @@ the configuration is read from system properties, environment variables, &#8230;
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.documentation.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
