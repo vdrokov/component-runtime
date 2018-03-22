@@ -6,7 +6,7 @@
     <title>Configuring components :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.5/component-configuration.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-03-22T16:02:00.768Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-03-22T16:44:36.742Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -273,7 +273,7 @@ to not have <code>arg0</code>, <code>arg1</code>, &#8230;&#8203; as names).</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-it is recommanded to use simple models which can be serialized by components to avoid headaches when implementing serialized components.
+it is recommended to use simple models which can be serialized by components to avoid headaches when implementing serialized components.
 </td>
 </tr>
 </table>
@@ -388,7 +388,7 @@ and the elements are of  <code>FileOptions</code> type, here is how to define a
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">files[0].path = /home/user/input1.csv
 files[0].format = CSV
 files[1].path = /home/user/input2.xml
-files[2].format = EXCEL</code></pre>
+files[1].format = EXCEL</code></pre>
 </div>
 </div>
 </div>
@@ -487,44 +487,12 @@ validation in <code>org.talend.sdk.component.api.configuration.constraint</code>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::pattern":"test"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Max</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">max</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number, int, short, byte, long, double, float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::max":"12.34"}</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Min</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">min</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number, int, short, byte, long, double, float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::min":"12.34"}</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Required</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">required</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark the field as being mandatory.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Object</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::required":"true"}</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Max</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">maxItems</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::maxItems":"12.34"}</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Min</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">minItems</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::minItems":"12.34"}</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Uniques</p></td>

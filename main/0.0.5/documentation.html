@@ -6,7 +6,7 @@
     <title>Talend Component Documentation :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.5/documentation.html">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-03-22T16:02:00.804Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-03-22T16:44:36.823Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -659,7 +659,7 @@ public MyNewData map(@Input final MyData data, @Input("input2") final MyData2 da
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-due to the work required to not use the default branch it is recommanded to use it when possible and not
+due to the work required to not use the default branch it is recommended to use it when possible and not
 name its branches depending on the component semantic.
 </td>
 </tr>
@@ -713,7 +713,7 @@ to not have <code>arg0</code>, <code>arg1</code>, &#8230;&#8203; as names).</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-it is recommanded to use simple models which can be serialized by components to avoid headaches when implementing serialized components.
+it is recommended to use simple models which can be serialized by components to avoid headaches when implementing serialized components.
 </td>
 </tr>
 </table>
@@ -823,7 +823,7 @@ and the elements are of  <code>FileOptions</code> type, here is how to define a
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">files[0].path = /home/user/input1.csv
 files[0].format = CSV
 files[1].path = /home/user/input2.xml
-files[2].format = EXCEL</code></pre>
+files[1].format = EXCEL</code></pre>
 </div>
 </div>
 </div>
@@ -920,44 +920,12 @@ validation in <code>org.talend.sdk.component.api.configuration.constraint</code>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::pattern":"test"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Max</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">max</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number, int, short, byte, long, double, float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::max":"12.34"}</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Min</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">min</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number, int, short, byte, long, double, float</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::min":"12.34"}</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Required</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">required</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark the field as being mandatory.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Object</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::required":"true"}</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Max</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">maxItems</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::maxItems":"12.34"}</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Min</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">minItems</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::minItems":"12.34"}</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Uniques</p></td>
@@ -1613,7 +1581,7 @@ to the current model.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-it is recommanded to not manage all migrations in the handler but rather split it in services you inject in the migration handler
+it is recommended to not manage all migrations in the handler but rather split it in services you inject in the migration handler
 (through constructor):
 </td>
 </tr>
@@ -1927,7 +1895,7 @@ The following files have been resolved:
 <div class="sect3">
 <h4 id="_packaging_an_application"><a class="anchor" href="#_packaging_an_application"></a>2.1.2. Packaging an application</h4>
 <div class="paragraph">
-<p>Even if a flat classpath deployment is possible, it is not recommanded because it would then reduce the capabilities of the components.</p>
+<p>Even if a flat classpath deployment is possible, it is not recommended because it would then reduce the capabilities of the components.</p>
 </div>
 <div class="sect4">
 <h5 id="_dependencies"><a class="anchor" href="#_dependencies"></a>Dependencies</h5>
@@ -2358,7 +2326,7 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateActions</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Validate actions signatures for the ones not tolerating dynamic binding (<code>@HealthCheck</code>, <code>@DynamicValues</code>, &#8230;&#8203;). It is recommanded to keep it <code>true</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validate actions signatures for the ones not tolerating dynamic binding (<code>@HealthCheck</code>, <code>@DynamicValues</code>, &#8230;&#8203;). It is recommended to keep it <code>true</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
@@ -3131,7 +3099,7 @@ for instance. Here is the list of all actions:</p>
 <p><code>javax.json.JsonBuilderFactory</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>A JSON-P instance. It is recommanded to use this one instead of a custom one for memory/speed optimizations.</p>
+<p>A JSON-P instance. It is recommended to use this one instead of a custom one for memory/speed optimizations.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3139,7 +3107,7 @@ for instance. Here is the list of all actions:</p>
 <p><code>javax.json.JsonWriterFactory</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>A JSON-P instance. It is recommanded to use this one instead of a custom one for memory/speed optimizations.</p>
+<p>A JSON-P instance. It is recommended to use this one instead of a custom one for memory/speed optimizations.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3147,7 +3115,7 @@ for instance. Here is the list of all actions:</p>
 <p><code>javax.json.JsonReaderFactory</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>A JSON-P instance. It is recommanded to use this one instead of a custom one for memory/speed optimizations.</p>
+<p>A JSON-P instance. It is recommended to use this one instead of a custom one for memory/speed optimizations.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3155,7 +3123,7 @@ for instance. Here is the list of all actions:</p>
 <p><code>javax.json.stream.JsonParserFactory</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>A JSON-P instance. It is recommanded to use this one instead of a custom one for memory/speed optimizations.</p>
+<p>A JSON-P instance. It is recommended to use this one instead of a custom one for memory/speed optimizations.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3163,7 +3131,7 @@ for instance. Here is the list of all actions:</p>
 <p><code>javax.json.stream.JsonGeneratorFactory</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>A JSON-P instance. It is recommanded to use this one instead of a custom one for memory/speed optimizations.</p>
+<p>A JSON-P instance. It is recommended to use this one instead of a custom one for memory/speed optimizations.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -3192,7 +3160,7 @@ it assumes the dependency is locally available to the execution instance which i
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-it is not recommanded to use it for the runtime since the local configuration is generally different and the instances are distincts.
+it is not recommended to use it for the runtime since the local configuration is generally different and the instances are distincts.
 </td>
 </tr>
 </table>
@@ -3786,7 +3754,7 @@ with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
 only if it targets not portable components (only used by the Studio or Beam).</p>
 </div>
 <div class="paragraph">
-<p>In term of organization it is recommanded to create a custom <code>xxxx-component-api</code> module with the new set of annotations.</p>
+<p>In term of organization it is recommended to create a custom <code>xxxx-component-api</code> module with the new set of annotations.</p>
 </div>
 <div class="sect3">
 <h4 id="_extending_the_ui"><a class="anchor" href="#_extending_the_ui"></a>4.6.1. Extending the UI</h4>
@@ -4288,7 +4256,7 @@ you can also implement your own input representation if needed implementing <cod
 <div class="sect4">
 <h5 id="_junit_4_3"><a class="anchor" href="#_junit_4_3"></a>JUnit 4</h5>
 <div class="paragraph">
-<p>The usage relies on a JUnit <code>TestRule</code>. It is recommanded to use it as a <code>@ClassRule</code> to ensure
+<p>The usage relies on a JUnit <code>TestRule</code>. It is recommended to use it as a <code>@ClassRule</code> to ensure
 a single instance of a spark cluster is built but you can also use it as a simple <code>@Rule</code> which means
 it will be created per method instead of per test class.</p>
 </div>
@@ -4642,7 +4610,7 @@ etc&#8230;&#8203;It is a lot of work!</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(MultiEnvironmentsRunner.class)
 @Environment(Env1.class)
-@Environment(Env1.class)
+@Environment(Env2.class)
 public class TheTest {
     @Test
     public void test1() {
