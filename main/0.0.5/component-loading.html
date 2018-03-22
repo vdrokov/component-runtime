@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Loading :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.5/component-loading.html">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-03-22T14:46:55.316Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/idea.css">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>function gtag(){$gtag.push(arguments)}$gtag=window.dataLayer||[],gtag("js",new Date),gtag("config","GTM-PSBN");</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="0.0.5">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-definition.html">Definition Model</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-registering.html">Registration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gallery.html">Widget Gallery</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-internationalization.html">Labels and i18n</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="component-loading.html">Loading</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-gradle.html">Gradle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-internationalization.html">Internationalization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-actions.html">Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-built-in.html">Built-in services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-interceptors.html">Interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-custom-api.html">Extend the API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Execute</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-best-practices.html">JUnit Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-junit.html">Testing HTTP API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-beam.html">Beam case</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-spark.html">Spark and JUnit</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-multiple-envs.html">Multiple environments for the same tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-maven-passwords.html">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-generating-data.html">Generating data?</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="current">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">0.0.5</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb">Package</li>
+    <li class="crumb"><a href="component-loading.html">Loading</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">0.0.5</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="component-loading.html">0.0.5</a>
+    <a class="version" href="../0.0.4/component-loading.html">0.0.4</a>
+    <a class="version" href="../0.0.3/component-loading.html">0.0.3</a>
+    <a class="version" href="../0.0.2/component-loading.html">0.0.2</a>
+    <a class="version" href="../0.0.1/component-loading.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Component Loading</h1>
+        <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Talend Component scanning is based on a plugin concept. To ensure plugins can be developped in parallel and avoid conflicts
+it requires to isolate plugins (components or component grouped in a single jar/plugin).</p>
+</div>
+<div class="paragraph">
+<p>Here we have multiple options which are (high level):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>flat classpath: listed for completeness but rejected <em>by design</em> because it doesn&#8217;t match at all this requirement.</p>
+</li>
+<li>
+<p>tree classloading: a shared classloader inherited by plugin classloaders but plugin classloader classes
+are not seen by the shared classloader nor by other plugins.</p>
+</li>
+<li>
+<p>graph classloading: this one allows you to link the plugins and dependencies together dynamically in any direction.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you want to map it to concrete common examples, the tree classloading is commonly used by Servlet containers where plugins are web applications
+and the graph classloading can be illustrated by OSGi containers.</p>
+</div>
+<div class="paragraph">
+<p>In the spirit of avoiding a lot of complexity added by this layer, Talend Component relies on a tree classloading. The advantage
+is you don&#8217;t need to define the relationship with other plugins/dependencies (it is built-in).</p>
+</div>
+<div class="paragraph">
+<p>Here is a representation of this solution:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/classloader-layout.png" alt="classloader layout"></span></p>
+</div>
+<div class="paragraph">
+<p>The interesting part is the <em>shared</em> area will contain Talend Component API which is the only (by default) shared classes accross the whole plugins.</p>
+</div>
+<div class="paragraph">
+<p>Then each plugins will be loaded in their own classloader with their dependencies.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_packaging_a_plugin"><a class="anchor" href="#_packaging_a_plugin"></a>1. Packaging a plugin</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+this part explains the overall way to handle dependecnies but the Talend Maven plugin provides a shortcut for that.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A plugin is just a jar which was enriched with the list of its dependencies. By default Talend Component runtime is able to
+read the output of <code>maven-dependency-plugin</code> in <code>TALEND-INF/dependencies.txt</code> location so you just need to ensure your component defines the following plugin:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
+  &lt;version&gt;3.0.2&lt;/version&gt;
+  &lt;executions&gt;
+    &lt;execution&gt;
+      &lt;id&gt;create-TALEND-INF/dependencies.txt&lt;/id&gt;
+      &lt;phase&gt;process-resources&lt;/phase&gt;
+      &lt;goals&gt;
+        &lt;goal&gt;list&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+        &lt;outputFile&gt;${project.build.outputDirectory}/TALEND-INF/dependencies.txt&lt;/outputFile&gt;
+      &lt;/configuration&gt;
+    &lt;/execution&gt;
+  &lt;/executions&gt;
+&lt;/plugin&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you check your jar once built you will see that the file contains something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ unzip -p target/mycomponent-1.0.0-SNAPSHOT.jar TALEND-INF/dependencies.txt
+
+The following files have been resolved:
+   org.talend.sdk.component:component-api:jar:1.0.0-SNAPSHOT:provided
+   org.apache.geronimo.specs:geronimo-annotation_1.3_spec:jar:1.0:provided
+   org.superbiz:awesome-project:jar:1.2.3:compile
+   junit:junit:jar:4.12:test
+   org.hamcrest:hamcrest-core:jar:1.3:test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What is important to see is the scope associated to the artifacts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the API (<code>component-api</code> and <code>geronimo-annotation_1.3_spec</code>) are <code>provided</code> because you can consider them to be there when executing (it comes with the framework)</p>
+</li>
+<li>
+<p>your specific dependencies (<code>awesome-project</code>) is <code>compile</code>: it will be included as a needed dependency by the framework (note that using <code>runtime</code> works too).</p>
+</li>
+<li>
+<p>the other dependencies will be ignored (<code>test</code> dependencies)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_packaging_an_application"><a class="anchor" href="#_packaging_an_application"></a>2. Packaging an application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Even if a flat classpath deployment is possible, it is not recommanded because it would then reduce the capabilities of the components.</p>
+</div>
+<div class="sect2">
+<h3 id="_dependencies"><a class="anchor" href="#_dependencies"></a>2.1. Dependencies</h3>
+<div class="paragraph">
+<p>The way the framework resolves dependencies is based on a local maven repository layout. As a quick reminder it looks like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>.
+├── groupId1
+│   └── artifactId1
+│       ├── version1
+│       │   └── artifactId1-version1.jar
+│       └── version2
+│           └── artifactId1-version2.jar
+└── groupId2
+    └── artifactId2
+        └── version1
+            └── artifactId2-version1.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is all the layout the framework will use. Concretely the logic will convert the t-uple {groupId, artifactId, version, type (jar)}
+to the path in the repository.</p>
+</div>
+<div class="paragraph">
+<p>Talend Component runtime has two ways to find an artifact:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>from the file system based on a configure maven 2 repository.</p>
+</li>
+<li>
+<p>from a fatjar (uber jar) with a nested maven repository under <code>MAVEN-INF/repository</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The first option will use either - by default - <code>${user.home}/.m2/repository</code> or a specific path configured when creating a <code>ComponentManager</code>.
+The nested repository option will need some configuration during the packaging to ensure the repository is well created.</p>
+</div>
+<div class="sect3">
+<h4 id="_create_a_nested_maven_repository_with_maven_shade_plugin"><a class="anchor" href="#_create_a_nested_maven_repository_with_maven_shade_plugin"></a>2.1.1. Create a nested maven repository with maven-shade-plugin</h4>
+<div class="paragraph">
+<p>To create the nested <code>MAVEN-INF/repository</code> repository you can use <code>nested-maven-repository</code> extension:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;executions&gt;
+    &lt;execution&gt;
+      &lt;phase&gt;package&lt;/phase&gt;
+      &lt;goals&gt;
+        &lt;goal&gt;shade&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+        &lt;transformers&gt;
+          &lt;transformer implementation="org.talend.sdk.component.container.maven.shade.ContainerDependenciesTransformer"&gt;
+            &lt;session&gt;${session}&lt;/project&gt;
+          &lt;/transformer&gt;
+        &lt;/transformers&gt;
+      &lt;/configuration&gt;
+    &lt;/execution&gt;
+  &lt;/executions&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+      &lt;artifactId&gt;nested-maven-repository&lt;/artifactId&gt;
+      &lt;version&gt;${the.plugin.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/plugin&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_listing_needed_plugins"><a class="anchor" href="#_listing_needed_plugins"></a>2.2. Listing needed plugins</h3>
+<div class="paragraph">
+<p>Plugin are programmatically registered in general but if you want to make some of them automatically available you
+need to generate a <code>TALEND-INF/plugins.properties</code> which will map a plugin name to coordinates found with the maven mecanism
+we just talked about.</p>
+</div>
+<div class="paragraph">
+<p>Here again we can enrich <code>maven-shade-plugin</code> to do it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;executions&gt;
+    &lt;execution&gt;
+      &lt;phase&gt;package&lt;/phase&gt;
+      &lt;goals&gt;
+        &lt;goal&gt;shade&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+        &lt;transformers&gt;
+          &lt;transformer implementation="org.talend.sdk.component.container.maven.shade.PluginTransformer"&gt;
+            &lt;session&gt;${session}&lt;/project&gt;
+          &lt;/transformer&gt;
+        &lt;/transformers&gt;
+      &lt;/configuration&gt;
+    &lt;/execution&gt;
+  &lt;/executions&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+      &lt;artifactId&gt;nested-maven-repository&lt;/artifactId&gt;
+      &lt;version&gt;${the.plugin.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/plugin&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code_maven_shade_plugin_code_extensions"><a class="anchor" href="#_code_maven_shade_plugin_code_extensions"></a>2.3. <code>maven-shade-plugin</code> extensions</h3>
+<div class="paragraph">
+<p>Here is a final job/application bundle based on maven shade plugin:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;configuration&gt;
+    &lt;createDependencyReducedPom&gt;false&lt;/createDependencyReducedPom&gt;
+    &lt;filters&gt;
+      &lt;filter&gt;
+        &lt;artifact&gt;*:*&lt;/artifact&gt;
+        &lt;excludes&gt;
+          &lt;exclude&gt;META-INF/<strong>.SF&lt;/exclude&gt;
+          &lt;exclude&gt;META-INF/</strong>.DSA&lt;/exclude&gt;
+          &lt;exclude&gt;META-INF/*.RSA&lt;/exclude&gt;
+        &lt;/excludes&gt;
+      &lt;/filter&gt;
+    &lt;/filters&gt;
+  &lt;/configuration&gt;
+  &lt;executions&gt;
+    &lt;execution&gt;
+      &lt;phase&gt;package&lt;/phase&gt;
+      &lt;goals&gt;
+        &lt;goal&gt;shade&lt;/goal&gt;
+      &lt;/goals&gt;
+      &lt;configuration&gt;
+        &lt;shadedClassifierName&gt;shaded&lt;/shadedClassifierName&gt;
+        &lt;transformers&gt;
+          &lt;transformer
+              implementation="org.talend.sdk.component.container.maven.shade.ContainerDependenciesTransformer"&gt;
+            &lt;session&gt;${session}&lt;/session&gt;
+            &lt;userArtifacts&gt;
+              &lt;artifact&gt;
+                &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+                &lt;artifactId&gt;sample-component&lt;/artifactId&gt;
+                &lt;version&gt;1.0&lt;/version&gt;
+                &lt;type&gt;jar&lt;/type&gt;
+              &lt;/artifact&gt;
+            &lt;/userArtifacts&gt;
+          &lt;/transformer&gt;
+          &lt;transformer implementation="org.talend.sdk.component.container.maven.shade.PluginTransformer"&gt;
+            &lt;session&gt;${session}&lt;/session&gt;
+            &lt;userArtifacts&gt;
+              &lt;artifact&gt;
+                &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+                &lt;artifactId&gt;sample-component&lt;/artifactId&gt;
+                &lt;version&gt;1.0&lt;/version&gt;
+                &lt;type&gt;jar&lt;/type&gt;
+              &lt;/artifact&gt;
+            &lt;/userArtifacts&gt;
+          &lt;/transformer&gt;
+        &lt;/transformers&gt;
+      &lt;/configuration&gt;
+    &lt;/execution&gt;
+  &lt;/executions&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+      &lt;artifactId&gt;nested-maven-repository-maven-plugin&lt;/artifactId&gt;
+      &lt;version&gt;${the.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/plugin&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the configuration unrelated to transformers can depend your application.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>ContainerDependenciesTransformer</code> is the one to embed a maven repository and <code>PluginTransformer</code> to create a file listing (one per line)
+a list of artifacts (representing plugins).</p>
+</div>
+<div class="paragraph">
+<p>Both transformers share most of their configuration:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>session</code>: must be set to <code>${session}</code>. This is used to retrieve dependencies.</p>
+</li>
+<li>
+<p><code>scope</code>: a comma separated list of scope to include in the artifact filtering (note that the default will rely on <code>provided</code> but you can replace it by <code>compile</code>, <code>runtime</code>, <code>runtime+compile</code>, <code>runtime+system</code>, <code>test</code>).</p>
+</li>
+<li>
+<p><code>include</code>: a comma separated list of artifact to include in the artifact filtering.</p>
+</li>
+<li>
+<p><code>exclude</code>: a comma separated list of artifact to exclude in the artifact filtering.</p>
+</li>
+<li>
+<p><code>userArtifacts</code>: a list of artifacts (groupId, artifactId, version, type - optional, file - optional for plugin transformer, scope - optional) which can be forced inline - mainly useful for <code>PluginTransformer</code>.</p>
+</li>
+<li>
+<p><code>includeTransitiveDependencies</code>: should transitive dependencies of the components be included, true by default.</p>
+</li>
+<li>
+<p><code>includeProjectComponentDependencies</code>: should project component dependencies be included, false by default (normally a job project uses isolation for components so this is not needed).</p>
+</li>
+<li>
+<p><code>userArtifacts</code>: set of component artifacts to include.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+to use with the component tooling, it is recommended to keep default locations. Also if you feel you need to use project dependencies,
+you can need to refactor your project structure to ensure you keep component isolation. Talend component let you handle that part but the recommended
+practise is to use <code>userArtifacts</code> for the components and not the project <code>&lt;dependencies&gt;</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_containerdependenciestransformer"><a class="anchor" href="#_containerdependenciestransformer"></a>2.3.1. ContainerDependenciesTransformer</h4>
+<div class="paragraph">
+<p><code>ContainerDependenciesTransformer</code> specific configuration is the following one:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>repositoryBase</code>: base repository location (default to <code>MAVEN-INF/repository</code>).</p>
+</li>
+<li>
+<p><code>ignoredPaths</code>: a comma separated list of folder to not create in the output jar, this is common for the ones already created by other transformers/build parts.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_plugintransformer"><a class="anchor" href="#_plugintransformer"></a>2.3.2. PluginTransformer</h4>
+<div class="paragraph">
+<p><code>ContainerDependenciesTransformer</code> specific configuration is the following one:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>pluginListResource</code>: base repository location (default to TALEND-INF/plugins.properties`).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example: if you want to list only the plugins you use you can configure this transformer like that:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;transformer implementation="org.talend.sdk.component.container.maven.shade.PluginTransformer"&gt;
+  &lt;session&gt;${session}&lt;/session&gt;
+  &lt;include&gt;org.talend.sdk.component:component-x,org.talend.sdk.component:component-y,org.talend.sdk.component:component-z&lt;/include&gt;
+&lt;/transformer&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/tacokit.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+(function (window, document) {
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {
+        return;
+      }
+      var code = pre.querySelector('code.hljs');
+      if (!code) {
+        return;
+      }
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {
+        code.style.height = closedSize;
+      }
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>
