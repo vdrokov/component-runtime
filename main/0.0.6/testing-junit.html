@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.6/testing-junit.html">
+    <meta name="generator" content="Antora 1.0.0-beta.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-03-30T15:25:55.446Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/idea.css">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="0.0.6">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-definition.html">Definition Model</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-registering.html">Registration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gallery.html">Widget Gallery</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-internationalization.html">Labels and i18n</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-loading.html">Loading</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-gradle.html">Gradle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-internationalization.html">Internationalization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-actions.html">Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-built-in.html">Built-in services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-interceptors.html">Interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-custom-api.html">Extend the API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Execute</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-best-practices.html">JUnit Integration</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="testing-junit.html">Testing HTTP API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-beam.html">Beam case</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-spark.html">Spark and JUnit</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-multiple-envs.html">Multiple environments for the same tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-maven-passwords.html">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-generating-data.html">Generating data?</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">0.0.6</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb">Testing</li>
+    <li class="crumb"><a href="testing-junit.html">Testing HTTP API</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">0.0.6</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="testing-junit.html">0.0.6</a>
+    <a class="version" href="../0.0.5/testing-junit.html">0.0.5</a>
+    <a class="version" href="../0.0.4/testing-junit.html">0.0.4</a>
+    <a class="version" href="../0.0.3/testing-junit.html">0.0.3</a>
+    <a class="version" href="../0.0.2/testing-junit.html">0.0.2</a>
+    <a class="version" href="../0.0.1/testing-junit.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <div class="sect1">
+<h2 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>1. component-runtime-junit</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>component-runtime-junit</code> is a small test library allowing you to validate simple logic based on Talend Component tooling.</p>
+</div>
+<div class="paragraph">
+<p>To import it add to your project the following dependency:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+  &lt;artifactId&gt;component-runtime-junit&lt;/artifactId&gt;
+  &lt;version&gt;${talend-component.version}&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This dependency also provide some mocked components that you can use with your own component to create tests.</p>
+</div>
+<div class="paragraph">
+<p>The mocked components are provided under the family <code>test</code> :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>emitter</code>     : a mock of an input component</p>
+</li>
+<li>
+<p><code>collector</code>   : a mock of an output component</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1. JUnit 4</h3>
+<div class="paragraph">
+<p>Then you can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyComponentTest {
+
+    @Rule <i class="conum" data-value="1"></i><b>(1)</b>
+    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent.");
+
+    @Test
+    public void produce() {
+        Job.components() <i class="conum" data-value="2"></i><b>(2)</b>
+             .component("mycomponent","yourcomponentfamily://yourcomponent?"+createComponentConfig())
+             .component("collector", "test://collector")
+           .connections()
+             .from("mycomponent").to("collector")
+           .build()
+           .run();
+
+        final List&lt;MyRecord&gt; records = components.getCollectedData(MyRecord.class); <i class="conum" data-value="3"></i><b>(3)</b>
+        doAssertRecords(records); // depending your test
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>the rule will create a component manager and provide two mock components: an emitter and a collector. Don&#8217;t forget to set the root package of your component to enable it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>you define any chain you want to test, it generally uses the mock as source or collector</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>you validate your component behavior, for a source you can assert the right records were emitted in the mock collect</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
+<div class="paragraph">
+<p>The JUnit 5 integration is mainly the same as for JUnit 4 except it uses the new JUnit 5 extension mecanism.</p>
+</div>
+<div class="paragraph">
+<p>The entry point is the <code>@WithComponents</code> annotation you put on your test class which takes the
+component package you want to test and you can use <code>@Injected</code> to inject in a test class field an instance of <code>ComponentsHandler</code>
+which exposes the same utilities than the JUnit 4 rule:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WithComponents("org.talend.sdk.component.junit.component") <i class="conum" data-value="1"></i><b>(1)</b>
+public class ComponentExtensionTest {
+    @Injected <i class="conum" data-value="2"></i><b>(2)</b>
+    private ComponentsHandler handler;
+
+    @Test
+    public void manualMapper() {
+        final Mapper mapper = handler.createMapper(Source.class, new Source.Config() {
+
+            {
+                values = asList("a", "b");
+            }
+        });
+        assertFalse(mapper.isStream());
+        final Input input = mapper.create();
+        assertEquals("a", input.next());
+        assertEquals("b", input.next());
+        assertNull(input.next());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The annotation defines which components to register in the test context.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The field allows to get the handler to be able to orchestrate the tests.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+if it is the first time you use JUnit 5, don&#8217;t forget the imports changed and you must use <code>org.junit.jupiter.api.Test</code> instead of <code>org.junit.Test</code>.
+Some IDE versions and <code>surefire</code> versions can also need you to install either a plugin or a specific configuration.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>1.3. Mocking the output</h3>
+<div class="paragraph">
+<p>Using the component "test"/"collector" as in previous sample stores all records emitted by the chain (typically your source)
+in memory, you can then access them using <code>theSimpleComponentRule.getCollectoedRecord(type)</code>. Note that this method filters by type,
+if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mocking_the_input"><a class="anchor" href="#_mocking_the_input"></a>1.4. Mocking the input</h3>
+<div class="paragraph">
+<p>The input mocking is symmetric to the output but here you provide the data you want to inject:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyComponentTest {
+
+    @Rule
+    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent.");
+
+    @Test
+    public void produce() {
+        components.setInputData(asList(createData(), createData(), createData())); <i class="conum" data-value="1"></i><b>(1)</b>
+
+        Job.components() <i class="conum" data-value="2"></i><b>(2)</b>
+             .component("emitter","test://emitter")
+             .component("out", "yourcomponentfamily://myoutput?"+createComponentConfig())
+           .connections()
+              .from("emitter").to("out")
+           .build
+           .run();
+
+        assertMyOutputProcessedTheInputData();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>using <code>setInputData</code> you prepare the execution(s) to have a fake input when using "test"/"emitter" component.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_runtime_configuration_from_component_configuration"><a class="anchor" href="#_creating_runtime_configuration_from_component_configuration"></a>1.5. Creating runtime configuration from component configuration</h3>
+<div class="paragraph">
+<p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses
+a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility
+to get this map instance from a configuration instance.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final MyComponentConfig componentConfig = new MyComponentConfig();
+componentConfig.setUser("....");
+// .. other inits
+
+final Map&lt;String, String&gt; configuration = configurationByExample(componentConfig);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The same factory provides a fluent DSL to create configuration calling <code>configurationByExample</code> without any parameter.
+The advantage is to be able to convert an object as a <code>Map&lt;String, String&gt;</code> as seen previously or as a query string
+to use it with the <code>Job</code> DSL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final String uri = "family://component?" +
+    configurationByExample().forInstance(componentConfig).configured().toQueryString();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It handles the encoding of the URI to ensure it is correctly done.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_a_mapper"><a class="anchor" href="#_testing_a_mapper"></a>1.6. Testing a Mapper</h3>
+<div class="paragraph">
+<p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarly, you can get an instance from a configuration
+and you can execute this instance to collect the output. Here is a snippet doing that:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MapperTest {
+
+    @ClassRule
+    public static final SimpleComponentRule COMPONENT_FACTORY = new SimpleComponentRule(
+            "org.company.talend.component");
+
+    @Test
+    public void mapper() {
+        final Mapper mapper = COMPONENT_FACTORY.createMapper(MyMapper.class, new Source.Config() {{
+            values = asList("a", "b");
+        }});
+        assertEquals(asList("a", "b"), COMPONENT_FACTORY.collectAsList(String.class, mapper));
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_a_processor"><a class="anchor" href="#_testing_a_processor"></a>1.7. Testing a Processor</h3>
+<div class="paragraph">
+<p>As for the mapper a processor is testable unitary. The case is a bit more complex since you can have multiple
+inputs and outputs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class ProcessorTest {
+
+    @ClassRule
+    public static final SimpleComponentRule COMPONENT_FACTORY = new SimpleComponentRule(
+            "org.company.talend.component");
+
+    @Test
+    public void processor() {
+        final Processor processor = COMPONENT_FACTORY.createProcessor(Transform.class, null);
+        final SimpleComponentRule.Outputs outputs = COMPONENT_FACTORY.collect(processor,
+                        new JoinInputFactory().withInput("__default__", asList(new Transform.Record("a"), new Transform.Record("bb")))
+                                              .withInput("second", asList(new Transform.Record("1"), new Transform.Record("2")))
+                );
+        assertEquals(2, outputs.size());
+        assertEquals(asList(2, 3), outputs.get(Integer.class, "size"));
+        assertEquals(asList("a1", "bb2"), outputs.get(String.class, "value"));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here again the rule allows you to instantiate a <code>Processor</code> from your code
+and then to <code>collect</code> the output from the inputs you pass in. There are two convenient implementation
+of the input factory:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>MainInputFactory</code> for processors using only the default input.</p>
+</li>
+<li>
+<p><code>JoinInputfactory</code> for processors using multiple inputs have a method <code>withInput(branch, data)</code> The first arg is the branch name
+and the second arg is the data used by the branch.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+you can also implement your own input representation if needed implementing <code>org.talend.sdk.component.junit.ControllableInputFactory</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/tacokit.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+(function (window, document) {
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {
+        return;
+      }
+      var code = pre.querySelector('code.hljs');
+      if (!code) {
+        return;
+      }
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {
+        code.style.height = closedSize;
+      }
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>

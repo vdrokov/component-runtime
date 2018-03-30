@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components Definition :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.6/component-definition.html">
+    <meta name="generator" content="Antora 1.0.0-beta.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-03-30T15:25:55.322Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/idea.css">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="0.0.6">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="component-definition.html">Definition Model</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-registering.html">Registration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gallery.html">Widget Gallery</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-internationalization.html">Labels and i18n</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-loading.html">Loading</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-gradle.html">Gradle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-internationalization.html">Internationalization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-actions.html">Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-built-in.html">Built-in services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-interceptors.html">Interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-custom-api.html">Extend the API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Execute</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-best-practices.html">JUnit Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-junit.html">Testing HTTP API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-beam.html">Beam case</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-spark.html">Spark and JUnit</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-multiple-envs.html">Multiple environments for the same tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-maven-passwords.html">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-generating-data.html">Generating data?</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">0.0.6</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb">Programming Model</li>
+    <li class="crumb"><a href="component-definition.html">Definition Model</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">0.0.6</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="component-definition.html">0.0.6</a>
+    <a class="version" href="../0.0.5/component-definition.html">0.0.5</a>
+    <a class="version" href="../0.0.4/component-definition.html">0.0.4</a>
+    <a class="version" href="../0.0.3/component-definition.html">0.0.3</a>
+    <a class="version" href="../0.0.2/component-definition.html">0.0.2</a>
+    <a class="version" href="../0.0.1/component-definition.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Components Definition</h1>
+        <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Talend Component framework relies on several primitive components.</p>
+</div>
+<div class="paragraph">
+<p>They can all use <code>@PostConstruct</code> and <code>@PreDestroy</code> to initialize/release
+some underlying resource at the beginning/end of the processing.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+in distributed environments class' constructor will be called on cluster manager node, methods annotated with
+<code>@PostConstruct</code> and <code>@PreDestroy</code> annotations will be called on worker nodes. Thus, partition plan computation and pipeline task
+will be performed on different nodes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/deployment-diagram.png" alt="deployment diagram"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Created task consists of Jar file, containing class, which describes pipeline(flow) which should be processed in cluster.</p>
+</li>
+<li>
+<p>During partition plan computation step pipeline is analyzed and split into stages. Cluster Manager node instantiates mappers/processors
+gets estimated data size using mappers, splits created mappers according to the estimated data size. All instances are serialized and
+sent to Worker nodes afterwards.</p>
+</li>
+<li>
+<p>Serialized instances are received and deserialized, methods annotated with @PostConstruct annotation are called. After that,
+pipeline execution is started. Processor&#8217;s @BeforeGroup annotated method is called before processing first element in chunk.
+After processing number of records estimated as chunk size, Processor&#8217;s @AfterGroup annotated method called. Chunk size is calculated
+depending on environment the pipeline is processed by. After pipeline is processed, methods annotated with @PreDestroy annotation are called.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/driver-processing-workflow.png" alt="driver processing workflow"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/worker-processing-workflow.png" alt="worker processing workflow"></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+all framework managed methods <code>MUST</code> be public too. Private methods are ignored.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+in term of design the framework tries to be as declarative as possible but also to stay extensible
+not using fixed interfaces or method signatures. This will allow to add incrementally new features of the underlying implementations.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_partitionmapper"><a class="anchor" href="#_partitionmapper"></a>1. PartitionMapper</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>A <code>PartitionMapper</code> is a component able to split itself to
+make the execution more efficient.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>This concept is borrowed to big data world and useful only in this context (<code>BEAM</code> executions).
+Overall idea is to divide the work before executing it to try to reduce the overall execution time.</p>
+</div>
+<div class="paragraph">
+<p>The process is the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Estimate the size of the data you will work on. This part is often heuristic and not very precise.</p>
+</li>
+<li>
+<p>From that size the execution engine (<em>runner</em> for beam) will request the mapper to split <em>itself</em> in <em>N</em> mappers with a subset of the overall work.</p>
+</li>
+<li>
+<p>The <em>leaf</em> (final) mappers will be used as a <code>Producer</code> (actual reader) factory.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+this kind of component <code>MUST</code> be <code>Serializable</code> to be distributable.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_definition"><a class="anchor" href="#_definition"></a>2. Definition</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A partition mapper requires 3 methods marked with specific annotations:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>@Assessor</code> for the evaluating method</p>
+</li>
+<li>
+<p><code>@Split</code> for the dividing method</p>
+</li>
+<li>
+<p><code>@Emitter</code> for the <code>Producer</code> factory</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_assessor"><a class="anchor" href="#_assessor"></a>2.1. @Assessor</h3>
+<div class="paragraph">
+<p>The assessor method will return the estimated size of the data related to the component (depending its configuration).
+It <code>MUST</code> return a <code>Number</code> and <code>MUST</code> not take any parameter.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
+<div class="listingblock initial-block-closed">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Assessor
+public long estimateDataSetByteSize() {
+    return ....;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_split"><a class="anchor" href="#_split"></a>2.2. @Split</h3>
+<div class="paragraph">
+<p>The split method will return a collection of partition mappers and can take optionally a <code>@PartitionSize</code> long
+value which is the requested size of the dataset per sub partition mapper.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Split
+public List&lt;MyMapper&gt; split(@PartitionSize final long desiredSize) {
+    return ....;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_emitter"><a class="anchor" href="#_emitter"></a>2.3. @Emitter</h3>
+<div class="paragraph">
+<p>The emitter method <code>MUST</code> not have any parameter and <code>MUST</code> return a producer. It generally uses the partition mapper configuration
+to instantiate/configure the producer.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Emitter
+public MyProducer create() {
+    return ....;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_producer"><a class="anchor" href="#_producer"></a>3. Producer</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>A <code>Producer</code> is the component interacting with a physical source. It produces input data for the processing flow.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>A producer is a very simple component which <code>MUST</code> have a <code>@Producer</code> method without any parameter and returning any data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Producer
+public MyData produces() {
+    return ...;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_processor"><a class="anchor" href="#_processor"></a>4. Processor</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>A <code>Processor</code> is a component responsible to convert an incoming data to another model.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>A processor <code>MUST</code> have a method decorated with <code>@ElementListener</code> taking an incoming data and returning the processed data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public MyNewData map(final MyData data) {
+    return ...;
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+this kind of component <code>MUST</code> be <code>Serializable</code> since it is distributed.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+if you don&#8217;t care much of the type of the parameter and need to access data on a "map like" based rule set, then you can
+use <code>JsonObject</code> as parameter type and Talend Component will just wrap the data to enable you to access it as a map. The parameter
+type is not enforced, i.e. if you know you will get a <code>SuperCustomDto</code> then you can use that as parameter type but for generic
+component reusable in any chain it is more than highly encouraged to use <code>JsonObject</code> until you have your an evaluation language
+based processor (which has its own way to access component). Here is an example:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public MyNewData map(final JsonObject incomingData) {
+    String name = incomingData.getString("name");
+    int name = incomingData.getInt("age");
+    return ...;
+}
+
+// equivalent to (using POJO subclassing)
+
+public class Person {
+    private String age;
+    private int age;
+
+    // getters/setters
+}
+
+@ElementListener
+public MyNewData map(final Person person) {
+    String name = person.getName();
+    int name = person.getAge();
+    return ...;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A processor also supports <code>@BeforeGroup</code> and <code>@AfterGroup</code> which <code>MUST</code> be methods without parameters and returning <code>void</code> (result would be ignored).
+This is used by the runtime to mark a chunk of the data in a way which is estimated <em>good</em> for the execution flow size.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+this is estimated so you don&#8217;t have any guarantee on the size of a <em>group</em>. You can literally have groups of size 1.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The common usage is to batch records for performance reasons:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@BeforeGroup
+public void initBatch() {
+    // ...
+}
+
+@AfterGroup
+public void endBatch() {
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+it is a good practise to support a <code>maxBatchSize</code> here and potentially commit before the end of the group in case
+of a computed size which is way too big for your backend.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_multiple_outputs"><a class="anchor" href="#_multiple_outputs"></a>5. Multiple outputs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In some case you may want to split the output of a processor in two. A common example is "main" and "reject" branches
+where part of the incoming data are put in a specific bucket to be processed later.</p>
+</div>
+<div class="paragraph">
+<p>This can be done using <code>@Output</code>. This can be used as a replacement of the returned value:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public void map(final MyData data, @Output final OutputEmitter&lt;MyNewData&gt; output) {
+    output.emit(createNewData(data));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or you can pass it a string which will represent the new branch:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public void map(final MyData data,
+                @Output final OutputEmitter&lt;MyNewData&gt; main,
+                @Output("rejected") final OutputEmitter&lt;MyNewDataWithError&gt; rejected) {
+    if (isRejected(data)) {
+        rejected.emit(createNewData(data));
+    } else {
+        main.emit(createNewData(data));
+    }
+}
+
+// or simply
+
+@ElementListener
+public MyNewData map(final MyData data,
+                    @Output("rejected") final OutputEmitter&lt;MyNewDataWithError&gt; rejected) {
+    if (isSuspicious(data)) {
+        rejected.emit(createNewData(data));
+        return createNewData(data); // in this case we continue the processing anyway but notified another channel
+    }
+    return createNewData(data);
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_multiple_inputs"><a class="anchor" href="#_multiple_inputs"></a>6. Multiple inputs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Having multiple inputs is closeto the output case excep it doesn&#8217;t require a wrapper <code>OutputEmitter</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public MyNewData map(@Input final MyData data, @Input("input2") final MyData2 data2) {
+    return createNewData(data1, data2);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>@Input</code> takes the input name as parameter, if not set it uses the main (default) input branch.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+due to the work required to not use the default branch it is recommended to use it when possible and not
+name its branches depending on the component semantic.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_output"><a class="anchor" href="#_output"></a>7. Output</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>An <code>Output</code> is a <code>Processor</code> returning no data.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Conceptually an output is a listener of data. It perfectly matches the concept of processor. Being the last of the execution chain
+or returning no data will make your processor an output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public void store(final MyData data) {
+    // ...
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_combiners"><a class="anchor" href="#_combiners"></a>8. Combiners?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For now Talend Component doesn&#8217;t enable you to define a <code>Combiner</code>. It would be the symmetric part of the partition mapper
+and allow to aggregate results in a single one.</p>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/tacokit.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+(function (window, document) {
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {
+        return;
+      }
+      var code = pre.querySelector('code.hljs');
+      if (!code) {
+        return;
+      }
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {
+        code.style.height = closedSize;
+      }
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>
