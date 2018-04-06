@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.6/all-in-one.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-04-06T13:22:39.205Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-04-06T15:15:23.278Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -7828,7 +7828,23 @@ Accept: application/json
 </div>
 </div>
 <div class="sect2">
-<h3 id="_web_forms_and_rest_api"><a class="anchor" href="#_web_forms_and_rest_api"></a>7.2. Web forms and REST API</h3>
+<h3 id="_https_activation"><a class="anchor" href="#_https_activation"></a>7.2. HTTPS activation</h3>
+<div class="paragraph">
+<p>Using the server zip (or <a href="https://github.com/Talend/component-runtime/blob/master/.docker/Dockerfile">Docker image</a>)
+you can configure HTTPS adding properties to <code>MEECROWAVE_OPTS</code>. Assuming you have a certificate in <code>/opt/certificates/component.p12</code>
+(don&#8217;t forget to add/mount it in the Docker image if you use it) you can activate it through:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># use -e for Docker
+#
+# this will skip the http port binding to only bind https on the port 8443 and setup the right certificate
+export MEECROWAVE_OPTS="-Dskip-http=true -Dssl=true -Dhttps=8443 -Dkeystore-type=PKCS12 -Dkeystore-alias=talend -Dkeystore-password=talend -Dkeystore-file=/opt/certificates/component.p12"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_web_forms_and_rest_api"><a class="anchor" href="#_web_forms_and_rest_api"></a>7.3. Web forms and REST API</h3>
 <div class="paragraph">
 <p><code>component-form</code> library provides a way to build a component REST API facade compatible with react form library.</p>
 </div>
@@ -7972,7 +7988,7 @@ the  <code>/migrate</code> endpoint has nothing special so was not shown in pre
 </table>
 </div>
 <div class="sect3">
-<h4 id="_use_uispec_model_without_all_the_tooling"><a class="anchor" href="#_use_uispec_model_without_all_the_tooling"></a>7.2.1. Use UiSpec model without all the tooling</h4>
+<h4 id="_use_uispec_model_without_all_the_tooling"><a class="anchor" href="#_use_uispec_model_without_all_the_tooling"></a>7.3.1. Use UiSpec model without all the tooling</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
@@ -8061,7 +8077,7 @@ This can be done adding these dependencies:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_javascript_integration"><a class="anchor" href="#_javascript_integration"></a>7.2.2. Javascript integration</h4>
+<h4 id="_javascript_integration"><a class="anchor" href="#_javascript_integration"></a>7.3.2. Javascript integration</h4>
 <div class="paragraph">
 <p>Default javascript integration goes through <a href="https://github.com/Talend/ui/tree/master/packages/forms">Talend UI Forms</a> library.</p>
 </div>
@@ -8110,7 +8126,7 @@ export default class ComponentKitForm extends React.Component {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_logging"><a class="anchor" href="#_logging"></a>7.3. Logging</h3>
+<h3 id="_logging"><a class="anchor" href="#_logging"></a>7.4. Logging</h3>
 <div class="paragraph">
 <p>The logging uses Log4j2, you can specify a custom configuration using the system property <code>-Dlog4j.configurationFile</code>
 or adding a <code>log4j2.xml</code> file into the classpath.</p>
@@ -8231,7 +8247,7 @@ of course you can compose previous layout (message format) and appenders (where 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_server_configuration"><a class="anchor" href="#_server_configuration"></a>7.4. Server Configuration</h3>
+<h3 id="_server_configuration"><a class="anchor" href="#_server_configuration"></a>7.5. Server Configuration</h3>
 <div class="paragraph">
 <p>The server module contains several configuration you can set in:</p>
 </div>
