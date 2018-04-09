@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.6/services-built-in.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-04-07T18:20:51.844Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-04-09T09:41:52.355Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -300,6 +300,14 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>javax.json.bind.Jsonb</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>A JSON-B instance. If your model is static and you don&#8217;t want to handle the serialization manually using JSON-P you can inject that instance.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>javax.json.spi.JsonProvider</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
@@ -344,18 +352,6 @@
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one for memory/speed optimizations.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-it assumes the dependency is locally available to the execution instance which is not guaranteed yet by the framework.
-</td>
-</tr>
-</table>
 </div></div></td>
 </tr>
 <tr>
@@ -412,6 +408,20 @@ See the <a href="#_httpclient_usage">HttpClient usage</a> for details.
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+all these <strong>injected</strong> instances are serializable which is important for the big data environment, if you create the instances
+yourself you will not benefit from that features and the memory optimization done by the runtime so try to prefer to reuse the framework
+instances over custom ones.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
