@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.7/all-in-one.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-04-11T09:55:29.911Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-04-11T14:09:34.417Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -1810,12 +1810,33 @@ ValidationResult doValidate(String url) {
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_property.png" alt="Studio Code"></a>
+<a class="image" href="_images/gallery/widgets/studio/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_property.png" alt="Studio Code"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_property.png" alt="Web Code"></a>
+<a class="image" href="_images/gallery/widgets/web/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_property.png" alt="Web Code"></a>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Property validation with Pattern</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/** configuration class */
+@Option
+@Pattern("/^[a-zA-Z\\-]+$/")
+String username;</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<a class="image" href="_images/gallery/widgets/studio/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_pattern.png" alt="Studio Code"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<a class="image" href="_images/gallery/widgets/web/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_pattern.png" alt="Web Code"></a>
 </div>
 </div></div></td>
 </tr>
@@ -1849,6 +1870,22 @@ public HealthCheckStatus testConnection(){
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>There are also other types of validation similar to <code>@Pattern</code> that you can use :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@Min</code>, <code>@Max</code> for numbers.</p>
+</li>
+<li>
+<p><code>@Unique</code> for collection values</p>
+</li>
+<li>
+<p><code>@Required</code> for required configuration</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -4074,22 +4111,6 @@ but materialized as a <code>JsonObject</code>. Input data must be of type <code>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_deployment"><a class="anchor" href="#_deployment"></a>Deployment</h6>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Beam serializing components it is crucial to add <code>component-runtime-standalone</code> dependency to the project. It will take
-care of providing an implicit and lazy <code>ComponentManager</code> managing the component in a fatjar case.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect5">
 <h6 id="_convert_a_beam_io_in_a_component_i_o"><a class="anchor" href="#_convert_a_beam_io_in_a_component_i_o"></a>Convert a Beam.io in a component I/O</h6>
 <div class="paragraph">
 <p>For simple I/O you can get automatic conversion of the Beam.io to a component I/O transparently if you decorated your <code>PTransform</code>
@@ -5171,11 +5192,6 @@ this usage assumes Beam 2.4.0 is in used and the classloader fix about the <code
   &lt;dependency&gt;
     &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
     &lt;artifactId&gt;component-runtime-beam&lt;/artifactId&gt;
-    &lt;scope&gt;test&lt;/scope&gt;
-  &lt;/dependency&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
-    &lt;artifactId&gt;component-runtime-standalone&lt;/artifactId&gt;
     &lt;scope&gt;test&lt;/scope&gt;
   &lt;/dependency&gt;
 &lt;/dependencies&gt;</code></pre>
@@ -6356,11 +6372,6 @@ this usage assumes Beam 2.4.0 is in used and the classloader fix about the <code
   &lt;dependency&gt;
     &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
     &lt;artifactId&gt;component-runtime-beam&lt;/artifactId&gt;
-    &lt;scope&gt;test&lt;/scope&gt;
-  &lt;/dependency&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
-    &lt;artifactId&gt;component-runtime-standalone&lt;/artifactId&gt;
     &lt;scope&gt;test&lt;/scope&gt;
   &lt;/dependency&gt;
 &lt;/dependencies&gt;</code></pre>
