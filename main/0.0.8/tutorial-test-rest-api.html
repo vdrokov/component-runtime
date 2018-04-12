@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to test a REST API :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.8/tutorial-test-rest-api.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-04-12T13:52:07.350Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/idea.css">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="0.0.8">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-definition.html">Definition Model</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-registering.html">Registration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gallery.html">Widget Gallery</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-internationalization.html">Labels and i18n</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-loading.html">Loading</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-gradle.html">Gradle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-internationalization.html">Internationalization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-actions.html">Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-built-in.html">Built-in services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-interceptors.html">Interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-custom-api.html">Extend the API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Execute</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-best-practices.html">JUnit Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-junit.html">Testing HTTP API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-beam.html">Beam case</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-spark.html">Spark and JUnit</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-multiple-envs.html">Multiple environments for the same tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-maven-passwords.html">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-generating-data.html">Generating data?</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">0.0.8</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.0.8</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.6/index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb">Tutorials</li>
+    <li class="crumb"><a href="tutorial-test-rest-api.html">How to test a REST API</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">0.0.8</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="tutorial-test-rest-api.html">0.0.8</a>
+    <a class="version" href="../0.0.6/tutorial-test-rest-api.html">0.0.6</a>
+    <a class="version" href="../0.0.5/tutorial-test-rest-api.html">0.0.5</a>
+    <a class="version" href="../0.0.4/tutorial-test-rest-api.html">0.0.4</a>
+    <a class="version" href="../0.0.3/tutorial-test-rest-api.html">0.0.3</a>
+    <a class="version" href="../0.0.2/tutorial-test-rest-api.html">0.0.2</a>
+    <a class="version is-missing" href="../0.0.1/index.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>How to test a REST API</h1>
+        <div id="tutorial-test-rest-api" class="paragraph">
+<p>Testing code that consume REST API(s) can sometimes presents some difficulties,
+as you can face allot of constraints when dealing with them,
+like API rates limit, authentication tokens and passwords sharing, API availability, sandbox that expire or API&#8217;s cost that may be high&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>As a developer you don&#8217;t want to care about all that, as all what you want to achieve is writing some good tests for your code logic.
+This is why, having the possibility to easily mock the API response is trivial.</p>
+</div>
+<div class="paragraph">
+<p>The component framework provides an API simulation tool that make it easy to write unit tests. In this tutorial we will
+show how to use it in unit tests.</p>
+</div>
+<div class="paragraph">
+<p>In <a href="tutorial-create-components-rest-api.html" class="page">this previous tutorial</a>, we have created a component that consume Zendesk Search API.
+We will add some unit tests for it.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We have added 4 <strong>tickets</strong> that have the <strong>status</strong> open to our Zendesk test instance. that we will use in our tests
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In our tutorial we will use some concept from <a href="testing-junit.html#_junit_4" class="page">component junit testing</a>.
+You can refer to this page to read about the <code>SimpleComponentRule</code> &#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;est create a first unit test that will perform a real http request to Zendesk Search API instance.
+You can read how to create a simple unit test in <a href="tutorial-test-your-components.html" class="page">this tutorial</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SearchTest {
+
+    @ClassRule
+    public static final SimpleComponentRule component = new SimpleComponentRule("component.package");
+
+    @Test
+    public void searchQuery() {
+        // Initiating the component test configuration <i class="conum" data-value="1"></i><b>(1)</b>
+        BasicAuth basicAuth = new BasicAuth("https://instance.zendesk.com", "username", "password");
+        final SearchQuery searchQuery = new SearchQuery(basicAuth, "type:ticket status:open", "created_at", "desc");
+
+        // We convert our configuration instance to URI configuration <i class="conum" data-value="2"></i><b>(2)</b>
+        final String uriConfig = SimpleFactory.configurationByExample()
+                        .forInstance(searchQuery)
+                        .configured().toQueryString();
+
+        // We create our job test pipeline <i class="conum" data-value="3"></i><b>(3)</b>
+        Job.components()
+                .component("search", "zendesk://search?" + uriConfig)
+                .component("collector", "test://collector")
+                .connections()
+                .from("search").to("collector")
+                .build()
+                .run();
+
+        final List&lt;JsonObject&gt; res = component.getCollectedData(JsonObject.class);
+        assertEquals(4, res.size());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We initiate our authentication configuration using zendesk instance&#8217;s url and credentials.
+We also initiate our search query configuration. We want to get all the open ticket order by the creation date in a descendant order.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Here we perform a simple conversion of our configuration to URI format, that we will use in the job test pipeline,
+using <code>SimpleFactory</code> class provided by the component framework. <a href="services-pipeline.html#_job_builder" class="page">Read more about job pipeline</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We create our job test pipeline. this is a simple pipeline that will execute our <code>search</code> component and redirect the result
+to the test collector component that will collect the search result.
+We execute the pipeline.
+Then, We get the job result and we ensure that we have received the 4 tickets. You can also check that the retrieved tickets have the open status.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>So here we have created a complete working test. the test is performing real http request to our zendesk instance.
+but we may don&#8217;t want do that every time on the development environment.
+We may want to execute real http request only on an integration environment and on development environment use some mocked result
+to develop faster or for any other reasons.</p>
+</div>
+<div class="paragraph">
+<p>Now we will transform this unit test to a mocked test that will use only mocked response of zendesk Search API.
+To do that you will need to add 2 junit rules provided by the component framework.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>JUnit4HttpApi</code> - this rule will start a simulation server that will act as a proxy and catch all the http requests performed inside the tests.
+This simulation server (proxy) have 2 modes :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>capture</strong>    : this mode will forward the captured http request to the real server and capture there response.</p>
+</li>
+<li>
+<p><strong>simulation</strong> : this mode will return a mocked response from the already captured responses.
+This rule need to be added as a class rule</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>JUnit4HttpApi</code> - this rule have a reference to the first one and it role is to configure the simulation server for every unit test.
+it provide the simulation server by the running test context.
+This rule need to be added as a simple (method) rule.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s add those 2 rules to our test to make it run in a simulation mode.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SearchTest {
+
+    @ClassRule
+    public static final SimpleComponentRule component = new SimpleComponentRule("component.package");
+
+    private final MavenDecrypter mavenDecrypter = new MavenDecrypter();
+
+    @ClassRule
+    public static final JUnit4HttpApi API = new JUnit4HttpApi() <i class="conum" data-value="1"></i><b>(1)</b>
+                                                        .activeSsl(); <i class="conum" data-value="2"></i><b>(2)</b>
+
+    @Rule
+    public final JUnit4HttpApiPerMethodConfigurator configurator = new JUnit4HttpApiPerMethodConfigurator(API); <i class="conum" data-value="3"></i><b>(3)</b>
+
+    @Test
+    public void searchQuery() {
+        // the exact same code as above
+    }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>As described above, we create and start a simulation server for this test class.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>As the API that we consume use ssl, we need to activate ssl on or simulation server by simply calling the <code>activeSsl()</code> method.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We add our simulation server configuration provider. that will provide the test context to the simulation server.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We almost done,</p>
+</div>
+<div class="paragraph">
+<p>Now we need to run our test in <strong>capture</strong> mode to catch the real API responses to be able to use them later in the simulated mode.</p>
+</div>
+<div class="paragraph">
+<p>To do that, we will have to set an environment variable <code>talend.junit.http.capture</code> to <code>true</code>.
+This will tel the simulation server to run in a capture mode.
+The captured response will be saved into <code>resources/talend.testing.http</code> package in a json format, then reused to perform API simulation.</p>
+</div>
+<div class="paragraph">
+<p>Now you know how to easily mock your component that consume REST API.</p>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/tacokit.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+(function (window, document) {
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {
+        return;
+      }
+      var code = pre.querySelector('code.hljs');
+      if (!code) {
+        return;
+      }
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {
+        code.style.height = closedSize;
+      }
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>
