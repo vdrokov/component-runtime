@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.8/search.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-04-12T15:49:20.474Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-04-13T07:41:20.948Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -479,6 +479,7 @@ var addResult = function (parent, result) {
 
 searchInput.oninput = function () {
     var results = search.search(searchInput.value);
+    var maxTextLen = 250;
 
     resultCounter.innerText = results.length + ' results';
 
@@ -490,7 +491,7 @@ searchInput.oninput = function () {
     for (var i = 0; i < results.length; i++) {
       addResult(resultTable, {
         title: results[i].title,
-        description: results[i].content.length < 150 ? results[i].content : (results[i].content.substring(0, 147) + '...'),
+        description: results[i].content.length < maxTextLen ? results[i].content : (results[i].content.substring(0, maxTextLen - 3) + '...'),
         link: results[i].link
       });
     }
