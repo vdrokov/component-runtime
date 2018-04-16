@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating a job pipeline :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.9/services-pipeline.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-04-16T15:00:16.342Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/idea.css">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="0.0.9">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-definition.html">Definition Model</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-registering.html">Registration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gallery.html">Widget Gallery</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-internationalization.html">Labels and i18n</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-loading.html">Loading</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-gradle.html">Gradle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-internationalization.html">Internationalization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-actions.html">Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-built-in.html">Built-in services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-interceptors.html">Interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-custom-api.html">Extend the API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Execute</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-best-practices.html">JUnit Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-junit.html">Testing HTTP API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-beam.html">Beam case</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-spark.html">Spark and JUnit</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-multiple-envs.html">Multiple environments for the same tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-maven-passwords.html">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-generating-data.html">Generating data?</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">0.0.9</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.0.9</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.7/index.html">0.0.7</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.6/index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb">Execute</li>
+    <li class="crumb"><a href="services-pipeline.html">Simple/Test Pipeline API</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">0.0.9</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="services-pipeline.html">0.0.9</a>
+    <a class="version" href="../0.0.7/services-pipeline.html">0.0.7</a>
+    <a class="version" href="../0.0.6/services-pipeline.html">0.0.6</a>
+    <a class="version" href="../0.0.5/services-pipeline.html">0.0.5</a>
+    <a class="version" href="../0.0.4/services-pipeline.html">0.0.4</a>
+    <a class="version" href="../0.0.3/services-pipeline.html">0.0.3</a>
+    <a class="version" href="../0.0.2/services-pipeline.html">0.0.2</a>
+    <a class="version" href="../0.0.1/services-pipeline.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Creating a job pipeline</h1>
+        <div class="sect1">
+<h2 id="_job_builder"><a class="anchor" href="#_job_builder"></a>1. Job Builder</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>Job</code> builder let you create a job pipeline programmatically using Talend components
+(<a href="#component-definition.html">Producers and Processors</a>).
+The job pipeline is an acyclic graph, so you can built complex pipelines.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s take a simple use case where we will have 2 data source (employee and salary) that we will format to csv and write
+the result to a file.</p>
+</div>
+<div class="paragraph">
+<p>A job is defined based on components (nodes) and links (edges) to connect their branches together.</p>
+</div>
+<div class="paragraph">
+<p>Every component is defined by an unique <code>id</code> and an URI that identify the component.</p>
+</div>
+<div class="paragraph">
+<p>The URI follow the form : <code>[family]://[component][?version][&amp;configuration]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>family</strong>: the name of the component family</p>
+</li>
+<li>
+<p><strong>component</strong>: the name of the component</p>
+</li>
+<li>
+<p><strong>version</strong> : the version of the component, it&#8217;s represented in a key=value format. where the key is <code>__version</code> and the value is a number.</p>
+</li>
+<li>
+<p><strong>configuration</strong>: here you can provide the component configuration as key=value tuple where the key is the path of the configuration and the value is the configuration value in string format.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">URI Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>job://csvFileGen?__version=1&amp;path=/temp/result.csv&amp;encoding=utf-8"</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+configuration parameters must be URI/URL encoded.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here is a more concrete job example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Job.components()   <i class="conum" data-value="1"></i><b>(1)</b>
+        .component("employee","db://input")
+        .component("salary", "db://input")
+        .component("concat", "transform://concat?separator=;")
+        .component("csv", "file://out?__version=2")
+    .connections()  <i class="conum" data-value="2"></i><b>(2)</b>
+        .from("employee").to("concat", "string1")
+        .from("salary").to("concat", "string2")
+        .from("concat").to("csv")
+    .build()    <i class="conum" data-value="3"></i><b>(3)</b>
+    .run(); <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We define all the components that will be used in the job pipeline.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Then, we define the connections between the components to construct the job pipeline.
+the links <code>from</code> &#8594; <code>to</code> use the component id and the default input/output branches.
+You can also connect a specific branch of a component if it has multiple or named inputs/outputs branches
+using the methods <code>from(id, branchName)</code> &#8594; <code>to(id, branchName)</code>.
+In the example above, the concat component have to inputs (string1 and string2).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>In this step, we validate the job pipeline by asserting that :
+<div class="ulist">
+<ul>
+<li>
+<p>It has some starting components (component that don&#8217;t have a from connection and that need to be of type producer).</p>
+</li>
+<li>
+<p>There is no cyclic connections. as the job pipeline need to be an acyclic graph.</p>
+</li>
+<li>
+<p>All the components used in connections are already declared.</p>
+</li>
+<li>
+<p>The connection is used only once. you can&#8217;t connect a component input/output branch twice.</p>
+</li>
+</ul>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>We run the job pipeline.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+In this version, the execution of the job is linear. the component are not executed in parallel even if some steps
+may be independents.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>1.1. Environment/Runner</h3>
+<div class="paragraph">
+<p>Depending the configuration you can select which environment you execute your job in.</p>
+</div>
+<div class="paragraph">
+<p>To select the environment the logic is the following one:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>if an <code>org.talend.sdk.component.runtime.manager.chain.Job.ExecutorBuilder</code> is passed through the job properties then use it (supported type are a <code>ExecutionBuilder</code> instance, a <code>Class</code> or a <code>String</code>).</p>
+</li>
+<li>
+<p>if an <code>ExecutionBuilder</code> SPI is present then use it (it is the case if <code>component-runtime-beam</code> is present in your classpath).</p>
+</li>
+<li>
+<p>else just use a local/standalone execution.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In the case of a Beam execution you can customize the pipeline options using system properties. They have to be prefixed
+by <code>talend.beam.job.</code>. For instance to set <code>appName</code> option you will set <code>-Dtalend.beam.job.appName=mytest</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_key_provider"><a class="anchor" href="#_key_provider"></a>1.2. Key Provider</h3>
+<div class="paragraph">
+<p>The job builder let you set a key provider to join your data when a component has multiple inputs.
+The key provider can be set contextually to a component or globally to the job</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Job.components()
+        .component("employee","db://input")
+            .property(GroupKeyProvider.class.getName(),
+                 (GroupKeyProvider) context -&gt; context.getData().getString("id")) <i class="conum" data-value="1"></i><b>(1)</b>
+        .component("salary", "db://input")
+        .component("concat", "transform://concat?separator=;")
+    .connections()
+        .from("employee").to("concat", "string1")
+        .from("salary").to("concat", "string2")
+    .build()
+    .property(GroupKeyProvider.class.getName(), <i class="conum" data-value="2"></i><b>(2)</b>
+                 (GroupKeyProvider) context -&gt; context.getData().getString("employee_id"))
+    .run();</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Here we have defined a key provider for the data produced by the component <code>employee</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Here we have defined a key provider for all the data manipulated in this job.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the incoming data has different ids you can provide a complex global key provider relaying on the context that give you the <code>component id</code>
+and the <code>branch Name</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">GroupKeyProvider keyProvider = context -&gt; {
+    if ("employee".equals(context.getComponentId())) {
+        return context.getData().getString("id");
+    }
+    return context.getData().getString("employee_id");
+};</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_beam_case"><a class="anchor" href="#_beam_case"></a>2. Beam case</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For <a href="https://beam.apache.org/">beam</a> case, you need to rely on beam pipeline definition and use <code>component-runtime-beam</code> dependency which provides Beam bridges.</p>
+</div>
+<div class="sect2">
+<h3 id="_i_o"><a class="anchor" href="#_i_o"></a>2.1. I/O</h3>
+<div class="paragraph">
+<p><code>org.talend.sdk.component.runtime.beam.TalendIO</code> provides a way to convert a partition mapper or a processor to an input
+ or processor
+using the <code>read</code> or <code>write</code> methods.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class Main {
+    public static void main(final String[] args) {
+        final ComponentManager manager = ComponentManager.instance()
+        Pipeline pipeline = Pipeline.create();
+        //Create beam input from mapper and apply input to pipeline
+        pipeline.apply(TalendIO.read(manager.findMapper(manager.findMapper("sample", "reader", 1, new HashMap&lt;String, String&gt;() {{
+                    put("fileprefix", "input");
+                }}).get()))
+                .apply(new ViewsMappingTransform(emptyMap(), "sample")) // prepare it for the output record format (see next part)
+        //Create beam processor from talend processor and apply to pipeline
+                .apply(TalendIO.write(manager.findProcessor("test", "writer", 1, new HashMap&lt;String, String&gt;() {{
+                    put("fileprefix", "output");
+                }}).get(), emptyMap()));
+
+        //... run pipeline
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_processors"><a class="anchor" href="#_processors"></a>2.2. Processors</h3>
+<div class="paragraph">
+<p><code>org.talend.sdk.component.runtime.beam.TalendFn</code> provides the way to wrap a processor in a Beam <code>PTransform</code> and integrate
+ it in the pipeline.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class Main {
+    public static void main(final String[] args) {
+        //Component manager and pipeline initialization...
+
+        //Create beam PTransform from processor and apply input to pipeline
+        pipeline.apply(TalendFn.asFn(manager.findProcessor("sample", "mapper", 1, emptyMap())).get())), emptyMap());
+
+        //... run pipeline
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The multiple inputs/outputs are represented by a <code>Map</code> element in beam case to avoid to use multiple inputs/outputs.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+you can use <code>ViewsMappingTransform</code> or <code>CoGroupByKeyResultMappingTransform</code> to adapt the input/output
+format to the record format representing the multiple inputs/output, so a kind of <code>Map&lt;String, List&lt;?&gt;&gt;</code>,
+but materialized as a <code>JsonObject</code>. Input data must be of type <code>JsonObject</code> in this case.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_convert_a_beam_io_in_a_component_i_o"><a class="anchor" href="#_convert_a_beam_io_in_a_component_i_o"></a>2.3. Convert a Beam.io in a component I/O</h3>
+<div class="paragraph">
+<p>For simple I/O you can get automatic conversion of the Beam.io to a component I/O transparently if you decorated your <code>PTransform</code>
+with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
+</div>
+<div class="paragraph">
+<p>The limitation are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Inputs must implement <code>PTransform&lt;PBegin, PCollection&lt;?&gt;&gt;</code> and must be a <code>BoundedSource</code>.</p>
+</li>
+<li>
+<p>Outputs must implement <code>PTransform&lt;PCollection&lt;?&gt;, PDone&gt;</code> and just register on the input <code>PCollection</code> a <code>DoFn</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>More information on that topic on <a href="wrapping-a-beam-io.html" class="page">How to wrap a Beam I/O</a> page.</p>
+</div>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/tacokit.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+(function (window, document) {
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {
+        return;
+      }
+      var code = pre.querySelector('code.hljs');
+      if (!code) {
+        return;
+      }
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {
+        code.style.height = closedSize;
+      }
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>

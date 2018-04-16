@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuring components :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.9/component-configuration.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-04-16T15:00:16.248Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/idea.css">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="0.0.9">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-definition.html">Definition Model</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="component-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-registering.html">Registration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gallery.html">Widget Gallery</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-internationalization.html">Labels and i18n</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-loading.html">Loading</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-gradle.html">Gradle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-internationalization.html">Internationalization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-actions.html">Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-built-in.html">Built-in services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-interceptors.html">Interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-custom-api.html">Extend the API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Execute</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-best-practices.html">JUnit Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-junit.html">Testing HTTP API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-beam.html">Beam case</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-spark.html">Spark and JUnit</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-multiple-envs.html">Multiple environments for the same tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-maven-passwords.html">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-generating-data.html">Generating data?</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">0.0.9</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.0.9</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.7/index.html">0.0.7</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.6/index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb">Programming Model</li>
+    <li class="crumb"><a href="component-configuration.html">Configuration</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">0.0.9</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="component-configuration.html">0.0.9</a>
+    <a class="version" href="../0.0.7/component-configuration.html">0.0.7</a>
+    <a class="version" href="../0.0.6/component-configuration.html">0.0.6</a>
+    <a class="version" href="../0.0.5/component-configuration.html">0.0.5</a>
+    <a class="version" href="../0.0.4/component-configuration.html">0.0.4</a>
+    <a class="version" href="../0.0.3/component-configuration.html">0.0.3</a>
+    <a class="version" href="../0.0.2/component-configuration.html">0.0.2</a>
+    <a class="version" href="../0.0.1/component-configuration.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Configuring components</h1>
+        <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Component are configured through their constructor parameters. They can all be marked with <code>@Option</code>
+which will let you give a name to parameters (if not it will use the bytecode name which can require you to compile with <code>-parameter</code> flag
+to not have <code>arg0</code>, <code>arg1</code>, &#8230;&#8203; as names).</p>
+</div>
+<div class="paragraph">
+<p>The parameter types can be <em>primitives</em> or complex objects with fields decorated with <code>@Option</code> exactly like method parameters.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+it is recommended to use simple models which can be serialized by components to avoid headaches when implementing serialized components.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">class FileFormat implements Serializable {
+    @Option("type")
+    private FileType type = FileType.CSV;
+
+    @Option("max-records")
+    private int maxRecords = 1024;
+}
+
+@PartitionMapper(family = "demo", name = "file-reader")
+public MyFileReader(@Option("file-path") final File file,
+                    @Option("file-format") final FileFormat format) {
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using this kind of API makes the configuration extensible and component oriented letting the user define all he needs.</p>
+</div>
+<div class="paragraph">
+<p>The instantiation of the parameters is done from the properties passed to the component (see next part).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primitives"><a class="anchor" href="#_primitives"></a>1. Primitives</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>What is considered as a primitive in this mecanism is a class which can be directly converted from a <code>String</code> to the expected type.</p>
+</div>
+<div class="paragraph">
+<p>It obviously includes all java primitives, <code>String</code> type itself but also all the types with a <code>org.apache.xbean.propertyeditor.Converter</code>.</p>
+</div>
+<div class="paragraph">
+<p>This includes out of the box:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BigDecimal</code></p>
+</li>
+<li>
+<p><code>BigInteger</code></p>
+</li>
+<li>
+<p><code>File</code></p>
+</li>
+<li>
+<p><code>InetAddress</code></p>
+</li>
+<li>
+<p><code>ObjectName</code></p>
+</li>
+<li>
+<p><code>URI</code></p>
+</li>
+<li>
+<p><code>URL</code></p>
+</li>
+<li>
+<p><code>Pattern</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_complex_object_mapping"><a class="anchor" href="#_complex_object_mapping"></a>2. Complex object mapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The conversion from properties to object is using the dotted notation. For instance:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">file.path = /home/user/input.csv
+file.format = CSV</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will match</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class FileOptions {
+    @Option("path")
+    private File path;
+
+    @Option("format")
+    private Format format;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>assuming the method parameter was configured with <code>@Option("file")</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_list_case"><a class="anchor" href="#_list_case"></a>2.1. List case</h3>
+<div class="paragraph">
+<p>Lists use the same syntax but to define their elements their rely on an indexed syntax. Assuming the list parameter is named <code>files</code>
+and the elements are of  <code>FileOptions</code> type, here is how to define a list of 2 elements:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">files[0].path = /home/user/input1.csv
+files[0].format = CSV
+files[1].path = /home/user/input2.xml
+files[1].format = EXCEL</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_map_case"><a class="anchor" href="#_map_case"></a>2.2. Map case</h3>
+<div class="paragraph">
+<p>Inspired from the list case, the map uses <code>.key[index]</code> and <code>.value[index]</code> to represent its key and values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">// Map&lt;String, FileOptions&gt;
+files.key[0] = first-file
+files.value[0].path = /home/user/input1.csv
+files.value[0].type = CSV
+files.key[1] = second-file
+files.value[1].path = /home/user/input2.xml
+files.value[1].type = EXCEL</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">// Map&lt;FileOptions, String&gt;
+files.key[0].path = /home/user/input1.csv
+files.key[0].type = CSV
+files.value[0] = first-file
+files.key[1].path = /home/user/input2.xml
+files.key[1].type = EXCEL
+files.value[1] = second-file</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+don&#8217;t abuse of map type. If not needed for your configuration (= if you can configure your component
+with an object) don&#8217;t use it.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_constraints_and_validation_on_the_configuration_input"><a class="anchor" href="#_constraints_and_validation_on_the_configuration_input"></a>3. Constraints and validation on the configuration/input</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is common to need to add as metadata a field is required, another has a minimum size etc. This is done with the
+validation in <code>org.talend.sdk.component.api.configuration.constraint</code> package:</p>
+</div>
+<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">API</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Parameter Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Supported Types</th>
+<th class="tableblock halign-left valign-top">Metadata sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Max</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxLength</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CharSequence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::maxLength":"12.34"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minLength</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CharSequence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::minLength":"12.34"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Pattern</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pattern</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validate the decorated string with a <strong>javascript</strong> pattern (even into the Studio).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CharSequence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::pattern":"test"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Max</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">max</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number, int, short, byte, long, double, float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::max":"12.34"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number, int, short, byte, long, double, float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::min":"12.34"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Required</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">required</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark the field as being mandatory.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::required":"true"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Max</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxItems</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::maxItems":"12.34"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minItems</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::minItems":"12.34"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Uniques</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">uniqueItems</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the elements of the collection must be distinct (kind of set).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"validation::uniqueItems":"true"}</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+using the programmatic API the metadata are prefixed by <code>tcomp::</code> but this prefix is stripped in the web for convenience,
+the previous table uses the web keys.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_marking_a_configuration_as_a_particular_type_of_data"><a class="anchor" href="#_marking_a_configuration_as_a_particular_type_of_data"></a>4. Marking a configuration as a particular type of data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is common to classify the incoming data. You can see it as tagging them in several types. The most common ones
+are the:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>datastore: all the data you need to connect to the backend</p>
+</li>
+<li>
+<p>dataset: a datastore coupled with all the data you need to execute an action</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">API</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Metadata sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.talend.sdk.component.api.configuration.type.DataSet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dataset</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a model (complex object) as being a dataset.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"tcomp::configurationtype::type":"dataset","tcomp::configurationtype::name":"test"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.talend.sdk.component.api.configuration.type.DataStore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">datastore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a model (complex object) as being a datastore (connection to a backend).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"tcomp::configurationtype::type":"datastore","tcomp::configurationtype::name":"test"}</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+the component family associated with a configuration type (datastore/dataset) is always the one related
+to the component using that configuration.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Those configuration types can be composed to provide one configuration item. For example a dataset type will often need a datastore
+type to be provided. and a datastore type (that provides the connection information) will be used to create a dataset type.</p>
+</div>
+<div class="paragraph">
+<p>Those configuration types will also be used at design time to create shared configuration that can be stored and used at runtime.</p>
+</div>
+<div class="paragraph">
+<p>For example, we can think about a relational database that support JDBC:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A datastore may provide:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>jdbc url, username, password</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>A dataset may be:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>datastore (that will provide the connection data to the database)</p>
+</li>
+<li>
+<p>table name, data []</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The component server will scan all those configuration types and provide a configuration type index. This index can be used for the integration
+into the targeted platforms (studio, web applications&#8230;&#8203;)</p>
+</div>
+<div class="paragraph">
+<p>The configuration type index is represented as a flat tree that contains all the configuration types represented as nodes and indexed by their ids.</p>
+</div>
+<div class="paragraph">
+<p>Also, every node can point to other nodes. This relation is represented as an array of edges that provide the childes ids.</p>
+</div>
+<div class="paragraph">
+<p>For example, a configuration type index for the above example will be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{nodes: {
+             "idForDstore": { datastore:"datastore data", edges:[id:"idForDset"] },
+             "idForDset":   { dataset:"dataset data" }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_define_links_between_properties"><a class="anchor" href="#_define_links_between_properties"></a>5. Define links between properties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It can be needed to define a binding between properties, a set of annotations allows to do it:</p>
+</div>
+<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">API</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Metadata Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.condition.ActiveIf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">if</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the evaluation of the element at the location matches value then the element is considered active, otherwise it is deactivated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"condition::if::target":"test","condition::if::value":"value1,value2"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.condition.ActiveIfs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ifs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to set multiple visibility conditions on the same property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"condition::if::value::0":"value1,value2","condition::if::value::1":"SELECTED","condition::if::target::0":"sibling1","condition::if::target::1":"../../other"}</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Target element location is specified as a relative path to current location using Unix path characters.
+Configuration class delimiter is <code>/</code>. Parent configuration class is specified by <code>..</code>.
+Thus <code>../targetProperty</code> denotes a property, which is located in parent configuration class and has name <code>targetProperty</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+using the programmatic API the metadata are prefixed by <code>tcomp::</code> but this prefix is stripped in the web for convenience,
+the previous table uses the web keys.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="documentation-ui-hints"><a class="anchor" href="#documentation-ui-hints"></a>6. Add hints about the rendering based on configuration/component knowledge</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In some case it can be needed to add some metadata about the configuration to let the UI render properly the configuration.
+A simple example is a password value must be hidden and not a simple clear input box. For these cases - when the component developper
+wants to influence the UI rendering - you can use a particular set of annotations:</p>
+</div>
+<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">API</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Generated property metadata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.DefaultValue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide a default value the UI can use - only for primitive fields.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::defaultvalue::value":"test"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.OptionsOrder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to sort a class properties.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::optionsorder::value":"value1,value2"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.AutoLayout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Request the rendered to do what it thinks is best.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::autolayout":"true"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.GridLayout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advanced layout to place properties by row, this is exclusive with <code>@OptionsOrder</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::value1::value":"first|{"ui::gridlayout::value1::value":"first\</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">second,third","ui::gridlayout::value2::value":"first|second,third","ui::gridlayout::value2::value":"first\</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">second,third"}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.GridLayouts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allow to configure multiple grid layouts on the same class, qualified with a classifier (name)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::Advanced::value":"another","ui::gridlayout::Main::value":"first|{"ui::gridlayout::Advanced::value":"another","ui::gridlayout::Main::value":"first\</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">second,third"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.HorizontalLayout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Put on a configuration class it notifies the UI an horizontal layout is preferred.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::horizontallayout":"true"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.VerticalLayout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Put on a configuration class it notifies the UI a vertical layout is preferred.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::verticallayout":"true"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.widget.Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being represented by some code widget (vs textarea for instance).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::code::value":"test"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.widget.Credential</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being a credential. It is typically used to hide the value in the UI.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::credential":"true"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.widget.Structure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a List&lt;String&gt; or Map&lt;String, String&gt; field as being represented as the component data selector (field names generally or field names as key and type as value).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::structure::type":"null","ui::structure::discoverSchema":"test","ui::structure::value":"test"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.widget.TextArea</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being represented by a textarea(multiline text input).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::textarea":"true"}</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+using the programmatic API the metadata are prefixed by <code>tcomp::</code> but this prefix is stripped in the web for convenience,
+the previous table uses the web keys.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+target support should cover <code>org.talend.core.model.process.EParameterFieldType</code> but we need to ensure web renderers is able to handle the same widgets.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/tacokit.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+(function (window, document) {
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {
+        return;
+      }
+      var code = pre.querySelector('code.hljs');
+      if (!code) {
+        return;
+      }
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {
+        code.style.height = closedSize;
+      }
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>
