@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.9/release-process.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-04-16T15:20:20.118Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-04-16T17:03:55.433Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -219,6 +219,9 @@
           <a href="index.html">0.0.9</a>
         </li>
         <li class="version">
+          <a href="../0.0.8/index.html">0.0.8</a>
+        </li>
+        <li class="version">
           <a href="../0.0.7/index.html">0.0.7</a>
         </li>
         <li class="version">
@@ -255,6 +258,7 @@
   <button class="versions-menu-toggle" title="Show other versions of page">0.0.9</button>
   <div class="versions-menu">
     <a class="version is-current" href="release-process.html">0.0.9</a>
+    <a class="version" href="../0.0.8/release-process.html">0.0.8</a>
     <a class="version" href="../0.0.7/release-process.html">0.0.7</a>
     <a class="version" href="../0.0.6/release-process.html">0.0.6</a>
     <a class="version" href="../0.0.5/release-process.html">0.0.5</a>
@@ -420,12 +424,11 @@ mvn release:perform</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The git tag corresponding to the release was pushed upstream (on github.com/Talend/component-runtime), if not,
-execute <code>git push --follow-tags</code>?</p>
+<p>Rebuild the project which is now on the new SNAPSHOT version (to update site metadata and versions for next iteration). Commit the diff.</p>
 </li>
 <li>
-<p>Close and release the staging repository on Sonatype OSS (log in on <a href="https://oss.sonatype.org/" class="bare">oss.sonatype.org/</a>, then hit <code>Staging Repositories</code> in the left pane,
-select your repository and hit <code>Close</code> then <code>Release</code> on the top buttons).</p>
+<p>The git tag corresponding to the release was pushed upstream (on github.com/Talend/component-runtime), if not,
+execute <code>git push --follow-tags</code>?</p>
 </li>
 </ol>
 </div>
