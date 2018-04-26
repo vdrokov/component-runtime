@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrapping a Beam I/O :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.11/wrapping-a-beam-io.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-04-26T07:31:53.129Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/idea.css">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="0.0.11">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-definition.html">Definition Model</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-registering.html">Registration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gallery.html">Widget Gallery</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-internationalization.html">Labels and i18n</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-loading.html">Loading</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-gradle.html">Gradle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-internationalization.html">Internationalization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-actions.html">Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-built-in.html">Built-in services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-interceptors.html">Interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-custom-api.html">Extend the API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Execute</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-best-practices.html">JUnit Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-junit.html">Testing HTTP API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-beam.html">Beam case</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-spark.html">Spark and JUnit</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-multiple-envs.html">Multiple environments for the same tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-maven-passwords.html">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-generating-data.html">Generating data?</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">0.0.11</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.0.11</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.10/index.html">0.0.10</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.9/index.html">0.0.9</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.8/index.html">0.0.8</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.7/index.html">0.0.7</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.6/index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">0.0.11</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="wrapping-a-beam-io.html">0.0.11</a>
+    <a class="version" href="../0.0.10/wrapping-a-beam-io.html">0.0.10</a>
+    <a class="version" href="../0.0.9/wrapping-a-beam-io.html">0.0.9</a>
+    <a class="version" href="../0.0.8/wrapping-a-beam-io.html">0.0.8</a>
+    <a class="version" href="../0.0.7/wrapping-a-beam-io.html">0.0.7</a>
+    <a class="version" href="../0.0.6/wrapping-a-beam-io.html">0.0.6</a>
+    <a class="version" href="../0.0.5/wrapping-a-beam-io.html">0.0.5</a>
+    <a class="version" href="../0.0.4/wrapping-a-beam-io.html">0.0.4</a>
+    <a class="version" href="../0.0.3/wrapping-a-beam-io.html">0.0.3</a>
+    <a class="version" href="../0.0.2/wrapping-a-beam-io.html">0.0.2</a>
+    <a class="version" href="../0.0.1/wrapping-a-beam-io.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Wrapping a Beam I/O</h1>
+        <div class="sect1">
+<h2 id="wrapping-a-beam-io__start"><a class="anchor" href="#wrapping-a-beam-io__start"></a>1. Limitations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This part is limited to particular kinds of <a href="https://beam.apache.org/">Beam</a> <code>PTransform</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the <code>PTransform&lt;PBegin, PCollection&lt;?&gt;&gt;</code> for the inputs</p>
+</li>
+<li>
+<p>the <code>PTransform&lt;PCollection&lt;?&gt;, PDone&gt;</code> for the outputs. The outputs also must use a single (composite or not) <code>DoFn</code> in their <code>apply</code> method.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wrap_an_input"><a class="anchor" href="#_wrap_an_input"></a>2. Wrap an input</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Assume you want to wrap an input like this one (based on existing Beam ones):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@AutoValue
+public abstract [static] class Read extends PTransform&lt;PBegin, PCollection&lt;String&gt;&gt; {
+
+  // config
+
+  @Override
+  public PCollection&lt;String&gt; expand(final PBegin input) {
+    return input.apply(
+        org.apache.beam.sdk.io.Read.from(new BoundedElasticsearchSource(this, null)));
+  }
+
+  // ... other transform methods
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To wrap the Read in a framework component you create a transform delegating to this one with a <code>@PartitionMapper</code> annotation
+at least (you likely want to follow the best practices as well adding <code>@Icon</code> and <code>@Version</code>) and using <code>@Option</code> constructor injections
+to configure the component:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PartitionMapper(family = "myfamily", name = "myname")
+public class WrapRead extends PTransform&lt;PBegin, PCollection&lt;String&gt;&gt; {
+  private PTransform&lt;PBegin, PCollection&lt;String&gt;&gt; delegate;
+
+  public WrapRead(@Option("dataset") final WrapReadDataSet dataset) {
+    delegate = TheIO.read().withConfiguration(this.createConfigurationFrom(dataset));
+  }
+
+  @Override
+  public PCollection&lt;String&gt; expand(final PBegin input) {
+    return delegate.expand(input);
+  }
+
+  // ... other methods like the mapping with the native configuration (createConfigurationFrom)
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wrap_an_output"><a class="anchor" href="#_wrap_an_output"></a>3. Wrap an output</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Assume you want to wrap an output like this one (based on existing Beam ones):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@AutoValue
+public abstract [static] class Write extends PTransform&lt;PCollection&lt;String&gt;, PDone&gt; {
+
+
+    // configuration withXXX(...)
+
+    @Override
+    public PDone expand(final PCollection&lt;String&gt; input) {
+      input.apply(ParDo.of(new WriteFn(this)));
+      return PDone.in(input.getPipeline());
+    }
+
+    // other methods of the transform
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can wrap this output exactly the same way than for the inputs but using <code>@Processor</code> this time:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PartitionMapper(family = "myfamily", name = "myname")
+public class WrapRead extends PTransform&lt;PCollection&lt;String&gt;, PDone&gt; {
+  private PTransform&lt;PCollection&lt;String&gt;, PDone&gt; delegate;
+
+  public WrapRead(@Option("dataset") final WrapReadDataSet dataset) {
+    delegate = TheIO.write().withConfiguration(this.createConfigurationFrom(dataset));
+  }
+
+  @Override
+  public PDone expand(final PCollection&lt;String&gt; input) {
+    return delegate.expand(input);
+  }
+
+  // ... other methods like the mapping with the native configuration (createConfigurationFrom)
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tip"><a class="anchor" href="#_tip"></a>4. Tip</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Note that the class <code>org.talend.sdk.component.runtime.beam.transform.DelegatingTransform</code> fully delegates
+to another transform the "expansion". Therefore you can extend it and just implement the configuration mapping:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Processor(family = "beam", name = "file")
+public class BeamFileOutput extends DelegatingTransform&lt;PCollection&lt;String&gt;, PDone&gt; {
+
+    public BeamFileOutput(@Option("output") final String output) {
+        super(TextIO.write()
+            .withSuffix("test")
+            .to(FileBasedSink.convertToFileResourceIfPossible(output)));
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced"><a class="anchor" href="#_advanced"></a>5. Advanced</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In terms of classloading, when you write an IO all the Beam SDK Java core stack is assumed in Talend Component Kit runtime
+as provided so never include it in compile scope - it would be ignored anyway.</p>
+</div>
+<div class="sect2">
+<h3 id="_coder"><a class="anchor" href="#_coder"></a>5.1. Coder</h3>
+<div class="paragraph">
+<p>If you need a JSonCoder you can use <code>org.talend.sdk.component.runtime.beam.factory.service.PluginCoderFactory</code> service
+which gives you access the JSON-P and JSON-B coders.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sample"><a class="anchor" href="#_sample"></a>5.2. Sample</h3>
+<div class="paragraph">
+<p>Here is a sample input based on beam Kafka:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version
+@Icon(Icon.IconType.KAFKA)
+@Emitter(name = "Input")
+@AllArgsConstructor
+@Documentation("Kafka Input")
+public class KafkaInput extends PTransform&lt;PBegin, PCollection&lt;JsonObject&gt;&gt; { <i class="conum" data-value="1"></i><b>(1)</b>
+
+    private final InputConfiguration configuration;
+
+    private final JsonBuilderFactory builder;
+
+    private final PluginCoderFactory coderFactory;
+
+    private KafkaIO.Read&lt;byte[], byte[]&gt; delegate() {
+        final KafkaIO.Read&lt;byte[], byte[]&gt; read = KafkaIO.&lt;byte[], byte[]&gt; read()
+                .withBootstrapServers(configuration.getBootstrapServers())
+                .withTopics(configuration.getTopics().stream().map(InputConfiguration.Topic::getName).collect(toList()))
+                .withKeyDeserializer(ByteArrayDeserializer.class).withValueDeserializer(ByteArrayDeserializer.class);
+        if (configuration.getMaxResults() &gt; 0) {
+            return read.withMaxNumRecords(configuration.getMaxResults());
+        }
+        return read;
+    }
+
+    @Override <i class="conum" data-value="2"></i><b>(2)</b>
+    public PCollection&lt;JsonObject&gt; expand(final PBegin pBegin) {
+        final PCollection&lt;KafkaRecord&lt;byte[], byte[]&gt;&gt; kafkaEntries = pBegin.getPipeline().apply(delegate());
+        return kafkaEntries.apply(ParDo.of(new RecordToJson(builder))).setCoder(coderFactory.jsonp()); <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+
+    @AllArgsConstructor
+    private static class RecordToJson extends DoFn&lt;KafkaRecord&lt;byte[], byte[]&gt;, JsonObject&gt; {
+
+        private final JsonBuilderFactory builder;
+
+        @ProcessElement
+        public void onElement(final ProcessContext context) {
+            context.output(toJson(context.element()));
+        }
+
+        // todo: we shouldnt be typed string/string so make it evolving
+        private JsonObject toJson(final KafkaRecord&lt;byte[], byte[]&gt; element) {
+            return builder.createObjectBuilder().add("key", new String(element.getKV().getKey()))
+                    .add("value", new String(element.getKV().getValue())).build();
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>the <code>PTransform</code> generics define it is an input (<code>PBegin</code> marker)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>the <code>expand</code> method chains the native IO with a custom mapper (<code>RecordToJson</code>)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>the mapper uses the JSON-P coder automatically created from the contextual component</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Since the Beam wrapper doesn&#8217;t respect the standard Kit programming Model (no <code>@Emitter</code> for instance)
+you need to set <code>&lt;talend.validation.component&gt;false&lt;/talend.validation.component&gt;</code> property in your <code>pom.xml</code>
+(or equivalent for Gradle) to skip the Kit component programming model validations.</p>
+</div>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/tacokit.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+(function (window, document) {
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {
+        return;
+      }
+      var code = pre.querySelector('code.hljs');
+      if (!code) {
+        return;
+      }
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {
+        code.style.height = closedSize;
+      }
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>
