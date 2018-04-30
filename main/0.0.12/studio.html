@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talend Component Studio Integration :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.12/studio.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-04-30T08:13:12.220Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/idea.css">
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="q">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="0.0.12">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-definition.html">Definition Model</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-registering.html">Registration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gallery.html">Widget Gallery</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-internationalization.html">Labels and i18n</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="component-loading.html">Loading</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-tools-gradle.html">Gradle</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-internationalization.html">Internationalization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-actions.html">Actions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-built-in.html">Built-in services</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-interceptors.html">Interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-custom-api.html">Extend the API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Execute</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-best-practices.html">JUnit Integration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-junit.html">Testing HTTP API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-beam.html">Beam case</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-spark.html">Spark and JUnit</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-multiple-envs.html">Multiple environments for the same tests</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-maven-passwords.html">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="testing-generating-data.html">Generating data?</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">0.0.12</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.0.12</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.10/index.html">0.0.10</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.9/index.html">0.0.9</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.8/index.html">0.0.8</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.7/index.html">0.0.7</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.6/index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">0.0.12</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="studio.html">0.0.12</a>
+    <a class="version" href="../0.0.10/studio.html">0.0.10</a>
+    <a class="version" href="../0.0.9/studio.html">0.0.9</a>
+    <a class="version" href="../0.0.8/studio.html">0.0.8</a>
+    <a class="version" href="../0.0.7/studio.html">0.0.7</a>
+    <a class="version" href="../0.0.6/studio.html">0.0.6</a>
+    <a class="version" href="../0.0.5/studio.html">0.0.5</a>
+    <a class="version" href="../0.0.4/studio.html">0.0.4</a>
+    <a class="version" href="../0.0.3/studio.html">0.0.3</a>
+    <a class="version" href="../0.0.2/studio.html">0.0.2</a>
+    <a class="version" href="../0.0.1/studio.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Talend Component Studio Integration</h1>
+        <div class="sect1">
+<h2 id="_design"><a class="anchor" href="#_design"></a>1. Design</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The studio integration relies on Component Server (see <a href="documentation-rest.html" class="page">Web</a> for more details).</p>
+</div>
+<div class="paragraph">
+<p>When the plugin is deployed it starts a local server the Studio uses to gather data about the components.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation"><a class="anchor" href="#_installation"></a>2. Installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Copy <code>org.talend.sdk.component.studio-integration.jar</code> in the <code>$STUDIO_HOME/plugins</code> directory and restart the studio.</p>
+</div>
+<div class="paragraph">
+<p>Also ensure the <code>component-server</code> dependencies  and <code>commons-cli</code> 1.4 are into the Studio maven repository. If you install any component,
+ensure its dependencies are in the repository as well.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+you can set in <code>$STUDIO_HOME/configuration/config.ini</code> the value <code>maven.repository</code> to <code>global</code> to reuse
+your local maven repository.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>3. Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The configuration goes into <code>$STUDIO_HOME/configuration/config.ini</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component.debounce.timeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies timeout in milliseconds before calling listeners in components Text fields</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">750</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component.kit.skip</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code> the plugin is not active. Useful if you don&#8217;t have any component develop with the framework.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.arguments</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Component server additional options</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.m2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maven repository the server uses to resolve components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default to global Studio configuration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.coordinates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of comma separated GAV (groupId:artifactId:version) of components to register</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.registry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A properties file with values matching component GAV (groupId:artifactId:version) which are registered at startup</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component.java.port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set a port to use for the server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">random</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">components.server.beam.active</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Active, if set to true, beam support (<em>Experimental</em>). It requires beam sdk java core dependencies to be available.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component.server.jul.forceConsole</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Adds a console handler to JUL to see logs in the console. This can be helpful in dev since the formatting will be better than the OSGi one in <code>workspace/.metadata/.log</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+it uses <code>java.util.logging.SimpleFormatter.format</code> property to define its format. Default
+is <code>%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%6$s%n</code> but for development purposes
+<code>[%4$s] %5$s%6$s%n</code> is simpler and more readable.
+</td>
+</tr>
+</table>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+to activate the plugin and be able to deploy your component, don&#8217;t forget to set <code>component.kit.skip</code> to <code>true</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A common developer <code>configuration/config.ini</code> will use the following specific entries:</p>
+</div>
+<div class="listingblock">
+<div class="title">configuration/config.ini</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># use local .m2 instead of embedded studio one
+maven.repository = global
+
+# log into the console the component interactions
+component.server.jul.forceConsole = true
+java.util.logging.SimpleFormatter.format = [%4$s] %5$s%6$s%n
+
+# load these component modules
+component.java.coordinates = \
+    group1:artifact1:0.0.1,\
+    group2:artifact2:0.2.1</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_random_port_when_running_concurrent_studio_instances"><a class="anchor" href="#_random_port_when_running_concurrent_studio_instances"></a>3.1. Random port when running concurrent studio instances</h3>
+<div class="paragraph">
+<p>If you run multiple Studio instance automatically in parallel you can have some issues with the random port computation
+(can happen on a CI platform). For that purpose you can create the file <code>$HOME/.talend/locks/org.talend.sdk.component.studio-integration.lock</code>.</p>
+</div>
+<div class="paragraph">
+<p>When a server will start it will acquire a lock on that file and prevent another one to get a port until it is started. It ensures
+you can&#8217;t get two concurrent processes getting the same allocated port.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+it is highly unlikely it happens on a desktop and forcing a different value through <code>component.java.port</code> in your <code>config.ini</code> is likely a better
+solution for local installations.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/tacokit.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+(function (window, document) {
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {
+        return;
+      }
+      var code = pre.querySelector('code.hljs');
+      if (!code) {
+        return;
+      }
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {
+        code.style.height = closedSize;
+      }
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>
