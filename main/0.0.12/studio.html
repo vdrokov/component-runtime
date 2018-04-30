@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.12/studio.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-04-30T09:10:51.709Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-04-30T15:34:25.067Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -338,6 +338,11 @@ your local maven repository.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Default</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component.environment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Active the developer mode when set to <code>dev</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.debounce.timeout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Specifies timeout in milliseconds before calling listeners in components Text fields</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">750</p></td>
@@ -421,14 +426,17 @@ to activate the plugin and be able to deploy your component, don&#8217;t forget 
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># use local .m2 instead of embedded studio one
 maven.repository = global
 
-# log into the console the component interactions
-component.server.jul.forceConsole = true
-java.util.logging.SimpleFormatter.format = [%4$s] %5$s%6$s%n
-
 # load these component modules
 component.java.coordinates = \
     group1:artifact1:0.0.1,\
-    group2:artifact2:0.2.1</code></pre>
+    group2:artifact2:0.2.1
+
+# during development, see developer model part
+component.environment = dev
+
+# log into the console the component interactions - optional
+component.server.jul.forceConsole = true
+java.util.logging.SimpleFormatter.format = [%4$s] %5$s%6$s%n</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -453,6 +461,36 @@ solution for local installations.
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_developer_mode"><a class="anchor" href="#_developer_mode"></a>3.2. Developer mode</h3>
+<div class="paragraph">
+<p>The developer mode will add a Talend Component Kit button in the main toolbar:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/studio-reload-button.png" alt="Studio Reload Button">
+</div>
+</div>
+<div class="paragraph">
+<p>When clicking on this button, all component developped with the framework will be reloaded.
+The cache will be invalidated and the component refreshed.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+you still need to add/remove the components to see the changes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This feature is very useful to see some updates in components without having to restart the studio completly.</p>
 </div>
 </div>
 </div>
