@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.12/all-in-one.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-05-02T07:37:38.728Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-05-02T10:10:28.723Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -4818,9 +4818,29 @@ in your instance. Here is a sample launch command:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># for a studio
 java -jar mycomponent.car studio-deploy /path/to/my/studio
+or
+java -jar mycomponent.car studio-deploy --location /path/to/my/studio
 
 # for a m2 provisioning
-java -jar mycomponent.car maven-deploy /path/to/.m2/repository</code></pre>
+java -jar mycomponent.car maven-deploy /path/to/.m2/repository
+or
+java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also upload the dependencies to your nexus server using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">java -jar mycomponent.car deploy-to-nexus --url &lt;nexus url&gt; --repo &lt;repository name&gt; --user &lt;username&gt; --pass &lt;password&gt; --threads &lt;parallel threads number&gt; --dir &lt;temp directory&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this command Nexus Url and repository name are mandatory arguments. All other arguments are optional. If arguments contain spaces or special symbols, you need to quote the whole value of the argument, for example</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">--pass "Y0u will \ not G4iess i' ^"</code></pre>
 </div>
 </div>
 </div>
