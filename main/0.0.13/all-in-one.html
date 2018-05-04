@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.13/all-in-one.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-05-04T07:48:19.346Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-05-04T14:59:28.233Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -1740,7 +1740,38 @@ Boolean config;</code></pre>
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
-List&lt;String&gt; config;</code></pre>
+@Proposable("valuesProvider")
+String config;
+/** service class */
+@DynamicValues("valuesProvider")
+public Values vendors(){
+    return new Values(asList(new Values.Item("1", "Delete"),
+                      new Values.Item("2", "Insert")
+                      new Values.Item("3", "Update")));
+ }</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<a class="image" href="_images/gallery/widgets/studio/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/list.png" alt="Studio List"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<a class="image" href="_images/gallery/widgets/web/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/list.png" alt="Web List"></a>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+ActionEnum config;
+/** Define enum */
+enum ActionEnum {Delete,
+    Insert,
+    Update}</code></pre>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="imageblock">
