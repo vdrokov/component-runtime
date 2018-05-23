@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.13/documentation-testing.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-05-22T10:31:43.868Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-05-23T13:00:00.816Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -829,7 +829,7 @@ don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefi
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyComponentTest {
 
     @Rule <i class="conum" data-value="1"></i><b>(1)</b>
-    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent.");
+    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent");
 
     @Test
     public void produce() {
@@ -928,7 +928,7 @@ Some IDE versions and <code>surefire</code> versions can also need you to instal
 <h4 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>2.1.3. Mocking the output</h4>
 <div class="paragraph">
 <p>Using the component "test"/"collector" as in previous sample stores all records emitted by the chain (typically your source)
-in memory, you can then access them using <code>theSimpleComponentRule.getCollectoedRecord(type)</code>. Note that this method filters by type,
+in memory, you can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>. Note that this method filters by type,
 if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 </div>
 </div>
@@ -942,13 +942,13 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyComponentTest {
 
     @Rule
-    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent.");
+    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent");
 
     @Test
     public void produce() {
         components.setInputData(asList(createData(), createData(), createData())); <i class="conum" data-value="1"></i><b>(1)</b>
 
-        Job.components() <i class="conum" data-value="2"></i><b>(2)</b>
+        Job.components()
              .component("emitter","test://emitter")
              .component("out", "yourcomponentfamily://myoutput?"+createComponentConfig())
            .connections()
@@ -1225,7 +1225,7 @@ you can poll it to check. The best at the moment is to ensure the output of your
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
-  &lt;artifactId&gt;component-runtime-junit&lt;/artifactId&gt;
+  &lt;artifactId&gt;component-runtime-http-junit&lt;/artifactId&gt;
   &lt;version&gt;${talend-component.version}&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;</code></pre>
@@ -1379,7 +1379,7 @@ class MyHttpsApiTest {
 are auto configured to work out of the box with the proxy.</p>
 </div>
 <div class="paragraph">
-<p>It allows you to keep in your tests the native and real URLs. For instance this test is perfectlt valid:</p>
+<p>It allows you to keep in your tests the native and real URLs. For instance this test is perfectly valid:</p>
 </div>
 <div class="listingblock">
 <div class="content">

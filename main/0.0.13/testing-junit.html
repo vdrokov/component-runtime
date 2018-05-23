@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.13/testing-junit.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-05-22T10:31:44.122Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-05-23T13:00:00.963Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -664,7 +664,7 @@
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyComponentTest {
 
     @Rule <i class="conum" data-value="1"></i><b>(1)</b>
-    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent.");
+    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent");
 
     @Test
     public void produce() {
@@ -763,7 +763,7 @@ Some IDE versions and <code>surefire</code> versions can also need you to instal
 <h3 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>1.3. Mocking the output</h3>
 <div class="paragraph">
 <p>Using the component "test"/"collector" as in previous sample stores all records emitted by the chain (typically your source)
-in memory, you can then access them using <code>theSimpleComponentRule.getCollectoedRecord(type)</code>. Note that this method filters by type,
+in memory, you can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>. Note that this method filters by type,
 if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 </div>
 </div>
@@ -777,13 +777,13 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyComponentTest {
 
     @Rule
-    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent.");
+    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent");
 
     @Test
     public void produce() {
         components.setInputData(asList(createData(), createData(), createData())); <i class="conum" data-value="1"></i><b>(1)</b>
 
-        Job.components() <i class="conum" data-value="2"></i><b>(2)</b>
+        Job.components()
              .component("emitter","test://emitter")
              .component("out", "yourcomponentfamily://myoutput?"+createComponentConfig())
            .connections()
