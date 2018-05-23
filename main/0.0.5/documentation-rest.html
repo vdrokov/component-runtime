@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talend Component REST API Documentation :: Talend Component Kit Developer Reference Guide</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.5/documentation-rest.html">
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/documentation-rest.html">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-05-23T15:28:27.846Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-05-23T16:05:35.970Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
-    <script>function gtag(){$gtag.push(arguments)}$gtag=window.dataLayer||[],gtag("js",new Date),gtag("config","GTM-PSBN");</script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
   </head>
   <body class="article">
 <header class="header" role="banner">
@@ -51,7 +52,7 @@
     </nav>
 </header>
 <div class="main-wrapper">
-<div class="navigation-container">
+<div class="navigation-container" data-component="main" data-version="0.0.5">
   <aside class="navigation" role="navigation">
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
@@ -203,7 +204,7 @@
   </nav>
 </div>
 <div class="navigation-explore" data-panel="explore">
-  <div class="current">
+  <div class="context">
     <span class="title">Talend Component Kit Developer Reference Guide</span>
     <span class="version">0.0.5</span>
   </div>
@@ -211,7 +212,34 @@
     <li class="component is-current">
       <span class="title">Talend Component Kit Developer Reference Guide</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../1.0.1/index.html">1.0.1</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.0/index.html">1.0.0</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.12/index.html">0.0.12</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.11/index.html">0.0.11</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.10/index.html">0.0.10</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.9/index.html">0.0.9</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.8/index.html">0.0.8</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.7/index.html">0.0.7</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.6/index.html">0.0.6</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">0.0.5</a>
         </li>
         <li class="version">
@@ -246,6 +274,15 @@
     <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">0.0.5</button>
   <div class="versions-menu">
+    <a class="version" href="../1.0.1/documentation-rest.html">1.0.1</a>
+    <a class="version" href="../1.0.0/documentation-rest.html">1.0.0</a>
+    <a class="version" href="../0.0.12/documentation-rest.html">0.0.12</a>
+    <a class="version" href="../0.0.11/documentation-rest.html">0.0.11</a>
+    <a class="version" href="../0.0.10/documentation-rest.html">0.0.10</a>
+    <a class="version" href="../0.0.9/documentation-rest.html">0.0.9</a>
+    <a class="version" href="../0.0.8/documentation-rest.html">0.0.8</a>
+    <a class="version" href="../0.0.7/documentation-rest.html">0.0.7</a>
+    <a class="version" href="../0.0.6/documentation-rest.html">0.0.6</a>
     <a class="version is-current" href="documentation-rest.html">0.0.5</a>
     <a class="version" href="../0.0.4/documentation-rest.html">0.0.4</a>
     <a class="version" href="../0.0.3/documentation-rest.html">0.0.3</a>
@@ -825,14 +862,15 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_configurationtype_index_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_index_code"></a>1.1.10. <code>GET api/v1/configurationtype/index</code></h4>
+<h4 id="_code_get_api_v1_configurationtype_details_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_details_code"></a>1.1.10. <code>GET api/v1/configurationtype/details</code></h4>
 <div class="paragraph">
-<p>Returns all available configuration type - storable models.</p>
+<p>Returns the set of metadata about a few configurations identified by their 'id'.</p>
 </div>
 <div class="sect4">
 <h5 id="_request_10"><a class="anchor" href="#_request_10"></a>Request</h5>
 <div class="paragraph">
 <p><em>No body</em><br>
+<strong>Query Param</strong>: <code>identifiers</code>, <code>java.lang.String</code><br>
 <strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
 </div>
 </div>
@@ -858,17 +896,18 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"></a>1.1.11. <code>POST api/v1/configurationtype/migrate/{id}/{configurationVersion}</code></h4>
+<h4 id="_code_get_api_v1_configurationtype_index_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_index_code"></a>1.1.11. <code>GET api/v1/configurationtype/index</code></h4>
 <div class="paragraph">
-<p>Allows to migrate a configuration without calling any component execution.</p>
+<p>Returns all available configuration type - storable models.
+Note that the lightPayload flag allows to load all of them at once when you eagerly need
+to create a client model for all configurations.</p>
 </div>
 <div class="sect4">
 <h5 id="_request_11"><a class="anchor" href="#_request_11"></a>Request</h5>
 <div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code><br>
-<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
-<strong>Path Param</strong>: <code>configurationVersion</code>, <code>int</code><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
+<p><em>No body</em><br>
+<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br>
+<strong>Query Param</strong>: <code>lightPayload</code>, <code>boolean</code><br></p>
 </div>
 </div>
 <div class="sect4">
@@ -879,13 +918,48 @@ It can be maven coordinates for dependencies or a component id.</p>
 <div class="sect5">
 <h6 id="_code_200_ok_code_11"><a class="anchor" href="#_code_200_ok_code_11"></a><code>200 OK</code></h6>
 <div class="paragraph">
+<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ConfigTypeNodes</code>)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+    "nodes": {
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"></a>1.1.12. <code>POST api/v1/configurationtype/migrate/{id}/{configurationVersion}</code></h4>
+<div class="paragraph">
+<p>Allows to migrate a configuration without calling any component execution.</p>
+</div>
+<div class="sect4">
+<h5 id="_request_12"><a class="anchor" href="#_request_12"></a>Request</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code><br>
+<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
+<strong>Path Param</strong>: <code>configurationVersion</code>, <code>int</code><br>
+<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_12"><a class="anchor" href="#_response_12"></a>Response</h5>
+<div class="paragraph">
+<p><strong>Content-Type</strong>: <code>application/json</code></p>
+</div>
+<div class="sect5">
+<h6 id="_code_200_ok_code_12"><a class="anchor" href="#_code_200_ok_code_12"></a><code>200 OK</code></h6>
+<div class="paragraph">
 <p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_documentation_component_id_code"><a class="anchor" href="#_code_get_api_v1_documentation_component_id_code"></a>1.1.12. <code>GET api/v1/documentation/component/{id}</code></h4>
+<h4 id="_code_get_api_v1_documentation_component_id_code"><a class="anchor" href="#_code_get_api_v1_documentation_component_id_code"></a>1.1.13. <code>GET api/v1/documentation/component/{id}</code></h4>
 <div class="paragraph">
 <p>Returns an asciidoctor version of the documentation for the component represented by its identifier <code>id</code>.</p>
 </div>
@@ -911,7 +985,7 @@ the html flavor handles a limited set of the asciidoc syntax only like plain arr
 component (_componentname_inlowercase).</p>
 </div>
 <div class="sect4">
-<h5 id="_request_12"><a class="anchor" href="#_request_12"></a>Request</h5>
+<h5 id="_request_13"><a class="anchor" href="#_request_13"></a>Request</h5>
 <div class="paragraph">
 <p><em>No body</em><br>
 <strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br>
@@ -920,12 +994,12 @@ component (_componentname_inlowercase).</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_12"><a class="anchor" href="#_response_12"></a>Response</h5>
+<h5 id="_response_13"><a class="anchor" href="#_response_13"></a>Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect5">
-<h6 id="_code_200_ok_code_12"><a class="anchor" href="#_code_200_ok_code_12"></a><code>200 OK</code></h6>
+<h6 id="_code_200_ok_code_13"><a class="anchor" href="#_code_200_ok_code_13"></a><code>200 OK</code></h6>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.DocumentationContent</code>)</p>
 </div>
@@ -941,23 +1015,23 @@ component (_componentname_inlowercase).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_environment_code"><a class="anchor" href="#_code_get_api_v1_environment_code"></a>1.1.13. <code>GET api/v1/environment</code></h4>
+<h4 id="_code_get_api_v1_environment_code"><a class="anchor" href="#_code_get_api_v1_environment_code"></a>1.1.14. <code>GET api/v1/environment</code></h4>
 <div class="paragraph">
 <p>Returns the environment of this instance. Useful to check the version or configure a healthcheck for the server.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_13"><a class="anchor" href="#_request_13"></a>Request</h5>
+<h5 id="_request_14"><a class="anchor" href="#_request_14"></a>Request</h5>
 <div class="paragraph">
 <p><em>No body</em><br></p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_13"><a class="anchor" href="#_response_13"></a>Response</h5>
+<h5 id="_response_14"><a class="anchor" href="#_response_14"></a>Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>*/*</code></p>
 </div>
 <div class="sect5">
-<h6 id="_code_200_ok_code_13"><a class="anchor" href="#_code_200_ok_code_13"></a><code>200 OK</code></h6>
+<h6 id="_code_200_ok_code_14"><a class="anchor" href="#_code_200_ok_code_14"></a><code>200 OK</code></h6>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Environment</code>)</p>
 </div>
@@ -975,7 +1049,7 @@ component (_componentname_inlowercase).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_execution_read_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_read_family_component_code"></a>1.1.14. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
+<h4 id="_code_post_api_v1_execution_read_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_read_family_component_code"></a>1.1.15. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -993,7 +1067,7 @@ deprecated
 The format is a JSON based format where each like is a json record.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_14"><a class="anchor" href="#_request_14"></a>Request</h5>
+<h5 id="_request_15"><a class="anchor" href="#_request_15"></a>Request</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code><br>
 <strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
@@ -1003,7 +1077,7 @@ The format is a JSON based format where each like is a json record.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_14"><a class="anchor" href="#_response_14"></a>Response</h5>
+<h5 id="_response_15"><a class="anchor" href="#_response_15"></a>Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>talend/stream</code></p>
 </div>
@@ -1014,7 +1088,7 @@ The format is a JSON based format where each like is a json record.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_execution_write_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_write_family_component_code"></a>1.1.15. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
+<h4 id="_code_post_api_v1_execution_write_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_write_family_component_code"></a>1.1.16. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -1033,7 +1107,7 @@ Behavior for other processors is undefined.
 The input format is a JSON based format where each like is a json record - same as for the symmetric endpoint.</p>
 </div>
 <div class="sect4">
-<h5 id="_request_15"><a class="anchor" href="#_request_15"></a>Request</h5>
+<h5 id="_request_16"><a class="anchor" href="#_request_16"></a>Request</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>talend/stream</code><br>
 <strong>Request Body</strong>: (<code>java.io.InputStream</code>)
@@ -1043,7 +1117,7 @@ The input format is a JSON based format where each like is a json record - same 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_15"><a class="anchor" href="#_response_15"></a>Response</h5>
+<h5 id="_response_16"><a class="anchor" href="#_response_16"></a>Response</h5>
 <div class="paragraph">
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
@@ -1154,47 +1228,100 @@ Accept: application/json
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Path("tacokit-facade")
 @ApplicationScoped
 public class ComponentFacade {
+    private static final String[] EMPTY_ARRAY = new String[0];
 
     @Inject
     private Client client;
 
     @Inject
-    private UiSpecService uiSpecService;
+    private ActionService actionService;
 
     @Inject
-    private ActionService actionService;
+    private UiSpecService uiSpecService;
+
+    @Inject // assuming it is available in your app, use any client you want
+    private WebTarget target;
 
     @POST
     @Path("action")
-    public UiActionResult action(@QueryParam("family") final String family, @QueryParam("type") final String type,
-            @QueryParam("action") final String action, final Map&lt;String, Object&gt; params) {
-        try {
-            return actionService.map(type, client.action(family, type, action, params));
-        } catch (final WebException exception) {
-            final UiActionResult payload = actionService.map(exception);
-            throw new WebApplicationException(Response.status(exception.getStatus()).entity(payload).build());
-        }
+    public void action(@Suspended final AsyncResponse response, @QueryParam("family") final String family,
+            @QueryParam("type") final String type, @QueryParam("action") final String action,
+            final Map&lt;String, Object&gt; params) {
+        client.action(family, type, action, params).handle((r, e) -&gt; {
+            if (e != null) {
+                onException(response, e);
+            } else {
+                response.resume(actionService.map(type, r));
+            }
+            return null;
+        });
     }
 
     @GET
     @Path("index")
-    public ComponentIndices getIndex(@QueryParam("language") @DefaultValue("en") final String language) {
-        final ComponentIndices index = client.index(language);
-        // our mapping is a bit different so rewrite links
-        index.getComponents().stream().flatMap(c -&gt; c.getLinks().stream()).forEach(link -&gt; link.setPath(
-                link.getPath().replaceFirst("\\/component\\/", "\\/tcomp-facade\\/").replace("/details?identifiers=", "/detail/")));
-        return index;
+    public void getIndex(@Suspended final AsyncResponse response,
+            @QueryParam("language") @DefaultValue("en") final String language) {
+        target
+                .path("component/index")
+                .queryParam("language", language)
+                .request(APPLICATION_JSON_TYPE)
+                .rx()
+                .get(ComponentIndices.class)
+                .toCompletableFuture()
+                .handle((index, e) -&gt; {
+            if (e != null) {
+                onException(response, e);
+            } else {
+                index.getComponents().stream().flatMap(c -&gt; c.getLinks().stream()).forEach(
+                        link -&gt; link.setPath(link.getPath().replaceFirst("/component/", "/application/").replace(
+                                "/details?identifiers=", "/detail/")));
+                response.resume(index);
+            }
+            return null;
+        });
     }
 
     @GET
     @Path("detail/{id}")
-    public Ui getDetail(@QueryParam("language") @DefaultValue("en") final String language,
-            @PathParam("id") final String id) {
-        final List&lt;ComponentDetail&gt; details = client.details(language, id, new String[0]).getDetails();
-        if (details.isEmpty()) {
-            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+    public void getDetail(@Suspended final AsyncResponse response,
+            @QueryParam("language") @DefaultValue("en") final String language, @PathParam("id") final String id) {
+        target
+                .path("component/details")
+                .queryParam("language", language)
+                .queryParam("identifiers", id)
+                .request(APPLICATION_JSON_TYPE)
+                .rx()
+                .get(ComponentDetailList.class)
+                .toCompletableFuture()
+                .thenCompose(result -&gt; uiSpecService.convert(result.getDetails().iterator().next()))
+                .handle((result, e) -&gt; {
+                    if (e != null) {
+                        onException(response, e);
+                    } else {
+                        response.resume(result);
+                    }
+                    return null;
+                });
+    }
+
+    private void onException(final AsyncResponse response, final Throwable e) {
+        final UiActionResult payload;
+        final int status;
+        if (WebException.class.isInstance(e)) {
+            final WebException we = WebException.class.cast(e);
+            status = we.getStatus();
+            payload = actionService.map(we);
+        } else if (CompletionException.class.isInstance(e)) {
+            final CompletionException actualException = CompletionException.class.cast(e);
+            log.error(actualException.getMessage(), actualException);
+            status = Response.Status.BAD_GATEWAY.getStatusCode();
+            payload = actionService.map(new WebException(actualException, -1, emptyMap()));
+        } else {
+            log.error(e.getMessage(), e);
+            status = Response.Status.BAD_GATEWAY.getStatusCode();
+            payload = actionService.map(new WebException(e, -1, emptyMap()));
         }
-        return uiSpecService.convert(details.iterator().next());
+        response.resume(new WebApplicationException(Response.status(status).entity(payload).build()));
     }
 }</code></pre>
 </div>
@@ -1207,7 +1334,7 @@ public class ComponentFacade {
 </td>
 <td class="content">
 the <code>Client</code> can be created using <code>ClientFactory.createDefault(System.getProperty("app.components.base", "http://localhost:8080/api/v1"))</code>
-and the service can be a simple <code>new UiSpecService()</code>.
+and the service can be a simple <code>new UiSpecService()</code>. The factory uses JAX-RS if the API is available (assuming a JSON-B provider is registered) otherwise it tries to use Spring.
 </td>
 </tr>
 </table>
