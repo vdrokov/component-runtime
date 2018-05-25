@@ -4,10 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>component-runtime-testing :: Talend Component Kit Developer Reference Guide</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/testing-runtime.html">
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/0.0.5/testing-runtime.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-05-24T16:04:55.888Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-05-25T07:10:49.793Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/instantsearch.min.css">
+<link rel="stylesheet" href="../../_/css/instantsearch-theme-algolia.min.css">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -33,7 +35,8 @@
                 <div class="global-search">
                     <form role="search" action="search.html">
                         <div>
-                            <input class="rounded" type="text" placeholder="Search" name="q">
+                            <input class="rounded" type="text" placeholder="Search" name="query" id="searchInput">
+                            <input type="hidden" name="idx" value="githubantora">
                         </div>
                     </form>
                 </div>
@@ -213,33 +216,6 @@
       <span class="title">Talend Component Kit Developer Reference Guide</span>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../1.0.1/index.html">1.0.1</a>
-        </li>
-        <li class="version">
-          <a href="../1.0.0/index.html">1.0.0</a>
-        </li>
-        <li class="version">
-          <a href="../0.0.12/index.html">0.0.12</a>
-        </li>
-        <li class="version">
-          <a href="../0.0.11/index.html">0.0.11</a>
-        </li>
-        <li class="version">
-          <a href="../0.0.10/index.html">0.0.10</a>
-        </li>
-        <li class="version">
-          <a href="../0.0.9/index.html">0.0.9</a>
-        </li>
-        <li class="version">
-          <a href="../0.0.8/index.html">0.0.8</a>
-        </li>
-        <li class="version">
-          <a href="../0.0.7/index.html">0.0.7</a>
-        </li>
-        <li class="version">
-          <a href="../0.0.6/index.html">0.0.6</a>
-        </li>
-        <li class="version">
           <a href="../0.0.5/index.html">0.0.5</a>
         </li>
         <li class="version">
@@ -273,15 +249,6 @@
     <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">0.0.2</button>
   <div class="versions-menu">
-    <a class="version" href="../1.0.1/testing-runtime.html">1.0.1</a>
-    <a class="version" href="../1.0.0/testing-runtime.html">1.0.0</a>
-    <a class="version" href="../0.0.12/testing-runtime.html">0.0.12</a>
-    <a class="version" href="../0.0.11/testing-runtime.html">0.0.11</a>
-    <a class="version" href="../0.0.10/testing-runtime.html">0.0.10</a>
-    <a class="version" href="../0.0.9/testing-runtime.html">0.0.9</a>
-    <a class="version" href="../0.0.8/testing-runtime.html">0.0.8</a>
-    <a class="version" href="../0.0.7/testing-runtime.html">0.0.7</a>
-    <a class="version" href="../0.0.6/testing-runtime.html">0.0.6</a>
     <a class="version" href="../0.0.5/testing-runtime.html">0.0.5</a>
     <a class="version" href="../0.0.4/testing-runtime.html">0.0.4</a>
     <a class="version" href="../0.0.3/testing-runtime.html">0.0.3</a>
@@ -1024,7 +991,6 @@ to the actual server - like in capturing mode.&lt;/p&gt;
 </footer>
 <script src="../../_/js/site.js"></script>
 <script src="../../_/js/vendor/highlight.js"></script>
-<script src="../../_/js/tacokit.js"></script>
 <script>hljs.initHighlighting()</script>
 <script>
 (function (window, document) {
@@ -1032,22 +998,16 @@ to the actual server - like in capturing mode.&lt;/p&gt;
   document.querySelectorAll('.listingblock')
     .forEach(function (listingblock, index) {
       var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
-      if (!pre) {
-        return;
-      }
+      if (!pre) {return;}
       var code = pre.querySelector('code.hljs');
-      if (!code) {
-        return;
-      }
+      if (!code) {return;}
 
       var span = document.createElement('span');
       var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
       span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
 
       var height = code.style.height;
-      if (initialBlockClosed) {
-        code.style.height = closedSize;
-      }
+      if (initialBlockClosed) {code.style.height = closedSize;}
 
       span.addEventListener('click', function () {
         if (span.className == 'code-collapsed-handle code-handle-base') {
