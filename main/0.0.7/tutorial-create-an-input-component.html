@@ -7,7 +7,9 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/tutorial-create-an-input-component.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-05-24T16:04:58.180Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-05-25T07:32:32.316Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="../../_/css/instantsearch.min.css">
+<link rel="stylesheet" href="../../_/css/instantsearch-theme-algolia.min.css">
 <link rel="stylesheet" href="../../_/css/idea.css">
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -33,7 +35,8 @@
                 <div class="global-search">
                     <form role="search" action="search.html">
                         <div>
-                            <input class="rounded" type="text" placeholder="Search" name="q">
+                            <input class="rounded" type="text" placeholder="Search" name="query" id="searchInput">
+                            <input type="hidden" name="idx" value="githubantora">
                         </div>
                     </form>
                 </div>
@@ -1048,7 +1051,6 @@ tests for it</a>.</p>
 </footer>
 <script src="../../_/js/site.js"></script>
 <script src="../../_/js/vendor/highlight.js"></script>
-<script src="../../_/js/tacokit.js"></script>
 <script>hljs.initHighlighting()</script>
 <script>
 (function (window, document) {
@@ -1056,22 +1058,16 @@ tests for it</a>.</p>
   document.querySelectorAll('.listingblock')
     .forEach(function (listingblock, index) {
       var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
-      if (!pre) {
-        return;
-      }
+      if (!pre) {return;}
       var code = pre.querySelector('code.hljs');
-      if (!code) {
-        return;
-      }
+      if (!code) {return;}
 
       var span = document.createElement('span');
       var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
       span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
 
       var height = code.style.height;
-      if (initialBlockClosed) {
-        code.style.height = closedSize;
-      }
+      if (initialBlockClosed) {code.style.height = closedSize;}
 
       span.addEventListener('click', function () {
         if (span.className == 'code-collapsed-handle code-handle-base') {
