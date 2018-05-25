@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/search.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-05-25T07:32:31.920Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-05-25T09:49:04.120Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/instantsearch.min.css">
 <link rel="stylesheet" href="../../_/css/instantsearch-theme-algolia.min.css">
 <link rel="stylesheet" href="../../_/css/idea.css">
@@ -304,7 +304,10 @@
 
 <script src="../../_/js/instantsearch.min.js"></script>
 <script type="text/javascript">
-var docVersion = window.location.pathname.replace(/\/[^\/]+\/([0-9\.]+)\/.*/g, '$1');
+var pathname = window.location.pathname;
+var docVersion = pathname.indexOf('/component-runtime') === 0 ?
+    pathname.replace(/\/component\-runtime\/[^\/]+\/([0-9\.]+)\/.*/g, '$1') :
+    pathname.replace(/\/[^\/]+\/([0-9\.]+)\/.*/g, '$1');
 var searchInput = document.getElementById('searchInput');
 var search = instantsearch({
   appId: 'LJ50FMU1OP',
