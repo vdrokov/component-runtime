@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component REST API Documentation :: Talend Component Kit Developer Reference Guide</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/documentation-rest.html">
+    <title>UiSpec Server :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/server-uispec.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-05T16:01:24.171Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-05T16:01:24.207Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="../../_/css/instantsearch.min.css">
 <link rel="stylesheet" href="../../_/css/instantsearch-theme-algolia.min.css">
 <link rel="stylesheet" href="../../_/css/idea.css">
@@ -531,7 +531,7 @@
     <button class="nav-toggle"></button>
     <span class="nav-text">Web</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="documentation-rest.html">Server</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -609,1551 +609,43 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
-    <li class="crumb">Web</li>
-    <li class="crumb"><a href="documentation-rest.html">Server</a></li>
+    <li class="crumb"><a href="server-uispec.html">UiSpec Server</a></li>
   </ul>
 </nav>
     <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">1.0.1</button>
   <div class="versions-menu">
-    <a class="version is-current" href="documentation-rest.html">1.0.1</a>
-    <a class="version" href="../1.0.0/documentation-rest.html">1.0.0</a>
-    <a class="version" href="../0.0.12/documentation-rest.html">0.0.12</a>
-    <a class="version" href="../0.0.11/documentation-rest.html">0.0.11</a>
-    <a class="version" href="../0.0.10/documentation-rest.html">0.0.10</a>
-    <a class="version" href="../0.0.9/documentation-rest.html">0.0.9</a>
-    <a class="version" href="../0.0.8/documentation-rest.html">0.0.8</a>
-    <a class="version" href="../0.0.7/documentation-rest.html">0.0.7</a>
-    <a class="version" href="../0.0.6/documentation-rest.html">0.0.6</a>
-    <a class="version" href="../0.0.5/documentation-rest.html">0.0.5</a>
-    <a class="version" href="../0.0.4/documentation-rest.html">0.0.4</a>
-    <a class="version" href="../0.0.3/documentation-rest.html">0.0.3</a>
-    <a class="version" href="../0.0.2/documentation-rest.html">0.0.2</a>
-    <a class="version" href="../0.0.1/documentation-rest.html">0.0.1</a>
+    <a class="version is-current" href="server-uispec.html">1.0.1</a>
+    <a class="version is-missing" href="../1.0.0/index.html">1.0.0</a>
+    <a class="version is-missing" href="../0.0.12/index.html">0.0.12</a>
+    <a class="version is-missing" href="../0.0.11/index.html">0.0.11</a>
+    <a class="version is-missing" href="../0.0.10/index.html">0.0.10</a>
+    <a class="version is-missing" href="../0.0.9/index.html">0.0.9</a>
+    <a class="version is-missing" href="../0.0.8/index.html">0.0.8</a>
+    <a class="version is-missing" href="../0.0.7/index.html">0.0.7</a>
+    <a class="version is-missing" href="../0.0.6/index.html">0.0.6</a>
+    <a class="version is-missing" href="../0.0.5/index.html">0.0.5</a>
+    <a class="version is-missing" href="../0.0.4/index.html">0.0.4</a>
+    <a class="version is-missing" href="../0.0.3/index.html">0.0.3</a>
+    <a class="version is-missing" href="../0.0.2/index.html">0.0.2</a>
+    <a class="version is-missing" href="../0.0.1/index.html">0.0.1</a>
   </div>
 </div>
 </div>
 <article class="doc">
-        <h1>Talend Component REST API Documentation</h1>
+        <h1>UiSpec Server</h1>
         <div id="preamble">
-<div class="sectionbody">
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-a test environment is available on Heroku and browable using Talend Component Kit Server
-<a href="https://talend-component-kit.restlet.io" target="_blank" rel="noopener">Restlet Studio</a> instance.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_http_api"><a class="anchor" href="#_http_api"></a>1. HTTP API</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The HTTP API intends to expose over HTTP most of Talend Component features, it is a standalone Java HTTP server.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-WebSocket protocol is activated for the endpoints as well, instead of <code>/api/v1</code> they uses the base <code>/websocket/v1</code>, see WebSocket part for more details.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Here is the API:</p>
-</div>
-<div class="sect2">
-<h3 id="_rest_resources_of_component_runtime_server_parent_server"><a class="anchor" href="#_rest_resources_of_component_runtime_server_parent_server"></a>1.1. REST resources of Component Runtime :: Server Parent :: Server</h3>
-<div class="paragraph">
-<p>1.0.1-SNAPSHOT</p>
-</div>
-<div class="sect3">
-<h4 id="_code_post_api_v1_action_execute_code"><a class="anchor" href="#_code_post_api_v1_action_execute_code"></a>1.1.1. <code>POST api/v1/action/execute</code></h4>
-<div class="paragraph">
-<p>This endpoint will execute any UI action and serialize the response as a JSON (pojo model)
-It takes as input the family, type and name of the related action to identify it and its configuration
-as a flat key value set using the same kind of mapping than for components (option path as key).</p>
-</div>
-<div class="sect4">
-<h5 id="_request"><a class="anchor" href="#_request"></a>Request</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code><br>
-<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
-<strong>Query Param</strong>: <code>action</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>type</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response"><a class="anchor" href="#_response"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code"><a class="anchor" href="#_code_200_ok_code"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>java.lang.RuntimeException</code>)</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_400_bad_request_code"><a class="anchor" href="#_code_400_bad_request_code"></a><code>400 Bad Request</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "code": "ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|CONFIGURATION_MISSING|DESIGN_MODEL_MISSING|FAMILY_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED",
-    "description": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_404_not_found_code"><a class="anchor" href="#_code_404_not_found_code"></a><code>404 Not Found</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "code": "ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|CONFIGURATION_MISSING|DESIGN_MODEL_MISSING|FAMILY_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED",
-    "description": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_action_index_code"><a class="anchor" href="#_code_get_api_v1_action_index_code"></a>1.1.2. <code>GET api/v1/action/index</code></h4>
-<div class="paragraph">
-<p>This endpoint returns the list of available actions for a certain family and potentially filters the "
-output limiting it to some families and types of actions.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_2"><a class="anchor" href="#_request_2"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>type</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_2"><a class="anchor" href="#_response_2"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_2"><a class="anchor" href="#_code_200_ok_code_2"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ActionList</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "items": [
-        {
-            "component": "string",
-            "name": "string",
-            "properties": [
-                {
-                    "defaultValue": "string",
-                    "displayName": "string",
-                    "metadata": {
-                    },
-                    "name": "string",
-                    "path": "string",
-                    "placeholder": "string",
-                    "proposalDisplayNames": {
-                    },
-                    "type": "string",
-                    "validation": {
-                        "enumValues": [
-                            "string"
-                        ],
-                        "max": 0,
-                        "maxItems": 0,
-                        "maxLength": 0,
-                        "min": 0,
-                        "minItems": 0,
-                        "minLength": 0,
-                        "pattern": "string",
-                        "required": false,
-                        "uniqueItems": false
-                    }
-                }
-            ],
-            "type": "string"
-        }
-    ]
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_dependencies_code"><a class="anchor" href="#_code_get_api_v1_component_dependencies_code"></a>1.1.3. <code>GET api/v1/component/dependencies</code></h4>
-<div class="paragraph">
-<p>Returns a list of dependencies for the given components.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-don&#8217;t forget to add the component itself since it will not be part of the dependencies.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Then you can use /dependency/{id} to download the binary.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_3"><a class="anchor" href="#_request_3"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>identifier</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_3"><a class="anchor" href="#_response_3"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_3"><a class="anchor" href="#_code_200_ok_code_3"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Dependencies</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "dependencies": {
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_dependency_id_code"><a class="anchor" href="#_code_get_api_v1_component_dependency_id_code"></a>1.1.4. <code>GET api/v1/component/dependency/{id}</code></h4>
-<div class="paragraph">
-<p>Return a binary of the dependency represented by <code>id</code>.
-It can be maven coordinates for dependencies or a component id.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_4"><a class="anchor" href="#_request_4"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_4"><a class="anchor" href="#_response_4"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_4"><a class="anchor" href="#_code_200_ok_code_4"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>javax.ws.rs.core.StreamingOutput</code>)</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_404_not_found_code_2"><a class="anchor" href="#_code_404_not_found_code_2"></a><code>404 Not Found</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "code": "ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|CONFIGURATION_MISSING|DESIGN_MODEL_MISSING|FAMILY_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED",
-    "description": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_details_code"><a class="anchor" href="#_code_get_api_v1_component_details_code"></a>1.1.5. <code>GET api/v1/component/details</code></h4>
-<div class="paragraph">
-<p>Returns the set of metadata about a few components identified by their 'id'.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_5"><a class="anchor" href="#_request_5"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>identifiers</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_5"><a class="anchor" href="#_response_5"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_5"><a class="anchor" href="#_code_200_ok_code_5"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentDetailList</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "details": [
-        {
-            "actions": [
-                {
-                    "family": "string",
-                    "name": "string",
-                    "properties": [
-                        {
-                            "defaultValue": "string",
-                            "displayName": "string",
-                            "metadata": {
-                            },
-                            "name": "string",
-                            "path": "string",
-                            "placeholder": "string",
-                            "proposalDisplayNames": {
-                            },
-                            "type": "string",
-                            "validation": {
-                                "enumValues": [
-                                    "string"
-                                ],
-                                "max": 0,
-                                "maxItems": 0,
-                                "maxLength": 0,
-                                "min": 0,
-                                "minItems": 0,
-                                "minLength": 0,
-                                "pattern": "string",
-                                "required": false,
-                                "uniqueItems": false
-                            }
-                        }
-                    ],
-                    "type": "string"
-                }
-            ],
-            "displayName": "string",
-            "icon": "string",
-            "id": {
-                "family": "string",
-                "familyId": "string",
-                "id": "string",
-                "name": "string",
-                "plugin": "string",
-                "pluginLocation": "string"
-            },
-            "inputFlows": [
-                "string"
-            ],
-            "links": [
-                {
-                    "contentType": "string",
-                    "name": "string",
-                    "path": "string"
-                }
-            ],
-            "outputFlows": [
-                "string"
-            ],
-            "properties": [
-                {
-                    "defaultValue": "string",
-                    "displayName": "string",
-                    "metadata": {
-                    },
-                    "name": "string",
-                    "path": "string",
-                    "placeholder": "string",
-                    "proposalDisplayNames": {
-                    },
-                    "type": "string",
-                    "validation": {
-                        "enumValues": [
-                            "string"
-                        ],
-                        "max": 0,
-                        "maxItems": 0,
-                        "maxLength": 0,
-                        "min": 0,
-                        "minItems": 0,
-                        "minLength": 0,
-                        "pattern": "string",
-                        "required": false,
-                        "uniqueItems": false
-                    }
-                }
-            ],
-            "type": "string",
-            "version": 0
-        }
-    ]
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_400_bad_request_code_2"><a class="anchor" href="#_code_400_bad_request_code_2"></a><code>400 Bad Request</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, org.talend.sdk.component.server.front.model.error.ErrorPayload&gt;</code>)</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_icon_family_id_code"><a class="anchor" href="#_code_get_api_v1_component_icon_family_id_code"></a>1.1.6. <code>GET api/v1/component/icon/family/{id}</code></h4>
-<div class="paragraph">
-<p>Returns a particular family icon in raw bytes.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_6"><a class="anchor" href="#_request_6"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_6"><a class="anchor" href="#_response_6"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_6"><a class="anchor" href="#_code_200_ok_code_6"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_404_not_found_code_3"><a class="anchor" href="#_code_404_not_found_code_3"></a><code>404 Not Found</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "code": "ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|CONFIGURATION_MISSING|DESIGN_MODEL_MISSING|FAMILY_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED",
-    "description": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_icon_id_code"><a class="anchor" href="#_code_get_api_v1_component_icon_id_code"></a>1.1.7. <code>GET api/v1/component/icon/{id}</code></h4>
-<div class="paragraph">
-<p>Returns a particular component icon in raw bytes.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_7"><a class="anchor" href="#_request_7"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_7"><a class="anchor" href="#_response_7"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_7"><a class="anchor" href="#_code_200_ok_code_7"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_404_not_found_code_4"><a class="anchor" href="#_code_404_not_found_code_4"></a><code>404 Not Found</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "code": "ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|CONFIGURATION_MISSING|DESIGN_MODEL_MISSING|FAMILY_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED",
-    "description": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_index_code"><a class="anchor" href="#_code_get_api_v1_component_index_code"></a>1.1.8. <code>GET api/v1/component/index</code></h4>
-<div class="paragraph">
-<p>Returns the list of available components.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_8"><a class="anchor" href="#_request_8"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>includeIconContent</code>, <code>boolean</code><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_8"><a class="anchor" href="#_response_8"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_8"><a class="anchor" href="#_code_200_ok_code_8"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentIndices</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "components": [
-        {
-            "categories": [
-                "string"
-            ],
-            "displayName": "string",
-            "familyDisplayName": "string",
-            "icon": {
-                "customIcon": {
-                },
-                "customIconType": "string",
-                "icon": "string"
-            },
-            "iconFamily": {
-                "customIcon": {
-                },
-                "customIconType": "string",
-                "icon": "string"
-            },
-            "id": {
-                "family": "string",
-                "familyId": "string",
-                "id": "string",
-                "name": "string",
-                "plugin": "string",
-                "pluginLocation": "string"
-            },
-            "links": [
-                {
-                    "contentType": "string",
-                    "name": "string",
-                    "path": "string"
-                }
-            ],
-            "version": 0
-        }
-    ]
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_post_api_v1_component_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_component_migrate_id_configurationversion_code"></a>1.1.9. <code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></h4>
-<div class="paragraph">
-<p>Allows to migrate a component configuration without calling any component execution.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_9"><a class="anchor" href="#_request_9"></a>Request</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code><br>
-<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
-<strong>Path Param</strong>: <code>configurationVersion</code>, <code>int</code><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_9"><a class="anchor" href="#_response_9"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_9"><a class="anchor" href="#_code_200_ok_code_9"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_configurationtype_details_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_details_code"></a>1.1.10. <code>GET api/v1/configurationtype/details</code></h4>
-<div class="paragraph">
-<p>Returns the set of metadata about a few configurations identified by their 'id'.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_10"><a class="anchor" href="#_request_10"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>identifiers</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_10"><a class="anchor" href="#_response_10"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_10"><a class="anchor" href="#_code_200_ok_code_10"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ConfigTypeNodes</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "nodes": {
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_configurationtype_index_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_index_code"></a>1.1.11. <code>GET api/v1/configurationtype/index</code></h4>
-<div class="paragraph">
-<p>Returns all available configuration type - storable models.
-Note that the lightPayload flag allows to load all of them at once when you eagerly need
-to create a client model for all configurations.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_11"><a class="anchor" href="#_request_11"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>lightPayload</code>, <code>boolean</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_11"><a class="anchor" href="#_response_11"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_11"><a class="anchor" href="#_code_200_ok_code_11"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ConfigTypeNodes</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "nodes": {
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"></a>1.1.12. <code>POST api/v1/configurationtype/migrate/{id}/{configurationVersion}</code></h4>
-<div class="paragraph">
-<p>Allows to migrate a configuration without calling any component execution.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_12"><a class="anchor" href="#_request_12"></a>Request</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code><br>
-<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
-<strong>Path Param</strong>: <code>configurationVersion</code>, <code>int</code><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_12"><a class="anchor" href="#_response_12"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_12"><a class="anchor" href="#_code_200_ok_code_12"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_documentation_component_id_code"><a class="anchor" href="#_code_get_api_v1_documentation_component_id_code"></a>1.1.13. <code>GET api/v1/documentation/component/{id}</code></h4>
-<div class="paragraph">
-<p>Returns an asciidoctor version of the documentation for the component represented by its identifier <code>id</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format can be either asciidoc or html - if not it will fallback on asciidoc - and if html is selected you get
-a partial document.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-it is recommended to use asciidoc format and handle the conversion on your side if you can,
-the html flavor handles a limited set of the asciidoc syntax only like plain arrays, paragraph and titles.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The documentation will likely be the family documentation but you can use anchors to access a particular
-component (_componentname_inlowercase).</p>
-</div>
-<div class="sect4">
-<h5 id="_request_13"><a class="anchor" href="#_request_13"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>format</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_13"><a class="anchor" href="#_response_13"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_13"><a class="anchor" href="#_code_200_ok_code_13"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.DocumentationContent</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "source": "string",
-    "type": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_environment_code"><a class="anchor" href="#_code_get_api_v1_environment_code"></a>1.1.14. <code>GET api/v1/environment</code></h4>
-<div class="paragraph">
-<p>Returns the environment of this instance. Useful to check the version or configure a healthcheck for the server.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_14"><a class="anchor" href="#_request_14"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_14"><a class="anchor" href="#_response_14"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>*/*</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_14"><a class="anchor" href="#_code_200_ok_code_14"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Environment</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "commit": "string",
-    "lastUpdated": {
-    },
-    "latestApiVersion": 0,
-    "time": "string",
-    "version": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_post_api_v1_execution_read_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_read_family_component_code"></a>1.1.15. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-deprecated
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Read inputs from an instance of mapper. The number of returned records if enforced to be limited to 1000.
-The format is a JSON based format where each like is a json record.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_15"><a class="anchor" href="#_request_15"></a>Request</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code><br>
-<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
-<strong>Path Param</strong>: <code>component</code>, <code>java.lang.String</code><br>
-<strong>Path Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>size</code>, <code>long</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_15"><a class="anchor" href="#_response_15"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>talend/stream</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_204_no_content_code"><a class="anchor" href="#_code_204_no_content_code"></a><code>204 No Content</code></h6>
-
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_post_api_v1_execution_write_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_write_family_component_code"></a>1.1.16. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-deprecated
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Sends records using a processor instance. Note that the processor should have only an input.
-Behavior for other processors is undefined.
-The input format is a JSON based format where each like is a json record - same as for the symmetric endpoint.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_16"><a class="anchor" href="#_request_16"></a>Request</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>talend/stream</code><br>
-<strong>Request Body</strong>: (<code>java.io.InputStream</code>)
-<strong>Path Param</strong>: <code>component</code>, <code>java.lang.String</code><br>
-<strong>Path Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>group-size</code>, <code>long</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_16"><a class="anchor" href="#_response_16"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_204_no_content_code_2"><a class="anchor" href="#_code_204_no_content_code_2"></a><code>204 No Content</code></h6>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-to ensure the migration can be activated you need to set in the execution configuration you send to the server
-the version it was created with (component version, it is in component detail endpoint) with the key <code>tcomp::component::version</code>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_deprecated_endpoints"><a class="anchor" href="#_deprecated_endpoints"></a>1.2. Deprecated endpoints</h3>
-<div class="paragraph">
-<p>If some endpoints are intended to disappear they will be deprecated. In practise it means a header <code>X-Talend-Warning</code>
-will be returned with some message as value.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_websocket_transport"><a class="anchor" href="#_websocket_transport"></a>1.3. WebSocket transport</h3>
-<div class="paragraph">
-<p>You can connect on any endpoint replacing <code>/api</code> by <code>/websocket</code> and appending <code>/&lt;http method&gt;</code> for the URL and formatting the request as:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>SEND
-destination: &lt;endpoint after v1&gt;
-&lt;headers&gt;
-
-&lt;payload&gt;^@</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>For instance:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>SEND
-destination: /component/index
-Accept: application/json
-
-^@</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The response is formatted as follow:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>MESSAGE
-status: &lt;http status code&gt;
-&lt;headers&gt;
-
-&lt;payload&gt;^@</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-if you have a doubt about the endpoint, they are all logged during startup and you can find them in the logs.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>If you don&#8217;t want to create a pool of connection per endpoint/verb you can use the bus endpoint: <code>/websocket/v1/bus</code>.
-This endpoint requires that you add the header <code>destinationMethod</code> to each request with the verb value - default would be <code>GET</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>SEND
-destination: /component/index
-destinationMethod: GET
-Accept: application/json
-
-^@</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_https_activation"><a class="anchor" href="#_https_activation"></a>2. HTTPS activation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Using the server zip (or <a href="https://github.com/Talend/component-runtime/blob/master/.docker/Dockerfile">Docker image</a>)
-you can configure HTTPS adding properties to <code>MEECROWAVE_OPTS</code>. Assuming you have a certificate in <code>/opt/certificates/component.p12</code>
-(don&#8217;t forget to add/mount it in the Docker image if you use it) you can activate it through:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># use -e for Docker
-#
-# this will skip the http port binding to only bind https on the port 8443 and setup the right certificate
-export MEECROWAVE_OPTS="-Dskip-http=true -Dssl=true -Dhttps=8443 -Dkeystore-type=PKCS12 -Dkeystore-alias=talend -Dkeystore-password=talend -Dkeystore-file=/opt/certificates/component.p12"</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_web_forms_and_rest_api"><a class="anchor" href="#_web_forms_and_rest_api"></a>3. Web forms and REST API</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><code>component-form</code> library provides a way to build a component REST API facade compatible with react form library.</p>
-</div>
-<div class="paragraph">
-<p>A trivial facade can be:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Path("tacokit-facade")
-@ApplicationScoped
-public class ComponentFacade {
-    private static final String[] EMPTY_ARRAY = new String[0];
-
-    @Inject
-    private Client client;
-
-    @Inject
-    private ActionService actionService;
-
-    @Inject
-    private UiSpecService uiSpecService;
-
-    @Inject // assuming it is available in your app, use any client you want
-    private WebTarget target;
-
-    @POST
-    @Path("action")
-    public void action(@Suspended final AsyncResponse response, @QueryParam("family") final String family,
-            @QueryParam("type") final String type, @QueryParam("action") final String action,
-            final Map&lt;String, Object&gt; params) {
-        client.action(family, type, action, params).handle((r, e) -&gt; {
-            if (e != null) {
-                onException(response, e);
-            } else {
-                response.resume(actionService.map(type, r));
-            }
-            return null;
-        });
-    }
-
-    @GET
-    @Path("index")
-    public void getIndex(@Suspended final AsyncResponse response,
-            @QueryParam("language") @DefaultValue("en") final String language) {
-        target
-                .path("component/index")
-                .queryParam("language", language)
-                .request(APPLICATION_JSON_TYPE)
-                .rx()
-                .get(ComponentIndices.class)
-                .toCompletableFuture()
-                .handle((index, e) -&gt; {
-            if (e != null) {
-                onException(response, e);
-            } else {
-                index.getComponents().stream().flatMap(c -&gt; c.getLinks().stream()).forEach(
-                        link -&gt; link.setPath(link.getPath().replaceFirst("/component/", "/application/").replace(
-                                "/details?identifiers=", "/detail/")));
-                response.resume(index);
-            }
-            return null;
-        });
-    }
-
-    @GET
-    @Path("detail/{id}")
-    public void getDetail(@Suspended final AsyncResponse response,
-            @QueryParam("language") @DefaultValue("en") final String language, @PathParam("id") final String id) {
-        target
-                .path("component/details")
-                .queryParam("language", language)
-                .queryParam("identifiers", id)
-                .request(APPLICATION_JSON_TYPE)
-                .rx()
-                .get(ComponentDetailList.class)
-                .toCompletableFuture()
-                .thenCompose(result -&gt; uiSpecService.convert(result.getDetails().iterator().next()))
-                .handle((result, e) -&gt; {
-                    if (e != null) {
-                        onException(response, e);
-                    } else {
-                        response.resume(result);
-                    }
-                    return null;
-                });
-    }
-
-    private void onException(final AsyncResponse response, final Throwable e) {
-        final UiActionResult payload;
-        final int status;
-        if (WebException.class.isInstance(e)) {
-            final WebException we = WebException.class.cast(e);
-            status = we.getStatus();
-            payload = actionService.map(we);
-        } else if (CompletionException.class.isInstance(e)) {
-            final CompletionException actualException = CompletionException.class.cast(e);
-            log.error(actualException.getMessage(), actualException);
-            status = Response.Status.BAD_GATEWAY.getStatusCode();
-            payload = actionService.map(new WebException(actualException, -1, emptyMap()));
-        } else {
-            log.error(e.getMessage(), e);
-            status = Response.Status.BAD_GATEWAY.getStatusCode();
-            payload = actionService.map(new WebException(e, -1, emptyMap()));
-        }
-        response.resume(new WebApplicationException(Response.status(status).entity(payload).build()));
-    }
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-the <code>Client</code> can be created using <code>ClientFactory.createDefault(System.getProperty("app.components.base", "http://localhost:8080/api/v1"))</code>
-and the service can be a simple <code>new UiSpecService&lt;&gt;()</code>. The factory uses JAX-RS if the API is available (assuming a JSON-B provider is registered) otherwise it tries to use Spring.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>All the conversion between component model (REST API) and uiSpec model is done through the <code>UiSpecService</code>. It is based on the object model
-which will be mapped to a ui model. The advantage to have a flat model in the component REST API is to make these layers easy to customize.</p>
-</div>
-<div class="paragraph">
-<p>You can completely control the available components, tune the rendering switching the <code>uiSchema</code> if desired or add/remove part of the form.
-You can also add custom actions/buttons for specific needs of the application.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-the  <code>/migrate</code> endpoint has nothing special so was not shown in previous snippet but if you need it you must add it as well.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_use_uispec_model_without_all_the_tooling"><a class="anchor" href="#_use_uispec_model_without_all_the_tooling"></a>3.1. Use UiSpec model without all the tooling</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-  &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
-  &lt;artifactId&gt;component-form-model&lt;/artifactId&gt;
-  &lt;version&gt;${talend-component-kit.version}&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This maven dependency provides the UISpec model classes. You can use the <code>Ui</code> API (with or without the builders)
-to create UiSpec representations.</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final Ui form1 = ui()
-    // (1)
-    .withJsonSchema(JsonSchema.jsonSchemaFrom(Form1.class).build())
-    // (2)
-    .withUiSchema(uiSchema()
-        .withKey("multiSelectTag")
-        .withRestricted(false)
-        .withTitle("Simple multiSelectTag")
-        .withDescription("This datalist accepts values that are not in the list of suggestions")
-        .withWidget("multiSelectTag")
-        .build())
-    // (3)
-    .withProperties(myFormInstance)
-    .build();
-
-// (4)
-final String json = jsonb.toJson(form1);</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>We extract the <code>JsonSchema</code> from reflection on the class <code>Form1</code>. Note that <code>@JsonSchemaIgnore</code> allows
-to ignore a field and <code>@JsonSchemaProperty</code> allows to rename a property,</p>
-</li>
-<li>
-<p>We build programmatically using the builder API a <code>UiSchema</code>,</p>
-</li>
-<li>
-<p>We pass an instance of the form to let the serializer extracts it JSON model,</p>
-</li>
-<li>
-<p>We serialize the <code>Ui</code> model which can be used by UiSpec compatible front widgets.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-the model uses JSON-B API to define the binding, ensure to have an implementation in your classpath.
-This can be done adding these dependencies:
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.geronimo.specs&lt;/groupId&gt;
-  &lt;artifactId&gt;geronimo-jsonb_1.0_spec&lt;/artifactId&gt;
-  &lt;version&gt;1.0&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.geronimo.specs&lt;/groupId&gt;
-  &lt;artifactId&gt;geronimo-json_1.1_spec&lt;/artifactId&gt;
-  &lt;version&gt;1.0&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.johnzon&lt;/groupId&gt;
-  &lt;artifactId&gt;johnzon-jsonb&lt;/artifactId&gt;
-  &lt;version&gt;${johnzon.version}&lt;/version&gt; &lt;!-- 1.1.5 for instance --&gt;
-&lt;/dependency&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_javascript_integration"><a class="anchor" href="#_javascript_integration"></a>3.2. Javascript integration</h3>
-<div class="paragraph">
-<p>Default javascript integration goes through <a href="https://github.com/Talend/ui/tree/master/packages/forms">Talend UI Forms</a> library.</p>
-</div>
-<div class="paragraph">
-<p>It is bundled as a NPM module called  <code>component-kit.js</code>. It provides a default trigger implementation for the <code>UIForm</code>.</p>
-</div>
-<div class="paragraph">
-<p>Here is how to use it:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import React from 'react';
-import UIForm from '@talend/react-forms/lib/UIForm/UIForm.container';
-import TalendComponentKitTrigger from 'component-kit.js';
-
-export default class ComponentKitForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.trigger = new TalendComponentKitTrigger({ url: '/api/to/component/server/proxy' });
-    this.onTrigger = this.onTrigger.bind(this);
-    // ...
-  }
-
-  onTrigger(event, payload) {
-    return this.trigger.onDefaultTrigger(event, payload);
-  }
-
-  // ...
-
-  render() {
-    if(! this.state.uiSpec) {
-      return (&lt;div&gt;Loading ...&lt;/div&gt;);
-    }
-
-    return (
-        &lt;UIForm
-          data={this.state.uiSpec}
-          onTrigger={this.onTrigger}
-          onSubmit={this.onSubmit}
-        /&gt;
-    );
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_logging"><a class="anchor" href="#_logging"></a>4. Logging</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The logging uses Log4j2, you can specify a custom configuration using the system property <code>-Dlog4j.configurationFile</code>
-or adding a <code>log4j2.xml</code> file into the classpath.</p>
-</div>
-<div class="paragraph">
-<p>Here are some common configurations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Console logging:</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0"?&gt;
-&lt;Configuration status="INFO"&gt;
-  &lt;Appenders&gt;
-    &lt;Console name="Console" target="SYSTEM_OUT"&gt;
-      &lt;PatternLayout pattern="[%d{HH:mm:ss.SSS}][%highlight{%-5level}][%15.15t][%30.30logger] %msg%n"/&gt;
-    &lt;/Console&gt;
-  &lt;/Appenders&gt;
-  &lt;Loggers&gt;
-    &lt;Root level="INFO"&gt;
-      &lt;AppenderRef ref="Console"/&gt;
-    &lt;/Root&gt;
-  &lt;/Loggers&gt;
-&lt;/Configuration&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This outputs messages looking like:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>[16:59:58.198][INFO ][           main][oyote.http11.Http11NioProtocol] Initializing ProtocolHandler ["http-nio-34763"]</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>JSON logging:</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0"?&gt;
-&lt;Configuration status="INFO"&gt;
-  &lt;Properties&gt;
-    &lt;!-- DO NOT PUT logSource there, it is useless and slow --&gt;
-    &lt;Property name="jsonLayout"&gt;{"severity":"%level","logMessage":"%encode{%message}{JSON}","logTimestamp":"%d{ISO8601}{UTC}","eventUUID":"%uuid{RANDOM}","@version":"1","logger.name":"%encode{%logger}{JSON}","host.name":"${hostName}","threadName":"%encode{%thread}{JSON}","stackTrace":"%encode{%xThrowable{full}}{JSON}"}%n&lt;/Property&gt;
-  &lt;/Properties&gt;
-  &lt;Appenders&gt;
-    &lt;Console name="Console" target="SYSTEM_OUT"&gt;
-      &lt;PatternLayout pattern="${jsonLayout}"/&gt;
-    &lt;/Console&gt;
-  &lt;/Appenders&gt;
-  &lt;Loggers&gt;
-    &lt;Root level="INFO"&gt;
-      &lt;AppenderRef ref="Console"/&gt;
-    &lt;/Root&gt;
-  &lt;/Loggers&gt;
-&lt;/Configuration&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Output messages look like:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>{"severity":"INFO","logMessage":"Initializing ProtocolHandler [\"http-nio-46421\"]","logTimestamp":"2017-11-20T16:04:01,763","eventUUID":"8b998e17-7045-461c-8acb-c43f21d995ff","@version":"1","logger.name":"org.apache.coyote.http11.Http11NioProtocol","host.name":"TLND-RMANNIBUCAU","threadName":"main","stackTrace":""}</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Rolling file appender</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0"?&gt;
-&lt;Configuration status="INFO"&gt;
-  &lt;Appenders&gt;
-    &lt;RollingRandomAccessFile name="File" fileName="${LOG_PATH}/application.log" filePattern="${LOG_PATH}/application-%d{yyyy-MM-dd}.log"&gt;
-      &lt;PatternLayout pattern="[%d{HH:mm:ss.SSS}][%highlight{%-5level}][%15.15t][%30.30logger] %msg%n"/&gt;
-      &lt;Policies&gt;
-        &lt;SizeBasedTriggeringPolicy size="100 MB" /&gt;
-        &lt;TimeBasedTriggeringPolicy interval="1" modulate="true"/&gt;
-      &lt;/Policies&gt;
-    &lt;/RollingRandomAccessFile&gt;
-  &lt;/Appenders&gt;
-  &lt;Loggers&gt;
-    &lt;Root level="INFO"&gt;
-      &lt;AppenderRef ref="File"/&gt;
-    &lt;/Root&gt;
-  &lt;/Loggers&gt;
-&lt;/Configuration&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>More details are available on <a href="https://logging.apache.org/log4j/2.x/manual/appenders.html#RollingFileAppender">RollingFileAppender</a> documentation.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-of course you can compose previous layout (message format) and appenders (where logs are written).
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_server_configuration"><a class="anchor" href="#_server_configuration"></a>5. Server Configuration</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The server module contains several configuration you can set in:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Environment variables</p>
-</li>
-<li>
-<p>System properties</p>
-</li>
-<li>
-<p>A file located based on the <code>--component-configuration</code> CLI option</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-the configuration is read from system properties, environment variables, &#8230;&#8203;.
-</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Key</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.extend.dependencies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the component extensions add required dependencies.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.documentation.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.async</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [log, noop]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
-<p class="tableblock">In <code>log</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">noop</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.component.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for component endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.configurationtype.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.documentation.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for documentation endpoint.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.environment.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_uispec_server"><a class="anchor" href="#_uispec_server"></a>6. UiSpec Server</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The UiSpec server is a companion application for the Component Server.
 It provides a client to the Component Server which serves UiSpec payload to integrate
 with the client Javascript <code>UiForm</code> library.</p>
 </div>
-<div class="sect2">
-<h3 id="_coordinates"><a class="anchor" href="#_coordinates"></a>6.1. Coordinates</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_coordinates"><a class="anchor" href="#_coordinates"></a>1. Coordinates</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
@@ -2164,8 +656,10 @@ with the client Javascript <code>UiForm</code> library.</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_configuration"><a class="anchor" href="#_configuration"></a>6.2. Configuration</h3>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>2. Configuration</h2>
+<div class="sectionbody">
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2251,8 +745,8 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 </tr>
 </tbody>
 </table>
-<div class="sect3">
-<h4 id="_add_custom_entries_in_the_forms"><a class="anchor" href="#_add_custom_entries_in_the_forms"></a>6.2.1. Add custom entries in the forms</h4>
+<div class="sect2">
+<h3 id="_add_custom_entries_in_the_forms"><a class="anchor" href="#_add_custom_entries_in_the_forms"></a>2.1. Add custom entries in the forms</h3>
 <div class="paragraph">
 <p>As seen in the previous table you can customize the forms by type. The format is reusing Talend Component Kit
 rest API (properties model) and defines two main types of extension:</p>
@@ -2284,8 +778,8 @@ to prefix it with a <code>$</code>.
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_client_in_play"><a class="anchor" href="#_client_in_play"></a>6.2.2. Client in Play!</h4>
+<div class="sect2">
+<h3 id="_client_in_play"><a class="anchor" href="#_client_in_play"></a>2.2. Client in Play!</h3>
 <div class="paragraph">
 <p>Also note that the client to connect to the Talend Component Kit server is
 CXF client using HttpClient HC (NIO) transport. It can be configured with its standard properties
@@ -2295,8 +789,8 @@ prefixed by <code>talend.component.proxy.</code> when you use the play module.</
 <p>More info available on <a href="http://cxf.apache.org/docs/asynchronous-client-http-transport.html">CXF</a> website.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_dropdown_with_all_root_configurations"><a class="anchor" href="#_dropdown_with_all_root_configurations"></a>6.2.3. Dropdown with all root configurations</h4>
+<div class="sect2">
+<h3 id="_dropdown_with_all_root_configurations"><a class="anchor" href="#_dropdown_with_all_root_configurations"></a>2.3. Dropdown with all root configurations</h3>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -2334,8 +828,8 @@ be filled with all available root types.
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_reload_the_form_based_on_the_selected_root"><a class="anchor" href="#_reload_the_form_based_on_the_selected_root"></a>6.2.4. Reload the form based on the selected root</h4>
+<div class="sect2">
+<h3 id="_reload_the_form_based_on_the_selected_root"><a class="anchor" href="#_reload_the_form_based_on_the_selected_root"></a>2.4. Reload the form based on the selected root</h3>
 <div class="paragraph">
 <p>As a companion of previous action there is the <code>builtin::root::reloadFromId</code> action of type <code>jsonpatch</code> which
 allows to reload the whole form:</p>
@@ -2438,51 +932,51 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_http_api_2"><a class="anchor" href="#_http_api_2"></a>6.3. HTTP API</h3>
+</div>
+<div class="sect1">
+<h2 id="_http_api"><a class="anchor" href="#_http_api"></a>3. HTTP API</h2>
+<div class="sectionbody">
 
 </div>
 </div>
-</div>
+<h1 id="_component_uispec_server" class="sect0"><a class="anchor" href="#_component_uispec_server"></a>Component UiSpec Server</h1>
 <div class="sect1">
-<h2 id="_component_uispec_server"><a class="anchor" href="#_component_uispec_server"></a>7. Component UiSpec Server</h2>
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>1. Overview</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_overview"><a class="anchor" href="#_overview"></a>7.1. Overview</h3>
 <div class="paragraph">
 <p>These endpoints allow to obtain UiSpec representations of the component/configuration types properties.</p>
 </div>
-<div class="sect3">
-<h4 id="_version_information"><a class="anchor" href="#_version_information"></a>7.1.1. Version information</h4>
+<div class="sect2">
+<h3 id="_version_information"><a class="anchor" href="#_version_information"></a>1.1. Version information</h3>
 <div class="paragraph">
 <p><em>Version</em> : v1</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_contact_information"><a class="anchor" href="#_contact_information"></a>7.1.2. Contact information</h4>
+<div class="sect2">
+<h3 id="_contact_information"><a class="anchor" href="#_contact_information"></a>1.2. Contact information</h3>
 <div class="paragraph">
 <p><em>Contact</em> : Talend<br>
 <em>Contact Email</em> : <a href="mailto:contact@talend.com">contact@talend.com</a></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_license_information"><a class="anchor" href="#_license_information"></a>7.1.3. License information</h4>
+<div class="sect2">
+<h3 id="_license_information"><a class="anchor" href="#_license_information"></a>1.3. License information</h3>
 <div class="paragraph">
 <p><em>License</em> : Apache 2.0<br>
 <em>License URL</em> : <a href="http://www.apache.org/licenses/LICENSE-2.0.html" class="bare">www.apache.org/licenses/LICENSE-2.0.html</a><br>
 <em>Terms of service</em> : null</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_uri_scheme"><a class="anchor" href="#_uri_scheme"></a>7.1.4. URI scheme</h4>
+<div class="sect2">
+<h3 id="_uri_scheme"><a class="anchor" href="#_uri_scheme"></a>1.4. URI scheme</h3>
 <div class="paragraph">
 <p><em>Host</em> : host:port<br>
 <em>BasePath</em> : /componentproxy/api/v1<br>
 <em>Schemes</em> : HTTP, HTTPS</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_tags"><a class="anchor" href="#_tags"></a>7.1.5. Tags</h4>
+<div class="sect2">
+<h3 id="_tags"><a class="anchor" href="#_tags"></a>1.5. Tags</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2525,23 +1019,25 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_paths"><a class="anchor" href="#_paths"></a>2. Paths</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_paths"><a class="anchor" href="#_paths"></a>7.2. Paths</h3>
-<div class="sect3">
-<h4 id="_execute"><a class="anchor" href="#_execute"></a>7.2.1. This endpoint execute an action</h4>
+<h3 id="_execute"><a class="anchor" href="#_execute"></a>2.1. This endpoint execute an action</h3>
 <div class="literalblock">
 <div class="content">
 <pre>POST /actions/execute</pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_description"><a class="anchor" href="#_description"></a>Description</h5>
+<div class="sect3">
+<h4 id="_description"><a class="anchor" href="#_description"></a>2.1.1. Description</h4>
 <div class="paragraph">
 <p>configuration types has action that can be executed using this endpoint</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h5>
+<div class="sect3">
+<h4 id="_parameters"><a class="anchor" href="#_parameters"></a>2.1.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -2607,8 +1103,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h5>
+<div class="sect3">
+<h4 id="_responses"><a class="anchor" href="#_responses"></a>2.1.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -2672,8 +1168,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_consumes"><a class="anchor" href="#_consumes"></a>Consumes</h5>
+<div class="sect3">
+<h4 id="_consumes"><a class="anchor" href="#_consumes"></a>2.1.4. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2682,8 +1178,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_produces"><a class="anchor" href="#_produces"></a>Produces</h5>
+<div class="sect3">
+<h4 id="_produces"><a class="anchor" href="#_produces"></a>2.1.5. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2692,8 +1188,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_tags_2"><a class="anchor" href="#_tags_2"></a>Tags</h5>
+<div class="sect3">
+<h4 id="_tags_2"><a class="anchor" href="#_tags_2"></a>2.1.6. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2706,21 +1202,21 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_listcomponent"><a class="anchor" href="#_listcomponent"></a>7.2.2. This endpoint return a list of available component</h4>
+<div class="sect2">
+<h3 id="_listcomponent"><a class="anchor" href="#_listcomponent"></a>2.2. This endpoint return a list of available component</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /components</pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_description_2"><a class="anchor" href="#_description_2"></a>Description</h5>
+<div class="sect3">
+<h4 id="_description_2"><a class="anchor" href="#_description_2"></a>2.2.1. Description</h4>
 <div class="paragraph">
 <p>component has icon that need to be handled by the consumer of this endpoint In the response an icon key is returned. this icon key can be one of the bundled icons or a custom one. The consumer of this endpoint will need to check if the icon key is in the icons bundle otherwise the icon need to be gathered using the <code>id</code> of the component from this endpoint <code>components/{id}/icon/</code></p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_responses_2"><a class="anchor" href="#_responses_2"></a>Responses</h5>
+<div class="sect3">
+<h4 id="_responses_2"><a class="anchor" href="#_responses_2"></a>2.2.2. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -2751,8 +1247,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_consumes_2"><a class="anchor" href="#_consumes_2"></a>Consumes</h5>
+<div class="sect3">
+<h4 id="_consumes_2"><a class="anchor" href="#_consumes_2"></a>2.2.3. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2761,8 +1257,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_produces_2"><a class="anchor" href="#_produces_2"></a>Produces</h5>
+<div class="sect3">
+<h4 id="_produces_2"><a class="anchor" href="#_produces_2"></a>2.2.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2771,8 +1267,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_tags_3"><a class="anchor" href="#_tags_3"></a>Tags</h5>
+<div class="sect3">
+<h4 id="_tags_3"><a class="anchor" href="#_tags_3"></a>2.2.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2782,21 +1278,21 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_getcomponentform"><a class="anchor" href="#_getcomponentform"></a>7.2.3. This endpoint return the ui spec of a component identified by it&#8217;s id</h4>
+<div class="sect2">
+<h3 id="_getcomponentform"><a class="anchor" href="#_getcomponentform"></a>2.3. This endpoint return the ui spec of a component identified by it&#8217;s id</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /components/{id}/form</pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_description_3"><a class="anchor" href="#_description_3"></a>Description</h5>
+<div class="sect3">
+<h4 id="_description_3"><a class="anchor" href="#_description_3"></a>2.3.1. Description</h4>
 <div class="paragraph">
 <p>component has icon that need to be handled by the consumer of this endpoint In the response an icon key is returned. this icon key can be one of the bundled icons or a custom one. The consumer of this endpoint will need to check if the icon key is in the icons bundle otherwise the icon need to be gathered using the <code>id</code> of the component from this endpoint <code>components/{id}/icon/</code></p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>Parameters</h5>
+<div class="sect3">
+<h4 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>2.3.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -2826,8 +1322,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_responses_3"><a class="anchor" href="#_responses_3"></a>Responses</h5>
+<div class="sect3">
+<h4 id="_responses_3"><a class="anchor" href="#_responses_3"></a>2.3.3. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -2858,8 +1354,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_consumes_3"><a class="anchor" href="#_consumes_3"></a>Consumes</h5>
+<div class="sect3">
+<h4 id="_consumes_3"><a class="anchor" href="#_consumes_3"></a>2.3.4. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2868,8 +1364,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_produces_3"><a class="anchor" href="#_produces_3"></a>Produces</h5>
+<div class="sect3">
+<h4 id="_produces_3"><a class="anchor" href="#_produces_3"></a>2.3.5. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2878,8 +1374,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_tags_4"><a class="anchor" href="#_tags_4"></a>Tags</h5>
+<div class="sect3">
+<h4 id="_tags_4"><a class="anchor" href="#_tags_4"></a>2.3.6. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2889,15 +1385,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_getcomponenticonbyid"><a class="anchor" href="#_getcomponenticonbyid"></a>7.2.4. Return the component icon file in png format</h4>
+<div class="sect2">
+<h3 id="_getcomponenticonbyid"><a class="anchor" href="#_getcomponenticonbyid"></a>2.4. Return the component icon file in png format</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /components/{id}/icon</pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a>Parameters</h5>
+<div class="sect3">
+<h4 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a>2.4.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -2927,8 +1423,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_responses_4"><a class="anchor" href="#_responses_4"></a>Responses</h5>
+<div class="sect3">
+<h4 id="_responses_4"><a class="anchor" href="#_responses_4"></a>2.4.2. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -2959,8 +1455,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_consumes_4"><a class="anchor" href="#_consumes_4"></a>Consumes</h5>
+<div class="sect3">
+<h4 id="_consumes_4"><a class="anchor" href="#_consumes_4"></a>2.4.3. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2969,8 +1465,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_produces_4"><a class="anchor" href="#_produces_4"></a>Produces</h5>
+<div class="sect3">
+<h4 id="_produces_4"><a class="anchor" href="#_produces_4"></a>2.4.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2982,8 +1478,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_tags_5"><a class="anchor" href="#_tags_5"></a>Tags</h5>
+<div class="sect3">
+<h4 id="_tags_5"><a class="anchor" href="#_tags_5"></a>2.4.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2993,21 +1489,21 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_getrootconfig"><a class="anchor" href="#_getrootconfig"></a>7.2.5. Return all the available root configuration (Data store like) from the component server</h4>
+<div class="sect2">
+<h3 id="_getrootconfig"><a class="anchor" href="#_getrootconfig"></a>2.5. Return all the available root configuration (Data store like) from the component server</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /configurations</pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_description_4"><a class="anchor" href="#_description_4"></a>Description</h5>
+<div class="sect3">
+<h4 id="_description_4"><a class="anchor" href="#_description_4"></a>2.5.1. Description</h4>
 <div class="paragraph">
 <p>Every configuration has an icon. In the response an icon key is returned. this icon key can be one of the bundled icons or a custom one. The consumer of this endpoint will need to check if the icon key is in the icons bundle otherwise the icon need to be gathered using the <code>familyId</code> from this endpoint <code>configurations/{id}/icon</code></p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_responses_5"><a class="anchor" href="#_responses_5"></a>Responses</h5>
+<div class="sect3">
+<h4 id="_responses_5"><a class="anchor" href="#_responses_5"></a>2.5.2. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3038,8 +1534,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_consumes_5"><a class="anchor" href="#_consumes_5"></a>Consumes</h5>
+<div class="sect3">
+<h4 id="_consumes_5"><a class="anchor" href="#_consumes_5"></a>2.5.3. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3048,8 +1544,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_produces_5"><a class="anchor" href="#_produces_5"></a>Produces</h5>
+<div class="sect3">
+<h4 id="_produces_5"><a class="anchor" href="#_produces_5"></a>2.5.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3058,8 +1554,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_tags_6"><a class="anchor" href="#_tags_6"></a>Tags</h5>
+<div class="sect3">
+<h4 id="_tags_6"><a class="anchor" href="#_tags_6"></a>2.5.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3072,15 +1568,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_getform"><a class="anchor" href="#_getform"></a>7.2.6. Return a form description ( Ui Spec ) of a specific configuration</h4>
+<div class="sect2">
+<h3 id="_getform"><a class="anchor" href="#_getform"></a>2.6. Return a form description ( Ui Spec ) of a specific configuration</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /configurations/{id}/form</pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a>Parameters</h5>
+<div class="sect3">
+<h4 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a>2.6.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -3110,8 +1606,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_responses_6"><a class="anchor" href="#_responses_6"></a>Responses</h5>
+<div class="sect3">
+<h4 id="_responses_6"><a class="anchor" href="#_responses_6"></a>2.6.2. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3142,8 +1638,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_consumes_6"><a class="anchor" href="#_consumes_6"></a>Consumes</h5>
+<div class="sect3">
+<h4 id="_consumes_6"><a class="anchor" href="#_consumes_6"></a>2.6.3. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3152,8 +1648,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_produces_6"><a class="anchor" href="#_produces_6"></a>Produces</h5>
+<div class="sect3">
+<h4 id="_produces_6"><a class="anchor" href="#_produces_6"></a>2.6.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3162,8 +1658,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_tags_7"><a class="anchor" href="#_tags_7"></a>Tags</h5>
+<div class="sect3">
+<h4 id="_tags_7"><a class="anchor" href="#_tags_7"></a>2.6.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3185,15 +1681,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_getconfigurationiconbyid"><a class="anchor" href="#_getconfigurationiconbyid"></a>7.2.7. Return the configuration icon file in png format</h4>
+<div class="sect2">
+<h3 id="_getconfigurationiconbyid"><a class="anchor" href="#_getconfigurationiconbyid"></a>2.7. Return the configuration icon file in png format</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /configurations/{id}/icon</pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>Parameters</h5>
+<div class="sect3">
+<h4 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>2.7.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -3223,8 +1719,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_responses_7"><a class="anchor" href="#_responses_7"></a>Responses</h5>
+<div class="sect3">
+<h4 id="_responses_7"><a class="anchor" href="#_responses_7"></a>2.7.2. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3255,8 +1751,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_consumes_7"><a class="anchor" href="#_consumes_7"></a>Consumes</h5>
+<div class="sect3">
+<h4 id="_consumes_7"><a class="anchor" href="#_consumes_7"></a>2.7.3. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3265,8 +1761,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_produces_7"><a class="anchor" href="#_produces_7"></a>Produces</h5>
+<div class="sect3">
+<h4 id="_produces_7"><a class="anchor" href="#_produces_7"></a>2.7.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3278,8 +1774,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_tags_8"><a class="anchor" href="#_tags_8"></a>Tags</h5>
+<div class="sect3">
+<h4 id="_tags_8"><a class="anchor" href="#_tags_8"></a>2.7.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3289,15 +1785,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_putconfiguration"><a class="anchor" href="#_putconfiguration"></a>7.2.8. Update a configuration.</h4>
+<div class="sect2">
+<h3 id="_putconfiguration"><a class="anchor" href="#_putconfiguration"></a>2.8. Update a configuration.</h3>
 <div class="literalblock">
 <div class="content">
 <pre>POST /configurations/{type}/edit/{id}</pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>Parameters</h5>
+<div class="sect3">
+<h4 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>2.8.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -3339,8 +1835,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_responses_8"><a class="anchor" href="#_responses_8"></a>Responses</h5>
+<div class="sect3">
+<h4 id="_responses_8"><a class="anchor" href="#_responses_8"></a>2.8.2. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3371,8 +1867,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_consumes_8"><a class="anchor" href="#_consumes_8"></a>Consumes</h5>
+<div class="sect3">
+<h4 id="_consumes_8"><a class="anchor" href="#_consumes_8"></a>2.8.3. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3381,8 +1877,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_produces_8"><a class="anchor" href="#_produces_8"></a>Produces</h5>
+<div class="sect3">
+<h4 id="_produces_8"><a class="anchor" href="#_produces_8"></a>2.8.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3391,8 +1887,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_tags_9"><a class="anchor" href="#_tags_9"></a>Tags</h5>
+<div class="sect3">
+<h4 id="_tags_9"><a class="anchor" href="#_tags_9"></a>2.8.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3417,15 +1913,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_getinitialform"><a class="anchor" href="#_getinitialform"></a>7.2.9. Return a form description ( Ui Spec ) without a specific configuration</h4>
+<div class="sect2">
+<h3 id="_getinitialform"><a class="anchor" href="#_getinitialform"></a>2.9. Return a form description ( Ui Spec ) without a specific configuration</h3>
 <div class="literalblock">
 <div class="content">
 <pre>GET /configurations/{type}/form/initial</pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>Parameters</h5>
+<div class="sect3">
+<h4 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>2.9.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -3455,8 +1951,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_responses_9"><a class="anchor" href="#_responses_9"></a>Responses</h5>
+<div class="sect3">
+<h4 id="_responses_9"><a class="anchor" href="#_responses_9"></a>2.9.2. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3487,8 +1983,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_consumes_9"><a class="anchor" href="#_consumes_9"></a>Consumes</h5>
+<div class="sect3">
+<h4 id="_consumes_9"><a class="anchor" href="#_consumes_9"></a>2.9.3. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3497,8 +1993,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_produces_9"><a class="anchor" href="#_produces_9"></a>Produces</h5>
+<div class="sect3">
+<h4 id="_produces_9"><a class="anchor" href="#_produces_9"></a>2.9.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3507,8 +2003,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_tags_10"><a class="anchor" href="#_tags_10"></a>Tags</h5>
+<div class="sect3">
+<h4 id="_tags_10"><a class="anchor" href="#_tags_10"></a>2.9.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3530,15 +2026,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_postconfiguration"><a class="anchor" href="#_postconfiguration"></a>7.2.10. Saves a configuration.</h4>
+<div class="sect2">
+<h3 id="_postconfiguration"><a class="anchor" href="#_postconfiguration"></a>2.10. Saves a configuration.</h3>
 <div class="literalblock">
 <div class="content">
 <pre>POST /configurations/{type}/save</pre>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a>Parameters</h5>
+<div class="sect3">
+<h4 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a>2.10.1. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -3568,8 +2064,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_responses_10"><a class="anchor" href="#_responses_10"></a>Responses</h5>
+<div class="sect3">
+<h4 id="_responses_10"><a class="anchor" href="#_responses_10"></a>2.10.2. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -3600,8 +2096,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_consumes_10"><a class="anchor" href="#_consumes_10"></a>Consumes</h5>
+<div class="sect3">
+<h4 id="_consumes_10"><a class="anchor" href="#_consumes_10"></a>2.10.3. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3610,8 +2106,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_produces_10"><a class="anchor" href="#_produces_10"></a>Produces</h5>
+<div class="sect3">
+<h4 id="_produces_10"><a class="anchor" href="#_produces_10"></a>2.10.4. Produces</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3620,8 +2116,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_tags_11"><a class="anchor" href="#_tags_11"></a>Tags</h5>
+<div class="sect3">
+<h4 id="_tags_11"><a class="anchor" href="#_tags_11"></a>2.10.5. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3647,40 +2143,42 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_definitions"><a class="anchor" href="#_definitions"></a>3. Definitions</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_definitions"><a class="anchor" href="#_definitions"></a>7.3. Definitions</h3>
-<div class="sect3">
-<h4 id="_completionstage"><a class="anchor" href="#_completionstage"></a>7.3.1. CompletionStage</h4>
+<h3 id="_completionstage"><a class="anchor" href="#_completionstage"></a>3.1. CompletionStage</h3>
 <div class="paragraph">
 <p><em>Type</em> : object</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_completionstagebyte"><a class="anchor" href="#_completionstagebyte"></a>7.3.2. CompletionStageByte[]</h4>
+<div class="sect2">
+<h3 id="_completionstagebyte"><a class="anchor" href="#_completionstagebyte"></a>3.2. CompletionStageByte[]</h3>
 <div class="paragraph">
 <p><em>Type</em> : object</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_completionstagecollectionsimplepropertydefinition"><a class="anchor" href="#_completionstagecollectionsimplepropertydefinition"></a>7.3.3. CompletionStageCollectionSimplePropertyDefinition</h4>
+<div class="sect2">
+<h3 id="_completionstagecollectionsimplepropertydefinition"><a class="anchor" href="#_completionstagecollectionsimplepropertydefinition"></a>3.3. CompletionStageCollectionSimplePropertyDefinition</h3>
 <div class="paragraph">
 <p><em>Type</em> : object</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_completionstagemapstringobject"><a class="anchor" href="#_completionstagemapstringobject"></a>7.3.4. CompletionStageMapStringObject</h4>
+<div class="sect2">
+<h3 id="_completionstagemapstringobject"><a class="anchor" href="#_completionstagemapstringobject"></a>3.4. CompletionStageMapStringObject</h3>
 <div class="paragraph">
 <p><em>Type</em> : object</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_completionstagenodes"><a class="anchor" href="#_completionstagenodes"></a>7.3.5. CompletionStageNodes</h4>
+<div class="sect2">
+<h3 id="_completionstagenodes"><a class="anchor" href="#_completionstagenodes"></a>3.5. CompletionStageNodes</h3>
 <div class="paragraph">
 <p><em>Type</em> : object</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_condition"><a class="anchor" href="#_condition"></a>7.3.6. Condition</h4>
+<div class="sect2">
+<h3 id="_condition"><a class="anchor" href="#_condition"></a>3.6. Condition</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -3714,8 +2212,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_entityref"><a class="anchor" href="#_entityref"></a>7.3.7. EntityRef</h4>
+<div class="sect2">
+<h3 id="_entityref"><a class="anchor" href="#_entityref"></a>3.7. EntityRef</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -3740,8 +2238,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_jsonschema"><a class="anchor" href="#_jsonschema"></a>7.3.8. JsonSchema</h4>
+<div class="sect2">
+<h3 id="_jsonschema"><a class="anchor" href="#_jsonschema"></a>3.8. JsonSchema</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -3928,8 +2426,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_namevalue"><a class="anchor" href="#_namevalue"></a>7.3.9. NameValue</h4>
+<div class="sect2">
+<h3 id="_namevalue"><a class="anchor" href="#_namevalue"></a>3.9. NameValue</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -3963,8 +2461,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_node"><a class="anchor" href="#_node"></a>7.3.10. Node</h4>
+<div class="sect2">
+<h3 id="_node"><a class="anchor" href="#_node"></a>3.10. Node</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -4070,8 +2568,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_nodes"><a class="anchor" href="#_nodes"></a>7.3.11. Nodes</h4>
+<div class="sect2">
+<h3 id="_nodes"><a class="anchor" href="#_nodes"></a>3.11. Nodes</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -4096,8 +2594,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_option"><a class="anchor" href="#_option"></a>7.3.12. Option</h4>
+<div class="sect2">
+<h3 id="_option"><a class="anchor" href="#_option"></a>3.12. Option</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -4131,8 +2629,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_parameter"><a class="anchor" href="#_parameter"></a>7.3.13. Parameter</h4>
+<div class="sect2">
+<h3 id="_parameter"><a class="anchor" href="#_parameter"></a>3.13. Parameter</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -4166,8 +2664,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_proxyerrorpayload"><a class="anchor" href="#_proxyerrorpayload"></a>7.3.14. ProxyErrorPayload</h4>
+<div class="sect2">
+<h3 id="_proxyerrorpayload"><a class="anchor" href="#_proxyerrorpayload"></a>3.14. ProxyErrorPayload</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -4201,8 +2699,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_trigger"><a class="anchor" href="#_trigger"></a>7.3.15. Trigger</h4>
+<div class="sect2">
+<h3 id="_trigger"><a class="anchor" href="#_trigger"></a>3.15. Trigger</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -4263,8 +2761,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_ui"><a class="anchor" href="#_ui"></a>7.3.16. Ui</h4>
+<div class="sect2">
+<h3 id="_ui"><a class="anchor" href="#_ui"></a>3.16. Ui</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -4307,8 +2805,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_uinode"><a class="anchor" href="#_uinode"></a>7.3.17. UiNode</h4>
+<div class="sect2">
+<h3 id="_uinode"><a class="anchor" href="#_uinode"></a>3.17. UiNode</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -4342,8 +2840,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_uischema"><a class="anchor" href="#_uischema"></a>7.3.18. UiSchema</h4>
+<div class="sect2">
+<h3 id="_uischema"><a class="anchor" href="#_uischema"></a>3.18. UiSchema</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -4522,8 +3020,10 @@ onTrigger(event, payload) {
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_play_integration"><a class="anchor" href="#_play_integration"></a>7.4. Play Integration</h3>
+</div>
+<div class="sect1">
+<h2 id="_play_integration"><a class="anchor" href="#_play_integration"></a>4. Play Integration</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Thanks to <a href="https://github.com/rmannibucau/playx">Playx</a> you can deploy this server
 in a Play! application.</p>
@@ -4573,8 +3073,8 @@ X-ID = ${someRequestAttributeNameForTheId}
 </tr>
 </table>
 </div>
-<div class="sect3">
-<h4 id="_if_you_are_using_guice"><a class="anchor" href="#_if_you_are_using_guice"></a>7.4.1. If you are using Guice</h4>
+<div class="sect2">
+<h3 id="_if_you_are_using_guice"><a class="anchor" href="#_if_you_are_using_guice"></a>4.1. If you are using Guice</h3>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.guice.ComponentUiSpecServerModule</code> Guice module allows
 to import <code>Services</code> from the server and to use some of them locally for the part
@@ -4663,7 +3163,6 @@ the deletion is not handled by the server since there is not encapsulation of an
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>
