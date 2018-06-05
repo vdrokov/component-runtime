@@ -7,8 +7,8 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/services-actions.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-05T16:47:05.439Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.css" integrity="sha256-4y5taf5SyiLyIqR9jL3AoJU216Rb8uBEDuUjBHO9tsQ=" crossorigin="anonymous" />
+<meta name="date" content="2018-06-05T16:49:27.307Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="../../_/css/instantsearch.min.css">
 <link rel="stylesheet" href="../../_/css/instantsearch-theme-algolia.min.css">
 <link rel="stylesheet" href="../../_/css/idea.css">
@@ -116,6 +116,9 @@
     <button class="nav-toggle"></button>
     <a class="nav-link" href="documentation.html#_configuring_components">Configuring components</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_is_my_option_valid">Is my option valid?</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_primitives">Primitives</a>
   </li>
@@ -760,6 +763,13 @@ for instance. Here is the list of all actions:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"entries":[{"name":"column1","type":"STRING"}]}</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.service.completion.Suggestions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">suggestions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a method as being useful to fill potential values of a string option. You can link a field as being completable using @Suggestable(value). The resolution of the completion action is then done when the user requests it (generally by clicking on a button or entering the field depending the environment).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SuggestionValues</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ "cacheable": "&#8230;&#8203;" "items": "&#8230;&#8203;"}</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.service.Action</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -791,7 +801,7 @@ for instance. Here is the list of all actions:</p>
     </div>
 </footer>
 <script src="../../_/js/site.js"></script>
-<script src="../../_/js/vendor/highlight.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
 <script>hljs.initHighlighting()</script>
 <script>
 (function (window, document) {
