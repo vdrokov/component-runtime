@@ -7,8 +7,8 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/component-configuration.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-05T16:45:35.104Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
+<meta name="date" content="2018-06-05T16:47:05.117Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.css" integrity="sha256-4y5taf5SyiLyIqR9jL3AoJU216Rb8uBEDuUjBHO9tsQ=" crossorigin="anonymous" />
 <link rel="stylesheet" href="../../_/css/instantsearch.min.css">
 <link rel="stylesheet" href="../../_/css/instantsearch-theme-algolia.min.css">
 <link rel="stylesheet" href="../../_/css/idea.css">
@@ -116,9 +116,6 @@
     <button class="nav-toggle"></button>
     <a class="nav-link" href="documentation.html#_configuring_components">Configuring components</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_is_my_option_valid">Is my option valid?</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_primitives">Primitives</a>
   </li>
@@ -640,8 +637,7 @@
 <div class="paragraph">
 <p>Component are configured through their constructor parameters. They can all be marked with <code>@Option</code>
 which will let you give a name to parameters (if not it will use the bytecode name which can require you to compile with <code>-parameter</code> flag
-to not have <code>arg0</code>, <code>arg1</code>, &#8230;&#8203; as names). It is highly recommanded to use a hava friendly name and it is forbidden to include <code>.</code> character in
-it. Also note that starting with a <code>$</code> is forbidden too.</p>
+to not have <code>arg0</code>, <code>arg1</code>, &#8230;&#8203; as names).</p>
 </div>
 <div class="paragraph">
 <p>The parameter types can be <em>primitives</em> or complex objects with fields decorated with <code>@Option</code> exactly like method parameters.</p>
@@ -687,42 +683,7 @@ public MyFileReader(@Option("file-path") final File file,
 </div>
 </div>
 <div class="sect1">
-<h2 id="_is_my_option_valid"><a class="anchor" href="#_is_my_option_valid"></a>1. Is my option valid?</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Option name</th>
-<th class="tableblock halign-center valign-top">Valid</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">myName</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check"></i></span></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">my_name</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon green"><i class="fa fa-check"></i></span></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">my.name</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-x"></i></span></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$myName</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="icon red"><i class="fa fa-x"></i></span></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_primitives"><a class="anchor" href="#_primitives"></a>2. Primitives</h2>
+<h2 id="_primitives"><a class="anchor" href="#_primitives"></a>1. Primitives</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>What is considered as a primitive in this mecanism is a class which can be directly converted from a <code>String</code> to the expected type.</p>
@@ -764,7 +725,7 @@ public MyFileReader(@Option("file-path") final File file,
 </div>
 </div>
 <div class="sect1">
-<h2 id="_complex_object_mapping"><a class="anchor" href="#_complex_object_mapping"></a>3. Complex object mapping</h2>
+<h2 id="_complex_object_mapping"><a class="anchor" href="#_complex_object_mapping"></a>2. Complex object mapping</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The conversion from properties to object is using the dotted notation. For instance:</p>
@@ -793,7 +754,7 @@ file.format = CSV</code></pre>
 <p>assuming the method parameter was configured with <code>@Option("file")</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="_list_case"><a class="anchor" href="#_list_case"></a>3.1. List case</h3>
+<h3 id="_list_case"><a class="anchor" href="#_list_case"></a>2.1. List case</h3>
 <div class="paragraph">
 <p>Lists use the same syntax but to define their elements their rely on an indexed syntax. Assuming the list parameter is named <code>files</code>
 and the elements are of  <code>FileOptions</code> type, here is how to define a list of 2 elements:</p>
@@ -808,7 +769,7 @@ files[1].format = EXCEL</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_map_case"><a class="anchor" href="#_map_case"></a>3.2. Map case</h3>
+<h3 id="_map_case"><a class="anchor" href="#_map_case"></a>2.2. Map case</h3>
 <div class="paragraph">
 <p>Inspired from the list case, the map uses <code>.key[index]</code> and <code>.value[index]</code> to represent its key and values:</p>
 </div>
@@ -851,7 +812,7 @@ with an object) don&#8217;t use it.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_constraints_and_validation_on_the_configuration_input"><a class="anchor" href="#_constraints_and_validation_on_the_configuration_input"></a>4. Constraints and validation on the configuration/input</h2>
+<h2 id="_constraints_and_validation_on_the_configuration_input"><a class="anchor" href="#_constraints_and_validation_on_the_configuration_input"></a>3. Constraints and validation on the configuration/input</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is common to need to add as metadata a field is required, another has a minimum size etc. This is done with the
@@ -967,7 +928,7 @@ the previous table uses the web keys.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_marking_a_configuration_as_a_particular_type_of_data"><a class="anchor" href="#_marking_a_configuration_as_a_particular_type_of_data"></a>5. Marking a configuration as a particular type of data</h2>
+<h2 id="_marking_a_configuration_as_a_particular_type_of_data"><a class="anchor" href="#_marking_a_configuration_as_a_particular_type_of_data"></a>4. Marking a configuration as a particular type of data</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is common to classify the incoming data. You can see it as tagging them in several types. The most common ones
@@ -1088,7 +1049,7 @@ into the targeted platforms (studio, web applications&#8230;&#8203;)</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_define_links_between_properties"><a class="anchor" href="#_define_links_between_properties"></a>6. Define links between properties</h2>
+<h2 id="_define_links_between_properties"><a class="anchor" href="#_define_links_between_properties"></a>5. Define links between properties</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It can be needed to define a binding between properties, a set of annotations allows to do it:</p>
@@ -1144,7 +1105,7 @@ the previous table uses the web keys.
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation-ui-hints"><a class="anchor" href="#documentation-ui-hints"></a>7. Add hints about the rendering based on configuration/component knowledge</h2>
+<h2 id="documentation-ui-hints"><a class="anchor" href="#documentation-ui-hints"></a>6. Add hints about the rendering based on configuration/component knowledge</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In some case it can be needed to add some metadata about the configuration to let the UI render properly the configuration.
