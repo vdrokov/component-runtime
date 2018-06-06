@@ -100,8 +100,8 @@
 <span class="sourceLineNo">092</span>                        .closeFuture()<a name="line.92"></a>
 <span class="sourceLineNo">093</span>                        .sync();<a name="line.93"></a>
 <span class="sourceLineNo">094</span>            } catch (final InterruptedException e) {<a name="line.94"></a>
-<span class="sourceLineNo">095</span>                Thread.interrupted();<a name="line.95"></a>
-<span class="sourceLineNo">096</span>                close();<a name="line.96"></a>
+<span class="sourceLineNo">095</span>                close();<a name="line.95"></a>
+<span class="sourceLineNo">096</span>                Thread.currentThread().interrupt();<a name="line.96"></a>
 <span class="sourceLineNo">097</span>            }<a name="line.97"></a>
 <span class="sourceLineNo">098</span>        }) {<a name="line.98"></a>
 <span class="sourceLineNo">099</span><a name="line.99"></a>
@@ -118,8 +118,8 @@
 <span class="sourceLineNo">110</span>                        + "setting talend.junit.http.starting.timeout system property");<a name="line.110"></a>
 <span class="sourceLineNo">111</span>            }<a name="line.111"></a>
 <span class="sourceLineNo">112</span>        } catch (final InterruptedException e) {<a name="line.112"></a>
-<span class="sourceLineNo">113</span>            Thread.interrupted();<a name="line.113"></a>
-<span class="sourceLineNo">114</span>            log.warn(e.getMessage());<a name="line.114"></a>
+<span class="sourceLineNo">113</span>            log.warn(e.getMessage());<a name="line.113"></a>
+<span class="sourceLineNo">114</span>            Thread.currentThread().interrupt();<a name="line.114"></a>
 <span class="sourceLineNo">115</span>        }<a name="line.115"></a>
 <span class="sourceLineNo">116</span><a name="line.116"></a>
 <span class="sourceLineNo">117</span>        if (shutdown != null &amp;&amp; handler.isGlobalProxyConfiguration()) {<a name="line.117"></a>
@@ -162,8 +162,8 @@
 <span class="sourceLineNo">154</span>            try {<a name="line.154"></a>
 <span class="sourceLineNo">155</span>                instance.join(TimeUnit.MINUTES.toMillis(5));<a name="line.155"></a>
 <span class="sourceLineNo">156</span>            } catch (final InterruptedException e) {<a name="line.156"></a>
-<span class="sourceLineNo">157</span>                Thread.interrupted();<a name="line.157"></a>
-<span class="sourceLineNo">158</span>                log.warn(e.getMessage(), e);<a name="line.158"></a>
+<span class="sourceLineNo">157</span>                log.warn(e.getMessage(), e);<a name="line.157"></a>
+<span class="sourceLineNo">158</span>                Thread.currentThread().interrupt();<a name="line.158"></a>
 <span class="sourceLineNo">159</span>            } finally {<a name="line.159"></a>
 <span class="sourceLineNo">160</span>                instance = null;<a name="line.160"></a>
 <span class="sourceLineNo">161</span>                shutdown = null;<a name="line.161"></a>
