@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/documentation-rest.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-05T18:01:08.776Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-06T12:02:42.029Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -2490,12 +2490,6 @@ onTrigger(event, payload) {
 <p>action</p>
 </li>
 <li>
-<p>component</p>
-</li>
-<li>
-<p>components</p>
-</li>
-<li>
 <p>configuration</p>
 </li>
 <li>
@@ -2708,16 +2702,16 @@ onTrigger(event, payload) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_listcomponent"><a class="anchor" href="#_listcomponent"></a>7.2.2. This endpoint return a list of available component</h4>
+<h4 id="_getrootconfig"><a class="anchor" href="#_getrootconfig"></a>7.2.2. Return all the available root configuration (Data store like) from the component server</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /components</pre>
+<pre>GET /configurations</pre>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_description_2"><a class="anchor" href="#_description_2"></a>Description</h5>
 <div class="paragraph">
-<p>component has icon that need to be handled by the consumer of this endpoint In the response an icon key is returned. this icon key can be one of the bundled icons or a custom one. The consumer of this endpoint will need to check if the icon key is in the icons bundle otherwise the icon need to be gathered using the <code>id</code> of the component from this endpoint <code>components/{id}/icon/</code></p>
+<p>Every configuration has an icon. In the response an icon key is returned. this icon key can be one of the bundled icons or a custom one. The consumer of this endpoint will need to check if the icon key is in the icons bundle otherwise the icon need to be gathered using the <code>familyId</code> from this endpoint <code>configurations/{id}/icon</code></p>
 </div>
 </div>
 <div class="sect4">
@@ -2777,23 +2771,20 @@ onTrigger(event, payload) {
 <div class="ulist">
 <ul>
 <li>
-<p>components</p>
+<p>configurations</p>
+</li>
+<li>
+<p>datastore</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getcomponentform"><a class="anchor" href="#_getcomponentform"></a>7.2.3. This endpoint return the ui spec of a component identified by it&#8217;s id</h4>
+<h4 id="_getinitialform"><a class="anchor" href="#_getinitialform"></a>7.2.3. Return a form description ( Ui Spec ) without a specific configuration</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /components/{id}/form</pre>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_description_3"><a class="anchor" href="#_description_3"></a>Description</h5>
-<div class="paragraph">
-<p>component has icon that need to be handled by the consumer of this endpoint In the response an icon key is returned. this icon key can be one of the bundled icons or a custom one. The consumer of this endpoint will need to check if the icon key is in the icons bundle otherwise the icon need to be gathered using the <code>id</code> of the component from this endpoint <code>components/{id}/icon/</code></p>
+<pre>GET /configurations/form/initial/{type}</pre>
 </div>
 </div>
 <div class="sect4">
@@ -2817,7 +2808,7 @@ onTrigger(event, payload) {
 <p><strong>Path</strong></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>id</strong><br>
+<p><strong>type</strong><br>
 <em>required</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
@@ -2853,7 +2844,7 @@ onTrigger(event, payload) {
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><a href="#_uinode">UiNode</a></p>
+<p><a href="#_nodes">Nodes</a></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2884,17 +2875,29 @@ onTrigger(event, payload) {
 <div class="ulist">
 <ul>
 <li>
-<p>components</p>
+<p>configurations</p>
+</li>
+<li>
+<p>dataset</p>
+</li>
+<li>
+<p>datastore</p>
+</li>
+<li>
+<p>form</p>
+</li>
+<li>
+<p>ui spec</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getcomponenticonbyid"><a class="anchor" href="#_getcomponenticonbyid"></a>7.2.4. Return the component icon file in png format</h4>
+<h4 id="_getform"><a class="anchor" href="#_getform"></a>7.2.4. Return a form description ( Ui Spec ) of a specific configuration</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /components/{id}/icon</pre>
+<pre>GET /configurations/form/{id}</pre>
 </div>
 </div>
 <div class="sect4">
@@ -2954,7 +2957,7 @@ onTrigger(event, payload) {
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><a href="#_completionstagebyte">CompletionStageByte[]</a></p>
+<p><a href="#_uinode">UiNode</a></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -2977,9 +2980,6 @@ onTrigger(event, payload) {
 <li>
 <p><code>application/json</code></p>
 </li>
-<li>
-<p><code>application/octet-stream</code></p>
-</li>
 </ul>
 </div>
 </div>
@@ -2988,24 +2988,61 @@ onTrigger(event, payload) {
 <div class="ulist">
 <ul>
 <li>
-<p>icon</p>
+<p>configurations</p>
+</li>
+<li>
+<p>dataset</p>
+</li>
+<li>
+<p>datastore</p>
+</li>
+<li>
+<p>form</p>
+</li>
+<li>
+<p>ui spec</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getrootconfig"><a class="anchor" href="#_getrootconfig"></a>7.2.5. Return all the available root configuration (Data store like) from the component server</h4>
+<h4 id="_getconfigurationiconbyid"><a class="anchor" href="#_getconfigurationiconbyid"></a>7.2.5. Return the configuration icon file in png format</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /configurations</pre>
+<pre>GET /configurations/icon/{id}</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_description_4"><a class="anchor" href="#_description_4"></a>Description</h5>
-<div class="paragraph">
-<p>Every configuration has an icon. In the response an icon key is returned. this icon key can be one of the bundled icons or a custom one. The consumer of this endpoint will need to check if the icon key is in the icons bundle otherwise the icon need to be gathered using the <code>familyId</code> from this endpoint <code>configurations/{id}/icon</code></p>
-</div>
+<h5 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a>Parameters</h5>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 33.3333%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p><strong>Path</strong></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p><strong>id</strong><br>
+<em>required</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>string</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect4">
 <h5 id="_responses_5"><a class="anchor" href="#_responses_5"></a>Responses</h5>
@@ -3033,7 +3070,7 @@ onTrigger(event, payload) {
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><a href="#_nodes">Nodes</a></p>
+<p><a href="#_completionstagebyte">CompletionStageByte[]</a></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3056,6 +3093,9 @@ onTrigger(event, payload) {
 <li>
 <p><code>application/json</code></p>
 </li>
+<li>
+<p><code>application/octet-stream</code></p>
+</li>
 </ul>
 </div>
 </div>
@@ -3064,24 +3104,21 @@ onTrigger(event, payload) {
 <div class="ulist">
 <ul>
 <li>
-<p>configurations</p>
-</li>
-<li>
-<p>datastore</p>
+<p>icon</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getform"><a class="anchor" href="#_getform"></a>7.2.6. Return a form description ( Ui Spec ) of a specific configuration</h4>
+<h4 id="_putconfiguration"><a class="anchor" href="#_putconfiguration"></a>7.2.6. Update a configuration.</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /configurations/{id}/form</pre>
+<pre>POST /configurations/persistence/edit/{id}</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a>Parameters</h5>
+<h5 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>Parameters</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -3137,7 +3174,7 @@ onTrigger(event, payload) {
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><a href="#_uinode">UiNode</a></p>
+<p><a href="#_entityref">EntityRef</a></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3180,6 +3217,9 @@ onTrigger(event, payload) {
 <p>form</p>
 </li>
 <li>
+<p>persistence</p>
+</li>
+<li>
 <p>ui spec</p>
 </li>
 </ul>
@@ -3187,14 +3227,14 @@ onTrigger(event, payload) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getconfigurationiconbyid"><a class="anchor" href="#_getconfigurationiconbyid"></a>7.2.7. Return the configuration icon file in png format</h4>
+<h4 id="_postconfigurationfromtype"><a class="anchor" href="#_postconfigurationfromtype"></a>7.2.7. Saves a configuration based on a type. Concretely it is the same as <code>/persistence/save/{formId}</code> but the <code>formId</code> is contained into the payload itself and marked in the metadata as such.</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /configurations/{id}/icon</pre>
+<pre>POST /configurations/persistence/save-from-type/{type}</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>Parameters</h5>
+<h5 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>Parameters</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -3214,7 +3254,7 @@ onTrigger(event, payload) {
 <p><strong>Path</strong></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>id</strong><br>
+<p><strong>type</strong><br>
 <em>required</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
@@ -3250,7 +3290,7 @@ onTrigger(event, payload) {
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><a href="#_completionstagebyte">CompletionStageByte[]</a></p>
+<p><a href="#_entityref">EntityRef</a></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3273,9 +3313,6 @@ onTrigger(event, payload) {
 <li>
 <p><code>application/json</code></p>
 </li>
-<li>
-<p><code>application/octet-stream</code></p>
-</li>
 </ul>
 </div>
 </div>
@@ -3284,21 +3321,36 @@ onTrigger(event, payload) {
 <div class="ulist">
 <ul>
 <li>
-<p>icon</p>
+<p>configurations</p>
+</li>
+<li>
+<p>dataset</p>
+</li>
+<li>
+<p>datastore</p>
+</li>
+<li>
+<p>form</p>
+</li>
+<li>
+<p>persistence</p>
+</li>
+<li>
+<p>ui spec</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_putconfiguration"><a class="anchor" href="#_putconfiguration"></a>7.2.8. Update a configuration.</h4>
+<h4 id="_postconfigurationfromformid"><a class="anchor" href="#_postconfigurationfromformid"></a>7.2.8. Saves a configuration based on a form identifier.</h4>
 <div class="literalblock">
 <div class="content">
-<pre>POST /configurations/{type}/edit/{id}</pre>
+<pre>POST /configurations/persistence/save/{formId}</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>Parameters</h5>
+<h5 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>Parameters</h5>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -3318,19 +3370,7 @@ onTrigger(event, payload) {
 <p><strong>Path</strong></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>id</strong><br>
-<em>required</em></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>string</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>Path</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>type</strong><br>
+<p><strong>formId</strong><br>
 <em>required</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
@@ -3394,235 +3434,6 @@ onTrigger(event, payload) {
 </div>
 <div class="sect4">
 <h5 id="_tags_9"><a class="anchor" href="#_tags_9"></a>Tags</h5>
-<div class="ulist">
-<ul>
-<li>
-<p>configurations</p>
-</li>
-<li>
-<p>dataset</p>
-</li>
-<li>
-<p>datastore</p>
-</li>
-<li>
-<p>form</p>
-</li>
-<li>
-<p>persistence</p>
-</li>
-<li>
-<p>ui spec</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_getinitialform"><a class="anchor" href="#_getinitialform"></a>7.2.9. Return a form description ( Ui Spec ) without a specific configuration</h4>
-<div class="literalblock">
-<div class="content">
-<pre>GET /configurations/{type}/form/initial</pre>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>Parameters</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 22.2222%;">
-<col style="width: 33.3333%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>Path</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>type</strong><br>
-<em>required</em></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>string</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_responses_9"><a class="anchor" href="#_responses_9"></a>Responses</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>200</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>successful operation<br>
-<strong>Headers</strong> : <br>
-<code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><a href="#_nodes">Nodes</a></p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_consumes_9"><a class="anchor" href="#_consumes_9"></a>Consumes</h5>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_produces_9"><a class="anchor" href="#_produces_9"></a>Produces</h5>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_tags_10"><a class="anchor" href="#_tags_10"></a>Tags</h5>
-<div class="ulist">
-<ul>
-<li>
-<p>configurations</p>
-</li>
-<li>
-<p>dataset</p>
-</li>
-<li>
-<p>datastore</p>
-</li>
-<li>
-<p>form</p>
-</li>
-<li>
-<p>ui spec</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_postconfiguration"><a class="anchor" href="#_postconfiguration"></a>7.2.10. Saves a configuration.</h4>
-<div class="literalblock">
-<div class="content">
-<pre>POST /configurations/{type}/save</pre>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a>Parameters</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 22.2222%;">
-<col style="width: 33.3333%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>Path</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>type</strong><br>
-<em>required</em></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>string</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_responses_10"><a class="anchor" href="#_responses_10"></a>Responses</h5>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>200</strong></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>successful operation<br>
-<strong>Headers</strong> : <br>
-<code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><a href="#_entityref">EntityRef</a></p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_consumes_10"><a class="anchor" href="#_consumes_10"></a>Consumes</h5>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_produces_10"><a class="anchor" href="#_produces_10"></a>Produces</h5>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_tags_11"><a class="anchor" href="#_tags_11"></a>Tags</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -4039,24 +3850,6 @@ onTrigger(event, payload) {
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>string</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>plugin</strong><br>
-<em>optional</em></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>string</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p><strong>type</strong><br>
-<em>optional</em></p>
-</div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
-<p>enum (CONFIGURATION, COMPONENT)</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4521,6 +4314,46 @@ onTrigger(event, payload) {
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+as you can see there are two ways to call save endpoint. If you don&#8217;t want to pass the form identifier
+and prefer to use a generic endpoint just passing the type of configuration you are configuring then you will
+need to modify your enrichment configuration to ensure the form identier is present and to specify which form field it is.
+To do that just add to the metadata the boolean <code>proxyserver::formId</code>:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "path": "$datasetMetadata.type",
+  "displayName": "Types",
+  "type": "STRING",
+  "metadata": {
+    // other metadata as seen previously
+    "proxyserver::formId": "true"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+only the first property with <code>proxyserver::formId</code> set to <code>"true"</code> is used. Also the path can&#8217;t contain any array.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -4621,7 +4454,7 @@ it is important to use a <code>Provider&lt;T&gt;</code> injection to keep it laz
 You will need to ensure you pass all contextual data in the request attributes to be able to get them back after.</p>
 </div>
 <div class="paragraph">
-<p>For the persistence, the framework will fire particular events <code>OnPersist</code> and <code>OnEdit</code> you can observe
+<p>For the persistence, the framework will fire particular events <code>OnPersist</code>, <code>OnEdit</code> and <code>OnFindById</code> you should observe
 to implement the persistence as you wish. If you reused the CDI context of the server just a plain CDI observer works
 but if you used the Guice/CDI setup (using the play module of the integration) you will need to write Guice observers:</p>
 </div>
@@ -4632,7 +4465,8 @@ but if you used the Guice/CDI setup (using the play module of the integration) y
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<code>OnPersist</code> will need to become identifier aware of the created entity, ensure to call <code>setId</code> please.
+<code>OnPersist</code> will need to become identifier aware of the created entity, ensure to call <code>setId</code> please. Similarly,
+<code>OnFindById</code> requires you to pass the found instance with <code>setProperties()</code> and <code>setFormId()</code>.
 </td>
 </tr>
 </table>
@@ -4649,6 +4483,11 @@ public class PersistenceHandler {
     @Subscribe
     public void onEdit(final OnEdit event) {
         // do update
+    }
+
+    @Subscribe
+    public void onFind(final OnFindById event) {
+        // do find
     }
 }</code></pre>
 </div>
