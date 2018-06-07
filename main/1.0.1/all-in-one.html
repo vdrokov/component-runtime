@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/all-in-one.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-07T09:00:54.790Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-07T09:24:08.315Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -534,6 +534,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="server-uispec.html">UiSpec Server</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
@@ -10571,167 +10574,14 @@ of course you can compose previous layout (message format) and appenders (where 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_server_configuration"><a class="anchor" href="#_server_configuration"></a>7.5. Server Configuration</h3>
-<div class="paragraph">
-<p>The server module contains several configuration you can set in:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Environment variables</p>
-</li>
-<li>
-<p>System properties</p>
-</li>
-<li>
-<p>A file located based on the <code>--component-configuration</code> CLI option</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-the configuration is read from system properties, environment variables, &#8230;&#8203;.
-</td>
-</tr>
-</table>
-</div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Key</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.extend.dependencies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the component extensions add required dependencies.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.documentation.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.async</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [log, noop]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
-<p class="tableblock">In <code>log</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">noop</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.component.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for component endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.configurationtype.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.documentation.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for documentation endpoint.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.environment.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_uispec_server"><a class="anchor" href="#_uispec_server"></a>7.6. UiSpec Server</h3>
+<h3 id="_uispec_server"><a class="anchor" href="#_uispec_server"></a>7.5. UiSpec Server</h3>
 <div class="paragraph">
 <p>The UiSpec server is a companion application for the Component Server.
 It provides a client to the Component Server which serves UiSpec payload to integrate
 with the client Javascript <code>UiForm</code> library.</p>
 </div>
 <div class="sect3">
-<h4 id="_coordinates"><a class="anchor" href="#_coordinates"></a>7.6.1. Coordinates</h4>
+<h4 id="_coordinates"><a class="anchor" href="#_coordinates"></a>7.5.1. Coordinates</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
@@ -10743,7 +10593,7 @@ with the client Javascript <code>UiForm</code> library.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_configuration"><a class="anchor" href="#_configuration"></a>7.6.2. Configuration</h4>
+<h4 id="_configuration"><a class="anchor" href="#_configuration"></a>7.5.2. Configuration</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -11017,48 +10867,47 @@ onTrigger(event, payload) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_http_api_2"><a class="anchor" href="#_http_api_2"></a>7.6.3. HTTP API</h4>
+<h4 id="_http_api_2"><a class="anchor" href="#_http_api_2"></a>7.5.3. HTTP API</h4>
 
 </div>
-</div>
-<div class="sect2">
-<h3 id="_component_uispec_server"><a class="anchor" href="#_component_uispec_server"></a>7.7. Component UiSpec Server</h3>
 <div class="sect3">
-<h4 id="_overview"><a class="anchor" href="#_overview"></a>7.7.1. Overview</h4>
+<h4 id="_component_uispec_server"><a class="anchor" href="#_component_uispec_server"></a>7.5.4. Component UiSpec Server</h4>
+<div class="sect4">
+<h5 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h5>
 <div class="paragraph">
 <p>These endpoints allow to obtain UiSpec representations of the component/configuration types properties.</p>
 </div>
-<div class="sect4">
-<h5 id="_version_information"><a class="anchor" href="#_version_information"></a>Version information</h5>
+<div class="sect5">
+<h6 id="_version_information"><a class="anchor" href="#_version_information"></a>Version information</h6>
 <div class="paragraph">
 <p><em>Version</em> : v1</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_contact_information"><a class="anchor" href="#_contact_information"></a>Contact information</h5>
+<div class="sect5">
+<h6 id="_contact_information"><a class="anchor" href="#_contact_information"></a>Contact information</h6>
 <div class="paragraph">
 <p><em>Contact</em> : Talend<br>
 <em>Contact Email</em> : <a href="mailto:contact@talend.com">contact@talend.com</a></p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_license_information"><a class="anchor" href="#_license_information"></a>License information</h5>
+<div class="sect5">
+<h6 id="_license_information"><a class="anchor" href="#_license_information"></a>License information</h6>
 <div class="paragraph">
 <p><em>License</em> : Apache 2.0<br>
 <em>License URL</em> : <a href="http://www.apache.org/licenses/LICENSE-2.0.html" class="bare">www.apache.org/licenses/LICENSE-2.0.html</a><br>
 <em>Terms of service</em> : null</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_uri_scheme"><a class="anchor" href="#_uri_scheme"></a>URI scheme</h5>
+<div class="sect5">
+<h6 id="_uri_scheme"><a class="anchor" href="#_uri_scheme"></a>URI scheme</h6>
 <div class="paragraph">
 <p><em>Host</em> : host:port<br>
 <em>BasePath</em> : /componentproxy/api/v1<br>
 <em>Schemes</em> : HTTP, HTTPS</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_tags"><a class="anchor" href="#_tags"></a>Tags</h5>
+<div class="sect5">
+<h6 id="_tags"><a class="anchor" href="#_tags"></a>Tags</h6>
 <div class="ulist">
 <ul>
 <li>
@@ -11095,23 +10944,23 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_paths"><a class="anchor" href="#_paths"></a>7.7.2. Paths</h4>
 <div class="sect4">
-<h5 id="_execute"><a class="anchor" href="#_execute"></a>This endpoint execute an action</h5>
+<h5 id="_paths"><a class="anchor" href="#_paths"></a>Paths</h5>
+<div class="sect5">
+<h6 id="_execute"><a class="anchor" href="#_execute"></a>This endpoint execute an action</h6>
 <div class="literalblock">
 <div class="content">
 <pre>POST /actions/execute</pre>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_description"><a class="anchor" href="#_description"></a>Description</h6>
+<div class="sect6">
+<h7 id="_description"><a class="anchor" href="#_description"></a>Description</h7>
 <div class="paragraph">
 <p>configuration types has action that can be executed using this endpoint</p>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h6>
+<div class="sect6">
+<h7 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -11177,8 +11026,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h6>
+<div class="sect6">
+<h7 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -11242,8 +11091,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_consumes"><a class="anchor" href="#_consumes"></a>Consumes</h6>
+<div class="sect6">
+<h7 id="_consumes"><a class="anchor" href="#_consumes"></a>Consumes</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11252,8 +11101,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_produces"><a class="anchor" href="#_produces"></a>Produces</h6>
+<div class="sect6">
+<h7 id="_produces"><a class="anchor" href="#_produces"></a>Produces</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11262,8 +11111,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_tags_2"><a class="anchor" href="#_tags_2"></a>Tags</h6>
+<div class="sect6">
+<h7 id="_tags_2"><a class="anchor" href="#_tags_2"></a>Tags</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11276,21 +11125,21 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_getrootconfig"><a class="anchor" href="#_getrootconfig"></a>Return all the available root configuration (Data store like) from the component server</h5>
+<div class="sect5">
+<h6 id="_getrootconfig"><a class="anchor" href="#_getrootconfig"></a>Return all the available root configuration (Data store like) from the component server</h6>
 <div class="literalblock">
 <div class="content">
 <pre>GET /configurations</pre>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_description_2"><a class="anchor" href="#_description_2"></a>Description</h6>
+<div class="sect6">
+<h7 id="_description_2"><a class="anchor" href="#_description_2"></a>Description</h7>
 <div class="paragraph">
 <p>Every configuration has an icon. In the response an icon key is returned. this icon key can be one of the bundled icons or a custom one. The consumer of this endpoint will need to check if the icon key is in the icons bundle otherwise the icon need to be gathered using the <code>familyId</code> from this endpoint <code>configurations/{id}/icon</code></p>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_responses_2"><a class="anchor" href="#_responses_2"></a>Responses</h6>
+<div class="sect6">
+<h7 id="_responses_2"><a class="anchor" href="#_responses_2"></a>Responses</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -11321,8 +11170,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_consumes_2"><a class="anchor" href="#_consumes_2"></a>Consumes</h6>
+<div class="sect6">
+<h7 id="_consumes_2"><a class="anchor" href="#_consumes_2"></a>Consumes</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11331,8 +11180,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_produces_2"><a class="anchor" href="#_produces_2"></a>Produces</h6>
+<div class="sect6">
+<h7 id="_produces_2"><a class="anchor" href="#_produces_2"></a>Produces</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11341,8 +11190,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_tags_3"><a class="anchor" href="#_tags_3"></a>Tags</h6>
+<div class="sect6">
+<h7 id="_tags_3"><a class="anchor" href="#_tags_3"></a>Tags</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11355,15 +11204,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_getinitialform"><a class="anchor" href="#_getinitialform"></a>Return a form description ( Ui Spec ) without a specific configuration</h5>
+<div class="sect5">
+<h6 id="_getinitialform"><a class="anchor" href="#_getinitialform"></a>Return a form description ( Ui Spec ) without a specific configuration</h6>
 <div class="literalblock">
 <div class="content">
 <pre>GET /configurations/form/initial/{type}</pre>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>Parameters</h6>
+<div class="sect6">
+<h7 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>Parameters</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -11393,8 +11242,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_responses_3"><a class="anchor" href="#_responses_3"></a>Responses</h6>
+<div class="sect6">
+<h7 id="_responses_3"><a class="anchor" href="#_responses_3"></a>Responses</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -11425,8 +11274,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_consumes_3"><a class="anchor" href="#_consumes_3"></a>Consumes</h6>
+<div class="sect6">
+<h7 id="_consumes_3"><a class="anchor" href="#_consumes_3"></a>Consumes</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11435,8 +11284,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_produces_3"><a class="anchor" href="#_produces_3"></a>Produces</h6>
+<div class="sect6">
+<h7 id="_produces_3"><a class="anchor" href="#_produces_3"></a>Produces</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11445,8 +11294,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_tags_4"><a class="anchor" href="#_tags_4"></a>Tags</h6>
+<div class="sect6">
+<h7 id="_tags_4"><a class="anchor" href="#_tags_4"></a>Tags</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11468,15 +11317,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_getform"><a class="anchor" href="#_getform"></a>Return a form description ( Ui Spec ) of a specific configuration</h5>
+<div class="sect5">
+<h6 id="_getform"><a class="anchor" href="#_getform"></a>Return a form description ( Ui Spec ) of a specific configuration</h6>
 <div class="literalblock">
 <div class="content">
 <pre>GET /configurations/form/{id}</pre>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a>Parameters</h6>
+<div class="sect6">
+<h7 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a>Parameters</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -11506,8 +11355,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_responses_4"><a class="anchor" href="#_responses_4"></a>Responses</h6>
+<div class="sect6">
+<h7 id="_responses_4"><a class="anchor" href="#_responses_4"></a>Responses</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -11538,8 +11387,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_consumes_4"><a class="anchor" href="#_consumes_4"></a>Consumes</h6>
+<div class="sect6">
+<h7 id="_consumes_4"><a class="anchor" href="#_consumes_4"></a>Consumes</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11548,8 +11397,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_produces_4"><a class="anchor" href="#_produces_4"></a>Produces</h6>
+<div class="sect6">
+<h7 id="_produces_4"><a class="anchor" href="#_produces_4"></a>Produces</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11558,8 +11407,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_tags_5"><a class="anchor" href="#_tags_5"></a>Tags</h6>
+<div class="sect6">
+<h7 id="_tags_5"><a class="anchor" href="#_tags_5"></a>Tags</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11581,15 +11430,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_getconfigurationiconbyid"><a class="anchor" href="#_getconfigurationiconbyid"></a>Return the configuration icon file in png format</h5>
+<div class="sect5">
+<h6 id="_getconfigurationiconbyid"><a class="anchor" href="#_getconfigurationiconbyid"></a>Return the configuration icon file in png format</h6>
 <div class="literalblock">
 <div class="content">
 <pre>GET /configurations/icon/{id}</pre>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a>Parameters</h6>
+<div class="sect6">
+<h7 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a>Parameters</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -11619,8 +11468,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_responses_5"><a class="anchor" href="#_responses_5"></a>Responses</h6>
+<div class="sect6">
+<h7 id="_responses_5"><a class="anchor" href="#_responses_5"></a>Responses</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -11651,8 +11500,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_consumes_5"><a class="anchor" href="#_consumes_5"></a>Consumes</h6>
+<div class="sect6">
+<h7 id="_consumes_5"><a class="anchor" href="#_consumes_5"></a>Consumes</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11661,8 +11510,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_produces_5"><a class="anchor" href="#_produces_5"></a>Produces</h6>
+<div class="sect6">
+<h7 id="_produces_5"><a class="anchor" href="#_produces_5"></a>Produces</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11674,8 +11523,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_tags_6"><a class="anchor" href="#_tags_6"></a>Tags</h6>
+<div class="sect6">
+<h7 id="_tags_6"><a class="anchor" href="#_tags_6"></a>Tags</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11685,15 +11534,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_putconfiguration"><a class="anchor" href="#_putconfiguration"></a>Update a configuration.</h5>
+<div class="sect5">
+<h6 id="_putconfiguration"><a class="anchor" href="#_putconfiguration"></a>Update a configuration.</h6>
 <div class="literalblock">
 <div class="content">
 <pre>POST /configurations/persistence/edit/{id}</pre>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>Parameters</h6>
+<div class="sect6">
+<h7 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>Parameters</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -11723,8 +11572,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_responses_6"><a class="anchor" href="#_responses_6"></a>Responses</h6>
+<div class="sect6">
+<h7 id="_responses_6"><a class="anchor" href="#_responses_6"></a>Responses</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -11755,8 +11604,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_consumes_6"><a class="anchor" href="#_consumes_6"></a>Consumes</h6>
+<div class="sect6">
+<h7 id="_consumes_6"><a class="anchor" href="#_consumes_6"></a>Consumes</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11765,8 +11614,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_produces_6"><a class="anchor" href="#_produces_6"></a>Produces</h6>
+<div class="sect6">
+<h7 id="_produces_6"><a class="anchor" href="#_produces_6"></a>Produces</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11775,8 +11624,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_tags_7"><a class="anchor" href="#_tags_7"></a>Tags</h6>
+<div class="sect6">
+<h7 id="_tags_7"><a class="anchor" href="#_tags_7"></a>Tags</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11801,15 +11650,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_postconfigurationfromtype"><a class="anchor" href="#_postconfigurationfromtype"></a>Saves a configuration based on a type. Concretely it is the same as <code>/persistence/save/{formId}</code> but the <code>formId</code> is contained into the payload itself and marked in the metadata as such.</h5>
+<div class="sect5">
+<h6 id="_postconfigurationfromtype"><a class="anchor" href="#_postconfigurationfromtype"></a>Saves a configuration based on a type. Concretely it is the same as <code>/persistence/save/{formId}</code> but the <code>formId</code> is contained into the payload itself and marked in the metadata as such.</h6>
 <div class="literalblock">
 <div class="content">
 <pre>POST /configurations/persistence/save-from-type/{type}</pre>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>Parameters</h6>
+<div class="sect6">
+<h7 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>Parameters</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -11839,8 +11688,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_responses_7"><a class="anchor" href="#_responses_7"></a>Responses</h6>
+<div class="sect6">
+<h7 id="_responses_7"><a class="anchor" href="#_responses_7"></a>Responses</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -11871,8 +11720,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_consumes_7"><a class="anchor" href="#_consumes_7"></a>Consumes</h6>
+<div class="sect6">
+<h7 id="_consumes_7"><a class="anchor" href="#_consumes_7"></a>Consumes</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11881,8 +11730,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_produces_7"><a class="anchor" href="#_produces_7"></a>Produces</h6>
+<div class="sect6">
+<h7 id="_produces_7"><a class="anchor" href="#_produces_7"></a>Produces</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11891,8 +11740,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_tags_8"><a class="anchor" href="#_tags_8"></a>Tags</h6>
+<div class="sect6">
+<h7 id="_tags_8"><a class="anchor" href="#_tags_8"></a>Tags</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11917,15 +11766,15 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_postconfigurationfromformid"><a class="anchor" href="#_postconfigurationfromformid"></a>Saves a configuration based on a form identifier.</h5>
+<div class="sect5">
+<h6 id="_postconfigurationfromformid"><a class="anchor" href="#_postconfigurationfromformid"></a>Saves a configuration based on a form identifier.</h6>
 <div class="literalblock">
 <div class="content">
 <pre>POST /configurations/persistence/save/{formId}</pre>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>Parameters</h6>
+<div class="sect6">
+<h7 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>Parameters</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -11955,8 +11804,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_responses_8"><a class="anchor" href="#_responses_8"></a>Responses</h6>
+<div class="sect6">
+<h7 id="_responses_8"><a class="anchor" href="#_responses_8"></a>Responses</h7>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -11987,8 +11836,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_consumes_8"><a class="anchor" href="#_consumes_8"></a>Consumes</h6>
+<div class="sect6">
+<h7 id="_consumes_8"><a class="anchor" href="#_consumes_8"></a>Consumes</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -11997,8 +11846,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_produces_8"><a class="anchor" href="#_produces_8"></a>Produces</h6>
+<div class="sect6">
+<h7 id="_produces_8"><a class="anchor" href="#_produces_8"></a>Produces</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -12007,8 +11856,8 @@ onTrigger(event, payload) {
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_tags_9"><a class="anchor" href="#_tags_9"></a>Tags</h6>
+<div class="sect6">
+<h7 id="_tags_9"><a class="anchor" href="#_tags_9"></a>Tags</h7>
 <div class="ulist">
 <ul>
 <li>
@@ -12034,40 +11883,40 @@ onTrigger(event, payload) {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_definitions"><a class="anchor" href="#_definitions"></a>7.7.3. Definitions</h4>
 <div class="sect4">
-<h5 id="_completionstage"><a class="anchor" href="#_completionstage"></a>CompletionStage</h5>
+<h5 id="_definitions"><a class="anchor" href="#_definitions"></a>Definitions</h5>
+<div class="sect5">
+<h6 id="_completionstage"><a class="anchor" href="#_completionstage"></a>CompletionStage</h6>
 <div class="paragraph">
 <p><em>Type</em> : object</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_completionstagebyte"><a class="anchor" href="#_completionstagebyte"></a>CompletionStageByte[]</h5>
+<div class="sect5">
+<h6 id="_completionstagebyte"><a class="anchor" href="#_completionstagebyte"></a>CompletionStageByte[]</h6>
 <div class="paragraph">
 <p><em>Type</em> : object</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_completionstagecollectionsimplepropertydefinition"><a class="anchor" href="#_completionstagecollectionsimplepropertydefinition"></a>CompletionStageCollectionSimplePropertyDefinition</h5>
+<div class="sect5">
+<h6 id="_completionstagecollectionsimplepropertydefinition"><a class="anchor" href="#_completionstagecollectionsimplepropertydefinition"></a>CompletionStageCollectionSimplePropertyDefinition</h6>
 <div class="paragraph">
 <p><em>Type</em> : object</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_completionstagemapstringobject"><a class="anchor" href="#_completionstagemapstringobject"></a>CompletionStageMapStringObject</h5>
+<div class="sect5">
+<h6 id="_completionstagemapstringobject"><a class="anchor" href="#_completionstagemapstringobject"></a>CompletionStageMapStringObject</h6>
 <div class="paragraph">
 <p><em>Type</em> : object</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_completionstagenodes"><a class="anchor" href="#_completionstagenodes"></a>CompletionStageNodes</h5>
+<div class="sect5">
+<h6 id="_completionstagenodes"><a class="anchor" href="#_completionstagenodes"></a>CompletionStageNodes</h6>
 <div class="paragraph">
 <p><em>Type</em> : object</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_condition"><a class="anchor" href="#_condition"></a>Condition</h5>
+<div class="sect5">
+<h6 id="_condition"><a class="anchor" href="#_condition"></a>Condition</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -12101,16 +11950,18 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_entityref"><a class="anchor" href="#_entityref"></a>EntityRef</h5>
+<div class="sect5">
+<h6 id="_entityref"><a class="anchor" href="#_entityref"></a>EntityRef</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -12121,14 +11972,17 @@ onTrigger(event, payload) {
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The identifier of the entity related to current request. It is generally thecreated entity of updated one.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_jsonschema"><a class="anchor" href="#_jsonschema"></a>JsonSchema</h5>
+<div class="sect5">
+<h6 id="_jsonschema"><a class="anchor" href="#_jsonschema"></a>JsonSchema</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -12315,8 +12169,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_namevalue"><a class="anchor" href="#_namevalue"></a>NameValue</h5>
+<div class="sect5">
+<h6 id="_namevalue"><a class="anchor" href="#_namevalue"></a>NameValue</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -12350,16 +12204,18 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_node"><a class="anchor" href="#_node"></a>Node</h5>
+<div class="sect5">
+<h6 id="_node"><a class="anchor" href="#_node"></a>Node</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -12368,6 +12224,9 @@ onTrigger(event, payload) {
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p><strong>children</strong><br>
 <em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The list of configuration reusing this one as a reference (can be created "next").</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>&lt; string &gt; array</p>
@@ -12379,6 +12238,9 @@ onTrigger(event, payload) {
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The identifier of the family of this configuration.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -12386,6 +12248,9 @@ onTrigger(event, payload) {
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p><strong>familyLabel</strong><br>
 <em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The display name of the family of this configuration.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>string</p>
@@ -12397,6 +12262,9 @@ onTrigger(event, payload) {
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The icon of this configuration. If you use an existing bundle (@talend/ui/icon), ensure it is present by default and if not do a request using the family on the related endpoint.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -12404,6 +12272,9 @@ onTrigger(event, payload) {
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p><strong>id</strong><br>
 <em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The identifier of this configuration/node.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>string</p>
@@ -12415,6 +12286,9 @@ onTrigger(event, payload) {
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The display name of this configuration.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -12422,6 +12296,9 @@ onTrigger(event, payload) {
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p><strong>name</strong><br>
 <em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The technical name of this node (it is human readable but not i18n friendly), useful for debug purposes.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>string</p>
@@ -12433,22 +12310,27 @@ onTrigger(event, payload) {
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The version of this configuration for the migration management.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>integer (int32)</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_nodes"><a class="anchor" href="#_nodes"></a>Nodes</h5>
+<div class="sect5">
+<h6 id="_nodes"><a class="anchor" href="#_nodes"></a>Nodes</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -12459,14 +12341,17 @@ onTrigger(event, payload) {
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The list of nodes matching the request. The key is the node identifier.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>&lt; string, <a href="#_node">Node</a> &gt; map</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_option"><a class="anchor" href="#_option"></a>Option</h5>
+<div class="sect5">
+<h6 id="_option"><a class="anchor" href="#_option"></a>Option</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -12500,8 +12385,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_parameter"><a class="anchor" href="#_parameter"></a>Parameter</h5>
+<div class="sect5">
+<h6 id="_parameter"><a class="anchor" href="#_parameter"></a>Parameter</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -12535,16 +12420,18 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_proxyerrorpayload"><a class="anchor" href="#_proxyerrorpayload"></a>ProxyErrorPayload</h5>
+<div class="sect5">
+<h6 id="_proxyerrorpayload"><a class="anchor" href="#_proxyerrorpayload"></a>ProxyErrorPayload</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -12553,6 +12440,9 @@ onTrigger(event, payload) {
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p><strong>code</strong><br>
 <em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The error code independently of the locale and not as precise as a message (not context aware).</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>string</p>
@@ -12564,14 +12454,17 @@ onTrigger(event, payload) {
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>A human readable message to help understanding the error</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_trigger"><a class="anchor" href="#_trigger"></a>Trigger</h5>
+<div class="sect5">
+<h6 id="_trigger"><a class="anchor" href="#_trigger"></a>Trigger</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -12632,8 +12525,8 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_ui"><a class="anchor" href="#_ui"></a>Ui</h5>
+<div class="sect5">
+<h6 id="_ui"><a class="anchor" href="#_ui"></a>Ui</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -12676,16 +12569,18 @@ onTrigger(event, payload) {
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_uinode"><a class="anchor" href="#_uinode"></a>UiNode</h5>
+<div class="sect5">
+<h6 id="_uinode"><a class="anchor" href="#_uinode"></a>UiNode</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
 <th class="tableblock halign-left valign-middle">Schema</th>
 </tr>
 </thead>
@@ -12694,6 +12589,9 @@ onTrigger(event, payload) {
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p><strong>metadata</strong><br>
 <em>optional</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The metadata associated to the node if needed by the UI.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p><a href="#_node">Node</a></p>
@@ -12705,14 +12603,17 @@ onTrigger(event, payload) {
 <em>optional</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<p>The ui specification corresponding to the requested node. It is literally the form representing this configuration.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
 <p><a href="#_ui">Ui</a></p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_uischema"><a class="anchor" href="#_uischema"></a>UiSchema</h5>
+<div class="sect5">
+<h6 id="_uischema"><a class="anchor" href="#_uischema"></a>UiSchema</h6>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42.8571%;">
@@ -12931,8 +12832,9 @@ only the first property with <code>proxyserver::formId</code> set to <code>"true
 </div>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="_play_integration"><a class="anchor" href="#_play_integration"></a>7.7.4. Play Integration</h4>
+<h4 id="_play_integration"><a class="anchor" href="#_play_integration"></a>7.5.5. Play Integration</h4>
 <div class="paragraph">
 <p>Thanks to <a href="https://github.com/rmannibucau/playx">Playx</a> you can deploy this server
 in a Play! application.</p>
@@ -13080,6 +12982,159 @@ the deletion is not handled by the server since there is not encapsulation of an
 </table>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_server_configuration"><a class="anchor" href="#_server_configuration"></a>7.5.6. Server Configuration</h4>
+<div class="paragraph">
+<p>The server module contains several configuration you can set in:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Environment variables</p>
+</li>
+<li>
+<p>System properties</p>
+</li>
+<li>
+<p>A file located based on the <code>--component-configuration</code> CLI option</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the configuration is read from system properties, environment variables, &#8230;&#8203;.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.extend.dependencies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the component extensions add required dependencies.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.documentation.active</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The size of the execution pool for runtime endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.async</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When using url or kafka reporter, you can configure the async reporter with properties passed to this configuration entry.Ex: <code>messageTimeout=5000,closeTimeout=5000</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">console</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.reporter.type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The brave reporter to use to send the spans. Supported values are [log, noop]. When configuration is needed,you can use this syntax to configure the repoter if needed: <code>&lt;name&gt;(config1=value1, config2=value2)</code>, for example: <code>url(endpoint=http://brave.company.com</code>.</p>
+<p class="tableblock">In <code>log</code> mode, if environment variable <code>TRACING_ON</code> doesn&#8217;t exist or is set to <code>false</code>, <code>noop</code> will be selected, and is set to <code>true</code>, <code>TRACING_KAFKA_URL</code>, <code>TRACING_KAFKA_TOPIC</code> and <code>TRACING_SAMPLING_RATE</code> will configure <code>kafka</code> reporter..</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">noop</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.action.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for action endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.component.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for component endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.configurationtype.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.documentation.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for documentation endpoint.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.environment.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for environment endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.execution.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling for execution endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.sampling.rate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The accuracy rate of the sampling.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
