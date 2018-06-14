@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/all-in-one.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-14T11:18:07.037Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-14T16:14:14.081Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -13335,9 +13335,33 @@ as provided so never include it in compile scope - it would be ignored anyway.</
 <p>If you need a JSonCoder you can use <code>org.talend.sdk.component.runtime.beam.factory.service.PluginCoderFactory</code> service
 which gives you access the JSON-P and JSON-B coders.</p>
 </div>
+<div class="paragraph">
+<p>There is also an Avro coder using the <code>FileContainer</code> format to ensure it
+is self-contained for <code>IndexedRecord</code> and doesn&#8217;t need - as default Apache Beam <code>AvroCoder</code> - to set the
+schema when creating a pipeline. It takes a bit more space and therefore is a bit slower
+but for <code>DoFn</code> it is fine since they shouldn&#8217;t rely on serialization in a lot of cases.
+See <code>org.talend.sdk.component.runtime.beam.transform.avro.IndexedRecordCoder</code>.</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_sample"><a class="anchor" href="#_sample"></a>8.5.2. Sample</h4>
+<h4 id="_jsonobject_to_indexedrecord"><a class="anchor" href="#_jsonobject_to_indexedrecord"></a>8.5.2. JsonObject to IndexedRecord</h4>
+<div class="paragraph">
+<p>The mainstream model is <code>JsonObject</code> but it is common to have a legacy system using
+<code>IndexedRecord</code>. To mitigate the transition you can use the following <code>PTransforms</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>IndexedRecordToJson</code>: to convert from an <code>IndexedRecord</code> to a <code>JsonObject</code></p>
+</li>
+<li>
+<p><code>JsonToIndexedRecord</code>: to convert from an <code>JsonObject</code> to a <code>IndexedRecord</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sample"><a class="anchor" href="#_sample"></a>8.5.3. Sample</h4>
 <div class="paragraph">
 <p>Here is a sample input based on beam Kafka:</p>
 </div>
