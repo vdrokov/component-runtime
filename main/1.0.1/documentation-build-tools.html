@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/documentation-build-tools.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-19T12:04:07.630Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-20T12:58:59.017Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -678,11 +678,10 @@
 <h2 id="_maven_plugin"><a class="anchor" href="#_maven_plugin"></a>1. Maven Plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>talend-component-maven-plugin</code> intends to help you to write components
-validating components match best practices and also generating transparently metadata used by Talend Studio.</p>
+<p><code>talend-component-maven-plugin</code> helps you write components that match best practices and generate transparently metadata used by Talend Studio.</p>
 </div>
 <div class="paragraph">
-<p>Here is how to use it:</p>
+<p>You can use it as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -694,7 +693,7 @@ validating components match best practices and also generating transparently met
 </div>
 </div>
 <div class="paragraph">
-<p>Note that this plugin is also an extension so you can declare it in your <code>build/extensions</code> block as:</p>
+<p>This plugin is also an extension so you can declare it in your <code>build/extensions</code> block as:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -706,13 +705,12 @@ validating components match best practices and also generating transparently met
 </div>
 </div>
 <div class="paragraph">
-<p>Used as an extension, <code>dependencies</code>, <code>validate</code> and <code>documentation</code> goals will be set up.</p>
+<p>Used as an extension, the <code>dependencies</code>, <code>validate</code> and <code>documentation</code> goals will be set up.</p>
 </div>
 <div class="sect2">
 <h3 id="_dependencies"><a class="anchor" href="#_dependencies"></a>1.1. Dependencies</h3>
 <div class="paragraph">
-<p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>, it will create the <code>TALEND-INF/dependencies.txt</code> file
-with the <code>compile</code> and <code>runtime</code> dependencies to let the component use it at runtime:</p>
+<p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>. It creates the <code>TALEND-INF/dependencies.txt</code> file with the <code>compile</code> and <code>runtime</code> dependencies, allowing the component to use it at runtime:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -735,7 +733,7 @@ with the <code>compile</code> and <code>runtime</code> dependencies to let the c
 <div class="sect2">
 <h3 id="_validate"><a class="anchor" href="#_validate"></a>1.2. Validate</h3>
 <div class="paragraph">
-<p>The most important goal is here to help you to validate the common programming model of the component. Here is the execution definition to activate it:</p>
+<p>This goal helps you validate the common programming model of the component. To activate it, you can use following execution definition:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -755,8 +753,7 @@ with the <code>compile</code> and <code>runtime</code> dependencies to let the c
 </div>
 </div>
 <div class="paragraph">
-<p>By default it will be bound to <code>process-classes</code> phase. When executing it will do several validations which can be switched off
-adding the corresponding flags to <code>false</code> in the <code>&lt;configuration&gt;</code> block of the execution:</p>
+<p>It is bound to the <code>process-classes</code> phase by default. When executed, it performs several validations that can be disabled by setting the corresponding flags to <code>false</code> in the <code>&lt;configuration&gt;</code> block of the execution:</p>
 </div>
 <table class="tableblock frame-all grid-all">
 <colgroup>
@@ -774,57 +771,57 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateInternationalization</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Validates resource bundle are presents and contain commonly used keys (like <code>_displayName</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validates that resource bundles are presents and contain commonly used keys (for example, <code>_displayName</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateModel</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure components pass validations of the <code>ComponentManager</code> and Talend Component runtime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that components pass validations of the <code>ComponentManager</code> and Talend Component runtime</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateSerializable</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure components are <code>Serializable</code> - note this is a sanity check, the component is not actually serialized here, if you have a doubt ensure to test it. It also checks any <code>@Internationalized</code> class is valid and has its keys.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that components are <code>Serializable</code>. This is a sanity check, the component is not actually serialized here. If you have a doubt, make sure to test it. It also checks that any <code>@Internationalized</code> class is valid and has its keys.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateMetadata</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure components define an <code>@Icon</code> and <code>@Version</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that components have an <code>@Icon</code> and a <code>@Version</code> defined.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateDataStore</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure any  <code>@DataStore</code> defines a <code>@HealthCheck</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that any <code>@DataStore</code> defines a <code>@HealthCheck</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateComponent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure native programming model is respected, you can disable it when using another programming model like in beam case.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that the native programming model is respected. You can disable it when using another programming model like Beam.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateActions</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Validate actions signatures for the ones not tolerating dynamic binding (<code>@HealthCheck</code>, <code>@DynamicValues</code>, &#8230;&#8203;). It is recommended to keep it <code>true</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validates action signatures for actions not tolerating dynamic binding (<code>@HealthCheck</code>, <code>@DynamicValues</code>, and so on). It is recommended to keep it set to <code>true</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateFamily</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Validate the family, i.e. the package containing the <code>@Components</code> has also a <code>@Icon</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validates the family by verifying that the package containing the <code>@Components</code> has a <code>@Icon</code> property defined.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateDocumentation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure all 1. components and 2. <code>@Option</code> properties have a documentation using <code>@Documentation</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that all components and <code>@Option</code> properties have a documentation using the <code>@Documentation</code> property.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateLayout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the layout is referencing existing options/properties.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that the layout is referencing existing options and properties.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateOptionNames</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the option names are compliant with the framework. It is really unsafe to set it to false.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that the option names are compliant with the framework. It is highly recommended and safer to keep it set to <code>true</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 </tbody>
@@ -833,8 +830,7 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 <div class="sect2">
 <h3 id="_documentation"><a class="anchor" href="#_documentation"></a>1.3. Documentation</h3>
 <div class="paragraph">
-<p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and
-<code>@Documentation</code> you can put on options and the component itself.</p>
+<p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and the <code>@Documentation</code> property that you can add to options and to the component itself.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -869,15 +865,15 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">level</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Which level are the root title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level of the root title.</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>2 which means <code>==</code></p>
+<p>2 (<code>==</code>)</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">output</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Where to store the output, it is <strong>NOT</strong> recommended to change it</p>
+<p>Output folder path. It is recommended to keep it to the default value.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>${classes}/TALEND-INF/documentation.adoc</code></p>
@@ -885,27 +881,27 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">formats</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A map of the renderings to do, keys are the format (<code>pdf</code> or <code>html</code>) and values the output paths</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of the renderings to do. Keys are the format (<code>pdf</code> or <code>html</code>) and values the output paths.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attributes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A map of asciidoctor attributes when formats is set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map of asciidoctor attributes when <strong>formats</strong> is set.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">templateDir / templateEngine</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Template configuration for the rendering</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Template configuration for the rendering.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">title</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Document title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Document title.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${project.name}</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attachDocumentations</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the documentations (<code>.adoc</code>, and <code>formats</code> keys) should be attached to the project (and deployed)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to attach (and deploy) the documentations (<code>.adoc</code>, and <code>formats</code> keys) to the project.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 </tbody>
@@ -917,18 +913,33 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-if you use the extension you can add the property <code>talend.documentation.htmlAndPdf</code> and set it to <code>true</code> in your project
-to automatically get a html and PDF rendering of the documentation.
+If you use the plugin as an extension, you can add the <code>talend.documentation.htmlAndPdf</code> property and set it to <code>true</code> in your project to automatically get HTML and PDF renderings of the documentation.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_render_your_documentation"><a class="anchor" href="#_render_your_documentation"></a>1.3.1. Render your documentation</h4>
-<div class="sect4">
-<h5 id="_html"><a class="anchor" href="#_html"></a>HTML</h5>
+<h4 id="_rendering_your_documentation"><a class="anchor" href="#_rendering_your_documentation"></a>1.3.1. Rendering your documentation</h4>
 <div class="paragraph">
-<p>To render the generated documentation you can use the Asciidoctor Maven plugin (or Gradle equivalent):</p>
+<p>To render the generated documentation in HTML or PDF, you can use the Asciidoctor Maven plugin (or Gradle equivalent). You can configure both executions if you want both HTML and PDF renderings.</p>
+</div>
+<div class="paragraph">
+<p>Make sure to execute the rendering after the documentation generation.</p>
+</div>
+<div class="sect4">
+<h5 id="_html_rendering"><a class="anchor" href="#_html_rendering"></a>HTML rendering</h5>
+<div class="paragraph">
+<p>If you prefer a HTML rendering, you can configure the following execution in the asciidoctor plugin. The example below:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Generates the components documentation in <code>target/classes/TALEND-INF/documentation.adoc</code>.</p>
+</li>
+<li>
+<p>Renders the documentation as an HTML file stored in <code>target/documentation/documentation.html</code>.</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -968,35 +979,11 @@ to automatically get a html and PDF rendering of the documentation.
 &lt;/plugin&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Will generate in <code>target/classes/TALEND-INF/documentation.adoc</code> the components documentation.</p>
-</li>
-<li>
-<p>Will render the documenation as an html file in <code>target/documentation/documentation.html</code>.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-ensure to execute it after the documentation generation.
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect4">
-<h5 id="_pdf"><a class="anchor" href="#_pdf"></a>PDF</h5>
+<h5 id="_pdf_rendering"><a class="anchor" href="#_pdf_rendering"></a>PDF rendering</h5>
 <div class="paragraph">
-<p>If you prefer a PDF rendering you can configure the following execution
-in the asciidoctor plugin (note that you can configure both executions if you want
-both HTML and PDF rendering):</p>
+<p>If you prefer a PDF rendering, you can configure the following execution in the asciidoctor plugin:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1031,13 +1018,13 @@ both HTML and PDF rendering):</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_include_the_documentation_into_a_document"><a class="anchor" href="#_include_the_documentation_into_a_document"></a>Include the documentation into a document</h5>
+<h5 id="_including_the_documentation_into_a_document"><a class="anchor" href="#_including_the_documentation_into_a_document"></a>Including the documentation into a document</h5>
 <div class="paragraph">
-<p>If you want to add some more content or add a title, you can include the generated document into
+<p>If you want to add some more content or a title, you can include the generated document into
 another document using Asciidoc <code>include</code> directive.</p>
 </div>
 <div class="paragraph">
-<p>A common example is:</p>
+<p>For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1055,7 +1042,7 @@ include::{generated_doc}/documentation.adoc[]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This assumes you pass to the plugin the attribute <code>generated_doc</code>, this can be done this way:</p>
+<p>To be able to do that, you need to pass the <code>generated_doc</code> attribute to the plugin. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1085,38 +1072,47 @@ include::{generated_doc}/documentation.adoc[]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This is optional but allows to reuse maven placeholders to pass paths which is quite convenient in an automated build.</p>
+<p>This is optional but allows to reuse Maven placeholders to pass paths, which can be convenient in an automated build.</p>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_more"><a class="anchor" href="#_more"></a>More</h5>
 <div class="paragraph">
-<p>You can find more customizations on Asciidoctor <a href="http://asciidoctor.org/docs/asciidoctor-maven-plugin/">website</a>.</p>
+<p>You can find more customization options on Asciidoctor <a href="http://asciidoctor.org/docs/asciidoctor-maven-plugin/">website</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_web"><a class="anchor" href="#_web"></a>1.4. Web</h3>
+<h3 id="_testing_a_component_web_rendering"><a class="anchor" href="#_testing_a_component_web_rendering"></a>1.4. Testing a component web rendering</h3>
 <div class="paragraph">
-<p>Testing the rendering of your component(s) configuration into the Studio is just a matter of deploying a component
-in Talend Studio (you can have a look to link::studio.html[Studio Documentation] page. But don&#8217;t forget
-the component can also be deployed into a Cloud (web) environment. To ease the testing of the related rendering,
-you can use the goal <code>web</code> of the plugin:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>mvn talend-component:web</code></pre>
-</div>
+<p>Testing the rendering of your component configuration into the Studio requires deploying the component in Talend Studio (refer to <a href="studio.html">Studio Documentation</a>.</p>
 </div>
 <div class="paragraph">
-<p>Then you can test your component going on <a href="http://localhost:8080" class="bare">localhost:8080</a>. You need to select which component form you want
-to see using the treeview on the left, then on the right the form will be displayed.</p>
+<p>In the case where you need to deploy your component into a Cloud (web) environment, you can test its web rendering by using the <code>web</code> goal of the plugin:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run the <code>mvn talend-component:web</code> command.</p>
+</li>
+<li>
+<p>Open the following URL in a web browser: <code><a href="http://localhost:8080" class="bare">localhost:8080</a></code>.</p>
+</li>
+<li>
+<p>Select the component form you want to see from the treeview on the left. The selected form is displayed on the right.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>The two available configurations of the plugin are <code>serverPort</code> which is a shortcut to change the default, 8080, port
-of the embedded server and <code>serverArguments</code> to pass Meecrowave options to the server. More on that configuration
-is available at <a href="http://openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html" class="bare">openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html</a>.</p>
+<p>Two parameters are available with the plugin:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>serverPort</code>, which allows to change the default port (8080) of the embedded server.</p>
+</li>
+<li>
+<p><code>serverArguments</code>, that you can use to pass Meecrowave options to the server. Learn more about that configuration at <a href="http://openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html" class="bare">openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html</a>.</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1125,16 +1121,16 @@ is available at <a href="http://openwebbeans.apache.org/meecrowave/meecrowave-co
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-this command reads the component jar from the local maven repository so ensure to install the artifact before using it.
+Make sure to install the artifact before using this command because it reads the component JAR from the local Maven repository.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generate_inputs_or_outputs"><a class="anchor" href="#_generate_inputs_or_outputs"></a>1.5. Generate inputs or outputs</h3>
+<h3 id="_generating_inputs_or_outputs"><a class="anchor" href="#_generating_inputs_or_outputs"></a>1.5. Generating inputs or outputs</h3>
 <div class="paragraph">
-<p>The Mojo <code>generate</code> (maven plugin goal) of the same plugin also embeds a generator you can use to bootstrap any input or output component:</p>
+<p>The Mojo <code>generate</code> (Maven plugin goal) of the same plugin also embeds a generator that you can use to bootstrap any input or output component:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1171,16 +1167,16 @@ this command reads the component jar from the local maven repository so ensure t
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Generates an input (partition mapper + emitter)</td>
+<td>The first execution generates an input (partition mapper + emitter).</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Generates an output</td>
+<td>the second execution generates an output.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>It is intended to be used from the command line (or IDE Maven integration):</p>
+<p>It is intended to be used from the command line (or IDE Maven integration) as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1195,24 +1191,24 @@ this command reads the component jar from the local maven repository so ensure t
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>select the type of component you want, <code>input</code> to generate a mapper and emitter and <code>output</code> to generate an output processor</td>
+<td>Select the type of component you want: <code>input</code> to generate a mapper and an emitter, or <code>output</code> to generate an output processor.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>set the class name base (will be suffixed by the component type), if not set the package will be guessed and classname based on the basedir name</td>
+<td>Set the class name base (automatically suffixed by the component type). If not set, the package is guessed and the classname is based on the basedir name.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>set the component family to use, default to the base dir name removing (component[s] from the name, ex: <code>my-component</code> will lead to <code>my</code> as family if not explicitly set)</td>
+<td>Set the component family to use. If not specified, it defaults to the basedir name and removes "component[s]" from it. for example, <code>my-component</code> leads to <code>my</code> as family, unless it is explicitly set.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>should the generator try to add <code>component-api</code> in the pom if not already here, if you added it you can set it to <code>false</code> directly in the pom</td>
+<td>Specify if the generator needs to add <code>component-api</code> to the POM, if not already there. If you already added it, you can set it to <code>false</code> directly in the POM.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>For this command to work you will need to just register the plugin:</p>
+<p>For this command to work, you need to register the plugin as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1227,8 +1223,7 @@ this command reads the component jar from the local maven repository so ensure t
 <div class="sect2">
 <h3 id="_talend_component_archive"><a class="anchor" href="#_talend_component_archive"></a>1.6. Talend Component Archive</h3>
 <div class="paragraph">
-<p>Component ARchive (<code>.car</code>) is the way to bundle a component to share it in Talend ecosystem. It is a plain Java ARchive (<code>.jar</code>)
-containing a metadata file and a nested maven repository containing the component and its depenencies.</p>
+<p>Component ARchive (<code>.car</code>) is the way to bundle a component to share it in the Talend ecosystem. It is a plain Java ARchive (<code>.jar</code>) containing a metadata file and a nested Maven repository containing the component and its depenencies.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1236,12 +1231,11 @@ containing a metadata file and a nested maven repository containing the componen
 </div>
 </div>
 <div class="paragraph">
-<p>It will create a <code>.car</code> in your build directory which is shareable on Talend platforms.</p>
+<p>This command creates a <code>.car</code> file in your build directory. This file can be shared on Talend platforms.</p>
 </div>
 <div class="paragraph">
-<p>Note that this CAR is executable and exposes the command <code>studio-deploy</code> which takes as parameter
-a Talend Studio home location. Executed it will install the dependencies into the studio and register the component
-in your instance. Here is a sample launch command:</p>
+<p>This CAR is executable and exposes the <code>studio-deploy</code> command which takes
+a Talend Studio home path as parameter. When executed, it installs the dependencies into the Studio and registers the component in your instance. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1257,7 +1251,7 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 </div>
 </div>
 <div class="paragraph">
-<p>You can also upload the dependencies to your nexus server using the following command:</p>
+<p>You can also upload the dependencies to your Nexus server using the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1265,7 +1259,7 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 </div>
 </div>
 <div class="paragraph">
-<p>In this command Nexus Url and repository name are mandatory arguments. All other arguments are optional. If arguments contain spaces or special symbols, you need to quote the whole value of the argument, for example</p>
+<p>In this command, Nexus URL and repository name are mandatory arguments. All other arguments are optional. If arguments contain spaces or special symbols, you need to quote the whole value of the argument. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1279,14 +1273,10 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 <h2 id="_gradle_plugin"><a class="anchor" href="#_gradle_plugin"></a>2. Gradle Plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>gradle-talend-component</code> intends to help you to write components
-validating components match best practices. It is inspired from the Maven plugin
-and adds the ability to generate automatically the <code>dependencies.txt</code> file the SDK
-uses to build the component classpath. For more information on the configuration
-you can check out the maven properties matching the attributes.</p>
+<p><code>gradle-talend-component</code> helps you write components that match the best practices. It is inspired from the Maven plugin and adds the ability to generate automatically the <code>dependencies.txt</code> file used by the SDK to build the component classpath. For more information on the configuration, refer to the Maven properties matching the attributes.</p>
 </div>
 <div class="paragraph">
-<p>Here is how to use it:</p>
+<p>You can use it as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">

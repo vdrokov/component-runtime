@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Getting Started :: Talend Component Kit Developer Reference Guide</title>
+    <title>Getting started with Talend Component Kit :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/getting-started.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-19T12:04:07.697Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-20T12:58:59.087Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -649,7 +649,7 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
-    <li class="crumb"><a href="getting-started.html">Talend Component Getting Started</a></li>
+    <li class="crumb"><a href="getting-started.html">Getting started with Talend Component Kit</a></li>
   </ul>
 </nav>
     <div class="page-versions">
@@ -673,41 +673,102 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Talend Component Getting Started</h1>
-        <div class="sect1">
-<h2 id="getting-started-introducing-talend-component"><a class="anchor" href="#getting-started-introducing-talend-component"></a>1. Introducing Talend Component</h2>
+        <h1>Getting started with Talend Component Kit</h1>
+        <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>Talend Component</em> intends to simplify the development of connectors at two main levels:</p>
+<p><em>Talend Component Kit</em> is a framework designed to simplify the development of components at two levels:</p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Runtime</dt>
-<dd>
-<p>how to inject the specific component code into a job or pipeline. It should unify as much as possible the code required to run in DI and BEAM environments.</p>
-</dd>
-<dt class="hdlist1">Graphical interfaces</dt>
-<dd>
-<p>unify the code required to be able to render in a browser (web) or the eclipse based Studio (SWT).</p>
-</dd>
-</dl>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Runtime</strong>: Runtime is about injecting the specific component code into a job or pipeline. The framework helps unify as much as possible the code required to run in Data Integration (DI) and BEAM environments.</p>
+</li>
+<li>
+<p><strong>Graphical interface</strong>: The framework helps unify the code required to be able to render the component in a browser (web) or in the Eclipse-based Studio (SWT).</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="getting-started-system-requirements"><a class="anchor" href="#getting-started-system-requirements"></a>2. Talend Component System Requirement</h2>
+<h2 id="getting-started-system-requirements"><a class="anchor" href="#getting-started-system-requirements"></a>1. System Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Talend Component requires Java 8. You can download it on <a href="http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html">Oracle</a> website.</p>
+<p>In order to use Talend Component Kit, you need the following tools installed on your machine:</p>
 </div>
-<div class="paragraph">
-<p>To develop a component or the project itself it is recommended to use Apache Maven 3.5.0. you can download it on <a href="https://maven.apache.org/download.cgi?Preferred=ftp%3A%2F%2Fmirror.reverse.net%2Fpub%2Fapache%2F">Apache Maven</a> website.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Java JDK 1.8.x. You can download it from <a href="http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html">Oracle</a> website.</p>
+</li>
+<li>
+<p>Apache Maven 3.5.x is recommended to develop a component or the project itself. You can download it from <a href="https://maven.apache.org/download.cgi?Preferred=ftp%3A%2F%2Fmirror.reverse.net%2Fpub%2Fapache%2F">Apache Maven</a> website. You can also use Gradle.</p>
+</li>
+<li>
+<p>A Java Integrated Development Environment such as Eclipse or IntelliJ.</p>
+</li>
+<li>
+<p>The version of your Studio is 7.0 and onwards.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="getting-started-first-quick-start"><a class="anchor" href="#getting-started-first-quick-start"></a>3. Quick Start</h2>
+<h2 id="getting-started-principles"><a class="anchor" href="#getting-started-principles"></a>2. Main principles</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Developing new components using the framework includes:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Creating a project using the <a href="https://starter-toolkit.talend.io/">starter</a></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Defining the general configuration model for each component in your project</p>
+</li>
+<li>
+<p>Generating and downloading the project&#8217;s archive from the starter</p>
+</li>
+<li>
+<p>Compiling the project</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Implementing the components</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Registering the components family</p>
+</li>
+<li>
+<p>Defining the layout and configurable part of the components</p>
+</li>
+<li>
+<p>Defining the partition mapper for Input components</p>
+</li>
+<li>
+<p>Implementing the source logic for Input components</p>
+</li>
+<li>
+<p>Defining the processor for Output components</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Testing the components</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Some additional configuration steps can be necessary according to your requirements:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
