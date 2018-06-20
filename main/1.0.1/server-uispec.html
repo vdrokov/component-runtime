@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/server-uispec.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-20T12:58:59.156Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-20T16:24:50.198Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -682,9 +682,10 @@
 <li><a href="#_configuration">2. Configuration</a>
 <ul class="sectlevel2">
 <li><a href="#_add_custom_entries_in_the_forms">2.1. Add custom entries in the forms</a></li>
-<li><a href="#_client_in_play">2.2. Client in Play!</a></li>
-<li><a href="#_dropdown_with_all_root_configurations">2.3. Dropdown with all root configurations</a></li>
-<li><a href="#_reload_the_form_based_on_the_selected_root">2.4. Reload the form based on the selected root</a></li>
+<li><a href="#_add_custom_converters_select_the_widget_or_rendering">2.2. Add custom converters (select the widget or rendering)</a></li>
+<li><a href="#_client_in_play">2.3. Client in Play!</a></li>
+<li><a href="#_dropdown_with_all_root_configurations">2.4. Dropdown with all root configurations</a></li>
+<li><a href="#_reload_the_form_based_on_the_selected_root">2.5. Reload the form based on the selected root</a></li>
 </ul>
 </li>
 <li><a href="#_http_api">3. HTTP API</a></li>
@@ -848,7 +849,41 @@ to prefix it with a <code>$</code>.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_client_in_play"><a class="anchor" href="#_client_in_play"></a>2.2. Client in Play!</h3>
+<h3 id="_add_custom_converters_select_the_widget_or_rendering"><a class="anchor" href="#_add_custom_converters_select_the_widget_or_rendering"></a>2.2. Add custom converters (select the widget or rendering)</h3>
+<div class="paragraph">
+<p>Developping a CDI <code>org.talend.sdk.component.form.internal.converter.CustomPropertyConverter</code>, the proxy
+will add it to the <code>UiSpecService</code> and use it with a high priority to convert the server model to a <code>UiSpec</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+to make it a CDI bean add <code>@Dependent</code> on the class and if you use play integration, custom beans array: <code>playx.cdi.beans.customs +=  {className: org.talend.myapp.MyConverter}</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This will allow to use custom <code>@Ui</code> API and advanced modelling when spceific to applications.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+the converters are sorted respecting <code>@Priority</code> value, default value if missing is <code>0</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_client_in_play"><a class="anchor" href="#_client_in_play"></a>2.3. Client in Play!</h3>
 <div class="paragraph">
 <p>Also note that the client to connect to the Talend Component Kit server is
 CXF client using HttpClient HC (NIO) transport. It can be configured with its standard properties
@@ -859,7 +894,7 @@ prefixed by <code>talend.component.proxy.</code> when you use the play module.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dropdown_with_all_root_configurations"><a class="anchor" href="#_dropdown_with_all_root_configurations"></a>2.3. Dropdown with all root configurations</h3>
+<h3 id="_dropdown_with_all_root_configurations"><a class="anchor" href="#_dropdown_with_all_root_configurations"></a>2.4. Dropdown with all root configurations</h3>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -898,7 +933,7 @@ be filled with all available root types.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_reload_the_form_based_on_the_selected_root"><a class="anchor" href="#_reload_the_form_based_on_the_selected_root"></a>2.4. Reload the form based on the selected root</h3>
+<h3 id="_reload_the_form_based_on_the_selected_root"><a class="anchor" href="#_reload_the_form_based_on_the_selected_root"></a>2.5. Reload the form based on the selected root</h3>
 <div class="paragraph">
 <p>As a companion of previous action there is the <code>builtin::root::reloadFromId</code> action of type <code>jsonpatch</code> which
 allows to reload the whole form:</p>

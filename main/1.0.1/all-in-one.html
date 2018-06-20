@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/all-in-one.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-20T12:58:58.910Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-20T16:24:49.981Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -10834,6 +10834,40 @@ rest API (properties model) and defines two main types of extension:</p>
 <td class="content">
 always ensure you define a root object (no dot in the <code>path</code> value) for these properties. It is recommanded
 to prefix it with a <code>$</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_add_custom_converters_select_the_widget_or_rendering"><a class="anchor" href="#_add_custom_converters_select_the_widget_or_rendering"></a>Add custom converters (select the widget or rendering)</h5>
+<div class="paragraph">
+<p>Developping a CDI <code>org.talend.sdk.component.form.internal.converter.CustomPropertyConverter</code>, the proxy
+will add it to the <code>UiSpecService</code> and use it with a high priority to convert the server model to a <code>UiSpec</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+to make it a CDI bean add <code>@Dependent</code> on the class and if you use play integration, custom beans array: <code>playx.cdi.beans.customs +=  {className: org.talend.myapp.MyConverter}</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This will allow to use custom <code>@Ui</code> API and advanced modelling when spceific to applications.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+the converters are sorted respecting <code>@Priority</code> value, default value if missing is <code>0</code>.
 </td>
 </tr>
 </table>
