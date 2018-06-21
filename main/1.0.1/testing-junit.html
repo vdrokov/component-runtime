@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/testing-junit.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-20T16:24:50.293Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-21T14:40:56.637Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -329,9 +329,6 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_particular_action_types">Particular action types</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_i18n">i18n</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -533,46 +530,10 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Tutorials</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-toggle"></button>
     <span class="nav-text">Web</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="documentation-rest.html">Server</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="server-uispec.html">UiSpec Server</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
@@ -748,62 +709,6 @@
 </tr>
 </table>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-the rule can also be defined as a <code>@ClassRule</code> to start it once per class and not per test as with <code>@Rule</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>To go further, you can add the rule <code>ServiceInjectionRule</code> which will allow to inject into the test class all the component family services
-marking test class fields with <code>@InjectService</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SimpleComponentRuleTest {
-
-    @ClassRule
-    public static final SimpleComponentRule COMPONENT_FACTORY = new SimpleComponentRule("...");
-
-    @Rule <i class="conum" data-value="1"></i><b>(1)</b>
-    public final ServiceInjectionRule injections = new ServiceInjectionRule(COMPONENT_FACTORY, this); <i class="conum" data-value="2"></i><b>(2)</b>
-
-    @Service <i class="conum" data-value="3"></i><b>(3)</b>
-    private LocalConfiguration configuration;
-
-    @Service
-    private Jsonb jsonb;
-
-    @Test
-    public void test() {
-        // ...
-    }
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The injection requires the test instance so it must be a <code>@Rule</code> and not a <code>@ClassRule</code></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We pass to the rule the <code>ComponentsController</code> which is the <code>SimpleComponentRule</code> for JUnit 4 and the test instance
-to inject services in</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We mark all service fields with <code>@Service</code> to let the rule inject them before the test is ran</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
@@ -861,35 +766,6 @@ public class ComponentExtensionTest {
 if it is the first time you use JUnit 5, don&#8217;t forget the imports changed and you must use <code>org.junit.jupiter.api.Test</code> instead of <code>org.junit.Test</code>.
 Some IDE versions and <code>surefire</code> versions can also need you to install either a plugin or a specific configuration.
 </td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>As for JUnit 4, you can go further, getting test class fields marked with <code>@InjectService</code> injected but here no additional extension to specify:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WithComponents("...")
-class ComponentExtensionTest {
-
-    @Service <i class="conum" data-value="1"></i><b>(1)</b>
-    private LocalConfiguration configuration;
-
-    @Service
-    private Jsonb jsonb;
-
-    @Test
-    void test() {
-        // ...
-    }
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>We mark all service fields with <code>@Service</code> to let the rule inject them before the test is ran</td>
 </tr>
 </table>
 </div>

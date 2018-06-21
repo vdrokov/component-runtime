@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Kit Best Practices :: Talend Component Kit Developer Reference Guide</title>
+    <title>Talend Component Best Practices :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/best-practices.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-20T16:24:50.005Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-21T14:40:56.471Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -329,9 +329,6 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_particular_action_types">Particular action types</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_i18n">i18n</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -533,46 +530,10 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Tutorials</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-toggle"></button>
     <span class="nav-text">Web</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="documentation-rest.html">Server</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="server-uispec.html">UiSpec Server</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
@@ -649,7 +610,7 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
-    <li class="crumb"><a href="best-practices.html">Talend Component Kit Best Practices</a></li>
+    <li class="crumb"><a href="best-practices.html">Talend Component Best Practices</a></li>
   </ul>
 </nav>
     <div class="page-versions">
@@ -673,17 +634,17 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Talend Component Kit Best Practices</h1>
+        <h1>Talend Component Best Practices</h1>
         <div class="sect1">
-<h2 id="_organizing_your_code"><a class="anchor" href="#_organizing_your_code"></a>1. Organizing your code</h2>
+<h2 id="_organize_your_code"><a class="anchor" href="#_organize_your_code"></a>1. Organize your code</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Some recommendations apply to the way component packages are organized:</p>
+<p>Few recommendations apply to the way a component packages are organized:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Make sure to create a <code>package-info.java file</code> with the component family/categories at the root of your component package:</p>
+<p>ensure to create a <code>package-info.java</code> with the component family/categories at the root of your component package:</p>
 </li>
 </ol>
 </div>
@@ -698,23 +659,24 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 <div class="olist arabic">
 <ol class="arabic" start="2">
 <li>
-<p>Create a package for the configuration.</p>
+<p>create a package for the configuration</p>
 </li>
 <li>
-<p>Create a package for the actions.</p>
+<p>create a package for the actions</p>
 </li>
 <li>
-<p>Create a package for the component and one sub-package by type of component (input, output, processors, and so on).</p>
+<p>create a package for the component and one subpackage by type of component (input, output, processors, &#8230;&#8203;)</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_serialize_your_configuration"><a class="anchor" href="#_serialize_your_configuration"></a>2. Serialize your configuration</h2>
+<h2 id="_model_your_configuration"><a class="anchor" href="#_model_your_configuration"></a>2. Model your configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is recommended to serialize your configuration in order to be able to pass it through other components.</p>
+<p>It is recommended to ensure your configuration is serializable since
+it is likely you will pass it through your components which can be serialized.</p>
 </div>
 </div>
 </div>
@@ -722,23 +684,23 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 <h2 id="_i_o_configuration"><a class="anchor" href="#_i_o_configuration"></a>3. I/O configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When building a new component, the first step is to identify the way it must be configured.</p>
+<p>The first step to build a component is to identify the way it must be configured.</p>
 </div>
 <div class="paragraph">
-<p>The two main concepts are:</p>
+<p>It is generally split into two main big concepts:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The <em>DataStore</em> which is the way you can access the backend.</p>
+<p>the <em>DataStore</em> which is the way you can access the backend</p>
 </li>
 <li>
-<p>The <em>DataSet</em> which is the way you interact with the backend.</p>
+<p>the <em>DataSet</em> which is the way you interact with the backend</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>For example:</p>
+<p>Here are some examples to let you get an idea of what you put in each categories:</p>
 </div>
 <table class="tableblock frame-all grid-all">
 <colgroup>
@@ -756,18 +718,19 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Accessing a relational database like MySQL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">JDBC driver, URL, username, password</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Query to execute, row mapper, and so on.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the JDBC driver, url, username and password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the query to execute, row mapper, &#8230;&#8203;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Accessing a file system</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">File pattern (or directory + file extension/prefix/&#8230;&#8203;)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">File format, buffer size, and so on.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Access a file system</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the file pattern (or directory + file extension/prefix/&#8230;&#8203;)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the file format, potentially the buffer size, &#8230;&#8203;</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>It is common to have the dataset including the datastore, because both are required to work. However, it is recommended to replace this pattern by defining both dataset and datastore in a higher level configuration model. For example:</p>
+<p>It is common to make the dataset including the datastore since both are required to work. However it is recommended to replace
+this pattern by composing both in a higher level configuration model:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -797,7 +760,8 @@ public class MyComponentConfiguration {
 <h2 id="_processor_configuration"><a class="anchor" href="#_processor_configuration"></a>4. Processor configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Processor configuration is simpler than I/O configuration since it is specific for each component. For example, a mapper takes the mapping between the input and output models:</p>
+<p>Processor configuration is simpler than I/O configuration since it is specific each time. For instance a mapper
+will take the mapping between the input and output model:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -818,7 +782,8 @@ public class MyComponentConfiguration {
 <h2 id="_i_o_recommendations"><a class="anchor" href="#_i_o_recommendations"></a>5. I/O recommendations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>I/O are particular because they can be linked to a set of actions. It is recommended to wire all the ones you can apply to ensure the consumers of your component can provide a rich experience to their users.</p>
+<p>I/O are particular because they can be linked to a set of actions. It is recommended to wire all the ones you can apply
+to ensure the consumers of your component can provide a rich experience to their users.</p>
 </div>
 <div class="paragraph">
 <p>Here are the most common ones:</p>

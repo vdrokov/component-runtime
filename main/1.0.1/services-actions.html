@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/services-actions.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-20T16:24:50.208Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-21T14:40:56.592Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -329,9 +329,6 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_particular_action_types">Particular action types</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_i18n">i18n</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -533,46 +530,10 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Tutorials</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-toggle"></button>
     <span class="nav-text">Web</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="documentation-rest.html">Server</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="server-uispec.html">UiSpec Server</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
@@ -806,7 +767,7 @@ for instance. Here is the list of all actions:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">suggestions</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a method as being useful to fill potential values of a string option. You can link a field as being completable using @Suggestable(value). The resolution of the completion action is then done when the user requests it (generally by clicking on a button or entering the field depending the environment).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SuggestionValues</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{"cacheable":false,"items":[{"id":"value","label":"label"}]}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ "cacheable": "&#8230;&#8203;" "items": "&#8230;&#8203;"}</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.service.Action</p></td>
@@ -824,35 +785,6 @@ for instance. Here is the list of all actions:</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_i18n"><a class="anchor" href="#_i18n"></a>2. i18n</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Internationalization is supported through the injection of the parameter <code>$lang</code> which will allow you to get the correct locale
-to use with an <code>@Internationalized</code> service:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>public SuggestionValues findSuggestions(@Option("someParameter") final String param,
-                                        @Option("$lang") final String lang) {
-    return ...;
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-you can combine the <code>$lang</code> option with <code>@Internationalized</code> and <code>@Language</code> parameter.
-</td>
-</tr>
-</table>
-</div>
 </div>
 </div>
     </article>
