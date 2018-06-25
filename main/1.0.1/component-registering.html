@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/component-registering.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-22T16:42:35.106Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-25T17:15:15.042Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -48,7 +48,7 @@
                         <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
                         <hr class="navbar-divider">
                         <div class="navbar-item"><strong>Runtime</strong></div>
-                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                        <a class="navbar-item" href="https://github.com/talend/component-runtime">Repository</a>
                     </div>
                 </div>
             </div>
@@ -674,14 +674,14 @@
         <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>As seen in the <a href="getting-started.html#getting-started-first-quick-start" class="page">Getting Started</a>, you need an annotation to register
-your component through <code>family</code> method. Multiple components can use the same <code>family</code> value but the pair <code>family</code>+<code>name</code>
-<code>MUST</code> be unique for the system.</p>
+<p>As you may have read in the <a href="getting-started.html#getting-started-first-quick-start" class="page">Getting Started</a>, you need an annotation to register your component through the <code>family</code> method. Multiple components can use the same <code>family</code> value but the <code>family</code> + <code>name</code> pair must be unique for the system.</p>
 </div>
 <div class="paragraph">
-<p>If you desire (recommended) to share the same component family name instead of repeating yourself in all <code>family</code> methods,
-you can use <code>@Components</code> annotation on the root package of you component, it will enable you to define the component family and
-the categories the component belongs to (default is <code>Misc</code> if not set). Here is a sample <code>package-info.java</code>:</p>
+<p>In order to share the same component family name and to avoid repetitions in all <code>family</code> methods,
+you can use the <code>@Components</code> annotation on the root package of your component. it allows you to define the component family and the categories the component belongs to (<code>Misc</code> by default if not set).</p>
+</div>
+<div class="paragraph">
+<p>Here is a sample <code>package-info.java</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -692,7 +692,7 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For an existing component it can look like:</p>
+<p>Another example with an existing component:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -708,8 +708,8 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 <h2 id="_components_metadata"><a class="anchor" href="#_components_metadata"></a>1. Components metadata</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Components can require a few metadata to be integrated in Talend Studio or Cloud platform. Here is how to provide these information.
-These metadata are set on the component class and belongs to <code>org.talend.sdk.component.api.component</code> package.</p>
+<p>Components can require metadata to be integrated in Talend Studio or Cloud platforms.
+Metadata is set on the component class and belongs to the <code>org.talend.sdk.component.api.component</code> package.</p>
 </div>
 <table class="tableblock frame-all grid-all">
 <colgroup>
@@ -725,11 +725,11 @@ These metadata are set on the component class and belongs to <code>org.talend.sd
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@Icon</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set an icon key used to represent the component. Note you can use a custom key with <code>custom()</code> method but it is not guaranteed the icon will be rendered properly.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets an icon key used to represent the component. You can use a custom key with the <code>custom()</code> method but the icon may not be rendered properly.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@Version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set the component version, default to 1.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the component version. 1 by default.</p></td>
 </tr>
 </tbody>
 </table>
@@ -746,31 +746,18 @@ public class JaxbPartitionMapper implements Serializable {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_management_of_configuration_versions"><a class="anchor" href="#_management_of_configuration_versions"></a>1.1. Management of configuration versions</h3>
+<h3 id="_managing_version_configuration"><a class="anchor" href="#_managing_version_configuration"></a>1.1. Managing version configuration</h3>
 <div class="paragraph">
-<p>If some impacting changes happen on the configuration they can be manage through a migration handler at <strong>component</strong> level (to enable
-to support trans-model migration).</p>
+<p>If some changes impact the configuration, they can be managed through a migration handler at the <strong>component</strong> level (enabling trans-model migration support).</p>
 </div>
 <div class="paragraph">
-<p>The <code>@Version</code> annotation supports a <code>migrationHandler</code> method which will take the implementation migrating the incoming configuration
-to the current model.</p>
+<p>The <code>@Version</code> annotation supports a <code>migrationHandler</code> method which migrates the incoming configuration to the current model.</p>
 </div>
 <div class="paragraph">
-<p>For instance if <code>filepath</code> configuration entry from v1 changed to <code>location</code> in v2 you can remap the value to the right key in your
-<code>MigrationHandler</code> implementation.</p>
+<p>For example, if the <code>filepath</code> configuration entry from v1 changed to <code>location</code> in v2, you can remap the value in your <code>MigrationHandler</code> implementation.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-it is recommended to not manage all migrations in the handler but rather split it in services you inject in the migration handler
-(through constructor):
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>A best practice is to split migrations into services that you can inject in the migration handler (through constructor) rather than managing all migrations directly in the handler. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -805,17 +792,29 @@ public class MyComponent {
 </div>
 </div>
 <div class="paragraph">
-<p>What is important in this snippet is not much the way the code is organized but rather the fact you organize your migrations the way which fits the best
-your component. If migrations are not conflicting no need of something fancy, just apply them all but if you need to apply them in order
-you need to ensure they are sorted. Said otherwise: don&#8217;t see this API as a migration API but as a migration callback
-and adjust the migration code structure you need behind the <code>MigrationHandler</code> based on your
-component requirements. The service injection enables you to do so.</p>
+<p>What is important to notice in this snippet is not the way the code is organized, but rather the fact that you can organize your migrations the way that best fits your component.</p>
+</div>
+<div class="paragraph">
+<p>If you need to apply migrations in a specific order, make sure that they are sorted.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Consider this API as a migration callback rather than a migration API.<br>
+Adjust the migration code structure you need behind the <code>MigrationHandler</code>, based on your component requirements, using service injection.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_partitionmapper"><a class="anchor" href="#_partitionmapper"></a>1.2. @PartitionMapper</h3>
 <div class="paragraph">
-<p><code>@PartitionMapper</code> will obviously mark a partition mapper:</p>
+<p><code>@PartitionMapper</code> marks a partition mapper:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -827,8 +826,7 @@ public class MyMapper {
 <div class="sect3">
 <h4 id="_emitter"><a class="anchor" href="#_emitter"></a>1.2.1. @Emitter</h4>
 <div class="paragraph">
-<p><code>@Emitter</code> is a shortcut for <code>@PartitionMapper</code> when you don&#8217;t support distribution. Said otherwise it will enforce an implicit
-partition mapper execution with an assessor size of 1 and a split returning itself.</p>
+<p><code>@Emitter</code> is a shortcut for <code>@PartitionMapper</code> when you don&#8217;t support distribution. It enforces an implicit partition mapper execution with an assessor size of 1 and a split returning itself.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -842,7 +840,7 @@ public class MyInput {
 <div class="sect2">
 <h3 id="_processor"><a class="anchor" href="#_processor"></a>1.3. @Processor</h3>
 <div class="paragraph">
-<p>A method decorated with <code>@Processor</code> will be considered as a producer factory:</p>
+<p>A method decorated with <code>@Processor</code> is considered as a producer factory:</p>
 </div>
 <div class="listingblock">
 <div class="content">

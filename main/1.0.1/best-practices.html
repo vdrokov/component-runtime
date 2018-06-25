@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Kit Best Practices :: Talend Component Kit Developer Reference Guide</title>
+    <title>Talend Component Kit best practices :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/best-practices.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-22T16:42:35.050Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-25T17:15:14.966Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -48,7 +48,7 @@
                         <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
                         <hr class="navbar-divider">
                         <div class="navbar-item"><strong>Runtime</strong></div>
-                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                        <a class="navbar-item" href="https://github.com/talend/component-runtime">Repository</a>
                     </div>
                 </div>
             </div>
@@ -646,7 +646,7 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
-    <li class="crumb"><a href="best-practices.html">Talend Component Kit Best Practices</a></li>
+    <li class="crumb"><a href="best-practices.html">Talend Component Kit best practices</a></li>
   </ul>
 </nav>
     <div class="page-versions">
@@ -670,7 +670,7 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Talend Component Kit Best Practices</h1>
+        <h1>Talend Component Kit best practices</h1>
         <div class="sect1">
 <h2 id="_organizing_your_code"><a class="anchor" href="#_organizing_your_code"></a>1. Organizing your code</h2>
 <div class="sectionbody">
@@ -708,16 +708,16 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_serialize_your_configuration"><a class="anchor" href="#_serialize_your_configuration"></a>2. Serialize your configuration</h2>
+<h2 id="_configuring_components"><a class="anchor" href="#_configuring_components"></a>2. Configuring components</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_serializing_your_configuration"><a class="anchor" href="#_serializing_your_configuration"></a>2.1. Serializing your configuration</h3>
 <div class="paragraph">
 <p>It is recommended to serialize your configuration in order to be able to pass it through other components.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_i_o_configuration"><a class="anchor" href="#_i_o_configuration"></a>3. I/O configuration</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_input_and_output_components"><a class="anchor" href="#_input_and_output_components"></a>2.2. Input and output components</h3>
 <div class="paragraph">
 <p>When building a new component, the first step is to identify the way it must be configured.</p>
 </div>
@@ -788,37 +788,13 @@ public class MyComponentConfiguration {
 }</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_processor_configuration"><a class="anchor" href="#_processor_configuration"></a>4. Processor configuration</h2>
-<div class="sectionbody">
+<div class="sect3">
+<h4 id="_about_actions"><a class="anchor" href="#_about_actions"></a>2.2.1. About actions</h4>
 <div class="paragraph">
-<p>Processor configuration is simpler than I/O configuration since it is specific for each component. For example, a mapper takes the mapping between the input and output models:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MappingConfiguration {
-    @Option
-    private Map&lt;String, String&gt; fieldsMapping;
-
-    @Option
-    private boolean ignoreCase;
-
-    //...
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_i_o_recommendations"><a class="anchor" href="#_i_o_recommendations"></a>5. I/O recommendations</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>I/O are particular because they can be linked to a set of actions. It is recommended to wire all the ones you can apply to ensure the consumers of your component can provide a rich experience to their users.</p>
+<p>Input and output components are particular because they can be linked to a set of actions. It is recommended to wire all the actions you can apply to ensure the consumers of your component can provide a rich experience to their users.</p>
 </div>
 <div class="paragraph">
-<p>Here are the most common ones:</p>
+<p>The most common actions are the following ones:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -841,7 +817,7 @@ public class MyComponentConfiguration {
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DataStore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Checkable</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Expose a way to ensure the datastore/connection works</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exposes a way to ensure the datastore/connection works</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DataStore
@@ -879,41 +855,59 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </tbody>
 </table>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_i_o_limitations"><a class="anchor" href="#_i_o_limitations"></a>6. I/O limitations</h2>
-<div class="sectionbody">
+<div class="sect3">
+<h4 id="_limitations"><a class="anchor" href="#_limitations"></a>2.2.2. Limitations</h4>
 <div class="paragraph">
-<p>Until the studio integration is complete, it is recommended to limit processors to 1 input.</p>
+<p>Until the studio integration is complete, it is recommended to limit processors to one input.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_handle_ui_interactions"><a class="anchor" href="#_handle_ui_interactions"></a>7. Handle UI interactions</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>It is also recommended to provide as much information as possible to let the UI work with the data during its edition.</p>
 </div>
 <div class="sect2">
-<h3 id="_validations"><a class="anchor" href="#_validations"></a>7.1. Validations</h3>
+<h3 id="_processor_components"><a class="anchor" href="#_processor_components"></a>2.3. Processor components</h3>
+<div class="paragraph">
+<p>Configuring processor components is simpler than configuring input and output components because it is specific for each component. For example, a mapper takes the mapping between the input and output models:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MappingConfiguration {
+    @Option
+    private Map&lt;String, String&gt; fieldsMapping;
+
+    @Option
+    private boolean ignoreCase;
+
+    //...
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_handling_ui_interactions"><a class="anchor" href="#_handling_ui_interactions"></a>3. Handling UI interactions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is recommended to provide as much information as possible to let the UI work with the data during its edition.</p>
+</div>
+<div class="sect2">
+<h3 id="_validations"><a class="anchor" href="#_validations"></a>3.1. Validations</h3>
 <div class="sect3">
-<h4 id="_light_validations"><a class="anchor" href="#_light_validations"></a>7.1.1. Light validations</h4>
+<h4 id="_light_validations"><a class="anchor" href="#_light_validations"></a>3.1.1. Light validations</h4>
 <div class="paragraph">
-<p>The light validations are all the validations you can execute on the client side. They are listed in the <a href="documentation.html#documentation-ui-hints" class="page">UI hint</a> part.</p>
+<p>Light validations are all the validations you can execute on the client side. They are listed in the <a href="documentation.html#documentation-ui-hints" class="page">UI hint</a> section.</p>
 </div>
 <div class="paragraph">
-<p>This is the ones to use first before going with custom validations since they will be more efficient.</p>
+<p>Use light validations first before going with custom validations because they are more efficient.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_custom_validations"><a class="anchor" href="#_custom_validations"></a>7.1.2. Custom validations</h4>
+<h4 id="_custom_validations"><a class="anchor" href="#_custom_validations"></a>3.1.2. Custom validations</h4>
 <div class="paragraph">
-<p>These ones will enforce custom code to be executed, they are more heavy so try to avoid to use them for simple validations
-you can do with the previous part.</p>
+<p>Custom validations enforce custom code to be executed, they are more heavy to process, so prefer using light validations when possible.</p>
 </div>
 <div class="paragraph">
-<p>Here you define an action taking some parameters needed for the validation and you link the option you want to validate to this action.
-Here is an example to validate a dataset. For example for our JDBC driver we could have:</p>
+<p>Define an action with the parameters needed for the validation and link the option you want to validate to this action.
+For example, to validate a dataset for a JDBC driver:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -938,11 +932,11 @@ public ValidationResult validateDriver(@Option("value") String driver) {
 </div>
 </div>
 <div class="paragraph">
-<p>Note that you can also make a class validable and you can use it to validate a form if you put it on your whole configuration:</p>
+<p>You can also define a Validable class and use it to validate a form by setting it on your whole configuration:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// note: some part of the API were removed for brievity
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Note: some parts of the API were removed for clarity
 
 public class MyConfiguration {
 
@@ -966,17 +960,15 @@ public ValidationResult validateDriver(@Option("value") MyConfiguration configur
 }</code></pre>
 </div>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-the parameter binding of the validation method uses the same logic than the component configuration
-injection. Therefore the <code>@Option</code> specifies the prefix to use to reference a parameter. It is recommended to
-use <code>@Option("value")</code> until you know exactly why you don&#8217;t use it. This way the consumer can match the configuration
-model and just prefix it with <code>value.</code> to send the instance to validate.
+The parameter binding of the validation method uses the same logic as the component configuration injection. Therefore, the <code>@Option</code> method specifies the prefix to use to reference a parameter.<br>
+It is recommended to use <code>@Option("value")</code> until you know exactly why you don&#8217;t use it. This way, the consumer can match the configuration model and just prefix it with <code>value.</code> to send the instance to validate.
 </td>
 </tr>
 </table>
@@ -984,9 +976,10 @@ model and just prefix it with <code>value.</code> to send the instance to valida
 </div>
 </div>
 <div class="sect2">
-<h3 id="_completion"><a class="anchor" href="#_completion"></a>7.2. Completion</h3>
+<h3 id="_completion"><a class="anchor" href="#_completion"></a>3.2. Completion</h3>
 <div class="paragraph">
-<p>It can be neat and user friendly to provide completion on some fields. Here an example for the available drivers:</p>
+<p>It can be handy and user-friendly to provide completion on some fields.
+For example, to define completion for available drivers:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1009,7 +1002,7 @@ public CompletionList findDrivers() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_don_t_forget_the_component_representation"><a class="anchor" href="#_don_t_forget_the_component_representation"></a>7.3. Don&#8217;t forget the component representation</h3>
+<h3 id="_component_representation"><a class="anchor" href="#_component_representation"></a>3.3. Component representation</h3>
 <div class="paragraph">
 <p>Each component must have its own icon:</p>
 </div>
@@ -1029,7 +1022,7 @@ public class JdbcPartitionMapper
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-you can use <a href="http://talend.surge.sh/icons/" class="bare">talend.surge.sh/icons/</a> to identify the one you want to use.
+You can use <a href="http://talend.surge.sh/icons/" class="bare">talend.surge.sh/icons/</a> to find the icon you want to use.
 </td>
 </tr>
 </table>
@@ -1038,10 +1031,10 @@ you can use <a href="http://talend.surge.sh/icons/" class="bare">talend.surge.sh
 </div>
 </div>
 <div class="sect1">
-<h2 id="_version_and_component"><a class="anchor" href="#_version_and_component"></a>8. Version and component</h2>
+<h2 id="_enforcing_versioning_on_components"><a class="anchor" href="#_enforcing_versioning_on_components"></a>4. Enforcing versioning on components</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Not mandatory for the first version but recommended: enforce the version of your component.</p>
+<p>It is recommended to enforce the version of your component, event though it is not mandatory for the first version.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1053,15 +1046,15 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="paragraph">
-<p>If you break a configuration entry in a later version ensure to:</p>
+<p>If you break a configuration entry in a later version;  make sure to:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>upgrade the version</p>
+<p>Upgrade the version.</p>
 </li>
 <li>
-<p>support a migration of the configuration</p>
+<p>Support a migration of the configuration.</p>
 </li>
 </ol>
 </div>
@@ -1081,19 +1074,10 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect1">
-<h2 id="_don_t_forget_to_test"><a class="anchor" href="#_don_t_forget_to_test"></a>9. Don&#8217;t forget to test</h2>
+<h2 id="_testing_components"><a class="anchor" href="#_testing_components"></a>5. Testing components</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Testing the components is crucial, you can use unit tests and simple standalone JUnit but it is highly recommended
-to have a few Beam tests to ensure your component works in Big Data world.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_contribute_to_this_guide"><a class="anchor" href="#_contribute_to_this_guide"></a>10. Contribute to this guide</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Don&#8217;t hesitate to send your feedback on writing component and best practices you can encounter.</p>
+<p>Testing your components is critical. You can use unit and simple standalone JUnit tests, but it is also highly recommended to have Beam tests in order to make sure that your component works in Big Data.</p>
 </div>
 </div>
 </div>

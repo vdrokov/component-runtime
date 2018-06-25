@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/component-loading.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-22T16:42:35.099Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-25T17:15:15.028Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -48,7 +48,7 @@
                         <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
                         <hr class="navbar-divider">
                         <div class="navbar-item"><strong>Runtime</strong></div>
-                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                        <a class="navbar-item" href="https://github.com/talend/component-runtime">Repository</a>
                     </div>
                 </div>
             </div>
@@ -674,33 +674,28 @@
         <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Talend Component scanning is based on a plugin concept. To ensure plugins can be developped in parallel and avoid conflicts
-it requires to isolate plugins (components or component grouped in a single jar/plugin).</p>
+<p>Talend Component scanning is based on plugins. To make sure that plugins can be developed in parallel and avoid conflicts, plugins need to be isolated (component or group of components in a single jar/plugin).</p>
 </div>
 <div class="paragraph">
-<p>Here we have multiple options which are (high level):</p>
+<p>Multiple options are available:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>flat classpath: listed for completeness but rejected <em>by design</em> because it doesn&#8217;t match at all this requirement.</p>
+<p>Graph classloading: this option allows you to link the plugins and dependencies together dynamically in any direction.<br>
+For example, the graph classloading can be illustrated by OSGi containers.</p>
 </li>
 <li>
-<p>tree classloading: a shared classloader inherited by plugin classloaders but plugin classloader classes
-are not seen by the shared classloader nor by other plugins.</p>
+<p>Tree classloading: a shared classloader inherited by plugin classloaders. However, plugin classloader classes are not seen by the shared classloader, nor by other plugins.<br>
+For example, he tree classloading is commonly used by Servlet containers where plugins are web applications.</p>
 </li>
 <li>
-<p>graph classloading: this one allows you to link the plugins and dependencies together dynamically in any direction.</p>
+<p>Flat classpath: listed for completeness but rejected <em>by design</em> because it doesn&#8217;t comply with this requirement.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>If you want to map it to concrete common examples, the tree classloading is commonly used by Servlet containers where plugins are web applications
-and the graph classloading can be illustrated by OSGi containers.</p>
-</div>
-<div class="paragraph">
-<p>In the spirit of avoiding a lot of complexity added by this layer, Talend Component relies on a tree classloading. The advantage
-is you don&#8217;t need to define the relationship with other plugins/dependencies (it is built-in).</p>
+<p>In order to avoid much complexity added by this layer, Talend Component Kit relies on a tree classloading. The advantage is that you don&#8217;t need to define the relationship with other plugins/dependencies, because it is built-in.</p>
 </div>
 <div class="paragraph">
 <p>Here is a representation of this solution:</p>
@@ -709,10 +704,10 @@ is you don&#8217;t need to define the relationship with other plugins/dependenci
 <p><span class="image"><img src="_images/classloader-layout.png" alt="classloader layout"></span></p>
 </div>
 <div class="paragraph">
-<p>The interesting part is the <em>shared</em> area will contain Talend Component API which is the only (by default) shared classes accross the whole plugins.</p>
+<p>The <em>shared</em> area contains Talend Component Kit API, which only contains by default the classes shared by the plugins.</p>
 </div>
 <div class="paragraph">
-<p>Then each plugins will be loaded in their own classloader with their dependencies.</p>
+<p>Then, each plugin is loaded with its own classloader and dependencies.</p>
 </div>
 </div>
 </div>
@@ -726,14 +721,13 @@ is you don&#8217;t need to define the relationship with other plugins/dependenci
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-this part explains the overall way to handle dependecnies but the Talend Maven plugin provides a shortcut for that.
+This section explains the overall way to handle dependencies but the Talend Maven plugin provides a shortcut for that.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>A plugin is just a jar which was enriched with the list of its dependencies. By default Talend Component runtime is able to
-read the output of <code>maven-dependency-plugin</code> in <code>TALEND-INF/dependencies.txt</code> location so you just need to ensure your component defines the following plugin:</p>
+<p>A plugin is a JAR file that was enriched with the list of its dependencies. By default, Talend Component Kit runtime is able to read the output of <code>maven-dependency-plugin</code> in <code>TALEND-INF/dependencies.txt</code>. You just need to make sure that your component defines the following plugin:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -757,7 +751,7 @@ read the output of <code>maven-dependency-plugin</code> in <code>TALEND-INF/depe
 </div>
 </div>
 <div class="paragraph">
-<p>If you check your jar once built you will see that the file contains something like:</p>
+<p>Once build, check the JAR file and look for the following lines:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -772,18 +766,18 @@ The following files have been resolved:
 </div>
 </div>
 <div class="paragraph">
-<p>What is important to see is the scope associated to the artifacts:</p>
+<p>What is important to see is the scope related to the artifacts:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>the API (<code>component-api</code> and <code>geronimo-annotation_1.3_spec</code>) are <code>provided</code> because you can consider them to be there when executing (it comes with the framework)</p>
+<p>The APIs (<code>component-api</code> and <code>geronimo-annotation_1.3_spec</code>) are <code>provided</code> because you can consider them to be there when executing (they come with the framework).</p>
 </li>
 <li>
-<p>your specific dependencies (<code>awesome-project</code>) is <code>compile</code>: it will be included as a needed dependency by the framework (note that using <code>runtime</code> works too).</p>
+<p>Your specific dependencies (<code>awesome-project</code> in the example above) are marked as <code>compile</code>: they are included as needed dependencies by the framework (note that using <code>runtime</code> works too).</p>
 </li>
 <li>
-<p>the other dependencies will be ignored (<code>test</code> dependencies)</p>
+<p>the other dependencies are ignored. For example, <code>test</code> dependencies.</p>
 </li>
 </ul>
 </div>
@@ -798,7 +792,7 @@ The following files have been resolved:
 <div class="sect2">
 <h3 id="_dependencies"><a class="anchor" href="#_dependencies"></a>2.1. Dependencies</h3>
 <div class="paragraph">
-<p>The way the framework resolves dependencies is based on a local maven repository layout. As a quick reminder it looks like:</p>
+<p>The way the framework resolves dependencies is based on a local Maven repository layout. As a quick reminder, it looks like:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -816,30 +810,29 @@ The following files have been resolved:
 </div>
 </div>
 <div class="paragraph">
-<p>This is all the layout the framework will use. Concretely the logic will convert the t-uple {groupId, artifactId, version, type (jar)}
-to the path in the repository.</p>
+<p>This is all the layout the framework uses. The logic converts <code>t-uple {groupId, artifactId, version, type (jar)}</code> to the path in the repository.</p>
 </div>
 <div class="paragraph">
-<p>Talend Component runtime has two ways to find an artifact:</p>
+<p>Talend Component Kit runtime has two ways to find an artifact:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>from the file system based on a configure maven 2 repository.</p>
+<p>From the file system based on a configured Maven 2 repository.</p>
 </li>
 <li>
-<p>from a fatjar (uber jar) with a nested maven repository under <code>MAVEN-INF/repository</code>.</p>
+<p>From a fat JAR (uber JAR) with a nested Maven repository under <code>MAVEN-INF/repository</code>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The first option will use either - by default - <code>${user.home}/.m2/repository</code> or a specific path configured when creating a <code>ComponentManager</code>.
-The nested repository option will need some configuration during the packaging to ensure the repository is well created.</p>
+<p>The first option uses either <code>${user.home}/.m2/repository</code> default) or a specific path configured when creating a <code>ComponentManager</code>.
+The nested repository option needs some configuration during the packaging to ensure the repository is correctly created.</p>
 </div>
 <div class="sect3">
-<h4 id="_create_a_nested_maven_repository_with_maven_shade_plugin"><a class="anchor" href="#_create_a_nested_maven_repository_with_maven_shade_plugin"></a>2.1.1. Create a nested maven repository with maven-shade-plugin</h4>
+<h4 id="_creating_a_nested_maven_repository_with_maven_shade_plugin"><a class="anchor" href="#_creating_a_nested_maven_repository_with_maven_shade_plugin"></a>2.1.1. Creating a nested Maven repository with maven-shade-plugin</h4>
 <div class="paragraph">
-<p>To create the nested <code>MAVEN-INF/repository</code> repository you can use <code>nested-maven-repository</code> extension:</p>
+<p>To create the nested <code>MAVEN-INF/repository</code> repository, you can use the <code>nested-maven-repository</code> extension:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -877,12 +870,10 @@ The nested repository option will need some configuration during the packaging t
 <div class="sect2">
 <h3 id="_listing_needed_plugins"><a class="anchor" href="#_listing_needed_plugins"></a>2.2. Listing needed plugins</h3>
 <div class="paragraph">
-<p>Plugin are programmatically registered in general but if you want to make some of them automatically available you
-need to generate a <code>TALEND-INF/plugins.properties</code> which will map a plugin name to coordinates found with the maven mecanism
-we just talked about.</p>
+<p>Plugins are usually programmatically registered. If you want to make some of them automatically available, you need to generate a <code>TALEND-INF/plugins.properties</code> file that maps a plugin name to coordinates found with the Maven mechanism described above.</p>
 </div>
 <div class="paragraph">
-<p>Here again we can enrich <code>maven-shade-plugin</code> to do it:</p>
+<p>You can enrich <code>maven-shade-plugin</code> to do it:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -919,7 +910,7 @@ we just talked about.</p>
 <div class="sect2">
 <h3 id="_code_maven_shade_plugin_code_extensions"><a class="anchor" href="#_code_maven_shade_plugin_code_extensions"></a>2.3. <code>maven-shade-plugin</code> extensions</h3>
 <div class="paragraph">
-<p>Here is a final job/application bundle based on maven shade plugin:</p>
+<p>Here is a final job/application bundle based on maven-shade-plugin:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -993,14 +984,13 @@ we just talked about.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-the configuration unrelated to transformers can depend your application.
+The configuration unrelated to transformers depends on your application.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>ContainerDependenciesTransformer</code> is the one to embed a maven repository and <code>PluginTransformer</code> to create a file listing (one per line)
-a list of artifacts (representing plugins).</p>
+<p><code>ContainerDependenciesTransformer</code> embeds a Maven repository and <code>PluginTransformer</code> to create a file that lists (one per line) artifacts (representing plugins).</p>
 </div>
 <div class="paragraph">
 <p>Both transformers share most of their configuration:</p>
@@ -1011,22 +1001,22 @@ a list of artifacts (representing plugins).</p>
 <p><code>session</code>: must be set to <code>${session}</code>. This is used to retrieve dependencies.</p>
 </li>
 <li>
-<p><code>scope</code>: a comma separated list of scope to include in the artifact filtering (note that the default will rely on <code>provided</code> but you can replace it by <code>compile</code>, <code>runtime</code>, <code>runtime+compile</code>, <code>runtime+system</code>, <code>test</code>).</p>
+<p><code>scope</code>: a comma-separated list of scopes to include in the artifact filtering (note that the default will rely on <code>provided</code> but you can replace it by <code>compile</code>, <code>runtime</code>, <code>runtime+compile</code>, <code>runtime+system</code> or <code>test</code>).</p>
 </li>
 <li>
-<p><code>include</code>: a comma separated list of artifact to include in the artifact filtering.</p>
+<p><code>include</code>: a comma-separated list of artifacts to include in the artifact filtering.</p>
 </li>
 <li>
-<p><code>exclude</code>: a comma separated list of artifact to exclude in the artifact filtering.</p>
+<p><code>exclude</code>: a comma-separated list of artifacts to exclude in the artifact filtering.</p>
 </li>
 <li>
-<p><code>userArtifacts</code>: a list of artifacts (groupId, artifactId, version, type - optional, file - optional for plugin transformer, scope - optional) which can be forced inline - mainly useful for <code>PluginTransformer</code>.</p>
+<p><code>userArtifacts</code>: a list of artifacts (groupId, artifactId, version, type - optional, file - optional for plugin transformer, scope - optional) which can be forced inline. This parameter is mainly useful for <code>PluginTransformer</code>.</p>
 </li>
 <li>
-<p><code>includeTransitiveDependencies</code>: should transitive dependencies of the components be included, true by default.</p>
+<p><code>includeTransitiveDependencies</code>: should transitive dependencies of the components be included. Set to <code>true</code> by default.</p>
 </li>
 <li>
-<p><code>includeProjectComponentDependencies</code>: should project component dependencies be included, false by default (normally a job project uses isolation for components so this is not needed).</p>
+<p><code>includeProjectComponentDependencies</code>: should project component dependencies be included. Set to <code>false</code> by default. It is not needed when a job project uses isolation for components.</p>
 </li>
 <li>
 <p><code>userArtifacts</code>: set of component artifacts to include.</p>
@@ -1040,9 +1030,9 @@ a list of artifacts (representing plugins).</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-to use with the component tooling, it is recommended to keep default locations. Also if you feel you need to use project dependencies,
-you can need to refactor your project structure to ensure you keep component isolation. Talend component let you handle that part but the recommended
-practise is to use <code>userArtifacts</code> for the components and not the project <code>&lt;dependencies&gt;</code>.
+With the component tooling, it is recommended to keep default locations.<br>
+Also if you need to use project dependencies, you can need to refactor your project structure to ensure component isolation.<br>
+Talend Component Kit lets you handle that part but the recommended practice is to use <code>userArtifacts</code> for the components instead of project <code>&lt;dependencies&gt;</code>.
 </td>
 </tr>
 </table>
@@ -1050,15 +1040,15 @@ practise is to use <code>userArtifacts</code> for the components and not the pro
 <div class="sect3">
 <h4 id="_containerdependenciestransformer"><a class="anchor" href="#_containerdependenciestransformer"></a>2.3.1. ContainerDependenciesTransformer</h4>
 <div class="paragraph">
-<p><code>ContainerDependenciesTransformer</code> specific configuration is the following one:</p>
+<p><code>ContainerDependenciesTransformer</code> specific configuration is as follows:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>repositoryBase</code>: base repository location (default to <code>MAVEN-INF/repository</code>).</p>
+<p><code>repositoryBase</code>: base repository location (<code>MAVEN-INF/repository</code> by default).</p>
 </li>
 <li>
-<p><code>ignoredPaths</code>: a comma separated list of folder to not create in the output jar, this is common for the ones already created by other transformers/build parts.</p>
+<p><code>ignoredPaths</code>: a comma-separated list of folders not to create in the output JAR. This is common for folders already created by other transformers/build parts.</p>
 </li>
 </ul>
 </div>
@@ -1076,7 +1066,7 @@ practise is to use <code>userArtifacts</code> for the components and not the pro
 </ul>
 </div>
 <div class="paragraph">
-<p>Example: if you want to list only the plugins you use you can configure this transformer like that:</p>
+<p>For example, if you want to list only the plugins you use, you can configure this transformer as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1094,10 +1084,9 @@ practise is to use <code>userArtifacts</code> for the components and not the pro
 <h2 id="_component_scanning_rules_and_default_exclusions"><a class="anchor" href="#_component_scanning_rules_and_default_exclusions"></a>3. Component scanning rules and default exclusions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The framework uses two kind of filtering when scanning your component. One based on the jar name
-and one based on the package name. Ensure your component definitions (including services)
-are in a scanned module if not registered manually using <code>ComponentManager.instance().addPlugin()</code>
-and that its package is not excluded.</p>
+<p>The framework uses two kind of filterings when scanning your component. One based on the JAR name
+and one based on the package name. Make sure that your component definitions (including services)
+are in a scanned module if they are not registered manually using <code>ComponentManager.instance().addPlugin()</code>, and that the component package is not excluded.</p>
 </div>
 <div class="sect2">
 <h3 id="_jars_scanning"><a class="anchor" href="#_jars_scanning"></a>3.1. Jars Scanning</h3>

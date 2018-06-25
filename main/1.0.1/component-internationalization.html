@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internationalization :: Talend Component Kit Developer Reference Guide</title>
+    <title>Component internationalization :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/component-internationalization.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-22T16:42:35.093Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-25T17:15:15.014Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -48,7 +48,7 @@
                         <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
                         <hr class="navbar-divider">
                         <div class="navbar-item"><strong>Runtime</strong></div>
-                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                        <a class="navbar-item" href="https://github.com/talend/component-runtime">Repository</a>
                     </div>
                 </div>
             </div>
@@ -646,7 +646,7 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
-    <li class="crumb"><a href="component-internationalization.html">Internationalization</a></li>
+    <li class="crumb"><a href="component-internationalization.html">Component internationalization</a></li>
   </ul>
 </nav>
     <div class="page-versions">
@@ -670,12 +670,14 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Internationalization</h1>
+        <h1>Component internationalization</h1>
         <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the simplest case you should store messages using <code>ResourceBundle</code> properties file in your component module to use internationalization.
-The location of the properties file should be in the same package as the related component(s) and is named <code>Messages</code> (ex: <code>org.talend.demo.MyComponent</code> will use <code>org.talend.demo.Messages[locale].properties</code>).</p>
+<p>In common cases, you can store messages using a properties file in your component module to use internationalization.</p>
+</div>
+<div class="paragraph">
+<p>Store the properties file in the same package as the related components and name it <code>Messages</code>. For example, <code>org.talend.demo.MyComponent</code> uses <code>org.talend.demo.Messages[locale].properties</code>.</p>
 </div>
 </div>
 </div>
@@ -683,8 +685,7 @@ The location of the properties file should be in the same package as the related
 <h2 id="_default_components_keys"><a class="anchor" href="#_default_components_keys"></a>1. Default components keys</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Out of the box components are internationalized using the same location logic for the resource bundle and here is the list
-of supported keys:</p>
+<p>Out of the box components are internationalized using the same location logic for the resource bundle. The supported keys are:</p>
 </div>
 <table class="tableblock frame-all grid-all">
 <colgroup>
@@ -700,36 +701,36 @@ of supported keys:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${family}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the family</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the family</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${family}.${configurationType}.${name}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the display name of a configuration type (dataStore or dataSet)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of a configuration type (dataStore or dataSet)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${family}.${component_name}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the component (used by the GUIs)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the component (used by the GUIs)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${property_path}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the option.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the option.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${simple_class_name}.${property_name}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the option using it class name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the option using its class name.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${enum_simple_class_name}.${enum_name}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the display name of the <code>enum_name</code> enum value of the enum <code>enum_simple_class_name</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the <code>enum_name</code> value of the <code>enum_simple_class_name</code> enumeration.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${property_path}._placeholder</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the placeholder of the option.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Placeholder of the option.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Example of configuration for a component named <code>list</code> belonging to the family <code>memory</code> (<code>@Emitter(family = "memory", name = "list")</code>):</p>
+<p>Example of configuration for a component named <code>list</code> and belonging to the <code>memory</code> family (<code>@Emitter(family = "memory", name = "list")</code>):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -737,11 +738,11 @@ of supported keys:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Configuration class are also translatable using the simple class name in the messages properties file.
-This useful when you have some common configuration shared within multiple components.</p>
+<p>Configuration classes can be translated using the simple class name in the messages properties file.
+This is useful in case of common configurations shared by multiple components.</p>
 </div>
 <div class="paragraph">
-<p>If you have a configuration class like :</p>
+<p>For example, if you have a configuration class as follows :</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -756,7 +757,7 @@ This useful when you have some common configuration shared within multiple compo
 </div>
 </div>
 <div class="paragraph">
-<p>You can give it a translatable display name by adding ${simple_class_name}.${property_name}._displayName to Messages.properties under the same package as the config class.</p>
+<p>You can give it a translatable display name by adding <code>${simple_class_name}.${property_name}._displayName</code> to <code>Messages.properties</code> under the same package as the configuration class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -767,15 +768,14 @@ MyConfig.port._displayName = Server Port
 MyConfig.port._placeholder = Enter Server Port...</code></pre>
 </div>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you have a display name using the property path, it will override the display name defined using the simple class name.
-this rule apply also to placeholders
+If you have a display name using the property path, it overrides the display name defined using the simple class name. This rule also applies to placeholders.
 </td>
 </tr>
 </table>

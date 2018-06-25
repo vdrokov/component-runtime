@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/component-configuration.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-22T16:42:35.078Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-25T17:15:14.998Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -48,7 +48,7 @@
                         <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
                         <hr class="navbar-divider">
                         <div class="navbar-item"><strong>Runtime</strong></div>
-                        <a class="navbar-item" href="https://github.com/talend/component-rutime">Repository</a>
+                        <a class="navbar-item" href="https://github.com/talend/component-runtime">Repository</a>
                     </div>
                 </div>
             </div>
@@ -674,13 +674,29 @@
         <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Component are configured through their constructor parameters. They can all be marked with <code>@Option</code>
-which will let you give a name to parameters (if not it will use the bytecode name which can require you to compile with <code>-parameter</code> flag
-to not have <code>arg0</code>, <code>arg1</code>, &#8230;&#8203; as names). It is highly recommanded to use a hava friendly name and it is forbidden to include <code>.</code> character in
-it. Also note that starting with a <code>$</code> is forbidden too.</p>
+<p>Components are configured using their constructor parameters. They can all be marked with the <code>@Option</code> property, which lets you give a name to parameters.</p>
 </div>
 <div class="paragraph">
-<p>The parameter types can be <em>primitives</em> or complex objects with fields decorated with <code>@Option</code> exactly like method parameters.</p>
+<p>For the name to be correct, you must follow these guidelines:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use a valid Java name.</p>
+</li>
+<li>
+<p>Do not include any <code>.</code> character in it.</p>
+</li>
+<li>
+<p>Do not start the name with a <code>$</code>.</p>
+</li>
+<li>
+<p>Defining a name is optional. If you don&#8217;t set a specific name, it defaults to the bytecode name, which can require you to compile with a <code>-parameter</code> flag to not end up with names such as <code>arg0</code>, <code>arg1</code>, and so on.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Parameter types can be <em>primitives</em> or complex objects with fields decorated with <code>@Option</code> exactly like method parameters.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -689,13 +705,13 @@ it. Also note that starting with a <code>$</code> is forbidden too.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-it is recommended to use simple models which can be serialized by components to avoid headaches when implementing serialized components.
+It is recommended to use simple models which can be serialized in order to ease serialized component implementations.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Here is an example:</p>
+<p>For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -715,16 +731,14 @@ public MyFileReader(@Option("file-path") final File file,
 </div>
 </div>
 <div class="paragraph">
-<p>Using this kind of API makes the configuration extensible and component oriented letting the user define all he needs.</p>
+<p>Using this kind of API makes the configuration extensible and component-oriented, which allows you to define all you need.</p>
 </div>
 <div class="paragraph">
-<p>The instantiation of the parameters is done from the properties passed to the component (see next part).</p>
+<p>The instantiation of the parameters is done from the properties passed to the component.</p>
 </div>
+<div class="paragraph">
+<p>Examples of option names:</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_is_my_option_valid"><a class="anchor" href="#_is_my_option_valid"></a>1. Is my option valid?</h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 50%;">
@@ -758,16 +772,13 @@ public MyFileReader(@Option("file-path") final File file,
 </div>
 </div>
 <div class="sect1">
-<h2 id="_primitives"><a class="anchor" href="#_primitives"></a>2. Primitives</h2>
+<h2 id="_primitives"><a class="anchor" href="#_primitives"></a>1. Primitives</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>What is considered as a primitive in this mecanism is a class which can be directly converted from a <code>String</code> to the expected type.</p>
+<p>A primitive is a class which can be directly converted from a <code>String</code> to the expected type.</p>
 </div>
 <div class="paragraph">
-<p>It obviously includes all java primitives, <code>String</code> type itself but also all the types with a <code>org.apache.xbean.propertyeditor.Converter</code>.</p>
-</div>
-<div class="paragraph">
-<p>This includes out of the box:</p>
+<p>It includes all Java primitives, like the <code>String</code> type itself, but also all types with a <code>org.apache.xbean.propertyeditor.Converter</code>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -800,10 +811,13 @@ public MyFileReader(@Option("file-path") final File file,
 </div>
 </div>
 <div class="sect1">
-<h2 id="_complex_object_mapping"><a class="anchor" href="#_complex_object_mapping"></a>3. Complex object mapping</h2>
+<h2 id="_complex_object_mapping"><a class="anchor" href="#_complex_object_mapping"></a>2. Complex object mapping</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The conversion from properties to object is using the dotted notation. For instance:</p>
+<p>The conversion from property to object uses the Dot notation.</p>
+</div>
+<div class="paragraph">
+<p>For example, assuming the method parameter was configured with <code>@Option("file")</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -812,7 +826,7 @@ file.format = CSV</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>will match</p>
+<p>matches</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -825,14 +839,13 @@ file.format = CSV</code></pre>
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>assuming the method parameter was configured with <code>@Option("file")</code>.</p>
-</div>
 <div class="sect2">
-<h3 id="_list_case"><a class="anchor" href="#_list_case"></a>3.1. List case</h3>
+<h3 id="_list_case"><a class="anchor" href="#_list_case"></a>2.1. List case</h3>
 <div class="paragraph">
-<p>Lists use the same syntax but to define their elements their rely on an indexed syntax. Assuming the list parameter is named <code>files</code>
-and the elements are of  <code>FileOptions</code> type, here is how to define a list of 2 elements:</p>
+<p>Lists rely on an indexed syntax to define their elements.</p>
+</div>
+<div class="paragraph">
+<p>For example, assuming that the list parameter is named <code>files</code> and that the elements are of the  <code>FileOptions</code> type, you can define a list of two elements as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -844,9 +857,9 @@ files[1].format = EXCEL</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_map_case"><a class="anchor" href="#_map_case"></a>3.2. Map case</h3>
+<h3 id="_map_case"><a class="anchor" href="#_map_case"></a>2.2. Map case</h3>
 <div class="paragraph">
-<p>Inspired from the list case, the map uses <code>.key[index]</code> and <code>.value[index]</code> to represent its key and values:</p>
+<p>Similarly to the list case, the map uses <code>.key[index]</code> and <code>.value[index]</code> to represent its keys and values:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -877,8 +890,7 @@ files.value[1] = second-file</code></pre>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-don&#8217;t abuse of map type. If not needed for your configuration (= if you can configure your component
-with an object) don&#8217;t use it.
+Avoid using the Map type. For example, if you can configure your component with an object instead.
 </td>
 </tr>
 </table>
@@ -887,11 +899,10 @@ with an object) don&#8217;t use it.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_constraints_and_validation_on_the_configuration_input"><a class="anchor" href="#_constraints_and_validation_on_the_configuration_input"></a>4. Constraints and validation on the configuration/input</h2>
+<h2 id="_defining_constraints_and_validations_on_the_configuration"><a class="anchor" href="#_defining_constraints_and_validations_on_the_configuration"></a>3. Defining Constraints and validations on the configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is common to need to add as metadata a field is required, another has a minimum size etc. This is done with the
-validation in <code>org.talend.sdk.component.api.configuration.constraint</code> package:</p>
+<p>You can use metadata to specify that a field is required or has a minimum size, and so on. This is done using the <code>validation</code> metadata in the <code>org.talend.sdk.component.api.configuration.constraint</code> package:</p>
 </div>
 <table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
 <colgroup>
@@ -994,8 +1005,7 @@ validation in <code>org.talend.sdk.component.api.configuration.constraint</code>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-using the programmatic API the metadata are prefixed by <code>tcomp::</code> but this prefix is stripped in the web for convenience,
-the previous table uses the web keys.
+When using the programmatic API, metadata is prefixed by <code>tcomp::</code>. This prefix is stripped in the web for convenience, and the table above uses the web keys.
 </td>
 </tr>
 </table>
@@ -1003,19 +1013,18 @@ the previous table uses the web keys.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_marking_a_configuration_as_a_particular_type_of_data"><a class="anchor" href="#_marking_a_configuration_as_a_particular_type_of_data"></a>5. Marking a configuration as a particular type of data</h2>
+<h2 id="_marking_a_configuration_as_a_particular_type_of_data"><a class="anchor" href="#_marking_a_configuration_as_a_particular_type_of_data"></a>4. Marking a configuration as a particular type of data</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is common to classify the incoming data. You can see it as tagging them in several types. The most common ones
-are the:</p>
+<p>It is common to classify the incoming data. It is similar to tagging data with several types. Data can commonly be categorized as follows:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>datastore: all the data you need to connect to the backend</p>
+<p>Datastore: The data you need to connect to the backend.</p>
 </li>
 <li>
-<p>dataset: a datastore coupled with all the data you need to execute an action</p>
+<p>Dataset: A datastore coupled with the data you need to execute an action.</p>
 </li>
 </ul>
 </div>
@@ -1056,43 +1065,50 @@ are the:</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-the component family associated with a configuration type (datastore/dataset) is always the one related
-to the component using that configuration.
+The component family associated with a configuration type (datastore/dataset) is always the one related to the component using that configuration.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Those configuration types can be composed to provide one configuration item. For example a dataset type will often need a datastore
-type to be provided. and a datastore type (that provides the connection information) will be used to create a dataset type.</p>
+<p>Those configuration types can be composed to provide one configuration item. For example, a dataset type often needs a datastore type to be provided. A datastore type (that provides the connection information) is used to create a dataset type.</p>
 </div>
 <div class="paragraph">
-<p>Those configuration types will also be used at design time to create shared configuration that can be stored and used at runtime.</p>
+<p>Those configuration types are also used at design time to create shared configurations that can be stored and used at runtime.</p>
 </div>
 <div class="paragraph">
-<p>For example, we can think about a relational database that support JDBC:</p>
+<p>For example, in the case of a relational database that supports JDBC:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A datastore may provide:</p>
+<p>A datastore can be made of:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>jdbc url, username, password</p>
+<p>a JDBC URL</p>
+</li>
+<li>
+<p>a username</p>
+</li>
+<li>
+<p>a password.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>A dataset may be:</p>
+<p>A dataset can be made of:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>datastore (that will provide the connection data to the database)</p>
+<p>a datastore (that provides the data required to connect to the database)</p>
 </li>
 <li>
-<p>table name, data []</p>
+<p>a table name</p>
+</li>
+<li>
+<p>data.</p>
 </li>
 </ul>
 </div>
@@ -1100,17 +1116,16 @@ type to be provided. and a datastore type (that provides the connection informat
 </ul>
 </div>
 <div class="paragraph">
-<p>The component server will scan all those configuration types and provide a configuration type index. This index can be used for the integration
-into the targeted platforms (studio, web applications&#8230;&#8203;)</p>
+<p>The component server scans all configuration types and returns a configuration type index. This index can be used for the integration into the targeted platforms (Studio, web applications, and so on).</p>
 </div>
 <div class="paragraph">
-<p>The configuration type index is represented as a flat tree that contains all the configuration types represented as nodes and indexed by their ids.</p>
+<p>The configuration type index is represented as a flat tree that contains all the configuration types, which themselves are represented as nodes and indexed by ID.</p>
 </div>
 <div class="paragraph">
-<p>Also, every node can point to other nodes. This relation is represented as an array of edges that provide the childes ids.</p>
+<p>Every node can point to other nodes. This relation is represented as an array of edges that provides the child IDs.</p>
 </div>
 <div class="paragraph">
-<p>For example, a configuration type index for the above example will be:</p>
+<p>As an illustration, a configuration type index for the example above can be defined as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1124,10 +1139,10 @@ into the targeted platforms (studio, web applications&#8230;&#8203;)</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_define_links_between_properties"><a class="anchor" href="#_define_links_between_properties"></a>6. Define links between properties</h2>
+<h2 id="_defining_links_between_properties"><a class="anchor" href="#_defining_links_between_properties"></a>5. Defining links between properties</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It can be needed to define a binding between properties, a set of annotations allows to do it:</p>
+<p>If you need to define a binding between properties, you can use a set of annotations:</p>
 </div>
 <table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
 <colgroup>
@@ -1160,9 +1175,10 @@ into the targeted platforms (studio, web applications&#8230;&#8203;)</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Target element location is specified as a relative path to current location using Unix path characters.
-Configuration class delimiter is <code>/</code>. Parent configuration class is specified by <code>..</code>.
-Thus <code>../targetProperty</code> denotes a property, which is located in parent configuration class and has name <code>targetProperty</code>.</p>
+<p>The target element location is specified as a relative path to the current location, using Unix path characters.
+The configuration class delimiter is <code>/</code>.<br>
+The parent configuration class is specified by <code>..</code>.<br>
+Thus, <code>../targetProperty</code> denotes a property, which is located in the parent configuration class and is named <code>targetProperty</code>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1171,8 +1187,7 @@ Thus <code>../targetProperty</code> denotes a property, which is located in pare
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-using the programmatic API the metadata are prefixed by <code>tcomp::</code> but this prefix is stripped in the web for convenience,
-the previous table uses the web keys.
+When using the programmatic API, metadata is prefixed with <code>tcomp::</code>. This prefix is stripped in the web for convenience, and the previous table uses the web keys.
 </td>
 </tr>
 </table>
@@ -1180,12 +1195,11 @@ the previous table uses the web keys.
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation-ui-hints"><a class="anchor" href="#documentation-ui-hints"></a>7. Add hints about the rendering based on configuration/component knowledge</h2>
+<h2 id="documentation-ui-hints"><a class="anchor" href="#documentation-ui-hints"></a>6. Adding hints about the rendering based on configuration/component knowledge</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In some case it can be needed to add some metadata about the configuration to let the UI render properly the configuration.
-A simple example is a password value must be hidden and not a simple clear input box. For these cases - when the component developper
-wants to influence the UI rendering - you can use a particular set of annotations:</p>
+<p>In some cases, you may need to add metadata about the configuration to let the UI render that configuration properly.<br>
+For example, a password value that must be hidden and not a simple clear input box. For these cases - if you want to change the UI rendering - you can use a particular set of annotations:</p>
 </div>
 <table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
 <colgroup>
@@ -1270,23 +1284,13 @@ wants to influence the UI rendering - you can use a particular set of annotation
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-using the programmatic API the metadata are prefixed by <code>tcomp::</code> but this prefix is stripped in the web for convenience,
-the previous table uses the web keys.
+When using the programmatic API, metadata is prefixed with <code>tcomp::</code>. This prefix is stripped in the web for convenience, and the previous table uses the web keys.
 </td>
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-target support should cover <code>org.talend.core.model.process.EParameterFieldType</code> but we need to ensure web renderers is able to handle the same widgets.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Target support should cover <code>org.talend.core.model.process.EParameterFieldType</code> but you need to ensure that the web renderer is able to handle the same widgets.</p>
 </div>
 </div>
 </div>
