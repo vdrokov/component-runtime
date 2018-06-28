@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/server-uispec.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-27T10:33:55.452Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-28T16:39:10.240Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -676,13 +676,13 @@
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_coordinates">1. Coordinates</a></li>
-<li><a href="#_configuration">2. Configuration</a>
+<li><a href="#_configuring_the_uispec_server">2. Configuring the UiSpec server</a>
 <ul class="sectlevel2">
-<li><a href="#_add_custom_entries_in_the_forms">2.1. Add custom entries in the forms</a></li>
-<li><a href="#_add_custom_converters_select_the_widget_or_rendering">2.2. Add custom converters (select the widget or rendering)</a></li>
-<li><a href="#_client_in_play">2.3. Client in Play!</a></li>
-<li><a href="#_dropdown_with_all_root_configurations">2.4. Dropdown with all root configurations</a></li>
-<li><a href="#_reload_the_form_based_on_the_selected_root">2.5. Reload the form based on the selected root</a></li>
+<li><a href="#_adding_custom_entries_to_the_forms">2.1. Adding custom entries to the forms</a></li>
+<li><a href="#_adding_custom_converters_selecting_the_widget_or_rendering">2.2. Adding custom converters (selecting the widget or rendering)</a></li>
+<li><a href="#_client_in_play">2.3. Client in Play</a></li>
+<li><a href="#_defining_a_dropdown_with_all_root_configurations">2.4. Defining a dropdown with all root configurations</a></li>
+<li><a href="#_reloading_the_form_based_on_the_selected_root">2.5. Reloading the form based on the selected root</a></li>
 </ul>
 </li>
 <li><a href="#_http_api">3. HTTP API</a>
@@ -690,20 +690,19 @@
 <li><a href="#_component_uispec_server">3.1. Component UiSpec Server</a></li>
 </ul>
 </li>
-<li><a href="#_play_integration">4. Play Integration</a>
+<li><a href="#play-integration">4. Integrating with Play</a>
 <ul class="sectlevel2">
 <li><a href="#_if_you_are_using_guice">4.1. If you are using Guice</a></li>
 </ul>
 </li>
-<li><a href="#_server_configuration">5. Server Configuration</a></li>
+<li><a href="#_configuring_the_server_module">5. Configuring the server module</a></li>
 </ul>
 </div>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>The UiSpec server is a companion application for the Component Server.
-It provides a client to the Component Server which serves UiSpec payload to integrate
-with the client Javascript <code>UiForm</code> library.</p>
+It provides a client to the Component Server which serves UiSpec payload to integrate with the client JavaScript <code>UiForm</code> library.</p>
 </div>
 </div>
 </div>
@@ -722,7 +721,7 @@ with the client Javascript <code>UiForm</code> library.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>2. Configuration</h2>
+<h2 id="_configuring_the_uispec_server"><a class="anchor" href="#_configuring_the_uispec_server"></a>2. Configuring the UiSpec server</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -810,23 +809,22 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="_add_custom_entries_in_the_forms"><a class="anchor" href="#_add_custom_entries_in_the_forms"></a>2.1. Add custom entries in the forms</h3>
+<h3 id="_adding_custom_entries_to_the_forms"><a class="anchor" href="#_adding_custom_entries_to_the_forms"></a>2.1. Adding custom entries to the forms</h3>
 <div class="paragraph">
-<p>As seen in the previous table you can customize the forms by type. The format is reusing Talend Component Kit
-rest API (properties model) and defines two main types of extension:</p>
+<p>As shown in the table above, you can customize the forms by type. The format reuses Talend Component Kit REST API (properties model) and defines two main types of extensions:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>prependProperties</code>: which will list all the model of properties added to the form <strong>before</strong> the actual underlying form</p>
+<p><code>prependProperties</code>: Lists all the models of properties added to the form <strong>before</strong> the actual underlying form.</p>
 </li>
 <li>
-<p><code>appendProperties</code>: which will list all the model of properties added to the form <strong>after</strong> the actual underlying form</p>
+<p><code>appendProperties</code>: Lists all the models of properties added to the form <strong>after</strong> the actual underlying form.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Note that if you don&#8217;t specify a name, the path is used to deduce the name automatically.</p>
+<p>If you don&#8217;t specify a name, the path is used to deduce the name automatically.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -835,18 +833,16 @@ rest API (properties model) and defines two main types of extension:</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-always ensure you define a root object (no dot in the <code>path</code> value) for these properties. It is recommanded
-to prefix it with a <code>$</code>.
+Always make sure to define a root object for these properties. Do not use dots in the <code>path</code> value. It is recommended to prefix it with a <code>$</code> character.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_custom_converters_select_the_widget_or_rendering"><a class="anchor" href="#_add_custom_converters_select_the_widget_or_rendering"></a>2.2. Add custom converters (select the widget or rendering)</h3>
+<h3 id="_adding_custom_converters_selecting_the_widget_or_rendering"><a class="anchor" href="#_adding_custom_converters_selecting_the_widget_or_rendering"></a>2.2. Adding custom converters (selecting the widget or rendering)</h3>
 <div class="paragraph">
-<p>Developping a CDI <code>org.talend.sdk.component.form.internal.converter.CustomPropertyConverter</code>, the proxy
-will add it to the <code>UiSpecService</code> and use it with a high priority to convert the server model to a <code>UiSpec</code>.</p>
+<p>When developing a <code>org.talend.sdk.component.form.internal.converter.CustomPropertyConverter</code> CDI, the proxy adds it to the <code>UiSpecService</code> service and uses it with a high priority to convert the server model to a <code>UiSpec</code> model.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -855,52 +851,29 @@ will add it to the <code>UiSpecService</code> and use it with a high priority to
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-to make it a CDI bean add <code>@Dependent</code> on the class and if you use play integration, custom beans array: <code>playx.cdi.beans.customs +=  {className: org.talend.myapp.MyConverter}</code>
+To make it a CDI bean, add <code>@Dependent</code> to the class and if you use the <a href="#play-integration">Play integration</a>, customize the bean array: <code>playx.cdi.beans.customs +=  {className: org.talend.myapp.MyConverter}.</code>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>This will allow to use custom <code>@Ui</code> API and advanced modelling when spceific to applications.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-the converters are sorted respecting <code>@Priority</code> value, default value if missing is <code>0</code>.
-</td>
-</tr>
-</table>
+<p>This allows to use a custom <code>@Ui</code> API and advanced modeling when specific to applications.<br>
+Converters are sorted respecting to the <code>@Priority</code> value. If the annotation is missing, the priority defaults to <code>0</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_client_in_play"><a class="anchor" href="#_client_in_play"></a>2.3. Client in Play!</h3>
+<h3 id="_client_in_play"><a class="anchor" href="#_client_in_play"></a>2.3. Client in Play</h3>
 <div class="paragraph">
-<p>Also note that the client to connect to the Talend Component Kit server is
-CXF client using HttpClient HC (NIO) transport. It can be configured with its standard properties
-prefixed by <code>talend.component.proxy.</code> when you use the play module.</p>
+<p>The client to use to connect to the Talend Component Kit server is the CXF client, using HttpClient HC (NIO) transport. When you use the Play module, it can be configured with its standard properties prefixed by <code>talend.component.proxy.</code>.</p>
 </div>
 <div class="paragraph">
-<p>More info available on <a href="http://cxf.apache.org/docs/asynchronous-client-http-transport.html">CXF</a> website.</p>
+<p>You can find more information on <a href="http://cxf.apache.org/docs/asynchronous-client-http-transport.html">CXF</a> website.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dropdown_with_all_root_configurations"><a class="anchor" href="#_dropdown_with_all_root_configurations"></a>2.4. Dropdown with all root configurations</h3>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-the special <code>dynamic_values</code> action <code>builtin::roots</code> can be used for a drop down which will
-be filled with all available root types.
-</td>
-</tr>
-</table>
+<h3 id="_defining_a_dropdown_with_all_root_configurations"><a class="anchor" href="#_defining_a_dropdown_with_all_root_configurations"></a>2.4. Defining a dropdown with all root configurations</h3>
+<div class="paragraph">
+<p>The special <code>dynamic_values</code> action <code>builtin::roots</code> can be used for a dropdown filled with all available root types.</p>
 </div>
 <div class="paragraph">
 <p>Here is a sample patch file:</p>
@@ -927,9 +900,9 @@ be filled with all available root types.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_reload_the_form_based_on_the_selected_root"><a class="anchor" href="#_reload_the_form_based_on_the_selected_root"></a>2.5. Reload the form based on the selected root</h3>
+<h3 id="_reloading_the_form_based_on_the_selected_root"><a class="anchor" href="#_reloading_the_form_based_on_the_selected_root"></a>2.5. Reloading the form based on the selected root</h3>
 <div class="paragraph">
-<p>As a companion of previous action there is the <code>builtin::root::reloadFromId</code> action of type <code>jsonpatch</code> which
+<p>The <code>builtin::root::reloadFromId</code> action, with the <code>jsonpatch</code> type,
 allows to reload the whole form:</p>
 </div>
 <div class="listingblock">
@@ -950,19 +923,19 @@ allows to reload the whole form:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Prepopulate the dropdown with the list of datastore</td>
+<td>Prepopulating the dropdown with the list of datastores.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>On the selection of a datastore refresh the form with the new parameters</td>
+<td>On selection of a datastore, refreshing the form with the new parameters.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Here we use both to have a dropdown with the list of roots and to reload the form when one is selected.</p>
+<p>It is common to have a dropdown with the list of roots and to reload the form when one is selected.</p>
 </div>
 <div class="paragraph">
-<p>Here is how the <code>UIForm</code> (javascript side) part can be implemented:</p>
+<p>For example, the <code>UIForm</code> part (JavaScript side) can be implemented as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1012,19 +985,19 @@ onTrigger(event, payload) {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Add a custom handler for the specific <code>reloadForm</code> action</td>
+<td>Adding a custom handler for the specific <code>reloadForm</code> action.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Pass the <code>uiSchema</code> and <code>jsonSchema</code> back to the next step in the response processing chain</td>
+<td>Passing the <code>uiSchema</code> and <code>jsonSchema</code> to the next step in the response processing chain.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Reset the dynamic part of the form (= keep only the static part)</td>
+<td>Resetting the dynamic part of the form. Only the static part is kept.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Merge back the result of the handler into the current state (you can use redux or cmf as well)</td>
+<td>Merging back the result of the handler into the current state. You can use <code>redux</code> or <code>cmf</code>.</td>
 </tr>
 </table>
 </div>
@@ -2960,20 +2933,11 @@ onTrigger(event, payload) {
 </tr>
 </tbody>
 </table>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-as you can see there are two ways to call save endpoint. If you don&#8217;t want to pass the form identifier
-and prefer to use a generic endpoint just passing the type of configuration you are configuring then you will
-need to modify your enrichment configuration to ensure the form identier is present and to specify which form field it is.
-To do that just add to the metadata the boolean <code>proxyserver::formId</code>:
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>There are two ways to call the <code>save</code> endpoint. If you don&#8217;t want to pass the form identifier and prefer to use a generic endpoint that simply passes the type of configuration you are configuring, then you need to modify your <code>enrichment</code> configuration to ensure that the form identifier is present and to specify which form field it is.</p>
+</div>
+<div class="paragraph">
+<p>To do that, add the <code>proxyserver::formId</code> Boolean to the metadata:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2995,7 +2959,7 @@ To do that just add to the metadata the boolean <code>proxyserver::formId</code>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-only the first property with <code>proxyserver::formId</code> set to <code>"true"</code> is used. Also the path can&#8217;t contain any array.
+Only the first property with <code>proxyserver::formId</code> set to <code>"true"</code> is used. The path cannot contain any array.
 </td>
 </tr>
 </table>
@@ -3006,14 +2970,17 @@ only the first property with <code>proxyserver::formId</code> set to <code>"true
 </div>
 </div>
 <div class="sect1">
-<h2 id="_play_integration"><a class="anchor" href="#_play_integration"></a>4. Play Integration</h2>
+<h2 id="play-integration"><a class="anchor" href="#play-integration"></a>4. Integrating with Play</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Thanks to <a href="https://github.com/rmannibucau/playx">Playx</a> you can deploy this server
-in a Play! application.</p>
+<p>Thanks to <a href="https://github.com/rmannibucau/playx">Playx</a>, you can deploy this server in a Play! application.</p>
 </div>
-<div class="paragraph">
-<p>The first step is to import the play integration (which mainly imports pre-configuration):</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Import the pre-configuration of the Play integration.</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3024,8 +2991,12 @@ in a Play! application.</p>
 &lt;/dependency&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Then you can configure it in your <code>application.conf</code> - see configuration for more details:</p>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Configure the integration in your <code>application.conf</code> file:</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3049,28 +3020,26 @@ X-ID = ${someRequestAttributeNameForTheId}
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Imports the global configuration mapping the endpoints on <code>/componentproxy/*</code></td>
+<td>Importing the global configuration that maps the endpoints on <code>/componentproxy/*</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Customize the configuration to specialize it for the current deployment</td>
+<td>Customizing the configuration to specialize it for the current deployment.</td>
 </tr>
 </table>
 </div>
 <div class="sect2">
 <h3 id="_if_you_are_using_guice"><a class="anchor" href="#_if_you_are_using_guice"></a>4.1. If you are using Guice</h3>
 <div class="paragraph">
-<p><code>org.talend.sdk.component.guice.ComponentUiSpecServerModule</code> Guice module allows
-to import <code>Services</code> from the server and to use some of them locally for the part
-out of scope of the endpoint delivery like:</p>
+<p>The <code>org.talend.sdk.component.guice.ComponentUiSpecServerModule</code> Guice module allows to import <code>Services</code> from the server and to use some of them locally for the parts that are out of the scope of the endpoint delivery. For example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Converting <code>JsonObject</code> to <code>Map&lt;String, String&gt;</code> and the opposite</p>
+<p>Converting <code>JsonObject</code> to <code>Map&lt;String, String&gt;</code> and the other way around.</p>
 </li>
 <li>
-<p>Getting the properties model for a configuration or component (used in previous item)</p>
+<p>Getting the properties model for a configuration or component.</p>
 </li>
 </ul>
 </div>
@@ -3081,32 +3050,31 @@ out of scope of the endpoint delivery like:</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-it is important to use a <code>Provider&lt;T&gt;</code> injection to keep it lazy.
+Use a <code>Provider&lt;T&gt;</code> injection to keep it lazy.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The server doesn&#8217;t handle two layers you will likely need to add:</p>
+<p>The server does not handle two layers. It is possible that you need to add:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>security</p>
+<p>Security.</p>
 </li>
 <li>
-<p>persistence</p>
+<p>Persistence.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>For the first layer it is recommended to create a Play filter you configure before the proxy one (<code>ServletFilter</code>).
-You will need to ensure you pass all contextual data in the request attributes to be able to get them back after.</p>
+<p>For the security layer, it is recommended to create a Play filter that you configure before the proxy (<code>ServletFilter</code>).<br>
+Make sure that you pass all contextual data in the request attributes to be able to get them back after.</p>
 </div>
 <div class="paragraph">
-<p>For the persistence, the framework will fire particular events <code>OnPersist</code>, <code>OnEdit</code> and <code>OnFindById</code> you should observe
-to implement the persistence as you wish. If you reused the CDI context of the server just a plain CDI observer works
-but if you used the Guice/CDI setup (using the play module of the integration) you will need to write Guice observers:</p>
+<p>For the persistence layer, the framework fires particular events (<code>OnPersist</code>, <code>OnEdit</code> and <code>OnFindById</code>) that you should observe in order to implement the persistence as you wish.<br>
+Reusing the CDI context of the server just a plain CDI observer works, but if you used the Guice/CDI setup (using the Play module of the integration) you need to write Guice observers.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -3115,15 +3083,13 @@ but if you used the Guice/CDI setup (using the play module of the integration) y
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<code>OnPersist</code> will need to become identifier aware of the created entity, ensure to call <code>composeId</code> please. Similarly,
-<code>OnFindById</code> requires you to pass the found instance with <code>composeProperties()</code> and <code>composeFormId()</code>.
+<code>OnPersist</code> needs to become identifier-aware of the created entity. Make sure to call <code>composeId</code>. In a similar way, <code>OnFindById</code> requires you to pass the found instance with <code>composeProperties()</code> and <code>composeFormId()</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Optionally you can implement <code>OnFindByFormId</code> which will allow to have completion for references. If your application
-does not allow to edit references, you can bypass this event. If you implement it, ensure to call <code>composeResult</code> no more than once.</p>
+<p>Optionally, you can implement <code>OnFindByFormId</code>, which allows to have completion for references. If your application does not allow to edit references, you can bypass this event. If you implement it, make sure to call <code>composeResult</code> no more than once.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3158,7 +3124,7 @@ public class PersistenceHandler {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-the deletion is not handled by the server since there is not encapsulation of any format at that moment.
+Deletion is not handled by the server because there is no encapsulation of any format at that moment.
 </td>
 </tr>
 </table>
@@ -3167,21 +3133,21 @@ the deletion is not handled by the server since there is not encapsulation of an
 </div>
 </div>
 <div class="sect1">
-<h2 id="_server_configuration"><a class="anchor" href="#_server_configuration"></a>5. Server Configuration</h2>
+<h2 id="_configuring_the_server_module"><a class="anchor" href="#_configuring_the_server_module"></a>5. Configuring the server module</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The server module contains several configuration you can set in:</p>
+<p>The server module contains several configurations that you can set in:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Environment variables</p>
+<p>Environment variables.</p>
 </li>
 <li>
-<p>System properties</p>
+<p>System properties.</p>
 </li>
 <li>
-<p>A file located based on the <code>--component-configuration</code> CLI option</p>
+<p>A file located based on the <code>--component-configuration</code> CLI option.</p>
 </li>
 </ul>
 </div>

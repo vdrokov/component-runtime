@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/services-interceptors.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-27T10:33:55.483Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-28T16:39:10.267Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -672,14 +672,13 @@
 <article class="doc">
         <h1>Services and interceptors</h1>
         <div class="paragraph">
-<p>For common concerns like caching, auditing etc, it can be fancy to use interceptor like API. It is enabled by the framework
-on services.</p>
+<p>For common concerns such as caching, auditing, and so on, you can use an interceptor-like API. It is enabled on services by the framework.</p>
 </div>
 <div class="paragraph">
-<p>An interceptor defines an annotation marked with <code>@Intercepts</code> which defines the implementation of the interceptor (an <code>InterceptorHandler</code>).</p>
+<p>An interceptor defines an annotation marked with <code>@Intercepts</code>, which defines the implementation of the interceptor (<code>InterceptorHandler</code>).</p>
 </div>
 <div class="paragraph">
-<p>Here is an example:</p>
+<p>For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -692,8 +691,7 @@ public @interface Logged {
 </div>
 </div>
 <div class="paragraph">
-<p>Then handler is created from its constructor and can take service injections (by type). The first parameter, however, can be
-a <code>BiFunction&lt;Method, Object[], Object&gt;</code> which representes the invocation chain if your interceptor can be used with others.</p>
+<p>The handler is created from its constructor and can take service injections (by type). The first parameter, however, can be <code>BiFunction&lt;Method, Object[], Object&gt;</code>, which represents the invocation chain if your interceptor can be used with others.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -702,14 +700,13 @@ a <code>BiFunction&lt;Method, Object[], Object&gt;</code> which representes the 
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-if you do a generic interceptor it is important to pass the invoker as first parameter. If you don&#8217;t do so
-you can&#8217;t combine interceptors at all.
+If you make a generic interceptor, pass the invoker as first parameter. Otherwise you cannot combine interceptors at all.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Here is an interceptor implementation for our <code>@Logged</code> API:</p>
+<p>Here is an example of interceptor implementation for the <code>@Logged</code> API:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -736,8 +733,7 @@ you can&#8217;t combine interceptors at all.
 </div>
 </div>
 <div class="paragraph">
-<p>This implementation is compatible with interceptor chains since it takes the invoker as first constructor parameter
-and it also takes a service injection. Then the implementation just does what is needed - logging the invoked method here.</p>
+<p>This implementation is compatible with interceptor chains because it takes the invoker as first constructor parameter and it also takes a service injection. Then, the implementation simply does what is needed, which is logging the invoked method in this case.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -746,8 +742,7 @@ and it also takes a service injection. Then the implementation just does what is
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-the <code>findAnnotation</code> annotation - inherited from <code>InterceptorHandler</code> is an utility method to find an annotation on a method
-or class (in this order).
+The <code>findAnnotation</code> annotation, inherited from <code>InterceptorHandler</code>, is an utility method to find an annotation on a method or class (in this order).
 </td>
 </tr>
 </table>

@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/testing-spark.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-27T10:33:55.626Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-28T16:39:10.388Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -670,7 +670,7 @@
 <h2 id="_component_runtime_testing_spark"><a class="anchor" href="#_component_runtime_testing_spark"></a>1. component-runtime-testing-spark</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The folowing artifact will allow you to test against a spark cluster:</p>
+<p>The following artifact allows you to test against a Spark cluster:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -685,17 +685,14 @@
 <div class="sect2">
 <h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1. JUnit 4</h3>
 <div class="paragraph">
-<p>The usage relies on a JUnit <code>TestRule</code>. It is recommended to use it as a <code>@ClassRule</code> to ensure
-a single instance of a spark cluster is built but you can also use it as a simple <code>@Rule</code> which means
-it will be created per method instead of per test class.</p>
+<p>The testing relies on a JUnit <code>TestRule</code>. It is recommended to use it as a <code>@ClassRule</code>, to make sure that a single instance of a Spark cluster is built. You can also use it as a simple <code>@Rule</code>, to create the Spark cluster instances per method instead of per test class.</p>
 </div>
 <div class="paragraph">
-<p>It takes as parameter the spark and scala version to use. It will then fork a master and N slaves.
-Finally it will give you <code>submit*</code> method allowing you to send jobs either from the test classpath
-or from a shade if you run it as an integration test.</p>
+<p>The <code>@ClassRule</code> takes the Spark and Scala versions to use as parameters. It then forks a master and N slaves.
+Finally, the <code>submit*</code> method allows you to send jobs either from the test classpath or from a shade if you run it as an integration test.</p>
 </div>
 <div class="paragraph">
-<p>Here is a sample:</p>
+<p>For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -708,7 +705,7 @@ or from a shade if you run it as an integration test.</p>
     public void classpathSubmit() throws IOException {
         SPARK.submitClasspath(SubmittableMain.class, getMainArgs());
 
-        // do wait the test passed
+        // wait for the test to pass
     }
 }</code></pre>
 </div>
@@ -720,7 +717,7 @@ or from a shade if you run it as an integration test.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-this is working with <code>@Parameterized</code> so you can submit a bunch of jobs with different args and even combine it with beam <code>TestPipeline</code> if you make it <code>transient</code>!
+This testing methodology works with <code>@Parameterized</code>. You can submit several jobs with different arguments and even combine it with Beam <code>TestPipeline</code> if you make it <code>transient</code>.
 </td>
 </tr>
 </table>
@@ -729,14 +726,10 @@ this is working with <code>@Parameterized</code> so you can submit a bunch of jo
 <div class="sect2">
 <h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
 <div class="paragraph">
-<p>The integration with JUnit 5 of that spark cluster logic uses <code>@WithSpark</code> marker for the extension
-and let you, optionally, inject through <code>@SparkInject</code>, the <code>BaseSpark&lt;?&gt;</code> handler to access te spark cluster
-meta information - like its host/port.</p>
-</div>
-<div class="paragraph">
-<p>Here is a basic test using it:</p>
+<p>The integration of that Spark cluster logic with JUnit 5 is done using the <code>@WithSpark</code> marker for the extension. Optionally, it allows you to inject—through <code>@SparkInject</code>—the <code>BaseSpark&lt;?&gt;</code> handler to access the Spark cluster meta information. For example, its host/port.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WithSpark
 class SparkExtensionTest {
@@ -761,16 +754,12 @@ class SparkExtensionTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_how_to_know_the_job_is_done"><a class="anchor" href="#_how_to_know_the_job_is_done"></a>1.3. How to know the job is done</h3>
+<h3 id="_checking_the_job_execution_status"><a class="anchor" href="#_checking_the_job_execution_status"></a>1.3. Checking the job execution status</h3>
 <div class="paragraph">
-<p>In current state, <code>SparkClusterRule</code> doesn&#8217;t allow to know a job execution is done - even if it exposes the webui url so
-you can poll it to check. The best at the moment is to ensure the output of your job exists and contains the right value.</p>
+<p>Currently, <code>SparkClusterRule</code> does not allow to know when a job execution is done, even by exposing and polling the web UI URL to check. The best solution at the moment is to make sure that the output of your job exists and contains the right value.</p>
 </div>
 <div class="paragraph">
-<p><code>awaitability</code> or equivalent library can help you to write such logic.</p>
-</div>
-<div class="paragraph">
-<p>Here are the coordinates of the artifact:</p>
+<p><code>awaitability</code> or any equivalent library can help you to implement such logic:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -783,7 +772,7 @@ you can poll it to check. The best at the moment is to ensure the output of your
 </div>
 </div>
 <div class="paragraph">
-<p>And here is how to wait a file exists and its content (for instance) is the expected one:</p>
+<p>To wait until a file exists and check that its content (for example) is the expected one, you can use the following logic:</p>
 </div>
 <div class="listingblock">
 <div class="content">

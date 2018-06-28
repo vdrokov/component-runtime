@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Providing some actions for consumers/clients :: Talend Component Kit Developer Reference Guide</title>
+    <title>Providing actions for consumers :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/services-actions.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-27T10:33:55.459Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-28T16:39:10.247Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -646,7 +646,7 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
-    <li class="crumb"><a href="services-actions.html">Providing some actions for consumers/clients</a></li>
+    <li class="crumb"><a href="services-actions.html">Providing actions for consumers</a></li>
   </ul>
 </nav>
     <div class="page-versions">
@@ -670,15 +670,15 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Providing some actions for consumers/clients</h1>
+        <h1>Providing actions for consumers</h1>
         <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In some cases you will desire to add some actions unrelated to the runtime. A simple example
-is to enable clients - the users of the plugin/library - to test if a connection works. Even more concretely: <em>does my database is up?</em>.</p>
+<p>In some cases you can need to add some actions that are not related to the runtime. For example,
+enabling clients - the users of the plugin/library - to test if a connection works properly.</p>
 </div>
 <div class="paragraph">
-<p>To do so you need to define an <code>@Action</code> which is a method with a name (representing the event name) in a class decorated with <code>@Service</code>:</p>
+<p>To do so, you need to define an <code>@Action</code>, which is a method with a name (representing the event name), in a class decorated with <code>@Service</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -698,24 +698,13 @@ public class MyDbTester {
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-services are singleton so if you need some thread safety ensure they match that requirement. They
-shouldn&#8217;t store any state too (state is held by the component) since they can be serialized any time.
+Services are singleton. If you need some thread safety, make sure that they match that requirement. Services should not store any status either because they can be serialized at any time. Status are held by the component.
 </td>
 </tr>
 </table>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-services are usable in components as well (matched by type) and allow to reuse some shared logic like a client. Here is a sample
-with a service used to access files:
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Services can be used in components as well (matched by type). They allow to reuse some shared logic, like a client. Here is a sample with a service used to access files:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -738,17 +727,8 @@ public class PersonReader implements Serializable {
 }</code></pre>
 </div>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-service is passed to constructor automatically, it can be used as a bean. Only call of service&#8217;s method is required.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>The service is automatically passed to the constructor. It can be used as a bean. In that case, it is only necessary to call the service method.</p>
 </div>
 </div>
 </div>
@@ -756,8 +736,7 @@ service is passed to constructor automatically, it can be used as a bean. Only c
 <h2 id="_particular_action_types"><a class="anchor" href="#_particular_action_types"></a>1. Particular action types</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Some actions are that common and need a clear contract so they are defined as API first citizen, this is the case for wizards or healthchecks
-for instance. Here is the list of all actions:</p>
+<p>Some common actions need a clear contract so they are defined as API first-class citizen. For example, this is the case for wizards or health checks. Here is the list of the available actions:</p>
 </div>
 <table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
 <colgroup>
@@ -824,11 +803,10 @@ for instance. Here is the list of all actions:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_i18n"><a class="anchor" href="#_i18n"></a>2. i18n</h2>
+<h2 id="_internationalization"><a class="anchor" href="#_internationalization"></a>2. Internationalization</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Internationalization is supported through the injection of the parameter <code>$lang</code> which will allow you to get the correct locale
-to use with an <code>@Internationalized</code> service:</p>
+<p>Internationalization is supported through the injection of the <code>$lang</code> parameter, which allows you to get the correct locale to use with an <code>@Internationalized</code> service:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -845,7 +823,7 @@ to use with an <code>@Internationalized</code> service:</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-you can combine the <code>$lang</code> option with <code>@Internationalized</code> and <code>@Language</code> parameter.
+You can combine the <code>$lang</code> option with the <code>@Internationalized</code> and <code>@Language</code> parameters.
 </td>
 </tr>
 </table>

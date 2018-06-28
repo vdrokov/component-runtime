@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/testing-junit.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-27T10:33:55.592Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-28T16:39:10.358Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -670,10 +670,10 @@
 <h2 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>1. component-runtime-junit</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>component-runtime-junit</code> is a small test library allowing you to validate simple logic based on Talend Component tooling.</p>
+<p><code>component-runtime-junit</code> is a test library that allows you to validate simple logic based on the Talend Component Kit tooling.</p>
 </div>
 <div class="paragraph">
-<p>To import it add to your project the following dependency:</p>
+<p>To import it, add the following dependency to your project:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -686,10 +686,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p>This dependency also provide some mocked components that you can use with your own component to create tests.</p>
+<p>This dependency also provides mocked components that you can use with your own component to create tests.</p>
 </div>
 <div class="paragraph">
-<p>The mocked components are provided under the family <code>test</code> :</p>
+<p>The mocked components are provided under the <code>test</code> family:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -704,7 +704,7 @@
 <div class="sect2">
 <h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1. JUnit 4</h3>
 <div class="paragraph">
-<p>Then you can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
+<p>You can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -733,15 +733,15 @@
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>the rule will create a component manager and provide two mock components: an emitter and a collector. Don&#8217;t forget to set the root package of your component to enable it.</td>
+<td>The rule creates a component manager and provides two mock components: an emitter and a collector. Set the root package of your component to enable it.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>you define any chain you want to test, it generally uses the mock as source or collector</td>
+<td>Define any chain that you want to test. It generally uses the mock as source or collector.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>you validate your component behavior, for a source you can assert the right records were emitted in the mock collect</td>
+<td>Validate your component behavior. For a source, you can assert that the right records were emitted in the mock collect.</td>
 </tr>
 </table>
 </div>
@@ -752,14 +752,13 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-the rule can also be defined as a <code>@ClassRule</code> to start it once per class and not per test as with <code>@Rule</code>.
+The rule can also be defined as a <code>@ClassRule</code> to start it once per class and not per test as with <code>@Rule</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To go further, you can add the rule <code>ServiceInjectionRule</code> which will allow to inject into the test class all the component family services
-marking test class fields with <code>@InjectService</code>:</p>
+<p>To go further, you can add the <code>ServiceInjectionRule</code> rule, which allows to inject all the component family services into the test class by marking test class fields with <code>@InjectService</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -788,16 +787,15 @@ marking test class fields with <code>@InjectService</code>:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The injection requires the test instance so it must be a <code>@Rule</code> and not a <code>@ClassRule</code></td>
+<td>The injection requires the test instance, so it must be a <code>@Rule</code> rather than a <code>@ClassRule</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We pass to the rule the <code>ComponentsController</code> which is the <code>SimpleComponentRule</code> for JUnit 4 and the test instance
-to inject services in</td>
+<td>The <code>ComponentsController</code> is passed to the rule, which for JUnit 4 is the <code>SimpleComponentRule</code>, as well as the test instance to inject services in.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We mark all service fields with <code>@Service</code> to let the rule inject them before the test is ran</td>
+<td>All service fields are marked with <code>@Service</code> to let the rule inject them before the test is ran.</td>
 </tr>
 </table>
 </div>
@@ -805,12 +803,10 @@ to inject services in</td>
 <div class="sect2">
 <h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
 <div class="paragraph">
-<p>The JUnit 5 integration is mainly the same as for JUnit 4 except it uses the new JUnit 5 extension mecanism.</p>
+<p>The JUnit 5 integration is very similar to JUnit 4, except that it uses the JUnit 5 extension mechanism.</p>
 </div>
 <div class="paragraph">
-<p>The entry point is the <code>@WithComponents</code> annotation you put on your test class which takes the
-component package you want to test and you can use <code>@Injected</code> to inject in a test class field an instance of <code>ComponentsHandler</code>
-which exposes the same utilities than the JUnit 4 rule:</p>
+<p>The entry point is the <code>@WithComponents</code> annotation that you add to your test class, and which takes the component package you want to test. You can use <code>@Injected</code> to inject an instance of <code>ComponentsHandler</code> - which exposes the same utilities than the JUnit 4 rule - in a test class field :</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -855,14 +851,14 @@ public class ComponentExtensionTest {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-if it is the first time you use JUnit 5, don&#8217;t forget the imports changed and you must use <code>org.junit.jupiter.api.Test</code> instead of <code>org.junit.Test</code>.
-Some IDE versions and <code>surefire</code> versions can also need you to install either a plugin or a specific configuration.
+If you use JUnit 5 for the first time, keep in mind that the imports changed and that you need to use <code>org.junit.jupiter.api.Test</code> instead of <code>org.junit.Test</code>.
+Some IDE versions and <code>surefire</code> versions can also require you to install either a plugin or a specific configuration.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>As for JUnit 4, you can go further, getting test class fields marked with <code>@InjectService</code> injected but here no additional extension to specify:</p>
+<p>As for JUnit 4, you can go further by injecting test class fields marked with <code>@InjectService</code>, but there is no additional extension to specify in this case:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -886,7 +882,7 @@ class ComponentExtensionTest {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>We mark all service fields with <code>@Service</code> to let the rule inject them before the test is ran</td>
+<td>All service fields are marked with <code>@Service</code> to let the rule inject them before the test is ran.</td>
 </tr>
 </table>
 </div>
@@ -894,15 +890,16 @@ class ComponentExtensionTest {
 <div class="sect2">
 <h3 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>1.3. Mocking the output</h3>
 <div class="paragraph">
-<p>Using the component "test"/"collector" as in previous sample stores all records emitted by the chain (typically your source)
-in memory, you can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>. Note that this method filters by type,
-if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
+<p>Using the "test"/"collector" component as shown in the previous sample stores all records emitted by the chain (typically your source) in memory. You can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Note that this method filters by type. If you don&#8217;t need any specific type, you can use <code>Object.class</code>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_mocking_the_input"><a class="anchor" href="#_mocking_the_input"></a>1.4. Mocking the input</h3>
 <div class="paragraph">
-<p>The input mocking is symmetric to the output but here you provide the data you want to inject:</p>
+<p>The input mocking is symmetric to the output. In this case, you provide the data you want to inject:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -932,7 +929,7 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>using <code>setInputData</code> you prepare the execution(s) to have a fake input when using "test"/"emitter" component.</td>
+<td>using <code>setInputData</code>, you prepare the execution(s) to have a fake input when using the "test"/"emitter" component.</td>
 </tr>
 </table>
 </div>
@@ -940,14 +937,10 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 <div class="sect2">
 <h3 id="_creating_runtime_configuration_from_component_configuration"><a class="anchor" href="#_creating_runtime_configuration_from_component_configuration"></a>1.5. Creating runtime configuration from component configuration</h3>
 <div class="paragraph">
-<p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses
-a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility
-to get this map instance from a configuration instance.</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
+<p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility to get this map instance from a configuration instance.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final MyComponentConfig componentConfig = new MyComponentConfig();
 componentConfig.setUser("....");
@@ -957,9 +950,9 @@ final Map&lt;String, String&gt; configuration = configurationByExample(component
 </div>
 </div>
 <div class="paragraph">
-<p>The same factory provides a fluent DSL to create configuration calling <code>configurationByExample</code> without any parameter.
-The advantage is to be able to convert an object as a <code>Map&lt;String, String&gt;</code> as seen previously or as a query string
-to use it with the <code>Job</code> DSL:</p>
+<p>The same factory provides a fluent DSL to create the configuration by calling <code>configurationByExample</code> without any parameter.
+The advantage is to be able to convert an object as a <code>Map&lt;String, String&gt;</code> or as a query string
+in order to use it with the <code>Job</code> DSL:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -974,10 +967,10 @@ to use it with the <code>Job</code> DSL:</p>
 <div class="sect2">
 <h3 id="_testing_a_mapper"><a class="anchor" href="#_testing_a_mapper"></a>1.6. Testing a Mapper</h3>
 <div class="paragraph">
-<p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarly, you can get an instance from a configuration
-and you can execute this instance to collect the output. Here is a snippet doing that:</p>
+<p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarily. You can get an instance from a configuration and execute this instance to collect the output.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MapperTest {
 
@@ -999,10 +992,10 @@ and you can execute this instance to collect the output. Here is a snippet doing
 <div class="sect2">
 <h3 id="_testing_a_processor"><a class="anchor" href="#_testing_a_processor"></a>1.7. Testing a Processor</h3>
 <div class="paragraph">
-<p>As for the mapper a processor is testable unitary. The case is a bit more complex since you can have multiple
-inputs and outputs:</p>
+<p>As for a mapper, a processor is testable unitary. However, this case can be more complex in case of multiple inputs or outputs.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class ProcessorTest {
 
@@ -1025,9 +1018,7 @@ inputs and outputs:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Here again the rule allows you to instantiate a <code>Processor</code> from your code
-and then to <code>collect</code> the output from the inputs you pass in. There are two convenient implementation
-of the input factory:</p>
+<p>The rule allows you to instantiate a <code>Processor</code> from your code, and then to <code>collect</code> the output from the inputs you pass in. There are two convenient implementations of the input factory:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1035,8 +1026,7 @@ of the input factory:</p>
 <p><code>MainInputFactory</code> for processors using only the default input.</p>
 </li>
 <li>
-<p><code>JoinInputfactory</code> for processors using multiple inputs have a method <code>withInput(branch, data)</code> The first arg is the branch name
-and the second arg is the data used by the branch.</p>
+<p><code>JoinInputfactory</code> with the <code>withInput(branch, data)</code> method for processors using multiple inputs. The first argument is the branch name and the second argument is the data used by the branch.</p>
 </li>
 </ol>
 </div>
@@ -1047,7 +1037,7 @@ and the second arg is the data used by the branch.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-you can also implement your own input representation if needed implementing <code>org.talend.sdk.component.junit.ControllableInputFactory</code>.
+If needed, you can also implement your own input representation using <code>org.talend.sdk.component.junit.ControllableInputFactory</code>.
 </td>
 </tr>
 </table>

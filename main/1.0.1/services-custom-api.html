@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced: define a custom API :: Talend Component Kit Developer Reference Guide</title>
+    <title>Advanced: defining a custom API :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/services-custom-api.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-27T10:33:55.475Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-28T16:39:10.260Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -646,7 +646,7 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
-    <li class="crumb"><a href="services-custom-api.html">Advanced: define a custom API</a></li>
+    <li class="crumb"><a href="services-custom-api.html">Advanced: defining a custom API</a></li>
   </ul>
 </nav>
     <div class="page-versions">
@@ -670,18 +670,17 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Advanced: define a custom API</h1>
+        <h1>Advanced: defining a custom API</h1>
         <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is possible to extend the Component API for custom front features.</p>
+<p>It is possible to extend the <a href="https://talend.github.io/component-runtime/apidocs/api/index.html">Component API</a> for custom front features.</p>
 </div>
 <div class="paragraph">
-<p>What is important here is to keep in mind you should do it
-only if it targets not portable components (only used by the Studio or Beam).</p>
+<p>What is important here is to keep in mind that you should do it only if it targets not portable components (only used by the Studio or Beam).</p>
 </div>
 <div class="paragraph">
-<p>In term of organization it is recommended to create a custom <code>xxxx-component-api</code> module with the new set of annotations.</p>
+<p>It is recommended to create a custom <code>xxxx-component-api</code> module with the new set of annotations.</p>
 </div>
 </div>
 </div>
@@ -689,8 +688,8 @@ only if it targets not portable components (only used by the Studio or Beam).</p
 <h2 id="_extending_the_ui"><a class="anchor" href="#_extending_the_ui"></a>1. Extending the UI</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To extend the UI just add an annotation which can be put on <code>@Option</code> fields which is decorated with <code>@Ui</code>.
-All its members will be put in the metadata of the parameter. Example:</p>
+<p>To extend the UI, add an annotation that can be put on <code>@Option</code> fields, and that is decorated with <code>@Ui</code>.
+All its members are then put in the metadata of the parameter. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">

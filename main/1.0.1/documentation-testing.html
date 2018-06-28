@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/documentation-testing.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-27T10:33:54.906Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-28T16:39:10.179Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -672,32 +672,20 @@
 <article class="doc">
         <h1>Talend Component Testing Documentation</h1>
         <div class="sect1">
-<h2 id="_best_practises"><a class="anchor" href="#_best_practises"></a>1. Best practises</h2>
+<h2 id="_testing_best_practices"><a class="anchor" href="#_testing_best_practices"></a>1. Testing best practices</h2>
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-this part is mainly around tools usable with JUnit. You can use most of these techniques with TestNG
-as well, check out the documentation if you need to use TestNG.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>This section mainly concerns tools that can be used with JUnit. You can use most of these best practices with TestNG as well.</p>
 </div>
 <div class="sect2">
 <h3 id="_parameterized_tests"><a class="anchor" href="#_parameterized_tests"></a>1.1. Parameterized tests</h3>
 <div class="paragraph">
-<p>This is a great solution to repeat the same test multiple times. Overall idea
-is to define a test scenario (<code>I test function F</code>) and to make the input/output data
-dynamic.</p>
+<p>Parameterized tests are a great solution to repeat the same test multiple times. This method of testing requires defining a test scenario (<code>I test function F</code>) and making the input/output data dynamic.</p>
 </div>
 <div class="sect3">
 <h4 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1.1. JUnit 4</h4>
 <div class="paragraph">
-<p>Here is an example. Let&#8217;s assume we have this test which validates the connection URI using <code>ConnectionService</code>:</p>
+<p>Here is a test example, which validates a connection URI using <code>ConnectionService</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -715,8 +703,7 @@ dynamic.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>We clearly identify the test method is always the same except the value. It can therefore be rewritter
-using JUnit <code>Parameterized</code> runner like that:</p>
+<p>The testing method is always the same. Only values are changing. It can therefore be rewritten using JUnit <code>Parameterized</code> runner, as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -744,23 +731,23 @@ public class MyConnectionURITest {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>Parameterized</code> is the runner understanding <code>@Parameters</code> and how to use it. Note that you can generate random data here if desired.</td>
+<td><code>Parameterized</code> is the runner that understands <code>@Parameters</code> and how to use it. If needed, you can generate random data here.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>by default the name of the executed test is the index of the data, here we customize it using the first parameter <code>toString()</code> value to have something more readable</td>
+<td>By default the name of the executed test is the index of the data. Here, it is customized using the first <code>toString()</code> parameter value to have something more readable.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>the <code>@Parameters</code> method <code>MUST</code> be static and return an array or iterable of the data used by the tests</td>
+<td>The <code>@Parameters</code> method must be static and return an array or iterable of the data used by the tests.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>you can then inject the current data using <code>@Parameter</code> annotation, it can take a parameter if you use an array of array instead of an iterable of object in <code>@Parameterized</code> and you can select which item you want injected this way</td>
+<td>You can then inject the current data using the <code>@Parameter</code> annotation. It can take a parameter if you use an array of array instead of an iterable of object in <code>@Parameterized</code>. You can select which item you want to inject.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>the <code>@Test</code> method will be executed using the contextual data, in this sample we&#8217;ll get executed twice with the 2 specified urls</td>
+<td>The <code>@Test</code> method is executed using the contextual data. In this sample, it gets executed twice with the two specified URIs.</td>
 </tr>
 </table>
 </div>
@@ -771,7 +758,7 @@ public class MyConnectionURITest {
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-you don&#8217;t have to define a single <code>@Test</code> method, if you define multiple, each of them will be executed with all the data (ie if we add a test in previous example you will get 4 tests execution - 2 per data, ie 2x2)
+You don&#8217;t have to define a single <code>@Test</code> method. If you define multiple methods, each of them is executed with all the data. For example, if another test is added to the previous example, four tests are executed - 2 per data).
 </td>
 </tr>
 </table>
@@ -780,10 +767,10 @@ you don&#8217;t have to define a single <code>@Test</code> method, if you define
 <div class="sect3">
 <h4 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.1.2. JUnit 5</h4>
 <div class="paragraph">
-<p>JUnit 5 reworked this feature to make it way easier to use. The full documentation is available at <a href="http://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests" class="bare">junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests</a>.</p>
+<p>With JUnit 5, parameterized tests are easier to use. The full documentation is available at <a href="http://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests" class="bare">junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests</a>.</p>
 </div>
 <div class="paragraph">
-<p>The main difference is you can also define inline on the test method that it is a parameterized test and which are the values:</p>
+<p>The main difference with JUnit 4 is that you can also define inline that the test method is a parameterized test as well as the values to use:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -795,7 +782,7 @@ void mytest(String currentValue) {
 </div>
 </div>
 <div class="paragraph">
-<p>However you can still use the previous behavior using a method binding configuration:</p>
+<p>However, you can still use the previous behavior with a method binding configuration:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -811,7 +798,7 @@ static Stream&lt;String&gt; stringProvider() {
 </div>
 </div>
 <div class="paragraph">
-<p>This last option allows you to inject any type of value - not only primitives - which is very common to define scenarii.</p>
+<p>This last option allows you to inject any type of value - not only primitives - which is common to define scenarios.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -820,7 +807,7 @@ static Stream&lt;String&gt; stringProvider() {
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefit from this feature.
+Add the <code>junit-jupiter-params</code> dependency to benefit from this feature.
 </td>
 </tr>
 </table>
@@ -835,10 +822,10 @@ don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefi
 <div class="sect2">
 <h3 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>2.1. component-runtime-junit</h3>
 <div class="paragraph">
-<p><code>component-runtime-junit</code> is a small test library allowing you to validate simple logic based on Talend Component tooling.</p>
+<p><code>component-runtime-junit</code> is a test library that allows you to validate simple logic based on the Talend Component Kit tooling.</p>
 </div>
 <div class="paragraph">
-<p>To import it add to your project the following dependency:</p>
+<p>To import it, add the following dependency to your project:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -851,10 +838,10 @@ don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefi
 </div>
 </div>
 <div class="paragraph">
-<p>This dependency also provide some mocked components that you can use with your own component to create tests.</p>
+<p>This dependency also provides mocked components that you can use with your own component to create tests.</p>
 </div>
 <div class="paragraph">
-<p>The mocked components are provided under the family <code>test</code> :</p>
+<p>The mocked components are provided under the <code>test</code> family:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -869,7 +856,7 @@ don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefi
 <div class="sect3">
 <h4 id="_junit_4_2"><a class="anchor" href="#_junit_4_2"></a>2.1.1. JUnit 4</h4>
 <div class="paragraph">
-<p>Then you can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
+<p>You can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -898,15 +885,15 @@ don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefi
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>the rule will create a component manager and provide two mock components: an emitter and a collector. Don&#8217;t forget to set the root package of your component to enable it.</td>
+<td>The rule creates a component manager and provides two mock components: an emitter and a collector. Set the root package of your component to enable it.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>you define any chain you want to test, it generally uses the mock as source or collector</td>
+<td>Define any chain that you want to test. It generally uses the mock as source or collector.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>you validate your component behavior, for a source you can assert the right records were emitted in the mock collect</td>
+<td>Validate your component behavior. For a source, you can assert that the right records were emitted in the mock collect.</td>
 </tr>
 </table>
 </div>
@@ -917,14 +904,13 @@ don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefi
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-the rule can also be defined as a <code>@ClassRule</code> to start it once per class and not per test as with <code>@Rule</code>.
+The rule can also be defined as a <code>@ClassRule</code> to start it once per class and not per test as with <code>@Rule</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To go further, you can add the rule <code>ServiceInjectionRule</code> which will allow to inject into the test class all the component family services
-marking test class fields with <code>@InjectService</code>:</p>
+<p>To go further, you can add the <code>ServiceInjectionRule</code> rule, which allows to inject all the component family services into the test class by marking test class fields with <code>@InjectService</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -953,16 +939,15 @@ marking test class fields with <code>@InjectService</code>:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The injection requires the test instance so it must be a <code>@Rule</code> and not a <code>@ClassRule</code></td>
+<td>The injection requires the test instance, so it must be a <code>@Rule</code> rather than a <code>@ClassRule</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We pass to the rule the <code>ComponentsController</code> which is the <code>SimpleComponentRule</code> for JUnit 4 and the test instance
-to inject services in</td>
+<td>The <code>ComponentsController</code> is passed to the rule, which for JUnit 4 is the <code>SimpleComponentRule</code>, as well as the test instance to inject services in.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We mark all service fields with <code>@Service</code> to let the rule inject them before the test is ran</td>
+<td>All service fields are marked with <code>@Service</code> to let the rule inject them before the test is ran.</td>
 </tr>
 </table>
 </div>
@@ -970,12 +955,10 @@ to inject services in</td>
 <div class="sect3">
 <h4 id="_junit_5_2"><a class="anchor" href="#_junit_5_2"></a>2.1.2. JUnit 5</h4>
 <div class="paragraph">
-<p>The JUnit 5 integration is mainly the same as for JUnit 4 except it uses the new JUnit 5 extension mecanism.</p>
+<p>The JUnit 5 integration is very similar to JUnit 4, except that it uses the JUnit 5 extension mechanism.</p>
 </div>
 <div class="paragraph">
-<p>The entry point is the <code>@WithComponents</code> annotation you put on your test class which takes the
-component package you want to test and you can use <code>@Injected</code> to inject in a test class field an instance of <code>ComponentsHandler</code>
-which exposes the same utilities than the JUnit 4 rule:</p>
+<p>The entry point is the <code>@WithComponents</code> annotation that you add to your test class, and which takes the component package you want to test. You can use <code>@Injected</code> to inject an instance of <code>ComponentsHandler</code> - which exposes the same utilities than the JUnit 4 rule - in a test class field :</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1020,14 +1003,14 @@ public class ComponentExtensionTest {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-if it is the first time you use JUnit 5, don&#8217;t forget the imports changed and you must use <code>org.junit.jupiter.api.Test</code> instead of <code>org.junit.Test</code>.
-Some IDE versions and <code>surefire</code> versions can also need you to install either a plugin or a specific configuration.
+If you use JUnit 5 for the first time, keep in mind that the imports changed and that you need to use <code>org.junit.jupiter.api.Test</code> instead of <code>org.junit.Test</code>.
+Some IDE versions and <code>surefire</code> versions can also require you to install either a plugin or a specific configuration.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>As for JUnit 4, you can go further, getting test class fields marked with <code>@InjectService</code> injected but here no additional extension to specify:</p>
+<p>As for JUnit 4, you can go further by injecting test class fields marked with <code>@InjectService</code>, but there is no additional extension to specify in this case:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1051,7 +1034,7 @@ class ComponentExtensionTest {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>We mark all service fields with <code>@Service</code> to let the rule inject them before the test is ran</td>
+<td>All service fields are marked with <code>@Service</code> to let the rule inject them before the test is ran.</td>
 </tr>
 </table>
 </div>
@@ -1059,15 +1042,16 @@ class ComponentExtensionTest {
 <div class="sect3">
 <h4 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>2.1.3. Mocking the output</h4>
 <div class="paragraph">
-<p>Using the component "test"/"collector" as in previous sample stores all records emitted by the chain (typically your source)
-in memory, you can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>. Note that this method filters by type,
-if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
+<p>Using the "test"/"collector" component as shown in the previous sample stores all records emitted by the chain (typically your source) in memory. You can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Note that this method filters by type. If you don&#8217;t need any specific type, you can use <code>Object.class</code>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_mocking_the_input"><a class="anchor" href="#_mocking_the_input"></a>2.1.4. Mocking the input</h4>
 <div class="paragraph">
-<p>The input mocking is symmetric to the output but here you provide the data you want to inject:</p>
+<p>The input mocking is symmetric to the output. In this case, you provide the data you want to inject:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1097,7 +1081,7 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>using <code>setInputData</code> you prepare the execution(s) to have a fake input when using "test"/"emitter" component.</td>
+<td>using <code>setInputData</code>, you prepare the execution(s) to have a fake input when using the "test"/"emitter" component.</td>
 </tr>
 </table>
 </div>
@@ -1105,14 +1089,10 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 <div class="sect3">
 <h4 id="_creating_runtime_configuration_from_component_configuration"><a class="anchor" href="#_creating_runtime_configuration_from_component_configuration"></a>2.1.5. Creating runtime configuration from component configuration</h4>
 <div class="paragraph">
-<p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses
-a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility
-to get this map instance from a configuration instance.</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
+<p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility to get this map instance from a configuration instance.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final MyComponentConfig componentConfig = new MyComponentConfig();
 componentConfig.setUser("....");
@@ -1122,9 +1102,9 @@ final Map&lt;String, String&gt; configuration = configurationByExample(component
 </div>
 </div>
 <div class="paragraph">
-<p>The same factory provides a fluent DSL to create configuration calling <code>configurationByExample</code> without any parameter.
-The advantage is to be able to convert an object as a <code>Map&lt;String, String&gt;</code> as seen previously or as a query string
-to use it with the <code>Job</code> DSL:</p>
+<p>The same factory provides a fluent DSL to create the configuration by calling <code>configurationByExample</code> without any parameter.
+The advantage is to be able to convert an object as a <code>Map&lt;String, String&gt;</code> or as a query string
+in order to use it with the <code>Job</code> DSL:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1139,10 +1119,10 @@ to use it with the <code>Job</code> DSL:</p>
 <div class="sect3">
 <h4 id="_testing_a_mapper"><a class="anchor" href="#_testing_a_mapper"></a>2.1.6. Testing a Mapper</h4>
 <div class="paragraph">
-<p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarly, you can get an instance from a configuration
-and you can execute this instance to collect the output. Here is a snippet doing that:</p>
+<p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarily. You can get an instance from a configuration and execute this instance to collect the output.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MapperTest {
 
@@ -1164,10 +1144,10 @@ and you can execute this instance to collect the output. Here is a snippet doing
 <div class="sect3">
 <h4 id="_testing_a_processor"><a class="anchor" href="#_testing_a_processor"></a>2.1.7. Testing a Processor</h4>
 <div class="paragraph">
-<p>As for the mapper a processor is testable unitary. The case is a bit more complex since you can have multiple
-inputs and outputs:</p>
+<p>As for a mapper, a processor is testable unitary. However, this case can be more complex in case of multiple inputs or outputs.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class ProcessorTest {
 
@@ -1190,9 +1170,7 @@ inputs and outputs:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Here again the rule allows you to instantiate a <code>Processor</code> from your code
-and then to <code>collect</code> the output from the inputs you pass in. There are two convenient implementation
-of the input factory:</p>
+<p>The rule allows you to instantiate a <code>Processor</code> from your code, and then to <code>collect</code> the output from the inputs you pass in. There are two convenient implementations of the input factory:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1200,8 +1178,7 @@ of the input factory:</p>
 <p><code>MainInputFactory</code> for processors using only the default input.</p>
 </li>
 <li>
-<p><code>JoinInputfactory</code> for processors using multiple inputs have a method <code>withInput(branch, data)</code> The first arg is the branch name
-and the second arg is the data used by the branch.</p>
+<p><code>JoinInputfactory</code> with the <code>withInput(branch, data)</code> method for processors using multiple inputs. The first argument is the branch name and the second argument is the data used by the branch.</p>
 </li>
 </ol>
 </div>
@@ -1212,7 +1189,7 @@ and the second arg is the data used by the branch.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-you can also implement your own input representation if needed implementing <code>org.talend.sdk.component.junit.ControllableInputFactory</code>.
+If needed, you can also implement your own input representation using <code>org.talend.sdk.component.junit.ControllableInputFactory</code>.
 </td>
 </tr>
 </table>
@@ -1222,7 +1199,7 @@ you can also implement your own input representation if needed implementing <cod
 <div class="sect2">
 <h3 id="_component_runtime_testing_spark"><a class="anchor" href="#_component_runtime_testing_spark"></a>2.2. component-runtime-testing-spark</h3>
 <div class="paragraph">
-<p>The folowing artifact will allow you to test against a spark cluster:</p>
+<p>The following artifact allows you to test against a Spark cluster:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1237,17 +1214,14 @@ you can also implement your own input representation if needed implementing <cod
 <div class="sect3">
 <h4 id="_junit_4_3"><a class="anchor" href="#_junit_4_3"></a>2.2.1. JUnit 4</h4>
 <div class="paragraph">
-<p>The usage relies on a JUnit <code>TestRule</code>. It is recommended to use it as a <code>@ClassRule</code> to ensure
-a single instance of a spark cluster is built but you can also use it as a simple <code>@Rule</code> which means
-it will be created per method instead of per test class.</p>
+<p>The testing relies on a JUnit <code>TestRule</code>. It is recommended to use it as a <code>@ClassRule</code>, to make sure that a single instance of a Spark cluster is built. You can also use it as a simple <code>@Rule</code>, to create the Spark cluster instances per method instead of per test class.</p>
 </div>
 <div class="paragraph">
-<p>It takes as parameter the spark and scala version to use. It will then fork a master and N slaves.
-Finally it will give you <code>submit*</code> method allowing you to send jobs either from the test classpath
-or from a shade if you run it as an integration test.</p>
+<p>The <code>@ClassRule</code> takes the Spark and Scala versions to use as parameters. It then forks a master and N slaves.
+Finally, the <code>submit*</code> method allows you to send jobs either from the test classpath or from a shade if you run it as an integration test.</p>
 </div>
 <div class="paragraph">
-<p>Here is a sample:</p>
+<p>For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1260,7 +1234,7 @@ or from a shade if you run it as an integration test.</p>
     public void classpathSubmit() throws IOException {
         SPARK.submitClasspath(SubmittableMain.class, getMainArgs());
 
-        // do wait the test passed
+        // wait for the test to pass
     }
 }</code></pre>
 </div>
@@ -1272,7 +1246,7 @@ or from a shade if you run it as an integration test.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-this is working with <code>@Parameterized</code> so you can submit a bunch of jobs with different args and even combine it with beam <code>TestPipeline</code> if you make it <code>transient</code>!
+This testing methodology works with <code>@Parameterized</code>. You can submit several jobs with different arguments and even combine it with Beam <code>TestPipeline</code> if you make it <code>transient</code>.
 </td>
 </tr>
 </table>
@@ -1281,14 +1255,10 @@ this is working with <code>@Parameterized</code> so you can submit a bunch of jo
 <div class="sect3">
 <h4 id="_junit_5_3"><a class="anchor" href="#_junit_5_3"></a>2.2.2. JUnit 5</h4>
 <div class="paragraph">
-<p>The integration with JUnit 5 of that spark cluster logic uses <code>@WithSpark</code> marker for the extension
-and let you, optionally, inject through <code>@SparkInject</code>, the <code>BaseSpark&lt;?&gt;</code> handler to access te spark cluster
-meta information - like its host/port.</p>
-</div>
-<div class="paragraph">
-<p>Here is a basic test using it:</p>
+<p>The integration of that Spark cluster logic with JUnit 5 is done using the <code>@WithSpark</code> marker for the extension. Optionally, it allows you to inject—through <code>@SparkInject</code>—the <code>BaseSpark&lt;?&gt;</code> handler to access the Spark cluster meta information. For example, its host/port.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WithSpark
 class SparkExtensionTest {
@@ -1313,16 +1283,12 @@ class SparkExtensionTest {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_how_to_know_the_job_is_done"><a class="anchor" href="#_how_to_know_the_job_is_done"></a>2.2.3. How to know the job is done</h4>
+<h4 id="_checking_the_job_execution_status"><a class="anchor" href="#_checking_the_job_execution_status"></a>2.2.3. Checking the job execution status</h4>
 <div class="paragraph">
-<p>In current state, <code>SparkClusterRule</code> doesn&#8217;t allow to know a job execution is done - even if it exposes the webui url so
-you can poll it to check. The best at the moment is to ensure the output of your job exists and contains the right value.</p>
+<p>Currently, <code>SparkClusterRule</code> does not allow to know when a job execution is done, even by exposing and polling the web UI URL to check. The best solution at the moment is to make sure that the output of your job exists and contains the right value.</p>
 </div>
 <div class="paragraph">
-<p><code>awaitability</code> or equivalent library can help you to write such logic.</p>
-</div>
-<div class="paragraph">
-<p>Here are the coordinates of the artifact:</p>
+<p><code>awaitability</code> or any equivalent library can help you to implement such logic:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1335,7 +1301,7 @@ you can poll it to check. The best at the moment is to ensure the output of your
 </div>
 </div>
 <div class="paragraph">
-<p>And here is how to wait a file exists and its content (for instance) is the expected one:</p>
+<p>To wait until a file exists and check that its content (for example) is the expected one, you can use the following logic:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1349,9 +1315,9 @@ you can poll it to check. The best at the moment is to ensure the output of your
 </div>
 </div>
 <div class="sect2">
-<h3 id="_component_runtime_http_junit"><a class="anchor" href="#_component_runtime_http_junit"></a>2.3. component-runtime-http-junit</h3>
+<h3 id="component-runtime-http-junit"><a class="anchor" href="#component-runtime-http-junit"></a>2.3. component-runtime-http-junit</h3>
 <div class="paragraph">
-<p>The HTTP JUnit module allows you to mock REST API very easily. Here are its coordinates:</p>
+<p>The HTTP JUnit module allows you to mock REST API very simply. The module coordinates are:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1370,26 +1336,32 @@ you can poll it to check. The best at the moment is to ensure the output of your
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-this module uses Apache Johnzon and Netty, if you have any conflict (in particular with netty) you can add the classifier <code>shaded</code>
-to the dependency and the two dependencies are shaded avoiding the conflicts with your component.
+This module uses Apache Johnzon and Netty. If you have any conflict (in particular with Netty), you can add the <code>shaded</code> classifier to the dependency. This way, both dependencies are shaded, which avoids conflicts with your component.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>It supports JUnit 4 and JUnit 5 as well but the overall concept is the exact same one: the extension/rule
+<p>It supports both JUnit 4 and JUnit 5. The concept is the exact same one: the extension/rule
 is able to serve precomputed responses saved in the classpath.</p>
 </div>
 <div class="paragraph">
-<p>You can plug your own <code>ResponseLocator</code> to map a request to a response but the default implementation - which should be sufficient
-in most cases - will look in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it
-in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
+<p>You can plug your own <code>ResponseLocator</code> to map a request to a response, but the default implementation - which should be sufficient in most cases - looks in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="_junit_4_4"><a class="anchor" href="#_junit_4_4"></a>2.3.1. JUnit 4</h4>
 <div class="paragraph">
-<p>JUnit 4 setup is done through two rules: <code>JUnit4HttpApi</code> which is responsible to start the server and <code>JUnit4HttpApiPerMethodConfigurator</code>
-which is responsible to configure the server per test and also handle the capture mode (see later).</p>
+<p>JUnit 4 setup is done through two rules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>JUnit4HttpApi</code>, which is starts the server.</p>
+</li>
+<li>
+<p><code>JUnit4HttpApiPerMethodConfigurator</code>, which configures the server per test and also handles the capture mode.</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1398,15 +1370,13 @@ which is responsible to configure the server per test and also handle the captur
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the capture feature will be deactivated and the per test mocking will not be available.
+If you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the capture feature is disabled and the per test mocking is not available.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Most of the test will look like:</p>
-</div>
 <div class="listingblock">
+<div class="title">Test example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyRESTApiTest {
     @ClassRule
@@ -1425,10 +1395,10 @@ if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the 
 <div class="sect4">
 <h5 id="_ssl"><a class="anchor" href="#_ssl"></a>SSL</h5>
 <div class="paragraph">
-<p>For tests using SSL based services, you will need to use <code>activeSsl()</code> on the <code>JUnit4HttpApi</code> rule.</p>
+<p>For tests using SSL-based services, you need to use <code>activeSsl()</code> on the <code>JUnit4HttpApi</code> rule.</p>
 </div>
 <div class="paragraph">
-<p>If you need to access the server ssl socket factory you can do it from the <code>HttpApiHandler</code> (the rule):</p>
+<p>You can access the client SSL socket factory through the API handler:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1448,8 +1418,7 @@ public void test() throws Exception {
 <div class="sect3">
 <h4 id="_junit_5_4"><a class="anchor" href="#_junit_5_4"></a>2.3.2. JUnit 5</h4>
 <div class="paragraph">
-<p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation you can put on your test class. You can inject
-the test handler (which has some utilities for advanced cases) through <code>@HttpApiInject</code>:</p>
+<p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation that you can add to your test class. You can inject the test handler - which has some utilities for advanced cases - through <code>@HttpApiInject</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1472,7 +1441,7 @@ class JUnit5HttpApiTest {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-the injection is optional and the <code>@HttpApi</code> allows you to configure several behaviors of the test.
+The injection is optional and the <code>@HttpApi</code> annotation allows you to configure several test behaviors.
 </td>
 </tr>
 </table>
@@ -1480,10 +1449,10 @@ the injection is optional and the <code>@HttpApi</code> allows you to configure 
 <div class="sect4">
 <h5 id="_ssl_2"><a class="anchor" href="#_ssl_2"></a>SSL</h5>
 <div class="paragraph">
-<p>For tests using SSL based services, you will need to use <code>@HttpApi(useSsl = true)</code>.</p>
+<p>For tests using SSL-based services, you need to use <code>@HttpApi(useSsl = true)</code>.</p>
 </div>
 <div class="paragraph">
-<p>You can access the client SSL socket factory through the api handler:</p>
+<p>You can access the client SSL socket factory through the API handler:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1506,12 +1475,11 @@ class MyHttpsApiTest {
 <div class="sect3">
 <h4 id="_capturing_mode"><a class="anchor" href="#_capturing_mode"></a>2.3.3. Capturing mode</h4>
 <div class="paragraph">
-<p>The strength of this implementation is to run a small proxy server and auto configure the JVM:
-<code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code>
-are auto configured to work out of the box with the proxy.</p>
+<p>The strength of this implementation is to run a small proxy server and to auto-configure the JVM:
+<code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code> are auto-configured to work out-of-the-box with the proxy.</p>
 </div>
 <div class="paragraph">
-<p>It allows you to keep in your tests the native and real URLs. For instance this test is perfectly valid:</p>
+<p>It allows you to keep the native and real URLs in your tests. For example, the following test is valid:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1534,27 +1502,20 @@ are auto configured to work out of the box with the proxy.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>If you execute this test, it will fail with a HTTP 400 because the proxy doesn&#8217;t find the mocked response.
-You can create it manually as seen in the introduction of the module but you can also set the property <code>talend.junit.http.capture</code>
-to the folder where to store the captures. It must be the root folder and not the folder where the json are (ie not prefixed by <code>talend/testing/http</code> by default).</p>
+<p>If you execute this test, it fails with an HTTP 400 error because the proxy does not find the mocked response.<br>
+You can create it manually, as described in <a href="#component-runtime-http-junit">component-runtime-http-junit</a>, but you can also set the <code>talend.junit.http.capture</code> property to the folder storing the captures. It must be the root folder and not the folder where the JSON files are located (not prefixed by <code>talend/testing/http</code> by default).</p>
 </div>
 <div class="paragraph">
-<p>Generally you will want to use <code>src/test/resources</code>. If <code>new File("src/test/resources")</code> resolves to the valid folder when executing your test (Maven default),
-then you can just set the system property to true, otherwise you need to adjust accordingly the system property value.</p>
+<p>In most cases, use <code>src/test/resources</code>. If <code>new File("src/test/resources")</code> resolves the valid folder when executing your test (Maven default), then you can just set the system property to <code>true</code>. Otherwise, you need to adjust accordingly the system property value.</p>
 </div>
 <div class="paragraph">
-<p>Once you ran the tests with this system property, the testing framework will have created the correct mock response files and you can
-remove the system property. The test will still pass, using <code>google.com</code>&#8230;&#8203;even if you disconnect your machine from the internet.</p>
-</div>
-<div class="paragraph">
-<p>The rule (extension) is doing all the work for you :).</p>
+<p>When the tests run with this system property, the testing framework creates the correct mock response files. After that, you can remove the system property. The tests will still pass, using <code>google.com</code>, even if you disconnect your machine from the Internet.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_passthrough_mode"><a class="anchor" href="#_passthrough_mode"></a>2.3.4. Passthrough mode</h4>
 <div class="paragraph">
-<p>Setting <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server will just be a proxy and will execute each request
-to the actual server - like in capturing mode.</p>
+<p>If you set the <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server acts as a proxy and executes each request to the actual server - similarly to the capturing mode.</p>
 </div>
 </div>
 </div>
@@ -1564,30 +1525,25 @@ to the actual server - like in capturing mode.</p>
 <h2 id="_beam_testing"><a class="anchor" href="#_beam_testing"></a>3. Beam testing</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you want to ensure your component works in Beam the minimum to do is to try with the direct runner (if you don&#8217;t want to use spark).</p>
+<p>If you want to make sure that your component works in Beam and don&#8217;t want to use Spark, you can try with the Direct Runner.</p>
 </div>
 <div class="paragraph">
-<p>Check <a href="https://beam.apache.org/contribute/testing/" class="bare">beam.apache.org/contribute/testing/</a> out for more details.</p>
+<p>Check <a href="https://beam.apache.org/contribute/testing/" class="bare">beam.apache.org/contribute/testing/</a> for more details.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_multiple_environments_for_the_same_tests"><a class="anchor" href="#_multiple_environments_for_the_same_tests"></a>4. Multiple environments for the same tests</h2>
+<h2 id="_testing_on_multiple_environments"><a class="anchor" href="#_testing_on_multiple_environments"></a>4. Testing on multiple environments</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>JUnit (4 or 5) already provides some ways to parameterized tests and execute the same "test logic"
-against several data. However it is not that convenient to test multiple environments.</p>
+<p>JUnit (4 or 5) already provides ways to parameterize tests and execute the same "test logic"
+against several sets of data. However, it is not very convenient for testing multiple environments.</p>
 </div>
 <div class="paragraph">
-<p>For instance, with Beam, you can desire to test against multiple runners your code
-and it requires to solve conflicts between runner dependencies, setup the correct classloaders
-etc&#8230;&#8203;It is a lot of work!</p>
+<p>For example, with Beam, you can test your code against multiple runners. But it requires resolving conflicts between runner dependencies, setting the correct classloaders, and so on.</p>
 </div>
 <div class="paragraph">
-<p>To simplify such cases, the framework provides you a multi-environment support for your tests.</p>
-</div>
-<div class="paragraph">
-<p>It is in the junit module and is usable with JUnit 4 and JUnit 5.</p>
+<p>To simplify such cases, the framework provides you a multi-environment support for your tests, through the JUnit module, which works with both JUnit 4 and JUnit 5.</p>
 </div>
 <div class="sect2">
 <h3 id="_junit_4_5"><a class="anchor" href="#_junit_4_5"></a>4.1. JUnit 4</h3>
@@ -1605,18 +1561,16 @@ public class TheTest {
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>MultiEnvironmentsRunner</code> will execute the test(s) for each defined environments. It means it will
-run <code>test1</code> for <code>Env1</code> and <code>Env2</code> in previous example.</p>
+<p>The <code>MultiEnvironmentsRunner</code> executes the tests for each defined environments. With the example above, it means that it runs <code>test1</code> for <code>Env1</code> and <code>Env2</code>.</p>
 </div>
 <div class="paragraph">
-<p>By default <code>JUnit4</code> runner will be used to execute the tests in one environment but you can use <code>@DelegateRunWith</code>
-to use another runner.</p>
+<p>By default, the <code>JUnit4</code> runner is used to execute the tests in one environment, but you can use <code>@DelegateRunWith</code> to use another runner.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_junit_5_5"><a class="anchor" href="#_junit_5_5"></a>4.2. JUnit 5</h3>
 <div class="paragraph">
-<p>JUnit 5 configuration is close to JUnit 4 one:</p>
+<p>The multi-environment configuration with JUnit 5 is similar to JUnit 4:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1632,7 +1586,7 @@ class TheTest {
 </div>
 </div>
 <div class="paragraph">
-<p>The main difference is you don&#8217;t use a runner (it doesn&#8217;t exist in JUnit 5) and you replace <code>@Test</code> by <code>@EnvironmentalTest</code>.</p>
+<p>The main differences are that no runner is used because they do not exist in JUnit 5, and that you need to replace <code>@Test</code> by <code>@EnvironmentalTest</code>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1641,9 +1595,7 @@ class TheTest {
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-the main difference with JUnit 4 integration is that the tests are execute one after each other for all environments
-instead of running all tests in each environments sequentially. It means, for instance, that <code>@BeforeAll</code> and <code>@AfterAll</code> are executed
-once for all runners.
+With JUnit5, tests are executed one after another for all environments, while tests are ran sequentially in each environments with JUnit 4. For example, this means that <code>@BeforeAll</code> and <code>@AfterAll</code> are executed once for all runners.
 </td>
 </tr>
 </table>
@@ -1652,7 +1604,7 @@ once for all runners.
 <div class="sect2">
 <h3 id="_provided_environments"><a class="anchor" href="#_provided_environments"></a>4.3. Provided environments</h3>
 <div class="paragraph">
-<p>The provided environment setup the contextual classloader to load the related runner of Apache Beam.</p>
+<p>The provided environment sets the contextual classloader in order to load the related runner of Apache Beam.</p>
 </div>
 <div class="paragraph">
 <p>Package: <code>org.talend.sdk.component.junit.environment.builtin.beam</code></p>
@@ -1709,8 +1661,7 @@ the configuration is read from system properties, environment variables, &#8230;
 <div class="sect2">
 <h3 id="_configuring_environments"><a class="anchor" href="#_configuring_environments"></a>4.4. Configuring environments</h3>
 <div class="paragraph">
-<p>If the environment extends <code>BaseEnvironmentProvider</code> and therefore defines an environment name - which is the case of the default ones, you can use <code>EnvironmentConfiguration</code>
-to customize the system properties used for that environment:</p>
+<p>If the environment extends <code>BaseEnvironmentProvider</code> and therefore defines an environment name - which is the case of the default ones - you can use <code>EnvironmentConfiguration</code> to customize the system properties used for that environment:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1744,29 +1695,21 @@ class MyBeamTest {
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-if you set the system property <code>&lt;environment name&gt;.skip=true</code> then the environment related executions will be skipped.
+If you set the <code>&lt;environment name&gt;.skip</code> system property to <code>true</code>, the environment-related executions are skipped.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect3">
 <h4 id="_advanced_usage"><a class="anchor" href="#_advanced_usage"></a>4.4.1. Advanced usage</h4>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-this usage assumes Beam 2.4.0 is in used and the classloader fix about the <code>PipelineOptions</code> is merged.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>This usage assumes that Beam 2.4.0 is used.</p>
 </div>
 <div class="paragraph">
-<p>Dependencies:</p>
+<p>The following dependencies bring the JUnit testing toolkit, the Beam integration and the multi-environment testing toolkit for JUnit into the test scope.</p>
 </div>
 <div class="listingblock">
+<div class="title">Dependencies</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">&lt;dependencies&gt;
   &lt;dependency&gt;
@@ -1794,12 +1737,19 @@ this usage assumes Beam 2.4.0 is in used and the classloader fix about the <code
 </div>
 </div>
 <div class="paragraph">
-<p>These dependencies brings into the test scope the JUnit testing toolkit,
-the Beam integration and the multi-environment testing toolkit for JUnit.</p>
+<p>Using the fluent DSL to define jobs, you can write a test as follows:</p>
 </div>
-<div class="paragraph">
-<p>Then using the fluent DSL to define jobs - which assumes your job is linear and
-each step sends a single value (no multi-input/multi-output), you can write this kind of test:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Your job must be linear and each step must send a single value (no multi-input or multi-output).
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1818,15 +1768,15 @@ class TheComponentTest {
 </div>
 </div>
 <div class="paragraph">
-<p>It will execute the chain twice:</p>
+<p>It executes the chain twice:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>with a standalone environment to simulate the studio</p>
+<p>With a standalone environment to simulate the Studio.</p>
 </li>
 <li>
-<p>with a beam (direct runner) environment to ensure the portability of your job</p>
+<p>With a Beam (direct runner) environment to ensure the portability of your job.</p>
 </li>
 </ol>
 </div>
@@ -1838,8 +1788,8 @@ class TheComponentTest {
 <h2 id="_secrets_passwords_and_maven"><a class="anchor" href="#_secrets_passwords_and_maven"></a>5. Secrets/Passwords and Maven</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you desire you can reuse your Maven <code>settings.xml</code> servers - including the encrypted ones.
-<code>org.talend.sdk.component.maven.MavenDecrypter</code> will give you the ability to find a server <code>username</code>/<code>password</code> from
+<p>You can reuse Maven <code>settings.xml</code> server files, including the encrypted ones.
+<code>org.talend.sdk.component.maven.MavenDecrypter</code> allows yo to find a <code>username</code>/<code>password</code> from
 a server identifier:</p>
 </div>
 <div class="listingblock">
@@ -1851,7 +1801,7 @@ final Server decrypted = decrypter.find("my-test-server");
 </div>
 </div>
 <div class="paragraph">
-<p>It is very useful to not store secrets and test on real systems on a continuous integration platform.</p>
+<p>It is very useful to avoid storing secrets and to perform tests on real systems on a continuous integration platform.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1860,8 +1810,7 @@ final Server decrypted = decrypter.find("my-test-server");
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-even if you don&#8217;t use maven on the platform you can generate the <code>settings.xml</code> and <code>settings-security.xml</code> files
-to use that feature. See <a href="https://maven.apache.org/guides/mini/guide-encryption.html" class="bare">maven.apache.org/guides/mini/guide-encryption.html</a> for more details.
+Even if you don&#8217;t use Maven on the platform, you can generate the <code>settings.xml</code> and`settings-security.xml` files to use that feature. See <a href="https://maven.apache.org/guides/mini/guide-encryption.html" class="bare">maven.apache.org/guides/mini/guide-encryption.html</a> for more details.
 </td>
 </tr>
 </table>
@@ -1869,11 +1818,10 @@ to use that feature. See <a href="https://maven.apache.org/guides/mini/guide-enc
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generating_data"><a class="anchor" href="#_generating_data"></a>6. Generating data?</h2>
+<h2 id="_generating_data"><a class="anchor" href="#_generating_data"></a>6. Generating data</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Several data generator exists if you want to populate objects with a semantic a bit more evolved than a plain random string
-like <code>commons-lang3</code>:</p>
+<p>Several data generators exist if you want to populate objects with a semantic that is more evolved than a plain random string like <code>commons-lang3</code>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1887,12 +1835,12 @@ like <code>commons-lang3</code>:</p>
 <p><a href="https://github.com/andygibson/datafactory" class="bare">github.com/andygibson/datafactory</a></p>
 </li>
 <li>
-<p>&#8230;&#8203;</p>
+<p>etc.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>A bit more advanced, these ones allow to bind directly generic data on a model - but data quality is not always there:</p>
+<p>Even more advanced, the following generators allow to directly bind generic data on a model. However, data quality is not always optimal:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1903,25 +1851,25 @@ like <code>commons-lang3</code>:</p>
 <p><a href="https://github.com/benas/random-beans" class="bare">github.com/benas/random-beans</a></p>
 </li>
 <li>
-<p>&#8230;&#8203;</p>
+<p>etc.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Note there are two main kind of implementations:</p>
+<p>There are two main kinds of implementation:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>the one using a <em>pattern</em> and random generated data</p>
+<p>Implementations using a <em>pattern</em> and random generated data.</p>
 </li>
 <li>
-<p>a set of precomputed data extrapolated to create new values</p>
+<p>Implementations using a set of precomputed data extrapolated to create new values.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Check against your use case to know which one is the best.</p>
+<p>Check your use case to know which one fits best.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1930,15 +1878,13 @@ like <code>commons-lang3</code>:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-an interesting alternative to data generation is to import <em>real</em> data and use Talend Studio to sanitize the data (remove sensitive information replacing them by generated data or anonymized data)
-and just inject that file into the system.
+An alternative to data generation can be to import <em>real</em> data and use Talend Studio to sanitize the data, by removing sensitive information and replacing it with generated or anonymized data. Then you just need to inject that file into the system.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>If you are using JUnit 5, you can have a look to <a href="https://glytching.github.io/junit-extensions/randomBeans" class="bare">glytching.github.io/junit-extensions/randomBeans</a>
-which is pretty good on that topic.</p>
+<p>If you are using JUnit 5, you can have a look at <a href="https://glytching.github.io/junit-extensions/randomBeans" class="bare">glytching.github.io/junit-extensions/randomBeans</a>.</p>
 </div>
 </div>
 </div>

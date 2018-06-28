@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internationalization :: Talend Component Kit Developer Reference Guide</title>
+    <title>Internationalizing services :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/services-internationalization.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-27T10:33:55.493Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-28T16:39:10.281Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -646,7 +646,7 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
-    <li class="crumb"><a href="services-internationalization.html">Internationalization</a></li>
+    <li class="crumb"><a href="services-internationalization.html">Internationalizing services</a></li>
   </ul>
 </nav>
     <div class="page-versions">
@@ -670,22 +670,22 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Internationalization</h1>
+        <h1>Internationalizing services</h1>
         <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Recommanded practise for internationalization are:</p>
+<p>Internationalization requires following several best practices:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>store messages using <code>ResourceBundle</code> properties file in your component module</p>
+<p>Storing messages using <code>ResourceBundle</code> properties file in your component module.</p>
 </li>
 <li>
-<p>the location of the properties are in the same package than the related component(s) and is named <code>Messages</code> (ex: <code>org.talend.demo.MyComponent</code> will use <code>org.talend.demo.Messages[locale].properties</code>)</p>
+<p>The location of the properties is in the same package than the related components and is named <code>Messages</code>. For example, <code>org.talend.demo.MyComponent</code> uses <code>org.talend.demo.Messages[locale].properties</code>.</p>
 </li>
 <li>
-<p>for your own messages use the internationalization API</p>
+<p>Use the internationalization API for your own messages.</p>
 </li>
 </ul>
 </div>
@@ -695,24 +695,13 @@
 <h2 id="_internationalization_api"><a class="anchor" href="#_internationalization_api"></a>1. Internationalization API</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Overal idea is to design its messages as methods returning <code>String</code> values
-and back the template by a <code>ResourceBundle</code> located in the same package than the interface
-defining these methods and named <code>Messages</code>.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-this is the mecanism to use to internationalize your own messages in your own components.
-</td>
-</tr>
-</table>
+<p>The Internationalization API is the mechanism to use to internationalize your own messages in your own components.</p>
 </div>
 <div class="paragraph">
-<p>To ensure you internationalization API is identified you need to mark it with <code>@Internationalized</code>:</p>
+<p>The principle of the API is to design messages as methods returning <code>String</code> values and get back a template using a <code>ResourceBundle</code> named <code>Messages</code> and located in the same package than the interface that defines these methods.</p>
+</div>
+<div class="paragraph">
+<p>To ensure your internationalization API is identified, you need to mark it with the <code>@Internationalized</code> annotation:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -733,19 +722,19 @@ public interface Translator {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>@Internationalized</code> allows to mark a class as a i18n service</td>
+<td><code>@Internationalized</code> allows to mark a class as an internationalized service.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>you can pass parameters and the message will use <code>MessageFormat</code> syntax to be resolved based on the <code>ResourceBundle</code> template</td>
+<td>You can pass parameters. The message uses the <code>MessageFormat</code> syntax to be resolved, based on the <code>ResourceBundle</code> template.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>you can use <code>@Language</code> on a <code>Locale</code> parameter to specify manually the locale to use, note that a single value will be used (the first parameter tagged as such).</td>
+<td>You can use <code>@Language</code> on a <code>Locale</code> parameter to specify manually the locale to use. Note that a single value is used (the first parameter tagged as such).</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><code>@Language</code> supports also the type <code>String</code></td>
+<td><code>@Language</code> also supports the <code>String</code> type.</td>
 </tr>
 </table>
 </div>

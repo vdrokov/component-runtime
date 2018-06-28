@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiple environments for the same tests :: Talend Component Kit Developer Reference Guide</title>
+    <title>Testing on multiple environments :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/testing-multiple-envs.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-27T10:33:55.609Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-28T16:39:10.373Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -646,7 +646,7 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
-    <li class="crumb"><a href="testing-multiple-envs.html">Multiple environments for the same tests</a></li>
+    <li class="crumb"><a href="testing-multiple-envs.html">Testing on multiple environments</a></li>
   </ul>
 </nav>
     <div class="page-versions">
@@ -670,23 +670,18 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Multiple environments for the same tests</h1>
+        <h1>Testing on multiple environments</h1>
         <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>JUnit (4 or 5) already provides some ways to parameterized tests and execute the same "test logic"
-against several data. However it is not that convenient to test multiple environments.</p>
+<p>JUnit (4 or 5) already provides ways to parameterize tests and execute the same "test logic"
+against several sets of data. However, it is not very convenient for testing multiple environments.</p>
 </div>
 <div class="paragraph">
-<p>For instance, with Beam, you can desire to test against multiple runners your code
-and it requires to solve conflicts between runner dependencies, setup the correct classloaders
-etc&#8230;&#8203;It is a lot of work!</p>
+<p>For example, with Beam, you can test your code against multiple runners. But it requires resolving conflicts between runner dependencies, setting the correct classloaders, and so on.</p>
 </div>
 <div class="paragraph">
-<p>To simplify such cases, the framework provides you a multi-environment support for your tests.</p>
-</div>
-<div class="paragraph">
-<p>It is in the junit module and is usable with JUnit 4 and JUnit 5.</p>
+<p>To simplify such cases, the framework provides you a multi-environment support for your tests, through the JUnit module, which works with both JUnit 4 and JUnit 5.</p>
 </div>
 </div>
 </div>
@@ -707,12 +702,10 @@ public class TheTest {
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>MultiEnvironmentsRunner</code> will execute the test(s) for each defined environments. It means it will
-run <code>test1</code> for <code>Env1</code> and <code>Env2</code> in previous example.</p>
+<p>The <code>MultiEnvironmentsRunner</code> executes the tests for each defined environments. With the example above, it means that it runs <code>test1</code> for <code>Env1</code> and <code>Env2</code>.</p>
 </div>
 <div class="paragraph">
-<p>By default <code>JUnit4</code> runner will be used to execute the tests in one environment but you can use <code>@DelegateRunWith</code>
-to use another runner.</p>
+<p>By default, the <code>JUnit4</code> runner is used to execute the tests in one environment, but you can use <code>@DelegateRunWith</code> to use another runner.</p>
 </div>
 </div>
 </div>
@@ -720,7 +713,7 @@ to use another runner.</p>
 <h2 id="_junit_5"><a class="anchor" href="#_junit_5"></a>2. JUnit 5</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>JUnit 5 configuration is close to JUnit 4 one:</p>
+<p>The multi-environment configuration with JUnit 5 is similar to JUnit 4:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -736,7 +729,7 @@ class TheTest {
 </div>
 </div>
 <div class="paragraph">
-<p>The main difference is you don&#8217;t use a runner (it doesn&#8217;t exist in JUnit 5) and you replace <code>@Test</code> by <code>@EnvironmentalTest</code>.</p>
+<p>The main differences are that no runner is used because they do not exist in JUnit 5, and that you need to replace <code>@Test</code> by <code>@EnvironmentalTest</code>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -745,9 +738,7 @@ class TheTest {
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-the main difference with JUnit 4 integration is that the tests are execute one after each other for all environments
-instead of running all tests in each environments sequentially. It means, for instance, that <code>@BeforeAll</code> and <code>@AfterAll</code> are executed
-once for all runners.
+With JUnit5, tests are executed one after another for all environments, while tests are ran sequentially in each environments with JUnit 4. For example, this means that <code>@BeforeAll</code> and <code>@AfterAll</code> are executed once for all runners.
 </td>
 </tr>
 </table>
@@ -758,7 +749,7 @@ once for all runners.
 <h2 id="_provided_environments"><a class="anchor" href="#_provided_environments"></a>3. Provided environments</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The provided environment setup the contextual classloader to load the related runner of Apache Beam.</p>
+<p>The provided environment sets the contextual classloader in order to load the related runner of Apache Beam.</p>
 </div>
 <div class="paragraph">
 <p>Package: <code>org.talend.sdk.component.junit.environment.builtin.beam</code></p>
@@ -817,8 +808,7 @@ the configuration is read from system properties, environment variables, &#8230;
 <h2 id="_configuring_environments"><a class="anchor" href="#_configuring_environments"></a>4. Configuring environments</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If the environment extends <code>BaseEnvironmentProvider</code> and therefore defines an environment name - which is the case of the default ones, you can use <code>EnvironmentConfiguration</code>
-to customize the system properties used for that environment:</p>
+<p>If the environment extends <code>BaseEnvironmentProvider</code> and therefore defines an environment name - which is the case of the default ones - you can use <code>EnvironmentConfiguration</code> to customize the system properties used for that environment:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -852,29 +842,21 @@ class MyBeamTest {
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-if you set the system property <code>&lt;environment name&gt;.skip=true</code> then the environment related executions will be skipped.
+If you set the <code>&lt;environment name&gt;.skip</code> system property to <code>true</code>, the environment-related executions are skipped.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
 <h3 id="_advanced_usage"><a class="anchor" href="#_advanced_usage"></a>4.1. Advanced usage</h3>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-this usage assumes Beam 2.4.0 is in used and the classloader fix about the <code>PipelineOptions</code> is merged.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>This usage assumes that Beam 2.4.0 is used.</p>
 </div>
 <div class="paragraph">
-<p>Dependencies:</p>
+<p>The following dependencies bring the JUnit testing toolkit, the Beam integration and the multi-environment testing toolkit for JUnit into the test scope.</p>
 </div>
 <div class="listingblock">
+<div class="title">Dependencies</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">&lt;dependencies&gt;
   &lt;dependency&gt;
@@ -902,12 +884,19 @@ this usage assumes Beam 2.4.0 is in used and the classloader fix about the <code
 </div>
 </div>
 <div class="paragraph">
-<p>These dependencies brings into the test scope the JUnit testing toolkit,
-the Beam integration and the multi-environment testing toolkit for JUnit.</p>
+<p>Using the fluent DSL to define jobs, you can write a test as follows:</p>
 </div>
-<div class="paragraph">
-<p>Then using the fluent DSL to define jobs - which assumes your job is linear and
-each step sends a single value (no multi-input/multi-output), you can write this kind of test:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Your job must be linear and each step must send a single value (no multi-input or multi-output).
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -926,15 +915,15 @@ class TheComponentTest {
 </div>
 </div>
 <div class="paragraph">
-<p>It will execute the chain twice:</p>
+<p>It executes the chain twice:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>with a standalone environment to simulate the studio</p>
+<p>With a standalone environment to simulate the Studio.</p>
 </li>
 <li>
-<p>with a beam (direct runner) environment to ensure the portability of your job</p>
+<p>With a Beam (direct runner) environment to ensure the portability of your job.</p>
 </li>
 </ol>
 </div>

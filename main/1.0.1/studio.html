@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Studio Integration :: Talend Component Kit Developer Reference Guide</title>
+    <title>Integrating components into Talend Studio :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/studio.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-27T10:33:55.544Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-28T16:39:10.315Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -646,7 +646,7 @@
     <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
-    <li class="crumb"><a href="studio.html">Talend Component Studio Integration</a></li>
+    <li class="crumb"><a href="studio.html">Integrating components into Talend Studio</a></li>
   </ul>
 </nav>
     <div class="page-versions">
@@ -670,27 +670,34 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Talend Component Studio Integration</h1>
+        <h1>Integrating components into Talend Studio</h1>
         <div class="sect1">
 <h2 id="_design"><a class="anchor" href="#_design"></a>1. Design</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The studio integration relies on Component Server (see <a href="documentation-rest.html" class="page">Web</a> for more details).</p>
+<p>The Studio integration relies on the Component Server (see <a href="documentation-rest.html" class="page">Web</a> for more details).</p>
 </div>
 <div class="paragraph">
-<p>When the plugin is deployed it starts a local server the Studio uses to gather data about the components.</p>
+<p>When the plugin is deployed, it starts a local server that the Studio uses to gather data about the components.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_installation"><a class="anchor" href="#_installation"></a>2. Installation</h2>
+<h2 id="_installing_the_components"><a class="anchor" href="#_installing_the_components"></a>2. Installing the components</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Copy <code>org.talend.sdk.component.studio-integration.jar</code> in the <code>$STUDIO_HOME/plugins</code> directory and restart the studio.</p>
-</div>
-<div class="paragraph">
-<p>Also ensure the <code>component-server</code> dependencies  and <code>commons-cli</code> 1.4 are into the Studio maven repository. If you install any component,
-ensure its dependencies are in the repository as well.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy <code>org.talend.sdk.component.studio-integration.jar</code> in the <code>$STUDIO_HOME/plugins</code> directory of the Studio.</p>
+</li>
+<li>
+<p>Restart the Studio.</p>
+</li>
+<li>
+<p>Make sure that the <code>component-server</code> dependencies and <code>commons-cli</code> 1.4 are in the Studio Maven repository.<br>
+If you install any other component, ensure its dependencies are in the repository as well.</p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -699,8 +706,7 @@ ensure its dependencies are in the repository as well.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-you can set in <code>$STUDIO_HOME/configuration/config.ini</code> the value <code>maven.repository</code> to <code>global</code> to reuse
-your local maven repository.
+you can set the <code>maven.repository</code> value to <code>global</code> in <code>$STUDIO_HOME/configuration/config.ini</code> to reuse your local Maven repository.
 </td>
 </tr>
 </table>
@@ -708,10 +714,10 @@ your local maven repository.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>3. Configuration</h2>
+<h2 id="_configuring_the_components"><a class="anchor" href="#_configuring_the_components"></a>3. Configuring the components</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The configuration goes into <code>$STUDIO_HOME/configuration/config.ini</code>.</p>
+<p>The configuration is done in the <code>$STUDIO_HOME/configuration/config.ini</code> file.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -727,17 +733,17 @@ your local maven repository.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.environment</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Active the developer mode when set to <code>dev</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables the developer mode when set to <code>dev</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.debounce.timeout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies timeout in milliseconds before calling listeners in components Text fields</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the timeout (in milliseconds) before calling listeners in components Text fields</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">750</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.kit.skip</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code> the plugin is not active. Useful if you don&#8217;t have any component develop with the framework.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set to <code>true</code>, the plugin is not enabled. It is useful if you don&#8217;t have any component developed with the framework.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 <tr>
@@ -747,22 +753,22 @@ your local maven repository.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.java.m2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The maven repository the server uses to resolve components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">default to global Studio configuration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maven repository that the server uses to resolve components</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defaults to the global Studio configuration</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.java.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A list of comma separated GAV (groupId:artifactId:version) of components to register</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of comma-separated GAV (groupId:artifactId:version) of components to register</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.java.registry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A properties file with values matching component GAV (groupId:artifactId:version) which are registered at startup</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A properties file with values matching component GAV (groupId:artifactId:version) registered at startup</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.java.port</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set a port to use for the server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the port to use for the server</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">random</p></td>
 </tr>
 <tr>
@@ -773,21 +779,12 @@ your local maven repository.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.server.jul.forceConsole</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Adds a console handler to JUL to see logs in the console. This can be helpful in dev since the formatting will be better than the OSGi one in <code>workspace/.metadata/.log</code>.</p>
+<p>Adds a console handler to JUL to see logs in the console. This can be helpful in development because the formatting is clearer than the OSGi one in <code>workspace/.metadata/.log</code>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-it uses <code>java.util.logging.SimpleFormatter.format</code> property to define its format. Default
-is <code>%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%6$s%n</code> but for development purposes
-<code>[%4$s] %5$s%6$s%n</code> is simpler and more readable.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>It uses the <code>java.util.logging.SimpleFormatter.format</code> property to define its format. By default, it
+is <code>%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%6$s%n</code>, but for development purposes
+<code>[%4$s] %5$s%6$s%n</code> is simpler and more readable.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
@@ -800,13 +797,13 @@ is <code>%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%6$s%n</code
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-to activate the plugin and be able to deploy your component, don&#8217;t forget to set <code>component.kit.skip</code> to <code>true</code>.
+To activate the plugin and be able to deploy your component, set <code>component.kit.skip</code> to <code>true</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>A common developer <code>configuration/config.ini</code> will use the following specific entries:</p>
+<p>A common developer <code>configuration/config.ini</code> file uses the following specific entries:</p>
 </div>
 <div class="listingblock">
 <div class="title">configuration/config.ini</div>
@@ -830,31 +827,19 @@ java.util.logging.SimpleFormatter.format = [%4$s] %5$s%6$s%n</code></pre>
 <div class="sect2">
 <h3 id="_random_port_when_running_concurrent_studio_instances"><a class="anchor" href="#_random_port_when_running_concurrent_studio_instances"></a>3.1. Random port when running concurrent studio instances</h3>
 <div class="paragraph">
-<p>If you run multiple Studio instance automatically in parallel you can have some issues with the random port computation
-(can happen on a CI platform). For that purpose you can create the file <code>$HOME/.talend/locks/org.talend.sdk.component.studio-integration.lock</code>.</p>
+<p>If you run multiple Studio instances automatically in parallel, you can run into some issues with the random port computation. For example on a CI platform. For that purpose, you can create the  <code>$HOME/.talend/locks/org.talend.sdk.component.studio-integration.lock</code> file.</p>
 </div>
 <div class="paragraph">
-<p>When a server will start it will acquire a lock on that file and prevent another one to get a port until it is started. It ensures
-you can&#8217;t get two concurrent processes getting the same allocated port.</p>
+<p>Then, when a server starts, it acquires a lock on that file and prevents another server to get a port until it is started. It ensures that you can&#8217;t have two concurrent processes getting the same port allocated.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-it is highly unlikely it happens on a desktop and forcing a different value through <code>component.java.port</code> in your <code>config.ini</code> is likely a better
-solution for local installations.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>However, it is highly unlikely to happen on a desktop. In that case, forcing a different value through <code>component.java.port</code> in your <code>config.ini</code> file is a better solution for local installations.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_developer_mode"><a class="anchor" href="#_developer_mode"></a>3.2. Developer mode</h3>
 <div class="paragraph">
-<p>The developer mode will add a Talend Component Kit button in the main toolbar:</p>
+<p>The developer mode adds a Talend Component Kit button in the main toolbar:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -862,8 +847,8 @@ solution for local installations.
 </div>
 </div>
 <div class="paragraph">
-<p>When clicking on this button, all component developped with the framework will be reloaded.
-The cache will be invalidated and the component refreshed.</p>
+<p>When clicking this button, all components developed with the Talend Component Kit framework are reloaded.
+The cache is invalidated and the components refreshed.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -872,13 +857,13 @@ The cache will be invalidated and the component refreshed.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-you still need to add/remove the components to see the changes.
+You still need to add and remove the components to see the changes.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>This feature is very useful to see some updates in components without having to restart the studio completly.</p>
+<p>The developer mode can be very useful to see some updates in components without having to restart entirely the Studio.</p>
 </div>
 </div>
 </div>

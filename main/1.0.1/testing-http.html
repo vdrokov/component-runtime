@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/testing-http.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-06-27T10:33:55.583Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-06-28T16:39:10.349Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -667,10 +667,10 @@
 </div>
 <article class="doc">
         <div class="sect1">
-<h2 id="_component_runtime_http_junit"><a class="anchor" href="#_component_runtime_http_junit"></a>1. component-runtime-http-junit</h2>
+<h2 id="component-runtime-http-junit"><a class="anchor" href="#component-runtime-http-junit"></a>1. component-runtime-http-junit</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The HTTP JUnit module allows you to mock REST API very easily. Here are its coordinates:</p>
+<p>The HTTP JUnit module allows you to mock REST API very simply. The module coordinates are:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -689,26 +689,32 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-this module uses Apache Johnzon and Netty, if you have any conflict (in particular with netty) you can add the classifier <code>shaded</code>
-to the dependency and the two dependencies are shaded avoiding the conflicts with your component.
+This module uses Apache Johnzon and Netty. If you have any conflict (in particular with Netty), you can add the <code>shaded</code> classifier to the dependency. This way, both dependencies are shaded, which avoids conflicts with your component.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>It supports JUnit 4 and JUnit 5 as well but the overall concept is the exact same one: the extension/rule
+<p>It supports both JUnit 4 and JUnit 5. The concept is the exact same one: the extension/rule
 is able to serve precomputed responses saved in the classpath.</p>
 </div>
 <div class="paragraph">
-<p>You can plug your own <code>ResponseLocator</code> to map a request to a response but the default implementation - which should be sufficient
-in most cases - will look in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it
-in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
+<p>You can plug your own <code>ResponseLocator</code> to map a request to a response, but the default implementation - which should be sufficient in most cases - looks in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1. JUnit 4</h3>
 <div class="paragraph">
-<p>JUnit 4 setup is done through two rules: <code>JUnit4HttpApi</code> which is responsible to start the server and <code>JUnit4HttpApiPerMethodConfigurator</code>
-which is responsible to configure the server per test and also handle the capture mode (see later).</p>
+<p>JUnit 4 setup is done through two rules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>JUnit4HttpApi</code>, which is starts the server.</p>
+</li>
+<li>
+<p><code>JUnit4HttpApiPerMethodConfigurator</code>, which configures the server per test and also handles the capture mode.</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -717,15 +723,13 @@ which is responsible to configure the server per test and also handle the captur
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the capture feature will be deactivated and the per test mocking will not be available.
+If you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the capture feature is disabled and the per test mocking is not available.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Most of the test will look like:</p>
-</div>
 <div class="listingblock">
+<div class="title">Test example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyRESTApiTest {
     @ClassRule
@@ -744,10 +748,10 @@ if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the 
 <div class="sect3">
 <h4 id="_ssl"><a class="anchor" href="#_ssl"></a>1.1.1. SSL</h4>
 <div class="paragraph">
-<p>For tests using SSL based services, you will need to use <code>activeSsl()</code> on the <code>JUnit4HttpApi</code> rule.</p>
+<p>For tests using SSL-based services, you need to use <code>activeSsl()</code> on the <code>JUnit4HttpApi</code> rule.</p>
 </div>
 <div class="paragraph">
-<p>If you need to access the server ssl socket factory you can do it from the <code>HttpApiHandler</code> (the rule):</p>
+<p>You can access the client SSL socket factory through the API handler:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -767,8 +771,7 @@ public void test() throws Exception {
 <div class="sect2">
 <h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
 <div class="paragraph">
-<p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation you can put on your test class. You can inject
-the test handler (which has some utilities for advanced cases) through <code>@HttpApiInject</code>:</p>
+<p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation that you can add to your test class. You can inject the test handler - which has some utilities for advanced cases - through <code>@HttpApiInject</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -791,7 +794,7 @@ class JUnit5HttpApiTest {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-the injection is optional and the <code>@HttpApi</code> allows you to configure several behaviors of the test.
+The injection is optional and the <code>@HttpApi</code> annotation allows you to configure several test behaviors.
 </td>
 </tr>
 </table>
@@ -799,10 +802,10 @@ the injection is optional and the <code>@HttpApi</code> allows you to configure 
 <div class="sect3">
 <h4 id="_ssl_2"><a class="anchor" href="#_ssl_2"></a>1.2.1. SSL</h4>
 <div class="paragraph">
-<p>For tests using SSL based services, you will need to use <code>@HttpApi(useSsl = true)</code>.</p>
+<p>For tests using SSL-based services, you need to use <code>@HttpApi(useSsl = true)</code>.</p>
 </div>
 <div class="paragraph">
-<p>You can access the client SSL socket factory through the api handler:</p>
+<p>You can access the client SSL socket factory through the API handler:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -825,12 +828,11 @@ class MyHttpsApiTest {
 <div class="sect2">
 <h3 id="_capturing_mode"><a class="anchor" href="#_capturing_mode"></a>1.3. Capturing mode</h3>
 <div class="paragraph">
-<p>The strength of this implementation is to run a small proxy server and auto configure the JVM:
-<code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code>
-are auto configured to work out of the box with the proxy.</p>
+<p>The strength of this implementation is to run a small proxy server and to auto-configure the JVM:
+<code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code> are auto-configured to work out-of-the-box with the proxy.</p>
 </div>
 <div class="paragraph">
-<p>It allows you to keep in your tests the native and real URLs. For instance this test is perfectly valid:</p>
+<p>It allows you to keep the native and real URLs in your tests. For example, the following test is valid:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -853,27 +855,20 @@ are auto configured to work out of the box with the proxy.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>If you execute this test, it will fail with a HTTP 400 because the proxy doesn&#8217;t find the mocked response.
-You can create it manually as seen in the introduction of the module but you can also set the property <code>talend.junit.http.capture</code>
-to the folder where to store the captures. It must be the root folder and not the folder where the json are (ie not prefixed by <code>talend/testing/http</code> by default).</p>
+<p>If you execute this test, it fails with an HTTP 400 error because the proxy does not find the mocked response.<br>
+You can create it manually, as described in <a href="#component-runtime-http-junit">component-runtime-http-junit</a>, but you can also set the <code>talend.junit.http.capture</code> property to the folder storing the captures. It must be the root folder and not the folder where the JSON files are located (not prefixed by <code>talend/testing/http</code> by default).</p>
 </div>
 <div class="paragraph">
-<p>Generally you will want to use <code>src/test/resources</code>. If <code>new File("src/test/resources")</code> resolves to the valid folder when executing your test (Maven default),
-then you can just set the system property to true, otherwise you need to adjust accordingly the system property value.</p>
+<p>In most cases, use <code>src/test/resources</code>. If <code>new File("src/test/resources")</code> resolves the valid folder when executing your test (Maven default), then you can just set the system property to <code>true</code>. Otherwise, you need to adjust accordingly the system property value.</p>
 </div>
 <div class="paragraph">
-<p>Once you ran the tests with this system property, the testing framework will have created the correct mock response files and you can
-remove the system property. The test will still pass, using <code>google.com</code>&#8230;&#8203;even if you disconnect your machine from the internet.</p>
-</div>
-<div class="paragraph">
-<p>The rule (extension) is doing all the work for you :).</p>
+<p>When the tests run with this system property, the testing framework creates the correct mock response files. After that, you can remove the system property. The tests will still pass, using <code>google.com</code>, even if you disconnect your machine from the Internet.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_passthrough_mode"><a class="anchor" href="#_passthrough_mode"></a>1.4. Passthrough mode</h3>
 <div class="paragraph">
-<p>Setting <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server will just be a proxy and will execute each request
-to the actual server - like in capturing mode.</p>
+<p>If you set the <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server acts as a proxy and executes each request to the actual server - similarly to the capturing mode.</p>
 </div>
 </div>
 </div>
