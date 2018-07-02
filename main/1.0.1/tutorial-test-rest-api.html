@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to test a REST API :: Talend Component Kit Developer Reference Guide</title>
+    <title>Testing a REST API :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/tutorial-test-rest-api.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-02T09:05:31.997Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-02T10:41:02.421Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -671,23 +671,21 @@
 </div>
 </div>
 <article class="doc">
-        <h1>How to test a REST API</h1>
-        <div id="tutorial-test-rest-api" class="paragraph">
-<p>Testing code that consume REST API(s) can sometimes presents some difficulties,
-as you can face allot of constraints when dealing with them,
-like API rates limit, authentication tokens and passwords sharing, API availability, sandbox that expire or API&#8217;s cost that may be high&#8230;&#8203;</p>
+        <h1>Testing a REST API</h1>
+        <div id="preamble">
+<div class="sectionbody">
+<div id="tutorial-test-rest-api" class="paragraph">
+<p>Testing code that consumes REST APIs can sometimes present many constraints: API rate limit, authentication token and password sharing, API availability, sandbox expiration, API costs, and so on.</p>
 </div>
 <div class="paragraph">
-<p>As a developer you don&#8217;t want to care about all that, as all what you want to achieve is writing some good tests for your code logic.
-This is why, having the possibility to easily mock the API response is trivial.</p>
+<p>As a developer, it becomes critical to avoid those constraints and to be able to easily mock the API response.</p>
 </div>
 <div class="paragraph">
-<p>The component framework provides an API simulation tool that make it easy to write unit tests. In this tutorial we will
-show how to use it in unit tests.</p>
+<p>The component framework provides an API simulation tool that makes it easy to write unit tests.</p>
 </div>
 <div class="paragraph">
-<p>In <a href="tutorial-create-components-rest-api.html" class="page">this previous tutorial</a>, we have created a component that consume Zendesk Search API.
-We will add some unit tests for it.</p>
+<p>This tutorial shows how to use this tool in unit tests.
+As a starting point, the tutorial uses the component that consumes Zendesk Search API and that was created in <a href="tutorial-create-components-rest-api.html" class="page">a previous tutorial</a>. The goal is to add unit tests for it.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -696,18 +694,22 @@ We will add some unit tests for it.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-We have added 4 <strong>tickets</strong> that have the <strong>status</strong> open to our Zendesk test instance. that we will use in our tests
+For this tutorial, four <strong>tickets</strong> that have the <strong>open</strong> status have been added to the Zendesk test instance used in the tests.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>In our tutorial we will use some concept from <a href="testing-junit.html#_junit_4" class="page">component junit testing</a>.
-You can refer to this page to read about the <code>SimpleComponentRule</code> &#8230;&#8203;</p>
+<p>To learn more about the testing methodology used in this tutorial, refer to <a href="testing-junit.html#_junit_4" class="page">Component JUnit testing</a>.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_the_unit_test"><a class="anchor" href="#_creating_the_unit_test"></a>1. Creating the unit test</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>L&#8217;est create a first unit test that will perform a real http request to Zendesk Search API instance.
-You can read how to create a simple unit test in <a href="tutorial-test-your-components.html" class="page">this tutorial</a></p>
+<p>Create a unit test that performs a real HTTP request to the Zendesk Search API instance.
+You can learn how to create a simple unit test in <a href="tutorial-test-your-components.html" class="page">this tutorial</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -746,61 +748,75 @@ You can read how to create a simple unit test in <a href="tutorial-test-your-com
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>We initiate our authentication configuration using zendesk instance&#8217;s url and credentials.
-We also initiate our search query configuration. We want to get all the open ticket order by the creation date in a descendant order.</td>
+<td>Initiating:
+<div class="ulist">
+<ul>
+<li>
+<p>the authentication configuration using Zendesk instance URL and credentials.</p>
+</li>
+<li>
+<p>the search query configuration to get all the open ticket, ordered by creation date and sorted in descending order.</p>
+</li>
+</ul>
+</div></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Here we perform a simple conversion of our configuration to URI format, that we will use in the job test pipeline,
-using <code>SimpleFactory</code> class provided by the component framework. <a href="services-pipeline.html#_job_builder" class="page">Read more about job pipeline</a>.</td>
+<td>Converting the configuration to a URI format that will be used in the job test pipeline,
+using the <code>SimpleFactory</code> class provided by the component framework. <a href="services-pipeline.html#_job_builder" class="page">Read more about job pipeline</a>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We create our job test pipeline. this is a simple pipeline that will execute our <code>search</code> component and redirect the result
-to the test collector component that will collect the search result.
-We execute the pipeline.
-Then, We get the job result and we ensure that we have received the 4 tickets. You can also check that the retrieved tickets have the open status.</td>
+<td>Creating the job test pipeline. The pipeline executes the <code>search</code> component and redirects the result to the test <code>collector</code> component, that collects the search result.
+The pipeline is then executed.
+Finally, the job result is retrieved to check that the four tickets have been received. You can also check that the tickets have the <code>open</code> status.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>So here we have created a complete working test. the test is performing real http request to our zendesk instance.
-but we may don&#8217;t want do that every time on the development environment.
-We may want to execute real http request only on an integration environment and on development environment use some mocked result
-to develop faster or for any other reasons.</p>
+<p>The test is now complete and working. It performs a real HTTP request to the Zendesk instance.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_transforming_the_unit_test_into_a_mocked_test"><a class="anchor" href="#_transforming_the_unit_test_into_a_mocked_test"></a>2. Transforming the unit test into a mocked test</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As an alternative, you can use mock results to avoid performing HTTP requests every time on the development environment. The real HTTP requests would, for example, only be performed on an integration environment.</p>
 </div>
 <div class="paragraph">
-<p>Now we will transform this unit test to a mocked test that will use only mocked response of zendesk Search API.
-To do that you will need to add 2 junit rules provided by the component framework.</p>
+<p>To transform the unit test into a mocked test that uses a mocked response of the Zendesk Search API:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>JUnit4HttpApi</code> - this rule will start a simulation server that will act as a proxy and catch all the http requests performed inside the tests.
-This simulation server (proxy) have 2 modes :</p>
+<p>Add the two following JUnit rules provided by the component framework.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>capture</strong>    : this mode will forward the captured http request to the real server and capture there response.</p>
+<p><code>JUnit4HttpApi</code>: This rule starts a simulation server that acts as a proxy and catches all the HTTP requests performed in the tests.
+This simulation server has two modes :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>capture</strong>    : This mode forwards the captured HTTP request to the real server and captures the response.</p>
 </li>
 <li>
-<p><strong>simulation</strong> : this mode will return a mocked response from the already captured responses.
-This rule need to be added as a class rule</p>
+<p><strong>simulation</strong> : this mode returns a mocked response from the responses already captured. This rule needs to be added as a class rule.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>JUnit4HttpApi</code> - this rule have a reference to the first one and it role is to configure the simulation server for every unit test.
-it provide the simulation server by the running test context.
-This rule need to be added as a simple (method) rule.</p>
+<p><code>JUnit4HttpApi</code>: This rule has a reference to the first rule. Its role is to configure the simulation server for every unit test. It passes the context of the running test to the simulation server. This rule needs to be added as a simple (method) rule.</p>
+</li>
+</ul>
+</div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>Let&#8217;s add those 2 rules to our test to make it run in a simulation mode.</p>
-</div>
 <div class="listingblock">
+<div class="title">Example to run in a simulation mode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SearchTest {
 
@@ -826,31 +842,31 @@ This rule need to be added as a simple (method) rule.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>As described above, we create and start a simulation server for this test class.</td>
+<td>Creating and starting a simulation server for this test class.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>As the API that we consume use ssl, we need to activate ssl on or simulation server by simply calling the <code>activeSsl()</code> method.</td>
+<td>Activating SSL on the simulation server by calling the <code>activeSsl()</code> method. This step is required because the consumed API uses SSL.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We add our simulation server configuration provider. that will provide the test context to the simulation server.</td>
+<td>Adding the simulation server configuration provider that provides the test context to the simulation server.</td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>We almost done,</p>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Make the test run in <strong>capture</strong> mode to catch the real API responses that can be used later in the simulated mode.<br>
+To do that, set a new <code>talend.junit.http.capture</code> environment variable to <code>true</code>.
+This tells the simulation server to run in a capture mode.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Now we need to run our test in <strong>capture</strong> mode to catch the real API responses to be able to use them later in the simulated mode.</p>
+<p>The captured response is saved in the <code>resources/talend.testing.http</code> package in a JSON format, then reused to perform the API simulation.</p>
 </div>
-<div class="paragraph">
-<p>To do that, we will have to set an environment variable <code>talend.junit.http.capture</code> to <code>true</code>.
-This will tel the simulation server to run in a capture mode.
-The captured response will be saved into <code>resources/talend.testing.http</code> package in a json format, then reused to perform API simulation.</p>
 </div>
-<div class="paragraph">
-<p>Now you know how to easily mock your component that consume REST API.</p>
 </div>
     </article>
   </main>

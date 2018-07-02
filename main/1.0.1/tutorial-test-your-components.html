@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test your components :: Talend Component Kit Developer Reference Guide</title>
+    <title>Testing a component :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/tutorial-test-your-components.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-02T09:05:32.004Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-02T10:41:02.430Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -671,13 +671,12 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Test your components</h1>
+        <h1>Testing a component</h1>
         <div id="tutorial-test-your-components" class="paragraph">
-<p>In a <a href="tutorial-create-an-input-component.html" class="page">previous tutorial</a> we have created an input component for hazelcast. In this one we will show how to write some
-unit tests for it.</p>
+<p>This tutorial focuses on writing unit tests for the input component that was created in this <a href="tutorial-create-an-input-component.html" class="page">previous tutorial</a>.</p>
 </div>
 <div class="paragraph">
-<p>In this tutorial we will cover :</p>
+<p>This tutorial covers:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -693,7 +692,7 @@ unit tests for it.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>Here is our test class. let&#8217;s examine it in details.</p>
+<p>The test class is as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -737,36 +736,32 @@ unit tests for it.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>SimpleComponentRule</code> is a junit rule that let you load your component from a package.
-This rule also provide some tests components like <code>emitter</code> and <code>collector</code> <a href="testing-junit.html#_component_runtime_junit" class="page">Read more&#8230;&#8203;</a>.</td>
+<td><code>SimpleComponentRule</code> is a JUnit rule that lets you load your component from a package. This rule also provides some test components like <code>emitter</code> and <code>collector</code>. Learn more about JUnit in <a href="testing-junit.html#_component_runtime_junit" class="page">this section</a>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>An embedded hazelcast instance that we will use to test our input component.</td>
+<td>Using an embedded Hazelcast instance to test the input component.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Here we create an embedded hazelcast instance and we fill it with some test data. We create a map with the name of our test class
-and add some data to it.</td>
+<td>Creating an embedded Hazelcast instance and filling it with some test data. A map with the name of the test class is created and data is added to it.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>We clean up the instance after the end o the tests.</td>
+<td>Cleaning up the instance after the end of the tests.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>This is our unit test. Here we will create a job pipeline that use our input component.</td>
+<td>Defining the unit test. It first creates a job pipeline that uses our input component.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>We use the <code>Job</code> <a href="services-pipeline.html" class="page">pipeline builder</a> to create a job. It contains two components
-the input component and the test collector component. We connect the input component to the collector component, build the job
-and run it locally.</td>
+<td>The <a href="services-pipeline.html" class="page">pipeline builder</a> <code>Job</code> is used to create a job. It contains two components: the input component and the test collector component. The input component is connected to the collector component. Then the job is built and ran locally.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>After the job has finished running. We simply use the COMPONENTS rule instance to get the collected data from the <code>collector</code> component.
-Then we can do some assertion on the collected data.</td>
+<td>After the job has finished running. The <code>COMPONENTS</code> rule instance is used to get the collected data from the <code>collector</code> component.
+Once this is done, it is possible to do some assertion on the collected data.</td>
 </tr>
 </table>
 </div>
