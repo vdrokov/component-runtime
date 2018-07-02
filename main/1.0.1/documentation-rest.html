@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/documentation-rest.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-01T13:48:32.834Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-02T09:05:31.735Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -697,6 +697,15 @@
 <li><a href="#_http_api_2">5.3. HTTP API</a></li>
 <li><a href="#play-integration">5.4. Integrating with Play</a></li>
 <li><a href="#_configuring_the_server_module">5.5. Configuring the server module</a></li>
+</ul>
+</li>
+<li><a href="#_docker">6. Docker</a>
+<ul class="sectlevel2">
+<li><a href="#_run">6.1. Run</a></li>
+<li><a href="#_configure">6.2. Configure</a></li>
+<li><a href="#_maven_repository">6.3. Maven repository</a></li>
+<li><a href="#_logging_2">6.4. Logging</a></li>
+<li><a href="#_build_the_image_yourself">6.5. Build the image yourself</a></li>
 </ul>
 </li>
 </ul>
@@ -4630,6 +4639,216 @@ the configuration is read from system properties, environment variables, &#8230;
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker"><a class="anchor" href="#_docker"></a>6. Docker</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The server image is deployed on Docker. Its version is suffixed with a timestamp to ensure
+images are not overriden and can break your usage. You can check the available version on Docker hub.</p>
+</div>
+<div class="sect2">
+<h3 id="_run"><a class="anchor" href="#_run"></a>6.1. Run</h3>
+<div class="paragraph">
+<p>You can run the docker image by executing this command :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ sudo docker run -p 8080:8080 tacokit/component-starter</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configure"><a class="anchor" href="#_configure"></a>6.2. Configure</h3>
+<div class="paragraph">
+<p>You can set the env variable <code>MEECROWAVE_OPTS</code> to customize the server, by default it is installed in <code>/opt/talend/component-kit</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_maven_repository"><a class="anchor" href="#_maven_repository"></a>6.3. Maven repository</h3>
+<div class="paragraph">
+<p>The maven repository is the default one of the machine, you can change it setting the system property
+<code>talend_component_server_maven_repository=/path/to/your/m2</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_deploy_components_to_the_server"><a class="anchor" href="#_deploy_components_to_the_server"></a>6.3.1. Deploy components to the server</h4>
+<div class="paragraph">
+<p>If you want to deploy some components you can configure which ones in MEECROWAVE_OPTS (see server doc online)
+and redirect your local m2:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ docker run \
+       -p 8080:8080 \
+       -v ~/.m2:/root/.m2 \
+       -e MEECROWAVE_OPTS="-Dtalend.component.server.component.coordinates=g:a:v,g2:a2:v2,..." \
+       component-server</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_logging_2"><a class="anchor" href="#_logging_2"></a>6.4. Logging</h3>
+<div class="paragraph">
+<p>The component server docker image comes with two log4j2 profile <code>default</code> and <code>kafka</code>.
+The logging profile can be changed by setting the environment variable <code>TALEND_COMPONENT_LOG4J2_PROFILE</code> to <code>kafka</code>
+the <code>default</code> profile is active by default.</p>
+</div>
+<div class="sect3">
+<h4 id="_default_profile"><a class="anchor" href="#_default_profile"></a>6.4.1. default profile</h4>
+<div class="paragraph">
+<p>The <strong>default</strong> profile has file and console logging capabilities.
+The console logging is off by default and you can activate it by setting <code>CONSOLE_LOG_LEVEL</code> environment variable
+to <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code> or any other log level supported by log4j2. In practise and during development you will want
+to see the logs without connecting to the server by activating console logging.</p>
+</div>
+<div class="paragraph">
+<p>Run docker image with console logging</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">sudo docker run -p 8080:8080 \
+	-e CONSOLE_LOG_LEVEL=INFO \
+	component-server</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_kafka_profile"><a class="anchor" href="#_kafka_profile"></a>6.4.2. Kafka profile</h4>
+<div class="paragraph">
+<p><strong>Kafka</strong> profile let you send log to Kafka servers. The log are formatted in json and follow the layout defined by Talend
+and described here <a href="https://github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout" class="bare">github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout</a></p>
+</div>
+<div class="paragraph">
+<p>This profile require two environment variables</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>LOG_KAFKA_TOPIC</code> : Kafka topic.</p>
+</li>
+<li>
+<p><code>LOG_KAFKA_URL</code>   : A list of host/port pairs to use for establishing the initial connection to the Kafka cluster.
+This list should be in the form <code>url:port</code> separated by <code>,</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Run docker image with kafka profile</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">sudo docker run -p 8080:8080 \
+    -e TALEND_COMPONENT_LOG4J2_PROFILE=kafka \
+    -e LOG_KAFKA_URL=`log kafka url:port` \
+    -e LOG_KAFKA_TOPIC=`log kafka topic` \
+	-e TRACING_KAFKA_URL=`tracing kafka url:port` \
+	-e TRACING_KAFKA_TOPIC=`tracing kafka topic` \
+	tacokit/component-server</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Note</strong> : <code>LOG_KAFKA_TOPIC</code> will receive the application and the access logs
+and <code>TRACING_KAFKA_TOPIC</code> will receive brave tracing logs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tracing_brave_monitoring"><a class="anchor" href="#_tracing_brave_monitoring"></a>6.4.3. Tracing (Brave Monitoring)</h4>
+<div class="paragraph">
+<p>The component server use <a href="https://github.com/openzipkin/brave" class="bare">github.com/openzipkin/brave</a> to monitor request.</p>
+</div>
+<div class="paragraph">
+<p>The tracing can be activated by setting environment variable <code>TRACING_ON</code> to <code>true</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can choose the reporter type by setting <code>talend_component_server_monitoring_brave_reporter_type</code> environment variable
+to <code>log</code> (this is the default value in this docker image) or to <code>noop</code>
+which will deactivate the tracing. <em>Other type of reporter may be added in the future.</em></p>
+</div>
+<div class="paragraph">
+<p>The tracing rate is configurable by setting environment variable <code>TRACING_SAMPLING_RATE</code>.
+This is the default sample rate for all the endpoints and has a default value of 0.1</p>
+</div>
+<div class="paragraph">
+<p>You can define more accurate rate for every component server endpoint using those environment variables :</p>
+</div>
+<table class="tableblock frame-all grid-all">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+<th class="tableblock halign-left valign-top">Endpoint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend_component_server_monitoring_brave_sampling_environment_rate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/environment</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend_component_server_monitoring_brave_sampling_configurationtype_rate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/configurationtype</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend_component_server_monitoring_brave_sampling_component_rate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/component</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend_component_server_monitoring_brave_sampling_documentation_rate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/documentation</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend_component_server_monitoring_brave_sampling_action_rate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/action</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend_component_server_monitoring_brave_sampling_execution_rate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/api/v1/execution</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Run docker image with tracing on</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">sudo docker run -p 8080:8080 \
+	-e TRACING_ON=true \
+	-e TRACING_SAMPLING_RATE = 0.1 \
+	tacokit/component-server</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_the_image_yourself"><a class="anchor" href="#_build_the_image_yourself"></a>6.5. Build the image yourself</h3>
+<div class="paragraph">
+<p>You can build component starter server in docker following those instructions :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">docker build --build-arg ARTIFACT_ID=component-starter-server \
+             --build-arg SERVER_VERSION=`component starter server version` \
+             --tag tacokit/component-server .</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+this assumes the project is built before you run that command.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
