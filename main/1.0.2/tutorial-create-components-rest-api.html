@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create components for REST API :: Talend Component Kit Developer Reference Guide</title>
+    <title>Creating components for REST API :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.2/tutorial-create-components-rest-api.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-06T14:53:21.356Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-10T11:48:03.044Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -675,51 +675,30 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Create components for REST API</h1>
+        <h1>Creating components for REST API</h1>
         <div id="preamble">
 <div class="sectionbody">
 <div id="tutorial-create-components-rest-api" class="paragraph">
-<p>In this tutorial we will show how to create components that consume a REST API.</p>
+<p>This tutorial shows how to create components that consume a REST API.</p>
 </div>
 <div class="paragraph">
-<p>As an example, we will develop an input component that will provide a search functionality for Zendesk using there
-<a href="https://developer.zendesk.com/rest_api/docs/core/search">Search API</a>.</p>
+<p>The component developed as example in this tutorial is an input component that provides a search functionality for Zendesk using its <a href="https://developer.zendesk.com/rest_api/docs/core/search">Search API</a>.<br>
+<a href="https://projectlombok.org/">Lombok</a> is used to avoid writing getter, setter and constructor methods.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-We use lombok. to get ride of getters, setters and constructors from our classes.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-You can generate a project using the components kit starter as described in
-<a href="tutorial-generate-project-using-starter.html" class="page">this tutorial</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>You can generate a project using the Talend Components Kit starter, as described in
+<a href="tutorial-generate-project-using-starter.html" class="page">this tutorial</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_http_client_setup"><a class="anchor" href="#_http_client_setup"></a>1. Http client setup</h2>
+<h2 id="_setting_up_the_http_client"><a class="anchor" href="#_setting_up_the_http_client"></a>1. Setting up the HTTP client</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As our input component will relay on Zendesk Search API. We will need an http client to consume it.</p>
+<p>The input component relies on Zendesk Search API and requires an HTTP client to consume it.</p>
 </div>
 <div class="paragraph">
-<p>Zendesk Search API takes the following query parameters on this endpoint <code>/api/v2/search.json</code>.</p>
+<p>The Zendesk Search API takes the following parameters on the <code>/api/v2/search.json</code> endpoint.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -727,18 +706,15 @@ You can generate a project using the components kit starter as described in
 <p><strong>query</strong>     : The search query.</p>
 </li>
 <li>
-<p><strong>sort_by</strong>   : One of <code>updated_at</code>, <code>created_at</code>, <code>priority</code>, <code>status</code>, or <code>ticket_type</code>. Defaults to sorting by <code>relevance</code>.</p>
+<p><strong>sort_by</strong>   : The sorting type of the query result. Possible values are <code>updated_at</code>, <code>created_at</code>, <code>priority</code>, <code>status</code>, <code>ticket_type</code>, or <code>relevance</code>. It defaults to <code>relevance</code>.</p>
 </li>
 <li>
-<p><strong>sort_order</strong>: One of <code>asc</code> or <code>desc</code>. Defaults to <code>desc</code>.</p>
+<p><strong>sort_order</strong>: The sorting order of the query result. Possible values are <code>asc</code> (for ascending) or <code>desc</code> (for descending). It defaults to <code>desc</code>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>So let&#8217;s create our http client according to that.</p>
-</div>
-<div class="paragraph">
-<p>Talend component kit provides a built-in service to create an easy to use http client in a declarative manner using java annotations.</p>
+<p>Talend Component Kit provides a built-in service to create an easy-to-use HTTP client in a declarative manner, using Java annotations.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -759,39 +735,36 @@ You can generate a project using the components kit starter as described in
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Our interface need to extend <code>org.talend.sdk.component.api.service.http.HttpClient</code>
-to be known as an http client by the component framework.
-This interface also provides <code>void base(String base)</code> method that will let us set the base uri for the http request. In our case, it will be the Zendesk instance url.</td>
+<td>The interface needs to extend <code>org.talend.sdk.component.api.service.http.HttpClient</code> to be recognized as an HTTP client by the component framework.
+This interface also provides the <code>void base(String base)</code> method, that allows to set the base URI for the HTTP request. In this tutorial, it is the Zendesk instance URL.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>@Request</code> annotation let us define two things. the http request path and method (<code>GET</code>, <code>POST</code>, <code>PUT</code>,&#8230;&#8203;).</td>
+<td>The <code>@Request</code> annotation allows to define the HTTP request path and method (<code>GET</code>, <code>POST</code>, <code>PUT</code>, and so on).</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>At this line we have two important things. The method return type and a header param. At this point we will explain the method return
-that is of type <code>Response&lt;JsonObject&gt;</code>. The <code>Response</code> object let us access
-to the http response status code, headers, error payload and the response body that will be of type <code>JsonObject</code> here.
-The response body will be decoded according to the content type returned by the API. The component framework provides codec for json content.
-If you want to consume specific content type, you will need to provide your personalized codec using the <code>@Codec</code> annotation.</td>
+<td>The method return type and a header parameter are defined.<br>
+The method return type is a JSON object: <code>Response&lt;JsonObject&gt;</code>. The <code>Response</code> object allows to access the HTTP response status code, headers, error payload and the response body that are of the <code>JsonObject</code> type in this case.<br>
+The response body is decoded according to the content type returned by the API. The component framework provides the codec to decode JSON content.<br>
+If you want to consume specific content types, you need to specify your custom codec using the <code>@Codec</code> annotation.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>We define the <code>Authorization</code> http request header that will let us provide the authorization token.</td>
+<td>The <code>Authorization</code> HTTP request header allows to provide the authorization token.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>We define another http request header to provide the content type.</td>
+<td>Another HTTP request header defined to provide the content type.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>We define the query parameters using the <code>@Query</code> annotation that will provide the parameter name.</td>
+<td>Query parameters are defined using the <code>@Query</code> annotation that provides the parameter name.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>And that all what we need to do to create our http client. No implementation is needed for the interface,
-as it will be provided by the component framework according to what we have defined.</p>
+<p>No additional implementation is needed for the interface, as it is provided by the component framework, according to what is defined above.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -800,7 +773,7 @@ as it will be provided by the component framework according to what we have defi
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-This http client can be injected into a mapper or a processor to perform http requests.
+This HTTP client can be injected into a mapper or a processor to perform HTTP requests.
 </td>
 </tr>
 </table>
@@ -808,23 +781,16 @@ This http client can be injected into a mapper or a processor to perform http re
 </div>
 </div>
 <div class="sect1">
-<h2 id="_component_configuration"><a class="anchor" href="#_component_configuration"></a>2. Component Configuration</h2>
+<h2 id="_configuring_the_component"><a class="anchor" href="#_configuring_the_component"></a>2. Configuring the component</h2>
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For the sake of simplicity, we will use the basic authentication supported by the API.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p>Let&#8217;s start setting up the configuration for the basic authentication.
-To be able to consume the Search API, we will need to provide the Zendesk instance URL, the username and the password.</p>
+<p>This example uses the basic authentication that supported by the API.</p>
+</div>
+<div class="sect2">
+<h3 id="_configuring_basic_authentication"><a class="anchor" href="#_configuring_basic_authentication"></a>2.1. Configuring basic authentication</h3>
+<div class="paragraph">
+<p>The first step is to set up the configuration for the basic authentication.
+To be able to consume the Search API, the Zendesk instance URL, the username and the password are needed.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -865,30 +831,30 @@ public class BasicAuth {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>As This configuration class provide the authentication information. We can type it as <code>Datastore</code>,
-so that it can be validated using services (a kind of <em>test connection</em> feature)
-or used by Talend studio or web application metadata.</td>
+<td>This configuration class provides the authentication information. Type it as <code>Datastore</code> so that it can be validated using services (similar to connection test) and used by Talend Studio or web application metadata.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>This is the UI layout of this configuration.</td>
+<td><code>@GridLayout</code> defines the UI layout of this configuration.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We mark the password as <code>Credential</code> to that it can be handled as sensitive data in Talend Studio and web application.
-<a href="tutorial-configuration-sensitive-data.html" class="page">Read more about sensitive data handling</a>.</td>
+<td>The password is marked as <code>Credential</code> so that it is handled as sensitive data in Talend Studio and web applications. <a href="tutorial-configuration-sensitive-data.html" class="page">Read more about sensitive data handling</a>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This method generate a basic authentication token using the username and the password. This token will be used
-to authenticate our http call to the Search API.</td>
+<td>This method generates a basic authentication token using the username and the password. This token is used to authenticate the HTTP call on the Search API.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Now that we have our data store configuration. that will provide us with the basic authentication token.
-We need to setup our data set configuration.
-i.e the search query that will define the records that our input component will provide.</p>
+<p>The data store is now configured. It provides a basic authentication token.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_dataset"><a class="anchor" href="#_configuring_the_dataset"></a>2.2. Configuring the dataset</h3>
+<div class="paragraph">
+<p>Once the data store is configured, you can define the dataset by configuring the search query. It is that query that defines the records processed by the input component.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -899,7 +865,7 @@ i.e the search query that will define the records that our input component will 
         @GridLayout.Row({ "query" }),
         @GridLayout.Row({ "sortBy", "sortOrder" })
 })
-@Documentation("Data set that define a search query for Zendesk Search API. See api reference https://developer.zendesk.com/rest_api/docs/core/search")
+@Documentation("Data set that defines a search query for Zendesk Search API. See API reference https://developer.zendesk.com/rest_api/docs/core/search")
 public class SearchQuery {
 
     @Option
@@ -927,35 +893,35 @@ public class SearchQuery {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This mark this configuration class as a <code>DataSet</code> type.
-<a href="component-configuration.html#_marking_a_configuration_as_a_particular_type_of_data " class="page">Read more about configuration type</a>.</td>
+<td>The configuration class is marked as a <code>DataSet</code>. <a href="component-configuration.html#_marking_a_configuration_as_a_particular_type_of_data " class="page">Read more about configuration types</a>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The UI layout of this configuration.</td>
+<td><code>@GridLayout</code> defines the UI layout of this configuration.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We bind a text area widget to the search query field. <a href="gallery.html" class="page">See all the available widgets</a>.</td>
+<td>A text area widget is bound to the <strong>Search query</strong> field. <a href="gallery.html" class="page">See all the available widgets</a>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Note the usage of <code>@Documentation</code> annotation. this annotation let us document our component (configuration in this scope).
-There is a Talend component maven plugin that can be used to generate the component documentation with all the configuration description and the default values.</td>
+<td>The <code>@Documentation</code> annotation is used to document the component (configuration in this scope).
+A Talend Component Kit Maven plugin can be used to generate the component documentation with all the configuration description and the default values.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Here we give the field a default value.</td>
+<td>A default value is defined for sorting the query result.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>That&#8217;s all for the configuration part. Let&#8217;s create the component logic.</p>
+<p>Your component is configured. You can now create the component logic.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_component_mapper"><a class="anchor" href="#_the_component_mapper"></a>3. The component mapper</h2>
+<h2 id="_defining_the_component_mapper"><a class="anchor" href="#_defining_the_component_mapper"></a>3. Defining the component mapper</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -964,7 +930,7 @@ There is a Talend component maven plugin that can be used to generate the compon
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-We will not split the http calls on many workers. so our mappers will not implement the split part.
+Mappers defined with this tutorial don&#8217;t implement the split part because HTTP calls are not split on many workers in this case.
 </td>
 </tr>
 </table>
@@ -1011,33 +977,33 @@ public class SearchMapper implements Serializable {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The component configuration, that will be injected by the component framework</td>
+<td>The component configuration that is injected by the component framework</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The http client that we have created above. it will also be injected by the framework via the mapper constructor.</td>
+<td>The HTTP client created earlier in this tutorial. It is also injected by the framework via the mapper constructor.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We setup the base URL of our http client using the configuration url.</td>
+<td>The base URL of the HTTP client is defined using the configuration URL.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>As we will not split the http requests we return this mapper in the split method.</td>
+<td>The mapper is returned in the split method because HTTP requests are not split.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>We create a source that will perform the http request and return the search result.</td>
+<td>A source is created to perform the HTTP request and return the search result.</td>
 </tr>
 </table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_component_source"><a class="anchor" href="#_the_component_source"></a>4. The component source</h2>
+<h2 id="_defining_the_component_source"><a class="anchor" href="#_defining_the_component_source"></a>4. Defining the component source</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now we create the source that will perform the http request to the search api and convert the result to JsonObject records.</p>
+<p>Once the component logic implemented, you can create the source in charge of performing the HTTP request to the search API and converting the result to <code>JsonObject</code> records.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1126,38 +1092,36 @@ public class SearchMapper implements Serializable {
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The http client injected from the component mapper.</td>
+<td>The HTTP client injected from the component mapper.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>A buffer utility that we will use to buffer search result and iterate on theme one by one</td>
+<td>A utility used to buffer search results and iterate on them one after another.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>In the init method we initialize our record buffer by providing the logic to iterate on the search result.
-we get the first result page and convert the results to json records. The buffer will retrieve the next result page if needed.</td>
+<td>The record buffer is initialized with the <code>init</code> by providing the logic to iterate on the search result. The logic consists in getting the first result page and converting the result into JSON records. The buffer then retrieves the next result page, if needed, and so on.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>This method return the next record from the buffer. when no more record is present the buffer return <code>null</code>.</td>
+<td>The <code>next</code> method returns the next record from the buffer. When there is no record left, the buffer returns <code>null</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>In this method we use the http client to perform the http request to the search api.
-According to the http response status code we get get the results or we throw an error if needed.</td>
+<td>In this method, the HTTP client is used to perform the HTTP request to the search API.<br>
+Depending on the HTTP response status code, the results are retrieved or an error is thrown.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>This method let us extract the media type returned by the API.</td>
+<td>The <code>extractMediaType</code> method allows to extract the media type returned by the API.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>That all you will need to do to create a simple Talend component that consume a REST API.</p>
+<p>You now have created a simple Talend component that consumes a REST API.</p>
 </div>
 <div class="paragraph">
-<p>In a next tutorial, we will show how to test this kind of component and use the component framework API simulation tools
-to create unit tests.</p>
+<p>To learn how to test this component, refer to <a href="tutorial-test-rest-api.html" class="page">this tutorial</a>.</p>
 </div>
 </div>
 </div>

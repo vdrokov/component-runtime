@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Write an Output component :: Talend Component Kit Developer Reference Guide</title>
+    <title>Implementing an Output component :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.2/tutorial-create-an-output-component.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-06T14:53:21.348Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-10T11:48:03.035Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -675,32 +675,35 @@
 </div>
 </div>
 <article class="doc">
-        <h1>Write an Output component</h1>
+        <h1>Implementing an Output component</h1>
         <div id="preamble">
 <div class="sectionbody">
 <div id="tutorial-create-an-output-component" class="paragraph">
-<p>In this tutorial we will create a complete working output component for <a href="#https://hazelcast.org/">hazelcast</a>.
-This will include :</p>
+<p>This tutorial shows how to create a complete working output component for <a href="#https://hazelcast.org/">Hazelcast</a>, including:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The component configuration and the UI layout</p>
+<p>Defining the configurable part and the layout of the component.</p>
 </li>
 <li>
-<p>The output that is responsible for connecting and writing data to the data source.</p>
+<p>Defining the output that is responsible for connecting and writing data to the data source.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_component_configuration"><a class="anchor" href="#_the_component_configuration"></a>1. The component configuration</h2>
+<h2 id="_defining_the_configurable_part_and_the_layout_of_the_component"><a class="anchor" href="#_defining_the_configurable_part_and_the_layout_of_the_component"></a>1. Defining the configurable part and the layout of the component</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>How to create component configuration has already been described in <a href="tutorial-create-an-input-component.html#_the_component_configuration" class="page">"Create an input component" tutorial</a>.
-For now we will use the same component configuration.
-We will only add a couple of fields required for our output component to already described configuration.</p>
+<p>The methodology to define the component configuration is described in the <a href="tutorial-create-an-input-component.html#_the_component_configuration" class="page">Implementing an input component</a> tutorial.</p>
+</div>
+<div class="paragraph">
+<p>In this case, the input component configuration defined in the tutorial mentioned above can be used as a starting point.</p>
+</div>
+<div class="paragraph">
+<p>Two additional fields are required for the output component:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -712,18 +715,18 @@ private String valueAttribute;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We will need those fields to determine key and value attributes for our Hazelcast map.</p>
+<p>These fields are used to determine the key and value attributes for the Hazelcast map.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_output"><a class="anchor" href="#_the_output"></a>2. The Output</h2>
+<h2 id="_configuring_the_output"><a class="anchor" href="#_configuring_the_output"></a>2. Configuring the Output</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As our output component needs to work in distributed environments it should implement Serializable interface.</p>
+<p>The output component needs to work in distributed environments and should implement a serializable interface.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s take a look at the skeleton of our output component.</p>
+<p>The skeleton of the output component looks as follows.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -758,35 +761,34 @@ public class HazelcastOutput implements Serializable {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>@Version</code> annotation indicate the version of the component. it will be used to migrate the component configuration if needed.</td>
+<td>The <code>@Version</code> annotation indicates the version of the component. It is used to migrate the component configuration if needed.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>@Icon</code> annotation indicate the icon of the component. here we have defined a custom icon that need to be bundled in the component jar under <code>resources/icons</code>.</td>
+<td>The <code>@Icon</code> annotation indicates the icon of the component. Here, the icon is a custom icon that needs to be bundled in the component JAR under <code>resources/icons</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><code>@Processor</code> annotation indicate that this class is the processor(output) and give it&#8217;s name.</td>
+<td>The <code>@Processor</code> annotation indicates that this class is the processor (output) and defines the name of the component.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This constructor of the processor is responsible of injecting the component configuration and services. Configuration parameter are annotated by <code>@Option</code>.
-and other parameters are considered as services and will be injected by the component framework. The service may be local services (class annotated with <code>@Service</code>)
-or some services provided by the component framework.</td>
+<td>This constructor of the processor is responsible for injecting the component configuration and services. Configuration parameters are annotated with <code>@Option</code>.<br>
+The other parameters are considered as services and are injected by the component framework. Services can be local (class annotated with <code>@Service</code>) or provided by the component framework.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>The method annotated with <code>@PostConstruct</code> is executed once by instance and can be used to do some initialization.
-Here we will get the hazelcast instance according to the provided configuration.</td>
+<td>The method annotated with <code>@PostConstruct</code> is executed once by instance and can be used for initialization.
+Here, the goal is to get the Hazelcast instance according to the provided configuration.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>The method annotated with <code>@PreDestroy</code> is used to clean resource at the end of the execution of the output.
-here we will shutdown the hazelcast instance loaded in the post Construct method.</td>
+<td>The method annotated with <code>@PreDestroy</code> is used to clean resources at the end of the execution of the output.<br>
+In the context of this tutorial, the Hazelcast instance loaded in the post Construct method is shut down.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>Data is passed to the method annotated with <code>@ElementListener</code>. That method is responsible for data output. You can put all the related logic in this method.</td>
+<td>Data is passed to the method annotated with <code>@ElementListener</code>. That method is responsible for handling the data output. You can define all the related logic in this method.</td>
 </tr>
 </table>
 </div>
@@ -797,16 +799,16 @@ here we will shutdown the hazelcast instance loaded in the post Construct method
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-in real implementation you can desire to bulk write the updates accordingly to groups, see <a href="component-definition.html#_processor" class="page">Processor description</a>
+If you need to bulk write the updates accordingly to groups, see <a href="component-definition.html#_processor" class="page">Processor description</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s implement all methods required for our output.</p>
+<p>Each of the methods mentioned above now needs to be created.</p>
 </div>
 <div class="sect2">
-<h3 id="_the_constructor"><a class="anchor" href="#_the_constructor"></a>2.1. The constructor</h3>
+<h3 id="_defining_the_constructor_method"><a class="anchor" href="#_defining_the_constructor_method"></a>2.1. Defining the constructor method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public HazelcastOutput(@Option("configuration") final HazelcastConfiguration configuration,
@@ -822,7 +824,7 @@ in real implementation you can desire to bulk write the updates accordingly to g
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_postconstruct_method"><a class="anchor" href="#_the_postconstruct_method"></a>2.2. The PostConstruct method</h3>
+<h3 id="_defining_the_postconstruct_method"><a class="anchor" href="#_defining_the_postconstruct_method"></a>2.2. Defining the PostConstruct method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private transient HazelcastInstance instance;
@@ -836,11 +838,20 @@ public void init() {
 </div>
 </div>
 <div class="paragraph">
-<p>We will need Hazelcast instance and Hazelcast map. We add those as attributes to the output.
-&lt;1&gt; Here we create an instance of hazelcast according to the provided configuration.
-Here you can notice that we use the injected HazelcastService instance to perform that.
-This service is implemented in the project. See the implementation in <a href="tutorial-create-an-input-component.html#_the_postconstruct_method" class="page">"Create an input component" tutorial</a>.
-&lt;2&gt; We get the Hazelcast map according to the map name from configuration. We use Hazelcast instance for that purpose.</p>
+<p>To make it work, a Hazelcast instance and a Hazelcast map are required. The corresponding attributes need to be added to the output.</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Create an instance of Hazelcast according to the provided configuration.
+In this case, the injected HazelcastService instance is used. This service is implemented in the project. See the implementation in the <a href="tutorial-create-an-input-component.html#_the_postconstruct_method" class="page">Implementing an input component</a> tutorial.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Get the Hazelcast map according to the map name provided in the configuration, using the Hazelcast instance.</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -849,14 +860,14 @@ This service is implemented in the project. See the implementation in <a href="t
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-in production you will not want to create one instance per thread/worker but we will cover that in another coming tutorial
+In production, avoid creating one instance per thread/worker.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_predestroy_method"><a class="anchor" href="#_the_predestroy_method"></a>2.3. The PreDestroy method</h3>
+<h3 id="_defining_the_predestroy_method"><a class="anchor" href="#_defining_the_predestroy_method"></a>2.3. Defining the PreDestroy method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PreDestroy
@@ -867,11 +878,11 @@ public void close() {
 </div>
 </div>
 <div class="paragraph">
-<p>We shutdown the instance that we have created in the PostConstruct and we free the Hazelcast map reference.</p>
+<p>Shut down the Hazelcast client instance created by the method annotated with <code>@PostConstruct</code> and thus free the Hazelcast map reference.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_elementlistener_method"><a class="anchor" href="#_the_elementlistener_method"></a>2.4. The ElementListener method</h3>
+<h3 id="_defining_the_elementlistener_method"><a class="anchor" href="#_defining_the_elementlistener_method"></a>2.4. Defining the ElementListener method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
@@ -899,24 +910,20 @@ private Object toValue(final JsonValue jsonValue) { <i class="conum" data-value=
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This method will be used to pass the incoming data to our output.
-Every object passed should be a JsonObject instance.
-This method can include any logic required to write data to the data source.
-In our implementation we will put data to Hazelcast map.</td>
+<td>This method is used to pass the incoming data to the output. Every object passed should be a JsonObject instance. This method can include any logic required to write data to the data source.<br>
+In this tutorial, the data is passed to the Hazelcast map.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>This is our inner method which is used to transform incoming values in format
-required to put data to Hazelcast map.</td>
+<td>This is the inner method used to transform incoming values into the format required to pass data to the Hazelcast map.</td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_full_implementation_of_the_output"><a class="anchor" href="#_the_full_implementation_of_the_output"></a>2.5. The full implementation of the Output</h3>
+<h3 id="_full_implementation_of_the_output"><a class="anchor" href="#_full_implementation_of_the_output"></a>2.5. Full implementation of the Output</h3>
 <div class="paragraph">
-<p>Here is the full code source for the output to have a global view of it.
-<a href="component-definition.html#_output" class="page">Read more about output&#8230;&#8203;</a></p>
+<p>Once implemented, the Output configuration is as follows. For more information about outputs, refer to <a href="component-definition.html#_output" class="page">this document</a>.</p>
 </div>
 <div class="listingblock initial-block-closed">
 <div class="content">
@@ -977,8 +984,7 @@ public class HazelcastOutput implements Serializable {
 </div>
 </div>
 <div class="paragraph">
-<p>We have seen how to create a complete working output in this tutorial. Later we will explain how to create some unit
-tests for it.</p>
+<p>You have now created a complete working output component. You can follow  <a href="tutorial-test-your-components.html" class="page">this tutorial</a> to learn how to create unit tests for your new component.</p>
 </div>
 </div>
 </div>

@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: Talend Component Kit Developer Reference Guide</title>
+    <title>Testing in a Continuous Integration environment :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.2/tutorial-dev-vs-ci-setup.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-06T14:53:21.364Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-10T11:48:03.051Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -675,60 +675,58 @@
 </div>
 </div>
 <article class="doc">
-        <div class="paragraph">
-<p>Development vs Continuous integration Setup</p>
-</div>
+        <h1>Testing in a Continuous Integration environment</h1>
+        <div id="preamble">
+<div class="sectionbody">
 <div id="tutorial-dev-vs-ci-setup.adoc" class="paragraph">
-<p><a href="tutorial-test-rest-api.html" class="page">In a previous tutorial</a>, we have shown how to create a mocked test for our Zendesk search component.</p>
+<p>This tutorial shows how to adapt the test configuration of the Zendesk search component that was done in <a href="tutorial-test-rest-api.html" class="page">this previous tutorial</a> to make it work in a Continuous Integration environment.</p>
 </div>
 <div class="paragraph">
-<p>In the test you can notice that we have used our Zendesk credentials directly into the code to do a first capture of the API response,
-then we have switched to a fake credentials in simulation mode as we do not call the real API anymore.</p>
+<p>In the test, the Zendesk credentials are used directly in the code to perform a first capture of the API response. Then, fake credentials are used in the simulation mode because the real API is not called anymore.</p>
 </div>
 <div class="paragraph">
-<p><strong>But what if you want to continue to call the real API on the CI server or on a a specific environment ?</strong></p>
+<p>However, in some cases, you can require to continue calling the real API on a CI server or on a specific environment.</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s make our test able to get the credentials depending on the execution mode (simulation/passthrough).</p>
+<p>To do that, you can adapt the test to get the credentials depending on the execution mode (simulation/passthrough).</p>
+</div>
+</div>
 </div>
 <div class="sect1">
-<h2 id="_credentials_setup"><a class="anchor" href="#_credentials_setup"></a>1. Credentials setup</h2>
+<h2 id="_setting_up_credentials"><a class="anchor" href="#_setting_up_credentials"></a>1. Setting up credentials</h2>
 <div class="sectionbody">
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-This instructions, need to be done, on the CI server or on any environment that require the real credentials.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>These instructions concern the CI server or on any environment that requires real credentials.</p>
 </div>
 <div class="paragraph">
-<p>We will use <a href="https://maven.apache.org/guides/mini/guide-encryption.html">Maven servers, that support password encryption</a> as a credentials provider,
-and the test rule <code>MavenDecrypterRule</code> provided by the framework.</p>
+<p>This tutorial uses:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <a href="https://maven.apache.org/guides/mini/guide-encryption.html">Maven server</a> that supports password encryption as a credential provider. Encryption is optional but recommended.</p>
+</li>
+<li>
+<p>The <code>MavenDecrypterRule</code> test rule provided by the framework. This rule lets you get credentials from Maven settings using a server ID.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>This rule let you get credentials from maven settings using a server id.</p>
-</div>
-<div class="paragraph">
-<p>So let&#8217;s create an encrypted server credential for our zendesk instance.</p>
+<p>To create encrypted server credentials for the Zendesk instance:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a master password using the command : <code>mvn --encrypt-master-password &lt;password&gt;</code></p>
+<p>Create a master password using the command: <code>mvn --encrypt-master-password &lt;password&gt;</code>.</p>
 </li>
 <li>
-<p>Store this master password in <code>settings-security.xml</code> file  in <code>~/.m2</code> folder.</p>
+<p>Store this master password in the <code>settings-security.xml</code> file of the <code>~/.m2</code> folder.</p>
 </li>
 <li>
-<p>Encrypt zendesk instance password using the command: <code>mvn --encrypt-password &lt;zendesk-password&gt;</code></p>
+<p>Encrypt the Zendesk instance password using the command: <code>mvn --encrypt-password &lt;zendesk-password&gt;</code>.</p>
 </li>
 <li>
-<p>Create a server entry under <strong>servers</strong> in maven <code>settings.xml</code> file in <code>~/.m2</code>.</p>
+<p>Create a server entry under <strong>servers</strong> in Maven <code>settings.xml</code> file located in the <code>~/.m2</code> folder.</p>
 </li>
 </ol>
 </div>
@@ -737,7 +735,7 @@ and the test rule <code>MavenDecrypterRule</code> provided by the framework.</p>
 <pre>    &lt;server&gt;
       &lt;id&gt;zendesk&lt;/id&gt;
       &lt;username&gt;username@email.com&lt;/username&gt;
-      &lt;password&gt;The enccrypted password {oL37x/xiSvwtlhrMQ=}&lt;/password&gt;
+      &lt;password&gt;The encrypted password {oL37x/xiSvwtlhrMQ=}&lt;/password&gt;
     &lt;/server&gt;</pre>
 </div>
 </div>
@@ -748,21 +746,8 @@ and the test rule <code>MavenDecrypterRule</code> provided by the framework.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Encryption is optional but recommended.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you want to store the <code>settings-security.xml</code> and <code>settings.xml</code> files elsewhere that the default location <code>~/.m2</code>.
-You can do it by setting the path of the directory containing the files
-into the environment variable  <code>talend.maven.decrypter.m2.location</code>
+You can store the <code>settings-security.xml</code> and <code>settings.xml</code> files elsewhere that the default location (<code>~/.m2</code>). To do that, set the path of the directory containing the files
+in the <code>talend.maven.decrypter.m2.location</code> environment variable.
 </td>
 </tr>
 </table>
@@ -770,11 +755,14 @@ into the environment variable  <code>talend.maven.decrypter.m2.location</code>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_let_s_adapt_our_unit_test_to_use_the_credentials_from_maven_servers"><a class="anchor" href="#_let_s_adapt_our_unit_test_to_use_the_credentials_from_maven_servers"></a>2. Let&#8217;s adapt our unit test to use the credentials from maven servers</h2>
+<h2 id="_adapting_the_unit_test"><a class="anchor" href="#_adapting_the_unit_test"></a>2. Adapting the unit test</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>We start by adding <code>MavenDecrypterRule</code> rule to our test class. This rule will let us inject server information stored
-in maven settings.xml to our test. The rule will also decrypt the password if they are encrypted.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the <code>MavenDecrypterRule</code> rule to the test class. This rule allows to inject server information stored in Maven <code>settings.xml</code> file to the test. The rule also decrypts credentials if they are encrypted.</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -785,9 +773,12 @@ in maven settings.xml to our test. The rule will also decrypt the password if th
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Now we can inject our Zendesk server to our test. For that we add a new field to our class annotated by <code>@DecryptedServer</code>
-annotation that will holde the server id to be injected.</p>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Inject the Zendesk server to the test. To do that, add a new field to the class with the <code>@DecryptedServer</code> annotation, that holds the server ID to be injected.</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -802,11 +793,14 @@ annotation that will holde the server id to be injected.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>MavenDecrypterRule</code> will be able at runtime to inject the server instance into this class. the server instance contains
-the username and de decrypted password.</p>
+<p>The <code>MavenDecrypterRule</code> is able to inject the server instance into this class at runtime. The server instance contains the username and the decrypted password.</p>
 </div>
-<div class="paragraph">
-<p>Now we can use the <code>server</code> instance in our test to get the real credential in a secured manner.</p>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Use the <code>server</code> instance in the test to get the real credentials in a secured manner.</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -816,7 +810,7 @@ the username and de decrypted password.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Here is the complete test class after modification :</p>
+<p>Once modified, the complete test class looks as follows:</p>
 </div>
 <div class="listingblock initial-block-closed">
 <div class="content">
@@ -867,64 +861,69 @@ the username and de decrypted password.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><strong>This test will continue to work in simulation mode.</strong> as we have our API simulation proxy activated.</p>
+<p><strong>This test will continue to work in simulation mode</strong>, because the API simulation proxy is activated.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_set_up_ci_server_in_passthrough_mode"><a class="anchor" href="#_set_up_ci_server_in_passthrough_mode"></a>3. Set up CI server in passthrough mode</h2>
+<h2 id="_setting_up_the_ci_server_in_passthrough_mode"><a class="anchor" href="#_setting_up_the_ci_server_in_passthrough_mode"></a>3. Setting up the CI server in passthrough mode</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s make it work in real mode on a CI server. we will use <a href="https://jenkins.io/">jenkins</a> in this tutorial</p>
+<p>This tutorial shows how to set up a CI server in passthrough mode using <a href="https://jenkins.io/">Jenkins</a>.</p>
 </div>
-<div class="paragraph">
-<p>Log in to your jenkins then : Click on <strong>New Item</strong> to create a new build job</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in to Jenkins.</p>
+</li>
+<li>
+<p>Click <strong>New Item</strong> to create a new build job.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/jenkins/1_jenkins_new_item.png" alt="Create a new job">
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Enter an Item name (Job name) and choose the freestyle job. Then click OK.</p>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/jenkins/2_jenkins_new_item.png" alt="Create a new job">
 </div>
 </div>
-<div class="paragraph">
-<p>In <strong>Source Code Management</strong> section enter your project repository URL. We are using our github repository in this tutorial.
-We will build the <code>master</code> branch</p>
-</div>
+</li>
+<li>
+<p>In the <strong>Source Code Management</strong> section, enter your project repository URL. A GitHub repository is used in this tutorial.</p>
+</li>
+<li>
+<p>Specify the <code>master</code> branch as <strong>Branches to build</strong>.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/jenkins/4_jenkins_source_code.png" alt="Source Code Management">
 </div>
 </div>
-<div class="paragraph">
-<p>In the <strong>Build Section</strong> click on <strong>add build step</strong>, then choose <strong>Invoke top-level Maven targets</strong></p>
-</div>
+</li>
+<li>
+<p>In the <strong>Build</strong> section, click <strong>Add build step</strong> and choose <strong>Invoke top-level Maven targets</strong>.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/jenkins/6_jenkins_build_cmd.png" alt="Build Section">
 </div>
 </div>
-<div class="paragraph">
-<p>Choose you Maven version, and enter your maven build command. we are using a simple <code>clean install</code> and click <strong>save</strong>.</p>
-</div>
+</li>
+<li>
+<p>Choose your Maven version and enter the Maven build command. In this case: <code>clean install</code>. Then, click <strong>Save</strong>.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/jenkins/6_jenkins_build_cmd_2.png" alt="Build Section">
 </div>
 </div>
 <div class="paragraph">
-<p>You can notice that we have added the option <code>-Dtalend.junit.http.passthrough=true</code> to our build command.
-This Option will tell the API simulation proxy to run in <code>passthrough</code> mode. So it&#8217;s will forward all the http request
-that we have maded in our test to the real API server.</p>
+<p>The <code>-Dtalend.junit.http.passthrough=true</code> option is part of the build command.
+This option tells the API simulation proxy to run in <code>passthrough</code> mode. This way, all the HTTP requests made in the test are forwarded to the real API server.</p>
 </div>
 <div class="paragraph">
-<p>We also get the real credentials, thanks to our <code>MavenDecrypterRule</code> rule.</p>
+<p>The <code>MavenDecrypterRule</code> rule allows to get the real credentials.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -933,22 +932,24 @@ that we have maded in our test to the real API server.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can configure the <strong>passthrough</strong> mode globally on your CI server by setting the environment variable <code>talend.junit.http.passthrough</code>
-to <code>true</code>.
+You can configure the <strong>passthrough</strong> mode globally on your CI server by setting the <code>talend.junit.http.passthrough</code> environment variable to <code>true</code>.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>6.Test the job. click <strong>Build now</strong> you can notice that your job have built correctly.</p>
-</div>
+</li>
+<li>
+<p>Test the job by selecting <strong>Build now</strong>, and check that the job has built correctly.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/jenkins/7_jenkins_build_result.png" alt="Test the job">
 </div>
 </div>
+</li>
+</ol>
+</div>
 <div class="paragraph">
-<p>That&#8217;s all you need to do, now your tests run in a simulation mode on dev and in a (passthrough) mode on your CI server.</p>
+<p>Now your tests run in a simulation mode on your development environment and in a passthrough mode on your CI server.</p>
 </div>
 </div>
 </div>
