@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talend Component Kit Changelog :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.3/changelog.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-07-17T16:20:28.736Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="query" id="searchInput">
+                            <input type="hidden" name="idx" value="githubantora">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-runtime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="1.0.3">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_definition">Component definition</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#partition-mapper">PartitionMapper</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_definition">Definition</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_assessor">@Assessor</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_split">@Split</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_emitter">@Emitter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_producer">Producer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_processor">Processor</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_multiple_outputs">Multiple outputs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_multiple_inputs">Multiple inputs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_output">Output</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_combiners">Combiners</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_family_and_component_icons">Family and component icons</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_configuring_components">Configuring components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_primitives">Primitives</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_complex_object_mapping">Complex object mapping</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_list_case">List case</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_map_case">Map case</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_defining_constraints_and_validations_on_the_configuration">Defining Constraints and validations on the configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_marking_a_configuration_as_a_particular_type_of_data">Marking a configuration as a particular type of data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_defining_links_between_properties">Defining links between properties</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#documentation-ui-hints">Adding hints about the rendering based on configuration/component knowledge</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_widget_and_validation_gallery">Widget and validation gallery</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_widgets">Widgets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_validations">Validations</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_registering_components">Registering components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_components_metadata">Components metadata</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_managing_version_configuration">Managing version configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_partitionmapper">@PartitionMapper</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_emitter_2">@Emitter</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_processor_2">@Processor</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_internationalization">Component internationalization</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_default_components_keys">Default components keys</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_loading">Component Loading</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_packaging_a_plugin">Packaging a plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_packaging_an_application">Packaging an application</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_dependencies">Dependencies</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_creating_a_nested_maven_repository_with_maven_shade_plugin">Creating a nested Maven repository with maven-shade-plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_listing_needed_plugins">Listing needed plugins</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_maven_shade_plugin_extensions">maven-shade-plugin extensions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_containerdependenciestransformer">ContainerDependenciesTransformer</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_plugintransformer">PluginTransformer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_scanning_rules_and_default_exclusions">Component scanning rules and default exclusions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_jars_scanning">Jars Scanning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_package_scanning">Package Scanning</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_maven_plugin">Maven Plugin</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_dependencies_2">Dependencies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_validate">Validate</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_documentation">Documentation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_rendering_your_documentation">Rendering your documentation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_html_rendering">HTML rendering</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_pdf_rendering">PDF rendering</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_including_the_documentation_into_a_document">Including the documentation into a document</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_testing_a_component_web_rendering">Testing a component web rendering</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_generating_inputs_or_outputs">Generating inputs or outputs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_talend_component_archive">Talend Component Archive</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_gradle_plugin">Gradle Plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_internationalizing_services">Internationalizing services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_internationalization_api">Internationalization API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_providing_actions_for_consumers">Providing actions for consumers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_particular_action_types">Particular action types</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_internationalization">Internationalization</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_built_in_services">Built-in services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#httpclient_usage">Using HttpClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_customizing_http_client_requests">Customizing HTTP client requests</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_services_and_interceptors">Services and interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_creating_a_job_pipeline">Creating a job pipeline</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_job_builder">Job Builder</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_environmentrunner">Environment/Runner</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_key_provider">Key Provider</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_beam_case">Beam case</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_inputs_and_outputs">Inputs and Outputs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_processors">Processors</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_converting_a_beam_io_into_a_component_io">Converting a Beam.io into a component I/O</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_advanced_defining_a_custom_api">Advanced: defining a custom API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_extending_the_ui">Extending the UI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_testing_best_practices">Testing best practices</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_parameterized_tests">Parameterized tests</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_4">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_5">JUnit 5</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_runtime_testing">component-runtime-testing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_runtime_junit">component-runtime-junit</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_4_2">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_5_2">JUnit 5</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_mocking_the_output">Mocking the output</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_mocking_the_input">Mocking the input</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_creating_runtime_configuration_from_component_configuration">Creating runtime configuration from component configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_testing_a_mapper">Testing a Mapper</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_testing_a_processor">Testing a Processor</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_runtime_testing_spark">component-runtime-testing-spark</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_4_3">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_5_3">JUnit 5</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_checking_the_job_execution_status">Checking the job execution status</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#component-runtime-http-junit">component-runtime-http-junit</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_junit_4_4">JUnit 4</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_ssl">SSL</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_junit_5_4">JUnit 5</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_ssl_2">SSL</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_capturing_mode">Capturing mode</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_passthrough_mode">Passthrough mode</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_beam_testing">Beam testing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_testing_on_multiple_environments">Testing on multiple environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_junit_4_5">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_junit_5_5">JUnit 5</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_provided_environments">Provided environments</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_configuring_environments">Configuring environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_advanced_usage">Advanced usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_secretspasswords_and_maven">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_generating_data">Generating data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="server-uispec.html">UiSpec Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">1.0.3</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.2/index.html">1.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.1/index.html">1.0.1</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.0/index.html">1.0.0</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.12/index.html">0.0.12</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.11/index.html">0.0.11</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.10/index.html">0.0.10</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.9/index.html">0.0.9</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.8/index.html">0.0.8</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.7/index.html">0.0.7</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.6/index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb"><a href="changelog.html">Talend Component Kit Changelog</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">1.0.3</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="changelog.html">1.0.3</a>
+    <a class="version" href="../1.0.2/changelog.html">1.0.2</a>
+    <a class="version" href="../1.0.1/changelog.html">1.0.1</a>
+    <a class="version" href="../1.0.0/changelog.html">1.0.0</a>
+    <a class="version" href="../0.0.12/changelog.html">0.0.12</a>
+    <a class="version" href="../0.0.11/changelog.html">0.0.11</a>
+    <a class="version" href="../0.0.10/changelog.html">0.0.10</a>
+    <a class="version" href="../0.0.9/changelog.html">0.0.9</a>
+    <a class="version" href="../0.0.8/changelog.html">0.0.8</a>
+    <a class="version" href="../0.0.7/changelog.html">0.0.7</a>
+    <a class="version" href="../0.0.6/changelog.html">0.0.6</a>
+    <a class="version" href="../0.0.5/changelog.html">0.0.5</a>
+    <a class="version" href="../0.0.4/changelog.html">0.0.4</a>
+    <a class="version" href="../0.0.3/changelog.html">0.0.3</a>
+    <a class="version" href="../0.0.2/changelog.html">0.0.2</a>
+    <a class="version" href="../0.0.1/changelog.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Talend Component Kit Changelog</h1>
+        <div class="sect1">
+<h2 id="_version_1_0_2"><a class="anchor" href="#_version_1_0_2"></a>1. Version 1.0.2</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_bug"><a class="anchor" href="#_bug"></a>1.1. Bug</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-888" target="_blank" rel="noopener">TCOMP-888</a>: Designer pipeline records counter are wrong for tacokit components with multiples outputs</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-899" target="_blank" rel="noopener">TCOMP-899</a>: Update Beam 2.5.0 compatibility</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-903" target="_blank" rel="noopener">TCOMP-903</a>: [tacokit studio integration] - Guess schema - better handling of number types recognition</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-904" target="_blank" rel="noopener">TCOMP-904</a>: [tacokit studio integration] - fix job classpath generation</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-913" target="_blank" rel="noopener">TCOMP-913</a>: Fix absolute path resolution for child of child use-case</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_new_feature"><a class="anchor" href="#_new_feature"></a>1.2. New Feature</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-900" target="_blank" rel="noopener">TCOMP-900</a>: [tacokit studio integration] - Handle conditional outputs</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_work_item"><a class="anchor" href="#_work_item"></a>1.3. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-898" target="_blank" rel="noopener">TCOMP-898</a>: Ensure starter will be able to auto update its versions to avoid redeployments</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-905" target="_blank" rel="noopener">TCOMP-905</a>: Enrich scanning exclusion set</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-906" target="_blank" rel="noopener">TCOMP-906</a>: Minimalist JsonObject to IndexeredRecord utilities for beam</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-907" target="_blank" rel="noopener">TCOMP-907</a>: Support maxBatchSize as in the studio in Beam</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-910" target="_blank" rel="noopener">TCOMP-910</a>: Add maxbatchsize as built in parameter to Processor meta model</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-915" target="_blank" rel="noopener">TCOMP-915</a>: Upgrade Apache Meecrowave to 1.2.2</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_1_0_1"><a class="anchor" href="#_version_1_0_1"></a>2. Version 1.0.1</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_bug_2"><a class="anchor" href="#_bug_2"></a>2.1. Bug</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-822" target="_blank" rel="noopener">TCOMP-822</a>: [Windows] deploy-in-studio &amp; car copy jar command in mvn plugin - don&#8217;t work if the studio is running</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-844" target="_blank" rel="noopener">TCOMP-844</a>: Service default method forwarded to interface method instead of implementation one if exists</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-848" target="_blank" rel="noopener">TCOMP-848</a>: [junit5] implicit mock collector and emitter are not resetted per method</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-851" target="_blank" rel="noopener">TCOMP-851</a>: [form] UiSchema shouldn&#8217;t have a JsonSchema</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-858" target="_blank" rel="noopener">TCOMP-858</a>: @OptionsOrder not respected by form-core</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-862" target="_blank" rel="noopener">TCOMP-862</a>: [form-core] ".." path is not correctly resolved</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-863" target="_blank" rel="noopener">TCOMP-863</a>: Job DSL doesn&#8217;t support multiple outputs</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-873" target="_blank" rel="noopener">TCOMP-873</a>: Fix shade junit-http module : remove shaded dependencies from generated artifact</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-889" target="_blank" rel="noopener">TCOMP-889</a>: [form] arrays are lost in trigger paths</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-890" target="_blank" rel="noopener">TCOMP-890</a>: Merge the component outputs (by name) from @AfterGroup and @ElementListener</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-893" target="_blank" rel="noopener">TCOMP-893</a>: Don&#8217;t log a warning for services when parameters don&#8217;t have i18n support</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_new_feature_2"><a class="anchor" href="#_new_feature_2"></a>2.2. New Feature</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-834" target="_blank" rel="noopener">TCOMP-834</a>: Ensure that component has only one configuration argument.</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-845" target="_blank" rel="noopener">TCOMP-845</a>: [junit] ComponentsHandler misses findService</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-846" target="_blank" rel="noopener">TCOMP-846</a>: [junit] allow to inject current plugin services in test class</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-847" target="_blank" rel="noopener">TCOMP-847</a>: Support gzip in JUnit HTTP tooling</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-849" target="_blank" rel="noopener">TCOMP-849</a>: [junit http] support to match the request payload</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-850" target="_blank" rel="noopener">TCOMP-850</a>: MavenDecrypter should tolerate ${env.xxx} syntax</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-861" target="_blank" rel="noopener">TCOMP-861</a>: Ensure Car Mojo can be skipped</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-887" target="_blank" rel="noopener">TCOMP-887</a>: [studio] add chunk size advanced common param for processors &amp; output</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-892" target="_blank" rel="noopener">TCOMP-892</a>: Validate runtime configuration before executing the runtime</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_work_item_2"><a class="anchor" href="#_work_item_2"></a>2.3. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-829" target="_blank" rel="noopener">TCOMP-829</a>: Configuration Type tree is not correctly computed</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-830" target="_blank" rel="noopener">TCOMP-830</a>: Move all configuration to Microprofile Config instead of DeltaSpike</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-832" target="_blank" rel="noopener">TCOMP-832</a>: Provide a way to access lastUpdatedTimestamp in rest api</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-833" target="_blank" rel="noopener">TCOMP-833</a>: Upgrade gradle+maven for the starter</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-839" target="_blank" rel="noopener">TCOMP-839</a>: Add an API to load lazily the potential values of a list</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-840" target="_blank" rel="noopener">TCOMP-840</a>: Upgrade icon bundle to 0.190.2</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-841" target="_blank" rel="noopener">TCOMP-841</a>: Add validation of option names in the validator</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-852" target="_blank" rel="noopener">TCOMP-852</a>: [dependency upgrade] Upgrade shrinkwrap-resolver-impl-maven to 3.1.3</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-855" target="_blank" rel="noopener">TCOMP-855</a>: Support service injections in services</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-856" target="_blank" rel="noopener">TCOMP-856</a>: [dependency upgrade] OpenWebBeans 2.0.6</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-857" target="_blank" rel="noopener">TCOMP-857</a>: SimpleCollector must not depend on junit 4</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-864" target="_blank" rel="noopener">TCOMP-864</a>: Mojo should be thread safe for car/dependencies.txt generation</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-867" target="_blank" rel="noopener">TCOMP-867</a>: Expose Injector service</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-868" target="_blank" rel="noopener">TCOMP-868</a>: Create an ObjectFactory service</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-869" target="_blank" rel="noopener">TCOMP-869</a>: Ensure actions can get injected the requested lang</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-870" target="_blank" rel="noopener">TCOMP-870</a>: Provide Beam DoFn to simplify the migration from IndexedRecord to JsonObject</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-876" target="_blank" rel="noopener">TCOMP-876</a>: Allow custom converters in form-core</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-878" target="_blank" rel="noopener">TCOMP-878</a>: Add beam in the docker image OOTB</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-879" target="_blank" rel="noopener">TCOMP-879</a>: CarMojo doesn&#8217;t use car extension to attach the artifact</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-880" target="_blank" rel="noopener">TCOMP-880</a>: [dependency upgrade] Maven 3.5.4</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-881" target="_blank" rel="noopener">TCOMP-881</a>: [dependency upgrade] CXF 3.2.5</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-882" target="_blank" rel="noopener">TCOMP-882</a>: [dependency upgrade] Tomcat 9.0.10</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-883" target="_blank" rel="noopener">TCOMP-883</a>: [dependency upgrade] Beam 2.5.0</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-884" target="_blank" rel="noopener">TCOMP-884</a>: [dependency upgrade] Upgrade to icon bundle 0.197.0</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-894" target="_blank" rel="noopener">TCOMP-894</a>: [dependency upgrade] Johnzon 1.1.8</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-895" target="_blank" rel="noopener">TCOMP-895</a>: [dependency upgrade] xbean 4.9</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_1_0_0"><a class="anchor" href="#_version_1_0_0"></a>3. Version 1.0.0</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_bug_3"><a class="anchor" href="#_bug_3"></a>3.1. Bug</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-827" target="_blank" rel="noopener">TCOMP-827</a>: Fix Automatic-Module-Name</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_work_item_3"><a class="anchor" href="#_work_item_3"></a>3.2. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-811" target="_blank" rel="noopener">TCOMP-811</a>: Upgrade to tomcat 9.0.8</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-826" target="_blank" rel="noopener">TCOMP-826</a>: Extract component model from component server to a new artifact</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_12"><a class="anchor" href="#_version_0_0_12"></a>4. Version 0.0.12</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_new_feature_3"><a class="anchor" href="#_new_feature_3"></a>4.1. New Feature</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-763" target="_blank" rel="noopener">TCOMP-763</a>: Add a dev mode in the studio for tacokit</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-802" target="_blank" rel="noopener">TCOMP-802</a>: Add method to upload dependencies from .car to nexus</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_work_item_4"><a class="anchor" href="#_work_item_4"></a>4.2. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-808" target="_blank" rel="noopener">TCOMP-808</a>: Upgrade to JUnit 5.2.0</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-809" target="_blank" rel="noopener">TCOMP-809</a>: compress js and css for the starter</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-810" target="_blank" rel="noopener">TCOMP-810</a>: ui spec service uses a multiselecttag for a proposable on a string field</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_11"><a class="anchor" href="#_version_0_0_11"></a>5. Version 0.0.11</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_bug_4"><a class="anchor" href="#_bug_4"></a>5.1. Bug</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-804" target="_blank" rel="noopener">TCOMP-804</a>: Idea plugin doesn&#8217;t render properly configuration inputs</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_work_item_5"><a class="anchor" href="#_work_item_5"></a>5.2. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-798" target="_blank" rel="noopener">TCOMP-798</a>: intellij plugin - add official starter url</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-799" target="_blank" rel="noopener">TCOMP-799</a>: @Checkable expects the datastore name to match the validation name</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-806" target="_blank" rel="noopener">TCOMP-806</a>: Ensure server and starter support gzip</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_10"><a class="anchor" href="#_version_0_0_10"></a>6. Version 0.0.10</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_backlog_task"><a class="anchor" href="#_backlog_task"></a>6.1. Backlog Task</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-643" target="_blank" rel="noopener">TCOMP-643</a>: Deployment</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bug_5"><a class="anchor" href="#_bug_5"></a>6.2. Bug</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-770" target="_blank" rel="noopener">TCOMP-770</a>: Removing component from web UI causes wrong number of components in summary</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-775" target="_blank" rel="noopener">TCOMP-775</a>: Starter - Fix properties keys generation</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-776" target="_blank" rel="noopener">TCOMP-776</a>: component-kit.js ignore credentials</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-783" target="_blank" rel="noopener">TCOMP-783</a>: ActiveIfs doesn&#8217;t make option visible</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-796" target="_blank" rel="noopener">TCOMP-796</a>: Datastore check (@Checkable) should default meta parameters to "datastore" if none is found</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_new_feature_4"><a class="anchor" href="#_new_feature_4"></a>6.3. New Feature</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-773" target="_blank" rel="noopener">TCOMP-773</a>: Extend the http client api to handle more generic use cases</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_work_item_6"><a class="anchor" href="#_work_item_6"></a>6.4. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-771" target="_blank" rel="noopener">TCOMP-771</a>: ConfigurableClassLoader should skip scala.* classes</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-772" target="_blank" rel="noopener">TCOMP-772</a>: Upgrade icon set to ui/icons 0.179.0</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-774" target="_blank" rel="noopener">TCOMP-774</a>: Upgrade xbean to 4.8</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_9"><a class="anchor" href="#_version_0_0_9"></a>7. Version 0.0.9</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_work_item_7"><a class="anchor" href="#_work_item_7"></a>7.1. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-768" target="_blank" rel="noopener">TCOMP-768</a>: More tolerance of configuration prefix for implicit migration of configuration node in form core library</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_8"><a class="anchor" href="#_version_0_0_8"></a>8. Version 0.0.8</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_work_item_8"><a class="anchor" href="#_work_item_8"></a>8.1. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-756" target="_blank" rel="noopener">TCOMP-756</a>: Setup maven clirr plugin for component-api +testing</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-762" target="_blank" rel="noopener">TCOMP-762</a>: Starter should only propose a single category level in the ui</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-767" target="_blank" rel="noopener">TCOMP-767</a>: Ensure the configurationtype endpoints have matching name/path values</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_7"><a class="anchor" href="#_version_0_0_7"></a>9. Version 0.0.7</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_work_item_9"><a class="anchor" href="#_work_item_9"></a>9.1. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-761" target="_blank" rel="noopener">TCOMP-761</a>: Merge component-runtime-manager and component-runtime-standalone</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-764" target="_blank" rel="noopener">TCOMP-764</a>: Clean up component-form-core dependencies</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-765" target="_blank" rel="noopener">TCOMP-765</a>: Upgrade to batik 1.9.1</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_6"><a class="anchor" href="#_version_0_0_6"></a>10. Version 0.0.6</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_bug_6"><a class="anchor" href="#_bug_6"></a>10.1. Bug</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-752" target="_blank" rel="noopener">TCOMP-752</a>: Fix Advanced settings and Test connection button appearance in repository wizard</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-757" target="_blank" rel="noopener">TCOMP-757</a>: Duplicate method name "writeReplace" with signature "()Ljava.lang.Object;" in class file</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_work_item_10"><a class="anchor" href="#_work_item_10"></a>10.2. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-751" target="_blank" rel="noopener">TCOMP-751</a>: Support gzip compression on component-server</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-753" target="_blank" rel="noopener">TCOMP-753</a>: Make classpath scanning to find component configurable</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-758" target="_blank" rel="noopener">TCOMP-758</a>: Support component-server server configuration from system properties</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-759" target="_blank" rel="noopener">TCOMP-759</a>: Enum must be i18n</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_5"><a class="anchor" href="#_version_0_0_5"></a>11. Version 0.0.5</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_work_item_11"><a class="anchor" href="#_work_item_11"></a>11.1. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-738" target="_blank" rel="noopener">TCOMP-738</a>: Component Server should respect ~/.m2/settings.xml local repository if it exists</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-739" target="_blank" rel="noopener">TCOMP-739</a>: SerializationTransformer shouldn&#8217;t use ComponentManager to avoid ClassNotFoundException</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-740" target="_blank" rel="noopener">TCOMP-740</a>: UISpecService should be reactive and use a CompletionStage based API</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-741" target="_blank" rel="noopener">TCOMP-741</a>: UISpecService configuration support</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-742" target="_blank" rel="noopener">TCOMP-742</a>: Configuration Type properties should be rooted</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-744" target="_blank" rel="noopener">TCOMP-744</a>: Ensure wrapped BeamIO uses the right TCCL</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-745" target="_blank" rel="noopener">TCOMP-745</a>: [Dependency Upgrade] CXF 3.2.4</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-746" target="_blank" rel="noopener">TCOMP-746</a>: [Dependency Upgrade] Tomcat 9.0.6</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-747" target="_blank" rel="noopener">TCOMP-747</a>: [Dependency Upgrade] Log4j2 2.11.0</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-748" target="_blank" rel="noopener">TCOMP-748</a>: Make configurationtype index endpoint lighter OOTB</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-749" target="_blank" rel="noopener">TCOMP-749</a>: Intellij Idea plugin</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-750" target="_blank" rel="noopener">TCOMP-750</a>: Unify @Pattern using javascript regex instead of a mixed mode</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_4"><a class="anchor" href="#_version_0_0_4"></a>12. Version 0.0.4</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_bug_7"><a class="anchor" href="#_bug_7"></a>12.1. Bug</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-734" target="_blank" rel="noopener">TCOMP-734</a>: Add support for context and globalMap values in Tacokit component settings</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_new_feature_5"><a class="anchor" href="#_new_feature_5"></a>12.2. New Feature</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-733" target="_blank" rel="noopener">TCOMP-733</a>: support to use a beam pipeline under the hood for beam components in di</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_work_item_12"><a class="anchor" href="#_work_item_12"></a>12.3. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-693" target="_blank" rel="noopener">TCOMP-693</a>: Integrate Migration API</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-737" target="_blank" rel="noopener">TCOMP-737</a>: upgrade to beam 2.4.0</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_3"><a class="anchor" href="#_version_0_0_3"></a>13. Version 0.0.3</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_bug_8"><a class="anchor" href="#_bug_8"></a>13.1. Bug</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-731" target="_blank" rel="noopener">TCOMP-731</a>: Configuration Type migration handler skipped</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_2"><a class="anchor" href="#_version_0_0_2"></a>14. Version 0.0.2</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_bug_9"><a class="anchor" href="#_bug_9"></a>14.1. Bug</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-725" target="_blank" rel="noopener">TCOMP-725</a>: MavenDecrypter doesn&#8217;t support comments in settings.xml</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-726" target="_blank" rel="noopener">TCOMP-726</a>: When a component is not found the error message can be misleading</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-728" target="_blank" rel="noopener">TCOMP-728</a>: Http client doesn&#8217;t ignore empty query parameters</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_work_item_13"><a class="anchor" href="#_work_item_13"></a>14.2. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-722" target="_blank" rel="noopener">TCOMP-722</a>: WebSocket connection fails with a NPE when the endpoint doesn&#8217;t exists</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-723" target="_blank" rel="noopener">TCOMP-723</a>: Adding configurationByExample utility to create query string for Job DSL</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-724" target="_blank" rel="noopener">TCOMP-724</a>: Documentation endpoint doesn&#8217;t support HTML</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_0_0_1"><a class="anchor" href="#_version_0_0_1"></a>15. Version 0.0.1</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_work_item_14"><a class="anchor" href="#_work_item_14"></a>15.1. Work Item</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-446" target="_blank" rel="noopener">TCOMP-446</a>: Support Embedded Documentation</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-650" target="_blank" rel="noopener">TCOMP-650</a>: Ensure component can be executed in beam pipelines</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-651" target="_blank" rel="noopener">TCOMP-651</a>: Ensure beam components can be wrapped and used through the Talend Component Kit Framework</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-653" target="_blank" rel="noopener">TCOMP-653</a>: Web Form metamodel service</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-655" target="_blank" rel="noopener">TCOMP-655</a>: Catalog service</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-656" target="_blank" rel="noopener">TCOMP-656</a>: UISpec compatibility</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-658" target="_blank" rel="noopener">TCOMP-658</a>: Add test Source/Sink collectors in JUnit integration</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-659" target="_blank" rel="noopener">TCOMP-659</a>: Basic job builder API to simplify JUnit tests</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-662" target="_blank" rel="noopener">TCOMP-662</a>: Validation Mojo</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-664" target="_blank" rel="noopener">TCOMP-664</a>: Local testing server for dev</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-675" target="_blank" rel="noopener">TCOMP-675</a>: Select a communication solution for Talend Component Kit server</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-680" target="_blank" rel="noopener">TCOMP-680</a>: Register components into the Studio Palette</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-681" target="_blank" rel="noopener">TCOMP-681</a>: Studio parameters form integration</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-682" target="_blank" rel="noopener">TCOMP-682</a>: Studio Metadata integration</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-683" target="_blank" rel="noopener">TCOMP-683</a>: Studio Runtime integration</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-691" target="_blank" rel="noopener">TCOMP-691</a>: Create context menu for Tacokit node in repository panel</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-719" target="_blank" rel="noopener">TCOMP-719</a>: Support Input Definition</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-720" target="_blank" rel="noopener">TCOMP-720</a>: Support Output Definition</p>
+</li>
+<li>
+<p><a href="https://jira.talendforge.org/browse/TCOMP-721" target="_blank" rel="noopener">TCOMP-721</a>: Initial Widget Definitions</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+<script>
+(function (window, document) {
+  hljs.initHighlighting();
+
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {return;}
+      var code = pre.querySelector('code.hljs');
+      if (!code) {return;}
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {code.style.height = closedSize;}
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>

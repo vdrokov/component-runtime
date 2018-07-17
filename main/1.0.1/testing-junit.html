@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Untitled :: Talend Component Kit Developer Reference Guide</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/testing-junit.html">
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.3/testing-junit.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-17T16:03:14.718Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-17T16:20:28.335Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -69,23 +69,26 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_components_definition">Components Definition</a>
+    <a class="nav-link" href="documentation.html#_component_definition">Component definition</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
     <a class="nav-link" href="documentation.html#_partitionmapper">PartitionMapper</a>
-  </li>
-  <li class="nav-item" data-depth="2">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
     <a class="nav-link" href="documentation.html#_definition">Definition</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="documentation.html#_assessor">@Assessor</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="documentation.html#_split">@Split</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="documentation.html#_emitter">@Emitter</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -105,10 +108,10 @@
     <a class="nav-link" href="documentation.html#_output">Output</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_combiners">Combiners?</a>
+    <a class="nav-link" href="documentation.html#_combiners">Combiners</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_family_components_icons">Family &amp; Components Icons</a>
+    <a class="nav-link" href="documentation.html#_family_and_component_icons">Family and component icons</a>
   </li>
 </ul>
   </li>
@@ -116,9 +119,6 @@
     <button class="nav-toggle"></button>
     <a class="nav-link" href="documentation.html#_configuring_components">Configuring components</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_is_my_option_valid">Is my option valid?</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_primitives">Primitives</a>
   </li>
@@ -135,22 +135,22 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_constraints_and_validation_on_the_configuration_input">Constraints and validation on the configuration/input</a>
+    <a class="nav-link" href="documentation.html#_defining_constraints_and_validations_on_the_configuration">Defining Constraints and validations on the configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_marking_a_configuration_as_a_particular_type_of_data">Marking a configuration as a particular type of data</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_define_links_between_properties">Define links between properties</a>
+    <a class="nav-link" href="documentation.html#_defining_links_between_properties">Defining links between properties</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#documentation-ui-hints">Add hints about the rendering based on configuration/component knowledge</a>
+    <a class="nav-link" href="documentation.html#documentation-ui-hints">Adding hints about the rendering based on configuration/component knowledge</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_gallery">Gallery</a>
+    <a class="nav-link" href="documentation.html#_widget_and_validation_gallery">Widget and validation gallery</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_widgets">Widgets</a>
@@ -169,7 +169,7 @@
     <a class="nav-link" href="documentation.html#_components_metadata">Components metadata</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="documentation.html#_management_of_configuration_versions">Management of configuration versions</a>
+    <a class="nav-link" href="documentation.html#_managing_version_configuration">Managing version configuration</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
@@ -189,7 +189,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_internationalization">Internationalization</a>
+    <a class="nav-link" href="documentation.html#_component_internationalization">Component internationalization</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_default_components_keys">Default components keys</a>
@@ -218,7 +218,7 @@
     <a class="nav-link" href="documentation.html#_dependencies">Dependencies</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="documentation.html#_create_a_nested_maven_repository_with_maven_shade_plugin">Create a nested maven repository with maven-shade-plugin</a>
+    <a class="nav-link" href="documentation.html#_creating_a_nested_maven_repository_with_maven_shade_plugin">Creating a nested Maven repository with maven-shade-plugin</a>
   </li>
 </ul>
   </li>
@@ -275,29 +275,26 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_render_your_documentation">Render your documentation</a>
+    <a class="nav-link" href="documentation.html#_rendering_your_documentation">Rendering your documentation</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="documentation.html#_html">HTML</a>
+    <a class="nav-link" href="documentation.html#_html_rendering">HTML rendering</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="documentation.html#_pdf">PDF</a>
+    <a class="nav-link" href="documentation.html#_pdf_rendering">PDF rendering</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="documentation.html#_include_the_documentation_into_a_document">Include the documentation into a document</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="documentation.html#_more">More</a>
+    <a class="nav-link" href="documentation.html#_including_the_documentation_into_a_document">Including the documentation into a document</a>
   </li>
 </ul>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_web">Web</a>
+    <a class="nav-link" href="documentation.html#_testing_a_component_web_rendering">Testing a component web rendering</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_generate_inputs_or_outputs">Generate inputs or outputs</a>
+    <a class="nav-link" href="documentation.html#_generating_inputs_or_outputs">Generating inputs or outputs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_talend_component_archive">Talend Component Archive</a>
@@ -315,7 +312,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_internationalization_2">Internationalization</a>
+    <a class="nav-link" href="documentation.html#_internationalizing_services">Internationalizing services</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_internationalization_api">Internationalization API</a>
@@ -324,23 +321,26 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_providing_some_actions_for_consumers_clients">Providing some actions for consumers/clients</a>
+    <a class="nav-link" href="documentation.html#_providing_actions_for_consumers">Providing actions for consumers</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_particular_action_types">Particular action types</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_internationalization">Internationalization</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_built_in_services">Built in services</a>
+    <a class="nav-link" href="documentation.html#_built_in_services">Built-in services</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_httpclient_usage">HttpClient usage</a>
+    <a class="nav-link" href="documentation.html#httpclient_usage">Using HttpClient</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="documentation.html#_advanced_http_client_request_customization">Advanced HTTP client request customization</a>
+    <a class="nav-link" href="documentation.html#_customizing_http_client_requests">Customizing HTTP client requests</a>
   </li>
 </ul>
   </li>
@@ -370,13 +370,13 @@
     <a class="nav-link" href="documentation.html#_beam_case">Beam case</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="documentation.html#_i_o">I/O</a>
+    <a class="nav-link" href="documentation.html#_inputs_and_outputs">Inputs and Outputs</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="documentation.html#_processors">Processors</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="documentation.html#_convert_a_beam_io_in_a_component_i_o">Convert a Beam.io in a component I/O</a>
+    <a class="nav-link" href="documentation.html#_converting_a_beam_io_into_a_component_i_o">Converting a Beam.io into a component I/O</a>
   </li>
 </ul>
   </li>
@@ -384,7 +384,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_advanced_define_a_custom_api">Advanced: define a custom API</a>
+    <a class="nav-link" href="documentation.html#_advanced_defining_a_custom_api">Advanced: defining a custom API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_extending_the_ui">Extending the UI</a>
@@ -399,7 +399,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_best_practises">Best practises</a>
+    <a class="nav-link" href="documentation.html#_testing_best_practices">Testing best practices</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
@@ -457,13 +457,13 @@
     <a class="nav-link" href="documentation.html#_junit_5_3">JUnit 5</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="documentation.html#_how_to_know_the_job_is_done">How to know the job is done</a>
+    <a class="nav-link" href="documentation.html#_checking_the_job_execution_status">Checking the job execution status</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_component_runtime_http_junit">component-runtime-http-junit</a>
+    <a class="nav-link" href="documentation.html#component-runtime-http-junit">component-runtime-http-junit</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
@@ -498,7 +498,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_multiple_environments_for_the_same_tests">Multiple environments for the same tests</a>
+    <a class="nav-link" href="documentation.html#_testing_on_multiple_environments">Testing on multiple environments</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_junit_4_5">JUnit 4</a>
@@ -524,7 +524,40 @@
     <a class="nav-link" href="documentation.html#_secrets_passwords_and_maven">Secrets/Passwords and Maven</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="documentation.html#_generating_data">Generating data?</a>
+    <a class="nav-link" href="documentation.html#_generating_data">Generating data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
   </li>
 </ul>
   </li>
@@ -534,6 +567,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="server-uispec.html">UiSpec Server</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
@@ -555,7 +591,13 @@
     <li class="component is-current">
       <span class="title">Talend Component Kit Developer Reference Guide</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../1.0.3/index.html">1.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.2/index.html">1.0.2</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">1.0.1</a>
         </li>
         <li class="version">
@@ -612,6 +654,8 @@
     <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">1.0.1</button>
   <div class="versions-menu">
+    <a class="version" href="../1.0.3/testing-junit.html">1.0.3</a>
+    <a class="version" href="../1.0.2/testing-junit.html">1.0.2</a>
     <a class="version is-current" href="testing-junit.html">1.0.1</a>
     <a class="version" href="../1.0.0/testing-junit.html">1.0.0</a>
     <a class="version" href="../0.0.12/testing-junit.html">0.0.12</a>
@@ -634,10 +678,10 @@
 <h2 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>1. component-runtime-junit</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>component-runtime-junit</code> is a small test library allowing you to validate simple logic based on Talend Component tooling.</p>
+<p><code>component-runtime-junit</code> is a test library that allows you to validate simple logic based on the Talend Component Kit tooling.</p>
 </div>
 <div class="paragraph">
-<p>To import it add to your project the following dependency:</p>
+<p>To import it, add the following dependency to your project:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -650,10 +694,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p>This dependency also provide some mocked components that you can use with your own component to create tests.</p>
+<p>This dependency also provides mocked components that you can use with your own component to create tests.</p>
 </div>
 <div class="paragraph">
-<p>The mocked components are provided under the family <code>test</code> :</p>
+<p>The mocked components are provided under the <code>test</code> family:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -668,7 +712,7 @@
 <div class="sect2">
 <h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1. JUnit 4</h3>
 <div class="paragraph">
-<p>Then you can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
+<p>You can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -697,15 +741,69 @@
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>the rule will create a component manager and provide two mock components: an emitter and a collector. Don&#8217;t forget to set the root package of your component to enable it.</td>
+<td>The rule creates a component manager and provides two mock components: an emitter and a collector. Set the root package of your component to enable it.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>you define any chain you want to test, it generally uses the mock as source or collector</td>
+<td>Define any chain that you want to test. It generally uses the mock as source or collector.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>you validate your component behavior, for a source you can assert the right records were emitted in the mock collect</td>
+<td>Validate your component behavior. For a source, you can assert that the right records were emitted in the mock collect.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The rule can also be defined as a <code>@ClassRule</code> to start it once per class and not per test as with <code>@Rule</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To go further, you can add the <code>ServiceInjectionRule</code> rule, which allows to inject all the component family services into the test class by marking test class fields with <code>@InjectService</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SimpleComponentRuleTest {
+
+    @ClassRule
+    public static final SimpleComponentRule COMPONENT_FACTORY = new SimpleComponentRule("...");
+
+    @Rule <i class="conum" data-value="1"></i><b>(1)</b>
+    public final ServiceInjectionRule injections = new ServiceInjectionRule(COMPONENT_FACTORY, this); <i class="conum" data-value="2"></i><b>(2)</b>
+
+    @Service <i class="conum" data-value="3"></i><b>(3)</b>
+    private LocalConfiguration configuration;
+
+    @Service
+    private Jsonb jsonb;
+
+    @Test
+    public void test() {
+        // ...
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The injection requires the test instance, so it must be a <code>@Rule</code> rather than a <code>@ClassRule</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>ComponentsController</code> is passed to the rule, which for JUnit 4 is the <code>SimpleComponentRule</code>, as well as the test instance to inject services in.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>All service fields are marked with <code>@Service</code> to let the rule inject them before the test is ran.</td>
 </tr>
 </table>
 </div>
@@ -713,12 +811,10 @@
 <div class="sect2">
 <h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
 <div class="paragraph">
-<p>The JUnit 5 integration is mainly the same as for JUnit 4 except it uses the new JUnit 5 extension mecanism.</p>
+<p>The JUnit 5 integration is very similar to JUnit 4, except that it uses the JUnit 5 extension mechanism.</p>
 </div>
 <div class="paragraph">
-<p>The entry point is the <code>@WithComponents</code> annotation you put on your test class which takes the
-component package you want to test and you can use <code>@Injected</code> to inject in a test class field an instance of <code>ComponentsHandler</code>
-which exposes the same utilities than the JUnit 4 rule:</p>
+<p>The entry point is the <code>@WithComponents</code> annotation that you add to your test class, and which takes the component package you want to test. You can use <code>@Injected</code> to inject an instance of <code>ComponentsHandler</code> - which exposes the same utilities than the JUnit 4 rule - in a test class field :</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -763,9 +859,38 @@ public class ComponentExtensionTest {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-if it is the first time you use JUnit 5, don&#8217;t forget the imports changed and you must use <code>org.junit.jupiter.api.Test</code> instead of <code>org.junit.Test</code>.
-Some IDE versions and <code>surefire</code> versions can also need you to install either a plugin or a specific configuration.
+If you use JUnit 5 for the first time, keep in mind that the imports changed and that you need to use <code>org.junit.jupiter.api.Test</code> instead of <code>org.junit.Test</code>.
+Some IDE versions and <code>surefire</code> versions can also require you to install either a plugin or a specific configuration.
 </td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As for JUnit 4, you can go further by injecting test class fields marked with <code>@InjectService</code>, but there is no additional extension to specify in this case:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WithComponents("...")
+class ComponentExtensionTest {
+
+    @Service <i class="conum" data-value="1"></i><b>(1)</b>
+    private LocalConfiguration configuration;
+
+    @Service
+    private Jsonb jsonb;
+
+    @Test
+    void test() {
+        // ...
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>All service fields are marked with <code>@Service</code> to let the rule inject them before the test is ran.</td>
 </tr>
 </table>
 </div>
@@ -773,15 +898,16 @@ Some IDE versions and <code>surefire</code> versions can also need you to instal
 <div class="sect2">
 <h3 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>1.3. Mocking the output</h3>
 <div class="paragraph">
-<p>Using the component "test"/"collector" as in previous sample stores all records emitted by the chain (typically your source)
-in memory, you can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>. Note that this method filters by type,
-if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
+<p>Using the "test"/"collector" component as shown in the previous sample stores all records emitted by the chain (typically your source) in memory. You can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Note that this method filters by type. If you don&#8217;t need any specific type, you can use <code>Object.class</code>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_mocking_the_input"><a class="anchor" href="#_mocking_the_input"></a>1.4. Mocking the input</h3>
 <div class="paragraph">
-<p>The input mocking is symmetric to the output but here you provide the data you want to inject:</p>
+<p>The input mocking is symmetric to the output. In this case, you provide the data you want to inject:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -811,7 +937,7 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>using <code>setInputData</code> you prepare the execution(s) to have a fake input when using "test"/"emitter" component.</td>
+<td>using <code>setInputData</code>, you prepare the execution(s) to have a fake input when using the "test"/"emitter" component.</td>
 </tr>
 </table>
 </div>
@@ -819,14 +945,10 @@ if you don&#8217;t care of the type just use <code>Object.class</code>.</p>
 <div class="sect2">
 <h3 id="_creating_runtime_configuration_from_component_configuration"><a class="anchor" href="#_creating_runtime_configuration_from_component_configuration"></a>1.5. Creating runtime configuration from component configuration</h3>
 <div class="paragraph">
-<p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses
-a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility
-to get this map instance from a configuration instance.</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
+<p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility to get this map instance from a configuration instance.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final MyComponentConfig componentConfig = new MyComponentConfig();
 componentConfig.setUser("....");
@@ -836,9 +958,9 @@ final Map&lt;String, String&gt; configuration = configurationByExample(component
 </div>
 </div>
 <div class="paragraph">
-<p>The same factory provides a fluent DSL to create configuration calling <code>configurationByExample</code> without any parameter.
-The advantage is to be able to convert an object as a <code>Map&lt;String, String&gt;</code> as seen previously or as a query string
-to use it with the <code>Job</code> DSL:</p>
+<p>The same factory provides a fluent DSL to create the configuration by calling <code>configurationByExample</code> without any parameter.
+The advantage is to be able to convert an object as a <code>Map&lt;String, String&gt;</code> or as a query string
+in order to use it with the <code>Job</code> DSL:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -853,10 +975,10 @@ to use it with the <code>Job</code> DSL:</p>
 <div class="sect2">
 <h3 id="_testing_a_mapper"><a class="anchor" href="#_testing_a_mapper"></a>1.6. Testing a Mapper</h3>
 <div class="paragraph">
-<p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarly, you can get an instance from a configuration
-and you can execute this instance to collect the output. Here is a snippet doing that:</p>
+<p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarily. You can get an instance from a configuration and execute this instance to collect the output.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MapperTest {
 
@@ -878,10 +1000,10 @@ and you can execute this instance to collect the output. Here is a snippet doing
 <div class="sect2">
 <h3 id="_testing_a_processor"><a class="anchor" href="#_testing_a_processor"></a>1.7. Testing a Processor</h3>
 <div class="paragraph">
-<p>As for the mapper a processor is testable unitary. The case is a bit more complex since you can have multiple
-inputs and outputs:</p>
+<p>As for a mapper, a processor is testable unitary. However, this case can be more complex in case of multiple inputs or outputs.</p>
 </div>
 <div class="listingblock">
+<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class ProcessorTest {
 
@@ -904,9 +1026,7 @@ inputs and outputs:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Here again the rule allows you to instantiate a <code>Processor</code> from your code
-and then to <code>collect</code> the output from the inputs you pass in. There are two convenient implementation
-of the input factory:</p>
+<p>The rule allows you to instantiate a <code>Processor</code> from your code, and then to <code>collect</code> the output from the inputs you pass in. There are two convenient implementations of the input factory:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -914,8 +1034,7 @@ of the input factory:</p>
 <p><code>MainInputFactory</code> for processors using only the default input.</p>
 </li>
 <li>
-<p><code>JoinInputfactory</code> for processors using multiple inputs have a method <code>withInput(branch, data)</code> The first arg is the branch name
-and the second arg is the data used by the branch.</p>
+<p><code>JoinInputfactory</code> with the <code>withInput(branch, data)</code> method for processors using multiple inputs. The first argument is the branch name and the second argument is the data used by the branch.</p>
 </li>
 </ol>
 </div>
@@ -926,7 +1045,7 @@ and the second arg is the data used by the branch.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-you can also implement your own input representation if needed implementing <code>org.talend.sdk.component.junit.ControllableInputFactory</code>.
+If needed, you can also implement your own input representation using <code>org.talend.sdk.component.junit.ControllableInputFactory</code>.
 </td>
 </tr>
 </table>
