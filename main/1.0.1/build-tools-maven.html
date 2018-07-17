@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maven Plugin :: Talend Component Kit Developer Reference Guide</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.2/build-tools-maven.html">
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.1/build-tools-maven.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-17T15:25:00.380Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-17T16:03:14.559Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -69,26 +69,23 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_component_definition">Component definition</a>
+    <a class="nav-link" href="documentation.html#_components_definition">Components Definition</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
     <a class="nav-link" href="documentation.html#_partitionmapper">PartitionMapper</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
     <a class="nav-link" href="documentation.html#_definition">Definition</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="documentation.html#_assessor">@Assessor</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="documentation.html#_split">@Split</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="documentation.html#_emitter">@Emitter</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -108,10 +105,10 @@
     <a class="nav-link" href="documentation.html#_output">Output</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_combiners">Combiners</a>
+    <a class="nav-link" href="documentation.html#_combiners">Combiners?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_family_and_component_icons">Family and component icons</a>
+    <a class="nav-link" href="documentation.html#_family_components_icons">Family &amp; Components Icons</a>
   </li>
 </ul>
   </li>
@@ -119,6 +116,9 @@
     <button class="nav-toggle"></button>
     <a class="nav-link" href="documentation.html#_configuring_components">Configuring components</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_is_my_option_valid">Is my option valid?</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_primitives">Primitives</a>
   </li>
@@ -135,22 +135,22 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_defining_constraints_and_validations_on_the_configuration">Defining Constraints and validations on the configuration</a>
+    <a class="nav-link" href="documentation.html#_constraints_and_validation_on_the_configuration_input">Constraints and validation on the configuration/input</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_marking_a_configuration_as_a_particular_type_of_data">Marking a configuration as a particular type of data</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_defining_links_between_properties">Defining links between properties</a>
+    <a class="nav-link" href="documentation.html#_define_links_between_properties">Define links between properties</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#documentation-ui-hints">Adding hints about the rendering based on configuration/component knowledge</a>
+    <a class="nav-link" href="documentation.html#documentation-ui-hints">Add hints about the rendering based on configuration/component knowledge</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_widget_and_validation_gallery">Widget and validation gallery</a>
+    <a class="nav-link" href="documentation.html#_gallery">Gallery</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_widgets">Widgets</a>
@@ -169,7 +169,7 @@
     <a class="nav-link" href="documentation.html#_components_metadata">Components metadata</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="documentation.html#_managing_version_configuration">Managing version configuration</a>
+    <a class="nav-link" href="documentation.html#_management_of_configuration_versions">Management of configuration versions</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
@@ -189,7 +189,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_component_internationalization">Component internationalization</a>
+    <a class="nav-link" href="documentation.html#_internationalization">Internationalization</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_default_components_keys">Default components keys</a>
@@ -218,7 +218,7 @@
     <a class="nav-link" href="documentation.html#_dependencies">Dependencies</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="documentation.html#_creating_a_nested_maven_repository_with_maven_shade_plugin">Creating a nested Maven repository with maven-shade-plugin</a>
+    <a class="nav-link" href="documentation.html#_create_a_nested_maven_repository_with_maven_shade_plugin">Create a nested maven repository with maven-shade-plugin</a>
   </li>
 </ul>
   </li>
@@ -275,26 +275,29 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_rendering_your_documentation">Rendering your documentation</a>
+    <a class="nav-link" href="documentation.html#_render_your_documentation">Render your documentation</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="documentation.html#_html_rendering">HTML rendering</a>
+    <a class="nav-link" href="documentation.html#_html">HTML</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="documentation.html#_pdf_rendering">PDF rendering</a>
+    <a class="nav-link" href="documentation.html#_pdf">PDF</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="documentation.html#_including_the_documentation_into_a_document">Including the documentation into a document</a>
+    <a class="nav-link" href="documentation.html#_include_the_documentation_into_a_document">Include the documentation into a document</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_more">More</a>
   </li>
 </ul>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_testing_a_component_web_rendering">Testing a component web rendering</a>
+    <a class="nav-link" href="documentation.html#_web">Web</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_generating_inputs_or_outputs">Generating inputs or outputs</a>
+    <a class="nav-link" href="documentation.html#_generate_inputs_or_outputs">Generate inputs or outputs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_talend_component_archive">Talend Component Archive</a>
@@ -312,7 +315,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_internationalizing_services">Internationalizing services</a>
+    <a class="nav-link" href="documentation.html#_internationalization_2">Internationalization</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_internationalization_api">Internationalization API</a>
@@ -321,26 +324,23 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_providing_actions_for_consumers">Providing actions for consumers</a>
+    <a class="nav-link" href="documentation.html#_providing_some_actions_for_consumers_clients">Providing some actions for consumers/clients</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_particular_action_types">Particular action types</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="documentation.html#_internationalization">Internationalization</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_built_in_services">Built-in services</a>
+    <a class="nav-link" href="documentation.html#_built_in_services">Built in services</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#httpclient_usage">Using HttpClient</a>
+    <a class="nav-link" href="documentation.html#_httpclient_usage">HttpClient usage</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="documentation.html#_customizing_http_client_requests">Customizing HTTP client requests</a>
+    <a class="nav-link" href="documentation.html#_advanced_http_client_request_customization">Advanced HTTP client request customization</a>
   </li>
 </ul>
   </li>
@@ -370,13 +370,13 @@
     <a class="nav-link" href="documentation.html#_beam_case">Beam case</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="documentation.html#_inputs_and_outputs">Inputs and Outputs</a>
+    <a class="nav-link" href="documentation.html#_i_o">I/O</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="documentation.html#_processors">Processors</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="documentation.html#_converting_a_beam_io_into_a_component_i_o">Converting a Beam.io into a component I/O</a>
+    <a class="nav-link" href="documentation.html#_convert_a_beam_io_in_a_component_i_o">Convert a Beam.io in a component I/O</a>
   </li>
 </ul>
   </li>
@@ -384,7 +384,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_advanced_defining_a_custom_api">Advanced: defining a custom API</a>
+    <a class="nav-link" href="documentation.html#_advanced_define_a_custom_api">Advanced: define a custom API</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_extending_the_ui">Extending the UI</a>
@@ -399,7 +399,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_testing_best_practices">Testing best practices</a>
+    <a class="nav-link" href="documentation.html#_best_practises">Best practises</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
@@ -457,13 +457,13 @@
     <a class="nav-link" href="documentation.html#_junit_5_3">JUnit 5</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="documentation.html#_checking_the_job_execution_status">Checking the job execution status</a>
+    <a class="nav-link" href="documentation.html#_how_to_know_the_job_is_done">How to know the job is done</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#component-runtime-http-junit">component-runtime-http-junit</a>
+    <a class="nav-link" href="documentation.html#_component_runtime_http_junit">component-runtime-http-junit</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
@@ -498,7 +498,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="documentation.html#_testing_on_multiple_environments">Testing on multiple environments</a>
+    <a class="nav-link" href="documentation.html#_multiple_environments_for_the_same_tests">Multiple environments for the same tests</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="documentation.html#_junit_4_5">JUnit 4</a>
@@ -524,40 +524,7 @@
     <a class="nav-link" href="documentation.html#_secrets_passwords_and_maven">Secrets/Passwords and Maven</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="documentation.html#_generating_data">Generating data</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Tutorials</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
+    <a class="nav-link" href="documentation.html#_generating_data">Generating data?</a>
   </li>
 </ul>
   </li>
@@ -567,9 +534,6 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="documentation-rest.html">Server</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="server-uispec.html">UiSpec Server</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
@@ -591,10 +555,7 @@
     <li class="component is-current">
       <span class="title">Talend Component Kit Developer Reference Guide</span>
       <ul class="versions">
-        <li class="version is-latest">
-          <a href="../1.0.2/index.html">1.0.2</a>
-        </li>
-        <li class="version is-current">
+        <li class="version is-current is-latest">
           <a href="index.html">1.0.1</a>
         </li>
         <li class="version">
@@ -655,7 +616,6 @@
     <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">1.0.1</button>
   <div class="versions-menu">
-    <a class="version" href="../1.0.2/build-tools-maven.html">1.0.2</a>
     <a class="version is-current" href="build-tools-maven.html">1.0.1</a>
     <a class="version" href="../1.0.0/build-tools-maven.html">1.0.0</a>
     <a class="version" href="../0.0.12/build-tools-maven.html">0.0.12</a>
@@ -678,10 +638,11 @@
         <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>talend-component-maven-plugin</code> helps you write components that match best practices and generate transparently metadata used by Talend Studio.</p>
+<p><code>talend-component-maven-plugin</code> intends to help you to write components
+validating components match best practices and also generating transparently metadata used by Talend Studio.</p>
 </div>
 <div class="paragraph">
-<p>You can use it as follows:</p>
+<p>Here is how to use it:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -693,7 +654,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>This plugin is also an extension so you can declare it in your <code>build/extensions</code> block as:</p>
+<p>Note that this plugin is also an extension so you can declare it in your <code>build/extensions</code> block as:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -705,7 +666,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Used as an extension, the <code>dependencies</code>, <code>validate</code> and <code>documentation</code> goals will be set up.</p>
+<p>Used as an extension, <code>dependencies</code>, <code>validate</code> and <code>documentation</code> goals will be set up.</p>
 </div>
 </div>
 </div>
@@ -713,7 +674,8 @@
 <h2 id="_dependencies"><a class="anchor" href="#_dependencies"></a>1. Dependencies</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>. It creates the <code>TALEND-INF/dependencies.txt</code> file with the <code>compile</code> and <code>runtime</code> dependencies, allowing the component to use it at runtime:</p>
+<p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>, it will create the <code>TALEND-INF/dependencies.txt</code> file
+with the <code>compile</code> and <code>runtime</code> dependencies to let the component use it at runtime:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -738,7 +700,7 @@
 <h2 id="_validate"><a class="anchor" href="#_validate"></a>2. Validate</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This goal helps you validate the common programming model of the component. To activate it, you can use following execution definition:</p>
+<p>The most important goal is here to help you to validate the common programming model of the component. Here is the execution definition to activate it:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -758,7 +720,8 @@
 </div>
 </div>
 <div class="paragraph">
-<p>It is bound to the <code>process-classes</code> phase by default. When executed, it performs several validations that can be disabled by setting the corresponding flags to <code>false</code> in the <code>&lt;configuration&gt;</code> block of the execution:</p>
+<p>By default it will be bound to <code>process-classes</code> phase. When executing it will do several validations which can be switched off
+adding the corresponding flags to <code>false</code> in the <code>&lt;configuration&gt;</code> block of the execution:</p>
 </div>
 <table class="tableblock frame-all grid-all">
 <colgroup>
@@ -776,57 +739,57 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateInternationalization</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Validates that resource bundles are presents and contain commonly used keys (for example, <code>_displayName</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validates resource bundle are presents and contain commonly used keys (like <code>_displayName</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateModel</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that components pass validations of the <code>ComponentManager</code> and Talend Component runtime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure components pass validations of the <code>ComponentManager</code> and Talend Component runtime</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateSerializable</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that components are <code>Serializable</code>. This is a sanity check, the component is not actually serialized here. If you have a doubt, make sure to test it. It also checks that any <code>@Internationalized</code> class is valid and has its keys.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure components are <code>Serializable</code> - note this is a sanity check, the component is not actually serialized here, if you have a doubt ensure to test it. It also checks any <code>@Internationalized</code> class is valid and has its keys.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateMetadata</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that components have an <code>@Icon</code> and a <code>@Version</code> defined.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure components define an <code>@Icon</code> and <code>@Version</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateDataStore</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that any <code>@DataStore</code> defines a <code>@HealthCheck</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure any  <code>@DataStore</code> defines a <code>@HealthCheck</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateComponent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that the native programming model is respected. You can disable it when using another programming model like Beam.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure native programming model is respected, you can disable it when using another programming model like in beam case.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateActions</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Validates action signatures for actions not tolerating dynamic binding (<code>@HealthCheck</code>, <code>@DynamicValues</code>, and so on). It is recommended to keep it set to <code>true</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validate actions signatures for the ones not tolerating dynamic binding (<code>@HealthCheck</code>, <code>@DynamicValues</code>, &#8230;&#8203;). It is recommended to keep it <code>true</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateFamily</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Validates the family by verifying that the package containing the <code>@Components</code> has a <code>@Icon</code> property defined.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validate the family, i.e. the package containing the <code>@Components</code> has also a <code>@Icon</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateDocumentation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that all components and <code>@Option</code> properties have a documentation using the <code>@Documentation</code> property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure all 1. components and 2. <code>@Option</code> properties have a documentation using <code>@Documentation</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateLayout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that the layout is referencing existing options and properties.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the layout is referencing existing options/properties.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateOptionNames</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that the option names are compliant with the framework. It is highly recommended and safer to keep it set to <code>true</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the option names are compliant with the framework. It is really unsafe to set it to false.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 </tbody>
@@ -837,7 +800,8 @@
 <h2 id="_documentation"><a class="anchor" href="#_documentation"></a>3. Documentation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and the <code>@Documentation</code> property that you can add to options and to the component itself.</p>
+<p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and
+<code>@Documentation</code> you can put on options and the component itself.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -872,15 +836,15 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">level</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Level of the root title.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Which level are the root title</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>2 (<code>==</code>)</p>
+<p>2 which means <code>==</code></p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">output</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Output folder path. It is recommended to keep it to the default value.</p>
+<p>Where to store the output, it is <strong>NOT</strong> recommended to change it</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>${classes}/TALEND-INF/documentation.adoc</code></p>
@@ -888,27 +852,27 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">formats</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Map of the renderings to do. Keys are the format (<code>pdf</code> or <code>html</code>) and values the output paths.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A map of the renderings to do, keys are the format (<code>pdf</code> or <code>html</code>) and values the output paths</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attributes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Map of asciidoctor attributes when <strong>formats</strong> is set.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A map of asciidoctor attributes when formats is set</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">templateDir / templateEngine</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Template configuration for the rendering.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Template configuration for the rendering</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">title</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Document title.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Document title</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${project.name}</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attachDocumentations</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to attach (and deploy) the documentations (<code>.adoc</code>, and <code>formats</code> keys) to the project.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should the documentations (<code>.adoc</code>, and <code>formats</code> keys) should be attached to the project (and deployed)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 </tbody>
@@ -920,33 +884,18 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If you use the plugin as an extension, you can add the <code>talend.documentation.htmlAndPdf</code> property and set it to <code>true</code> in your project to automatically get HTML and PDF renderings of the documentation.
+if you use the extension you can add the property <code>talend.documentation.htmlAndPdf</code> and set it to <code>true</code> in your project
+to automatically get a html and PDF rendering of the documentation.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_rendering_your_documentation"><a class="anchor" href="#_rendering_your_documentation"></a>3.1. Rendering your documentation</h3>
-<div class="paragraph">
-<p>To render the generated documentation in HTML or PDF, you can use the Asciidoctor Maven plugin (or Gradle equivalent). You can configure both executions if you want both HTML and PDF renderings.</p>
-</div>
-<div class="paragraph">
-<p>Make sure to execute the rendering after the documentation generation.</p>
-</div>
+<h3 id="_render_your_documentation"><a class="anchor" href="#_render_your_documentation"></a>3.1. Render your documentation</h3>
 <div class="sect3">
-<h4 id="_html_rendering"><a class="anchor" href="#_html_rendering"></a>3.1.1. HTML rendering</h4>
+<h4 id="_html"><a class="anchor" href="#_html"></a>3.1.1. HTML</h4>
 <div class="paragraph">
-<p>If you prefer a HTML rendering, you can configure the following execution in the asciidoctor plugin. The example below:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Generates the components documentation in <code>target/classes/TALEND-INF/documentation.adoc</code>.</p>
-</li>
-<li>
-<p>Renders the documentation as an HTML file stored in <code>target/documentation/documentation.html</code>.</p>
-</li>
-</ol>
+<p>To render the generated documentation you can use the Asciidoctor Maven plugin (or Gradle equivalent):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -986,11 +935,35 @@ If you use the plugin as an extension, you can add the <code>talend.documentatio
 &lt;/plugin&gt;</code></pre>
 </div>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Will generate in <code>target/classes/TALEND-INF/documentation.adoc</code> the components documentation.</p>
+</li>
+<li>
+<p>Will render the documenation as an html file in <code>target/documentation/documentation.html</code>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+ensure to execute it after the documentation generation.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_pdf_rendering"><a class="anchor" href="#_pdf_rendering"></a>3.1.2. PDF rendering</h4>
+<h4 id="_pdf"><a class="anchor" href="#_pdf"></a>3.1.2. PDF</h4>
 <div class="paragraph">
-<p>If you prefer a PDF rendering, you can configure the following execution in the asciidoctor plugin:</p>
+<p>If you prefer a PDF rendering you can configure the following execution
+in the asciidoctor plugin (note that you can configure both executions if you want
+both HTML and PDF rendering):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1025,13 +998,13 @@ If you use the plugin as an extension, you can add the <code>talend.documentatio
 </div>
 </div>
 <div class="sect3">
-<h4 id="_including_the_documentation_into_a_document"><a class="anchor" href="#_including_the_documentation_into_a_document"></a>3.1.3. Including the documentation into a document</h4>
+<h4 id="_include_the_documentation_into_a_document"><a class="anchor" href="#_include_the_documentation_into_a_document"></a>3.1.3. Include the documentation into a document</h4>
 <div class="paragraph">
-<p>If you want to add some more content or a title, you can include the generated document into
+<p>If you want to add some more content or add a title, you can include the generated document into
 another document using Asciidoc <code>include</code> directive.</p>
 </div>
 <div class="paragraph">
-<p>For example:</p>
+<p>A common example is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1049,7 +1022,7 @@ include::{generated_doc}/documentation.adoc[]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>To be able to do that, you need to pass the <code>generated_doc</code> attribute to the plugin. For example:</p>
+<p>This assumes you pass to the plugin the attribute <code>generated_doc</code>, this can be done this way:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1079,49 +1052,40 @@ include::{generated_doc}/documentation.adoc[]</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This is optional but allows to reuse Maven placeholders to pass paths, which can be convenient in an automated build.</p>
+<p>This is optional but allows to reuse maven placeholders to pass paths which is quite convenient in an automated build.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_more"><a class="anchor" href="#_more"></a>3.1.4. More</h4>
 <div class="paragraph">
-<p>You can find more customization options on Asciidoctor <a href="http://asciidoctor.org/docs/asciidoctor-maven-plugin/">website</a>.</p>
+<p>You can find more customizations on Asciidoctor <a href="http://asciidoctor.org/docs/asciidoctor-maven-plugin/">website</a>.</p>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_testing_a_component_web_rendering"><a class="anchor" href="#_testing_a_component_web_rendering"></a>4. Testing a component web rendering</h2>
+<h2 id="_web"><a class="anchor" href="#_web"></a>4. Web</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Testing the rendering of your component configuration into the Studio requires deploying the component in Talend Studio (refer to <a href="studio.html">Studio Documentation</a>.</p>
+<p>Testing the rendering of your component(s) configuration into the Studio is just a matter of deploying a component
+in Talend Studio (you can have a look to link::studio.html[Studio Documentation] page. But don&#8217;t forget
+the component can also be deployed into a Cloud (web) environment. To ease the testing of the related rendering,
+you can use the goal <code>web</code> of the plugin:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>mvn talend-component:web</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>In the case where you need to deploy your component into a Cloud (web) environment, you can test its web rendering by using the <code>web</code> goal of the plugin:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Run the <code>mvn talend-component:web</code> command.</p>
-</li>
-<li>
-<p>Open the following URL in a web browser: <code><a href="http://localhost:8080" class="bare">localhost:8080</a></code>.</p>
-</li>
-<li>
-<p>Select the component form you want to see from the treeview on the left. The selected form is displayed on the right.</p>
-</li>
-</ol>
+<p>Then you can test your component going on <a href="http://localhost:8080" class="bare">localhost:8080</a>. You need to select which component form you want
+to see using the treeview on the left, then on the right the form will be displayed.</p>
 </div>
 <div class="paragraph">
-<p>Two parameters are available with the plugin:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>serverPort</code>, which allows to change the default port (8080) of the embedded server.</p>
-</li>
-<li>
-<p><code>serverArguments</code>, that you can use to pass Meecrowave options to the server. Learn more about that configuration at <a href="http://openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html" class="bare">openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html</a>.</p>
-</li>
-</ul>
+<p>The two available configurations of the plugin are <code>serverPort</code> which is a shortcut to change the default, 8080, port
+of the embedded server and <code>serverArguments</code> to pass Meecrowave options to the server. More on that configuration
+is available at <a href="http://openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html" class="bare">openwebbeans.apache.org/meecrowave/meecrowave-core/cli.html</a>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1130,7 +1094,7 @@ include::{generated_doc}/documentation.adoc[]</code></pre>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Make sure to install the artifact before using this command because it reads the component JAR from the local Maven repository.
+this command reads the component jar from the local maven repository so ensure to install the artifact before using it.
 </td>
 </tr>
 </table>
@@ -1138,10 +1102,10 @@ Make sure to install the artifact before using this command because it reads the
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generating_inputs_or_outputs"><a class="anchor" href="#_generating_inputs_or_outputs"></a>5. Generating inputs or outputs</h2>
+<h2 id="_generate_inputs_or_outputs"><a class="anchor" href="#_generate_inputs_or_outputs"></a>5. Generate inputs or outputs</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Mojo <code>generate</code> (Maven plugin goal) of the same plugin also embeds a generator that you can use to bootstrap any input or output component:</p>
+<p>The Mojo <code>generate</code> (maven plugin goal) of the same plugin also embeds a generator you can use to bootstrap any input or output component:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1178,20 +1142,20 @@ Make sure to install the artifact before using this command because it reads the
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The first execution generates an input (partition mapper + emitter).</td>
+<td>Generates an input (partition mapper + emitter)</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>the second execution generates an output.</td>
+<td>Generates an output</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>It is intended to be used from the command line (or IDE Maven integration) as follows:</p>
+<p>It is intended to be used from the command line (or IDE Maven integration):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ mvn talend-component:generate \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ mvn talend-component:generate \
     -Dtalend.generator.type=[input|output] \ <i class="conum" data-value="1"></i><b>(1)</b>
     [-Dtalend.generator.classbase=com.test.MyComponent] \ <i class="conum" data-value="2"></i><b>(2)</b>
     [-Dtalend.generator.family=my-family] \ <i class="conum" data-value="3"></i><b>(3)</b>
@@ -1202,24 +1166,24 @@ Make sure to install the artifact before using this command because it reads the
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Select the type of component you want: <code>input</code> to generate a mapper and an emitter, or <code>output</code> to generate an output processor.</td>
+<td>select the type of component you want, <code>input</code> to generate a mapper and emitter and <code>output</code> to generate an output processor</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Set the class name base (automatically suffixed by the component type). If not set, the package is guessed and the classname is based on the basedir name.</td>
+<td>set the class name base (will be suffixed by the component type), if not set the package will be guessed and classname based on the basedir name</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Set the component family to use. If not specified, it defaults to the basedir name and removes "component[s]" from it. for example, <code>my-component</code> leads to <code>my</code> as family, unless it is explicitly set.</td>
+<td>set the component family to use, default to the base dir name removing (component[s] from the name, ex: <code>my-component</code> will lead to <code>my</code> as family if not explicitly set)</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Specify if the generator needs to add <code>component-api</code> to the POM, if not already there. If you already added it, you can set it to <code>false</code> directly in the POM.</td>
+<td>should the generator try to add <code>component-api</code> in the pom if not already here, if you added it you can set it to <code>false</code> directly in the pom</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>For this command to work, you need to register the plugin as follows:</p>
+<p>For this command to work you will need to just register the plugin:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1236,7 +1200,8 @@ Make sure to install the artifact before using this command because it reads the
 <h2 id="_talend_component_archive"><a class="anchor" href="#_talend_component_archive"></a>6. Talend Component Archive</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Component ARchive (<code>.car</code>) is the way to bundle a component to share it in the Talend ecosystem. It is a plain Java ARchive (<code>.jar</code>) containing a metadata file and a nested Maven repository containing the component and its depenencies.</p>
+<p>Component ARchive (<code>.car</code>) is the way to bundle a component to share it in Talend ecosystem. It is a plain Java ARchive (<code>.jar</code>)
+containing a metadata file and a nested maven repository containing the component and its depenencies.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1244,15 +1209,16 @@ Make sure to install the artifact before using this command because it reads the
 </div>
 </div>
 <div class="paragraph">
-<p>This command creates a <code>.car</code> file in your build directory. This file can be shared on Talend platforms.</p>
+<p>It will create a <code>.car</code> in your build directory which is shareable on Talend platforms.</p>
 </div>
 <div class="paragraph">
-<p>This CAR is executable and exposes the <code>studio-deploy</code> command which takes
-a Talend Studio home path as parameter. When executed, it installs the dependencies into the Studio and registers the component in your instance. For example:</p>
+<p>Note that this CAR is executable and exposes the command <code>studio-deploy</code> which takes as parameter
+a Talend Studio home location. Executed it will install the dependencies into the studio and register the component
+in your instance. Here is a sample launch command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># for a studio
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># for a studio
 java -jar mycomponent.car studio-deploy /path/to/my/studio
 or
 java -jar mycomponent.car studio-deploy --location /path/to/my/studio
@@ -1264,19 +1230,19 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 </div>
 </div>
 <div class="paragraph">
-<p>You can also upload the dependencies to your Nexus server using the following command:</p>
+<p>You can also upload the dependencies to your nexus server using the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java -jar mycomponent.car deploy-to-nexus --url &lt;nexus url&gt; --repo &lt;repository name&gt; --user &lt;username&gt; --pass &lt;password&gt; --threads &lt;parallel threads number&gt; --dir &lt;temp directory&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">java -jar mycomponent.car deploy-to-nexus --url &lt;nexus url&gt; --repo &lt;repository name&gt; --user &lt;username&gt; --pass &lt;password&gt; --threads &lt;parallel threads number&gt; --dir &lt;temp directory&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In this command, Nexus URL and repository name are mandatory arguments. All other arguments are optional. If arguments contain spaces or special symbols, you need to quote the whole value of the argument. For example:</p>
+<p>In this command Nexus Url and repository name are mandatory arguments. All other arguments are optional. If arguments contain spaces or special symbols, you need to quote the whole value of the argument, for example</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">--pass "Y0u will \ not G4iess i' ^"</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">--pass "Y0u will \ not G4iess i' ^"</code></pre>
 </div>
 </div>
 </div>
