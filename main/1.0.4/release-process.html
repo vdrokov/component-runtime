@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talend Component Kit Release Process :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/release-process.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-07-19T11:54:28.577Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="query" id="searchInput">
+                            <input type="hidden" name="idx" value="githubantora">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-runtime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="1.0.4">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_definition">Component definition</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#partition-mapper">PartitionMapper</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_definition">Definition</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_assessor">@Assessor</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_split">@Split</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_emitter">@Emitter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_producer">Producer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_processor">Processor</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_multiple_outputs">Multiple outputs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_multiple_inputs">Multiple inputs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_output">Output</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_combiners">Combiners</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_family_and_component_icons">Family and component icons</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_configuring_components">Configuring components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_primitives">Primitives</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_complex_object_mapping">Complex object mapping</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_list_case">List case</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_map_case">Map case</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_defining_constraints_and_validations_on_the_configuration">Defining Constraints and validations on the configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_marking_a_configuration_as_a_particular_type_of_data">Marking a configuration as a particular type of data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_defining_links_between_properties">Defining links between properties</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#documentation-ui-hints">Adding hints about the rendering based on configuration/component knowledge</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_widget_and_validation_gallery">Widget and validation gallery</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_widgets">Widgets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_validations">Validations</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_registering_components">Registering components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_components_metadata">Components metadata</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_managing_version_configuration">Managing version configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_partitionmapper">@PartitionMapper</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_emitter_2">@Emitter</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_processor_2">@Processor</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_internationalization">Component internationalization</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_default_components_keys">Default components keys</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_loading">Component Loading</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_packaging_a_plugin">Packaging a plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_packaging_an_application">Packaging an application</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_dependencies">Dependencies</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_creating_a_nested_maven_repository_with_maven_shade_plugin">Creating a nested Maven repository with maven-shade-plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_listing_needed_plugins">Listing needed plugins</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_maven_shade_plugin_extensions">maven-shade-plugin extensions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_containerdependenciestransformer">ContainerDependenciesTransformer</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_plugintransformer">PluginTransformer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_scanning_rules_and_default_exclusions">Component scanning rules and default exclusions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_jars_scanning">Jars Scanning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_package_scanning">Package Scanning</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_maven_plugin">Maven Plugin</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_dependencies_2">Dependencies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_validate">Validate</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_documentation">Documentation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_rendering_your_documentation">Rendering your documentation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_html_rendering">HTML rendering</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_pdf_rendering">PDF rendering</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_including_the_documentation_into_a_document">Including the documentation into a document</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_testing_a_component_web_rendering">Testing a component web rendering</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_generating_inputs_or_outputs">Generating inputs or outputs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_talend_component_archive">Talend Component Archive</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_gradle_plugin">Gradle Plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_internationalizing_services">Internationalizing services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_internationalization_api">Internationalization API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_providing_actions_for_consumers">Providing actions for consumers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_particular_action_types">Particular action types</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_internationalization">Internationalization</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_built_in_services">Built-in services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#httpclient_usage">Using HttpClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_customizing_http_client_requests">Customizing HTTP client requests</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_services_and_interceptors">Services and interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_creating_a_job_pipeline">Creating a job pipeline</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_job_builder">Job Builder</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_environmentrunner">Environment/Runner</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_key_provider">Key Provider</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_beam_case">Beam case</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_inputs_and_outputs">Inputs and Outputs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_processors">Processors</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_converting_a_beam_io_into_a_component_io">Converting a Beam.io into a component I/O</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_advanced_defining_a_custom_api">Advanced: defining a custom API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_extending_the_ui">Extending the UI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_testing_best_practices">Testing best practices</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_parameterized_tests">Parameterized tests</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_4">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_5">JUnit 5</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_runtime_testing">component-runtime-testing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_runtime_junit">component-runtime-junit</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_4_2">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_5_2">JUnit 5</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_mocking_the_output">Mocking the output</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_mocking_the_input">Mocking the input</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_creating_runtime_configuration_from_component_configuration">Creating runtime configuration from component configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_testing_a_mapper">Testing a Mapper</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_testing_a_processor">Testing a Processor</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_runtime_testing_spark">component-runtime-testing-spark</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_4_3">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_5_3">JUnit 5</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_checking_the_job_execution_status">Checking the job execution status</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#component-runtime-http-junit">component-runtime-http-junit</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_junit_4_4">JUnit 4</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_ssl">SSL</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_junit_5_4">JUnit 5</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_ssl_2">SSL</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_capturing_mode">Capturing mode</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_passthrough_mode">Passthrough mode</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_beam_testing">Beam testing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_testing_on_multiple_environments">Testing on multiple environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_junit_4_5">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_junit_5_5">JUnit 5</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_provided_environments">Provided environments</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_configuring_environments">Configuring environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_advanced_usage">Advanced usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_secretspasswords_and_maven">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_generating_data">Generating data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="server-uispec.html">UiSpec Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">1.0.4</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.3/index.html">1.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.2/index.html">1.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.1/index.html">1.0.1</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.0/index.html">1.0.0</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.12/index.html">0.0.12</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.11/index.html">0.0.11</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.10/index.html">0.0.10</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.9/index.html">0.0.9</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.8/index.html">0.0.8</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.7/index.html">0.0.7</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.6/index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb"><a href="release-process.html">Talend Component Kit Release Process</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">1.0.4</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="release-process.html">1.0.4</a>
+    <a class="version" href="../1.0.3/release-process.html">1.0.3</a>
+    <a class="version" href="../1.0.2/release-process.html">1.0.2</a>
+    <a class="version" href="../1.0.1/release-process.html">1.0.1</a>
+    <a class="version" href="../1.0.0/release-process.html">1.0.0</a>
+    <a class="version" href="../0.0.12/release-process.html">0.0.12</a>
+    <a class="version" href="../0.0.11/release-process.html">0.0.11</a>
+    <a class="version" href="../0.0.10/release-process.html">0.0.10</a>
+    <a class="version" href="../0.0.9/release-process.html">0.0.9</a>
+    <a class="version" href="../0.0.8/release-process.html">0.0.8</a>
+    <a class="version" href="../0.0.7/release-process.html">0.0.7</a>
+    <a class="version" href="../0.0.6/release-process.html">0.0.6</a>
+    <a class="version" href="../0.0.5/release-process.html">0.0.5</a>
+    <a class="version" href="../0.0.4/release-process.html">0.0.4</a>
+    <a class="version" href="../0.0.3/release-process.html">0.0.3</a>
+    <a class="version" href="../0.0.2/release-process.html">0.0.2</a>
+    <a class="version" href="../0.0.1/release-process.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Talend Component Kit Release Process</h1>
+        <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version: 1.0.4</p>
+</div>
+<div class="paragraph">
+<p>This page describes how to release the repository.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generate-gpg-key"><a class="anchor" href="#generate-gpg-key"></a>1. Installing GPG and generating a key</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before configuring Maven, you need to have a GPG key.
+Install GPG and import an existing key or generate a new one using <code>gpg --gen-key</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuring_settings_xml"><a class="anchor" href="#_configuring_settings_xml"></a>2. Configuring settings.xml</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Add the required credentials to your Maven <code>settings.xml</code> file for the release. The overall template is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="
+            http://maven.apache.org/SETTINGS/1.0.0
+            https://maven.apache.org/xsd/settings-1.0.0.xsd"&gt;
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;ossrh&lt;/id&gt;
+      &lt;username&gt;${env.OSSRH_USER}&lt;/username&gt;
+      &lt;password&gt;${env.OSSRH_PASS}&lt;/password&gt;
+    &lt;/server&gt;
+    &lt;server&gt;
+      &lt;id&gt;github&lt;/id&gt;
+      &lt;username&gt;${env.TLND_GITHUB_USER}&lt;/username&gt;
+      &lt;password&gt;${env.TLND_GITHUB_PASS}&lt;/password&gt;
+    &lt;/server&gt;
+    &lt;server&gt;
+      &lt;id&gt;jira&lt;/id&gt;
+      &lt;username&gt;${env.TLND_JIRA_USER}&lt;/username&gt;
+      &lt;password&gt;${env.TLND_JIRA_PASS}&lt;/password&gt;
+    &lt;/server&gt;
+    &lt;server&gt;
+      &lt;id&gt;npm&lt;/id&gt;
+      &lt;username&gt;${env.NPM_USER}&lt;/username&gt;
+      &lt;password&gt;${env.NPM_PASS}&lt;/password&gt;
+    &lt;/server&gt;
+    &lt;server&gt;
+      &lt;id&gt;jetbrains&lt;/id&gt;
+      &lt;username&gt;${env.JETBRAINS_USER}&lt;/username&gt;
+      &lt;password&gt;${env.JETBRAINS_PASS}&lt;/password&gt;
+    &lt;/server&gt;
+    &lt;server&gt; &lt;!-- optional, only if you want to pre-index the search for the doc --&gt;
+      &lt;id&gt;algolia_admin_key&lt;/id&gt;
+      &lt;username&gt;algolia&lt;/username&gt;
+      &lt;password&gt;${env.ALGOLIA_ADMIN_KEY}&lt;/password&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+
+  &lt;profiles&gt;
+    &lt;profile&gt;
+      &lt;id&gt;ossrh&lt;/id&gt;
+      &lt;activation&gt;
+        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+      &lt;/activation&gt;
+      &lt;properties&gt;
+        &lt;additionalparam&gt;-Xdoclint:none&lt;/additionalparam&gt;
+        &lt;gpg.executable&gt;gpg&lt;/gpg.executable&gt;
+        &lt;gpg.defaultKeyring&gt;false&lt;/gpg.defaultKeyring&gt;
+        &lt;gpg.keyname&gt;${env.GPG_KEYNAME}&lt;/gpg.keyname&gt;
+        &lt;gpg.passphrase&gt;${env.GPG_PASSPHRASE}&lt;/gpg.passphrase&gt;
+        &lt;gpg.publicKeyring&gt;${env.HOME}/.gpg/talend.pub.bin&lt;/gpg.publicKeyring&gt;
+        &lt;gpg.secretKeyring&gt;${env.HOME}/.gpg/talend.priv.bin&lt;/gpg.secretKeyring&gt;
+      &lt;/properties&gt;
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
+&lt;/settings&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All the environment variables should be either set in your environment or hardcoded inline. It is highly recommended to use Maven encryption: <a href="https://maven.apache.org/guides/mini/guide-encryption.html" class="bare">maven.apache.org/guides/mini/guide-encryption.html</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The OSSH variables are your Sonatype OSS repository credentials with the permissions to deploy on org.talend.
+If you don&#8217;t have them already, you can ask for them at <a href="https://issues.sonatype.org/projects/OSSRH" class="bare">issues.sonatype.org/projects/OSSRH</a> using your Talend address.</p>
+</li>
+<li>
+<p>The GitHub variables are your GitHub account credentials. they are mainly used to update the documentation.</p>
+</li>
+<li>
+<p>The JIRA variables are your Talend account credentials with read permissions on <a href="https://jira.talendforge.org/projects/TCOMP/" class="bare">jira.talendforge.org/projects/TCOMP/</a>.</p>
+</li>
+<li>
+<p>The Blackduck configuration is used for security scans.</p>
+</li>
+<li>
+<p>The GPG variables reference the key mentioned in <a href="#generate-gpg-key">Installing GPG and generating a key</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cleaning_up_jira"><a class="anchor" href="#_cleaning_up_jira"></a>3. Cleaning up JIRA</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The release connects to JIRA to retrieve and create the release notes. It uses all <code>TCOMP</code> issues which have the <code>changelog</code> label.</p>
+</div>
+<div class="paragraph">
+<p>Before any release, go through all the issues of the version to release and add or remove the <code>changelog</code> label depending on the issues that need to appear in the release notes.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_releasing"><a class="anchor" href="#_releasing"></a>4. Releasing</h2>
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+At that stage, it is assumed that all previous steps have been <strong>done</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The release uses a standard Maven process. You should be able to do it in two steps:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn release:prepare
+mvn release:perform</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_after_the_release"><a class="anchor" href="#_after_the_release"></a>5. After the release</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After releasing - it can take up to a few hours - the binaries become available on Maven Central Repository (<a href="http://repo.apache.maven.org/maven2/" class="bare">repo.apache.maven.org/maven2/</a>).
+Check it to make sure that there was no issue during the release process.</p>
+</div>
+<div class="paragraph">
+<p>You can also validate that the release correctly deployed the new version from the Version menu of the website.</p>
+</div>
+<div class="paragraph">
+<p>Then we must ensure docker images are deployed and the site</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure you pushed the tag if not already done : <code>git push --follow-tags</code></p>
+</li>
+<li>
+<p>Checkout the tag: <code>git checkout -b component-runtime-$release component-runtime-$release</code></p>
+</li>
+<li>
+<p>Build the tag: <code>mvn clean install -DskipTests -Dinvoker.skip=true -T1C</code></p>
+</li>
+<li>
+<p>Deploy the component-starter-server on Docker Hub (assumes your credentials are set up): <code>export RELEASE_VERSION=$(grep "&lt;version&gt;" pom.xml  | head -n 1 | sed "s/.<strong>&gt;\\(.</strong>\\)&lt;.*/\\1/") &amp;&amp; cd .docker &amp;&amp; docker build --build-arg SERVER_VERSION=$RELEASE_VERSION --build-arg ARTIFACT_ID=component-starter-server --tag tacokit/component-starter-server:$RELEASE_VERSION . &amp;&amp; docker push tacokit/component-starter-server:$RELEASE_VERSION &amp;&amp; cd -</code>.</p>
+</li>
+<li>
+<p>Deploy the component-server on Docker Hub: <code>COMPONENT_SERVER_DOCKER_BUILD_ONLY=true ./.travis/docker.sh</code> and then push the produced image (its name was logged but should be tacokit/component-server:$REALEASE_VERSION).</p>
+</li>
+<li>
+<p>Rebuild the new master and push the updated files from the doc module (otherwise we&#8217;ll get a conflict with the tag): <code>mvn clean install -DskipTests -Dinvoker.skip=true -T1C &amp;&amp; git commit -a -m "Updating doc for new dev round" &amp;&amp; git push</code></p>
+</li>
+<li>
+<p>(optional) Redeploy manually the doc to not wait for travis: <code>cd documentation &amp;&amp; mvn clean install pre-site -Pgh-pages &amp;&amp; cd -</code></p>
+</li>
+<li>
+<p>(optional) Update Algolia (doc search index) if you redeployed the documentation - note that it crawls the website so you can need to wait for github to redeploy the website: <code>cd documentation &amp;&amp; mvn gplus:execute@groovy-scripts rmannibucau-common:filter@filter-algolia frontend:yarn@algolia-index &amp;&amp; cd -</code></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+<script>
+(function (window, document) {
+  hljs.initHighlighting();
+
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {return;}
+      var code = pre.querySelector('code.hljs');
+      if (!code) {return;}
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {code.style.height = closedSize;}
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>

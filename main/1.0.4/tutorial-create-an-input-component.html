@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementing an input component :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/tutorial-create-an-input-component.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-07-19T11:54:28.776Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="query" id="searchInput">
+                            <input type="hidden" name="idx" value="githubantora">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-runtime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="1.0.4">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Programming Model</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_definition">Component definition</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#partition-mapper">PartitionMapper</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_definition">Definition</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_assessor">@Assessor</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_split">@Split</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_emitter">@Emitter</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_producer">Producer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_processor">Processor</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_multiple_outputs">Multiple outputs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_multiple_inputs">Multiple inputs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_output">Output</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_combiners">Combiners</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_family_and_component_icons">Family and component icons</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_configuring_components">Configuring components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_primitives">Primitives</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_complex_object_mapping">Complex object mapping</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_list_case">List case</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_map_case">Map case</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_defining_constraints_and_validations_on_the_configuration">Defining Constraints and validations on the configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_marking_a_configuration_as_a_particular_type_of_data">Marking a configuration as a particular type of data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_defining_links_between_properties">Defining links between properties</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#documentation-ui-hints">Adding hints about the rendering based on configuration/component knowledge</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_widget_and_validation_gallery">Widget and validation gallery</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_widgets">Widgets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_validations">Validations</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_registering_components">Registering components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_components_metadata">Components metadata</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_managing_version_configuration">Managing version configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_partitionmapper">@PartitionMapper</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_emitter_2">@Emitter</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_processor_2">@Processor</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_internationalization">Component internationalization</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_default_components_keys">Default components keys</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Package</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_loading">Component Loading</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_packaging_a_plugin">Packaging a plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_packaging_an_application">Packaging an application</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_dependencies">Dependencies</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_creating_a_nested_maven_repository_with_maven_shade_plugin">Creating a nested Maven repository with maven-shade-plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_listing_needed_plugins">Listing needed plugins</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_maven_shade_plugin_extensions">maven-shade-plugin extensions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_containerdependenciestransformer">ContainerDependenciesTransformer</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_plugintransformer">PluginTransformer</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_scanning_rules_and_default_exclusions">Component scanning rules and default exclusions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_jars_scanning">Jars Scanning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_package_scanning">Package Scanning</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Build tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_maven_plugin">Maven Plugin</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_dependencies_2">Dependencies</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_validate">Validate</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_documentation">Documentation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_rendering_your_documentation">Rendering your documentation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_html_rendering">HTML rendering</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_pdf_rendering">PDF rendering</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_including_the_documentation_into_a_document">Including the documentation into a document</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_testing_a_component_web_rendering">Testing a component web rendering</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_generating_inputs_or_outputs">Generating inputs or outputs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_talend_component_archive">Talend Component Archive</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_gradle_plugin">Gradle Plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_internationalizing_services">Internationalizing services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_internationalization_api">Internationalization API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_providing_actions_for_consumers">Providing actions for consumers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_particular_action_types">Particular action types</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_internationalization">Internationalization</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_built_in_services">Built-in services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#httpclient_usage">Using HttpClient</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_customizing_http_client_requests">Customizing HTTP client requests</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_services_and_interceptors">Services and interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_creating_a_job_pipeline">Creating a job pipeline</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_job_builder">Job Builder</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_environmentrunner">Environment/Runner</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_key_provider">Key Provider</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_beam_case">Beam case</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_inputs_and_outputs">Inputs and Outputs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_processors">Processors</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_converting_a_beam_io_into_a_component_io">Converting a Beam.io into a component I/O</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_advanced_defining_a_custom_api">Advanced: defining a custom API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_extending_the_ui">Extending the UI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Testing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_testing_best_practices">Testing best practices</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_parameterized_tests">Parameterized tests</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_4">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_5">JUnit 5</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_runtime_testing">component-runtime-testing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_runtime_junit">component-runtime-junit</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_4_2">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_5_2">JUnit 5</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_mocking_the_output">Mocking the output</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_mocking_the_input">Mocking the input</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_creating_runtime_configuration_from_component_configuration">Creating runtime configuration from component configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_testing_a_mapper">Testing a Mapper</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_testing_a_processor">Testing a Processor</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_component_runtime_testing_spark">component-runtime-testing-spark</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_4_3">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_junit_5_3">JUnit 5</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_checking_the_job_execution_status">Checking the job execution status</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#component-runtime-http-junit">component-runtime-http-junit</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_junit_4_4">JUnit 4</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_ssl">SSL</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_junit_5_4">JUnit 5</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="documentation.html#_ssl_2">SSL</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_capturing_mode">Capturing mode</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_passthrough_mode">Passthrough mode</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_beam_testing">Beam testing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_testing_on_multiple_environments">Testing on multiple environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_junit_4_5">JUnit 4</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_junit_5_5">JUnit 5</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="documentation.html#_provided_environments">Provided environments</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="documentation.html#_configuring_environments">Configuring environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="documentation.html#_advanced_usage">Advanced usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_secretspasswords_and_maven">Secrets/Passwords and Maven</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation.html#_generating_data">Generating data</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Tutorials</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generate a component</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Create an input component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Create an output component</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-your-components.html">Test your components</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Configuration and sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Create components for REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-test-rest-api.html">How to test a REST API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Dev vs CI setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">Talend Intellij plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Web</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="documentation-rest.html">Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="server-uispec.html">UiSpec Server</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">1.0.4</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.3/index.html">1.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.2/index.html">1.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.1/index.html">1.0.1</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.0/index.html">1.0.0</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.12/index.html">0.0.12</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.11/index.html">0.0.11</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.10/index.html">0.0.10</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.9/index.html">0.0.9</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.8/index.html">0.0.8</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.7/index.html">0.0.7</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.6/index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb">Tutorials</li>
+    <li class="crumb"><a href="tutorial-create-an-input-component.html">Create an input component</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">1.0.4</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="tutorial-create-an-input-component.html">1.0.4</a>
+    <a class="version" href="../1.0.3/tutorial-create-an-input-component.html">1.0.3</a>
+    <a class="version" href="../1.0.2/tutorial-create-an-input-component.html">1.0.2</a>
+    <a class="version" href="../1.0.1/tutorial-create-an-input-component.html">1.0.1</a>
+    <a class="version" href="../1.0.0/tutorial-create-an-input-component.html">1.0.0</a>
+    <a class="version" href="../0.0.12/tutorial-create-an-input-component.html">0.0.12</a>
+    <a class="version" href="../0.0.11/tutorial-create-an-input-component.html">0.0.11</a>
+    <a class="version" href="../0.0.10/tutorial-create-an-input-component.html">0.0.10</a>
+    <a class="version" href="../0.0.9/tutorial-create-an-input-component.html">0.0.9</a>
+    <a class="version" href="../0.0.8/tutorial-create-an-input-component.html">0.0.8</a>
+    <a class="version" href="../0.0.7/tutorial-create-an-input-component.html">0.0.7</a>
+    <a class="version" href="../0.0.6/tutorial-create-an-input-component.html">0.0.6</a>
+    <a class="version" href="../0.0.5/tutorial-create-an-input-component.html">0.0.5</a>
+    <a class="version" href="../0.0.4/tutorial-create-an-input-component.html">0.0.4</a>
+    <a class="version" href="../0.0.3/tutorial-create-an-input-component.html">0.0.3</a>
+    <a class="version" href="../0.0.2/tutorial-create-an-input-component.html">0.0.2</a>
+    <a class="version" href="../0.0.1/tutorial-create-an-input-component.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Implementing an input component</h1>
+        <div id="preamble">
+<div class="sectionbody">
+<div id="tutorial-create-an-input-component" class="paragraph">
+<p>This tutorial shows how to create a complete working input component for <a href="#https://hazelcast.org/">Hazelcast</a>, including:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Registering the component family.</p>
+</li>
+<li>
+<p>Defining the configurable part and the layout of the component.</p>
+</li>
+<li>
+<p>Configuring the partition mapper, to let the input split itself to work in a distributed environment.</p>
+</li>
+<li>
+<p>Configuring the source that is responsible for connecting and reading data from the data source.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Getter and Setter methods are omitted for simplicity in this tutorial.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following procedures assume that you have already generated the component package from the Talend Component Kit starter. See <a href="tutorial-generate-project-using-starter.html" class="page">this tutorial</a> to learn how to generate this package.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_registering_the_component_family"><a class="anchor" href="#_registering_the_component_family"></a>1. Registering the component family</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Register the component family via a the <code>package-info.java</code> file in the package of the component.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Icon(value = Icon.IconType.CUSTOM, custom = "hazelcast") <i class="conum" data-value="1"></i><b>(1)</b>
+@Components(family = "Hazelcast", categories = "IMDG") <i class="conum" data-value="2"></i><b>(2)</b>
+package org.talend.hazelcast;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This define the family icon.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>In this line we define the component family and the component categories.
+Those information are used in the web and studio applications to group the components.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_defining_the_configurable_part_and_the_layout_of_the_component"><a class="anchor" href="#_defining_the_configurable_part_and_the_layout_of_the_component"></a>2. Defining the configurable part and the layout of the component</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The component configuration includes defining the part of the components that can be configured once integrated to Talend solutions, in addition to the configuration type and the UI layout.</p>
+</div>
+<div class="paragraph">
+<p>The configuration is a POJO class decorated with annotations from the component framework.
+In this case, the component is configured as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GridLayout({ <i class="conum" data-value="1"></i><b>(1)</b>
+        @GridLayout.Row({ "hazelcastXml", "mapName" }),
+        @GridLayout.Row({ "executorService" }),
+})
+public class HazelcastConfiguration implements Serializable {
+
+    @Option <i class="conum" data-value="2"></i><b>(2)</b>
+    private String hazelcastXml; <i class="conum" data-value="3"></i><b>(3)</b>
+
+    @Option
+    private String mapName; <i class="conum" data-value="4"></i><b>(4)</b>
+
+    @Option
+    private String executorService = "default"; <i class="conum" data-value="5"></i><b>(5)</b>
+
+    ClientConfig newConfig() throws IOException { <i class="conum" data-value="6"></i><b>(6)</b>
+        final ClientConfig newconfig = hazelcastXml == null ? new XmlClientConfigBuilder().build() :
+                new XmlClientConfigBuilder(hazelcastXml).build();
+
+        newconfig.setInstanceName(getClass().getSimpleName() + "_" + UUID.randomUUID().toString());
+        newconfig.setClassLoader(Thread.currentThread().getContextClassLoader());
+        return newconfig;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>UI layout of the configurable part of the component.
+This layout is used to show and organize the configuration Talend applications.<br>
+In the example above, <strong>hazelcastXml</strong> and <strong>mapName</strong> are displayed on the same row and all rows are displayed in the default basic configuration tab of the component.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>All the attributes annotated with <code>@Option</code> are recognized as configuration elements and are bound to a default widget according to their type, unless a specific widget is explicitly declared. For more details, see the <a href="gallery.html" class="page">widget gallery</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Path of the Hazelcast XML configuration file.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Name of the map to be read.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Executor service name, with a default value set to <code>default</code> in this case.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Utility method that converts the configuration into a Hazelcast client configuration object.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Read more about component configuration in <a href="component-configuration.html" class="page">this document</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuring_the_partition_mapper"><a class="anchor" href="#_configuring_the_partition_mapper"></a>3. Configuring The Partition Mapper</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Hazelcast component created through this tutorial needs to work first in distributed environments.</p>
+</div>
+<div class="paragraph">
+<p>Every input component has to define a partition mapper class.</p>
+</div>
+<div class="paragraph">
+<p>At runtime, this class heuristically estimates the size of the data to be handled. Based on this estimation and on the capacity of the execution engine of your component, it divides the work of your component to reduce the overall execution time.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the partition mapper class, see <a href="component-definition.html#partition-mapper" class="page">Partition mapper</a>.</p>
+</div>
+<div class="paragraph">
+<p>The skeleton of the partition mapper looks as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(1) <i class="conum" data-value="1"></i><b>(1)</b>
+@Icon(value = Icon.IconType.CUSTOM, custom = "hazelcastInput") <i class="conum" data-value="2"></i><b>(2)</b>
+@PartitionMapper(name = "Input") <i class="conum" data-value="3"></i><b>(3)</b>
+public class HazelcastMapper implements Serializable {
+    private final HazelcastConfiguration configuration;
+    private final JsonBuilderFactory jsonFactory;
+    private final Jsonb jsonb;
+    private final HazelcastService service;
+
+    public HazelcastMapper(@Option("configuration") final HazelcastConfiguration configuration,
+            final JsonBuilderFactory jsonFactory,
+            final Jsonb jsonb,
+            final HazelcastService service) {} <i class="conum" data-value="4"></i><b>(4)</b>
+
+    @PostConstruct
+    public void init() throws IOException {}  <i class="conum" data-value="5"></i><b>(5)</b>
+
+    @PreDestroy
+    public void close() {} <i class="conum" data-value="6"></i><b>(6)</b>
+
+    @Assessor
+    public long estimateSize() {} <i class="conum" data-value="7"></i><b>(7)</b>
+
+    @Split
+    public List&lt;HazelcastMapper&gt; split(@PartitionSize final long bundleSize) {} <i class="conum" data-value="8"></i><b>(8)</b>
+
+    @Emitter
+    public HazelcastSource createSource() {}  <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>@Version</code> annotation specifies the version of the component. it is used to migrate the component configuration if needed.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>@Icon</code> annotation specifies the icon of the component. In this case, a custom icon is used and needs to be bundled in the component JAR under <code>resources/icons</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>@PartitionMapper</code> annotation indicates that this class is the partition mapper and defines its name.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This constructor of the mapper is responsible for injecting the component configuration and services.
+<div class="ulist">
+<ul>
+<li>
+<p>Configuration parameters are annotated with <code>@Option</code>.</p>
+</li>
+<li>
+<p>Other parameters are considered as services and are injected by the component framework. Services can be local (classes annotated with <code>@Service</code>) or provided by the component framework.</p>
+</li>
+</ul>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The method annotated with <code>@PostConstruct</code> is executed once on the driver node in a distributed environment and can be used for initialization.
+Here, the goal is to get the Hazelcast instance according to the provided configuration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The method annotated with <code>@PreDestroy</code> is used to clean resources at the end of the execution of the partition mapper.<br>
+In the context of this tutorial, the Hazelcast instance loaded in the post Construct method is shut down.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>The method annotated with <code>@Assessor</code> is responsible for calculating the size of  the dataset containing the Hazelcast members.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>The method annotated with <code>@Split</code> is responsible for splitting this mapper according to the bundle size requested by the runner and to the hole dataset size.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>The method annotated with <code>@Emitter</code> is responsible for creating the producer instance that reads the data from the data source (Hazelcast in this case).</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Each of the methods mentioned above now needs to be created.</p>
+</div>
+<div class="sect2">
+<h3 id="_defining_the_constructor_method"><a class="anchor" href="#_defining_the_constructor_method"></a>3.1. Defining the constructor method</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private final Collection&lt;String&gt; members; <i class="conum" data-value="1"></i><b>(1)</b>
+
+<i class="conum" data-value="2"></i><b>(2)</b>
+public HazelcastMapper(@Option("configuration") final HazelcastConfiguration configuration,
+        final JsonBuilderFactory jsonFactory,
+        final Jsonb jsonb,
+        final HazelcastService service) {
+    this(configuration, jsonFactory, jsonb, service, emptyList());
+}
+
+// internal <i class="conum" data-value="3"></i><b>(3)</b>
+protected HazelcastMapper(final HazelcastConfiguration configuration,
+        final JsonBuilderFactory jsonFactory,
+        final Jsonb jsonb,
+        final HazelcastService service,
+        final Collection&lt;String&gt; members) {
+    this.configuration = configuration;
+    this.jsonFactory = jsonFactory;
+    this.jsonb = jsonb;
+    this.service = service;
+    this.members = members;
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Add a collection attribute to the mapper. The list of Hazelcast members is needed later in the process.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Define the component public constructor, which is responsible for injecting configuration and services.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Add an internal constructor to get the collection of the Hazelcast cluster members.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defining_the_postconstruct_method"><a class="anchor" href="#_defining_the_postconstruct_method"></a>3.2. Defining the PostConstruct method</h3>
+<div class="paragraph">
+<p>The @PostConstruct method is used to initialize a Hazelcast client instance.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private transient HazelcastInstance instance; <i class="conum" data-value="1"></i><b>(1)</b>
+
+@PostConstruct
+The method annotated with @PostConstruct is used to initialize a Hazelcast client instance.
+
+public void init() throws IOException {
+    instance = service.findInstance(configuration.newConfig()); <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Declare the Hazelcast instance as an attribute for the mapper.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Create an instance of Hazelcast according to the provided configuration.
+In this case, the injected HazelcastService instance is used. This service is implemented in the project.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The HazelcastService is implemented as follows.
+Every class annotated with <code>@Service</code> can be injected to the component via its constructor.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import org.talend.sdk.component.api.service.Service;
+
+@Service
+public class HazelcastService {
+    public HazelcastInstance findInstance(final ClientConfig config) {
+        return HazelcastClient.newHazelcastClient(config); <i class="conum" data-value="1"></i><b>(1)</b>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Create a new instance of the Hazelcast client.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defining_the_predestroy_method"><a class="anchor" href="#_defining_the_predestroy_method"></a>3.3. Defining the PreDestroy method</h3>
+<div class="paragraph">
+<p>The method annotated with @PreDestroy cleans up the resources at the end of the execution of the partition mapper.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private transient IExecutorService executorService; <i class="conum" data-value="1"></i><b>(1)</b>
+
+@PreDestroy
+public void close() { <i class="conum" data-value="2"></i><b>(2)</b>
+    instance.getLifecycleService().shutdown();
+    executorService = null;
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Declare the execution service as an attribute for the mapper.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Shut down the Hazelcast client instance created by the method annotated with <code>@PostConstruct</code> and thus free the <code>executorService</code> reference.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defining_the_assessor_method"><a class="anchor" href="#_defining_the_assessor_method"></a>3.4. Defining the Assessor method</h3>
+<div class="paragraph">
+<p>The method annotated with @Assessor is used to estimate the volume of the dataset to be handled.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Assessor
+public long estimateSize() {
+    return getSizeByMembers() <i class="conum" data-value="1"></i><b>(1)</b>
+                    .values().stream()
+                    .mapToLong(this::getFutureValue) <i class="conum" data-value="2"></i><b>(2)</b>
+                    .sum(); <i class="conum" data-value="3"></i><b>(3)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>getSizeByMembers()</code> method submits a task to each Hazelcast member to calculate the member size locally and asynchronously..</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>mapToLong()</code> method gets the size calculated by that task.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>sum()</code> method calculates the total size of all the members.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Then, you can Implement the methods annotated with @PreDestroy and @Accessor to create a map of the volumes of the Hazelcast cluster members.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private Map&lt;Member, Future&lt;Long&gt;&gt; getSizeByMembers() {
+    final IExecutorService executorService = getExecutorService();
+    final SerializableTask&lt;Long&gt; sizeComputation = new SerializableTask&lt;Long&gt;() {
+
+        @Override
+        public Long call() throws Exception {
+
+            return localInstance.getMap(configuration.getMapName()).getLocalMapStats().getHeapCost();
+        }
+    };
+    if (members.isEmpty()) { // == if no specific members defined, apply on all the cluster
+        return executorService.submitToAllMembers(sizeComputation);
+    }
+    final Set&lt;Member&gt; members = instance.getCluster().getMembers().stream()
+            .filter(m -&gt; this.members.contains(m.getUuid()))
+            .collect(toSet());
+    return executorService.submitToMembers(sizeComputation, members);
+}
+
+private IExecutorService getExecutorService() {
+    return executorService == null ?
+            executorService = instance.getExecutorService(configuration.getExecutorService()) :
+            executorService;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defining_the_split_method"><a class="anchor" href="#_defining_the_split_method"></a>3.5. Defining the Split method</h3>
+<div class="paragraph">
+<p>The method annotated with <code>@Split</code> dynamically splits the partition mapper into a collection of sub-mappers according to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the bundle size required by the execution engine to be used.</p>
+</li>
+<li>
+<p>to the volume of the dataset to handle.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Split
+public List&lt;HazelcastMapper&gt; split(@PartitionSize final long bundleSize) {
+    final List&lt;HazelcastMapper&gt; partitions = new ArrayList&lt;&gt;();
+    final Collection&lt;Member&gt; members = new ArrayList&lt;&gt;();
+    long current = 0;
+    for (final Map.Entry&lt;Member, Future&lt;Long&gt;&gt; entries : getSizeByMembers().entrySet()) {
+        final long memberSize = getFutureValue(entries.getValue());
+        if (members.isEmpty()) {
+            members.add(entries.getKey());
+            current += memberSize;
+        } else if (current + memberSize &gt; bundleSize) {
+            partitions.add(
+                    new HazelcastMapper(configuration, jsonFactory, jsonb, service, toIdentifiers(members)));
+            // reset current iteration
+            members.clear();
+            current = 0;
+        }
+    }
+    if (!members.isEmpty()) {
+        partitions.add(new HazelcastMapper(configuration, jsonFactory, jsonb, service, toIdentifiers(members)));
+    }
+
+    if (partitions.isEmpty()) { // just execute this if no plan (= no distribution)
+        partitions.add(this);
+    }
+    return partitions;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_emitter_method"><a class="anchor" href="#_the_emitter_method"></a>3.6. The Emitter method</h3>
+<div class="paragraph">
+<p>The method annotated with <code>@Emitter</code> generates producers using the component configuration. It can be used to load data to the processing flow of a Talend Job. Each sub-mapper generates one producer.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Emitter
+public HazelcastSource createSource() {
+    return new HazelcastSource(configuration, jsonFactory, jsonb, service, members); <i class="conum" data-value="1"></i><b>(1)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>After splitting the mapper, every mapper creates a producer that reads the records according to the provided configuration.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_full_implementation_of_the_partition_mapper"><a class="anchor" href="#_full_implementation_of_the_partition_mapper"></a>3.7. Full implementation of the Partition Mapper</h3>
+<div class="paragraph">
+<p>Once implemented, the Partition Mapper configuration is as follows. For more information about Partition Mappers, refer to <a href="component-definition.html#_partitionmapper" class="page">this document</a>.</p>
+</div>
+<div class="listingblock initial-block-closed">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(1) <i class="conum" data-value="1"></i><b>(1)</b>
+@Icon(Icon.IconType.DB_INPUT) <i class="conum" data-value="2"></i><b>(2)</b>
+@PartitionMapper(name = "Input") <i class="conum" data-value="3"></i><b>(3)</b>
+public class HazelcastMapper implements Serializable {
+    private final HazelcastConfiguration configuration;
+    private final JsonBuilderFactory jsonFactory;
+    private final Jsonb jsonb;
+    private final HazelcastService service;
+
+    private final Collection&lt;String&gt; members;
+    private transient HazelcastInstance instance;
+    private transient IExecutorService executorService;
+
+    // framework API
+    public HazelcastMapper(@Option("configuration") final HazelcastConfiguration configuration,
+            final JsonBuilderFactory jsonFactory,
+            final Jsonb jsonb,
+            final HazelcastService service) {
+        this(configuration, jsonFactory, jsonb, service, emptyList());
+    }
+
+    // internal
+    protected HazelcastMapper(final HazelcastConfiguration configuration,
+            final JsonBuilderFactory jsonFactory,
+            final Jsonb jsonb,
+            final HazelcastService service,
+            final Collection&lt;String&gt; members) {
+        this.configuration = configuration;
+        this.jsonFactory = jsonFactory;
+        this.jsonb = jsonb;
+        this.service = service;
+        this.members = members;
+    }
+
+    @PostConstruct
+    public void init() throws IOException {
+        // Creates an instance of Hazelcast according to the provided configuration.
+        // Uses the injected HazelcastService instance to perform that.
+        // This service is implemented in the project. See the implementation in &lt;1&gt;.
+        instance = service.findInstance(configuration.newConfig());
+    }
+
+    @PreDestroy
+    public void close() {
+        // Shuts down the instance created in the PostConstruct and frees the executorService reference.
+        instance.getLifecycleService().shutdown();
+        executorService = null;
+    }
+
+    @Assessor
+    public long estimateSize() {
+        // Calculates the whole size of all members.
+        return getSizeByMembers().values().stream()
+                .mapToLong(this::getFutureValue)
+                .sum();
+    }
+
+    // This method returns a map of size by member of Hazelcast cluster
+    private Map&lt;Member, Future&lt;Long&gt;&gt; getSizeByMembers() {
+        final IExecutorService executorService = getExecutorService();
+        final SerializableTask&lt;Long&gt; sizeComputation = new SerializableTask&lt;Long&gt;() {
+
+            @Override
+            public Long call() throws Exception {
+
+                return localInstance.getMap(configuration.getMapName()).getLocalMapStats().getHeapCost();
+            }
+        };
+        if (members.isEmpty()) { // == if no specific memebers defined, applies to all the cluster
+            return executorService.submitToAllMembers(sizeComputation);
+        }
+        final Set&lt;Member&gt; members = instance.getCluster().getMembers().stream()
+                .filter(m -&gt; this.members.contains(m.getUuid()))
+                .collect(toSet());
+        return executorService.submitToMembers(sizeComputation, members);
+    }
+
+    // This method creates a collection of mappers according to the requested bundleSize and the dataset size.
+    @Split
+    public List&lt;HazelcastMapper&gt; split(@PartitionSize final long bundleSize) {
+        final List&lt;HazelcastMapper&gt; partitions = new ArrayList&lt;&gt;();
+        final Collection&lt;Member&gt; members = new ArrayList&lt;&gt;();
+        long current = 0;
+        for (final Map.Entry&lt;Member, Future&lt;Long&gt;&gt; entries : getSizeByMembers().entrySet()) {
+            final long memberSize = getFutureValue(entries.getValue());
+            if (members.isEmpty()) {
+                members.add(entries.getKey());
+                current += memberSize;
+            } else if (current + memberSize &gt; bundleSize) {
+                partitions.add(
+                        new HazelcastMapper(configuration, jsonFactory, jsonb, service, toIdentifiers(members)));
+                // Resets current iteration
+                members.clear();
+                current = 0;
+            }
+        }
+        if (!members.isEmpty()) {
+            partitions.add(new HazelcastMapper(configuration, jsonFactory, jsonb, service, toIdentifiers(members)));
+        }
+
+        if (partitions.isEmpty()) { // just executes this if no plan (= no distribution)
+            partitions.add(this);
+        }
+        return partitions;
+    }
+
+    //After splitting the mapper, every mappers creates an emitter that
+    // reads the records according to the provided configuration.
+    @Emitter
+    public HazelcastSource createSource() {
+        return new HazelcastSource(configuration, jsonFactory, jsonb, service, members);
+    }
+
+    private Set&lt;String&gt; toIdentifiers(final Collection&lt;Member&gt; members) {
+        return members.stream().map(Member::getUuid).collect(toSet());
+    }
+
+    private long getFutureValue(final Future&lt;Long&gt; future) {
+        try {
+            return future.get(configuration.getTimeout(), SECONDS);
+        } catch (final InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException(e);
+        } catch (final ExecutionException | TimeoutException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    private IExecutorService getExecutorService() {
+        return executorService == null ?
+                executorService = instance.getExecutorService(configuration.getExecutorService()) :
+                executorService;
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuring_the_producer_source"><a class="anchor" href="#_configuring_the_producer_source"></a>4. Configuring the Producer (Source)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The component configuration and the partition mapper in charge of creating the producers are now defined. At this point, you can implement the source logic that uses the configuration provided by the mapper to read the records from the data source.</p>
+</div>
+<div class="paragraph">
+<p>To implement a source, you need to define the producer method that creates a record every time it is invoked.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class HazelcastSource implements Serializable {
+    private final HazelcastConfiguration configuration;
+    private final JsonBuilderFactory jsonFactory;
+    private final Jsonb jsonb;
+    private final HazelcastService service;
+    private final Collection&lt;String&gt; members;
+    private transient HazelcastInstance instance;
+    private transient BufferizedProducerSupport&lt;JsonObject&gt; buffer; <i class="conum" data-value="1"></i><b>(1)</b>
+
+    // The constructor is omitted on purpose to reduce the length of this sample code
+
+    @PostConstruct <i class="conum" data-value="2"></i><b>(2)</b>
+    public void createInstance() throws IOException {
+        instance = service.findInstance(configuration.newConfig());
+        final Iterator&lt;Member&gt; memberIterators = instance.getCluster().getMembers().stream()
+                .filter(m -&gt; members.isEmpty() || members.contains(m.getUuid()))
+                .collect(toSet())
+                .iterator();
+
+        buffer = new BufferizedProducerSupport&lt;&gt;(() -&gt; {
+            if (!memberIterators.hasNext()) {
+                return null;
+            }
+            final Member member = memberIterators.next();
+            // Note: this works if this JAR is deployed on the Hazelcast cluster
+            try {
+                return instance.getExecutorService(configuration.getExecutorService())
+                        .submitToMember(new SerializableTask&lt;Map&lt;String, String&gt;&gt;() {
+
+                            @Override
+                            public Map&lt;String, String&gt; call() throws Exception {
+                                final IMap&lt;Object, Object&gt; map = localInstance.getMap(configuration.getMapName());
+                                final Set&lt;?&gt; keys = map.localKeySet();
+                                return keys.stream().collect(toMap(jsonb::toJson, e -&gt; jsonb.toJson(map.get(e))));
+                            }
+                        }, member).get(configuration.getTimeout(), SECONDS).entrySet().stream()
+                        .map(entry -&gt; {
+                            final JsonObjectBuilder builder = jsonFactory.createObjectBuilder();
+                            if (entry.getKey().startsWith("{")) {
+                                builder.add("key", jsonb.fromJson(entry.getKey(), JsonObject.class));
+                            } else { // plain string
+                                builder.add("key", entry.getKey());
+                            }
+                            if (entry.getValue().startsWith("{")) {
+                                builder.add("value", jsonb.fromJson(entry.getValue(), JsonObject.class));
+                            } else { // plain string
+                                builder.add("value", entry.getValue());
+                            }
+                            return builder.build();
+                        })
+                        .collect(toList())
+                        .iterator();
+            } catch (final InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new IllegalStateException(e);
+            } catch (final ExecutionException | TimeoutException e) {
+                throw new IllegalArgumentException(e);
+            }
+        });
+    }
+
+    @Producer <i class="conum" data-value="3"></i><b>(3)</b>
+    public JsonObject next() {
+        return buffer.next();
+    }
+
+    @PreDestroy <i class="conum" data-value="4"></i><b>(4)</b>
+    public void destroyInstance() {
+        // Shutdown of the Hazelcast instance
+        instance.getLifecycleService().shutdown();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>BufferizedProducerSupport is a utility class that encapsulates the buffering logic. It allows to only provide instructions on how to load the data rather than the logic to iterate on it. In this case, the buffer is created in the <code>@PostConstruct</code> method and loaded once, and is then used to produce records one by one.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The method annotated with <code>@PostConstruct</code> is invoked once on the node. It allows to create some connections and to initialize the buffering.
+In this case, the BufferizedProducerSupport class is used to create a buffer of records in this method.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The method annotated with <code>@Producer</code> is responsible for producing records. This method returns <code>null</code> when there is no more record to read.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The method annotated with <code>@PreDestroy</code> is called before the Source destruction and is used to clean up all the resources used in the Source.
+In this case, the Hazelcast instance created in the post construct method is shut down.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To learn more about producers, refer to <a href="component-definition.html#_producer" class="page">this document</a>.</p>
+</div>
+<div class="paragraph">
+<p>You have now created a complete working input component. You can follow  <a href="tutorial-test-your-components.html" class="page">this tutorial</a> to learn how to create unit tests for your new component.</p>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+<script>
+(function (window, document) {
+  hljs.initHighlighting();
+
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {return;}
+      var code = pre.querySelector('code.hljs');
+      if (!code) {return;}
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {code.style.height = closedSize;}
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>
