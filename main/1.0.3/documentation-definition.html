@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.3/documentation-definition.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-19T10:13:11.457Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-19T10:50:58.595Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -1451,13 +1451,13 @@ If somehow it breaks your application you can disable that validation on the JVM
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">o.t.s.c..api.configuration.type.DataSet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.talend.sdk.component.api.configuration.type.DataSet</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">dataset</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a model (complex object) as being a dataset.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"tcomp::configurationtype::type":"dataset","tcomp::configurationtype::name":"test"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">o.t.s.c..api.configuration.type.DataStore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">org.talend.sdk.component.api.configuration.type.DataStore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">datastore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a model (complex object) as being a datastore (connection to a backend).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"tcomp::configurationtype::type":"datastore","tcomp::configurationtype::name":"test"}</p></td>
@@ -1565,13 +1565,13 @@ The component family associated with a configuration type (datastore/dataset) is
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.condition.ActiveIf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.condition.ActiveIf</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">if</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If the evaluation of the element at the location matches value then the element is considered active, otherwise it is deactivated.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"condition::if::target":"test","condition::if::value":"value1,value2"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.condition.ActiveIfs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.condition.ActiveIfs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ifs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows to set multiple visibility conditions on the same property.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"condition::if::value::0":"value1,value2","condition::if::value::1":"SELECTED","condition::if::target::0":"sibling1","condition::if::target::1":"../../other"}</p></td>
@@ -1618,57 +1618,62 @@ For example, a password value that must be hidden and not a simple clear input b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.ui.DefaultValue</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.DefaultValue</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provide a default value the UI can use - only for primitive fields.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::defaultvalue::value":"test"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.ui.OptionsOrder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.OptionsOrder</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows to sort a class properties.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::optionsorder::value":"value1,value2"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.ui.layout.AutoLayout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.AutoLayout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Request the rendered to do what it thinks is best.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::autolayout":"true"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.ui.layout.GridLayout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.GridLayout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Advanced layout to place properties by row, this is exclusive with <code>@OptionsOrder</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::value1::value":"first|second,third","ui::gridlayout::value2::value":"first|second,third"}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::value1::value":"first|{"ui::gridlayout::value1::value":"first\</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.ui.layout.GridLayouts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">second,third","ui::gridlayout::value2::value":"first|second,third","ui::gridlayout::value2::value":"first\</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">second,third"}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.GridLayouts</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allow to configure multiple grid layouts on the same class, qualified with a classifier (name)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::Advanced::value":"another","ui::gridlayout::Main::value":"first|second,third"}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::Advanced::value":"another","ui::gridlayout::Main::value":"first|{"ui::gridlayout::Advanced::value":"another","ui::gridlayout::Main::value":"first\</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">second,third"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.ui.layout.HorizontalLayout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.HorizontalLayout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Put on a configuration class it notifies the UI an horizontal layout is preferred.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::horizontallayout":"true"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.ui.layout.VerticalLayout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.VerticalLayout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Put on a configuration class it notifies the UI a vertical layout is preferred.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::verticallayout":"true"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.ui.widget.Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.widget.Code</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being represented by some code widget (vs textarea for instance).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::code::value":"test"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.ui.widget.Credential</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.widget.Credential</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being a credential. It is typically used to hide the value in the UI.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::credential":"true"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.ui.widget.Structure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.widget.Structure</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a List&lt;String&gt; or Map&lt;String, String&gt; field as being represented as the component data selector (field names generally or field names as key and type as value).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::structure::type":"null","ui::structure::discoverSchema":"test","ui::structure::value":"test"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c..api.configuration.ui.widget.TextArea</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.widget.TextArea</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being represented by a textarea(multiline text input).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::textarea":"true"}</p></td>
 </tr>
