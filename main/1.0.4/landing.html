@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/landing.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-19T11:54:28.556Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-22T18:20:51.609Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -683,8 +683,49 @@
 </div>
 <article class="doc">
         <h1>Talend Component Kit</h1>
-        <div class="paragraph">
-<p>TODO: something which roxx</p>
+        <h1 id="landing-teaser" class="sect0"><a class="anchor" href="#landing-teaser"></a>Talend Component Kit</h1>
+<div class="paragraph">
+<p>Customize your connectivity and integrate with thousands of components harmlessly
+to get the best of your data quckly!</p>
+</div>
+<h1 id="_create_your_first_component" class="sect0"><a class="anchor" href="#_create_your_first_component"></a>Create your first component</h1>
+<div class="openblock col-sm-6 landing-curl-text">
+<div class="content">
+<div class="paragraph">
+<p>Talend Component Kit is easy to use,
+but don’t take our word for free, try it out using our <a href="https://starter-toolkit.talend.io" class="bare">starter-toolkit.talend.io</a>
+generator or just using <code>curl</code>!</p>
+</div>
+<div class="paragraph">
+<p>And go on <a href="http://localhost:8080" class="bare">localhost:8080</a> to see your component!</p>
+</div>
+</div>
+</div>
+<div class="listingblock console col-sm-6">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ curl https://starter-toolkit.talend.io/api/project/zip \
+   -o gettingstarted-component.zip -H 'Content-Type: application/json' \
+   -d @- &amp;lt;&amp;lt;EOF
+{
+  "group":"com.gettingstarted", "artifact":"gettingstarted-component",
+  "family":"GettingStarted", "category":"Dev",
+  "sources":[ {
+    "name":"MyFirstInput", "genericOutput":true,
+    "configurationStructure":{
+      "entries":[ { "name":"name", "type":"string" } ]
+    }
+  } ]
+}
+EOF
+$ unzip gettingstarted-component.zip
+$ cd gettingstarted-component/
+$ chmod +x mvnw &amp;&amp; ./mvnw install talend-component:web</code></pre>
+</div>
+</div>
+<h1 id="landing-doc-link" class="sect0"><a class="anchor" href="#landing-doc-link"></a>What&#8217;s next?</h1>
+<div class="paragraph">
+<p>You got your component? Let&#8217;s see how to enhance it and deploy it in Talend
+Applications thanks to our <a href="tutorials-index.html">Tutorials</a>.</p>
 </div>
     </article>
   </main>
