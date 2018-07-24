@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/tutorial-create-an-output-component.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:03.851Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:16.607Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -400,7 +400,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_defining_the_configurable_part_and_the_layout_of_the_component"><a class="anchor" href="#_defining_the_configurable_part_and_the_layout_of_the_component"></a>1. Defining the configurable part and the layout of the component</h2>
+<h2 id="_defining_the_configurable_part_and_the_layout_of_the_component"><a class="anchor" href="#_defining_the_configurable_part_and_the_layout_of_the_component"></a>Defining the configurable part and the layout of the component</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The methodology to define the component configuration is described in the <a href="tutorial-create-an-input-component.html#defining-component-configuration" class="page">Implementing an input component</a> tutorial.</p>
@@ -426,7 +426,7 @@ private String valueAttribute;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring_the_output"><a class="anchor" href="#_configuring_the_output"></a>2. Configuring the Output</h2>
+<h2 id="_configuring_the_output"><a class="anchor" href="#_configuring_the_output"></a>Configuring the Output</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The output component needs to work in distributed environments and should implement a serializable interface.</p>
@@ -514,7 +514,7 @@ If you need to bulk write the updates accordingly to groups, see <a href="compon
 <p>Each of the methods mentioned above now needs to be created.</p>
 </div>
 <div class="sect2">
-<h3 id="_defining_the_constructor_method"><a class="anchor" href="#_defining_the_constructor_method"></a>2.1. Defining the constructor method</h3>
+<h3 id="_defining_the_constructor_method"><a class="anchor" href="#_defining_the_constructor_method"></a>Defining the constructor method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public HazelcastOutput(@Option("configuration") final HazelcastConfiguration configuration,
@@ -530,7 +530,7 @@ If you need to bulk write the updates accordingly to groups, see <a href="compon
 </div>
 </div>
 <div class="sect2">
-<h3 id="_defining_the_postconstruct_method"><a class="anchor" href="#_defining_the_postconstruct_method"></a>2.2. Defining the PostConstruct method</h3>
+<h3 id="_defining_the_postconstruct_method"><a class="anchor" href="#_defining_the_postconstruct_method"></a>Defining the PostConstruct method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private transient HazelcastInstance instance;
@@ -573,7 +573,7 @@ In production, avoid creating one instance per thread/worker.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_defining_the_predestroy_method"><a class="anchor" href="#_defining_the_predestroy_method"></a>2.3. Defining the PreDestroy method</h3>
+<h3 id="_defining_the_predestroy_method"><a class="anchor" href="#_defining_the_predestroy_method"></a>Defining the PreDestroy method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PreDestroy
@@ -588,7 +588,7 @@ public void close() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_defining_the_elementlistener_method"><a class="anchor" href="#_defining_the_elementlistener_method"></a>2.4. Defining the ElementListener method</h3>
+<h3 id="_defining_the_elementlistener_method"><a class="anchor" href="#_defining_the_elementlistener_method"></a>Defining the ElementListener method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
@@ -627,7 +627,7 @@ In this tutorial, the data is passed to the Hazelcast map.</td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_full_implementation_of_the_output"><a class="anchor" href="#_full_implementation_of_the_output"></a>2.5. Full implementation of the Output</h3>
+<h3 id="_full_implementation_of_the_output"><a class="anchor" href="#_full_implementation_of_the_output"></a>Full implementation of the Output</h3>
 <div class="paragraph">
 <p>Once implemented, the Output configuration is as follows. For more information about outputs, refer to <a href="component-definition.html#_output" class="page">this document</a>.</p>
 </div>

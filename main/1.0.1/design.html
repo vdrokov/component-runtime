@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/index.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:01.940Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:14.909Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -684,7 +684,7 @@
 <article class="doc">
         <h1>Talend Component Kit Overview</h1>
         <div class="sect1">
-<h2 id="_component_api"><a class="anchor" href="#_component_api"></a>1. Component API</h2>
+<h2 id="_component_api"><a class="anchor" href="#_component_api"></a>Component API</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The component API is declarative (through annotations) to ensure it is:</p>
@@ -700,7 +700,7 @@
 </ol>
 </div>
 <div class="sect2">
-<h3 id="_evolution"><a class="anchor" href="#_evolution"></a>1.1. Evolution</h3>
+<h3 id="_evolution"><a class="anchor" href="#_evolution"></a>Evolution</h3>
 <div class="paragraph">
 <p>Because it is fully declarative, any new API can be added iteratively without requiring
 any change to existing components.</p>
@@ -730,9 +730,9 @@ public MyOutput onElement(MyInput data,
 </div>
 </div>
 <div class="sect2">
-<h3 id="_static"><a class="anchor" href="#_static"></a>1.2. Static</h3>
+<h3 id="_static"><a class="anchor" href="#_static"></a>Static</h3>
 <div class="sect3">
-<h4 id="_ui_friendly"><a class="anchor" href="#_ui_friendly"></a>1.2.1. UI-friendly</h4>
+<h4 id="_ui_friendly"><a class="anchor" href="#_ui_friendly"></a>UI-friendly</h4>
 <div class="paragraph">
 <p>The intent of the framework is to be able to fit in a Java UI as well as in a web UI.</p>
 </div>
@@ -741,13 +741,13 @@ public MyOutput onElement(MyInput data,
 </div>
 </div>
 <div class="sect3">
-<h4 id="_auditable_and_with_clear_expectations"><a class="anchor" href="#_auditable_and_with_clear_expectations"></a>1.2.2. Auditable and with clear expectations</h4>
+<h4 id="_auditable_and_with_clear_expectations"><a class="anchor" href="#_auditable_and_with_clear_expectations"></a>Auditable and with clear expectations</h4>
 <div class="paragraph">
 <p>The other goal of being static in the API definition is to ensure that the model will not be mutated at runtime and that all the auditing and modeling can be done before, at the design phase.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dev_friendly"><a class="anchor" href="#_dev_friendly"></a>1.2.3. Dev-friendly</h4>
+<h4 id="_dev_friendly"><a class="anchor" href="#_dev_friendly"></a>Dev-friendly</h4>
 <div class="paragraph">
 <p>Being static also ensures that the development can be validated as much as possible through build tools.<br>
 This does not replace the requirement to test the components but helps developers to maintain components with automated tools.</p>
@@ -755,11 +755,11 @@ This does not replace the requirement to test the components but helps developer
 </div>
 </div>
 <div class="sect2">
-<h3 id="_flexible_data_modeling"><a class="anchor" href="#_flexible_data_modeling"></a>1.3. Flexible data modeling</h3>
+<h3 id="_flexible_data_modeling"><a class="anchor" href="#_flexible_data_modeling"></a>Flexible data modeling</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_generic_and_specific"><a class="anchor" href="#_generic_and_specific"></a>1.4. Generic and specific</h3>
+<h3 id="_generic_and_specific"><a class="anchor" href="#_generic_and_specific"></a>Generic and specific</h3>
 <div class="paragraph">
 <p>The processor API supports <code>JsonObject</code> as well as any custom model. The goal is to support generic component development that need to access configured "object paths", as well as specific components that rely on a defined path from the input.</p>
 </div>
@@ -786,7 +786,7 @@ public MyOutput onElement(MyInput input) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_no_runtime_assumption"><a class="anchor" href="#_no_runtime_assumption"></a>1.4.1. No runtime assumption</h4>
+<h4 id="_no_runtime_assumption"><a class="anchor" href="#_no_runtime_assumption"></a>No runtime assumption</h4>
 <div class="paragraph">
 <p>By design, the framework must run in DI (plain standalone Java program) and in Beam pipelines.<br>
 It is out of scope of the framework to handle the way the runtime serializes - if needed - the data.</p>
@@ -805,7 +805,7 @@ It is out of scope of the framework to handle the way the runtime serializes - i
 </div>
 </div>
 <div class="sect1">
-<h2 id="_isolated"><a class="anchor" href="#_isolated"></a>2. Isolated</h2>
+<h2 id="_isolated"><a class="anchor" href="#_isolated"></a>Isolated</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The components must be able to execute even if they have conflicting libraries. For that purpose,
@@ -814,10 +814,10 @@ classloaders must be isolated. A component defines its dependencies based on a M
 </div>
 </div>
 <div class="sect1">
-<h2 id="_rest"><a class="anchor" href="#_rest"></a>3. REST</h2>
+<h2 id="_rest"><a class="anchor" href="#_rest"></a>REST</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_consumable_model"><a class="anchor" href="#_consumable_model"></a>3.1. Consumable model</h3>
+<h3 id="_consumable_model"><a class="anchor" href="#_consumable_model"></a>Consumable model</h3>
 <div class="paragraph">
 <p>The definition payload is as flat as possible and <em>strongly</em> typed to ensure it can be manipulated by consumers.
 This way, consumers can add or remove fields with simple mapping rules, without any abstract tree handling.</p>
@@ -833,7 +833,7 @@ This way, consumers can add or remove fields with simple mapping rules, without 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_execution_with_streaming"><a class="anchor" href="#_execution_with_streaming"></a>3.2. Execution with streaming</h3>
+<h3 id="_execution_with_streaming"><a class="anchor" href="#_execution_with_streaming"></a>Execution with streaming</h3>
 <div class="paragraph">
 <p>A new mime type called <code>talend/stream</code> is introduced to define a streaming format.</p>
 </div>
@@ -853,7 +853,7 @@ This way, consumers can add or remove fields with simple mapping rules, without 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_fixed_set_of_icons"><a class="anchor" href="#_fixed_set_of_icons"></a>4. Fixed set of icons</h2>
+<h2 id="_fixed_set_of_icons"><a class="anchor" href="#_fixed_set_of_icons"></a>Fixed set of icons</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Icons (<code>@Icon</code>) are based on a fixed set. Custom icons can be used but their display cannot be guaranteed. Components can be used in any environment and require a consistent look that cannot be guaranteed outside of the UI itself. Defining keys only is the best way to communicate this information.</p>

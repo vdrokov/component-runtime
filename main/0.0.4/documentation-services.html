@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/index.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:51:59.249Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:12.062Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -309,7 +309,7 @@
 <article class="doc">
         <h1>Services</h1>
         <div class="sect1">
-<h2 id="_internationalization"><a class="anchor" href="#_internationalization"></a>1. Internationalization</h2>
+<h2 id="_internationalization"><a class="anchor" href="#_internationalization"></a>Internationalization</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recommanded practise for internationalization are:</p>
@@ -328,7 +328,7 @@
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_internationalization_api"><a class="anchor" href="#_internationalization_api"></a>1.1. Internationalization API</h3>
+<h3 id="_internationalization_api"><a class="anchor" href="#_internationalization_api"></a>Internationalization API</h3>
 <div class="paragraph">
 <p>Overal idea is to design its messages as methods returning <code>String</code> values
 and back the template by a <code>ResourceBundle</code> located in the same package than the interface
@@ -382,7 +382,7 @@ public interface Translator {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_providing_some_actions_for_consumers_clients"><a class="anchor" href="#_providing_some_actions_for_consumers_clients"></a>2. Providing some actions for consumers/clients</h2>
+<h2 id="_providing_some_actions_for_consumers_clients"><a class="anchor" href="#_providing_some_actions_for_consumers_clients"></a>Providing some actions for consumers/clients</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In some cases you will desire to add some actions unrelated to the runtime. A simple example
@@ -462,7 +462,7 @@ service is passed to constructor automatically, it can be used as a bean. Only c
 </table>
 </div>
 <div class="sect2">
-<h3 id="_particular_action_types"><a class="anchor" href="#_particular_action_types"></a>2.1. Particular action types</h3>
+<h3 id="_particular_action_types"><a class="anchor" href="#_particular_action_types"></a>Particular action types</h3>
 <div class="paragraph">
 <p>Some actions are that common and need a clear contract so they are defined as API first citizen, this is the case for wizards or healthchecks
 for instance. Here is the list of all actions:</p>
@@ -526,7 +526,7 @@ for instance. Here is the list of all actions:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_built_in_services"><a class="anchor" href="#_built_in_services"></a>3. Built in services</h2>
+<h2 id="_built_in_services"><a class="anchor" href="#_built_in_services"></a>Built in services</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The framework provides some built-in services you can inject by type in components and actions out of the box.</p>
@@ -675,7 +675,7 @@ See the <a href="#_httpclient_usage">HttpClient usage</a> for details.
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="_httpclient_usage"><a class="anchor" href="#_httpclient_usage"></a>3.1. HttpClient usage</h3>
+<h3 id="_httpclient_usage"><a class="anchor" href="#_httpclient_usage"></a>HttpClient usage</h3>
 <div class="paragraph">
 <p>Let assume that we have a REST API defined like below, and that it requires a basic authentication header.</p>
 </div>
@@ -779,7 +779,7 @@ public class MyService {
 <p>Note: by default <code><strong>/</strong>+json</code> are mapped to JSON-P and <code><strong>/</strong>+xml</code> to JAX-B if the model has a <code>@XmlRootElement</code> annotation.</p>
 </div>
 <div class="sect3">
-<h4 id="_advanced_http_client_request_customization"><a class="anchor" href="#_advanced_http_client_request_customization"></a>3.1.1. Advanced HTTP client request customization</h4>
+<h4 id="_advanced_http_client_request_customization"><a class="anchor" href="#_advanced_http_client_request_customization"></a>Advanced HTTP client request customization</h4>
 <div class="paragraph">
 <p>For advanced cases you can customize the <code>Connection</code> directly using <code>@UseConfigurer</code> on the method.
 It will call your custom instance of <code>Configurer</code>. Note that you can use some <code>@ConfigurerOption</code> in the method
@@ -819,7 +819,7 @@ signature to pass some configurer configuration.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_services_and_interceptors"><a class="anchor" href="#_services_and_interceptors"></a>4. Services and interceptors</h2>
+<h2 id="_services_and_interceptors"><a class="anchor" href="#_services_and_interceptors"></a>Services and interceptors</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For common concerns like caching, auditing etc, it can be fancy to use interceptor like API. It is enabled by the framework
@@ -905,10 +905,10 @@ or class (in this order).
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_a_job_pipeline"><a class="anchor" href="#_creating_a_job_pipeline"></a>5. Creating a job pipeline</h2>
+<h2 id="_creating_a_job_pipeline"><a class="anchor" href="#_creating_a_job_pipeline"></a>Creating a job pipeline</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_job_builder"><a class="anchor" href="#_job_builder"></a>5.1. Job Builder</h3>
+<h3 id="_job_builder"><a class="anchor" href="#_job_builder"></a>Job Builder</h3>
 <div class="paragraph">
 <p>The <code>Job</code> builder let you create a job pipeline programmatically using Talend components
 (<a href="#component-definition.html">Producers and Processors</a>).
@@ -1033,7 +1033,7 @@ may be independents.
 </table>
 </div>
 <div class="sect3">
-<h4 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>5.1.1. Environment/Runner</h4>
+<h4 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>Environment/Runner</h4>
 <div class="paragraph">
 <p>Depending the configuration you can select which environment you execute your job in.</p>
 </div>
@@ -1059,7 +1059,7 @@ by <code>talend.beam.job.</code>. For instance to set <code>appName</code> optio
 </div>
 </div>
 <div class="sect3">
-<h4 id="_key_provider"><a class="anchor" href="#_key_provider"></a>5.1.2. Key Provider</h4>
+<h4 id="_key_provider"><a class="anchor" href="#_key_provider"></a>Key Provider</h4>
 <div class="paragraph">
 <p>The job builder let you set a key provider to join your data when a component has multiple inputs.
 The key provider can be set contextually to a component or globally to the job</p>
@@ -1110,12 +1110,12 @@ and the <code>branch Name</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_beam_case"><a class="anchor" href="#_beam_case"></a>5.2. Beam case</h3>
+<h3 id="_beam_case"><a class="anchor" href="#_beam_case"></a>Beam case</h3>
 <div class="paragraph">
 <p>For <a href="https://beam.apache.org/">beam</a> case, you need to rely on beam pipeline definition and use <code>component-runtime-beam</code> dependency which provides Beam bridges.</p>
 </div>
 <div class="sect3">
-<h4 id="_i_o"><a class="anchor" href="#_i_o"></a>5.2.1. I/O</h4>
+<h4 id="_i_o"><a class="anchor" href="#_i_o"></a>I/O</h4>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendIO</code> provides a way to convert a partition mapper or a processor to an input
  or processor
@@ -1144,7 +1144,7 @@ using the <code>read</code> or <code>write</code> methods.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_processors"><a class="anchor" href="#_processors"></a>5.2.2. Processors</h4>
+<h4 id="_processors"><a class="anchor" href="#_processors"></a>Processors</h4>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendFn</code> provides the way to wrap a processor in a Beam <code>PTransform</code> and integrate
  it in the pipeline.</p>
@@ -1182,7 +1182,7 @@ but materialized as a <code>JsonObject</code>. Input data must be of type <code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_deployment"><a class="anchor" href="#_deployment"></a>5.2.3. Deployment</h4>
+<h4 id="_deployment"><a class="anchor" href="#_deployment"></a>Deployment</h4>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -1198,7 +1198,7 @@ care of providing an implicit and lazy <code>ComponentManager</code> managing th
 </div>
 </div>
 <div class="sect3">
-<h4 id="_convert_a_beam_io_in_a_component_i_o"><a class="anchor" href="#_convert_a_beam_io_in_a_component_i_o"></a>5.2.4. Convert a Beam.io in a component I/O</h4>
+<h4 id="_convert_a_beam_io_in_a_component_i_o"><a class="anchor" href="#_convert_a_beam_io_in_a_component_i_o"></a>Convert a Beam.io in a component I/O</h4>
 <div class="paragraph">
 <p>For simple I/O you can get automatic conversion of the Beam.io to a component I/O transparently if you decorated your <code>PTransform</code>
 with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
@@ -1224,7 +1224,7 @@ with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_advanced_define_a_custom_api"><a class="anchor" href="#_advanced_define_a_custom_api"></a>6. Advanced: define a custom API</h2>
+<h2 id="_advanced_define_a_custom_api"><a class="anchor" href="#_advanced_define_a_custom_api"></a>Advanced: define a custom API</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is possible to extend the Component API for custom front features.</p>
@@ -1237,7 +1237,7 @@ only if it targets not portable components (only used by the Studio or Beam).</p
 <p>In term of organization it is recommanded to create a custom <code>xxxx-component-api</code> module with the new set of annotations.</p>
 </div>
 <div class="sect2">
-<h3 id="_extending_the_ui"><a class="anchor" href="#_extending_the_ui"></a>6.1. Extending the UI</h3>
+<h3 id="_extending_the_ui"><a class="anchor" href="#_extending_the_ui"></a>Extending the UI</h3>
 <div class="paragraph">
 <p>To extend the UI just add an annotation which can be put on <code>@Option</code> fields which is decorated with <code>@Ui</code>.
 All its members will be put in the metadata of the parameter. Example:</p>

@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/index-testing-components.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:03.548Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:16.348Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -382,18 +382,18 @@
 <article class="doc">
         <h1>Testing components</h1>
         <div class="sect1">
-<h2 id="_testing_best_practices"><a class="anchor" href="#_testing_best_practices"></a>1. Testing best practices</h2>
+<h2 id="_testing_best_practices"><a class="anchor" href="#_testing_best_practices"></a>Testing best practices</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section mainly concerns tools that can be used with JUnit. You can use most of these best practices with TestNG as well.</p>
 </div>
 <div class="sect2">
-<h3 id="_parameterized_tests"><a class="anchor" href="#_parameterized_tests"></a>1.1. Parameterized tests</h3>
+<h3 id="_parameterized_tests"><a class="anchor" href="#_parameterized_tests"></a>Parameterized tests</h3>
 <div class="paragraph">
 <p>Parameterized tests are a great solution to repeat the same test multiple times. This method of testing requires defining a test scenario (<code>I test function F</code>) and making the input/output data dynamic.</p>
 </div>
 <div class="sect3">
-<h4 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1.1. JUnit 4</h4>
+<h4 id="_junit_4"><a class="anchor" href="#_junit_4"></a>JUnit 4</h4>
 <div class="paragraph">
 <p>Here is a test example, which validates a connection URI using <code>ConnectionService</code>:</p>
 </div>
@@ -475,7 +475,7 @@ You don&#8217;t have to define a single <code>@Test</code> method. If you define
 </div>
 </div>
 <div class="sect3">
-<h4 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.1.2. JUnit 5</h4>
+<h4 id="_junit_5"><a class="anchor" href="#_junit_5"></a>JUnit 5</h4>
 <div class="paragraph">
 <p>With JUnit 5, parameterized tests are easier to use. The full documentation is available at <a href="http://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests" class="bare">junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests</a>.</p>
 </div>
@@ -525,7 +525,7 @@ Add the <code>junit-jupiter-params</code> dependency to benefit from this featur
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles"><a class="anchor" href="#_related_articles"></a>1.2. Related articles</h3>
+<h3 id="_related_articles"><a class="anchor" href="#_related_articles"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -552,10 +552,10 @@ Add the <code>junit-jupiter-params</code> dependency to benefit from this featur
 </div>
 </div>
 <div class="sect1">
-<h2 id="_component_runtime_testing"><a class="anchor" href="#_component_runtime_testing"></a>2. component-runtime-testing</h2>
+<h2 id="_component_runtime_testing"><a class="anchor" href="#_component_runtime_testing"></a>component-runtime-testing</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>2.1. component-runtime-junit</h3>
+<h3 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>component-runtime-junit</h3>
 <div class="paragraph">
 <p><code>component-runtime-junit</code> is a test library that allows you to validate simple logic based on the Talend Component Kit tooling.</p>
 </div>
@@ -589,7 +589,7 @@ Add the <code>junit-jupiter-params</code> dependency to benefit from this featur
 </ul>
 </div>
 <div class="sect3">
-<h4 id="_junit_4_2"><a class="anchor" href="#_junit_4_2"></a>2.1.1. JUnit 4</h4>
+<h4 id="_junit_4_2"><a class="anchor" href="#_junit_4_2"></a>JUnit 4</h4>
 <div class="paragraph">
 <p>You can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
 </div>
@@ -688,7 +688,7 @@ The rule can also be defined as a <code>@ClassRule</code> to start it once per c
 </div>
 </div>
 <div class="sect3">
-<h4 id="_junit_5_2"><a class="anchor" href="#_junit_5_2"></a>2.1.2. JUnit 5</h4>
+<h4 id="_junit_5_2"><a class="anchor" href="#_junit_5_2"></a>JUnit 5</h4>
 <div class="paragraph">
 <p>The JUnit 5 integration is very similar to JUnit 4, except that it uses the JUnit 5 extension mechanism.</p>
 </div>
@@ -775,7 +775,7 @@ class ComponentExtensionTest {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>2.1.3. Mocking the output</h4>
+<h4 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>Mocking the output</h4>
 <div class="paragraph">
 <p>Using the "test"/"collector" component as shown in the previous sample stores all records emitted by the chain (typically your source) in memory. You can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>.</p>
 </div>
@@ -784,7 +784,7 @@ class ComponentExtensionTest {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_mocking_the_input"><a class="anchor" href="#_mocking_the_input"></a>2.1.4. Mocking the input</h4>
+<h4 id="_mocking_the_input"><a class="anchor" href="#_mocking_the_input"></a>Mocking the input</h4>
 <div class="paragraph">
 <p>The input mocking is symmetric to the output. In this case, you provide the data you want to inject:</p>
 </div>
@@ -822,7 +822,7 @@ class ComponentExtensionTest {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_creating_runtime_configuration_from_component_configuration"><a class="anchor" href="#_creating_runtime_configuration_from_component_configuration"></a>2.1.5. Creating runtime configuration from component configuration</h4>
+<h4 id="_creating_runtime_configuration_from_component_configuration"><a class="anchor" href="#_creating_runtime_configuration_from_component_configuration"></a>Creating runtime configuration from component configuration</h4>
 <div class="paragraph">
 <p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility to get this map instance from a configuration instance.</p>
 </div>
@@ -852,7 +852,7 @@ in order to use it with the <code>Job</code> DSL:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_testing_a_mapper"><a class="anchor" href="#_testing_a_mapper"></a>2.1.6. Testing a Mapper</h4>
+<h4 id="_testing_a_mapper"><a class="anchor" href="#_testing_a_mapper"></a>Testing a Mapper</h4>
 <div class="paragraph">
 <p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarily. You can get an instance from a configuration and execute this instance to collect the output.</p>
 </div>
@@ -877,7 +877,7 @@ in order to use it with the <code>Job</code> DSL:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_testing_a_processor"><a class="anchor" href="#_testing_a_processor"></a>2.1.7. Testing a Processor</h4>
+<h4 id="_testing_a_processor"><a class="anchor" href="#_testing_a_processor"></a>Testing a Processor</h4>
 <div class="paragraph">
 <p>As for a mapper, a processor is testable unitary. However, this case can be more complex in case of multiple inputs or outputs.</p>
 </div>
@@ -932,7 +932,7 @@ If needed, you can also implement your own input representation using <code>org.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_component_runtime_testing_spark"><a class="anchor" href="#_component_runtime_testing_spark"></a>2.2. component-runtime-testing-spark</h3>
+<h3 id="_component_runtime_testing_spark"><a class="anchor" href="#_component_runtime_testing_spark"></a>component-runtime-testing-spark</h3>
 <div class="paragraph">
 <p>The following artifact allows you to test against a Spark cluster:</p>
 </div>
@@ -947,7 +947,7 @@ If needed, you can also implement your own input representation using <code>org.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_junit_4_3"><a class="anchor" href="#_junit_4_3"></a>2.2.1. JUnit 4</h4>
+<h4 id="_junit_4_3"><a class="anchor" href="#_junit_4_3"></a>JUnit 4</h4>
 <div class="paragraph">
 <p>The testing relies on a JUnit <code>TestRule</code>. It is recommended to use it as a <code>@ClassRule</code>, to make sure that a single instance of a Spark cluster is built. You can also use it as a simple <code>@Rule</code>, to create the Spark cluster instances per method instead of per test class.</p>
 </div>
@@ -988,7 +988,7 @@ This testing methodology works with <code>@Parameterized</code>. You can submit 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_junit_5_3"><a class="anchor" href="#_junit_5_3"></a>2.2.2. JUnit 5</h4>
+<h4 id="_junit_5_3"><a class="anchor" href="#_junit_5_3"></a>JUnit 5</h4>
 <div class="paragraph">
 <p>The integration of that Spark cluster logic with JUnit 5 is done using the <code>@WithSpark</code> marker for the extension. Optionally, it allows you to inject—through <code>@SparkInject</code>—the <code>BaseSpark&lt;?&gt;</code> handler to access the Spark cluster meta information. For example, its host/port.</p>
 </div>
@@ -1018,7 +1018,7 @@ class SparkExtensionTest {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_checking_the_job_execution_status"><a class="anchor" href="#_checking_the_job_execution_status"></a>2.2.3. Checking the job execution status</h4>
+<h4 id="_checking_the_job_execution_status"><a class="anchor" href="#_checking_the_job_execution_status"></a>Checking the job execution status</h4>
 <div class="paragraph">
 <p>Currently, <code>SparkClusterRule</code> does not allow to know when a job execution is done, even by exposing and polling the web UI URL to check. The best solution at the moment is to make sure that the output of your job exists and contains the right value.</p>
 </div>
@@ -1050,7 +1050,7 @@ class SparkExtensionTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="component-runtime-http-junit"><a class="anchor" href="#component-runtime-http-junit"></a>2.3. component-runtime-http-junit</h3>
+<h3 id="component-runtime-http-junit"><a class="anchor" href="#component-runtime-http-junit"></a>component-runtime-http-junit</h3>
 <div class="paragraph">
 <p>The HTTP JUnit module allows you to mock REST API very simply. The module coordinates are:</p>
 </div>
@@ -1084,7 +1084,7 @@ is able to serve precomputed responses saved in the classpath.</p>
 <p>You can plug your own <code>ResponseLocator</code> to map a request to a response, but the default implementation - which should be sufficient in most cases - looks in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="_junit_4_4"><a class="anchor" href="#_junit_4_4"></a>2.3.1. JUnit 4</h4>
+<h4 id="_junit_4_4"><a class="anchor" href="#_junit_4_4"></a>JUnit 4</h4>
 <div class="paragraph">
 <p>JUnit 4 setup is done through two rules:</p>
 </div>
@@ -1151,7 +1151,7 @@ public void test() throws Exception {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_junit_5_4"><a class="anchor" href="#_junit_5_4"></a>2.3.2. JUnit 5</h4>
+<h4 id="_junit_5_4"><a class="anchor" href="#_junit_5_4"></a>JUnit 5</h4>
 <div class="paragraph">
 <p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation that you can add to your test class. You can inject the test handler - which has some utilities for advanced cases - through <code>@HttpApiInject</code>:</p>
 </div>
@@ -1208,7 +1208,7 @@ class MyHttpsApiTest {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_capturing_mode"><a class="anchor" href="#_capturing_mode"></a>2.3.3. Capturing mode</h4>
+<h4 id="_capturing_mode"><a class="anchor" href="#_capturing_mode"></a>Capturing mode</h4>
 <div class="paragraph">
 <p>The strength of this implementation is to run a small proxy server and to auto-configure the JVM:
 <code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code> are auto-configured to work out-of-the-box with the proxy.</p>
@@ -1248,14 +1248,14 @@ You can create it manually, as described in <a href="#component-runtime-http-jun
 </div>
 </div>
 <div class="sect3">
-<h4 id="_passthrough_mode"><a class="anchor" href="#_passthrough_mode"></a>2.3.4. Passthrough mode</h4>
+<h4 id="_passthrough_mode"><a class="anchor" href="#_passthrough_mode"></a>Passthrough mode</h4>
 <div class="paragraph">
 <p>If you set the <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server acts as a proxy and executes each request to the actual server - similarly to the capturing mode.</p>
 </div>
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_2"><a class="anchor" href="#_related_articles_2"></a>2.4. Related articles</h3>
+<h3 id="_related_articles_2"><a class="anchor" href="#_related_articles_2"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1282,7 +1282,7 @@ You can create it manually, as described in <a href="#component-runtime-http-jun
 </div>
 </div>
 <div class="sect1">
-<h2 id="_beam_testing"><a class="anchor" href="#_beam_testing"></a>3. Beam testing</h2>
+<h2 id="_beam_testing"><a class="anchor" href="#_beam_testing"></a>Beam testing</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you want to make sure that your component works in Beam and don&#8217;t want to use Spark, you can try with the Direct Runner.</p>
@@ -1291,7 +1291,7 @@ You can create it manually, as described in <a href="#component-runtime-http-jun
 <p>Check <a href="https://beam.apache.org/contribute/testing/" class="bare">beam.apache.org/contribute/testing/</a> for more details.</p>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_3"><a class="anchor" href="#_related_articles_3"></a>3.1. Related articles</h3>
+<h3 id="_related_articles_3"><a class="anchor" href="#_related_articles_3"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1318,7 +1318,7 @@ You can create it manually, as described in <a href="#component-runtime-http-jun
 </div>
 </div>
 <div class="sect1">
-<h2 id="_testing_on_multiple_environments"><a class="anchor" href="#_testing_on_multiple_environments"></a>4. Testing on multiple environments</h2>
+<h2 id="_testing_on_multiple_environments"><a class="anchor" href="#_testing_on_multiple_environments"></a>Testing on multiple environments</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>JUnit (4 or 5) already provides ways to parameterize tests and execute the same "test logic"
@@ -1331,7 +1331,7 @@ against several sets of data. However, it is not very convenient for testing mul
 <p>To simplify such cases, the framework provides you a multi-environment support for your tests, through the JUnit module, which works with both JUnit 4 and JUnit 5.</p>
 </div>
 <div class="sect2">
-<h3 id="_junit_4_5"><a class="anchor" href="#_junit_4_5"></a>4.1. JUnit 4</h3>
+<h3 id="_junit_4_5"><a class="anchor" href="#_junit_4_5"></a>JUnit 4</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(MultiEnvironmentsRunner.class)
@@ -1353,7 +1353,7 @@ public class TheTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_junit_5_5"><a class="anchor" href="#_junit_5_5"></a>4.2. JUnit 5</h3>
+<h3 id="_junit_5_5"><a class="anchor" href="#_junit_5_5"></a>JUnit 5</h3>
 <div class="paragraph">
 <p>The multi-environment configuration with JUnit 5 is similar to JUnit 4:</p>
 </div>
@@ -1387,7 +1387,7 @@ With JUnit5, tests are executed one after another for all environments, while te
 </div>
 </div>
 <div class="sect2">
-<h3 id="_provided_environments"><a class="anchor" href="#_provided_environments"></a>4.3. Provided environments</h3>
+<h3 id="_provided_environments"><a class="anchor" href="#_provided_environments"></a>Provided environments</h3>
 <div class="paragraph">
 <p>The provided environment sets the contextual classloader in order to load the related runner of Apache Beam.</p>
 </div>
@@ -1444,7 +1444,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </table>
 </div>
 <div class="sect2">
-<h3 id="_configuring_environments"><a class="anchor" href="#_configuring_environments"></a>4.4. Configuring environments</h3>
+<h3 id="_configuring_environments"><a class="anchor" href="#_configuring_environments"></a>Configuring environments</h3>
 <div class="paragraph">
 <p>If the environment extends <code>BaseEnvironmentProvider</code> and therefore defines an environment name - which is the case of the default ones - you can use <code>EnvironmentConfiguration</code> to customize the system properties used for that environment:</p>
 </div>
@@ -1486,7 +1486,7 @@ If you set the <code>&lt;environment name&gt;.skip</code> system property to <co
 </table>
 </div>
 <div class="sect3">
-<h4 id="_advanced_usage"><a class="anchor" href="#_advanced_usage"></a>4.4.1. Advanced usage</h4>
+<h4 id="_advanced_usage"><a class="anchor" href="#_advanced_usage"></a>Advanced usage</h4>
 <div class="paragraph">
 <p>This usage assumes that Beam 2.4.0 is used.</p>
 </div>
@@ -1568,7 +1568,7 @@ class TheComponentTest {
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_4"><a class="anchor" href="#_related_articles_4"></a>4.5. Related articles</h3>
+<h3 id="_related_articles_4"><a class="anchor" href="#_related_articles_4"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1595,7 +1595,7 @@ class TheComponentTest {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_secrets_passwords_and_maven"><a class="anchor" href="#_secrets_passwords_and_maven"></a>5. Secrets/Passwords and Maven</h2>
+<h2 id="_secrets_passwords_and_maven"><a class="anchor" href="#_secrets_passwords_and_maven"></a>Secrets/Passwords and Maven</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can reuse Maven <code>settings.xml</code> server files, including the encrypted ones.
@@ -1626,7 +1626,7 @@ Even if you don&#8217;t use Maven on the platform, you can generate the <code>se
 </table>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_5"><a class="anchor" href="#_related_articles_5"></a>5.1. Related articles</h3>
+<h3 id="_related_articles_5"><a class="anchor" href="#_related_articles_5"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1653,7 +1653,7 @@ Even if you don&#8217;t use Maven on the platform, you can generate the <code>se
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generating_data"><a class="anchor" href="#_generating_data"></a>6. Generating data</h2>
+<h2 id="_generating_data"><a class="anchor" href="#_generating_data"></a>Generating data</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Several data generators exist if you want to populate objects with a semantic that is more evolved than a plain random string like <code>commons-lang3</code>:</p>
@@ -1722,7 +1722,7 @@ An alternative to data generation can be to import <em>real</em> data and use Ta
 <p>If you are using JUnit 5, you can have a look at <a href="https://glytching.github.io/junit-extensions/randomBeans" class="bare">glytching.github.io/junit-extensions/randomBeans</a>.</p>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_6"><a class="anchor" href="#_related_articles_6"></a>6.1. Related articles</h3>
+<h3 id="_related_articles_6"><a class="anchor" href="#_related_articles_6"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1749,10 +1749,10 @@ An alternative to data generation can be to import <em>real</em> data and use Ta
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_a_job_pipeline"><a class="anchor" href="#_creating_a_job_pipeline"></a>7. Creating a job pipeline</h2>
+<h2 id="_creating_a_job_pipeline"><a class="anchor" href="#_creating_a_job_pipeline"></a>Creating a job pipeline</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_job_builder"><a class="anchor" href="#_job_builder"></a>7.1. Job Builder</h3>
+<h3 id="_job_builder"><a class="anchor" href="#_job_builder"></a>Job Builder</h3>
 <div class="paragraph">
 <p>The <code>Job</code> builder lets you create a job pipeline programmatically using Talend components
 (<a href="component-definition.html" class="page">Producers and Processors</a>).
@@ -1871,7 +1871,7 @@ In this version, the execution of the job is linear. Components are not executed
 </table>
 </div>
 <div class="sect3">
-<h4 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>7.1.1. Environment/Runner</h4>
+<h4 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>Environment/Runner</h4>
 <div class="paragraph">
 <p>Depending on the configuration, you can select the environment which you execute your job in.</p>
 </div>
@@ -1896,7 +1896,7 @@ In this version, the execution of the job is linear. Components are not executed
 </div>
 </div>
 <div class="sect3">
-<h4 id="_key_provider"><a class="anchor" href="#_key_provider"></a>7.1.2. Key Provider</h4>
+<h4 id="_key_provider"><a class="anchor" href="#_key_provider"></a>Key Provider</h4>
 <div class="paragraph">
 <p>The job builder lets you set a key provider to join your data when a component has multiple inputs.
 The key provider can be set contextually to a component or globally to the job.</p>
@@ -1946,12 +1946,12 @@ The key provider can be set contextually to a component or globally to the job.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="_beam_case"><a class="anchor" href="#_beam_case"></a>7.2. Beam case</h3>
+<h3 id="_beam_case"><a class="anchor" href="#_beam_case"></a>Beam case</h3>
 <div class="paragraph">
 <p>For <a href="https://beam.apache.org/">Beam</a> case, you need to rely on Beam pipeline definition and use the <code>component-runtime-beam</code> dependency, which provides Beam bridges.</p>
 </div>
 <div class="sect3">
-<h4 id="_inputs_and_outputs"><a class="anchor" href="#_inputs_and_outputs"></a>7.2.1. Inputs and Outputs</h4>
+<h4 id="_inputs_and_outputs"><a class="anchor" href="#_inputs_and_outputs"></a>Inputs and Outputs</h4>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendIO</code> provides a way to convert a partition mapper or a processor to an input or processor using the <code>read</code> or <code>write</code> methods.</p>
 </div>
@@ -1978,7 +1978,7 @@ The key provider can be set contextually to a component or globally to the job.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="_processors"><a class="anchor" href="#_processors"></a>7.2.2. Processors</h4>
+<h4 id="_processors"><a class="anchor" href="#_processors"></a>Processors</h4>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendFn</code> provides the way to wrap a processor in a Beam <code>PTransform</code> and to integrate it into the pipeline.</p>
 </div>
@@ -2013,7 +2013,7 @@ You can use <code>ViewsMappingTransform</code> or <code>CoGroupByKeyResultMappin
 </div>
 </div>
 <div class="sect3">
-<h4 id="_converting_a_beam_io_into_a_component_i_o"><a class="anchor" href="#_converting_a_beam_io_into_a_component_i_o"></a>7.2.3. Converting a Beam.io into a component I/O</h4>
+<h4 id="_converting_a_beam_io_into_a_component_i_o"><a class="anchor" href="#_converting_a_beam_io_into_a_component_i_o"></a>Converting a Beam.io into a component I/O</h4>
 <div class="paragraph">
 <p>For simple inputs and outputs, you can get an automatic and transparent conversion of the Beam.io into an I/O component, if you decorated your <code>PTransform</code> with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
 </div>
@@ -2036,7 +2036,7 @@ You can use <code>ViewsMappingTransform</code> or <code>CoGroupByKeyResultMappin
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_7"><a class="anchor" href="#_related_articles_7"></a>7.3. Related articles</h3>
+<h3 id="_related_articles_7"><a class="anchor" href="#_related_articles_7"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>

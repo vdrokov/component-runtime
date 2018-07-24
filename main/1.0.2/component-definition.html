@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/component-definition.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:02.361Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:15.311Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -754,7 +754,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 </div>
 </div>
 <div class="sect1">
-<h2 id="partition-mapper"><a class="anchor" href="#partition-mapper"></a>1. PartitionMapper</h2>
+<h2 id="partition-mapper"><a class="anchor" href="#partition-mapper"></a>PartitionMapper</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A <code>PartitionMapper</code> is a component able to split itself to make the execution more efficient.</p>
@@ -792,7 +792,7 @@ This kind of component must be <code>Serializable</code> to be distributable.
 </table>
 </div>
 <div class="sect2">
-<h3 id="_definition"><a class="anchor" href="#_definition"></a>1.1. Definition</h3>
+<h3 id="_definition"><a class="anchor" href="#_definition"></a>Definition</h3>
 <div class="paragraph">
 <p>A partition mapper requires three methods marked with specific annotations:</p>
 </div>
@@ -810,7 +810,7 @@ This kind of component must be <code>Serializable</code> to be distributable.
 </ol>
 </div>
 <div class="sect3">
-<h4 id="_assessor"><a class="anchor" href="#_assessor"></a>1.1.1. @Assessor</h4>
+<h4 id="_assessor"><a class="anchor" href="#_assessor"></a>@Assessor</h4>
 <div class="paragraph">
 <p>The Assessor method returns the estimated size of the data related to the component (depending its configuration).
 It must return a <code>Number</code> and must not take any parameter.</p>
@@ -828,7 +828,7 @@ public long estimateDataSetByteSize() {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_split"><a class="anchor" href="#_split"></a>1.1.2. @Split</h4>
+<h4 id="_split"><a class="anchor" href="#_split"></a>@Split</h4>
 <div class="paragraph">
 <p>The Split method returns a collection of partition mappers and can take optionally a <code>@PartitionSize</code> long value as parameter, which is the requested size of the dataset per sub partition mapper.</p>
 </div>
@@ -845,7 +845,7 @@ public List&lt;MyMapper&gt; split(@PartitionSize final long desiredSize) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_emitter"><a class="anchor" href="#_emitter"></a>1.1.3. @Emitter</h4>
+<h4 id="_emitter"><a class="anchor" href="#_emitter"></a>@Emitter</h4>
 <div class="paragraph">
 <p>The Emitter method must not have any parameter and must return a producer. It uses the partition mapper configuration to instantiate and configure the producer.</p>
 </div>
@@ -865,7 +865,7 @@ public MyProducer create() {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_producer"><a class="anchor" href="#_producer"></a>2. Producer</h2>
+<h2 id="_producer"><a class="anchor" href="#_producer"></a>Producer</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A <code>Producer</code> is a component interacting with a physical source. It produces input data for the processing flow.</p>
@@ -884,7 +884,7 @@ public MyData produces() {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_processor"><a class="anchor" href="#_processor"></a>3. Processor</h2>
+<h2 id="_processor"><a class="anchor" href="#_processor"></a>Processor</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A <code>Processor</code> is a component that converts incoming data to a different model.</p>
@@ -984,7 +984,7 @@ It is a good practice to support a <code>maxBatchSize</code> here and to commit 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_multiple_outputs"><a class="anchor" href="#_multiple_outputs"></a>4. Multiple outputs</h2>
+<h2 id="_multiple_outputs"><a class="anchor" href="#_multiple_outputs"></a>Multiple outputs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In some cases, you may need to split the output of a processor in two. A common example is to have "main" and "reject" branches where part of the incoming data are passed to a specific bucket to be processed later.</p>
@@ -1032,7 +1032,7 @@ public MyNewData map(final MyData data,
 </div>
 </div>
 <div class="sect1">
-<h2 id="_multiple_inputs"><a class="anchor" href="#_multiple_inputs"></a>5. Multiple inputs</h2>
+<h2 id="_multiple_inputs"><a class="anchor" href="#_multiple_inputs"></a>Multiple inputs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Having multiple inputs is similar to having multiple outputs, except that an <code>OutputEmitter</code> wrapper is not needed:</p>
@@ -1051,7 +1051,7 @@ public MyNewData map(@Input final MyData data, @Input("input2") final MyData2 da
 </div>
 </div>
 <div class="sect1">
-<h2 id="_output"><a class="anchor" href="#_output"></a>6. Output</h2>
+<h2 id="_output"><a class="anchor" href="#_output"></a>Output</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>An <code>Output</code> is a <code>Processor</code> that does not return any data.</p>
@@ -1070,7 +1070,7 @@ public void store(final MyData data) {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_combiners"><a class="anchor" href="#_combiners"></a>7. Combiners</h2>
+<h2 id="_combiners"><a class="anchor" href="#_combiners"></a>Combiners</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Currently, Talend Component Kit does not allow you to define a <code>Combiner</code>.
@@ -1079,7 +1079,7 @@ A combiner is the symmetric part of a partition mapper and allows to aggregate r
 </div>
 </div>
 <div class="sect1">
-<h2 id="_family_and_component_icons"><a class="anchor" href="#_family_and_component_icons"></a>8. Family and component icons</h2>
+<h2 id="_family_and_component_icons"><a class="anchor" href="#_family_and_component_icons"></a>Family and component icons</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Every component family and component needs to have a representative icon.<br>

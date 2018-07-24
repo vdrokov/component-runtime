@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/getting-started.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:51:57.012Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:09.781Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -300,7 +300,7 @@
 <article class="doc">
         <h1>Talend Component Getting Started</h1>
         <div class="sect1">
-<h2 id="getting-started-introducing-talend-component"><a class="anchor" href="#getting-started-introducing-talend-component"></a>1. Introducing Talend Component</h2>
+<h2 id="getting-started-introducing-talend-component"><a class="anchor" href="#getting-started-introducing-talend-component"></a>Introducing Talend Component</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><em>Talend Component</em> intends to simplify the development of connectors at two main levels:</p>
@@ -320,7 +320,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="getting-started-system-requirements"><a class="anchor" href="#getting-started-system-requirements"></a>2. Talend Component System Requirement</h2>
+<h2 id="getting-started-system-requirements"><a class="anchor" href="#getting-started-system-requirements"></a>Talend Component System Requirement</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Talend Component requires Java 8. You can download it on <a href="http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html">Oracle</a> website.</p>
@@ -331,7 +331,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="getting-started-first-quick-start"><a class="anchor" href="#getting-started-first-quick-start"></a>3. Quick Start</h2>
+<h2 id="getting-started-first-quick-start"><a class="anchor" href="#getting-started-first-quick-start"></a>Quick Start</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For our quick start, we&#8217;ll develop three components:</p>
@@ -374,7 +374,7 @@
 <p>You can note these classes are <code>Serializable</code>. This is mainly for <code>BEAM</code> case but we&#8217;ll get back on this point later.</p>
 </div>
 <div class="sect2">
-<h3 id="_dependencies"><a class="anchor" href="#_dependencies"></a>3.1. Dependencies</h3>
+<h3 id="_dependencies"><a class="anchor" href="#_dependencies"></a>Dependencies</h3>
 <div class="paragraph">
 <p>To code a component the only needed dependency is the API:</p>
 </div>
@@ -389,7 +389,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inputs"><a class="anchor" href="#_inputs"></a>3.2. Inputs</h3>
+<h3 id="_inputs"><a class="anchor" href="#_inputs"></a>Inputs</h3>
 <div class="paragraph">
 <p>The inputs often require to open/close a connection and then just work on that connection.</p>
 </div>
@@ -461,7 +461,7 @@ there is another type of input called <code>PartitionMapper</code> which allows 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_a_processor"><a class="anchor" href="#_a_processor"></a>3.3. A Processor</h3>
+<h3 id="_a_processor"><a class="anchor" href="#_a_processor"></a>A Processor</h3>
 <div class="paragraph">
 <p>A processor is imply a task taking an input and converting it to another one. In our case it will just take a person and convert it to a user
 which has a name copied form the person and an id generated from the name and age of the user.</p>
@@ -500,7 +500,7 @@ public User map(final Person person) throws IOException {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_an_output"><a class="anchor" href="#_an_output"></a>3.4. An output</h3>
+<h3 id="_an_output"><a class="anchor" href="#_an_output"></a>An output</h3>
 <div class="paragraph">
 <p>Now we read our <code>Person</code>, mapped it to a <code>User</code>, we just need to write back the <code>User</code> to another file.</p>
 </div>
@@ -544,7 +544,7 @@ public void write(final User user) throws IOException {
 </div>
 </div>
 <div class="sect2">
-<h3 id="getting-started-components"><a class="anchor" href="#getting-started-components"></a>3.5. Registering our components</h3>
+<h3 id="getting-started-components"><a class="anchor" href="#getting-started-components"></a>Registering our components</h3>
 <div class="paragraph">
 <p>You probably noticed our components have some configuration. Typically the file related components take a <code>File</code> as configuration.
 To make it work we need to add a <em>factory</em> for these instances which will link the user configuration to the instances.</p>
@@ -604,7 +604,7 @@ to the parameter (if not the framework will use the reflection parameter name, i
 </div>
 </div>
 <div class="sect2">
-<h3 id="getting-started-first-quick-start-run"><a class="anchor" href="#getting-started-first-quick-start-run"></a>3.6. Run the quick start example</h3>
+<h3 id="getting-started-first-quick-start-run"><a class="anchor" href="#getting-started-first-quick-start-run"></a>Run the quick start example</h3>
 <div class="paragraph">
 <p>To run the code we just created you will need the runtime dependency of the framework:</p>
 </div>

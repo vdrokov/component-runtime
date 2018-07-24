@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/testing-spark.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:51:57.914Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:10.762Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -312,7 +312,7 @@
 </div>
 <article class="doc">
         <div class="sect1">
-<h2 id="_component_runtime_testing_spark"><a class="anchor" href="#_component_runtime_testing_spark"></a>1. component-runtime-testing-spark</h2>
+<h2 id="_component_runtime_testing_spark"><a class="anchor" href="#_component_runtime_testing_spark"></a>component-runtime-testing-spark</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The folowing artifact will allow you to test against a spark cluster:</p>
@@ -328,7 +328,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1. JUnit 4</h3>
+<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>JUnit 4</h3>
 <div class="paragraph">
 <p>The usage relies on a JUnit <code>TestRule</code>. It is recommended to use it as a <code>@ClassRule</code> to ensure
 a single instance of a spark cluster is built but you can also use it as a simple <code>@Rule</code> which means
@@ -372,7 +372,7 @@ this is working with <code>@Parameterized</code> so you can submit a bunch of jo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
+<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>JUnit 5</h3>
 <div class="paragraph">
 <p>The integration with JUnit 5 of that spark cluster logic uses <code>@WithSpark</code> marker for the extension
 and let you, optionally, inject through <code>@SparkInject</code>, the <code>BaseSpark&lt;?&gt;</code> handler to access te spark cluster
@@ -406,7 +406,7 @@ class SparkExtensionTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_how_to_know_the_job_is_done"><a class="anchor" href="#_how_to_know_the_job_is_done"></a>1.3. How to know the job is done</h3>
+<h3 id="_how_to_know_the_job_is_done"><a class="anchor" href="#_how_to_know_the_job_is_done"></a>How to know the job is done</h3>
 <div class="paragraph">
 <p>In current state, <code>SparkClusterRule</code> doesn&#8217;t allow to know a job execution is done - even if it exposes the webui url so
 you can poll it to check. The best at the moment is to ensure the output of your job exists and contains the right value.</p>

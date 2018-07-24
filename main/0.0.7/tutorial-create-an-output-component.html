@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/tutorial-create-an-output-component.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:00.547Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:13.407Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -331,7 +331,7 @@ This will include :</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_component_configuration"><a class="anchor" href="#_the_component_configuration"></a>1. The component configuration</h2>
+<h2 id="_the_component_configuration"><a class="anchor" href="#_the_component_configuration"></a>The component configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>How to create component configuration has already been described in <a href="tutorial-create-an-input-component.html#_the_component_configuration" class="page">"Create an input component" tutorial</a>.
@@ -353,7 +353,7 @@ private String valueAttribute;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_output"><a class="anchor" href="#_the_output"></a>2. The Output</h2>
+<h2 id="_the_output"><a class="anchor" href="#_the_output"></a>The Output</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>As our output component needs to work in distributed environments it should implement Serializable interface.</p>
@@ -442,7 +442,7 @@ in real implementation you can desire to bulk write the updates accordingly to g
 <p>Let&#8217;s implement all methods required for our output.</p>
 </div>
 <div class="sect2">
-<h3 id="_the_constructor"><a class="anchor" href="#_the_constructor"></a>2.1. The constructor</h3>
+<h3 id="_the_constructor"><a class="anchor" href="#_the_constructor"></a>The constructor</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public HazelcastOutput(@Option("configuration") final HazelcastConfiguration configuration,
@@ -458,7 +458,7 @@ in real implementation you can desire to bulk write the updates accordingly to g
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_postconstruct_method"><a class="anchor" href="#_the_postconstruct_method"></a>2.2. The PostConstruct method</h3>
+<h3 id="_the_postconstruct_method"><a class="anchor" href="#_the_postconstruct_method"></a>The PostConstruct method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private transient HazelcastInstance instance;
@@ -492,7 +492,7 @@ in production you will not want to create one instance per thread/worker but we 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_predestroy_method"><a class="anchor" href="#_the_predestroy_method"></a>2.3. The PreDestroy method</h3>
+<h3 id="_the_predestroy_method"><a class="anchor" href="#_the_predestroy_method"></a>The PreDestroy method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PreDestroy
@@ -507,7 +507,7 @@ public void close() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_elementlistener_method"><a class="anchor" href="#_the_elementlistener_method"></a>2.4. The ElementListener method</h3>
+<h3 id="_the_elementlistener_method"><a class="anchor" href="#_the_elementlistener_method"></a>The ElementListener method</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
@@ -549,7 +549,7 @@ required to put data to Hazelcast map.</td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_the_full_implementation_of_the_output"><a class="anchor" href="#_the_full_implementation_of_the_output"></a>2.5. The full implementation of the Output</h3>
+<h3 id="_the_full_implementation_of_the_output"><a class="anchor" href="#_the_full_implementation_of_the_output"></a>The full implementation of the Output</h3>
 <div class="paragraph">
 <p>Here is the full code source for the output to have a global view of it.
 <a href="component-definition.html#_output" class="page">Read more about output&#8230;&#8203;</a></p>

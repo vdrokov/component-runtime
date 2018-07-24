@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/index-sub-build-tools.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:03.534Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:16.330Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -391,7 +391,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_maven_plugin"><a class="anchor" href="#_maven_plugin"></a>1. Maven Plugin</h2>
+<h2 id="_maven_plugin"><a class="anchor" href="#_maven_plugin"></a>Maven Plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>talend-component-maven-plugin</code> helps you write components that match best practices and generate transparently metadata used by Talend Studio.</p>
@@ -424,7 +424,7 @@
 <p>Used as an extension, the <code>dependencies</code>, <code>validate</code> and <code>documentation</code> goals will be set up.</p>
 </div>
 <div class="sect2">
-<h3 id="_dependencies"><a class="anchor" href="#_dependencies"></a>1.1. Dependencies</h3>
+<h3 id="_dependencies"><a class="anchor" href="#_dependencies"></a>Dependencies</h3>
 <div class="paragraph">
 <p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>. It creates the <code>TALEND-INF/dependencies.txt</code> file with the <code>compile</code> and <code>runtime</code> dependencies, allowing the component to use it at runtime:</p>
 </div>
@@ -447,7 +447,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_validate"><a class="anchor" href="#_validate"></a>1.2. Validate</h3>
+<h3 id="_validate"><a class="anchor" href="#_validate"></a>Validate</h3>
 <div class="paragraph">
 <p>This goal helps you validate the common programming model of the component. To activate it, you can use following execution definition:</p>
 </div>
@@ -544,7 +544,7 @@
 </table>
 </div>
 <div class="sect2">
-<h3 id="_documentation"><a class="anchor" href="#_documentation"></a>1.3. Documentation</h3>
+<h3 id="_documentation"><a class="anchor" href="#_documentation"></a>Documentation</h3>
 <div class="paragraph">
 <p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and the <code>@Documentation</code> property that you can add to options and to the component itself.</p>
 </div>
@@ -635,7 +635,7 @@ If you use the plugin as an extension, you can add the <code>talend.documentatio
 </table>
 </div>
 <div class="sect3">
-<h4 id="_rendering_your_documentation"><a class="anchor" href="#_rendering_your_documentation"></a>1.3.1. Rendering your documentation</h4>
+<h4 id="_rendering_your_documentation"><a class="anchor" href="#_rendering_your_documentation"></a>Rendering your documentation</h4>
 <div class="paragraph">
 <p>To render the generated documentation in HTML or PDF, you can use the Asciidoctor Maven plugin (or Gradle equivalent). You can configure both executions if you want both HTML and PDF renderings.</p>
 </div>
@@ -797,7 +797,7 @@ include::{generated_doc}/documentation.adoc[]</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_testing_a_component_web_rendering"><a class="anchor" href="#_testing_a_component_web_rendering"></a>1.4. Testing a component web rendering</h3>
+<h3 id="_testing_a_component_web_rendering"><a class="anchor" href="#_testing_a_component_web_rendering"></a>Testing a component web rendering</h3>
 <div class="paragraph">
 <p>Testing the rendering of your component configuration into the Studio requires deploying the component in Talend Studio (refer to <a href="studio.html">Studio Documentation</a>.</p>
 </div>
@@ -844,7 +844,7 @@ Make sure to install the artifact before using this command because it reads the
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generating_inputs_or_outputs"><a class="anchor" href="#_generating_inputs_or_outputs"></a>1.5. Generating inputs or outputs</h3>
+<h3 id="_generating_inputs_or_outputs"><a class="anchor" href="#_generating_inputs_or_outputs"></a>Generating inputs or outputs</h3>
 <div class="paragraph">
 <p>The Mojo <code>generate</code> (Maven plugin goal) of the same plugin also embeds a generator that you can use to bootstrap any input or output component:</p>
 </div>
@@ -937,7 +937,7 @@ Make sure to install the artifact before using this command because it reads the
 </div>
 </div>
 <div class="sect2">
-<h3 id="_talend_component_archive"><a class="anchor" href="#_talend_component_archive"></a>1.6. Talend Component Archive</h3>
+<h3 id="_talend_component_archive"><a class="anchor" href="#_talend_component_archive"></a>Talend Component Archive</h3>
 <div class="paragraph">
 <p>Component ARchive (<code>.car</code>) is the way to bundle a component to share it in the Talend ecosystem. It is a plain Java ARchive (<code>.jar</code>) containing a metadata file and a nested Maven repository containing the component and its depenencies.</p>
 </div>
@@ -986,7 +986,7 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gradle_plugin"><a class="anchor" href="#_gradle_plugin"></a>2. Gradle Plugin</h2>
+<h2 id="_gradle_plugin"><a class="anchor" href="#_gradle_plugin"></a>Gradle Plugin</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>gradle-talend-component</code> helps you write components that match the best practices. It is inspired from the Maven plugin and adds the ability to generate automatically the <code>dependencies.txt</code> file used by the SDK to build the component classpath. For more information on the configuration, refer to the Maven properties matching the attributes.</p>

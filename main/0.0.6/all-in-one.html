@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/all-in-one.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:51:59.838Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:12.626Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -311,10 +311,10 @@
 <article class="doc">
         <h1>Talend Component Kit Developer Reference Guide</h1>
         <div class="sect1">
-<h2 id="_talend_component_design_choices"><a class="anchor" href="#_talend_component_design_choices"></a>1. Talend Component Design Choices</h2>
+<h2 id="_talend_component_design_choices"><a class="anchor" href="#_talend_component_design_choices"></a>Talend Component Design Choices</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_component_api"><a class="anchor" href="#_component_api"></a>1.1. Component API</h3>
+<h3 id="_component_api"><a class="anchor" href="#_component_api"></a>Component API</h3>
 <div class="paragraph">
 <p>The Component API is</p>
 </div>
@@ -339,7 +339,7 @@
 </ol>
 </div>
 <div class="sect3">
-<h4 id="_evolution"><a class="anchor" href="#_evolution"></a>1.1.1. Evolution</h4>
+<h4 id="_evolution"><a class="anchor" href="#_evolution"></a>Evolution</h4>
 <div class="paragraph">
 <p>Being fully declarative, any new API can be added iteratively without requiring
 any changes to existing components.</p>
@@ -370,7 +370,7 @@ public MyOutput onElement(MyInput data,
 </div>
 </div>
 <div class="sect3">
-<h4 id="_static"><a class="anchor" href="#_static"></a>1.1.2. Static</h4>
+<h4 id="_static"><a class="anchor" href="#_static"></a>Static</h4>
 <div class="sect4">
 <h5 id="_ui_friendly"><a class="anchor" href="#_ui_friendly"></a>UI friendly</h5>
 <div class="paragraph">
@@ -398,11 +398,11 @@ with automated tools.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_flexible_data_modeling"><a class="anchor" href="#_flexible_data_modeling"></a>1.1.3. Flexible data modeling</h4>
+<h4 id="_flexible_data_modeling"><a class="anchor" href="#_flexible_data_modeling"></a>Flexible data modeling</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_generic_and_specific"><a class="anchor" href="#_generic_and_specific"></a>1.1.4. Generic and specific</h4>
+<h4 id="_generic_and_specific"><a class="anchor" href="#_generic_and_specific"></a>Generic and specific</h4>
 <div class="paragraph">
 <p>The processor API supports <code>JsonObject</code> as well as any custom model. Intent is to support generic component
 development which need to access configured "object paths" and specific components which rely on a well defined
@@ -445,7 +445,7 @@ because it brings a very powerful API with very few constraints.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_isolated"><a class="anchor" href="#_isolated"></a>1.2. Isolated</h3>
+<h3 id="_isolated"><a class="anchor" href="#_isolated"></a>Isolated</h3>
 <div class="paragraph">
 <p>The components must be able to execute even if they have conflicting libraries. For that purpose
 it requires to isolate their classloaders. For that purpose a component will define
@@ -453,9 +453,9 @@ its dependencies based on a maven format and will always be bound to its own cla
 </div>
 </div>
 <div class="sect2">
-<h3 id="_rest"><a class="anchor" href="#_rest"></a>1.3. REST</h3>
+<h3 id="_rest"><a class="anchor" href="#_rest"></a>REST</h3>
 <div class="sect3">
-<h4 id="_consumable_model"><a class="anchor" href="#_consumable_model"></a>1.3.1. Consumable model</h4>
+<h4 id="_consumable_model"><a class="anchor" href="#_consumable_model"></a>Consumable model</h4>
 <div class="paragraph">
 <p>The definition payload is as flat as possible and <em>strongly</em> typed to ensure it can be manipulated by consumers.
 This way the consumers can add/remove fields with just some mapping rules and don&#8217;t require any abstract tree handling.</p>
@@ -476,7 +476,7 @@ let the consumers handle the data lifecycle (creation, encryption, deletion, &#8
 </div>
 </div>
 <div class="sect3">
-<h4 id="_execution_with_streaming"><a class="anchor" href="#_execution_with_streaming"></a>1.3.2. Execution with streaming</h4>
+<h4 id="_execution_with_streaming"><a class="anchor" href="#_execution_with_streaming"></a>Execution with streaming</h4>
 <div class="paragraph">
 <p>A new mime type called <code>talend/stream</code> is introduced to define a streaming format.</p>
 </div>
@@ -495,7 +495,7 @@ let the consumers handle the data lifecycle (creation, encryption, deletion, &#8
 </div>
 </div>
 <div class="sect2">
-<h3 id="_fixed_set_of_icons"><a class="anchor" href="#_fixed_set_of_icons"></a>1.4. Fixed set of icons</h3>
+<h3 id="_fixed_set_of_icons"><a class="anchor" href="#_fixed_set_of_icons"></a>Fixed set of icons</h3>
 <div class="paragraph">
 <p>Icons (<code>@Icon</code>) are based on a fixed set. Even if a custom icon is usable this is
 without any guarantee. This comes from the fact components can be used in any environment
@@ -519,16 +519,16 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 </div>
 </div>
 <div class="sect1">
-<h2 id="_talend_component_documentation_overview"><a class="anchor" href="#_talend_component_documentation_overview"></a>2. Talend Component Documentation Overview</h2>
+<h2 id="_talend_component_documentation_overview"><a class="anchor" href="#_talend_component_documentation_overview"></a>Talend Component Documentation Overview</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_getting_help"><a class="anchor" href="#_getting_help"></a>2.1. Getting help</h3>
+<h3 id="_getting_help"><a class="anchor" href="#_getting_help"></a>Getting help</h3>
 <div class="paragraph">
 <p>Talend Component framework is under the responsability of Mike Hirt team.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_first_steps"><a class="anchor" href="#_first_steps"></a>2.2. First steps</h3>
+<h3 id="_first_steps"><a class="anchor" href="#_first_steps"></a>First steps</h3>
 <div class="paragraph">
 <p>If you know nothing about Talend Components, the getting started is the place to start with.</p>
 </div>
@@ -547,7 +547,7 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 </div>
 </div>
 <div class="sect2">
-<h3 id="_learning_about_talend_component_features"><a class="anchor" href="#_learning_about_talend_component_features"></a>2.3. Learning about Talend Component features</h3>
+<h3 id="_learning_about_talend_component_features"><a class="anchor" href="#_learning_about_talend_component_features"></a>Learning about Talend Component features</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -564,10 +564,10 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 </div>
 </div>
 <div class="sect1">
-<h2 id="_talend_component_getting_started"><a class="anchor" href="#_talend_component_getting_started"></a>3. Talend Component Getting Started</h2>
+<h2 id="_talend_component_getting_started"><a class="anchor" href="#_talend_component_getting_started"></a>Talend Component Getting Started</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="getting-started-introducing-talend-component"><a class="anchor" href="#getting-started-introducing-talend-component"></a>3.1. Introducing Talend Component</h3>
+<h3 id="getting-started-introducing-talend-component"><a class="anchor" href="#getting-started-introducing-talend-component"></a>Introducing Talend Component</h3>
 <div class="paragraph">
 <p><em>Talend Component</em> intends to simplify the development of connectors at two main levels:</p>
 </div>
@@ -585,7 +585,7 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 </div>
 </div>
 <div class="sect2">
-<h3 id="getting-started-system-requirements"><a class="anchor" href="#getting-started-system-requirements"></a>3.2. Talend Component System Requirement</h3>
+<h3 id="getting-started-system-requirements"><a class="anchor" href="#getting-started-system-requirements"></a>Talend Component System Requirement</h3>
 <div class="paragraph">
 <p>Talend Component requires Java 8. You can download it on <a href="http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html">Oracle</a> website.</p>
 </div>
@@ -594,7 +594,7 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 </div>
 </div>
 <div class="sect2">
-<h3 id="getting-started-first-quick-start"><a class="anchor" href="#getting-started-first-quick-start"></a>3.3. Quick Start</h3>
+<h3 id="getting-started-first-quick-start"><a class="anchor" href="#getting-started-first-quick-start"></a>Quick Start</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -630,12 +630,12 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 </div>
 </div>
 <div class="sect1">
-<h2 id="_talend_component_documentation"><a class="anchor" href="#_talend_component_documentation"></a>4. Talend Component Documentation</h2>
+<h2 id="_talend_component_documentation"><a class="anchor" href="#_talend_component_documentation"></a>Talend Component Documentation</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_talend_components_definitions_documentation"><a class="anchor" href="#_talend_components_definitions_documentation"></a>4.1. Talend Components Definitions Documentation</h3>
+<h3 id="_talend_components_definitions_documentation"><a class="anchor" href="#_talend_components_definitions_documentation"></a>Talend Components Definitions Documentation</h3>
 <div class="sect3">
-<h4 id="_components_definition"><a class="anchor" href="#_components_definition"></a>4.1.1. Components Definition</h4>
+<h4 id="_components_definition"><a class="anchor" href="#_components_definition"></a>Components Definition</h4>
 <div class="paragraph">
 <p>Talend Component framework relies on several primitive components.</p>
 </div>
@@ -1074,7 +1074,7 @@ and allow to aggregate results in a single one.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_configuring_components"><a class="anchor" href="#_configuring_components"></a>4.1.2. Configuring components</h4>
+<h4 id="_configuring_components"><a class="anchor" href="#_configuring_components"></a>Configuring components</h4>
 <div class="paragraph">
 <p>Component are configured through their constructor parameters. They can all be marked with <code>@Option</code>
 which will let you give a name to parameters (if not it will use the bytecode name which can require you to compile with <code>-parameter</code> flag
@@ -1644,7 +1644,7 @@ target support should cover <code>org.talend.core.model.process.EParameterFieldT
 </div>
 </div>
 <div class="sect3">
-<h4 id="_gallery"><a class="anchor" href="#_gallery"></a>4.1.3. Gallery</h4>
+<h4 id="_gallery"><a class="anchor" href="#_gallery"></a>Gallery</h4>
 <div class="sect4">
 <h5 id="_widgets"><a class="anchor" href="#_widgets"></a>Widgets</h5>
 <table class="tableblock frame-all grid-all table gallery">
@@ -1899,7 +1899,7 @@ public HealthCheckStatus testConnection(){
 </div>
 </div>
 <div class="sect3">
-<h4 id="_registering_components"><a class="anchor" href="#_registering_components"></a>4.1.4. Registering components</h4>
+<h4 id="_registering_components"><a class="anchor" href="#_registering_components"></a>Registering components</h4>
 <div class="paragraph">
 <p>As seen in the <a href="getting-started.html#getting-started-first-quick-start" class="page">Getting Started</a>, you need an annotation to register
 your component through <code>family</code> method. Multiple components can use the same <code>family</code> value but the pair <code>family</code>+<code>name</code>
@@ -2079,7 +2079,7 @@ public class MyProcessor {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_internationalization"><a class="anchor" href="#_internationalization"></a>4.1.5. Internationalization</h4>
+<h4 id="_internationalization"><a class="anchor" href="#_internationalization"></a>Internationalization</h4>
 <div class="paragraph">
 <p>In the simplest case you should store messages using <code>ResourceBundle</code> properties file in your component module to use internationalization.
 The location of the properties file should be in the same package as the related component(s) and is named <code>Messages</code> (ex: <code>org.talend.demo.MyComponent</code> will use <code>org.talend.demo.Messages[locale].properties</code>).</p>
@@ -2188,9 +2188,9 @@ this rule apply also to placeholders
 </div>
 </div>
 <div class="sect2">
-<h3 id="_components_packaging"><a class="anchor" href="#_components_packaging"></a>4.2. Components Packaging</h3>
+<h3 id="_components_packaging"><a class="anchor" href="#_components_packaging"></a>Components Packaging</h3>
 <div class="sect3">
-<h4 id="_component_loading"><a class="anchor" href="#_component_loading"></a>4.2.1. Component Loading</h4>
+<h4 id="_component_loading"><a class="anchor" href="#_component_loading"></a>Component Loading</h4>
 <div class="paragraph">
 <p>Talend Component scanning is based on a plugin concept. To ensure plugins can be developped in parallel and avoid conflicts
 it requires to isolate plugins (components or component grouped in a single jar/plugin).</p>
@@ -2605,9 +2605,9 @@ practise is to use <code>userArtifacts</code> for the components and not the pro
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_tools"><a class="anchor" href="#_build_tools"></a>4.3. Build tools</h3>
+<h3 id="_build_tools"><a class="anchor" href="#_build_tools"></a>Build tools</h3>
 <div class="sect3">
-<h4 id="_maven_plugin"><a class="anchor" href="#_maven_plugin"></a>4.3.1. Maven Plugin</h4>
+<h4 id="_maven_plugin"><a class="anchor" href="#_maven_plugin"></a>Maven Plugin</h4>
 <div class="paragraph">
 <p><code>talend-component-maven-plugin</code> intends to help you to write components
 validating components match best practices and also generating transparently metadata used by Talend Studio.</p>
@@ -3176,7 +3176,7 @@ java -jar mycomponent.car maven-deploy /path/to/.m2/repository</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_gradle_plugin"><a class="anchor" href="#_gradle_plugin"></a>4.3.2. Gradle Plugin</h4>
+<h4 id="_gradle_plugin"><a class="anchor" href="#_gradle_plugin"></a>Gradle Plugin</h4>
 <div class="paragraph">
 <p><code>gradle-talend-component</code> intends to help you to write components
 validating components match best practices. It is inspired from the Maven plugin
@@ -3245,9 +3245,9 @@ talendComponentKit {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_services"><a class="anchor" href="#_services"></a>4.4. Services</h3>
+<h3 id="_services"><a class="anchor" href="#_services"></a>Services</h3>
 <div class="sect3">
-<h4 id="_internationalization_2"><a class="anchor" href="#_internationalization_2"></a>4.4.1. Internationalization</h4>
+<h4 id="_internationalization_2"><a class="anchor" href="#_internationalization_2"></a>Internationalization</h4>
 <div class="paragraph">
 <p>Recommanded practise for internationalization are:</p>
 </div>
@@ -3318,7 +3318,7 @@ public interface Translator {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_providing_some_actions_for_consumers_clients"><a class="anchor" href="#_providing_some_actions_for_consumers_clients"></a>4.4.2. Providing some actions for consumers/clients</h4>
+<h4 id="_providing_some_actions_for_consumers_clients"><a class="anchor" href="#_providing_some_actions_for_consumers_clients"></a>Providing some actions for consumers/clients</h4>
 <div class="paragraph">
 <p>In some cases you will desire to add some actions unrelated to the runtime. A simple example
 is to enable clients - the users of the plugin/library - to test if a connection works. Even more concretely: <em>does my database is up?</em>.</p>
@@ -3460,7 +3460,7 @@ for instance. Here is the list of all actions:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_built_in_services"><a class="anchor" href="#_built_in_services"></a>4.4.3. Built in services</h4>
+<h4 id="_built_in_services"><a class="anchor" href="#_built_in_services"></a>Built in services</h4>
 <div class="paragraph">
 <p>The framework provides some built-in services you can inject by type in components and actions out of the box.</p>
 </div>
@@ -3761,7 +3761,7 @@ signature to pass some configurer configuration.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_services_and_interceptors"><a class="anchor" href="#_services_and_interceptors"></a>4.4.4. Services and interceptors</h4>
+<h4 id="_services_and_interceptors"><a class="anchor" href="#_services_and_interceptors"></a>Services and interceptors</h4>
 <div class="paragraph">
 <p>For common concerns like caching, auditing etc, it can be fancy to use interceptor like API. It is enabled by the framework
 on services.</p>
@@ -3845,7 +3845,7 @@ or class (in this order).
 </div>
 </div>
 <div class="sect3">
-<h4 id="_creating_a_job_pipeline"><a class="anchor" href="#_creating_a_job_pipeline"></a>4.4.5. Creating a job pipeline</h4>
+<h4 id="_creating_a_job_pipeline"><a class="anchor" href="#_creating_a_job_pipeline"></a>Creating a job pipeline</h4>
 <div class="sect4">
 <h5 id="_job_builder"><a class="anchor" href="#_job_builder"></a>Job Builder</h5>
 <div class="paragraph">
@@ -4162,7 +4162,7 @@ with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_advanced_define_a_custom_api"><a class="anchor" href="#_advanced_define_a_custom_api"></a>4.4.6. Advanced: define a custom API</h4>
+<h4 id="_advanced_define_a_custom_api"><a class="anchor" href="#_advanced_define_a_custom_api"></a>Advanced: define a custom API</h4>
 <div class="paragraph">
 <p>It is possible to extend the Component API for custom front features.</p>
 </div>
@@ -4192,9 +4192,9 @@ public @interface MyLayout {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_talend_component_testing_documentation"><a class="anchor" href="#_talend_component_testing_documentation"></a>4.5. Talend Component Testing Documentation</h3>
+<h3 id="_talend_component_testing_documentation"><a class="anchor" href="#_talend_component_testing_documentation"></a>Talend Component Testing Documentation</h3>
 <div class="sect3">
-<h4 id="_best_practises"><a class="anchor" href="#_best_practises"></a>4.5.1. Best practises</h4>
+<h4 id="_best_practises"><a class="anchor" href="#_best_practises"></a>Best practises</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4350,7 +4350,7 @@ don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefi
 </div>
 </div>
 <div class="sect3">
-<h4 id="_component_runtime_testing"><a class="anchor" href="#_component_runtime_testing"></a>4.5.2. component-runtime-testing</h4>
+<h4 id="_component_runtime_testing"><a class="anchor" href="#_component_runtime_testing"></a>component-runtime-testing</h4>
 <div class="sect4">
 <h5 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>component-runtime-junit</h5>
 <div class="paragraph">
@@ -4994,7 +4994,7 @@ to the actual server - like in capturing mode.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_beam_testing"><a class="anchor" href="#_beam_testing"></a>4.5.3. Beam testing</h4>
+<h4 id="_beam_testing"><a class="anchor" href="#_beam_testing"></a>Beam testing</h4>
 <div class="paragraph">
 <p>If you want to ensure your component works in Beam the minimum to do is to try with the direct runner (if you don&#8217;t want to use spark).</p>
 </div>
@@ -5003,7 +5003,7 @@ to the actual server - like in capturing mode.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_multiple_environments_for_the_same_tests"><a class="anchor" href="#_multiple_environments_for_the_same_tests"></a>4.5.4. Multiple environments for the same tests</h4>
+<h4 id="_multiple_environments_for_the_same_tests"><a class="anchor" href="#_multiple_environments_for_the_same_tests"></a>Multiple environments for the same tests</h4>
 <div class="paragraph">
 <p>JUnit (4 or 5) already provides some ways to parameterized tests and execute the same "test logic"
 against several data. However it is not that convenient to test multiple environments.</p>
@@ -5269,7 +5269,7 @@ class TheComponentTest {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_secrets_passwords_and_maven"><a class="anchor" href="#_secrets_passwords_and_maven"></a>4.5.5. Secrets/Passwords and Maven</h4>
+<h4 id="_secrets_passwords_and_maven"><a class="anchor" href="#_secrets_passwords_and_maven"></a>Secrets/Passwords and Maven</h4>
 <div class="paragraph">
 <p>If you desire you can reuse your Maven <code>settings.xml</code> servers - including the encrypted ones.
 <code>org.talend.sdk.component.maven.MavenDecrypter</code> will give you the ability to find a server <code>username</code>/<code>password</code> from
@@ -5301,7 +5301,7 @@ to use that feature. See <a href="https://maven.apache.org/guides/mini/guide-enc
 </div>
 </div>
 <div class="sect3">
-<h4 id="_generating_data"><a class="anchor" href="#_generating_data"></a>4.5.6. Generating data?</h4>
+<h4 id="_generating_data"><a class="anchor" href="#_generating_data"></a>Generating data?</h4>
 <div class="paragraph">
 <p>Several data generator exists if you want to populate objects with a semantic a bit more evolved than a plain random string
 like <code>commons-lang3</code>:</p>
@@ -5376,10 +5376,10 @@ which is pretty good on that topic.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_talend_component_testing_documentation_2"><a class="anchor" href="#_talend_component_testing_documentation_2"></a>5. Talend Component Testing Documentation</h2>
+<h2 id="_talend_component_testing_documentation_2"><a class="anchor" href="#_talend_component_testing_documentation_2"></a>Talend Component Testing Documentation</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_best_practises_2"><a class="anchor" href="#_best_practises_2"></a>5.1. Best practises</h3>
+<h3 id="_best_practises_2"><a class="anchor" href="#_best_practises_2"></a>Best practises</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5394,7 +5394,7 @@ as well, check out the documentation if you need to use TestNG.
 </table>
 </div>
 <div class="sect3">
-<h4 id="_parameterized_tests_2"><a class="anchor" href="#_parameterized_tests_2"></a>5.1.1. Parameterized tests</h4>
+<h4 id="_parameterized_tests_2"><a class="anchor" href="#_parameterized_tests_2"></a>Parameterized tests</h4>
 <div class="paragraph">
 <p>This is a great solution to repeat the same test multiple times. Overall idea
 is to define a test scenario (<code>I test function F</code>) and to make the input/output data
@@ -5535,9 +5535,9 @@ don&#8217;t forget to add <code>junit-jupiter-params</code> dependency to benefi
 </div>
 </div>
 <div class="sect2">
-<h3 id="_component_runtime_testing_2"><a class="anchor" href="#_component_runtime_testing_2"></a>5.2. component-runtime-testing</h3>
+<h3 id="_component_runtime_testing_2"><a class="anchor" href="#_component_runtime_testing_2"></a>component-runtime-testing</h3>
 <div class="sect3">
-<h4 id="_component_runtime_junit_2"><a class="anchor" href="#_component_runtime_junit_2"></a>5.2.1. component-runtime-junit</h4>
+<h4 id="_component_runtime_junit_2"><a class="anchor" href="#_component_runtime_junit_2"></a>component-runtime-junit</h4>
 <div class="paragraph">
 <p><code>component-runtime-junit</code> is a small test library allowing you to validate simple logic based on Talend Component tooling.</p>
 </div>
@@ -5839,7 +5839,7 @@ you can also implement your own input representation if needed implementing <cod
 </div>
 </div>
 <div class="sect3">
-<h4 id="_component_runtime_testing_spark_2"><a class="anchor" href="#_component_runtime_testing_spark_2"></a>5.2.2. component-runtime-testing-spark</h4>
+<h4 id="_component_runtime_testing_spark_2"><a class="anchor" href="#_component_runtime_testing_spark_2"></a>component-runtime-testing-spark</h4>
 <div class="paragraph">
 <p>The folowing artifact will allow you to test against a spark cluster:</p>
 </div>
@@ -5968,7 +5968,7 @@ you can poll it to check. The best at the moment is to ensure the output of your
 </div>
 </div>
 <div class="sect3">
-<h4 id="_component_runtime_http_junit_2"><a class="anchor" href="#_component_runtime_http_junit_2"></a>5.2.3. component-runtime-http-junit</h4>
+<h4 id="_component_runtime_http_junit_2"><a class="anchor" href="#_component_runtime_http_junit_2"></a>component-runtime-http-junit</h4>
 <div class="paragraph">
 <p>The HTTP JUnit module allows you to mock REST API very easily. Here are its coordinates:</p>
 </div>
@@ -6179,7 +6179,7 @@ to the actual server - like in capturing mode.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_beam_testing_2"><a class="anchor" href="#_beam_testing_2"></a>5.3. Beam testing</h3>
+<h3 id="_beam_testing_2"><a class="anchor" href="#_beam_testing_2"></a>Beam testing</h3>
 <div class="paragraph">
 <p>If you want to ensure your component works in Beam the minimum to do is to try with the direct runner (if you don&#8217;t want to use spark).</p>
 </div>
@@ -6188,7 +6188,7 @@ to the actual server - like in capturing mode.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_multiple_environments_for_the_same_tests_2"><a class="anchor" href="#_multiple_environments_for_the_same_tests_2"></a>5.4. Multiple environments for the same tests</h3>
+<h3 id="_multiple_environments_for_the_same_tests_2"><a class="anchor" href="#_multiple_environments_for_the_same_tests_2"></a>Multiple environments for the same tests</h3>
 <div class="paragraph">
 <p>JUnit (4 or 5) already provides some ways to parameterized tests and execute the same "test logic"
 against several data. However it is not that convenient to test multiple environments.</p>
@@ -6205,7 +6205,7 @@ etc&#8230;&#8203;It is a lot of work!</p>
 <p>It is in the junit module and is usable with JUnit 4 and JUnit 5.</p>
 </div>
 <div class="sect3">
-<h4 id="_junit_4_10"><a class="anchor" href="#_junit_4_10"></a>5.4.1. JUnit 4</h4>
+<h4 id="_junit_4_10"><a class="anchor" href="#_junit_4_10"></a>JUnit 4</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(MultiEnvironmentsRunner.class)
@@ -6229,7 +6229,7 @@ to use another runner.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_junit_5_10"><a class="anchor" href="#_junit_5_10"></a>5.4.2. JUnit 5</h4>
+<h4 id="_junit_5_10"><a class="anchor" href="#_junit_5_10"></a>JUnit 5</h4>
 <div class="paragraph">
 <p>JUnit 5 configuration is close to JUnit 4 one:</p>
 </div>
@@ -6265,7 +6265,7 @@ once for all runners.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_provided_environments_2"><a class="anchor" href="#_provided_environments_2"></a>5.4.3. Provided environments</h4>
+<h4 id="_provided_environments_2"><a class="anchor" href="#_provided_environments_2"></a>Provided environments</h4>
 <div class="paragraph">
 <p>The provided environment setup the contextual classloader to load the related runner of Apache Beam.</p>
 </div>
@@ -6322,7 +6322,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </table>
 </div>
 <div class="sect3">
-<h4 id="_configuring_environments_2"><a class="anchor" href="#_configuring_environments_2"></a>5.4.4. Configuring environments</h4>
+<h4 id="_configuring_environments_2"><a class="anchor" href="#_configuring_environments_2"></a>Configuring environments</h4>
 <div class="paragraph">
 <p>If the environment extends <code>BaseEnvironmentProvider</code> and therefore defines an environment name - which is the case of the default ones, you can use <code>EnvironmentConfiguration</code>
 to customize the system properties used for that environment:</p>
@@ -6454,7 +6454,7 @@ class TheComponentTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_secrets_passwords_and_maven_2"><a class="anchor" href="#_secrets_passwords_and_maven_2"></a>5.5. Secrets/Passwords and Maven</h3>
+<h3 id="_secrets_passwords_and_maven_2"><a class="anchor" href="#_secrets_passwords_and_maven_2"></a>Secrets/Passwords and Maven</h3>
 <div class="paragraph">
 <p>If you desire you can reuse your Maven <code>settings.xml</code> servers - including the encrypted ones.
 <code>org.talend.sdk.component.maven.MavenDecrypter</code> will give you the ability to find a server <code>username</code>/<code>password</code> from
@@ -6486,7 +6486,7 @@ to use that feature. See <a href="https://maven.apache.org/guides/mini/guide-enc
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generating_data_2"><a class="anchor" href="#_generating_data_2"></a>5.6. Generating data?</h3>
+<h3 id="_generating_data_2"><a class="anchor" href="#_generating_data_2"></a>Generating data?</h3>
 <div class="paragraph">
 <p>Several data generator exists if you want to populate objects with a semantic a bit more evolved than a plain random string
 like <code>commons-lang3</code>:</p>
@@ -6560,10 +6560,10 @@ which is pretty good on that topic.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_talend_component_best_practices"><a class="anchor" href="#_talend_component_best_practices"></a>6. Talend Component Best Practices</h2>
+<h2 id="_talend_component_best_practices"><a class="anchor" href="#_talend_component_best_practices"></a>Talend Component Best Practices</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_organize_your_code"><a class="anchor" href="#_organize_your_code"></a>6.1. Organize your code</h3>
+<h3 id="_organize_your_code"><a class="anchor" href="#_organize_your_code"></a>Organize your code</h3>
 <div class="paragraph">
 <p>Few recommendations apply to the way a component packages are organized:</p>
 </div>
@@ -6597,14 +6597,14 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_model_your_configuration"><a class="anchor" href="#_model_your_configuration"></a>6.2. Model your configuration</h3>
+<h3 id="_model_your_configuration"><a class="anchor" href="#_model_your_configuration"></a>Model your configuration</h3>
 <div class="paragraph">
 <p>It is recommended to ensure your configuration is serializable since
 it is likely you will pass it through your components which can be serialized.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_i_o_configuration"><a class="anchor" href="#_i_o_configuration"></a>6.3. I/O configuration</h3>
+<h3 id="_i_o_configuration"><a class="anchor" href="#_i_o_configuration"></a>I/O configuration</h3>
 <div class="paragraph">
 <p>The first step to build a component is to identify the way it must be configured.</p>
 </div>
@@ -6678,7 +6678,7 @@ public class MyComponentConfiguration {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_processor_configuration"><a class="anchor" href="#_processor_configuration"></a>6.4. Processor configuration</h3>
+<h3 id="_processor_configuration"><a class="anchor" href="#_processor_configuration"></a>Processor configuration</h3>
 <div class="paragraph">
 <p>Processor configuration is simpler than I/O configuration since it is specific each time. For instance a mapper
 will take the mapping between the input and output model:</p>
@@ -6698,7 +6698,7 @@ will take the mapping between the input and output model:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_i_o_recommendations"><a class="anchor" href="#_i_o_recommendations"></a>6.5. I/O recommendations</h3>
+<h3 id="_i_o_recommendations"><a class="anchor" href="#_i_o_recommendations"></a>I/O recommendations</h3>
 <div class="paragraph">
 <p>I/O are particular because they can be linked to a set of actions. It is recommended to wire all the ones you can apply
 to ensure the consumers of your component can provide a rich experience to their users.</p>
@@ -6766,18 +6766,18 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </table>
 </div>
 <div class="sect2">
-<h3 id="_i_o_limitations"><a class="anchor" href="#_i_o_limitations"></a>6.6. I/O limitations</h3>
+<h3 id="_i_o_limitations"><a class="anchor" href="#_i_o_limitations"></a>I/O limitations</h3>
 <div class="paragraph">
 <p>Until the studio integration is complete, it is recommended to limit processors to 1 input.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_handle_ui_interactions"><a class="anchor" href="#_handle_ui_interactions"></a>6.7. Handle UI interactions</h3>
+<h3 id="_handle_ui_interactions"><a class="anchor" href="#_handle_ui_interactions"></a>Handle UI interactions</h3>
 <div class="paragraph">
 <p>It is also recommended to provide as much information as possible to let the UI work with the data during its edition.</p>
 </div>
 <div class="sect3">
-<h4 id="_validations_2"><a class="anchor" href="#_validations_2"></a>6.7.1. Validations</h4>
+<h4 id="_validations_2"><a class="anchor" href="#_validations_2"></a>Validations</h4>
 <div class="sect4">
 <h5 id="_light_validations"><a class="anchor" href="#_light_validations"></a>Light validations</h5>
 <div class="paragraph">
@@ -6866,7 +6866,7 @@ model and just prefix it with <code>value.</code> to send the instance to valida
 </div>
 </div>
 <div class="sect3">
-<h4 id="_completion"><a class="anchor" href="#_completion"></a>6.7.2. Completion</h4>
+<h4 id="_completion"><a class="anchor" href="#_completion"></a>Completion</h4>
 <div class="paragraph">
 <p>It can be neat and user friendly to provide completion on some fields. Here an example for the available drivers:</p>
 </div>
@@ -6891,7 +6891,7 @@ public CompletionList findDrivers() {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_don_t_forget_the_component_representation"><a class="anchor" href="#_don_t_forget_the_component_representation"></a>6.7.3. Don&#8217;t forget the component representation</h4>
+<h4 id="_don_t_forget_the_component_representation"><a class="anchor" href="#_don_t_forget_the_component_representation"></a>Don&#8217;t forget the component representation</h4>
 <div class="paragraph">
 <p>Each component must have its own icon:</p>
 </div>
@@ -6919,7 +6919,7 @@ you can use <a href="http://talend.surge.sh/icons/" class="bare">talend.surge.sh
 </div>
 </div>
 <div class="sect2">
-<h3 id="_version_and_component"><a class="anchor" href="#_version_and_component"></a>6.8. Version and component</h3>
+<h3 id="_version_and_component"><a class="anchor" href="#_version_and_component"></a>Version and component</h3>
 <div class="paragraph">
 <p>Not mandatory for the first version but recommended: enforce the version of your component.</p>
 </div>
@@ -6960,14 +6960,14 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect2">
-<h3 id="_don_t_forget_to_test"><a class="anchor" href="#_don_t_forget_to_test"></a>6.9. Don&#8217;t forget to test</h3>
+<h3 id="_don_t_forget_to_test"><a class="anchor" href="#_don_t_forget_to_test"></a>Don&#8217;t forget to test</h3>
 <div class="paragraph">
 <p>Testing the components is crucial, you can use unit tests and simple standalone JUnit but it is highly recommended
 to have a few Beam tests to ensure your component works in Big Data world.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_contribute_to_this_guide"><a class="anchor" href="#_contribute_to_this_guide"></a>6.10. Contribute to this guide</h3>
+<h3 id="_contribute_to_this_guide"><a class="anchor" href="#_contribute_to_this_guide"></a>Contribute to this guide</h3>
 <div class="paragraph">
 <p>Don&#8217;t hesitate to send your feedback on writing component and best practices you can encounter.</p>
 </div>
@@ -6975,7 +6975,7 @@ to have a few Beam tests to ensure your component works in Big Data world.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_talend_component_rest_api_documentation"><a class="anchor" href="#_talend_component_rest_api_documentation"></a>7. Talend Component REST API Documentation</h2>
+<h2 id="_talend_component_rest_api_documentation"><a class="anchor" href="#_talend_component_rest_api_documentation"></a>Talend Component REST API Documentation</h2>
 <div class="sectionbody">
 <div class="admonitionblock tip">
 <table>
@@ -6991,7 +6991,7 @@ a test environment is available on Heroku and browable using Talend Component Ki
 </table>
 </div>
 <div class="sect2">
-<h3 id="_http_api"><a class="anchor" href="#_http_api"></a>7.1. HTTP API</h3>
+<h3 id="_http_api"><a class="anchor" href="#_http_api"></a>HTTP API</h3>
 <div class="paragraph">
 <p>The HTTP API intends to expose over HTTP most of Talend Component features, it is a standalone Java HTTP server.</p>
 </div>
@@ -7011,7 +7011,7 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 <p>Here is the API:</p>
 </div>
 <div class="sect3">
-<h4 id="_rest_resources_of_component_runtime_server"><a class="anchor" href="#_rest_resources_of_component_runtime_server"></a>7.1.1. REST resources of Component Runtime :: Server</h4>
+<h4 id="_rest_resources_of_component_runtime_server"><a class="anchor" href="#_rest_resources_of_component_runtime_server"></a>REST resources of Component Runtime :: Server</h4>
 <div class="paragraph">
 <p>0.0.6-SNAPSHOT</p>
 </div>
@@ -7826,14 +7826,14 @@ the version it was created with (component version, it is in component detail en
 </div>
 </div>
 <div class="sect3">
-<h4 id="_deprecated_endpoints"><a class="anchor" href="#_deprecated_endpoints"></a>7.1.2. Deprecated endpoints</h4>
+<h4 id="_deprecated_endpoints"><a class="anchor" href="#_deprecated_endpoints"></a>Deprecated endpoints</h4>
 <div class="paragraph">
 <p>If some endpoints are intended to disappear they will be deprecated. In practise it means a header <code>X-Talend-Warning</code>
 will be returned with some message as value.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_websocket_transport"><a class="anchor" href="#_websocket_transport"></a>7.1.3. WebSocket transport</h4>
+<h4 id="_websocket_transport"><a class="anchor" href="#_websocket_transport"></a>WebSocket transport</h4>
 <div class="paragraph">
 <p>You can connect on any endpoint replacing <code>/api</code> by <code>/websocket</code> and appending <code>/&lt;http method&gt;</code> for the URL and formatting the request as:</p>
 </div>
@@ -7899,7 +7899,7 @@ Accept: application/json
 </div>
 </div>
 <div class="sect2">
-<h3 id="_https_activation"><a class="anchor" href="#_https_activation"></a>7.2. HTTPS activation</h3>
+<h3 id="_https_activation"><a class="anchor" href="#_https_activation"></a>HTTPS activation</h3>
 <div class="paragraph">
 <p>Using the server zip (or <a href="https://github.com/Talend/component-runtime/blob/master/.docker/Dockerfile">Docker image</a>)
 you can configure HTTPS adding properties to <code>MEECROWAVE_OPTS</code>. Assuming you have a certificate in <code>/opt/certificates/component.p12</code>
@@ -7915,7 +7915,7 @@ export MEECROWAVE_OPTS="-Dskip-http=true -Dssl=true -Dhttps=8443 -Dkeystore-type
 </div>
 </div>
 <div class="sect2">
-<h3 id="_web_forms_and_rest_api"><a class="anchor" href="#_web_forms_and_rest_api"></a>7.3. Web forms and REST API</h3>
+<h3 id="_web_forms_and_rest_api"><a class="anchor" href="#_web_forms_and_rest_api"></a>Web forms and REST API</h3>
 <div class="paragraph">
 <p><code>component-form</code> library provides a way to build a component REST API facade compatible with react form library.</p>
 </div>
@@ -8059,7 +8059,7 @@ the  <code>/migrate</code> endpoint has nothing special so was not shown in pre
 </table>
 </div>
 <div class="sect3">
-<h4 id="_use_uispec_model_without_all_the_tooling"><a class="anchor" href="#_use_uispec_model_without_all_the_tooling"></a>7.3.1. Use UiSpec model without all the tooling</h4>
+<h4 id="_use_uispec_model_without_all_the_tooling"><a class="anchor" href="#_use_uispec_model_without_all_the_tooling"></a>Use UiSpec model without all the tooling</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
@@ -8148,7 +8148,7 @@ This can be done adding these dependencies:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_javascript_integration"><a class="anchor" href="#_javascript_integration"></a>7.3.2. Javascript integration</h4>
+<h4 id="_javascript_integration"><a class="anchor" href="#_javascript_integration"></a>Javascript integration</h4>
 <div class="paragraph">
 <p>Default javascript integration goes through <a href="https://github.com/Talend/ui/tree/master/packages/forms">Talend UI Forms</a> library.</p>
 </div>
@@ -8197,7 +8197,7 @@ export default class ComponentKitForm extends React.Component {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_logging"><a class="anchor" href="#_logging"></a>7.4. Logging</h3>
+<h3 id="_logging"><a class="anchor" href="#_logging"></a>Logging</h3>
 <div class="paragraph">
 <p>The logging uses Log4j2, you can specify a custom configuration using the system property <code>-Dlog4j.configurationFile</code>
 or adding a <code>log4j2.xml</code> file into the classpath.</p>
@@ -8318,7 +8318,7 @@ of course you can compose previous layout (message format) and appenders (where 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_server_configuration"><a class="anchor" href="#_server_configuration"></a>7.5. Server Configuration</h3>
+<h3 id="_server_configuration"><a class="anchor" href="#_server_configuration"></a>Server Configuration</h3>
 <div class="paragraph">
 <p>The server module contains several configuration you can set in:</p>
 </div>
@@ -8468,10 +8468,10 @@ the configuration is read from system properties, environment variables, &#8230;
 </div>
 </div>
 <div class="sect1">
-<h2 id="_wrapping_a_beam_i_o"><a class="anchor" href="#_wrapping_a_beam_i_o"></a>8. Wrapping a Beam I/O</h2>
+<h2 id="_wrapping_a_beam_i_o"><a class="anchor" href="#_wrapping_a_beam_i_o"></a>Wrapping a Beam I/O</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="wrapping-a-beam-io__start"><a class="anchor" href="#wrapping-a-beam-io__start"></a>8.1. Limitations</h3>
+<h3 id="wrapping-a-beam-io__start"><a class="anchor" href="#wrapping-a-beam-io__start"></a>Limitations</h3>
 <div class="paragraph">
 <p>This part is limited to particular kinds of <a href="https://beam.apache.org/">Beam</a> <code>PTransform</code>:</p>
 </div>
@@ -8487,7 +8487,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wrap_an_input"><a class="anchor" href="#_wrap_an_input"></a>8.2. Wrap an input</h3>
+<h3 id="_wrap_an_input"><a class="anchor" href="#_wrap_an_input"></a>Wrap an input</h3>
 <div class="paragraph">
 <p>Assume you want to wrap an input like this one (based on existing Beam ones):</p>
 </div>
@@ -8534,7 +8534,7 @@ public class WrapRead extends PTransform&lt;PBegin, PCollection&lt;String&gt;&gt
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wrap_an_output"><a class="anchor" href="#_wrap_an_output"></a>8.3. Wrap an output</h3>
+<h3 id="_wrap_an_output"><a class="anchor" href="#_wrap_an_output"></a>Wrap an output</h3>
 <div class="paragraph">
 <p>Assume you want to wrap an output like this one (based on existing Beam ones):</p>
 </div>
@@ -8580,7 +8580,7 @@ public class WrapRead extends PTransform&lt;PCollection&lt;String&gt;, PDone&gt;
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tip"><a class="anchor" href="#_tip"></a>8.4. Tip</h3>
+<h3 id="_tip"><a class="anchor" href="#_tip"></a>Tip</h3>
 <div class="paragraph">
 <p>Note that the class <code>org.talend.sdk.component.runtime.beam.transform.DelegatingTransform</code> fully delegates
 to another transform the "expansion". Therefore you can extend it and just implement the configuration mapping:</p>
@@ -8600,20 +8600,20 @@ public class BeamFileOutput extends DelegatingTransform&lt;PCollection&lt;String
 </div>
 </div>
 <div class="sect2">
-<h3 id="_advanced"><a class="anchor" href="#_advanced"></a>8.5. Advanced</h3>
+<h3 id="_advanced"><a class="anchor" href="#_advanced"></a>Advanced</h3>
 <div class="paragraph">
 <p>In terms of classloading, when you write an IO all the Beam SDK Java core stack is assumed in Talend Component Kit runtime
 as provided so never include it in compile scope - it would be ignored anyway.</p>
 </div>
 <div class="sect3">
-<h4 id="_coder"><a class="anchor" href="#_coder"></a>8.5.1. Coder</h4>
+<h4 id="_coder"><a class="anchor" href="#_coder"></a>Coder</h4>
 <div class="paragraph">
 <p>If you need a JSonCoder you can use <code>org.talend.sdk.component.runtime.beam.factory.service.PluginCoderFactory</code> service
 which gives you access the JSON-P and JSON-B coders.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_sample"><a class="anchor" href="#_sample"></a>8.5.2. Sample</h4>
+<h4 id="_sample"><a class="anchor" href="#_sample"></a>Sample</h4>
 <div class="paragraph">
 <p>Here is a sample input based on beam Kafka:</p>
 </div>
@@ -8694,10 +8694,10 @@ you need to set <code>&lt;talend.validation.component&gt;false&lt;/talend.valida
 </div>
 </div>
 <div class="sect1">
-<h2 id="_talend_component_appendix"><a class="anchor" href="#_talend_component_appendix"></a>9. Talend Component Appendix</h2>
+<h2 id="_talend_component_appendix"><a class="anchor" href="#_talend_component_appendix"></a>Talend Component Appendix</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_containermanager_or_the_classloader_manager"><a class="anchor" href="#_containermanager_or_the_classloader_manager"></a>9.1. ContainerManager or the classloader manager</h3>
+<h3 id="_containermanager_or_the_classloader_manager"><a class="anchor" href="#_containermanager_or_the_classloader_manager"></a>ContainerManager or the classloader manager</h3>
 <div class="paragraph">
 <p>The entry point of the API is the <code>ContainerManager</code>, it will enable
 you to define what is the <code>Shared</code> classloader and to create children:</p>
@@ -8776,7 +8776,7 @@ the parent classloader (useful to exclude to load a "common" library from the pa
 create the plugin classloader and register the plugin <code>Container</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="_listener_for_plugin_registration"><a class="anchor" href="#_listener_for_plugin_registration"></a>9.1.1. Listener for plugin registration</h4>
+<h4 id="_listener_for_plugin_registration"><a class="anchor" href="#_listener_for_plugin_registration"></a>Listener for plugin registration</h4>
 <div class="paragraph">
 <p>It is common to need to do some actions when a plugin is registered/unregistered. For that purpose <code>ContainerListener</code> can be used:</p>
 </div>

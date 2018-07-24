@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/build-tools-maven.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:51:56.864Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:09.625Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -336,7 +336,7 @@ validating components match best practices and also generating transparently met
 </div>
 </div>
 <div class="sect1">
-<h2 id="_dependencies"><a class="anchor" href="#_dependencies"></a>1. Dependencies</h2>
+<h2 id="_dependencies"><a class="anchor" href="#_dependencies"></a>Dependencies</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>, it will create the <code>TALEND-INF/dependencies.txt</code> file
@@ -362,7 +362,7 @@ with the <code>compile</code> and <code>runtime</code> dependencies to let the c
 </div>
 </div>
 <div class="sect1">
-<h2 id="_validate"><a class="anchor" href="#_validate"></a>2. Validate</h2>
+<h2 id="_validate"><a class="anchor" href="#_validate"></a>Validate</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The most important goal is here to help you to validate the common programming model of the component. Here is the execution definition to activate it:</p>
@@ -452,7 +452,7 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 </div>
 </div>
 <div class="sect1">
-<h2 id="_documentation"><a class="anchor" href="#_documentation"></a>3. Documentation</h2>
+<h2 id="_documentation"><a class="anchor" href="#_documentation"></a>Documentation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and
@@ -546,9 +546,9 @@ to automatically get a html and PDF rendering of the documentation.
 </table>
 </div>
 <div class="sect2">
-<h3 id="_render_your_documentation"><a class="anchor" href="#_render_your_documentation"></a>3.1. Render your documentation</h3>
+<h3 id="_render_your_documentation"><a class="anchor" href="#_render_your_documentation"></a>Render your documentation</h3>
 <div class="sect3">
-<h4 id="_html"><a class="anchor" href="#_html"></a>3.1.1. HTML</h4>
+<h4 id="_html"><a class="anchor" href="#_html"></a>HTML</h4>
 <div class="paragraph">
 <p>To render the generated documentation you can use the Asciidoctor Maven plugin (or Gradle equivalent):</p>
 </div>
@@ -614,7 +614,7 @@ ensure to execute it after the documentation generation.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_pdf"><a class="anchor" href="#_pdf"></a>3.1.2. PDF</h4>
+<h4 id="_pdf"><a class="anchor" href="#_pdf"></a>PDF</h4>
 <div class="paragraph">
 <p>If you prefer a PDF rendering you can configure the following execution
 in the asciidoctor plugin (note that you can configure both executions if you want
@@ -653,7 +653,7 @@ both HTML and PDF rendering):</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_include_the_documentation_into_a_document"><a class="anchor" href="#_include_the_documentation_into_a_document"></a>3.1.3. Include the documentation into a document</h4>
+<h4 id="_include_the_documentation_into_a_document"><a class="anchor" href="#_include_the_documentation_into_a_document"></a>Include the documentation into a document</h4>
 <div class="paragraph">
 <p>If you want to add some more content or add a title, you can include the generated document into
 another document using Asciidoc <code>include</code> directive.</p>
@@ -709,7 +709,7 @@ Super Writer
 </div>
 </div>
 <div class="sect3">
-<h4 id="_more"><a class="anchor" href="#_more"></a>3.1.4. More</h4>
+<h4 id="_more"><a class="anchor" href="#_more"></a>More</h4>
 <div class="paragraph">
 <p>You can find more customizations on Asciidoctor <a href="http://asciidoctor.org/docs/asciidoctor-maven-plugin/">website</a>.</p>
 </div>
@@ -718,7 +718,7 @@ Super Writer
 </div>
 </div>
 <div class="sect1">
-<h2 id="_web"><a class="anchor" href="#_web"></a>4. Web</h2>
+<h2 id="_web"><a class="anchor" href="#_web"></a>Web</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Testing the rendering of your component(s) configuration into the Studio is just a matter of deploying a component
@@ -755,7 +755,7 @@ this command reads the component jar from the local maven repository so ensure t
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generate_inputs_or_outputs"><a class="anchor" href="#_generate_inputs_or_outputs"></a>5. Generate inputs or outputs</h2>
+<h2 id="_generate_inputs_or_outputs"><a class="anchor" href="#_generate_inputs_or_outputs"></a>Generate inputs or outputs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Mojo <code>generate</code> (maven plugin goal) of the same plugin also embeds a generator you can use to bootstrap any input or output component:</p>
@@ -850,7 +850,7 @@ this command reads the component jar from the local maven repository so ensure t
 </div>
 </div>
 <div class="sect1">
-<h2 id="_talend_component_archive"><a class="anchor" href="#_talend_component_archive"></a>6. Talend Component Archive</h2>
+<h2 id="_talend_component_archive"><a class="anchor" href="#_talend_component_archive"></a>Talend Component Archive</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Component ARchive (<code>.car</code>) is the way to bundle a component to share it in Talend ecosystem. It is a plain Java ARchive (<code>.jar</code>)

@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/index.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:51:57.725Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:10.546Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -312,7 +312,7 @@
 <article class="doc">
         <h1>Talend Components Definitions Documentation</h1>
         <div class="sect1">
-<h2 id="_components_definition"><a class="anchor" href="#_components_definition"></a>1. Components Definition</h2>
+<h2 id="_components_definition"><a class="anchor" href="#_components_definition"></a>Components Definition</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Talend Component framework relies on several primitive components.</p>
@@ -388,7 +388,7 @@ not using fixed interfaces or method signatures. This will allow to add incremen
 </table>
 </div>
 <div class="sect2">
-<h3 id="_partitionmapper"><a class="anchor" href="#_partitionmapper"></a>1.1. PartitionMapper</h3>
+<h3 id="_partitionmapper"><a class="anchor" href="#_partitionmapper"></a>PartitionMapper</h3>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -431,7 +431,7 @@ this kind of component <code>MUST</code> be <code>Serializable</code> to be dist
 </div>
 </div>
 <div class="sect2">
-<h3 id="_definition"><a class="anchor" href="#_definition"></a>1.2. Definition</h3>
+<h3 id="_definition"><a class="anchor" href="#_definition"></a>Definition</h3>
 <div class="paragraph">
 <p>A partition mapper requires 3 methods marked with specific annotations:</p>
 </div>
@@ -449,7 +449,7 @@ this kind of component <code>MUST</code> be <code>Serializable</code> to be dist
 </ol>
 </div>
 <div class="sect3">
-<h4 id="_assessor"><a class="anchor" href="#_assessor"></a>1.2.1. @Assessor</h4>
+<h4 id="_assessor"><a class="anchor" href="#_assessor"></a>@Assessor</h4>
 <div class="paragraph">
 <p>The assessor method will return the estimated size of the data related to the component (depending its configuration).
 It <code>MUST</code> return a <code>Number</code> and <code>MUST</code> not take any parameter.</p>
@@ -467,7 +467,7 @@ public long estimateDataSetByteSize() {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_split"><a class="anchor" href="#_split"></a>1.2.2. @Split</h4>
+<h4 id="_split"><a class="anchor" href="#_split"></a>@Split</h4>
 <div class="paragraph">
 <p>The split method will return a collection of partition mappers and can take optionally a <code>@PartitionSize</code> long
 value which is the requested size of the dataset per sub partition mapper.</p>
@@ -485,7 +485,7 @@ public List&lt;MyMapper&gt; split(@PartitionSize final long desiredSize) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_emitter"><a class="anchor" href="#_emitter"></a>1.2.3. @Emitter</h4>
+<h4 id="_emitter"><a class="anchor" href="#_emitter"></a>@Emitter</h4>
 <div class="paragraph">
 <p>The emitter method <code>MUST</code> not have any parameter and <code>MUST</code> return a producer. It generally uses the partition mapper configuration
 to instantiate/configure the producer.</p>
@@ -504,7 +504,7 @@ public MyProducer create() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_producer"><a class="anchor" href="#_producer"></a>1.3. Producer</h3>
+<h3 id="_producer"><a class="anchor" href="#_producer"></a>Producer</h3>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -525,7 +525,7 @@ public MyData produces() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_processor"><a class="anchor" href="#_processor"></a>1.4. Processor</h3>
+<h3 id="_processor"><a class="anchor" href="#_processor"></a>Processor</h3>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -645,7 +645,7 @@ of a computed size which is way too big for your backend.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_multiple_outputs"><a class="anchor" href="#_multiple_outputs"></a>1.5. Multiple outputs</h3>
+<h3 id="_multiple_outputs"><a class="anchor" href="#_multiple_outputs"></a>Multiple outputs</h3>
 <div class="paragraph">
 <p>In some case you may want to split the output of a processor in two. A common example is "main" and "reject" branches
 where part of the incoming data are put in a specific bucket to be processed later.</p>
@@ -692,7 +692,7 @@ public MyNewData map(final MyData data,
 </div>
 </div>
 <div class="sect2">
-<h3 id="_multiple_inputs"><a class="anchor" href="#_multiple_inputs"></a>1.6. Multiple inputs</h3>
+<h3 id="_multiple_inputs"><a class="anchor" href="#_multiple_inputs"></a>Multiple inputs</h3>
 <div class="paragraph">
 <p>Having multiple inputs is closeto the output case excep it doesn&#8217;t require a wrapper <code>OutputEmitter</code>:</p>
 </div>
@@ -722,7 +722,7 @@ name its branches depending on the component semantic.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_output"><a class="anchor" href="#_output"></a>1.7. Output</h3>
+<h3 id="_output"><a class="anchor" href="#_output"></a>Output</h3>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -744,14 +744,14 @@ public void store(final MyData data) {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_combiners"><a class="anchor" href="#_combiners"></a>1.8. Combiners?</h3>
+<h3 id="_combiners"><a class="anchor" href="#_combiners"></a>Combiners?</h3>
 <div class="paragraph">
 <p>For now Talend Component doesn&#8217;t enable you to define a <code>Combiner</code>. It would be the symmetric part of the partition mapper
 and allow to aggregate results in a single one.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_family_components_icons"><a class="anchor" href="#_family_components_icons"></a>1.9. Family &amp; Components Icons</h3>
+<h3 id="_family_components_icons"><a class="anchor" href="#_family_components_icons"></a>Family &amp; Components Icons</h3>
 <div class="paragraph">
 <p>Every component family and component need to have a representative icon.
 You can use one of the icons provided by the component framework or you can use a custom icon.
@@ -770,7 +770,7 @@ The icon file need to have a name following the convention <code>IconName_icon32
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring_components"><a class="anchor" href="#_configuring_components"></a>2. Configuring components</h2>
+<h2 id="_configuring_components"><a class="anchor" href="#_configuring_components"></a>Configuring components</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Component are configured through their constructor parameters. They can all be marked with <code>@Option</code>
@@ -819,7 +819,7 @@ public MyFileReader(@Option("file-path") final File file,
 <p>The instantiation of the parameters is done from the properties passed to the component (see next part).</p>
 </div>
 <div class="sect2">
-<h3 id="_primitives"><a class="anchor" href="#_primitives"></a>2.1. Primitives</h3>
+<h3 id="_primitives"><a class="anchor" href="#_primitives"></a>Primitives</h3>
 <div class="paragraph">
 <p>What is considered as a primitive in this mecanism is a class which can be directly converted from a <code>String</code> to the expected type.</p>
 </div>
@@ -859,7 +859,7 @@ public MyFileReader(@Option("file-path") final File file,
 </div>
 </div>
 <div class="sect2">
-<h3 id="_complex_object_mapping"><a class="anchor" href="#_complex_object_mapping"></a>2.2. Complex object mapping</h3>
+<h3 id="_complex_object_mapping"><a class="anchor" href="#_complex_object_mapping"></a>Complex object mapping</h3>
 <div class="paragraph">
 <p>The conversion from properties to object is using the dotted notation. For instance:</p>
 </div>
@@ -887,7 +887,7 @@ file.format = CSV</code></pre>
 <p>assuming the method parameter was configured with <code>@Option("file")</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="_list_case"><a class="anchor" href="#_list_case"></a>2.2.1. List case</h4>
+<h4 id="_list_case"><a class="anchor" href="#_list_case"></a>List case</h4>
 <div class="paragraph">
 <p>Lists use the same syntax but to define their elements their rely on an indexed syntax. Assuming the list parameter is named <code>files</code>
 and the elements are of  <code>FileOptions</code> type, here is how to define a list of 2 elements:</p>
@@ -902,7 +902,7 @@ files[1].format = EXCEL</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_map_case"><a class="anchor" href="#_map_case"></a>2.2.2. Map case</h4>
+<h4 id="_map_case"><a class="anchor" href="#_map_case"></a>Map case</h4>
 <div class="paragraph">
 <p>Inspired from the list case, the map uses <code>.key[index]</code> and <code>.value[index]</code> to represent its key and values:</p>
 </div>
@@ -944,7 +944,7 @@ with an object) don&#8217;t use it.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_constraints_and_validation_on_the_configuration_input"><a class="anchor" href="#_constraints_and_validation_on_the_configuration_input"></a>2.3. Constraints and validation on the configuration/input</h3>
+<h3 id="_constraints_and_validation_on_the_configuration_input"><a class="anchor" href="#_constraints_and_validation_on_the_configuration_input"></a>Constraints and validation on the configuration/input</h3>
 <div class="paragraph">
 <p>It is common to need to add as metadata a field is required, another has a minimum size etc. This is done with the
 validation in <code>org.talend.sdk.component.api.configuration.constraint</code> package:</p>
@@ -1058,7 +1058,7 @@ the previous table uses the web keys.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_marking_a_configuration_as_a_particular_type_of_data"><a class="anchor" href="#_marking_a_configuration_as_a_particular_type_of_data"></a>2.4. Marking a configuration as a particular type of data</h3>
+<h3 id="_marking_a_configuration_as_a_particular_type_of_data"><a class="anchor" href="#_marking_a_configuration_as_a_particular_type_of_data"></a>Marking a configuration as a particular type of data</h3>
 <div class="paragraph">
 <p>It is common to classify the incoming data. You can see it as tagging them in several types. The most common ones
 are the:</p>
@@ -1177,7 +1177,7 @@ into the targeted platforms (studio, web applications&#8230;&#8203;)</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_define_links_between_properties"><a class="anchor" href="#_define_links_between_properties"></a>2.5. Define links between properties</h3>
+<h3 id="_define_links_between_properties"><a class="anchor" href="#_define_links_between_properties"></a>Define links between properties</h3>
 <div class="paragraph">
 <p>It can be needed to define a binding between properties, a set of annotations allows to do it:</p>
 </div>
@@ -1231,7 +1231,7 @@ the previous table uses the web keys.
 </div>
 </div>
 <div class="sect2">
-<h3 id="documentation-ui-hints"><a class="anchor" href="#documentation-ui-hints"></a>2.6. Add hints about the rendering based on configuration/component knowledge</h3>
+<h3 id="documentation-ui-hints"><a class="anchor" href="#documentation-ui-hints"></a>Add hints about the rendering based on configuration/component knowledge</h3>
 <div class="paragraph">
 <p>In some case it can be needed to add some metadata about the configuration to let the UI render properly the configuration.
 A simple example is a password value must be hidden and not a simple clear input box. For these cases - when the component developper
@@ -1342,10 +1342,10 @@ target support should cover <code>org.talend.core.model.process.EParameterFieldT
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gallery"><a class="anchor" href="#_gallery"></a>3. Gallery</h2>
+<h2 id="_gallery"><a class="anchor" href="#_gallery"></a>Gallery</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_widgets"><a class="anchor" href="#_widgets"></a>3.1. Widgets</h3>
+<h3 id="_widgets"><a class="anchor" href="#_widgets"></a>Widgets</h3>
 <table class="tableblock frame-all grid-all table gallery">
 <colgroup>
 <col>
@@ -1522,7 +1522,7 @@ List&lt;String&gt; config;</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_validations"><a class="anchor" href="#_validations"></a>3.2. Validations</h3>
+<h3 id="_validations"><a class="anchor" href="#_validations"></a>Validations</h3>
 <table class="tableblock frame-all grid-all table gallery">
 <colgroup>
 <col>
@@ -1636,7 +1636,7 @@ public HealthCheckStatus testConnection(){
 </div>
 </div>
 <div class="sect1">
-<h2 id="_registering_components"><a class="anchor" href="#_registering_components"></a>4. Registering components</h2>
+<h2 id="_registering_components"><a class="anchor" href="#_registering_components"></a>Registering components</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>As seen in the <a href="getting-started.html#getting-started-first-quick-start" class="page">Getting Started</a>, you need an annotation to register
@@ -1668,7 +1668,7 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_components_metadata"><a class="anchor" href="#_components_metadata"></a>4.1. Components metadata</h3>
+<h3 id="_components_metadata"><a class="anchor" href="#_components_metadata"></a>Components metadata</h3>
 <div class="paragraph">
 <p>Components can require a few metadata to be integrated in Talend Studio or Cloud platform. Here is how to provide these information.
 These metadata are set on the component class and belongs to <code>org.talend.sdk.component.api.component</code> package.</p>
@@ -1708,7 +1708,7 @@ public class JaxbPartitionMapper implements Serializable {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_management_of_configuration_versions"><a class="anchor" href="#_management_of_configuration_versions"></a>4.1.1. Management of configuration versions</h4>
+<h4 id="_management_of_configuration_versions"><a class="anchor" href="#_management_of_configuration_versions"></a>Management of configuration versions</h4>
 <div class="paragraph">
 <p>If some impacting changes happen on the configuration they can be manage through a migration handler at <strong>component</strong> level (to enable
 to support trans-model migration).</p>
@@ -1775,7 +1775,7 @@ component requirements. The service injection enables you to do so.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_partitionmapper_2"><a class="anchor" href="#_partitionmapper_2"></a>4.1.2. @PartitionMapper</h4>
+<h4 id="_partitionmapper_2"><a class="anchor" href="#_partitionmapper_2"></a>@PartitionMapper</h4>
 <div class="paragraph">
 <p><code>@PartitionMapper</code> will obviously mark a partition mapper:</p>
 </div>
@@ -1802,7 +1802,7 @@ public class MyInput {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_processor_2"><a class="anchor" href="#_processor_2"></a>4.1.3. @Processor</h4>
+<h4 id="_processor_2"><a class="anchor" href="#_processor_2"></a>@Processor</h4>
 <div class="paragraph">
 <p>A method decorated with <code>@Processor</code> will be considered as a producer factory:</p>
 </div>
@@ -1818,14 +1818,14 @@ public class MyProcessor {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_internationalization"><a class="anchor" href="#_internationalization"></a>5. Internationalization</h2>
+<h2 id="_internationalization"><a class="anchor" href="#_internationalization"></a>Internationalization</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In the simplest case you should store messages using <code>ResourceBundle</code> properties file in your component module to use internationalization.
 The location of the properties file should be in the same package as the related component(s) and is named <code>Messages</code> (ex: <code>org.talend.demo.MyComponent</code> will use <code>org.talend.demo.Messages[locale].properties</code>).</p>
 </div>
 <div class="sect2">
-<h3 id="_default_components_keys"><a class="anchor" href="#_default_components_keys"></a>5.1. Default components keys</h3>
+<h3 id="_default_components_keys"><a class="anchor" href="#_default_components_keys"></a>Default components keys</h3>
 <div class="paragraph">
 <p>Out of the box components are internationalized using the same location logic for the resource bundle and here is the list
 of supported keys:</p>

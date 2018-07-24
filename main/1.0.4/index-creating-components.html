@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/index-creating-components.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:03.471Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:16.273Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -382,7 +382,7 @@
 <article class="doc">
         <h1>Implementing components</h1>
         <div class="sect1">
-<h2 id="_component_definition"><a class="anchor" href="#_component_definition"></a>1. Component definition</h2>
+<h2 id="_component_definition"><a class="anchor" href="#_component_definition"></a>Component definition</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Talend Component Kit framework relies on several primitive components.</p>
@@ -451,7 +451,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 </table>
 </div>
 <div class="sect2">
-<h3 id="partition-mapper"><a class="anchor" href="#partition-mapper"></a>1.1. PartitionMapper</h3>
+<h3 id="partition-mapper"><a class="anchor" href="#partition-mapper"></a>PartitionMapper</h3>
 <div class="paragraph">
 <p>A <code>PartitionMapper</code> is a component able to split itself to make the execution more efficient.</p>
 </div>
@@ -488,7 +488,7 @@ This kind of component must be <code>Serializable</code> to be distributable.
 </table>
 </div>
 <div class="sect3">
-<h4 id="_definition"><a class="anchor" href="#_definition"></a>1.1.1. Definition</h4>
+<h4 id="_definition"><a class="anchor" href="#_definition"></a>Definition</h4>
 <div class="paragraph">
 <p>A partition mapper requires three methods marked with specific annotations:</p>
 </div>
@@ -560,7 +560,7 @@ public MyProducer create() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_producer"><a class="anchor" href="#_producer"></a>1.2. Producer</h3>
+<h3 id="_producer"><a class="anchor" href="#_producer"></a>Producer</h3>
 <div class="paragraph">
 <p>A <code>Producer</code> is a component interacting with a physical source. It produces input data for the processing flow.</p>
 </div>
@@ -577,7 +577,7 @@ public MyData produces() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_processor"><a class="anchor" href="#_processor"></a>1.3. Processor</h3>
+<h3 id="_processor"><a class="anchor" href="#_processor"></a>Processor</h3>
 <div class="paragraph">
 <p>A <code>Processor</code> is a component that converts incoming data to a different model.</p>
 </div>
@@ -675,7 +675,7 @@ It is a good practice to support a <code>maxBatchSize</code> here and to commit 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_multiple_outputs"><a class="anchor" href="#_multiple_outputs"></a>1.4. Multiple outputs</h3>
+<h3 id="_multiple_outputs"><a class="anchor" href="#_multiple_outputs"></a>Multiple outputs</h3>
 <div class="paragraph">
 <p>In some cases, you may need to split the output of a processor in two. A common example is to have "main" and "reject" branches where part of the incoming data are passed to a specific bucket to be processed later.</p>
 </div>
@@ -721,7 +721,7 @@ public MyNewData map(final MyData data,
 </div>
 </div>
 <div class="sect2">
-<h3 id="_multiple_inputs"><a class="anchor" href="#_multiple_inputs"></a>1.5. Multiple inputs</h3>
+<h3 id="_multiple_inputs"><a class="anchor" href="#_multiple_inputs"></a>Multiple inputs</h3>
 <div class="paragraph">
 <p>Having multiple inputs is similar to having multiple outputs, except that an <code>OutputEmitter</code> wrapper is not needed:</p>
 </div>
@@ -738,7 +738,7 @@ public MyNewData map(@Input final MyData data, @Input("input2") final MyData2 da
 </div>
 </div>
 <div class="sect2">
-<h3 id="_output"><a class="anchor" href="#_output"></a>1.6. Output</h3>
+<h3 id="_output"><a class="anchor" href="#_output"></a>Output</h3>
 <div class="paragraph">
 <p>An <code>Output</code> is a <code>Processor</code> that does not return any data.</p>
 </div>
@@ -755,14 +755,14 @@ public void store(final MyData data) {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_combiners"><a class="anchor" href="#_combiners"></a>1.7. Combiners</h3>
+<h3 id="_combiners"><a class="anchor" href="#_combiners"></a>Combiners</h3>
 <div class="paragraph">
 <p>Currently, Talend Component Kit does not allow you to define a <code>Combiner</code>.
 A combiner is the symmetric part of a partition mapper and allows to aggregate results in a single partition.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_family_and_component_icons"><a class="anchor" href="#_family_and_component_icons"></a>1.8. Family and component icons</h3>
+<h3 id="_family_and_component_icons"><a class="anchor" href="#_family_and_component_icons"></a>Family and component icons</h3>
 <div class="paragraph">
 <p>Every component family and component needs to have a representative icon.<br>
 You can use one of the icons provided by the framework or you can use a custom icon.</p>
@@ -781,7 +781,7 @@ The icon file needs to have a name following the convention <code>IconName_icon3
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles"><a class="anchor" href="#_related_articles"></a>1.9. Related articles</h3>
+<h3 id="_related_articles"><a class="anchor" href="#_related_articles"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -811,7 +811,7 @@ The icon file needs to have a name following the convention <code>IconName_icon3
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring_components"><a class="anchor" href="#_configuring_components"></a>2. Configuring components</h2>
+<h2 id="_configuring_components"><a class="anchor" href="#_configuring_components"></a>Configuring components</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Components are configured using their constructor parameters. They can all be marked with the <code>@Option</code> property, which lets you give a name to parameters.</p>
@@ -910,7 +910,7 @@ public MyFileReader(@Option("file-path") final File file,
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="_primitives"><a class="anchor" href="#_primitives"></a>2.1. Primitives</h3>
+<h3 id="_primitives"><a class="anchor" href="#_primitives"></a>Primitives</h3>
 <div class="paragraph">
 <p>A primitive is a class which can be directly converted from a <code>String</code> to the expected type.</p>
 </div>
@@ -947,7 +947,7 @@ public MyFileReader(@Option("file-path") final File file,
 </div>
 </div>
 <div class="sect2">
-<h3 id="_complex_object_mapping"><a class="anchor" href="#_complex_object_mapping"></a>2.2. Complex object mapping</h3>
+<h3 id="_complex_object_mapping"><a class="anchor" href="#_complex_object_mapping"></a>Complex object mapping</h3>
 <div class="paragraph">
 <p>The conversion from property to object uses the Dot notation.</p>
 </div>
@@ -975,7 +975,7 @@ file.format = CSV</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_list_case"><a class="anchor" href="#_list_case"></a>2.2.1. List case</h4>
+<h4 id="_list_case"><a class="anchor" href="#_list_case"></a>List case</h4>
 <div class="paragraph">
 <p>Lists rely on an indexed syntax to define their elements.</p>
 </div>
@@ -992,7 +992,7 @@ files[1].format = EXCEL</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_map_case"><a class="anchor" href="#_map_case"></a>2.2.2. Map case</h4>
+<h4 id="_map_case"><a class="anchor" href="#_map_case"></a>Map case</h4>
 <div class="paragraph">
 <p>Similarly to the list case, the map uses <code>.key[index]</code> and <code>.value[index]</code> to represent its keys and values:</p>
 </div>
@@ -1033,7 +1033,7 @@ Avoid using the Map type. For example, if you can configure your component with 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_defining_constraints_and_validations_on_the_configuration"><a class="anchor" href="#_defining_constraints_and_validations_on_the_configuration"></a>2.3. Defining Constraints and validations on the configuration</h3>
+<h3 id="_defining_constraints_and_validations_on_the_configuration"><a class="anchor" href="#_defining_constraints_and_validations_on_the_configuration"></a>Defining Constraints and validations on the configuration</h3>
 <div class="paragraph">
 <p>You can use metadata to specify that a field is required or has a minimum size, and so on. This is done using the <code>validation</code> metadata in the <code>org.talend.sdk.component.api.configuration.constraint</code> package:</p>
 </div>
@@ -1204,7 +1204,7 @@ If somehow it breaks your application you can disable that validation on the JVM
 </div>
 </div>
 <div class="sect2">
-<h3 id="_marking_a_configuration_as_a_particular_type_of_data"><a class="anchor" href="#_marking_a_configuration_as_a_particular_type_of_data"></a>2.4. Marking a configuration as a particular type of data</h3>
+<h3 id="_marking_a_configuration_as_a_particular_type_of_data"><a class="anchor" href="#_marking_a_configuration_as_a_particular_type_of_data"></a>Marking a configuration as a particular type of data</h3>
 <div class="paragraph">
 <p>It is common to classify the incoming data. It is similar to tagging data with several types. Data can commonly be categorized as follows:</p>
 </div>
@@ -1342,7 +1342,7 @@ The component family associated with a configuration type (datastore/dataset) is
 </div>
 </div>
 <div class="sect2">
-<h3 id="_defining_links_between_properties"><a class="anchor" href="#_defining_links_between_properties"></a>2.5. Defining links between properties</h3>
+<h3 id="_defining_links_between_properties"><a class="anchor" href="#_defining_links_between_properties"></a>Defining links between properties</h3>
 <div class="paragraph">
 <p>If you need to define a binding between properties, you can use a set of annotations:</p>
 </div>
@@ -1418,7 +1418,7 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </div>
 </div>
 <div class="sect2">
-<h3 id="documentation-ui-hints"><a class="anchor" href="#documentation-ui-hints"></a>2.6. Adding hints about the rendering based on configuration/component knowledge</h3>
+<h3 id="documentation-ui-hints"><a class="anchor" href="#documentation-ui-hints"></a>Adding hints about the rendering based on configuration/component knowledge</h3>
 <div class="paragraph">
 <p>In some cases, you may need to add metadata about the configuration to let the UI render that configuration properly.<br>
 For example, a password value that must be hidden and not a simple clear input box. For these cases - if you want to change the UI rendering - you can use a particular set of annotations:</p>
@@ -1581,7 +1581,7 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_2"><a class="anchor" href="#_related_articles_2"></a>2.7. Related articles</h3>
+<h3 id="_related_articles_2"><a class="anchor" href="#_related_articles_2"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1611,7 +1611,7 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_registering_components"><a class="anchor" href="#_registering_components"></a>3. Registering components</h2>
+<h2 id="_registering_components"><a class="anchor" href="#_registering_components"></a>Registering components</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>As you may have read in the <a href="getting-started.html#getting-started-principles" class="page">Getting Started</a>, you need an annotation to register your component through the <code>family</code> method. Multiple components can use the same <code>family</code> value but the <code>family</code> + <code>name</code> pair must be unique for the system.</p>
@@ -1643,7 +1643,7 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_components_metadata"><a class="anchor" href="#_components_metadata"></a>3.1. Components metadata</h3>
+<h3 id="_components_metadata"><a class="anchor" href="#_components_metadata"></a>Components metadata</h3>
 <div class="paragraph">
 <p>Components can require metadata to be integrated in Talend Studio or Cloud platforms.
 Metadata is set on the component class and belongs to the <code>org.talend.sdk.component.api.component</code> package.</p>
@@ -1683,7 +1683,7 @@ public class JaxbPartitionMapper implements Serializable {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_managing_version_configuration"><a class="anchor" href="#_managing_version_configuration"></a>3.1.1. Managing version configuration</h4>
+<h4 id="_managing_version_configuration"><a class="anchor" href="#_managing_version_configuration"></a>Managing version configuration</h4>
 <div class="paragraph">
 <p>If some changes impact the configuration, they can be managed through a migration handler at the <strong>component</strong> level (enabling trans-model migration support).</p>
 </div>
@@ -1749,7 +1749,7 @@ Adjust the migration code structure you need behind the <code>MigrationHandler</
 </div>
 </div>
 <div class="sect3">
-<h4 id="_partitionmapper"><a class="anchor" href="#_partitionmapper"></a>3.1.2. @PartitionMapper</h4>
+<h4 id="_partitionmapper"><a class="anchor" href="#_partitionmapper"></a>@PartitionMapper</h4>
 <div class="paragraph">
 <p><code>@PartitionMapper</code> marks a partition mapper:</p>
 </div>
@@ -1775,7 +1775,7 @@ public class MyInput {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_processor_2"><a class="anchor" href="#_processor_2"></a>3.1.3. @Processor</h4>
+<h4 id="_processor_2"><a class="anchor" href="#_processor_2"></a>@Processor</h4>
 <div class="paragraph">
 <p>A method decorated with <code>@Processor</code> is considered as a producer factory:</p>
 </div>
@@ -1789,7 +1789,7 @@ public class MyProcessor {
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_3"><a class="anchor" href="#_related_articles_3"></a>3.2. Related articles</h3>
+<h3 id="_related_articles_3"><a class="anchor" href="#_related_articles_3"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1819,7 +1819,7 @@ public class MyProcessor {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_component_internationalization"><a class="anchor" href="#_component_internationalization"></a>4. Component internationalization</h2>
+<h2 id="_component_internationalization"><a class="anchor" href="#_component_internationalization"></a>Component internationalization</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In common cases, you can store messages using a properties file in your component module to use internationalization.</p>
@@ -1828,7 +1828,7 @@ public class MyProcessor {
 <p>Store the properties file in the same package as the related components and name it <code>Messages</code>. For example, <code>org.talend.demo.MyComponent</code> uses <code>org.talend.demo.Messages[locale].properties</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="_default_components_keys"><a class="anchor" href="#_default_components_keys"></a>4.1. Default components keys</h3>
+<h3 id="_default_components_keys"><a class="anchor" href="#_default_components_keys"></a>Default components keys</h3>
 <div class="paragraph">
 <p>Out of the box components are internationalized using the same location logic for the resource bundle. The supported keys are:</p>
 </div>
@@ -1931,7 +1931,7 @@ If you have a display name using the property path, it overrides the display nam
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_4"><a class="anchor" href="#_related_articles_4"></a>4.2. Related articles</h3>
+<h3 id="_related_articles_4"><a class="anchor" href="#_related_articles_4"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1961,7 +1961,7 @@ If you have a display name using the property path, it overrides the display nam
 </div>
 </div>
 <div class="sect1">
-<h2 id="_component_loading"><a class="anchor" href="#_component_loading"></a>5. Component Loading</h2>
+<h2 id="_component_loading"><a class="anchor" href="#_component_loading"></a>Component Loading</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Talend Component scanning is based on plugins. To make sure that plugins can be developed in parallel and avoid conflicts, they need to be isolated (component or group of components in a single jar/plugin).</p>
@@ -2000,7 +2000,7 @@ For example, he tree classloading is commonly used by Servlet containers where p
 <p>Then, each plugin is loaded with its own classloader and dependencies.</p>
 </div>
 <div class="sect2">
-<h3 id="_packaging_a_plugin"><a class="anchor" href="#_packaging_a_plugin"></a>5.1. Packaging a plugin</h3>
+<h3 id="_packaging_a_plugin"><a class="anchor" href="#_packaging_a_plugin"></a>Packaging a plugin</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2070,12 +2070,12 @@ The following files have been resolved:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_packaging_an_application"><a class="anchor" href="#_packaging_an_application"></a>5.2. Packaging an application</h3>
+<h3 id="_packaging_an_application"><a class="anchor" href="#_packaging_an_application"></a>Packaging an application</h3>
 <div class="paragraph">
 <p>Even if a flat classpath deployment is possible, it is not recommended because it would then reduce the capabilities of the components.</p>
 </div>
 <div class="sect3">
-<h4 id="_dependencies"><a class="anchor" href="#_dependencies"></a>5.2.1. Dependencies</h4>
+<h4 id="_dependencies"><a class="anchor" href="#_dependencies"></a>Dependencies</h4>
 <div class="paragraph">
 <p>The way the framework resolves dependencies is based on a local Maven repository layout. As a quick reminder, it looks like:</p>
 </div>
@@ -2153,7 +2153,7 @@ The nested repository option needs some configuration during the packaging to en
 </div>
 </div>
 <div class="sect3">
-<h4 id="_listing_needed_plugins"><a class="anchor" href="#_listing_needed_plugins"></a>5.2.2. Listing needed plugins</h4>
+<h4 id="_listing_needed_plugins"><a class="anchor" href="#_listing_needed_plugins"></a>Listing needed plugins</h4>
 <div class="paragraph">
 <p>Plugins are usually programmatically registered. If you want to make some of them automatically available, you need to generate a <code>TALEND-INF/plugins.properties</code> file that maps a plugin name to coordinates found with the Maven mechanism described above.</p>
 </div>
@@ -2193,7 +2193,7 @@ The nested repository option needs some configuration during the packaging to en
 </div>
 </div>
 <div class="sect3">
-<h4 id="_maven_shade_plugin_extensions"><a class="anchor" href="#_maven_shade_plugin_extensions"></a>5.2.3. maven-shade-plugin extensions</h4>
+<h4 id="_maven_shade_plugin_extensions"><a class="anchor" href="#_maven_shade_plugin_extensions"></a>maven-shade-plugin extensions</h4>
 <div class="paragraph">
 <p>Here is a final job/application bundle based on maven-shade-plugin:</p>
 </div>
@@ -2365,14 +2365,14 @@ Talend Component Kit lets you handle that part but the recommended practice is t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_component_scanning_rules_and_default_exclusions"><a class="anchor" href="#_component_scanning_rules_and_default_exclusions"></a>5.3. Component scanning rules and default exclusions</h3>
+<h3 id="_component_scanning_rules_and_default_exclusions"><a class="anchor" href="#_component_scanning_rules_and_default_exclusions"></a>Component scanning rules and default exclusions</h3>
 <div class="paragraph">
 <p>The framework uses two kind of filterings when scanning your component. One based on the JAR name
 and one based on the package name. Make sure that your component definitions (including services)
 are in a scanned module if they are not registered manually using <code>ComponentManager.instance().addPlugin()</code>, and that the component package is not excluded.</p>
 </div>
 <div class="sect3">
-<h4 id="_jars_scanning"><a class="anchor" href="#_jars_scanning"></a>5.3.1. Jars Scanning</h4>
+<h4 id="_jars_scanning"><a class="anchor" href="#_jars_scanning"></a>Jars Scanning</h4>
 <div class="paragraph">
 <p>To find components the framework can scan the classpath but in this case,
 to avoid to scan the whole classpath which can be really huge
@@ -3752,7 +3752,7 @@ an impacts a lot the startup time, several jars are excluded out of the box.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_package_scanning"><a class="anchor" href="#_package_scanning"></a>5.3.2. Package Scanning</h4>
+<h4 id="_package_scanning"><a class="anchor" href="#_package_scanning"></a>Package Scanning</h4>
 <div class="paragraph">
 <p>Since the framework can be used in the case of <em>fatjars</em> or <em>shades</em>,
 and because it still uses scanning,
@@ -4149,7 +4149,7 @@ In such a case, exclusions win over inclusions.
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_5"><a class="anchor" href="#_related_articles_5"></a>5.4. Related articles</h3>
+<h3 id="_related_articles_5"><a class="anchor" href="#_related_articles_5"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4182,10 +4182,10 @@ In such a case, exclusions win over inclusions.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_talend_component_kit_best_practices"><a class="anchor" href="#_talend_component_kit_best_practices"></a>6. Talend Component Kit best practices</h2>
+<h2 id="_talend_component_kit_best_practices"><a class="anchor" href="#_talend_component_kit_best_practices"></a>Talend Component Kit best practices</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_organizing_your_code"><a class="anchor" href="#_organizing_your_code"></a>6.1. Organizing your code</h3>
+<h3 id="_organizing_your_code"><a class="anchor" href="#_organizing_your_code"></a>Organizing your code</h3>
 <div class="paragraph">
 <p>Some recommendations apply to the way component packages are organized:</p>
 </div>
@@ -4219,15 +4219,15 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configuring_components_2"><a class="anchor" href="#_configuring_components_2"></a>6.2. Configuring components</h3>
+<h3 id="_configuring_components_2"><a class="anchor" href="#_configuring_components_2"></a>Configuring components</h3>
 <div class="sect3">
-<h4 id="_serializing_your_configuration"><a class="anchor" href="#_serializing_your_configuration"></a>6.2.1. Serializing your configuration</h4>
+<h4 id="_serializing_your_configuration"><a class="anchor" href="#_serializing_your_configuration"></a>Serializing your configuration</h4>
 <div class="paragraph">
 <p>It is recommended to serialize your configuration in order to be able to pass it through other components.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_input_and_output_components"><a class="anchor" href="#_input_and_output_components"></a>6.2.2. Input and output components</h4>
+<h4 id="_input_and_output_components"><a class="anchor" href="#_input_and_output_components"></a>Input and output components</h4>
 <div class="paragraph">
 <p>When building a new component, the first step is to identify the way it must be configured.</p>
 </div>
@@ -4373,7 +4373,7 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </div>
 </div>
 <div class="sect3">
-<h4 id="_processor_components"><a class="anchor" href="#_processor_components"></a>6.2.3. Processor components</h4>
+<h4 id="_processor_components"><a class="anchor" href="#_processor_components"></a>Processor components</h4>
 <div class="paragraph">
 <p>Configuring processor components is simpler than configuring input and output components because it is specific for each component. For example, a mapper takes the mapping between the input and output models:</p>
 </div>
@@ -4393,12 +4393,12 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </div>
 </div>
 <div class="sect2">
-<h3 id="_handling_ui_interactions"><a class="anchor" href="#_handling_ui_interactions"></a>6.3. Handling UI interactions</h3>
+<h3 id="_handling_ui_interactions"><a class="anchor" href="#_handling_ui_interactions"></a>Handling UI interactions</h3>
 <div class="paragraph">
 <p>It is recommended to provide as much information as possible to let the UI work with the data during its edition.</p>
 </div>
 <div class="sect3">
-<h4 id="_validations"><a class="anchor" href="#_validations"></a>6.3.1. Validations</h4>
+<h4 id="_validations"><a class="anchor" href="#_validations"></a>Validations</h4>
 <div class="sect4">
 <h5 id="_light_validations"><a class="anchor" href="#_light_validations"></a>Light validations</h5>
 <div class="paragraph">
@@ -4484,7 +4484,7 @@ It is recommended to use <code>@Option("value")</code> until you know exactly wh
 </div>
 </div>
 <div class="sect3">
-<h4 id="_completion"><a class="anchor" href="#_completion"></a>6.3.2. Completion</h4>
+<h4 id="_completion"><a class="anchor" href="#_completion"></a>Completion</h4>
 <div class="paragraph">
 <p>It can be handy and user-friendly to provide completion on some fields.
 For example, to define completion for available drivers:</p>
@@ -4510,7 +4510,7 @@ public CompletionList findDrivers() {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_component_representation"><a class="anchor" href="#_component_representation"></a>6.3.3. Component representation</h4>
+<h4 id="_component_representation"><a class="anchor" href="#_component_representation"></a>Component representation</h4>
 <div class="paragraph">
 <p>Each component must have its own icon:</p>
 </div>
@@ -4538,7 +4538,7 @@ You can use <a href="http://talend.surge.sh/icons/" class="bare">talend.surge.sh
 </div>
 </div>
 <div class="sect2">
-<h3 id="_enforcing_versioning_on_components"><a class="anchor" href="#_enforcing_versioning_on_components"></a>6.4. Enforcing versioning on components</h3>
+<h3 id="_enforcing_versioning_on_components"><a class="anchor" href="#_enforcing_versioning_on_components"></a>Enforcing versioning on components</h3>
 <div class="paragraph">
 <p>It is recommended to enforce the version of your component, event though it is not mandatory for the first version.</p>
 </div>
@@ -4579,13 +4579,13 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect2">
-<h3 id="_testing_components"><a class="anchor" href="#_testing_components"></a>6.5. Testing components</h3>
+<h3 id="_testing_components"><a class="anchor" href="#_testing_components"></a>Testing components</h3>
 <div class="paragraph">
 <p>Testing your components is critical. You can use unit and simple standalone JUnit tests, but it is also highly recommended to have Beam tests in order to make sure that your component works in Big Data.</p>
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_6"><a class="anchor" href="#_related_articles_6"></a>6.6. Related articles</h3>
+<h3 id="_related_articles_6"><a class="anchor" href="#_related_articles_6"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4621,7 +4621,7 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect1">
-<h2 id="_build_tools"><a class="anchor" href="#_build_tools"></a>7. Build tools</h2>
+<h2 id="_build_tools"><a class="anchor" href="#_build_tools"></a>Build tools</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To develop new components, Talend Component Kit requires a build tool in which you will import the component project generated from the starter. With this build tool, you will also be able to implement the logic of your component and to install and deploy it to Talend applications.</p>
@@ -4630,7 +4630,7 @@ public class JdbcPartitionMapper
 <p>A Talend Component Kit plugin is available for each of the supported build tools.</p>
 </div>
 <div class="sect2">
-<h3 id="_maven_plugin"><a class="anchor" href="#_maven_plugin"></a>7.1. Maven Plugin</h3>
+<h3 id="_maven_plugin"><a class="anchor" href="#_maven_plugin"></a>Maven Plugin</h3>
 <div class="paragraph">
 <p><code>talend-component-maven-plugin</code> helps you write components that match best practices and generate transparently metadata used by Talend Studio.</p>
 </div>
@@ -4662,7 +4662,7 @@ public class JdbcPartitionMapper
 <p>Used as an extension, the <code>dependencies</code>, <code>validate</code> and <code>documentation</code> goals will be set up.</p>
 </div>
 <div class="sect3">
-<h4 id="_dependencies_2"><a class="anchor" href="#_dependencies_2"></a>7.1.1. Dependencies</h4>
+<h4 id="_dependencies_2"><a class="anchor" href="#_dependencies_2"></a>Dependencies</h4>
 <div class="paragraph">
 <p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>. It creates the <code>TALEND-INF/dependencies.txt</code> file with the <code>compile</code> and <code>runtime</code> dependencies, allowing the component to use it at runtime:</p>
 </div>
@@ -4685,7 +4685,7 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect3">
-<h4 id="_validate"><a class="anchor" href="#_validate"></a>7.1.2. Validate</h4>
+<h4 id="_validate"><a class="anchor" href="#_validate"></a>Validate</h4>
 <div class="paragraph">
 <p>This goal helps you validate the common programming model of the component. To activate it, you can use following execution definition:</p>
 </div>
@@ -4782,7 +4782,7 @@ public class JdbcPartitionMapper
 </table>
 </div>
 <div class="sect3">
-<h4 id="_documentation"><a class="anchor" href="#_documentation"></a>7.1.3. Documentation</h4>
+<h4 id="_documentation"><a class="anchor" href="#_documentation"></a>Documentation</h4>
 <div class="paragraph">
 <p>This goal generates an Asciidoc file documenting your component from the configuration model (<code>@Option</code>) and the <code>@Documentation</code> property that you can add to options and to the component itself.</p>
 </div>
@@ -5035,7 +5035,7 @@ include::{generated_doc}/documentation.adoc[]</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_testing_a_component_web_rendering"><a class="anchor" href="#_testing_a_component_web_rendering"></a>7.1.4. Testing a component web rendering</h4>
+<h4 id="_testing_a_component_web_rendering"><a class="anchor" href="#_testing_a_component_web_rendering"></a>Testing a component web rendering</h4>
 <div class="paragraph">
 <p>Testing the rendering of your component configuration into the Studio requires deploying the component in Talend Studio (refer to <a href="studio.html">Studio Documentation</a>.</p>
 </div>
@@ -5082,7 +5082,7 @@ Make sure to install the artifact before using this command because it reads the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_generating_inputs_or_outputs"><a class="anchor" href="#_generating_inputs_or_outputs"></a>7.1.5. Generating inputs or outputs</h4>
+<h4 id="_generating_inputs_or_outputs"><a class="anchor" href="#_generating_inputs_or_outputs"></a>Generating inputs or outputs</h4>
 <div class="paragraph">
 <p>The Mojo <code>generate</code> (Maven plugin goal) of the same plugin also embeds a generator that you can use to bootstrap any input or output component:</p>
 </div>
@@ -5175,7 +5175,7 @@ Make sure to install the artifact before using this command because it reads the
 </div>
 </div>
 <div class="sect3">
-<h4 id="_talend_component_archive"><a class="anchor" href="#_talend_component_archive"></a>7.1.6. Talend Component Archive</h4>
+<h4 id="_talend_component_archive"><a class="anchor" href="#_talend_component_archive"></a>Talend Component Archive</h4>
 <div class="paragraph">
 <p>Component ARchive (<code>.car</code>) is the way to bundle a component to share it in the Talend ecosystem. It is a plain Java ARchive (<code>.jar</code>) containing a metadata file and a nested Maven repository containing the component and its depenencies.</p>
 </div>
@@ -5223,7 +5223,7 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_gradle_plugin"><a class="anchor" href="#_gradle_plugin"></a>7.2. Gradle Plugin</h3>
+<h3 id="_gradle_plugin"><a class="anchor" href="#_gradle_plugin"></a>Gradle Plugin</h3>
 <div class="paragraph">
 <p><code>gradle-talend-component</code> helps you write components that match the best practices. It is inspired from the Maven plugin and adds the ability to generate automatically the <code>dependencies.txt</code> file used by the SDK to build the component classpath. For more information on the configuration, refer to the Maven properties matching the attributes.</p>
 </div>
@@ -5290,10 +5290,10 @@ talendComponentKit {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_wrapping_a_beam_i_o"><a class="anchor" href="#_wrapping_a_beam_i_o"></a>8. Wrapping a Beam I/O</h2>
+<h2 id="_wrapping_a_beam_i_o"><a class="anchor" href="#_wrapping_a_beam_i_o"></a>Wrapping a Beam I/O</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="wrapping-a-beam-io__start"><a class="anchor" href="#wrapping-a-beam-io__start"></a>8.1. Limitations</h3>
+<h3 id="wrapping-a-beam-io__start"><a class="anchor" href="#wrapping-a-beam-io__start"></a>Limitations</h3>
 <div class="paragraph">
 <p>This part is limited to specific kinds of <a href="https://beam.apache.org/">Beam</a> <code>PTransform</code>:</p>
 </div>
@@ -5309,7 +5309,7 @@ talendComponentKit {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wrapping_an_input"><a class="anchor" href="#_wrapping_an_input"></a>8.2. Wrapping an input</h3>
+<h3 id="_wrapping_an_input"><a class="anchor" href="#_wrapping_an_input"></a>Wrapping an input</h3>
 <div class="paragraph">
 <p>To illustrate the input wrapping, this procedure uses the following input as a starting point (based on existing Beam inputs):</p>
 </div>
@@ -5354,7 +5354,7 @@ public class WrapRead extends PTransform&lt;PBegin, PCollection&lt;String&gt;&gt
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wrapping_an_output"><a class="anchor" href="#_wrapping_an_output"></a>8.3. Wrapping an output</h3>
+<h3 id="_wrapping_an_output"><a class="anchor" href="#_wrapping_an_output"></a>Wrapping an output</h3>
 <div class="paragraph">
 <p>To illustrate the output wrapping, this procedure uses the following output as a starting point (based on existing Beam outputs):</p>
 </div>
@@ -5400,7 +5400,7 @@ public class WrapWrite extends PTransform&lt;PCollection&lt;String&gt;, PDone&gt
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tip"><a class="anchor" href="#_tip"></a>8.4. Tip</h3>
+<h3 id="_tip"><a class="anchor" href="#_tip"></a>Tip</h3>
 <div class="paragraph">
 <p>Note that the <code>org.talend.sdk.component.runtime.beam.transform.DelegatingTransform</code> class fully delegates the "expansion" to another transform. Therefore, you can extend it and implement the configuration mapping:</p>
 </div>
@@ -5419,12 +5419,12 @@ public class BeamFileOutput extends DelegatingTransform&lt;PCollection&lt;String
 </div>
 </div>
 <div class="sect2">
-<h3 id="_advanced"><a class="anchor" href="#_advanced"></a>8.5. Advanced</h3>
+<h3 id="_advanced"><a class="anchor" href="#_advanced"></a>Advanced</h3>
 <div class="paragraph">
 <p>In terms of classloading, when you write an I/O, the Beam SDK Java core stack is assumed as provided in Talend Component Kit runtime. This way, you don&#8217;t need to include it in the compile scope, it would be ignored anyway.</p>
 </div>
 <div class="sect3">
-<h4 id="_coder"><a class="anchor" href="#_coder"></a>8.5.1. Coder</h4>
+<h4 id="_coder"><a class="anchor" href="#_coder"></a>Coder</h4>
 <div class="paragraph">
 <p>If you need a JSonCoder, you can use the <code>org.talend.sdk.component.runtime.beam.factory.service.PluginCoderFactory</code> service,
 which gives you access to the JSON-P and JSON-B coders.</p>
@@ -5437,7 +5437,7 @@ See <code>org.talend.sdk.component.runtime.beam.transform.avro.IndexedRecordCode
 </div>
 </div>
 <div class="sect3">
-<h4 id="_jsonobject_to_indexedrecord"><a class="anchor" href="#_jsonobject_to_indexedrecord"></a>8.5.2. JsonObject to IndexedRecord</h4>
+<h4 id="_jsonobject_to_indexedrecord"><a class="anchor" href="#_jsonobject_to_indexedrecord"></a>JsonObject to IndexedRecord</h4>
 <div class="paragraph">
 <p>The mainstream model is <code>JsonObject</code> but it is common to have a legacy system using
 <code>IndexedRecord</code>. To mitigate the transition, you can use the following <code>PTransforms</code>:</p>
@@ -5457,7 +5457,7 @@ See <code>org.talend.sdk.component.runtime.beam.transform.avro.IndexedRecordCode
 </div>
 </div>
 <div class="sect3">
-<h4 id="_sample"><a class="anchor" href="#_sample"></a>8.5.3. Sample</h4>
+<h4 id="_sample"><a class="anchor" href="#_sample"></a>Sample</h4>
 <div class="listingblock">
 <div class="title">Sample input based on Beam Kafka</div>
 <div class="content">
@@ -5531,7 +5531,7 @@ public class KafkaInput extends PTransform&lt;PBegin, PCollection&lt;JsonObject&
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles_7"><a class="anchor" href="#_related_articles_7"></a>8.6. Related articles</h3>
+<h3 id="_related_articles_7"><a class="anchor" href="#_related_articles_7"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>

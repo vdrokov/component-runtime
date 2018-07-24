@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/index.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:02.051Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:15.001Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -684,15 +684,15 @@
 <article class="doc">
         <h1>Talend Component Documentation</h1>
         <div class="sect1">
-<h2 id="_talend_component_testing_documentation"><a class="anchor" href="#_talend_component_testing_documentation"></a>1. Talend Component Testing Documentation</h2>
+<h2 id="_talend_component_testing_documentation"><a class="anchor" href="#_talend_component_testing_documentation"></a>Talend Component Testing Documentation</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_testing_best_practices"><a class="anchor" href="#_testing_best_practices"></a>1.1. Testing best practices</h3>
+<h3 id="_testing_best_practices"><a class="anchor" href="#_testing_best_practices"></a>Testing best practices</h3>
 <div class="paragraph">
 <p>This section mainly concerns tools that can be used with JUnit. You can use most of these best practices with TestNG as well.</p>
 </div>
 <div class="sect3">
-<h4 id="_parameterized_tests"><a class="anchor" href="#_parameterized_tests"></a>1.1.1. Parameterized tests</h4>
+<h4 id="_parameterized_tests"><a class="anchor" href="#_parameterized_tests"></a>Parameterized tests</h4>
 <div class="paragraph">
 <p>Parameterized tests are a great solution to repeat the same test multiple times. This method of testing requires defining a test scenario (<code>I test function F</code>) and making the input/output data dynamic.</p>
 </div>
@@ -830,9 +830,9 @@ Add the <code>junit-jupiter-params</code> dependency to benefit from this featur
 </div>
 </div>
 <div class="sect2">
-<h3 id="_component_runtime_testing"><a class="anchor" href="#_component_runtime_testing"></a>1.2. component-runtime-testing</h3>
+<h3 id="_component_runtime_testing"><a class="anchor" href="#_component_runtime_testing"></a>component-runtime-testing</h3>
 <div class="sect3">
-<h4 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>1.2.1. component-runtime-junit</h4>
+<h4 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>component-runtime-junit</h4>
 <div class="paragraph">
 <p><code>component-runtime-junit</code> is a test library that allows you to validate simple logic based on the Talend Component Kit tooling.</p>
 </div>
@@ -1209,7 +1209,7 @@ If needed, you can also implement your own input representation using <code>org.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_component_runtime_testing_spark"><a class="anchor" href="#_component_runtime_testing_spark"></a>1.2.2. component-runtime-testing-spark</h4>
+<h4 id="_component_runtime_testing_spark"><a class="anchor" href="#_component_runtime_testing_spark"></a>component-runtime-testing-spark</h4>
 <div class="paragraph">
 <p>The following artifact allows you to test against a Spark cluster:</p>
 </div>
@@ -1327,7 +1327,7 @@ class SparkExtensionTest {
 </div>
 </div>
 <div class="sect3">
-<h4 id="component-runtime-http-junit"><a class="anchor" href="#component-runtime-http-junit"></a>1.2.3. component-runtime-http-junit</h4>
+<h4 id="component-runtime-http-junit"><a class="anchor" href="#component-runtime-http-junit"></a>component-runtime-http-junit</h4>
 <div class="paragraph">
 <p>The HTTP JUnit module allows you to mock REST API very simply. The module coordinates are:</p>
 </div>
@@ -1533,7 +1533,7 @@ You can create it manually, as described in <a href="#component-runtime-http-jun
 </div>
 </div>
 <div class="sect2">
-<h3 id="_beam_testing"><a class="anchor" href="#_beam_testing"></a>1.3. Beam testing</h3>
+<h3 id="_beam_testing"><a class="anchor" href="#_beam_testing"></a>Beam testing</h3>
 <div class="paragraph">
 <p>If you want to make sure that your component works in Beam and don&#8217;t want to use Spark, you can try with the Direct Runner.</p>
 </div>
@@ -1542,7 +1542,7 @@ You can create it manually, as described in <a href="#component-runtime-http-jun
 </div>
 </div>
 <div class="sect2">
-<h3 id="_testing_on_multiple_environments"><a class="anchor" href="#_testing_on_multiple_environments"></a>1.4. Testing on multiple environments</h3>
+<h3 id="_testing_on_multiple_environments"><a class="anchor" href="#_testing_on_multiple_environments"></a>Testing on multiple environments</h3>
 <div class="paragraph">
 <p>JUnit (4 or 5) already provides ways to parameterize tests and execute the same "test logic"
 against several sets of data. However, it is not very convenient for testing multiple environments.</p>
@@ -1554,7 +1554,7 @@ against several sets of data. However, it is not very convenient for testing mul
 <p>To simplify such cases, the framework provides you a multi-environment support for your tests, through the JUnit module, which works with both JUnit 4 and JUnit 5.</p>
 </div>
 <div class="sect3">
-<h4 id="_junit_4_5"><a class="anchor" href="#_junit_4_5"></a>1.4.1. JUnit 4</h4>
+<h4 id="_junit_4_5"><a class="anchor" href="#_junit_4_5"></a>JUnit 4</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@RunWith(MultiEnvironmentsRunner.class)
@@ -1576,7 +1576,7 @@ public class TheTest {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_junit_5_5"><a class="anchor" href="#_junit_5_5"></a>1.4.2. JUnit 5</h4>
+<h4 id="_junit_5_5"><a class="anchor" href="#_junit_5_5"></a>JUnit 5</h4>
 <div class="paragraph">
 <p>The multi-environment configuration with JUnit 5 is similar to JUnit 4:</p>
 </div>
@@ -1610,7 +1610,7 @@ With JUnit5, tests are executed one after another for all environments, while te
 </div>
 </div>
 <div class="sect3">
-<h4 id="_provided_environments"><a class="anchor" href="#_provided_environments"></a>1.4.3. Provided environments</h4>
+<h4 id="_provided_environments"><a class="anchor" href="#_provided_environments"></a>Provided environments</h4>
 <div class="paragraph">
 <p>The provided environment sets the contextual classloader in order to load the related runner of Apache Beam.</p>
 </div>
@@ -1667,7 +1667,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </table>
 </div>
 <div class="sect3">
-<h4 id="_configuring_environments"><a class="anchor" href="#_configuring_environments"></a>1.4.4. Configuring environments</h4>
+<h4 id="_configuring_environments"><a class="anchor" href="#_configuring_environments"></a>Configuring environments</h4>
 <div class="paragraph">
 <p>If the environment extends <code>BaseEnvironmentProvider</code> and therefore defines an environment name - which is the case of the default ones - you can use <code>EnvironmentConfiguration</code> to customize the system properties used for that environment:</p>
 </div>
@@ -1792,7 +1792,7 @@ class TheComponentTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_secrets_passwords_and_maven"><a class="anchor" href="#_secrets_passwords_and_maven"></a>1.5. Secrets/Passwords and Maven</h3>
+<h3 id="_secrets_passwords_and_maven"><a class="anchor" href="#_secrets_passwords_and_maven"></a>Secrets/Passwords and Maven</h3>
 <div class="paragraph">
 <p>You can reuse Maven <code>settings.xml</code> server files, including the encrypted ones.
 <code>org.talend.sdk.component.maven.MavenDecrypter</code> allows yo to find a <code>username</code>/<code>password</code> from
@@ -1823,7 +1823,7 @@ Even if you don&#8217;t use Maven on the platform, you can generate the <code>se
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generating_data"><a class="anchor" href="#_generating_data"></a>1.6. Generating data</h3>
+<h3 id="_generating_data"><a class="anchor" href="#_generating_data"></a>Generating data</h3>
 <div class="paragraph">
 <p>Several data generators exist if you want to populate objects with a semantic that is more evolved than a plain random string like <code>commons-lang3</code>:</p>
 </div>

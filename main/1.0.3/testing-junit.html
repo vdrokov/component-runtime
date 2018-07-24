@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/testing-junit.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:03.177Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:16.016Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -679,7 +679,7 @@
 </div>
 <article class="doc">
         <div class="sect1">
-<h2 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>1. component-runtime-junit</h2>
+<h2 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>component-runtime-junit</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><code>component-runtime-junit</code> is a test library that allows you to validate simple logic based on the Talend Component Kit tooling.</p>
@@ -714,7 +714,7 @@
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1. JUnit 4</h3>
+<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>JUnit 4</h3>
 <div class="paragraph">
 <p>You can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
 </div>
@@ -813,7 +813,7 @@ The rule can also be defined as a <code>@ClassRule</code> to start it once per c
 </div>
 </div>
 <div class="sect2">
-<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
+<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>JUnit 5</h3>
 <div class="paragraph">
 <p>The JUnit 5 integration is very similar to JUnit 4, except that it uses the JUnit 5 extension mechanism.</p>
 </div>
@@ -900,7 +900,7 @@ class ComponentExtensionTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>1.3. Mocking the output</h3>
+<h3 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>Mocking the output</h3>
 <div class="paragraph">
 <p>Using the "test"/"collector" component as shown in the previous sample stores all records emitted by the chain (typically your source) in memory. You can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>.</p>
 </div>
@@ -909,7 +909,7 @@ class ComponentExtensionTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mocking_the_input"><a class="anchor" href="#_mocking_the_input"></a>1.4. Mocking the input</h3>
+<h3 id="_mocking_the_input"><a class="anchor" href="#_mocking_the_input"></a>Mocking the input</h3>
 <div class="paragraph">
 <p>The input mocking is symmetric to the output. In this case, you provide the data you want to inject:</p>
 </div>
@@ -947,7 +947,7 @@ class ComponentExtensionTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_creating_runtime_configuration_from_component_configuration"><a class="anchor" href="#_creating_runtime_configuration_from_component_configuration"></a>1.5. Creating runtime configuration from component configuration</h3>
+<h3 id="_creating_runtime_configuration_from_component_configuration"><a class="anchor" href="#_creating_runtime_configuration_from_component_configuration"></a>Creating runtime configuration from component configuration</h3>
 <div class="paragraph">
 <p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility to get this map instance from a configuration instance.</p>
 </div>
@@ -977,7 +977,7 @@ in order to use it with the <code>Job</code> DSL:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_testing_a_mapper"><a class="anchor" href="#_testing_a_mapper"></a>1.6. Testing a Mapper</h3>
+<h3 id="_testing_a_mapper"><a class="anchor" href="#_testing_a_mapper"></a>Testing a Mapper</h3>
 <div class="paragraph">
 <p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarily. You can get an instance from a configuration and execute this instance to collect the output.</p>
 </div>
@@ -1002,7 +1002,7 @@ in order to use it with the <code>Job</code> DSL:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_testing_a_processor"><a class="anchor" href="#_testing_a_processor"></a>1.7. Testing a Processor</h3>
+<h3 id="_testing_a_processor"><a class="anchor" href="#_testing_a_processor"></a>Testing a Processor</h3>
 <div class="paragraph">
 <p>As for a mapper, a processor is testable unitary. However, this case can be more complex in case of multiple inputs or outputs.</p>
 </div>

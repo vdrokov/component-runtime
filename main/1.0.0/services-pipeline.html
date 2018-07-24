@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/services-pipeline.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:01.648Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:14.647Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -646,7 +646,7 @@
 <article class="doc">
         <h1>Creating a job pipeline</h1>
         <div class="sect1">
-<h2 id="_job_builder"><a class="anchor" href="#_job_builder"></a>1. Job Builder</h2>
+<h2 id="_job_builder"><a class="anchor" href="#_job_builder"></a>Job Builder</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <code>Job</code> builder let you create a job pipeline programmatically using Talend components
@@ -772,7 +772,7 @@ may be independents.
 </table>
 </div>
 <div class="sect2">
-<h3 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>1.1. Environment/Runner</h3>
+<h3 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>Environment/Runner</h3>
 <div class="paragraph">
 <p>Depending the configuration you can select which environment you execute your job in.</p>
 </div>
@@ -798,7 +798,7 @@ by <code>talend.beam.job.</code>. For instance to set <code>appName</code> optio
 </div>
 </div>
 <div class="sect2">
-<h3 id="_key_provider"><a class="anchor" href="#_key_provider"></a>1.2. Key Provider</h3>
+<h3 id="_key_provider"><a class="anchor" href="#_key_provider"></a>Key Provider</h3>
 <div class="paragraph">
 <p>The job builder let you set a key provider to join your data when a component has multiple inputs.
 The key provider can be set contextually to a component or globally to the job</p>
@@ -850,13 +850,13 @@ and the <code>branch Name</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_beam_case"><a class="anchor" href="#_beam_case"></a>2. Beam case</h2>
+<h2 id="_beam_case"><a class="anchor" href="#_beam_case"></a>Beam case</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For <a href="https://beam.apache.org/">beam</a> case, you need to rely on beam pipeline definition and use <code>component-runtime-beam</code> dependency which provides Beam bridges.</p>
 </div>
 <div class="sect2">
-<h3 id="_i_o"><a class="anchor" href="#_i_o"></a>2.1. I/O</h3>
+<h3 id="_i_o"><a class="anchor" href="#_i_o"></a>I/O</h3>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendIO</code> provides a way to convert a partition mapper or a processor to an input
  or processor
@@ -885,7 +885,7 @@ using the <code>read</code> or <code>write</code> methods.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_processors"><a class="anchor" href="#_processors"></a>2.2. Processors</h3>
+<h3 id="_processors"><a class="anchor" href="#_processors"></a>Processors</h3>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendFn</code> provides the way to wrap a processor in a Beam <code>PTransform</code> and integrate
  it in the pipeline.</p>
@@ -923,7 +923,7 @@ but materialized as a <code>JsonObject</code>. Input data must be of type <code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_convert_a_beam_io_in_a_component_i_o"><a class="anchor" href="#_convert_a_beam_io_in_a_component_i_o"></a>2.3. Convert a Beam.io in a component I/O</h3>
+<h3 id="_convert_a_beam_io_in_a_component_i_o"><a class="anchor" href="#_convert_a_beam_io_in_a_component_i_o"></a>Convert a Beam.io in a component I/O</h3>
 <div class="paragraph">
 <p>For simple I/O you can get automatic conversion of the Beam.io to a component I/O transparently if you decorated your <code>PTransform</code>
 with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>

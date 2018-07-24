@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/tutorial-create-components-rest-api.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:03.858Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:16.612Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -398,7 +398,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_setting_up_the_http_client"><a class="anchor" href="#_setting_up_the_http_client"></a>1. Setting up the HTTP client</h2>
+<h2 id="_setting_up_the_http_client"><a class="anchor" href="#_setting_up_the_http_client"></a>Setting up the HTTP client</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The input component relies on Zendesk Search API and requires an HTTP client to consume it.</p>
@@ -487,13 +487,13 @@ This HTTP client can be injected into a mapper or a processor to perform HTTP re
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring_the_component"><a class="anchor" href="#_configuring_the_component"></a>2. Configuring the component</h2>
+<h2 id="_configuring_the_component"><a class="anchor" href="#_configuring_the_component"></a>Configuring the component</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This example uses the basic authentication that supported by the API.</p>
 </div>
 <div class="sect2">
-<h3 id="_configuring_basic_authentication"><a class="anchor" href="#_configuring_basic_authentication"></a>2.1. Configuring basic authentication</h3>
+<h3 id="_configuring_basic_authentication"><a class="anchor" href="#_configuring_basic_authentication"></a>Configuring basic authentication</h3>
 <div class="paragraph">
 <p>The first step is to set up the configuration for the basic authentication.
 To be able to consume the Search API, the Zendesk instance URL, the username and the password are needed.</p>
@@ -558,7 +558,7 @@ public class BasicAuth {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configuring_the_dataset"><a class="anchor" href="#_configuring_the_dataset"></a>2.2. Configuring the dataset</h3>
+<h3 id="_configuring_the_dataset"><a class="anchor" href="#_configuring_the_dataset"></a>Configuring the dataset</h3>
 <div class="paragraph">
 <p>Once the data store is configured, you can define the dataset by configuring the search query. It is that query that defines the records processed by the input component.</p>
 </div>
@@ -627,7 +627,7 @@ A Talend Component Kit Maven plugin can be used to generate the component docume
 </div>
 </div>
 <div class="sect1">
-<h2 id="_defining_the_component_mapper"><a class="anchor" href="#_defining_the_component_mapper"></a>3. Defining the component mapper</h2>
+<h2 id="_defining_the_component_mapper"><a class="anchor" href="#_defining_the_component_mapper"></a>Defining the component mapper</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -706,7 +706,7 @@ public class SearchMapper implements Serializable {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_defining_the_component_source"><a class="anchor" href="#_defining_the_component_source"></a>4. Defining the component source</h2>
+<h2 id="_defining_the_component_source"><a class="anchor" href="#_defining_the_component_source"></a>Defining the component source</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Once the component logic implemented, you can create the source in charge of performing the HTTP request to the search API and converting the result to <code>JsonObject</code> records.</p>

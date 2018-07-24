@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/index.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:51:59.962Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:12.741Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -312,7 +312,7 @@
 <article class="doc">
         <h1>Components Packaging</h1>
         <div class="sect1">
-<h2 id="_component_loading"><a class="anchor" href="#_component_loading"></a>1. Component Loading</h2>
+<h2 id="_component_loading"><a class="anchor" href="#_component_loading"></a>Component Loading</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Talend Component scanning is based on a plugin concept. To ensure plugins can be developped in parallel and avoid conflicts
@@ -356,7 +356,7 @@ is you don&#8217;t need to define the relationship with other plugins/dependenci
 <p>Then each plugins will be loaded in their own classloader with their dependencies.</p>
 </div>
 <div class="sect2">
-<h3 id="_packaging_a_plugin"><a class="anchor" href="#_packaging_a_plugin"></a>1.1. Packaging a plugin</h3>
+<h3 id="_packaging_a_plugin"><a class="anchor" href="#_packaging_a_plugin"></a>Packaging a plugin</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -427,12 +427,12 @@ The following files have been resolved:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_packaging_an_application"><a class="anchor" href="#_packaging_an_application"></a>1.2. Packaging an application</h3>
+<h3 id="_packaging_an_application"><a class="anchor" href="#_packaging_an_application"></a>Packaging an application</h3>
 <div class="paragraph">
 <p>Even if a flat classpath deployment is possible, it is not recommended because it would then reduce the capabilities of the components.</p>
 </div>
 <div class="sect3">
-<h4 id="_dependencies"><a class="anchor" href="#_dependencies"></a>1.2.1. Dependencies</h4>
+<h4 id="_dependencies"><a class="anchor" href="#_dependencies"></a>Dependencies</h4>
 <div class="paragraph">
 <p>The way the framework resolves dependencies is based on a local maven repository layout. As a quick reminder it looks like:</p>
 </div>
@@ -511,7 +511,7 @@ The nested repository option will need some configuration during the packaging t
 </div>
 </div>
 <div class="sect3">
-<h4 id="_listing_needed_plugins"><a class="anchor" href="#_listing_needed_plugins"></a>1.2.2. Listing needed plugins</h4>
+<h4 id="_listing_needed_plugins"><a class="anchor" href="#_listing_needed_plugins"></a>Listing needed plugins</h4>
 <div class="paragraph">
 <p>Plugin are programmatically registered in general but if you want to make some of them automatically available you
 need to generate a <code>TALEND-INF/plugins.properties</code> which will map a plugin name to coordinates found with the maven mecanism
@@ -553,7 +553,7 @@ we just talked about.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_maven_shade_plugin_code_extensions"><a class="anchor" href="#_code_maven_shade_plugin_code_extensions"></a>1.2.3. <code>maven-shade-plugin</code> extensions</h4>
+<h4 id="_code_maven_shade_plugin_code_extensions"><a class="anchor" href="#_code_maven_shade_plugin_code_extensions"></a><code>maven-shade-plugin</code> extensions</h4>
 <div class="paragraph">
 <p>Here is a final job/application bundle based on maven shade plugin:</p>
 </div>

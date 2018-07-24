@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/server-uispec.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:03.068Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:15.931Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -693,7 +693,7 @@ It provides a client to the Component Server which serves UiSpec payload to inte
 </div>
 </div>
 <div class="sect1">
-<h2 id="_coordinates"><a class="anchor" href="#_coordinates"></a>1. Coordinates</h2>
+<h2 id="_coordinates"><a class="anchor" href="#_coordinates"></a>Coordinates</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -707,7 +707,7 @@ It provides a client to the Component Server which serves UiSpec payload to inte
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring_the_uispec_server"><a class="anchor" href="#_configuring_the_uispec_server"></a>2. Configuring the UiSpec server</h2>
+<h2 id="_configuring_the_uispec_server"><a class="anchor" href="#_configuring_the_uispec_server"></a>Configuring the UiSpec server</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -795,7 +795,7 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="_adding_custom_entries_to_the_forms"><a class="anchor" href="#_adding_custom_entries_to_the_forms"></a>2.1. Adding custom entries to the forms</h3>
+<h3 id="_adding_custom_entries_to_the_forms"><a class="anchor" href="#_adding_custom_entries_to_the_forms"></a>Adding custom entries to the forms</h3>
 <div class="paragraph">
 <p>As shown in the table above, you can customize the forms by type. The format reuses Talend Component Kit REST API (properties model) and defines two main types of extensions:</p>
 </div>
@@ -826,7 +826,7 @@ Always make sure to define a root object for these properties. Do not use dots i
 </div>
 </div>
 <div class="sect2">
-<h3 id="_adding_custom_converters_selecting_the_widget_or_rendering"><a class="anchor" href="#_adding_custom_converters_selecting_the_widget_or_rendering"></a>2.2. Adding custom converters (selecting the widget or rendering)</h3>
+<h3 id="_adding_custom_converters_selecting_the_widget_or_rendering"><a class="anchor" href="#_adding_custom_converters_selecting_the_widget_or_rendering"></a>Adding custom converters (selecting the widget or rendering)</h3>
 <div class="paragraph">
 <p>When developing a <code>org.talend.sdk.component.form.internal.converter.CustomPropertyConverter</code> CDI, the proxy adds it to the <code>UiSpecService</code> service and uses it with a high priority to convert the server model to a <code>UiSpec</code> model.</p>
 </div>
@@ -848,7 +848,7 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 </div>
 </div>
 <div class="sect2">
-<h3 id="_client_in_play"><a class="anchor" href="#_client_in_play"></a>2.3. Client in Play</h3>
+<h3 id="_client_in_play"><a class="anchor" href="#_client_in_play"></a>Client in Play</h3>
 <div class="paragraph">
 <p>The client to use to connect to the Talend Component Kit server is the CXF client, using HttpClient HC (NIO) transport. When you use the Play module, it can be configured with its standard properties prefixed by <code>talend.component.proxy.</code>.</p>
 </div>
@@ -857,7 +857,7 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 </div>
 </div>
 <div class="sect2">
-<h3 id="_defining_a_dropdown_with_all_root_configurations"><a class="anchor" href="#_defining_a_dropdown_with_all_root_configurations"></a>2.4. Defining a dropdown with all root configurations</h3>
+<h3 id="_defining_a_dropdown_with_all_root_configurations"><a class="anchor" href="#_defining_a_dropdown_with_all_root_configurations"></a>Defining a dropdown with all root configurations</h3>
 <div class="paragraph">
 <p>The special <code>dynamic_values</code> action <code>builtin::roots</code> can be used for a dropdown filled with all available root types.</p>
 </div>
@@ -886,7 +886,7 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 </div>
 </div>
 <div class="sect2">
-<h3 id="_reloading_the_form_based_on_the_selected_root"><a class="anchor" href="#_reloading_the_form_based_on_the_selected_root"></a>2.5. Reloading the form based on the selected root</h3>
+<h3 id="_reloading_the_form_based_on_the_selected_root"><a class="anchor" href="#_reloading_the_form_based_on_the_selected_root"></a>Reloading the form based on the selected root</h3>
 <div class="paragraph">
 <p>The <code>builtin::root::reloadFromId</code> action, with the <code>jsonpatch</code> type,
 allows to reload the whole form:</p>
@@ -991,12 +991,12 @@ onTrigger(event, payload) {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_http_api"><a class="anchor" href="#_http_api"></a>3. HTTP API</h2>
+<h2 id="_http_api"><a class="anchor" href="#_http_api"></a>HTTP API</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_component_uispec_server"><a class="anchor" href="#_component_uispec_server"></a>3.1. Component UiSpec Server</h3>
+<h3 id="_component_uispec_server"><a class="anchor" href="#_component_uispec_server"></a>Component UiSpec Server</h3>
 <div class="sect3">
-<h4 id="_overview"><a class="anchor" href="#_overview"></a>3.1.1. Overview</h4>
+<h4 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h4>
 <div class="paragraph">
 <p>These endpoints allow to obtain UiSpec representations of the component/configuration types properties.</p>
 </div>
@@ -1068,7 +1068,7 @@ onTrigger(event, payload) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_paths"><a class="anchor" href="#_paths"></a>3.1.2. Paths</h4>
+<h4 id="_paths"><a class="anchor" href="#_paths"></a>Paths</h4>
 <div class="sect4">
 <h5 id="_execute"><a class="anchor" href="#_execute"></a>This endpoint execute an action required by a form.</h5>
 <div class="literalblock">
@@ -2007,7 +2007,7 @@ onTrigger(event, payload) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_definitions"><a class="anchor" href="#_definitions"></a>3.1.3. Definitions</h4>
+<h4 id="_definitions"><a class="anchor" href="#_definitions"></a>Definitions</h4>
 <div class="sect4">
 <h5 id="_completionstage"><a class="anchor" href="#_completionstage"></a>CompletionStage</h5>
 <div class="paragraph">
@@ -2956,7 +2956,7 @@ Only the first property with <code>proxyserver::formId</code> set to <code>"true
 </div>
 </div>
 <div class="sect1">
-<h2 id="play-integration"><a class="anchor" href="#play-integration"></a>4. Integrating with Play</h2>
+<h2 id="play-integration"><a class="anchor" href="#play-integration"></a>Integrating with Play</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Thanks to <a href="https://github.com/rmannibucau/playx">Playx</a>, you can deploy this server in a Play! application.</p>
@@ -3015,7 +3015,7 @@ X-ID = ${someRequestAttributeNameForTheId}
 </table>
 </div>
 <div class="sect2">
-<h3 id="_if_you_are_using_guice"><a class="anchor" href="#_if_you_are_using_guice"></a>4.1. If you are using Guice</h3>
+<h3 id="_if_you_are_using_guice"><a class="anchor" href="#_if_you_are_using_guice"></a>If you are using Guice</h3>
 <div class="paragraph">
 <p>The <code>org.talend.sdk.component.guice.ComponentUiSpecServerModule</code> Guice module allows to import <code>Services</code> from the server and to use some of them locally for the parts that are out of the scope of the endpoint delivery. For example:</p>
 </div>
@@ -3119,7 +3119,7 @@ Deletion is not handled by the server because there is no encapsulation of any f
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring_the_server_module"><a class="anchor" href="#_configuring_the_server_module"></a>5. Configuring the server module</h2>
+<h2 id="_configuring_the_server_module"><a class="anchor" href="#_configuring_the_server_module"></a>Configuring the server module</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The server module contains several configurations that you can set in:</p>

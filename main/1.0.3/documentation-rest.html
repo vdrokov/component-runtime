@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/documentation-rest.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:02.978Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:15.850Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -701,7 +701,7 @@ A test environment is available on Heroku and can be browsed using Talend Compon
 </div>
 </div>
 <div class="sect1">
-<h2 id="_http_api"><a class="anchor" href="#_http_api"></a>1. HTTP API</h2>
+<h2 id="_http_api"><a class="anchor" href="#_http_api"></a>HTTP API</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The HTTP API intends to expose most Talend Component Kit features over HTTP. It is a standalone Java HTTP server.</p>
@@ -722,12 +722,12 @@ The WebSocket protocol is activated for the endpoints. Endpoints then use <code>
 <p>Here is the API:</p>
 </div>
 <div class="sect2">
-<h3 id="_rest_resources_of_component_runtime_server_parent_server"><a class="anchor" href="#_rest_resources_of_component_runtime_server_parent_server"></a>1.1. REST resources of Component Runtime :: Server Parent :: Server</h3>
+<h3 id="_rest_resources_of_component_runtime_server_parent_server"><a class="anchor" href="#_rest_resources_of_component_runtime_server_parent_server"></a>REST resources of Component Runtime :: Server Parent :: Server</h3>
 <div class="paragraph">
 <p>1.0.3-SNAPSHOT</p>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_action_execute_code"><a class="anchor" href="#_code_post_api_v1_action_execute_code"></a>1.1.1. <code>POST api/v1/action/execute</code></h4>
+<h4 id="_code_post_api_v1_action_execute_code"><a class="anchor" href="#_code_post_api_v1_action_execute_code"></a><code>POST api/v1/action/execute</code></h4>
 <div class="paragraph">
 <p>This endpoint will execute any UI action and serialize the response as a JSON (pojo model)
 It takes as input the family, type and name of the related action to identify it and its configuration
@@ -786,7 +786,7 @@ as a flat key value set using the same kind of mapping than for components (opti
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_action_index_code"><a class="anchor" href="#_code_get_api_v1_action_index_code"></a>1.1.2. <code>GET api/v1/action/index</code></h4>
+<h4 id="_code_get_api_v1_action_index_code"><a class="anchor" href="#_code_get_api_v1_action_index_code"></a><code>GET api/v1/action/index</code></h4>
 <div class="paragraph">
 <p>This endpoint returns the list of available actions for a certain family and potentially filters the "
 output limiting it to some families and types of actions.</p>
@@ -855,7 +855,7 @@ output limiting it to some families and types of actions.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_component_dependencies_code"><a class="anchor" href="#_code_get_api_v1_component_dependencies_code"></a>1.1.3. <code>GET api/v1/component/dependencies</code></h4>
+<h4 id="_code_get_api_v1_component_dependencies_code"><a class="anchor" href="#_code_get_api_v1_component_dependencies_code"></a><code>GET api/v1/component/dependencies</code></h4>
 <div class="paragraph">
 <p>Returns a list of dependencies for the given components.</p>
 </div>
@@ -903,7 +903,7 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_component_dependency_id_code"><a class="anchor" href="#_code_get_api_v1_component_dependency_id_code"></a>1.1.4. <code>GET api/v1/component/dependency/{id}</code></h4>
+<h4 id="_code_get_api_v1_component_dependency_id_code"><a class="anchor" href="#_code_get_api_v1_component_dependency_id_code"></a><code>GET api/v1/component/dependency/{id}</code></h4>
 <div class="paragraph">
 <p>Return a binary of the dependency represented by <code>id</code>.
 It can be maven coordinates for dependencies or a component id.</p>
@@ -943,7 +943,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_component_details_code"><a class="anchor" href="#_code_get_api_v1_component_details_code"></a>1.1.5. <code>GET api/v1/component/details</code></h4>
+<h4 id="_code_get_api_v1_component_details_code"><a class="anchor" href="#_code_get_api_v1_component_details_code"></a><code>GET api/v1/component/details</code></h4>
 <div class="paragraph">
 <p>Returns the set of metadata about a few components identified by their 'id'.</p>
 </div>
@@ -1073,7 +1073,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_component_icon_family_id_code"><a class="anchor" href="#_code_get_api_v1_component_icon_family_id_code"></a>1.1.6. <code>GET api/v1/component/icon/family/{id}</code></h4>
+<h4 id="_code_get_api_v1_component_icon_family_id_code"><a class="anchor" href="#_code_get_api_v1_component_icon_family_id_code"></a><code>GET api/v1/component/icon/family/{id}</code></h4>
 <div class="paragraph">
 <p>Returns a particular family icon in raw bytes.</p>
 </div>
@@ -1118,7 +1118,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_component_icon_id_code"><a class="anchor" href="#_code_get_api_v1_component_icon_id_code"></a>1.1.7. <code>GET api/v1/component/icon/{id}</code></h4>
+<h4 id="_code_get_api_v1_component_icon_id_code"><a class="anchor" href="#_code_get_api_v1_component_icon_id_code"></a><code>GET api/v1/component/icon/{id}</code></h4>
 <div class="paragraph">
 <p>Returns a particular component icon in raw bytes.</p>
 </div>
@@ -1163,7 +1163,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_component_index_code"><a class="anchor" href="#_code_get_api_v1_component_index_code"></a>1.1.8. <code>GET api/v1/component/index</code></h4>
+<h4 id="_code_get_api_v1_component_index_code"><a class="anchor" href="#_code_get_api_v1_component_index_code"></a><code>GET api/v1/component/index</code></h4>
 <div class="paragraph">
 <p>Returns the list of available components.</p>
 </div>
@@ -1232,7 +1232,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_component_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_component_migrate_id_configurationversion_code"></a>1.1.9. <code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></h4>
+<h4 id="_code_post_api_v1_component_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_component_migrate_id_configurationversion_code"></a><code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></h4>
 <div class="paragraph">
 <p>Allows to migrate a component configuration without calling any component execution.</p>
 </div>
@@ -1259,7 +1259,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_configurationtype_details_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_details_code"></a>1.1.10. <code>GET api/v1/configurationtype/details</code></h4>
+<h4 id="_code_get_api_v1_configurationtype_details_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_details_code"></a><code>GET api/v1/configurationtype/details</code></h4>
 <div class="paragraph">
 <p>Returns the set of metadata about a few configurations identified by their 'id'.</p>
 </div>
@@ -1293,7 +1293,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_configurationtype_index_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_index_code"></a>1.1.11. <code>GET api/v1/configurationtype/index</code></h4>
+<h4 id="_code_get_api_v1_configurationtype_index_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_index_code"></a><code>GET api/v1/configurationtype/index</code></h4>
 <div class="paragraph">
 <p>Returns all available configuration type - storable models.
 Note that the lightPayload flag allows to load all of them at once when you eagerly need
@@ -1329,7 +1329,7 @@ to create a client model for all configurations.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"></a>1.1.12. <code>POST api/v1/configurationtype/migrate/{id}/{configurationVersion}</code></h4>
+<h4 id="_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"></a><code>POST api/v1/configurationtype/migrate/{id}/{configurationVersion}</code></h4>
 <div class="paragraph">
 <p>Allows to migrate a configuration without calling any component execution.</p>
 </div>
@@ -1356,7 +1356,7 @@ to create a client model for all configurations.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_documentation_component_id_code"><a class="anchor" href="#_code_get_api_v1_documentation_component_id_code"></a>1.1.13. <code>GET api/v1/documentation/component/{id}</code></h4>
+<h4 id="_code_get_api_v1_documentation_component_id_code"><a class="anchor" href="#_code_get_api_v1_documentation_component_id_code"></a><code>GET api/v1/documentation/component/{id}</code></h4>
 <div class="paragraph">
 <p>Returns an asciidoctor version of the documentation for the component represented by its identifier <code>id</code>.</p>
 </div>
@@ -1412,7 +1412,7 @@ component (_componentname_inlowercase).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_get_api_v1_environment_code"><a class="anchor" href="#_code_get_api_v1_environment_code"></a>1.1.14. <code>GET api/v1/environment</code></h4>
+<h4 id="_code_get_api_v1_environment_code"><a class="anchor" href="#_code_get_api_v1_environment_code"></a><code>GET api/v1/environment</code></h4>
 <div class="paragraph">
 <p>Returns the environment of this instance. Useful to check the version or configure a healthcheck for the server.</p>
 </div>
@@ -1448,7 +1448,7 @@ component (_componentname_inlowercase).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_execution_read_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_read_family_component_code"></a>1.1.15. <code>POST api/v1/execution/read/{family}/{component}</code></h4>
+<h4 id="_code_post_api_v1_execution_read_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_read_family_component_code"></a><code>POST api/v1/execution/read/{family}/{component}</code></h4>
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -1487,7 +1487,7 @@ The format is a JSON based format where each like is a json record.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_code_post_api_v1_execution_write_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_write_family_component_code"></a>1.1.16. <code>POST api/v1/execution/write/{family}/{component}</code></h4>
+<h4 id="_code_post_api_v1_execution_write_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_write_family_component_code"></a><code>POST api/v1/execution/write/{family}/{component}</code></h4>
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -1539,13 +1539,13 @@ To make sure that the migration can be enabled, you need to set the version the 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deprecated_endpoints"><a class="anchor" href="#_deprecated_endpoints"></a>1.2. Deprecated endpoints</h3>
+<h3 id="_deprecated_endpoints"><a class="anchor" href="#_deprecated_endpoints"></a>Deprecated endpoints</h3>
 <div class="paragraph">
 <p>Endpoints that are intended to disappear will be deprecated. A <code>X-Talend-Warning</code> header will be returned with a message as value.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="websocket-transport"><a class="anchor" href="#websocket-transport"></a>1.3. WebSocket transport</h3>
+<h3 id="websocket-transport"><a class="anchor" href="#websocket-transport"></a>WebSocket transport</h3>
 <div class="paragraph">
 <p>You can connect yo any endpoint by:</p>
 </div>
@@ -1625,7 +1625,7 @@ Accept: application/json
 </div>
 </div>
 <div class="sect1">
-<h2 id="_https_activation"><a class="anchor" href="#_https_activation"></a>2. HTTPS activation</h2>
+<h2 id="_https_activation"><a class="anchor" href="#_https_activation"></a>HTTPS activation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Using the server ZIP (or <a href="https://github.com/Talend/component-runtime/blob/master/.docker/Dockerfile">Docker image</a>), you can configure HTTPS by adding properties to <code>MEECROWAVE_OPTS</code>. Assuming that you have a certificate in <code>/opt/certificates/component.p12</code> (don&#8217;t forget to add/mount it in the Docker image if you use it), you can activate it as follows:</p>
@@ -1641,7 +1641,7 @@ export MEECROWAVE_OPTS="-Dskip-http=true -Dssl=true -Dhttps=8443 -Dkeystore-type
 </div>
 </div>
 <div class="sect1">
-<h2 id="_web_forms_and_rest_api"><a class="anchor" href="#_web_forms_and_rest_api"></a>3. Web forms and REST API</h2>
+<h2 id="_web_forms_and_rest_api"><a class="anchor" href="#_web_forms_and_rest_api"></a>Web forms and REST API</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The <code>component-form</code> library provides a way to build a component REST API facade that is compatible with React form library.</p>
@@ -1784,7 +1784,7 @@ The <code>/migrate</code> endpoint was not shown in the previous snippet but if
 </table>
 </div>
 <div class="sect2">
-<h3 id="_using_the_uispec_model_without_the_tooling"><a class="anchor" href="#_using_the_uispec_model_without_the_tooling"></a>3.1. Using the UiSpec model without the tooling</h3>
+<h3 id="_using_the_uispec_model_without_the_tooling"><a class="anchor" href="#_using_the_uispec_model_without_the_tooling"></a>Using the UiSpec model without the tooling</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
@@ -1865,7 +1865,7 @@ final String json = jsonb.toJson(form1);</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_javascript_integration"><a class="anchor" href="#_javascript_integration"></a>3.2. JavaScript integration</h3>
+<h3 id="_javascript_integration"><a class="anchor" href="#_javascript_integration"></a>JavaScript integration</h3>
 <div class="paragraph">
 <p>Default JavaScript integration goes through the <a href="https://github.com/Talend/ui/tree/master/packages/forms">Talend UI Forms</a> library.</p>
 </div>
@@ -1915,7 +1915,7 @@ export default class ComponentKitForm extends React.Component {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_logging"><a class="anchor" href="#_logging"></a>4. Logging</h2>
+<h2 id="_logging"><a class="anchor" href="#_logging"></a>Logging</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The logging uses Log4j2. You can specify a custom configuration by using the <code>-Dlog4j.configurationFile</code> system property or by adding a <code>log4j2.xml</code> file to the classpath.</p>
@@ -2037,14 +2037,14 @@ You can compose previous layout (message format) and appenders (where logs are w
 </div>
 </div>
 <div class="sect1">
-<h2 id="_uispec_server"><a class="anchor" href="#_uispec_server"></a>5. UiSpec Server</h2>
+<h2 id="_uispec_server"><a class="anchor" href="#_uispec_server"></a>UiSpec Server</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The UiSpec server is a companion application for the Component Server.
 It provides a client to the Component Server which serves UiSpec payload to integrate with the client JavaScript <code>UiForm</code> library.</p>
 </div>
 <div class="sect2">
-<h3 id="_coordinates"><a class="anchor" href="#_coordinates"></a>5.1. Coordinates</h3>
+<h3 id="_coordinates"><a class="anchor" href="#_coordinates"></a>Coordinates</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
@@ -2056,7 +2056,7 @@ It provides a client to the Component Server which serves UiSpec payload to inte
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configuring_the_uispec_server"><a class="anchor" href="#_configuring_the_uispec_server"></a>5.2. Configuring the UiSpec server</h3>
+<h3 id="_configuring_the_uispec_server"><a class="anchor" href="#_configuring_the_uispec_server"></a>Configuring the UiSpec server</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2143,7 +2143,7 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="_adding_custom_entries_to_the_forms"><a class="anchor" href="#_adding_custom_entries_to_the_forms"></a>5.2.1. Adding custom entries to the forms</h4>
+<h4 id="_adding_custom_entries_to_the_forms"><a class="anchor" href="#_adding_custom_entries_to_the_forms"></a>Adding custom entries to the forms</h4>
 <div class="paragraph">
 <p>As shown in the table above, you can customize the forms by type. The format reuses Talend Component Kit REST API (properties model) and defines two main types of extensions:</p>
 </div>
@@ -2174,7 +2174,7 @@ Always make sure to define a root object for these properties. Do not use dots i
 </div>
 </div>
 <div class="sect3">
-<h4 id="_adding_custom_converters_selecting_the_widget_or_rendering"><a class="anchor" href="#_adding_custom_converters_selecting_the_widget_or_rendering"></a>5.2.2. Adding custom converters (selecting the widget or rendering)</h4>
+<h4 id="_adding_custom_converters_selecting_the_widget_or_rendering"><a class="anchor" href="#_adding_custom_converters_selecting_the_widget_or_rendering"></a>Adding custom converters (selecting the widget or rendering)</h4>
 <div class="paragraph">
 <p>When developing a <code>org.talend.sdk.component.form.internal.converter.CustomPropertyConverter</code> CDI, the proxy adds it to the <code>UiSpecService</code> service and uses it with a high priority to convert the server model to a <code>UiSpec</code> model.</p>
 </div>
@@ -2196,7 +2196,7 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 </div>
 </div>
 <div class="sect3">
-<h4 id="_client_in_play"><a class="anchor" href="#_client_in_play"></a>5.2.3. Client in Play</h4>
+<h4 id="_client_in_play"><a class="anchor" href="#_client_in_play"></a>Client in Play</h4>
 <div class="paragraph">
 <p>The client to use to connect to the Talend Component Kit server is the CXF client, using HttpClient HC (NIO) transport. When you use the Play module, it can be configured with its standard properties prefixed by <code>talend.component.proxy.</code>.</p>
 </div>
@@ -2205,7 +2205,7 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 </div>
 </div>
 <div class="sect3">
-<h4 id="_defining_a_dropdown_with_all_root_configurations"><a class="anchor" href="#_defining_a_dropdown_with_all_root_configurations"></a>5.2.4. Defining a dropdown with all root configurations</h4>
+<h4 id="_defining_a_dropdown_with_all_root_configurations"><a class="anchor" href="#_defining_a_dropdown_with_all_root_configurations"></a>Defining a dropdown with all root configurations</h4>
 <div class="paragraph">
 <p>The special <code>dynamic_values</code> action <code>builtin::roots</code> can be used for a dropdown filled with all available root types.</p>
 </div>
@@ -2234,7 +2234,7 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 </div>
 </div>
 <div class="sect3">
-<h4 id="_reloading_the_form_based_on_the_selected_root"><a class="anchor" href="#_reloading_the_form_based_on_the_selected_root"></a>5.2.5. Reloading the form based on the selected root</h4>
+<h4 id="_reloading_the_form_based_on_the_selected_root"><a class="anchor" href="#_reloading_the_form_based_on_the_selected_root"></a>Reloading the form based on the selected root</h4>
 <div class="paragraph">
 <p>The <code>builtin::root::reloadFromId</code> action, with the <code>jsonpatch</code> type,
 allows to reload the whole form:</p>
@@ -2338,9 +2338,9 @@ onTrigger(event, payload) {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_http_api_2"><a class="anchor" href="#_http_api_2"></a>5.3. HTTP API</h3>
+<h3 id="_http_api_2"><a class="anchor" href="#_http_api_2"></a>HTTP API</h3>
 <div class="sect3">
-<h4 id="_component_uispec_server"><a class="anchor" href="#_component_uispec_server"></a>5.3.1. Component UiSpec Server</h4>
+<h4 id="_component_uispec_server"><a class="anchor" href="#_component_uispec_server"></a>Component UiSpec Server</h4>
 <div class="sect4">
 <h5 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h5>
 <div class="paragraph">
@@ -4301,7 +4301,7 @@ Only the first property with <code>proxyserver::formId</code> set to <code>"true
 </div>
 </div>
 <div class="sect2">
-<h3 id="play-integration"><a class="anchor" href="#play-integration"></a>5.4. Integrating with Play</h3>
+<h3 id="play-integration"><a class="anchor" href="#play-integration"></a>Integrating with Play</h3>
 <div class="paragraph">
 <p>Thanks to <a href="https://github.com/rmannibucau/playx">Playx</a>, you can deploy this server in a Play! application.</p>
 </div>
@@ -4359,7 +4359,7 @@ X-ID = ${someRequestAttributeNameForTheId}
 </table>
 </div>
 <div class="sect3">
-<h4 id="_if_you_are_using_guice"><a class="anchor" href="#_if_you_are_using_guice"></a>5.4.1. If you are using Guice</h4>
+<h4 id="_if_you_are_using_guice"><a class="anchor" href="#_if_you_are_using_guice"></a>If you are using Guice</h4>
 <div class="paragraph">
 <p>The <code>org.talend.sdk.component.guice.ComponentUiSpecServerModule</code> Guice module allows to import <code>Services</code> from the server and to use some of them locally for the parts that are out of the scope of the endpoint delivery. For example:</p>
 </div>
@@ -4462,7 +4462,7 @@ Deletion is not handled by the server because there is no encapsulation of any f
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configuring_the_server_module"><a class="anchor" href="#_configuring_the_server_module"></a>5.5. Configuring the server module</h3>
+<h3 id="_configuring_the_server_module"><a class="anchor" href="#_configuring_the_server_module"></a>Configuring the server module</h3>
 <div class="paragraph">
 <p>The server module contains several configurations that you can set in:</p>
 </div>
@@ -4617,14 +4617,14 @@ the configuration is read from system properties, environment variables, &#8230;
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docker"><a class="anchor" href="#_docker"></a>6. Docker</h2>
+<h2 id="_docker"><a class="anchor" href="#_docker"></a>Docker</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The server image is deployed on Docker. Its version is suffixed with a timestamp to ensure
 images are not overriden and can break your usage. You can check the available version on Docker hub.</p>
 </div>
 <div class="sect2">
-<h3 id="_run"><a class="anchor" href="#_run"></a>6.1. Run</h3>
+<h3 id="_run"><a class="anchor" href="#_run"></a>Run</h3>
 <div class="paragraph">
 <p>You can run the docker image by executing this command :</p>
 </div>
@@ -4635,19 +4635,19 @@ images are not overriden and can break your usage. You can check the available v
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configure"><a class="anchor" href="#_configure"></a>6.2. Configure</h3>
+<h3 id="_configure"><a class="anchor" href="#_configure"></a>Configure</h3>
 <div class="paragraph">
 <p>You can set the env variable <code>MEECROWAVE_OPTS</code> to customize the server, by default it is installed in <code>/opt/talend/component-kit</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_maven_repository"><a class="anchor" href="#_maven_repository"></a>6.3. Maven repository</h3>
+<h3 id="_maven_repository"><a class="anchor" href="#_maven_repository"></a>Maven repository</h3>
 <div class="paragraph">
 <p>The maven repository is the default one of the machine, you can change it setting the system property
 <code>talend_component_server_maven_repository=/path/to/your/m2</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="_deploy_components_to_the_server"><a class="anchor" href="#_deploy_components_to_the_server"></a>6.3.1. Deploy components to the server</h4>
+<h4 id="_deploy_components_to_the_server"><a class="anchor" href="#_deploy_components_to_the_server"></a>Deploy components to the server</h4>
 <div class="paragraph">
 <p>If you want to deploy some components you can configure which ones in MEECROWAVE_OPTS (see server doc online)
 and redirect your local m2:</p>
@@ -4664,14 +4664,14 @@ and redirect your local m2:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_logging_2"><a class="anchor" href="#_logging_2"></a>6.4. Logging</h3>
+<h3 id="_logging_2"><a class="anchor" href="#_logging_2"></a>Logging</h3>
 <div class="paragraph">
 <p>The component server docker image comes with two log4j2 profile <code>default</code> and <code>kafka</code>.
 The logging profile can be changed by setting the environment variable <code>TALEND_COMPONENT_LOG4J2_PROFILE</code> to <code>kafka</code>
 the <code>default</code> profile is active by default.</p>
 </div>
 <div class="sect3">
-<h4 id="_default_profile"><a class="anchor" href="#_default_profile"></a>6.4.1. default profile</h4>
+<h4 id="_default_profile"><a class="anchor" href="#_default_profile"></a>default profile</h4>
 <div class="paragraph">
 <p>The <strong>default</strong> profile has file and console logging capabilities.
 The console logging is off by default and you can activate it by setting <code>CONSOLE_LOG_LEVEL</code> environment variable
@@ -4690,7 +4690,7 @@ to see the logs without connecting to the server by activating console logging.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="_kafka_profile"><a class="anchor" href="#_kafka_profile"></a>6.4.2. Kafka profile</h4>
+<h4 id="_kafka_profile"><a class="anchor" href="#_kafka_profile"></a>Kafka profile</h4>
 <div class="paragraph">
 <p><strong>Kafka</strong> profile let you send log to Kafka servers. The log are formatted in json and follow the layout defined by Talend
 and described here <a href="https://github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout" class="bare">github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout</a></p>
@@ -4729,7 +4729,7 @@ and <code>TRACING_KAFKA_TOPIC</code> will receive brave tracing logs.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tracing_brave_monitoring"><a class="anchor" href="#_tracing_brave_monitoring"></a>6.4.3. Tracing (Brave Monitoring)</h4>
+<h4 id="_tracing_brave_monitoring"><a class="anchor" href="#_tracing_brave_monitoring"></a>Tracing (Brave Monitoring)</h4>
 <div class="paragraph">
 <p>The component server use <a href="https://github.com/openzipkin/brave" class="bare">github.com/openzipkin/brave</a> to monitor request.</p>
 </div>
@@ -4800,7 +4800,7 @@ This is the default sample rate for all the endpoints and has a default value of
 </div>
 </div>
 <div class="sect2">
-<h3 id="_build_the_image_yourself"><a class="anchor" href="#_build_the_image_yourself"></a>6.5. Build the image yourself</h3>
+<h3 id="_build_the_image_yourself"><a class="anchor" href="#_build_the_image_yourself"></a>Build the image yourself</h3>
 <div class="paragraph">
 <p>You can build component starter server in docker following those instructions :</p>
 </div>

@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/testing-http.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:03.788Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:16.560Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -376,7 +376,7 @@
 </div>
 <article class="doc">
         <div class="sect1">
-<h2 id="component-runtime-http-junit"><a class="anchor" href="#component-runtime-http-junit"></a>1. component-runtime-http-junit</h2>
+<h2 id="component-runtime-http-junit"><a class="anchor" href="#component-runtime-http-junit"></a>component-runtime-http-junit</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The HTTP JUnit module allows you to mock REST API very simply. The module coordinates are:</p>
@@ -411,7 +411,7 @@ is able to serve precomputed responses saved in the classpath.</p>
 <p>You can plug your own <code>ResponseLocator</code> to map a request to a response, but the default implementation - which should be sufficient in most cases - looks in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1. JUnit 4</h3>
+<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>JUnit 4</h3>
 <div class="paragraph">
 <p>JUnit 4 setup is done through two rules:</p>
 </div>
@@ -455,7 +455,7 @@ If you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ssl"><a class="anchor" href="#_ssl"></a>1.1.1. SSL</h4>
+<h4 id="_ssl"><a class="anchor" href="#_ssl"></a>SSL</h4>
 <div class="paragraph">
 <p>For tests using SSL-based services, you need to use <code>activeSsl()</code> on the <code>JUnit4HttpApi</code> rule.</p>
 </div>
@@ -478,7 +478,7 @@ public void test() throws Exception {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
+<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>JUnit 5</h3>
 <div class="paragraph">
 <p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation that you can add to your test class. You can inject the test handler - which has some utilities for advanced cases - through <code>@HttpApiInject</code>:</p>
 </div>
@@ -509,7 +509,7 @@ The injection is optional and the <code>@HttpApi</code> annotation allows you to
 </table>
 </div>
 <div class="sect3">
-<h4 id="_ssl_2"><a class="anchor" href="#_ssl_2"></a>1.2.1. SSL</h4>
+<h4 id="_ssl_2"><a class="anchor" href="#_ssl_2"></a>SSL</h4>
 <div class="paragraph">
 <p>For tests using SSL-based services, you need to use <code>@HttpApi(useSsl = true)</code>.</p>
 </div>
@@ -535,7 +535,7 @@ class MyHttpsApiTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_capturing_mode"><a class="anchor" href="#_capturing_mode"></a>1.3. Capturing mode</h3>
+<h3 id="_capturing_mode"><a class="anchor" href="#_capturing_mode"></a>Capturing mode</h3>
 <div class="paragraph">
 <p>The strength of this implementation is to run a small proxy server and to auto-configure the JVM:
 <code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code> are auto-configured to work out-of-the-box with the proxy.</p>
@@ -575,7 +575,7 @@ You can create it manually, as described in <a href="#component-runtime-http-jun
 </div>
 </div>
 <div class="sect2">
-<h3 id="_passthrough_mode"><a class="anchor" href="#_passthrough_mode"></a>1.4. Passthrough mode</h3>
+<h3 id="_passthrough_mode"><a class="anchor" href="#_passthrough_mode"></a>Passthrough mode</h3>
 <div class="paragraph">
 <p>If you set the <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server acts as a proxy and executes each request to the actual server - similarly to the capturing mode.</p>
 </div>

@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/testing-http.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:00.496Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:13.333Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -307,7 +307,7 @@
 </div>
 <article class="doc">
         <div class="sect1">
-<h2 id="_component_runtime_http_junit"><a class="anchor" href="#_component_runtime_http_junit"></a>1. component-runtime-http-junit</h2>
+<h2 id="_component_runtime_http_junit"><a class="anchor" href="#_component_runtime_http_junit"></a>component-runtime-http-junit</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The HTTP JUnit module allows you to mock REST API very easily. Here are its coordinates:</p>
@@ -345,7 +345,7 @@ in most cases - will look in <code>talend/testing/http/&lt;class name&gt;_&lt;me
 in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>1.1. JUnit 4</h3>
+<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>JUnit 4</h3>
 <div class="paragraph">
 <p>JUnit 4 setup is done through two rules: <code>JUnit4HttpApi</code> which is responsible to start the server and <code>JUnit4HttpApiPerMethodConfigurator</code>
 which is responsible to configure the server per test and also handle the capture mode (see later).</p>
@@ -382,7 +382,7 @@ if you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ssl"><a class="anchor" href="#_ssl"></a>1.1.1. SSL</h4>
+<h4 id="_ssl"><a class="anchor" href="#_ssl"></a>SSL</h4>
 <div class="paragraph">
 <p>For tests using SSL based services, you will need to use <code>activeSsl()</code> on the <code>JUnit4HttpApi</code> rule.</p>
 </div>
@@ -405,7 +405,7 @@ public void test() throws Exception {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>1.2. JUnit 5</h3>
+<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>JUnit 5</h3>
 <div class="paragraph">
 <p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation you can put on your test class. You can inject
 the test handler (which has some utilities for advanced cases) through <code>@HttpApiInject</code>:</p>
@@ -437,7 +437,7 @@ the injection is optional and the <code>@HttpApi</code> allows you to configure 
 </table>
 </div>
 <div class="sect3">
-<h4 id="_ssl_2"><a class="anchor" href="#_ssl_2"></a>1.2.1. SSL</h4>
+<h4 id="_ssl_2"><a class="anchor" href="#_ssl_2"></a>SSL</h4>
 <div class="paragraph">
 <p>For tests using SSL based services, you will need to use <code>@HttpApi(useSsl = true)</code>.</p>
 </div>
@@ -463,7 +463,7 @@ class MyHttpsApiTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_capturing_mode"><a class="anchor" href="#_capturing_mode"></a>1.3. Capturing mode</h3>
+<h3 id="_capturing_mode"><a class="anchor" href="#_capturing_mode"></a>Capturing mode</h3>
 <div class="paragraph">
 <p>The strength of this implementation is to run a small proxy server and auto configure the JVM:
 <code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code>
@@ -510,7 +510,7 @@ remove the system property. The test will still pass, using <code>google.com</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="_passthrough_mode"><a class="anchor" href="#_passthrough_mode"></a>1.4. Passthrough mode</h3>
+<h3 id="_passthrough_mode"><a class="anchor" href="#_passthrough_mode"></a>Passthrough mode</h3>
 <div class="paragraph">
 <p>Setting <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server will just be a proxy and will execute each request
 to the actual server - like in capturing mode.</p>

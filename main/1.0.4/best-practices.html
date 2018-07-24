@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/best-practices.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:03.321Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:16.150Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -383,7 +383,7 @@
 <article class="doc">
         <h1>Talend Component Kit best practices</h1>
         <div class="sect1">
-<h2 id="_organizing_your_code"><a class="anchor" href="#_organizing_your_code"></a>1. Organizing your code</h2>
+<h2 id="_organizing_your_code"><a class="anchor" href="#_organizing_your_code"></a>Organizing your code</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Some recommendations apply to the way component packages are organized:</p>
@@ -419,16 +419,16 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring_components"><a class="anchor" href="#_configuring_components"></a>2. Configuring components</h2>
+<h2 id="_configuring_components"><a class="anchor" href="#_configuring_components"></a>Configuring components</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_serializing_your_configuration"><a class="anchor" href="#_serializing_your_configuration"></a>2.1. Serializing your configuration</h3>
+<h3 id="_serializing_your_configuration"><a class="anchor" href="#_serializing_your_configuration"></a>Serializing your configuration</h3>
 <div class="paragraph">
 <p>It is recommended to serialize your configuration in order to be able to pass it through other components.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_input_and_output_components"><a class="anchor" href="#_input_and_output_components"></a>2.2. Input and output components</h3>
+<h3 id="_input_and_output_components"><a class="anchor" href="#_input_and_output_components"></a>Input and output components</h3>
 <div class="paragraph">
 <p>When building a new component, the first step is to identify the way it must be configured.</p>
 </div>
@@ -500,7 +500,7 @@ public class MyComponentConfiguration {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_about_actions"><a class="anchor" href="#_about_actions"></a>2.2.1. About actions</h4>
+<h4 id="_about_actions"><a class="anchor" href="#_about_actions"></a>About actions</h4>
 <div class="paragraph">
 <p>Input and output components are particular because they can be linked to a set of actions. It is recommended to wire all the actions you can apply to ensure the consumers of your component can provide a rich experience to their users.</p>
 </div>
@@ -567,14 +567,14 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </table>
 </div>
 <div class="sect3">
-<h4 id="_limitations"><a class="anchor" href="#_limitations"></a>2.2.2. Limitations</h4>
+<h4 id="_limitations"><a class="anchor" href="#_limitations"></a>Limitations</h4>
 <div class="paragraph">
 <p>Until the studio integration is complete, it is recommended to limit processors to one input.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_processor_components"><a class="anchor" href="#_processor_components"></a>2.3. Processor components</h3>
+<h3 id="_processor_components"><a class="anchor" href="#_processor_components"></a>Processor components</h3>
 <div class="paragraph">
 <p>Configuring processor components is simpler than configuring input and output components because it is specific for each component. For example, a mapper takes the mapping between the input and output models:</p>
 </div>
@@ -595,15 +595,15 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </div>
 </div>
 <div class="sect1">
-<h2 id="_handling_ui_interactions"><a class="anchor" href="#_handling_ui_interactions"></a>3. Handling UI interactions</h2>
+<h2 id="_handling_ui_interactions"><a class="anchor" href="#_handling_ui_interactions"></a>Handling UI interactions</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is recommended to provide as much information as possible to let the UI work with the data during its edition.</p>
 </div>
 <div class="sect2">
-<h3 id="_validations"><a class="anchor" href="#_validations"></a>3.1. Validations</h3>
+<h3 id="_validations"><a class="anchor" href="#_validations"></a>Validations</h3>
 <div class="sect3">
-<h4 id="_light_validations"><a class="anchor" href="#_light_validations"></a>3.1.1. Light validations</h4>
+<h4 id="_light_validations"><a class="anchor" href="#_light_validations"></a>Light validations</h4>
 <div class="paragraph">
 <p>Light validations are all the validations you can execute on the client side. They are listed in the <a href="component-configuration.html#documentation-ui-hints" class="page">UI hint</a> section.</p>
 </div>
@@ -612,7 +612,7 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </div>
 </div>
 <div class="sect3">
-<h4 id="_custom_validations"><a class="anchor" href="#_custom_validations"></a>3.1.2. Custom validations</h4>
+<h4 id="_custom_validations"><a class="anchor" href="#_custom_validations"></a>Custom validations</h4>
 <div class="paragraph">
 <p>Custom validations enforce custom code to be executed, they are more heavy to process, so prefer using light validations when possible.</p>
 </div>
@@ -687,7 +687,7 @@ It is recommended to use <code>@Option("value")</code> until you know exactly wh
 </div>
 </div>
 <div class="sect2">
-<h3 id="_completion"><a class="anchor" href="#_completion"></a>3.2. Completion</h3>
+<h3 id="_completion"><a class="anchor" href="#_completion"></a>Completion</h3>
 <div class="paragraph">
 <p>It can be handy and user-friendly to provide completion on some fields.
 For example, to define completion for available drivers:</p>
@@ -713,7 +713,7 @@ public CompletionList findDrivers() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_component_representation"><a class="anchor" href="#_component_representation"></a>3.3. Component representation</h3>
+<h3 id="_component_representation"><a class="anchor" href="#_component_representation"></a>Component representation</h3>
 <div class="paragraph">
 <p>Each component must have its own icon:</p>
 </div>
@@ -742,7 +742,7 @@ You can use <a href="http://talend.surge.sh/icons/" class="bare">talend.surge.sh
 </div>
 </div>
 <div class="sect1">
-<h2 id="_enforcing_versioning_on_components"><a class="anchor" href="#_enforcing_versioning_on_components"></a>4. Enforcing versioning on components</h2>
+<h2 id="_enforcing_versioning_on_components"><a class="anchor" href="#_enforcing_versioning_on_components"></a>Enforcing versioning on components</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is recommended to enforce the version of your component, event though it is not mandatory for the first version.</p>
@@ -785,7 +785,7 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect1">
-<h2 id="_testing_components"><a class="anchor" href="#_testing_components"></a>5. Testing components</h2>
+<h2 id="_testing_components"><a class="anchor" href="#_testing_components"></a>Testing components</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Testing your components is critical. You can use unit and simple standalone JUnit tests, but it is also highly recommended to have Beam tests in order to make sure that your component works in Big Data.</p>
@@ -793,7 +793,7 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect1 relatedlinks">
-<h2 id="_related_articles"><a class="anchor" href="#_related_articles"></a>6. Related articles</h2>
+<h2 id="_related_articles"><a class="anchor" href="#_related_articles"></a>Related articles</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>

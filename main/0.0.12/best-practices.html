@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/best-practices.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:51:58.023Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:10.866Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -312,7 +312,7 @@
 <article class="doc">
         <h1>Talend Component Best Practices</h1>
         <div class="sect1">
-<h2 id="_organize_your_code"><a class="anchor" href="#_organize_your_code"></a>1. Organize your code</h2>
+<h2 id="_organize_your_code"><a class="anchor" href="#_organize_your_code"></a>Organize your code</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Few recommendations apply to the way a component packages are organized:</p>
@@ -348,7 +348,7 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_model_your_configuration"><a class="anchor" href="#_model_your_configuration"></a>2. Model your configuration</h2>
+<h2 id="_model_your_configuration"><a class="anchor" href="#_model_your_configuration"></a>Model your configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is recommended to ensure your configuration is serializable since
@@ -357,7 +357,7 @@ it is likely you will pass it through your components which can be serialized.</
 </div>
 </div>
 <div class="sect1">
-<h2 id="_i_o_configuration"><a class="anchor" href="#_i_o_configuration"></a>3. I/O configuration</h2>
+<h2 id="_i_o_configuration"><a class="anchor" href="#_i_o_configuration"></a>I/O configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The first step to build a component is to identify the way it must be configured.</p>
@@ -433,7 +433,7 @@ public class MyComponentConfiguration {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_processor_configuration"><a class="anchor" href="#_processor_configuration"></a>4. Processor configuration</h2>
+<h2 id="_processor_configuration"><a class="anchor" href="#_processor_configuration"></a>Processor configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Processor configuration is simpler than I/O configuration since it is specific each time. For instance a mapper
@@ -455,7 +455,7 @@ will take the mapping between the input and output model:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_i_o_recommendations"><a class="anchor" href="#_i_o_recommendations"></a>5. I/O recommendations</h2>
+<h2 id="_i_o_recommendations"><a class="anchor" href="#_i_o_recommendations"></a>I/O recommendations</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>I/O are particular because they can be linked to a set of actions. It is recommended to wire all the ones you can apply
@@ -525,7 +525,7 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </div>
 </div>
 <div class="sect1">
-<h2 id="_i_o_limitations"><a class="anchor" href="#_i_o_limitations"></a>6. I/O limitations</h2>
+<h2 id="_i_o_limitations"><a class="anchor" href="#_i_o_limitations"></a>I/O limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Until the studio integration is complete, it is recommended to limit processors to 1 input.</p>
@@ -533,15 +533,15 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </div>
 </div>
 <div class="sect1">
-<h2 id="_handle_ui_interactions"><a class="anchor" href="#_handle_ui_interactions"></a>7. Handle UI interactions</h2>
+<h2 id="_handle_ui_interactions"><a class="anchor" href="#_handle_ui_interactions"></a>Handle UI interactions</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>It is also recommended to provide as much information as possible to let the UI work with the data during its edition.</p>
 </div>
 <div class="sect2">
-<h3 id="_validations"><a class="anchor" href="#_validations"></a>7.1. Validations</h3>
+<h3 id="_validations"><a class="anchor" href="#_validations"></a>Validations</h3>
 <div class="sect3">
-<h4 id="_light_validations"><a class="anchor" href="#_light_validations"></a>7.1.1. Light validations</h4>
+<h4 id="_light_validations"><a class="anchor" href="#_light_validations"></a>Light validations</h4>
 <div class="paragraph">
 <p>The light validations are all the validations you can execute on the client side. They are listed in the <a href="documentation.html#documentation-ui-hints" class="page">UI hint</a> part.</p>
 </div>
@@ -550,7 +550,7 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </div>
 </div>
 <div class="sect3">
-<h4 id="_custom_validations"><a class="anchor" href="#_custom_validations"></a>7.1.2. Custom validations</h4>
+<h4 id="_custom_validations"><a class="anchor" href="#_custom_validations"></a>Custom validations</h4>
 <div class="paragraph">
 <p>These ones will enforce custom code to be executed, they are more heavy so try to avoid to use them for simple validations
 you can do with the previous part.</p>
@@ -628,7 +628,7 @@ model and just prefix it with <code>value.</code> to send the instance to valida
 </div>
 </div>
 <div class="sect2">
-<h3 id="_completion"><a class="anchor" href="#_completion"></a>7.2. Completion</h3>
+<h3 id="_completion"><a class="anchor" href="#_completion"></a>Completion</h3>
 <div class="paragraph">
 <p>It can be neat and user friendly to provide completion on some fields. Here an example for the available drivers:</p>
 </div>
@@ -653,7 +653,7 @@ public CompletionList findDrivers() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_don_t_forget_the_component_representation"><a class="anchor" href="#_don_t_forget_the_component_representation"></a>7.3. Don&#8217;t forget the component representation</h3>
+<h3 id="_don_t_forget_the_component_representation"><a class="anchor" href="#_don_t_forget_the_component_representation"></a>Don&#8217;t forget the component representation</h3>
 <div class="paragraph">
 <p>Each component must have its own icon:</p>
 </div>
@@ -682,7 +682,7 @@ you can use <a href="http://talend.surge.sh/icons/" class="bare">talend.surge.sh
 </div>
 </div>
 <div class="sect1">
-<h2 id="_version_and_component"><a class="anchor" href="#_version_and_component"></a>8. Version and component</h2>
+<h2 id="_version_and_component"><a class="anchor" href="#_version_and_component"></a>Version and component</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Not mandatory for the first version but recommended: enforce the version of your component.</p>
@@ -725,7 +725,7 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect1">
-<h2 id="_don_t_forget_to_test"><a class="anchor" href="#_don_t_forget_to_test"></a>9. Don&#8217;t forget to test</h2>
+<h2 id="_don_t_forget_to_test"><a class="anchor" href="#_don_t_forget_to_test"></a>Don&#8217;t forget to test</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Testing the components is crucial, you can use unit tests and simple standalone JUnit but it is highly recommended
@@ -734,7 +734,7 @@ to have a few Beam tests to ensure your component works in Big Data world.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contribute_to_this_guide"><a class="anchor" href="#_contribute_to_this_guide"></a>10. Contribute to this guide</h2>
+<h2 id="_contribute_to_this_guide"><a class="anchor" href="#_contribute_to_this_guide"></a>Contribute to this guide</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Don&#8217;t hesitate to send your feedback on writing component and best practices you can encounter.</p>

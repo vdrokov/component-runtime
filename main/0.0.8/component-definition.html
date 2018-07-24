@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/component-definition.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T09:52:00.651Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T10:34:13.564Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -390,7 +390,7 @@ not using fixed interfaces or method signatures. This will allow to add incremen
 </div>
 </div>
 <div class="sect1">
-<h2 id="_partitionmapper"><a class="anchor" href="#_partitionmapper"></a>1. PartitionMapper</h2>
+<h2 id="_partitionmapper"><a class="anchor" href="#_partitionmapper"></a>PartitionMapper</h2>
 <div class="sectionbody">
 <div class="quoteblock">
 <blockquote>
@@ -435,7 +435,7 @@ this kind of component <code>MUST</code> be <code>Serializable</code> to be dist
 </div>
 </div>
 <div class="sect1">
-<h2 id="_definition"><a class="anchor" href="#_definition"></a>2. Definition</h2>
+<h2 id="_definition"><a class="anchor" href="#_definition"></a>Definition</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A partition mapper requires 3 methods marked with specific annotations:</p>
@@ -454,7 +454,7 @@ this kind of component <code>MUST</code> be <code>Serializable</code> to be dist
 </ol>
 </div>
 <div class="sect2">
-<h3 id="_assessor"><a class="anchor" href="#_assessor"></a>2.1. @Assessor</h3>
+<h3 id="_assessor"><a class="anchor" href="#_assessor"></a>@Assessor</h3>
 <div class="paragraph">
 <p>The assessor method will return the estimated size of the data related to the component (depending its configuration).
 It <code>MUST</code> return a <code>Number</code> and <code>MUST</code> not take any parameter.</p>
@@ -472,7 +472,7 @@ public long estimateDataSetByteSize() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_split"><a class="anchor" href="#_split"></a>2.2. @Split</h3>
+<h3 id="_split"><a class="anchor" href="#_split"></a>@Split</h3>
 <div class="paragraph">
 <p>The split method will return a collection of partition mappers and can take optionally a <code>@PartitionSize</code> long
 value which is the requested size of the dataset per sub partition mapper.</p>
@@ -490,7 +490,7 @@ public List&lt;MyMapper&gt; split(@PartitionSize final long desiredSize) {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_emitter"><a class="anchor" href="#_emitter"></a>2.3. @Emitter</h3>
+<h3 id="_emitter"><a class="anchor" href="#_emitter"></a>@Emitter</h3>
 <div class="paragraph">
 <p>The emitter method <code>MUST</code> not have any parameter and <code>MUST</code> return a producer. It generally uses the partition mapper configuration
 to instantiate/configure the producer.</p>
@@ -510,7 +510,7 @@ public MyProducer create() {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_producer"><a class="anchor" href="#_producer"></a>3. Producer</h2>
+<h2 id="_producer"><a class="anchor" href="#_producer"></a>Producer</h2>
 <div class="sectionbody">
 <div class="quoteblock">
 <blockquote>
@@ -533,7 +533,7 @@ public MyData produces() {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_processor"><a class="anchor" href="#_processor"></a>4. Processor</h2>
+<h2 id="_processor"><a class="anchor" href="#_processor"></a>Processor</h2>
 <div class="sectionbody">
 <div class="quoteblock">
 <blockquote>
@@ -655,7 +655,7 @@ of a computed size which is way too big for your backend.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_multiple_outputs"><a class="anchor" href="#_multiple_outputs"></a>5. Multiple outputs</h2>
+<h2 id="_multiple_outputs"><a class="anchor" href="#_multiple_outputs"></a>Multiple outputs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In some case you may want to split the output of a processor in two. A common example is "main" and "reject" branches
@@ -704,7 +704,7 @@ public MyNewData map(final MyData data,
 </div>
 </div>
 <div class="sect1">
-<h2 id="_multiple_inputs"><a class="anchor" href="#_multiple_inputs"></a>6. Multiple inputs</h2>
+<h2 id="_multiple_inputs"><a class="anchor" href="#_multiple_inputs"></a>Multiple inputs</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Having multiple inputs is closeto the output case excep it doesn&#8217;t require a wrapper <code>OutputEmitter</code>:</p>
@@ -736,7 +736,7 @@ name its branches depending on the component semantic.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_output"><a class="anchor" href="#_output"></a>7. Output</h2>
+<h2 id="_output"><a class="anchor" href="#_output"></a>Output</h2>
 <div class="sectionbody">
 <div class="quoteblock">
 <blockquote>
@@ -760,7 +760,7 @@ public void store(final MyData data) {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_combiners"><a class="anchor" href="#_combiners"></a>8. Combiners?</h2>
+<h2 id="_combiners"><a class="anchor" href="#_combiners"></a>Combiners?</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For now Talend Component doesn&#8217;t enable you to define a <code>Combiner</code>. It would be the symmetric part of the partition mapper
