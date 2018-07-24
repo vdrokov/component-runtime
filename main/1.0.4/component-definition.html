@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/component-definition.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
-<meta name="date" content="2018-07-24T15:32:20.358Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-24T16:18:24.062Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -274,6 +274,9 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="index-knowledge-base.html">Knowledge base</a>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="changelog.html">Changelog</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -397,7 +400,7 @@
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-In distributed environments, class constructor are called on cluster manager node. Methods annotated with <code>@PostConstruct</code> and <code>@PreDestroy</code> are called on worker nodes. Thus, partition plan computation and pipeline tasks are performed on different nodes.
+In distributed environments, class constructor are called on cluster manager nodes. Methods annotated with <code>@PostConstruct</code> and <code>@PreDestroy</code> are called on worker nodes. Thus, partition plan computation and pipeline tasks are performed on different nodes.
 </td>
 </tr>
 </table>
@@ -583,7 +586,7 @@ public MyData produces() {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_processor"><a class="anchor" href="#_processor"></a>Processor</h2>
+<h2 id="component-type-processor"><a class="anchor" href="#component-type-processor"></a>Processor</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A <code>Processor</code> is a component that converts incoming data to a different model.</p>
@@ -668,17 +671,8 @@ public void endBatch() {
 }</code></pre>
 </div>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-It is a good practice to support a <code>maxBatchSize</code> here and to commit before the end of the group, in case of a computed size that is way too big for your backend to handle.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>You can optimize the data batch processing by using the <code>maxBatchSize</code> parameter. This parameter is automatically implemented on the component when it is deployed to a Talend application. Only the logic needs to be implemented. Learn how to implement chunking/bulking in <a href="tutorial-how-to-implement-bulking.html" class="page">this document</a>.</p>
 </div>
 </div>
 </div>
