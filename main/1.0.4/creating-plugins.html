@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating plugins :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/creating-plugins.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-07-24T09:52:03.416Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="query" id="searchInput">
+                            <input type="hidden" name="idx" value="githubantora">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-runtime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="1.0.4">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Talend Component Kit Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-getting-started-with-tck.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="what-is-a-talend-component.html">What is a Talend Component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="methodology-creating-components.html">Methodology</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tck-framework-overview.html">Framework Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-setup-environment.html">Setting up your environment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="system-prerequisites.html">System requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">IntelliJ plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-generating-project.html">Generating a project</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Using the starter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="generate-project-using-intellij-plugin.html">Using the IntelliJ plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-creating-components.html">Creating components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-definition.html">Defining a component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-configuration.html">Configuring a component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-registering.html">Registering a component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-internationalization.html">Internationalizing a component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-loading.html">Loading a component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="best-practices.html">Best practices</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">mapsub-build-tools.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="wrapping-a-beam-io.html">Wrapping a Beam I/O</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-defining-services.html">Defining services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-internationalization.html">Internationalizing a service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-actions.html">Providing actions through a service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-built-in.html">Built-in services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-interceptors.html">Services and interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-custom-api.html">Defining a custom API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-testing-components.html">Testing components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="testing-best-practices.html">Component testing best practices</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index-sub-testing-runtime.html">Testing component runtime</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="testing-beam.html">Beam testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="testing-multiple-envs.html">Testing in multiple environments</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="testing-maven-passwords.html">Reusing Maven credentials</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="testing-generating-data.html">Generating data for testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-deploying-components.html">Deploying components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="studio.html">Deploying to Talend Studio</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-tutorials.html">Tutorials</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generating a project from the starter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Creating a Hazelcast input component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Creating a Hazelcast output component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Creating a Zendesk REST API connector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-test-rest-api.html">Testing a Zendesk REST API connector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-test-your-components.html">Testing a Hazelcast component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Testing in a continuous integration environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-reference-guide.html">Reference Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="gallery.html">Widget and validation gallery</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-actions.html">Actions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-conditions.html">Conditions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-configuration-types.html">Configuration types</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-constraints.html">Constraints</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-junit-environments.html">Junit environments</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-proxy-server-api.html">Proxy server API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-proxy-server-configuration.html">Proxy server configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-rest-resources.html">Component Runtime REST resources</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-scanning-exclusions.html">Scanning exclusions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-server-configuration.html">Server configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-ui.html">UI API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="apidocs.html">Javadocs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index-knowledge-base.html">Knowledge base</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">1.0.4</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.3/index.html">1.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.2/index.html">1.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.1/index.html">1.0.1</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.0/index.html">1.0.0</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.12/index.html">0.0.12</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.11/index.html">0.0.11</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.10/index.html">0.0.10</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.9/index.html">0.0.9</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.8/index.html">0.0.8</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.7/index.html">0.0.7</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.6/index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb"><a href="creating-plugins.html">Creating plugins</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">1.0.4</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="creating-plugins.html">1.0.4</a>
+    <a class="version is-missing" href="../1.0.3/index.html">1.0.3</a>
+    <a class="version is-missing" href="../1.0.2/index.html">1.0.2</a>
+    <a class="version is-missing" href="../1.0.1/index.html">1.0.1</a>
+    <a class="version is-missing" href="../1.0.0/index.html">1.0.0</a>
+    <a class="version is-missing" href="../0.0.12/index.html">0.0.12</a>
+    <a class="version is-missing" href="../0.0.11/index.html">0.0.11</a>
+    <a class="version is-missing" href="../0.0.10/index.html">0.0.10</a>
+    <a class="version is-missing" href="../0.0.9/index.html">0.0.9</a>
+    <a class="version is-missing" href="../0.0.8/index.html">0.0.8</a>
+    <a class="version is-missing" href="../0.0.7/index.html">0.0.7</a>
+    <a class="version is-missing" href="../0.0.6/index.html">0.0.6</a>
+    <a class="version is-missing" href="../0.0.5/index.html">0.0.5</a>
+    <a class="version is-missing" href="../0.0.4/index.html">0.0.4</a>
+    <a class="version is-missing" href="../0.0.3/index.html">0.0.3</a>
+    <a class="version is-missing" href="../0.0.2/index.html">0.0.2</a>
+    <a class="version is-missing" href="../0.0.1/index.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Creating plugins</h1>
+        <div class="sect1">
+<h2 id="_defining_the_containermanager_or_the_classloader_manager"><a class="anchor" href="#_defining_the_containermanager_or_the_classloader_manager"></a>1. Defining the ContainerManager or the classloader manager</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The entry point of the API is the <code>ContainerManager</code>. It allows
+you to define what is the <code>Shared</code> classloader and to create children:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">try (final ContainerManager manager = new ContainerManager( <i class="conum" data-value="1"></i><b>(1)</b>
+    ContainerManager.DependenciesResolutionConfiguration.builder() <i class="conum" data-value="2"></i><b>(2)</b>
+        .resolver(new MvnDependencyListLocalRepositoryResolver("META-INF/talend/dependencies.list"))
+        .rootRepositoryLocation(new File(System.getProperty("user.home", ".m2/repository"))
+        .create(),
+    ContainerManager.ClassLoaderConfiguration.builder() <i class="conum" data-value="3"></i><b>(3)</b>
+        .parent(getClass().getClassLoader())
+        .classesFilter(name -&gt; true)
+        .parentClassesFilter(name -&gt; true)
+        .create())) {
+
+    // create plugins
+
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>ContainerManager</code> is <code>AutoCloseable</code>, which allows you to use it in a try or finally block if needed.<br>
+This manager has two main configuration entries:<br>
+<div class="ulist">
+<ul>
+<li>
+<p>how to resolve dependencies for plugins from the plugin file/location</p>
+</li>
+<li>
+<p>how to configure the classloaders (what is the parent classloader, how to handle the parent first/last delegation, and so on).<br></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is recommended to keep the manager running if you can reuse plugins in order to avoid recreating classloaders and to mutualize them.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>DependenciesResolutionConfiguration</code> allows you to pass a custom <code>Resolver</code> which is used to build the plugin classloaders.<br>
+Currently, the library only provides <code>MvnDependencyListLocalRepositoryResolver</code>, which reads the output of <code>mvn dependencies:list</code>. Add it to the plugin jar to resolve the dependencies from a <strong>local</strong> maven repository.<br>
+Note that <code>SNAPSHOT</code> are only resolved based on their name and not from the metadata (only useful in development).<br>
+To continue the comparison with a Servlet server, you can implement an unpacked war resolver.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>ClassLoaderConfiguration</code> configures the behavior of the whole container/plugin pair, including:<br>
+<div class="ulist">
+<ul>
+<li>
+<p>What the shared classloader is</p>
+</li>
+<li>
+<p>Which classes are loaded from the shared loader first (intended to be used for API which shouldn&#8217;t be loaded from the plugin loader)</p>
+</li>
+<li>
+<p>Which classes are loaded from the parent classloader. This can be useful to prevent loading a "common" library from the parent classloader. For instance, it can be neat for guava, commons-lang3, an so on).</p>
+</li>
+</ul>
+</div></td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_plugins"><a class="anchor" href="#_creating_plugins"></a>2. Creating plugins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once you have defined a manager, you can create plugins:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final Container plugin1 = manager.create( <i class="conum" data-value="1"></i><b>(1)</b>
+    "plugin-id", <i class="conum" data-value="2"></i><b>(2)</b>
+    new File("/plugin/myplugin1.jar")); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>To create a plugin <code>Container</code>, use the <code>create</code> method of the manager.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Give an explicit ID to the plugin. You can choose to bypass it. In that case, the manager uses the jar name.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Specify the plugin root jar.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To create the plugin container, the <code>Resolver</code> resolves the dependencies needed for the plugin, then the manager creates the plugin classloader and registers the plugin <code>Container</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_defining_a_listener_for_the_plugin_registration"><a class="anchor" href="#_defining_a_listener_for_the_plugin_registration"></a>3. Defining a listener for the plugin registration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Some actions are needed when a plugin is registered or unregistered. For that purpose, you can use <code>ContainerListener</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyListener implements ContainerListener {
+    @Override
+    public void onCreate(final Container container) {
+        System.out.println("Container #" + container.getId() + " started.");
+    }
+
+    @Override
+    public void onClose(final Container container) {
+        System.out.println("Container #" + container.getId() + " stopped.");
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Plugins are directly registered on the manager:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final ContainerManager manager = getContainerManager();
+final ContainerListener myListener = new MyListener();
+
+manager.registerListener(myListener); <i class="conum" data-value="1"></i><b>(1)</b>
+// do something
+manager.unregisterListener(myListener); <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>registerListener</code> is used to add the listener going forward. However, it does not get any event for already created containers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>You can remove a listener at any time by using <code>unregisterListener</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+<script>
+(function (window, document) {
+  hljs.initHighlighting();
+
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {return;}
+      var code = pre.querySelector('code.hljs');
+      if (!code) {return;}
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {code.style.height = closedSize;}
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>

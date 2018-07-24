@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with Talend Component Kit :: Talend Component Kit Developer Reference Guide</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/index-getting-started-with-tck.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<meta name="date" content="2018-07-24T09:52:03.502Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
+<link rel="stylesheet" href="../../_/css/talend.css">
+<link rel="shortcut icon" href="../../_/images/favicon_0.ico" />    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
+    <script>dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','GTM-PSBN')</script>
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <a href="https://talend.github.io/component-runtime">Talend Component Kit</a>
+                <span class="separator">//</span>
+                <a href="https://talend.github.io/component-runtime">Docs</a>
+            </div>
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="global-search">
+                    <form role="search" action="search.html">
+                        <div>
+                            <input class="rounded" type="text" placeholder="Search" name="query" id="searchInput">
+                            <input type="hidden" name="idx" value="githubantora">
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Projects</div>
+                    <div class="navbar-dropdown">
+                        <div class="navbar-item"><strong>API</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-api">Repository</a>
+                        <hr class="navbar-divider">
+                        <div class="navbar-item"><strong>Runtime</strong></div>
+                        <a class="navbar-item" href="https://github.com/talend/component-runtime">Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="main" data-version="1.0.4">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Talend Component Kit Developer Reference Guide</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Talend Component Kit Documentation</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-getting-started-with-tck.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="what-is-a-talend-component.html">What is a Talend Component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="methodology-creating-components.html">Methodology</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tck-framework-overview.html">Framework Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-setup-environment.html">Setting up your environment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="system-prerequisites.html">System requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-talend-intellij-plugin-usage.html">IntelliJ plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-generating-project.html">Generating a project</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Using the starter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="generate-project-using-intellij-plugin.html">Using the IntelliJ plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-creating-components.html">Creating components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-definition.html">Defining a component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-configuration.html">Configuring a component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-registering.html">Registering a component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-internationalization.html">Internationalizing a component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-loading.html">Loading a component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="best-practices.html">Best practices</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">mapsub-build-tools.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="wrapping-a-beam-io.html">Wrapping a Beam I/O</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-defining-services.html">Defining services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-internationalization.html">Internationalizing a service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-actions.html">Providing actions through a service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-built-in.html">Built-in services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-interceptors.html">Services and interceptors</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-custom-api.html">Defining a custom API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-testing-components.html">Testing components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="testing-best-practices.html">Component testing best practices</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index-sub-testing-runtime.html">Testing component runtime</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="testing-beam.html">Beam testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="testing-multiple-envs.html">Testing in multiple environments</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="testing-maven-passwords.html">Reusing Maven credentials</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="testing-generating-data.html">Generating data for testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="services-pipeline.html">Simple/Test Pipeline API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="https://beam.apache.org/documentation/programming-guide/#creating-a-pipeline">Beam Pipeline API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-deploying-components.html">Deploying components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="studio.html">Deploying to Talend Studio</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-tutorials.html">Tutorials</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-generate-project-using-starter.html">Generating a project from the starter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-create-an-input-component.html">Creating a Hazelcast input component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-create-an-output-component.html">Creating a Hazelcast output component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-create-components-rest-api.html">Creating a Zendesk REST API connector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-test-rest-api.html">Testing a Zendesk REST API connector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-test-your-components.html">Testing a Hazelcast component</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tutorial-dev-vs-ci-setup.html">Testing in a continuous integration environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index-reference-guide.html">Reference Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="gallery.html">Widget and validation gallery</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-actions.html">Actions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-conditions.html">Conditions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-configuration-types.html">Configuration types</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-constraints.html">Constraints</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-junit-environments.html">Junit environments</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-proxy-server-api.html">Proxy server API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-proxy-server-configuration.html">Proxy server configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-rest-resources.html">Component Runtime REST resources</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-scanning-exclusions.html">Scanning exclusions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-server-configuration.html">Server configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ref-ui.html">UI API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="apidocs.html">Javadocs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index-knowledge-base.html">Knowledge base</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Talend Component Kit Developer Reference Guide</span>
+    <span class="version">1.0.4</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Talend Component Kit Developer Reference Guide</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">1.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.3/index.html">1.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.2/index.html">1.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.1/index.html">1.0.1</a>
+        </li>
+        <li class="version">
+          <a href="../1.0.0/index.html">1.0.0</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.12/index.html">0.0.12</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.11/index.html">0.0.11</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.10/index.html">0.0.10</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.9/index.html">0.0.9</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.8/index.html">0.0.8</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.7/index.html">0.0.7</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.6/index.html">0.0.6</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.5/index.html">0.0.5</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.4/index.html">0.0.4</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.3/index.html">0.0.3</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.2/index.html">0.0.2</a>
+        </li>
+        <li class="version">
+          <a href="../0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+    <button class="navigation-toggle"></button>
+    <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Talend Component Kit Developer Reference Guide</a></li>
+    <li class="crumb">Talend Component Kit Documentation</li>
+    <li class="crumb"><a href="index-getting-started-with-tck.html">Getting Started</a></li>
+  </ul>
+</nav>
+    <div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">1.0.4</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="index-getting-started-with-tck.html">1.0.4</a>
+    <a class="version is-missing" href="../1.0.3/index.html">1.0.3</a>
+    <a class="version is-missing" href="../1.0.2/index.html">1.0.2</a>
+    <a class="version is-missing" href="../1.0.1/index.html">1.0.1</a>
+    <a class="version is-missing" href="../1.0.0/index.html">1.0.0</a>
+    <a class="version is-missing" href="../0.0.12/index.html">0.0.12</a>
+    <a class="version is-missing" href="../0.0.11/index.html">0.0.11</a>
+    <a class="version is-missing" href="../0.0.10/index.html">0.0.10</a>
+    <a class="version is-missing" href="../0.0.9/index.html">0.0.9</a>
+    <a class="version is-missing" href="../0.0.8/index.html">0.0.8</a>
+    <a class="version is-missing" href="../0.0.7/index.html">0.0.7</a>
+    <a class="version is-missing" href="../0.0.6/index.html">0.0.6</a>
+    <a class="version is-missing" href="../0.0.5/index.html">0.0.5</a>
+    <a class="version is-missing" href="../0.0.4/index.html">0.0.4</a>
+    <a class="version is-missing" href="../0.0.3/index.html">0.0.3</a>
+    <a class="version is-missing" href="../0.0.2/index.html">0.0.2</a>
+    <a class="version is-missing" href="../0.0.1/index.html">0.0.1</a>
+  </div>
+</div>
+</div>
+<article class="doc">
+        <h1>Getting Started with Talend Component Kit</h1>
+        <div class="sect1">
+<h2 id="_what_is_a_talend_component"><a class="anchor" href="#_what_is_a_talend_component"></a>1. What is a Talend Component</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Basically, a component (or connector) is a functional piece that performs a single operation from a Talend application. For example, <strong>tMysqlInput</strong> extracts data from a MySQL table, <strong>tFilterRow</strong> filters data based on a condition.</p>
+</div>
+<div class="paragraph">
+<p>Physically, a component is a set of files stored within a folder named after the component name. All native components are located in the <code>&lt;Talend Studio installation dir&gt;/plugins/org.talend.designer.components.localprovider_[version]/components</code> directory. Each component is a sub-folder under this directory, the folder name is the component name.</p>
+</div>
+<div class="paragraph">
+<p>Graphically, a component is an icon that you can drag and drop from the Palette to the workspace.</p>
+</div>
+<div class="paragraph">
+<p>Technically, a component is a snippet of generated Java code that is part of a Job which is a Java class. A Job is made of one or more components or connectors. The job name will be the class name and each component in a job will be translated to a snippet of generated Java code. The Java code will be compiled automatically when you save the job.</p>
+</div>
+<div class="paragraph">
+<p><strong>Talend Component Kit</strong> helps you creating your own components.</p>
+</div>
+<div class="sect2 relatedlinks">
+<h3 id="_related_articles"><a class="anchor" href="#_related_articles"></a>1.1. Related articles</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="tck-framework-overview.html" class="page">Talend Component Kit framework overview</a></p>
+</li>
+<li>
+<p><a href="methodology-creating-components.html" class="page">Methodology for creating components</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_talend_component_kit_methodology"><a class="anchor" href="#_talend_component_kit_methodology"></a>2. Talend Component Kit methodology</h2>
+<div class="sectionbody">
+<div id="getting-started-introducing-talend-component" class="paragraph">
+<p><em>Talend Component Kit</em> is a framework designed to simplify the development of components at two levels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Runtime</strong>: Runtime is about injecting the specific component code into a job or pipeline. The framework helps unify as much as possible the code required to run in Data Integration (DI) and BEAM environments.</p>
+</li>
+<li>
+<p><strong>Graphical interface</strong>: The framework helps unify the code required to be able to render the component in a browser (web) or in the Eclipse-based Studio (SWT).</p>
+</li>
+</ul>
+</div>
+<div id="getting-started-principles" class="paragraph">
+<p>Before being able to develop new components, check the <a href="system-prerequisites.html" class="page">prerequisites</a> to make sure that you have all you need to get started.</p>
+</div>
+<div class="paragraph">
+<p>Developing new components using the framework includes:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="index-generating-project.html" class="page">Creating a project</a> using the <a href="https://starter-toolkit.talend.io/">starter</a> or the <a href="tutorial-talend-intellij-plugin-usage.html" class="page">Talend IntelliJ plugin</a>. This step allows to build the skeleton of the project. It consists in:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Defining the general configuration model for each component in your project</p>
+</li>
+<li>
+<p>Generating and downloading the project archive from the starter</p>
+</li>
+<li>
+<p>Compiling the project</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Importing the compiled project in your IDE. This step is not required if you have generated the project using the IntelliJ plugin.</p>
+</li>
+<li>
+<p><a href="index-creating-components.html" class="page">Implementing the components</a>, including:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Registering the components family</p>
+</li>
+<li>
+<p>Defining the layout and configurable part of the components</p>
+</li>
+<li>
+<p>Defining the partition mapper for Input components</p>
+</li>
+<li>
+<p>Implementing the source logic for Input components</p>
+</li>
+<li>
+<p>Defining the processor for Output components</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="index-testing-components.html" class="page">Testing the components</a></p>
+</li>
+<li>
+<p><a href="index-deploying-components.html" class="page">Deploying the components</a> to Talend Studio or Cloud applications</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Some additional configuration steps can be necessary according to your requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="index-defining-services.html" class="page">Defining services</a> that can be reused in several components</p>
+</li>
+<li>
+<p><a href="tutorial-configuration-sensitive-data.html" class="page">Masking sensitive data</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/methodo.png" alt="methodo"></span></p>
+</div>
+<div class="sect2 relatedlinks">
+<h3 id="_related_articles_2"><a class="anchor" href="#_related_articles_2"></a>2.1. Related articles</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="what-is-a-talend-component.html" class="page">What is a Talend component</a></p>
+</li>
+<li>
+<p><a href="tck-framework-overview.html" class="page">Talend Component Kit framework overview</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_talend_component_kit_overview"><a class="anchor" href="#_talend_component_kit_overview"></a>3. Talend Component Kit Overview</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_component_api"><a class="anchor" href="#_component_api"></a>3.1. Component API</h3>
+<div class="paragraph">
+<p>The component API is declarative (through annotations) to ensure it is:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Evolutive. It can get new features without breaking old code.</p>
+</li>
+<li>
+<p>As static as possible.</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_evolutive"><a class="anchor" href="#_evolutive"></a>3.1.1. Evolutive</h4>
+<div class="paragraph">
+<p>Because it is fully declarative, any new API can be added iteratively without requiring
+any change to existing components.</p>
+</div>
+<div class="paragraph">
+<p>For example, in the case of Beam potential evolution:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public MyOutput onElement(MyInput data) {
+    return ...;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>would not be affected by the addition of the new Timer API, which can be used as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public MyOutput onElement(MyInput data,
+                          @Timer("my-timer") Timer timer) {
+    return ...;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_static"><a class="anchor" href="#_static"></a>3.1.2. Static</h4>
+<div class="sect4">
+<h5 id="_ui_friendly"><a class="anchor" href="#_ui_friendly"></a>UI-friendly</h5>
+<div class="paragraph">
+<p>The intent of the framework is to be able to fit in a Java UI as well as in a web UI.</p>
+</div>
+<div class="paragraph">
+<p>It must be understood as colocalized and remote UI. The goal is to move as much as possible the logic to the UI side for UI-related actions. For example, validating a pattern, a size, and so on, should be done on the client side rather than on the server side. Being static encourages this practice.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_auditable_and_with_clear_expectations"><a class="anchor" href="#_auditable_and_with_clear_expectations"></a>Auditable and with clear expectations</h5>
+<div class="paragraph">
+<p>The other goal of being static in the API definition is to ensure that the model will not be mutated at runtime and that all the auditing and modeling can be done before, at the design phase.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_dev_friendly"><a class="anchor" href="#_dev_friendly"></a>Dev-friendly</h5>
+<div class="paragraph">
+<p>Being static also ensures that the development can be validated as much as possible through build tools.<br>
+This does not replace the requirement to test the components but helps developers to maintain components with automated tools.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_flexible_data_modeling"><a class="anchor" href="#_flexible_data_modeling"></a>3.1.3. Flexible data modeling</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_generic_and_specific"><a class="anchor" href="#_generic_and_specific"></a>3.1.4. Generic and specific</h4>
+<div class="paragraph">
+<p>The processor API supports <code>JsonObject</code> as well as any custom model. The goal is to support generic component development that need to access configured "object paths", as well as specific components that rely on a defined path from the input.</p>
+</div>
+<div class="paragraph">
+<p>A generic component can look like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public MyOutput onElement(JsonObject input) {
+    return ...;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A specific component can look like (with <code>MyInput</code> a POJO):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+public MyOutput onElement(MyInput input) {
+    return ...;
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_no_runtime_assumption"><a class="anchor" href="#_no_runtime_assumption"></a>No runtime assumption</h5>
+<div class="paragraph">
+<p>By design, the framework must run in DI (plain standalone Java program) and in Beam pipelines.<br>
+It is out of scope of the framework to handle the way the runtime serializes - if needed - the data.</p>
+</div>
+<div class="paragraph">
+<p>For that reason, it is critical not to import serialization constraints to the stack. As an example, this is the reason why <code>JsonObject</code> is not an <code>IndexedRecord</code> from Avro.</p>
+</div>
+<div class="paragraph">
+<p>Any serialization concern should either be hidden in the framework runtime (outside of the component developer scope) or in the runtime integration with the framework (for example, Beam integration).</p>
+</div>
+<div class="paragraph">
+<p>In this context, JSON-P can be good compromise because it brings a powerful API with very few constraints.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_isolated"><a class="anchor" href="#_isolated"></a>3.2. Isolated</h3>
+<div class="paragraph">
+<p>The components must be able to execute even if they have conflicting libraries. For that purpose,
+classloaders must be isolated. A component defines its dependencies based on a Maven format and is  always bound to its own classloader.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rest"><a class="anchor" href="#_rest"></a>3.3. REST</h3>
+<div class="sect3">
+<h4 id="_consumable_model"><a class="anchor" href="#_consumable_model"></a>3.3.1. Consumable model</h4>
+<div class="paragraph">
+<p>The definition payload is as flat as possible and <em>strongly</em> typed to ensure it can be manipulated by consumers.
+This way, consumers can add or remove fields with simple mapping rules, without any abstract tree handling.</p>
+</div>
+<div class="paragraph">
+<p>The execution (runtime) configuration is the concatenation of framework metadata (only the version) and a key/value model of the instance of the configuration based on the definition properties paths for the keys. It enables consumers to maintain and work with the keys/values according to their need.</p>
+</div>
+<div class="paragraph">
+<p>The framework not being responsible for any persistence, it is very important to make sure that consumers can handle it from end to end, with the ability to search for values (update a machine, update a port and so on) and keys (for example, a new encryption rule on key <code>certificate</code>).</p>
+</div>
+<div class="paragraph">
+<p>Talend Component Kit is a metamodel provider (to build forms) and a runtime <strong>execution</strong> platform. It takes a configuration instance and uses it volatilely to execute a component logic. This implies it cannot own the data nor define the contract it has for these two endpoints and must let the consumers handle the data lifecycle (creation, encryption, deletion, and so on).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_execution_with_streaming"><a class="anchor" href="#_execution_with_streaming"></a>3.3.2. Execution with streaming</h4>
+<div class="paragraph">
+<p>A new mime type called <code>talend/stream</code> is introduced to define a streaming format.</p>
+</div>
+<div class="paragraph">
+<p>It matches a JSON object per line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{"key1":"value1"}
+{"key2":"value2"}
+{"key1":"value11"}
+{"key1":"value111"}
+{"key2":"value2"}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fixed_set_of_icons"><a class="anchor" href="#_fixed_set_of_icons"></a>3.4. Fixed set of icons</h3>
+<div class="paragraph">
+<p>Icons (<code>@Icon</code>) are based on a fixed set. Custom icons can be used but their display cannot be guaranteed. Components can be used in any environment and require a consistent look that cannot be guaranteed outside of the UI itself. Defining keys only is the best way to communicate this information.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Once you know exactly how you will deploy your component in the Studio, then you
+can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon file.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2 relatedlinks">
+<h3 id="_related_articles_3"><a class="anchor" href="#_related_articles_3"></a>3.5. Related articles</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="what-is-a-talend-component.html" class="page">What is a Talend component</a></p>
+</li>
+<li>
+<p><a href="methodology-creating-components.html" class="page">Methodology for creating components</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+</div>
+<footer class="footer">
+    <div class="footer-with-copyright footer-with-links">
+        <ul class="footer-links" style="">
+            <li><a class="gwt-Anchor" href="http://www.talend.com/">Talend</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/contact">Contact</a></li>
+            <li><a class="gwt-Anchor" href="http://www.talend.com/legal-terms/us-eula">Talend EULA</a></li>
+        </ul>
+        <div class="footer-copyright" style="">&copy; 2018 Talend Inc. All rights reserved.</div>
+    </div>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+<script>
+(function (window, document) {
+  hljs.initHighlighting();
+
+  var closedSize = '50px';
+  document.querySelectorAll('.listingblock')
+    .forEach(function (listingblock, index) {
+      var pre = listingblock.querySelector('div.content > pre.highlightjs.highlight');
+      if (!pre) {return;}
+      var code = pre.querySelector('code.hljs');
+      if (!code) {return;}
+
+      var span = document.createElement('span');
+      var initialBlockClosed = listingblock.className.indexOf('initial-block-closed') >= 0;
+      span.className = 'code-' + (initialBlockClosed ? 'collapsed' : 'open') + '-handle code-handle-base';
+
+      var height = code.style.height;
+      if (initialBlockClosed) {code.style.height = closedSize;}
+
+      span.addEventListener('click', function () {
+        if (span.className == 'code-collapsed-handle code-handle-base') {
+          code.style.height = height;
+          span.className = 'code-open-handle code-handle-base';
+        } else {
+          code.style.height = closedSize;
+          span.className = 'code-collapsed-handle code-handle-base';
+        }
+      }, false);
+
+      pre.prepend(span);
+    });
+})(window, document);
+</script>
+  </body>
+</html>
