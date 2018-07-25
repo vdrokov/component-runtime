@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: UiSpec Server</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/server-uispec.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-07-25T11:41:14.980Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-25T15:51:38.235Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -544,6 +544,123 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
     }
   ]
 }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_populate_a_dropdown_from_a_remote_call"><a class="anchor" href="#_populate_a_dropdown_from_a_remote_call"></a>Populate a dropdown from a remote call</h3>
+<div class="paragraph">
+<p>In some cases you will want to call a remote service giving you a list of data. For that there is a
+specific <code>http</code> <code>builtin</code> trigger which will be caught on the proxy and redirected to the configured server
+to map it as a <code>dynamic_values</code> trigger.</p>
+</div>
+<div class="paragraph">
+<p>Assume you want to call <code>http:://foo.com/bar</code> propagating the cookies to get the proposals for the
+entry <code>bar</code>, then you will configure it this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "prependProperties": [
+    {
+      "path": "$datasetMetadata",
+      "type": "OBJECT"
+    },
+    {
+      "path": "$datasetMetadata.bar",
+      "displayName": "Bar",
+      "type": "STRING",
+      "metadata": {
+        "action::dynamic_values": "builtin::http::dynamic_values(url=http:://foo.com/bar,headers=cookie)"
+      }
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The configuration of the call is passed through a comma separated list in parenthesis as seen in previous snippet.
+The configuration entries are the following ones:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target server to call. Note that placeholder are supported and filled from request headers (<code>placeholderProvider</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://proposals.service.com" class="bare">proposals.service.com</a></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">headers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma separated list of headers to propagate (using <code>placeholderProvider</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookie,Authorization</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">accept</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>Accept</code> header. Note that current we only support to parse JSON output and it defaults to <code>application/json</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/v1+json</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (default to <code>false</code>) to set to <code>true</code> if the response payload is an object and not a list.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">objectKey</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>object</code> is <code>true</code>, the key to extract to get the list to process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>items</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the field to extract from an item of the response list to map to the identifier of the proposal (default to <code>id</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the field to extract from an item of the response list to map to the label of the proposal (default to <code>name</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>label</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_going_further_make_this_field_hidden_when_empty"><a class="anchor" href="#_going_further_make_this_field_hidden_when_empty"></a>Going further: make this field hidden when empty</h4>
+<div class="paragraph">
+<p>In some cases you will want to hide this field if the proposals are &#8656; 1, in this case you can use a condition:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "prependProperties": [
+    {
+      "path": "$datasetMetadata",
+      "type": "OBJECT"
+    },
+    {
+      "path": "$datasetMetadata.bar",
+      "displayName": "Bar",
+      "type": "STRING",
+      "metadata": {
+        "action::dynamic_values": "builtin::http::dynamic_values(url=http:://foo.com/bar,headers=cookie)",
+        "condition::if::target": ".",
+        "condition::if::value": "0,1",
+        "condition::if::negate": "true",
+        "condition::if::evaluationStrategy": "LENGTH",
+      }
+    }
+  ]
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
