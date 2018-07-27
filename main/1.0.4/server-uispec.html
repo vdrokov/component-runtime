@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: UiSpec Server</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/server-uispec.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-07-27T09:34:35.395Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-07-27T12:37:28.120Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -725,7 +725,7 @@ public class ReferenceServiceImpl implements ReferenceService {
 <div class="sect2">
 <h3 id="_reloading_the_form_based_on_the_selected_root"><a class="anchor" href="#_reloading_the_form_based_on_the_selected_root"></a>Reloading the form based on the selected root</h3>
 <div class="paragraph">
-<p>The <code>builtin::root::reloadFromId</code> action, with the <code>jsonpatch</code> type,
+<p>The <code>builtin::root::reloadFromId</code> action, with the <code>reloadForm</code> type,
 allows to reload the whole form:</p>
 </div>
 <div class="listingblock">
@@ -759,6 +759,38 @@ allows to reload the whole form:</p>
 </div>
 <div class="paragraph">
 <p>The client side (javascript) is now fully encapsulated in <code>ComponentForm</code> from <code>@talend/ui</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reloading_the_form_based_on_a_selected_entity_reference"><a class="anchor" href="#_reloading_the_form_based_on_a_selected_entity_reference"></a>Reloading the form based on a selected entity reference</h3>
+<div class="paragraph">
+<p>The <code>builtin::root::reloadFromParentEntityId</code> action, with the <code>reloadFromParentEntityId</code> type,
+allows to reload the whole form:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "path": "$datasetMetadata.reference",
+  "displayName": "Reference",
+  "type": "STRING",
+  "metadata": {
+    "action::reloadFromParentEntityId": "builtin::root::reloadFromParentEntityId",
+    "action::reloadFromParentEntityId::parameters": "."
+  }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+references are automatically initialized if you use <code>PropertiesService#filterProperties</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
