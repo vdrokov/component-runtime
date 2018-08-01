@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: REST resources</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/ref-rest-resources.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-01T14:45:05.975Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-01T15:19:01.459Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
@@ -525,110 +525,6 @@
         ]
       }
     },
-    "/api/v1/component/icon/family/{id}":{
-      "get":{
-        "deprecated":false,
-        "description":"Returns the icon for a family.",
-        "operationId":"familyIcon",
-        "parameters":[
-          {
-            "allowEmptyValue":false,
-            "allowReserved":false,
-            "description":"the family identifier",
-            "in":"path",
-            "name":"id",
-            "required":false,
-            "schema":{
-              "type":"string"
-            }
-          }
-        ],
-        "responses":{
-          "200":{
-            "content":{
-              "application/octet-stream":{
-
-              }
-            },
-            "description":"Returns a particular family icon in raw bytes."
-          },
-          "404":{
-            "content":{
-              "application/json":{
-
-              }
-            },
-            "description":"The family or icon is not found"
-          }
-        },
-        "tags":[
-          "Component"
-        ]
-      }
-    },
-    "/api/v1/component/migrate/{id}/{configurationVersion}":{
-      "post":{
-        "deprecated":false,
-        "description":"Allows to migrate a component configuration without calling any component execution.",
-        "operationId":"migrate",
-        "parameters":[
-          {
-            "allowEmptyValue":false,
-            "allowReserved":false,
-            "description":"the component identifier",
-            "in":"path",
-            "name":"id",
-            "required":false,
-            "schema":{
-              "type":"string"
-            }
-          },
-          {
-            "allowEmptyValue":false,
-            "allowReserved":false,
-            "description":"the configuration version you send",
-            "in":"path",
-            "name":"configurationVersion",
-            "required":false,
-            "schema":{
-              "type":"integer"
-            }
-          }
-        ],
-        "requestBody":{
-          "content":{
-            "application/json":{
-              "schema":{
-                "type":"object"
-              }
-            }
-          },
-          "description":"the actual configuration in key/value form.",
-          "required":true
-        },
-        "responses":{
-          "200":{
-            "content":{
-              "application/json":{
-
-              }
-            },
-            "description":"the new configuration for that component (or the same if no migration was needed)."
-          },
-          "404":{
-            "content":{
-              "application/json":{
-
-              }
-            },
-            "description":"The component is not found"
-          }
-        },
-        "tags":[
-          "Component"
-        ]
-      }
-    },
     "/api/v1/component/index":{
       "get":{
         "deprecated":false,
@@ -842,6 +738,159 @@
         ]
       }
     },
+    "/api/v1/component/icon/family/{id}":{
+      "get":{
+        "deprecated":false,
+        "description":"Returns the icon for a family.",
+        "operationId":"familyIcon",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the family identifier",
+            "in":"path",
+            "name":"id",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/octet-stream":{
+
+              }
+            },
+            "description":"Returns a particular family icon in raw bytes."
+          },
+          "404":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"The family or icon is not found"
+          }
+        },
+        "tags":[
+          "Component"
+        ]
+      }
+    },
+    "/api/v1/component/migrate/{id}/{configurationVersion}":{
+      "post":{
+        "deprecated":false,
+        "description":"Allows to migrate a component configuration without calling any component execution.",
+        "operationId":"migrate",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the component identifier",
+            "in":"path",
+            "name":"id",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the configuration version you send",
+            "in":"path",
+            "name":"configurationVersion",
+            "required":false,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object"
+              }
+            }
+          },
+          "description":"the actual configuration in key/value form.",
+          "required":true
+        },
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"the new configuration for that component (or the same if no migration was needed)."
+          },
+          "404":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"The component is not found"
+          }
+        },
+        "tags":[
+          "Component"
+        ]
+      }
+    },
+    "/api/v1/configurationtype/details":{
+      "get":{
+        "deprecated":false,
+        "description":"Returns all available configuration type - storable models. Note that the lightPayload flag allows to load all of them at once when you eagerly need  to create a client model for all configurations.",
+        "operationId":"getDetail",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the language for display names.",
+            "in":"query",
+            "name":"language",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the comma separated list of identifiers to request.",
+            "in":"query",
+            "name":"identifiers",
+            "required":false,
+            "schema":{
+              "items":{
+
+              },
+              "properties":{
+
+              }
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"the list of available and storable configurations (datastore, dataset, ...)."
+          }
+        },
+        "tags":[
+          "Configuration Type"
+        ]
+      }
+    },
     "/api/v1/configurationtype/migrate/{id}/{configurationVersion}":{
       "post":{
         "deprecated":false,
@@ -931,55 +980,6 @@
             "required":false,
             "schema":{
               "type":"boolean"
-            }
-          }
-        ],
-        "responses":{
-          "200":{
-            "content":{
-              "application/json":{
-
-              }
-            },
-            "description":"the list of available and storable configurations (datastore, dataset, ...)."
-          }
-        },
-        "tags":[
-          "Configuration Type"
-        ]
-      }
-    },
-    "/api/v1/configurationtype/details":{
-      "get":{
-        "deprecated":false,
-        "description":"Returns all available configuration type - storable models. Note that the lightPayload flag allows to load all of them at once when you eagerly need  to create a client model for all configurations.",
-        "operationId":"getDetail",
-        "parameters":[
-          {
-            "allowEmptyValue":false,
-            "allowReserved":false,
-            "description":"the language for display names.",
-            "in":"query",
-            "name":"language",
-            "required":false,
-            "schema":{
-              "type":"string"
-            }
-          },
-          {
-            "allowEmptyValue":false,
-            "allowReserved":false,
-            "description":"the comma separated list of identifiers to request.",
-            "in":"query",
-            "name":"identifiers",
-            "required":false,
-            "schema":{
-              "items":{
-
-              },
-              "properties":{
-
-              }
             }
           }
         ],
