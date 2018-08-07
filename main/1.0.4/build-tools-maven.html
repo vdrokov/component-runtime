@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Kit Developer Reference Guide :: Maven Plugin</title>
+    <title>Talend Component Kit Developer Reference Guide :: Building components with Maven</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/build-tools-maven.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-07T15:32:30.067Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-07T15:45:10.553Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -170,6 +170,9 @@
   <li data-depth="2">
     <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -179,7 +182,7 @@
     <a class="menu-link" href="system-prerequisites.html">System requirements</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-talend-intellij-plugin-usage.html">IntelliJ plugin</a>
+    <a class="menu-link" href="installing-talend-intellij-plugin.html">Installing the IntelliJ plugin</a>
   </li>
 </ul>
   </li>
@@ -198,19 +201,22 @@
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Creating components</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="component-definition.html">Defining a component</a>
+    <a class="menu-link" href="component-registering.html">Registering a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-processor-output.html">Defining a processor/output logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Configuring a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-registering.html">Registering a component</a>
-  </li>
-  <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-loading.html">Loading a component</a>
+    <a class="menu-link" href="component-versions-and-migration.html">Managing component versions</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
@@ -219,7 +225,13 @@
     <a class="menu-link" href="best-practices.html">Best practices</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="#">mapsub-build-tools.adoc</a>
+    <a class="menu-link" href="component-loading.html">Loading a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-maven.html">Building components with Maven</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-gradle.html">Building components with Gradle</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="wrapping-a-beam-io.html">Wrapping a Beam I/O</a>
@@ -281,6 +293,9 @@
   <li data-depth="2">
     <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="documentation-rest.html">Component server and HTTP API</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -337,7 +352,7 @@
     <a class="menu-link" href="ref-proxy-server-configuration.html">Proxy server configuration</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="ref-rest-resources.html">Component Runtime REST resources</a>
+    <a class="menu-link" href="ref-rest-resources.html">HTTP API</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="ref-scanning-exclusions.html">Scanning exclusions</a>
@@ -348,16 +363,21 @@
   <li data-depth="2">
     <a class="menu-link" href="ref-ui.html">UI API</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="apidocs.html">Javadocs</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
-    <a class="menu-link" href="apidocs.html">Javadocs</a>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Knowledge base</span></label>
+    <ul class="nav nav-list tree"  style="display:none">
+  <li data-depth="2">
+    <a class="menu-link" href="index-knowledge-base.html">Knowledge base articles</a>
   </li>
-  <li data-depth="1">
-    <a class="menu-link" href="index-knowledge-base.html">Knowledge base</a>
-  </li>
-  <li data-depth="1">
+  <li data-depth="2">
     <a class="menu-link" href="changelog.html">Changelog</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -371,16 +391,21 @@
                 <div class="toolbar" role="navigation">
 
     <ol class="breadcrumb">
-      <li class="crumb active"><a href="build-tools-maven.html">Maven Plugin</a></li>
+      <li class="crumb"><a href="index-creating-components.html">Creating components</a></li>
+      <li class="crumb active"><a href="build-tools-maven.html">Building components with Maven</a></li>
     </ol>
 </div>
                 <article class="doc">
         <div class="row">
           <div class="col-sm-9 row">
-              <h1>Maven Plugin</h1>
+              <h1>Building components with Maven</h1>
             <div class="article-content">
               <div id="preamble">
 <div class="sectionbody">
+<div class="paragraph">
+<p>To develop new components, Talend Component Kit requires a build tool in which you will import the component project generated from the starter. With this build tool, you will also be able to implement the logic of your component and to install and deploy it to Talend applications.
+A Talend Component Kit plugin is available for each of the supported build tools.</p>
+</div>
 <div class="paragraph">
 <p><code>talend-component-maven-plugin</code> helps you write components that match best practices and generate transparently metadata used by Talend Studio.</p>
 </div>
@@ -796,7 +821,7 @@ include::{generated_doc}/documentation.adoc[]</code></pre>
 <h2 id="_testing_a_component_web_rendering"><a class="anchor" href="#_testing_a_component_web_rendering"></a>Testing a component web rendering</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Testing the rendering of your component configuration into the Studio requires deploying the component in Talend Studio (refer to <a href="studio.html">Studio Documentation</a>.</p>
+<p>Testing the rendering of your component configuration into the Studio requires deploying the component in Talend Studio. Refer to the <a href="studio.html">Studio documentation</a>.</p>
 </div>
 <div class="paragraph">
 <p>In the case where you need to deploy your component into a Cloud (web) environment, you can test its web rendering by using the <code>web</code> goal of the plugin:</p>
@@ -985,6 +1010,24 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 </div>
 </div>
 </div>
+<div class="sect1 relatedlinks">
+<h2 id="_related_articles"><a class="anchor" href="#_related_articles"></a>Related articles</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="best-practices.html" class="page">Best practices</a></p>
+</li>
+<li>
+<p><a href="build-tools-gradle.html" class="page">Building components with Gradle</a></p>
+</li>
+<li>
+<p><a href="studio.html" class="page">Integrating to the Studio</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
             </div>
           </div>
           <div class="col-sm-3 container article-side-panel">
@@ -1000,13 +1043,13 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 
                     <li>
                                 <a class="article-side-actions-link" target="_blank"
-                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fbuild-tools-maven.html&text=Talend%20Component%20Kit%20%3E%3E%20Maven%20Plugin%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fbuild-tools-maven.html">
+                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fbuild-tools-maven.html&text=Talend%20Component%20Kit%20%3E%3E%20Building%20components%20with%20Maven%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fbuild-tools-maven.html">
                                     <i class="fab fa-twitter"></i> &nbsp; &nbsp; Tweet
                                 </a>
                             </li>
                             <li>
                                 <a class="article-side-actions-link"
-                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Maven%20Plugin&body=Talend%20Component%20Kit%3A%20Maven%20Plugin%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fbuild-tools-maven.html">
+                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Building%20components%20with%20Maven&body=Talend%20Component%20Kit%3A%20Building%20components%20with%20Maven%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fbuild-tools-maven.html">
                                     <i class="far fa-envelope"></i> &nbsp; &nbsp; Mail
                                 </a>
                             </li>

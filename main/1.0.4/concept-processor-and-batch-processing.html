@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Processor components and batch processing</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/concept-processor-and-batch-processing.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-07T15:32:30.090Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-07T15:45:10.657Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -170,6 +170,9 @@
   <li data-depth="2">
     <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -179,7 +182,7 @@
     <a class="menu-link" href="system-prerequisites.html">System requirements</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-talend-intellij-plugin-usage.html">IntelliJ plugin</a>
+    <a class="menu-link" href="installing-talend-intellij-plugin.html">Installing the IntelliJ plugin</a>
   </li>
 </ul>
   </li>
@@ -198,19 +201,22 @@
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Creating components</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="component-definition.html">Defining a component</a>
+    <a class="menu-link" href="component-registering.html">Registering a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-processor-output.html">Defining a processor/output logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Configuring a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-registering.html">Registering a component</a>
-  </li>
-  <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-loading.html">Loading a component</a>
+    <a class="menu-link" href="component-versions-and-migration.html">Managing component versions</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
@@ -219,7 +225,13 @@
     <a class="menu-link" href="best-practices.html">Best practices</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="#">mapsub-build-tools.adoc</a>
+    <a class="menu-link" href="component-loading.html">Loading a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-maven.html">Building components with Maven</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-gradle.html">Building components with Gradle</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="wrapping-a-beam-io.html">Wrapping a Beam I/O</a>
@@ -281,6 +293,9 @@
   <li data-depth="2">
     <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="documentation-rest.html">Component server and HTTP API</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -337,7 +352,7 @@
     <a class="menu-link" href="ref-proxy-server-configuration.html">Proxy server configuration</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="ref-rest-resources.html">Component Runtime REST resources</a>
+    <a class="menu-link" href="ref-rest-resources.html">HTTP API</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="ref-scanning-exclusions.html">Scanning exclusions</a>
@@ -348,16 +363,21 @@
   <li data-depth="2">
     <a class="menu-link" href="ref-ui.html">UI API</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="apidocs.html">Javadocs</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
-    <a class="menu-link" href="apidocs.html">Javadocs</a>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Knowledge base</span></label>
+    <ul class="nav nav-list tree"  style="display:none">
+  <li data-depth="2">
+    <a class="menu-link" href="index-knowledge-base.html">Knowledge base articles</a>
   </li>
-  <li data-depth="1">
-    <a class="menu-link" href="index-knowledge-base.html">Knowledge base</a>
-  </li>
-  <li data-depth="1">
+  <li data-depth="2">
     <a class="menu-link" href="changelog.html">Changelog</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -383,7 +403,7 @@
 <p>Depending on several requirements, including the system capacity and business needs, a processor can process records differently.</p>
 </div>
 <div class="paragraph">
-<p>For example, for real-time or near-real time processing, it is more interesting to process small batches of data more often. On the other hand, in case of one-time processing, it is more optimal to adapt the way the component handles data according to the system capacity.</p>
+<p>For example, for real-time or near-real time processing, it is more interesting to process small batches of data more often. On the other hand, in case of one-time processing, it is more optimal to adapt the way the component handles batches of data according to the system capacity.</p>
 </div>
 <div class="paragraph">
 <p>By default, the runtime automatically estimates a group size that it considers good, according to the system capacity, to process the data. This group size can sometimes be too big and not optimal for your system to handle effectively and correctly.</p>
@@ -398,7 +418,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The estimated group size logic is automatically implemented when a component is deployed to a Talend application. No action is required on the implementation side of the component.
+The estimated group size logic is automatically implemented when a component is deployed to a Talend application. Besides defining the @BeforeGroup and @AfterGroup logic detailed below, no action is required on the implementation side of the component.
 </td>
 </tr>
 </table>
@@ -406,26 +426,18 @@ The estimated group size logic is automatically implemented when a component is 
 <div class="paragraph">
 <p>The component batch processes the data as follows:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/processor-bulking-diagram.png" alt="Bulking diagram">
-</div>
-</div>
-<div class="paragraph">
-<p>In this diagram, you can see that:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>The runtime estimates a group size of 4.</p>
+<p>Case 1 - No <code>maxBatchSize</code> is specified in the component configuration. The runtime estimates a group size of 4. Records are processed by groups of 4.</p>
 </li>
 <li>
-<p>The component configuration specifies a <code>maxBatchSize</code> of 3.</p>
+<p>Case 2 - The runtime estimates a group size of 4 but a <code>maxBatchSize</code> of 3 is specified in the component configuration. The system adapts the group size to 3. Records are processed by groups of 3.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Each group is processed one by one according to the group size estimated by the system:</p>
+<p>Each group is processed as follows until there is no record left:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -436,7 +448,7 @@ The estimated group size logic is automatically implemented when a component is 
 <p>The records of the group are assessed one by one and placed in the buffer as follows: The @ElementListener method tests if the buffer size is greater or equal to the defined <code>maxBatchSize</code>. If it is, the records are processed. If not, then the current record is buffered.</p>
 </li>
 <li>
-<p>The previous step happens for all records of the group. Then the <code>@AfterGroup</code> method tests if the buffer is empty. If there are still some records in the buffer, they are processed.</p>
+<p>The previous step happens for all records of the group. Then the <code>@AfterGroup</code> method tests if the buffer is empty.</p>
 </li>
 </ol>
 </div>
@@ -478,7 +490,7 @@ public class BulkProcessor implements Serializable {
 </div>
 </div>
 <div class="paragraph">
-<p>You can learn more about processors in <a href="component-definition.html#component-type-processor" class="page">this document</a>.</p>
+<p>You can learn more about processors in <a href="component-define-processor-output.html" class="page">this document</a>.</p>
 </div>
             </div>
           </div>

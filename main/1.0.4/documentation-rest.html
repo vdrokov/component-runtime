@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit REST API Documentation</title>
+    <title>Talend Component Kit Developer Reference Guide :: Component server and HTTP API</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/documentation-rest.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-07T15:32:30.103Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-07T15:45:10.679Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@talend/bootstrap-theme@0.200.1/dist/bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.17.6/swagger-ui.css" integrity="sha256-LrW+E9QjOXMtQ9cMpcnfxmdgVDNPv7c13xX6NMlGFzA=" crossorigin="anonymous" />
 <link rel="stylesheet" href="../../_/css/talend.css">
 <link rel="shortcut icon" href="../../_/images/favicon_0.ico" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PSBN"></script>
@@ -170,6 +171,9 @@
   <li data-depth="2">
     <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -179,7 +183,7 @@
     <a class="menu-link" href="system-prerequisites.html">System requirements</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-talend-intellij-plugin-usage.html">IntelliJ plugin</a>
+    <a class="menu-link" href="installing-talend-intellij-plugin.html">Installing the IntelliJ plugin</a>
   </li>
 </ul>
   </li>
@@ -198,19 +202,22 @@
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Creating components</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="component-definition.html">Defining a component</a>
+    <a class="menu-link" href="component-registering.html">Registering a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-processor-output.html">Defining a processor/output logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Configuring a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-registering.html">Registering a component</a>
-  </li>
-  <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-loading.html">Loading a component</a>
+    <a class="menu-link" href="component-versions-and-migration.html">Managing component versions</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
@@ -219,7 +226,13 @@
     <a class="menu-link" href="best-practices.html">Best practices</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="#">mapsub-build-tools.adoc</a>
+    <a class="menu-link" href="component-loading.html">Loading a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-maven.html">Building components with Maven</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-gradle.html">Building components with Gradle</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="wrapping-a-beam-io.html">Wrapping a Beam I/O</a>
@@ -281,6 +294,9 @@
   <li data-depth="2">
     <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="documentation-rest.html">Component server and HTTP API</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -337,7 +353,7 @@
     <a class="menu-link" href="ref-proxy-server-configuration.html">Proxy server configuration</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="ref-rest-resources.html">Component Runtime REST resources</a>
+    <a class="menu-link" href="ref-rest-resources.html">HTTP API</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="ref-scanning-exclusions.html">Scanning exclusions</a>
@@ -348,16 +364,21 @@
   <li data-depth="2">
     <a class="menu-link" href="ref-ui.html">UI API</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="apidocs.html">Javadocs</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
-    <a class="menu-link" href="apidocs.html">Javadocs</a>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Knowledge base</span></label>
+    <ul class="nav nav-list tree"  style="display:none">
+  <li data-depth="2">
+    <a class="menu-link" href="index-knowledge-base.html">Knowledge base articles</a>
   </li>
-  <li data-depth="1">
-    <a class="menu-link" href="index-knowledge-base.html">Knowledge base</a>
-  </li>
-  <li data-depth="1">
+  <li data-depth="2">
     <a class="menu-link" href="changelog.html">Changelog</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -371,13 +392,14 @@
                 <div class="toolbar" role="navigation">
 
     <ol class="breadcrumb">
-      <li class="crumb active"><a href="documentation-rest.html">Talend Component Kit REST API Documentation</a></li>
+      <li class="crumb"><a href="index-deploying-components.html">Deploying components</a></li>
+      <li class="crumb active"><a href="documentation-rest.html">Component server and HTTP API</a></li>
     </ol>
 </div>
                 <article class="doc">
         <div class="row">
           <div class="col-sm-9 row">
-              <h1>Talend Component Kit REST API Documentation</h1>
+              <h1>Component server and HTTP API</h1>
             <div class="article-content">
               <div id="preamble">
 <div class="sectionbody">
@@ -417,806 +439,808 @@ The WebSocket protocol is activated for the endpoints. Endpoints then use <code>
 <p>Here is the API:</p>
 </div>
 <div class="sect2">
-<h3 id="_rest_resources_of_component_runtime_server_parent_server"><a class="anchor" href="#_rest_resources_of_component_runtime_server_parent_server"></a>REST resources of Component Runtime :: Server Parent :: Server</h3>
-<div class="paragraph">
-<p>1.0.4-SNAPSHOT</p>
-</div>
-<div class="sect3">
-<h4 id="_code_post_api_v1_action_execute_code"><a class="anchor" href="#_code_post_api_v1_action_execute_code"></a><code>POST api/v1/action/execute</code></h4>
-<div class="paragraph">
-<p>This endpoint will execute any UI action and serialize the response as a JSON (pojo model)
-It takes as input the family, type and name of the related action to identify it and its configuration
-as a flat key value set using the same kind of mapping than for components (option path as key).</p>
-</div>
-<div class="sect4">
-<h5 id="_request"><a class="anchor" href="#_request"></a>Request</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code><br>
-<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
-<strong>Query Param</strong>: <code>action</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>lang</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>type</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response"><a class="anchor" href="#_response"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code"><a class="anchor" href="#_code_200_ok_code"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (``)</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_400_bad_request_code"><a class="anchor" href="#_code_400_bad_request_code"></a><code>400 Bad Request</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "code": "ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|CONFIGURATION_MISSING|DESIGN_MODEL_MISSING|FAMILY_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED",
-    "description": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_404_not_found_code"><a class="anchor" href="#_code_404_not_found_code"></a><code>404 Not Found</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "code": "ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|CONFIGURATION_MISSING|DESIGN_MODEL_MISSING|FAMILY_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED",
-    "description": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_action_index_code"><a class="anchor" href="#_code_get_api_v1_action_index_code"></a><code>GET api/v1/action/index</code></h4>
-<div class="paragraph">
-<p>This endpoint returns the list of available actions for a certain family and potentially filters the "
-output limiting it to some families and types of actions.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_2"><a class="anchor" href="#_request_2"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>type</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_2"><a class="anchor" href="#_response_2"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_2"><a class="anchor" href="#_code_200_ok_code_2"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ActionList</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "items": [
-        {
-            "component": "string",
-            "name": "string",
-            "properties": [
-                {
-                    "defaultValue": "string",
-                    "displayName": "string",
-                    "metadata": {
-                    },
-                    "name": "string",
-                    "path": "string",
-                    "placeholder": "string",
-                    "proposalDisplayNames": {
-                    },
-                    "type": "string",
-                    "validation": {
-                        "enumValues": [
-                            "string"
-                        ],
-                        "max": 0,
-                        "maxItems": 0,
-                        "maxLength": 0,
-                        "min": 0,
-                        "minItems": 0,
-                        "minLength": 0,
-                        "pattern": "string",
-                        "required": false,
-                        "uniqueItems": false
-                    }
-                }
-            ],
-            "type": "string"
-        }
-    ]
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_dependencies_code"><a class="anchor" href="#_code_get_api_v1_component_dependencies_code"></a><code>GET api/v1/component/dependencies</code></h4>
-<div class="paragraph">
-<p>Returns a list of dependencies for the given components.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-don&#8217;t forget to add the component itself since it will not be part of the dependencies.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Then you can use /dependency/{id} to download the binary.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_3"><a class="anchor" href="#_request_3"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>identifier</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_3"><a class="anchor" href="#_response_3"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_3"><a class="anchor" href="#_code_200_ok_code_3"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Dependencies</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "dependencies": {
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_dependency_id_code"><a class="anchor" href="#_code_get_api_v1_component_dependency_id_code"></a><code>GET api/v1/component/dependency/{id}</code></h4>
-<div class="paragraph">
-<p>Return a binary of the dependency represented by <code>id</code>.
-It can be maven coordinates for dependencies or a component id.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_4"><a class="anchor" href="#_request_4"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_4"><a class="anchor" href="#_response_4"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_4"><a class="anchor" href="#_code_200_ok_code_4"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>javax.ws.rs.core.StreamingOutput</code>)</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_404_not_found_code_2"><a class="anchor" href="#_code_404_not_found_code_2"></a><code>404 Not Found</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "code": "ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|CONFIGURATION_MISSING|DESIGN_MODEL_MISSING|FAMILY_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED",
-    "description": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_details_code"><a class="anchor" href="#_code_get_api_v1_component_details_code"></a><code>GET api/v1/component/details</code></h4>
-<div class="paragraph">
-<p>Returns the set of metadata about a few components identified by their 'id'.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_5"><a class="anchor" href="#_request_5"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>identifiers</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_5"><a class="anchor" href="#_response_5"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_5"><a class="anchor" href="#_code_200_ok_code_5"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentDetailList</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "details": [
-        {
-            "actions": [
-                {
-                    "family": "string",
-                    "name": "string",
-                    "properties": [
-                        {
-                            "defaultValue": "string",
-                            "displayName": "string",
-                            "metadata": {
-                            },
-                            "name": "string",
-                            "path": "string",
-                            "placeholder": "string",
-                            "proposalDisplayNames": {
-                            },
-                            "type": "string",
-                            "validation": {
-                                "enumValues": [
-                                    "string"
-                                ],
-                                "max": 0,
-                                "maxItems": 0,
-                                "maxLength": 0,
-                                "min": 0,
-                                "minItems": 0,
-                                "minLength": 0,
-                                "pattern": "string",
-                                "required": false,
-                                "uniqueItems": false
-                            }
-                        }
-                    ],
-                    "type": "string"
-                }
-            ],
-            "displayName": "string",
-            "icon": "string",
-            "id": {
-                "family": "string",
-                "familyId": "string",
-                "id": "string",
-                "name": "string",
-                "plugin": "string",
-                "pluginLocation": "string"
-            },
-            "inputFlows": [
-                "string"
-            ],
-            "links": [
-                {
-                    "contentType": "string",
-                    "name": "string",
-                    "path": "string"
-                }
-            ],
-            "outputFlows": [
-                "string"
-            ],
-            "properties": [
-                {
-                    "defaultValue": "string",
-                    "displayName": "string",
-                    "metadata": {
-                    },
-                    "name": "string",
-                    "path": "string",
-                    "placeholder": "string",
-                    "proposalDisplayNames": {
-                    },
-                    "type": "string",
-                    "validation": {
-                        "enumValues": [
-                            "string"
-                        ],
-                        "max": 0,
-                        "maxItems": 0,
-                        "maxLength": 0,
-                        "min": 0,
-                        "minItems": 0,
-                        "minLength": 0,
-                        "pattern": "string",
-                        "required": false,
-                        "uniqueItems": false
-                    }
-                }
-            ],
-            "type": "string",
-            "version": 0
-        }
-    ]
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_400_bad_request_code_2"><a class="anchor" href="#_code_400_bad_request_code_2"></a><code>400 Bad Request</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, org.talend.sdk.component.server.front.model.error.ErrorPayload&gt;</code>)</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_icon_family_id_code"><a class="anchor" href="#_code_get_api_v1_component_icon_family_id_code"></a><code>GET api/v1/component/icon/family/{id}</code></h4>
-<div class="paragraph">
-<p>Returns a particular family icon in raw bytes.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_6"><a class="anchor" href="#_request_6"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_6"><a class="anchor" href="#_response_6"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_6"><a class="anchor" href="#_code_200_ok_code_6"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_404_not_found_code_3"><a class="anchor" href="#_code_404_not_found_code_3"></a><code>404 Not Found</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "code": "ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|CONFIGURATION_MISSING|DESIGN_MODEL_MISSING|FAMILY_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED",
-    "description": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_icon_id_code"><a class="anchor" href="#_code_get_api_v1_component_icon_id_code"></a><code>GET api/v1/component/icon/{id}</code></h4>
-<div class="paragraph">
-<p>Returns a particular component icon in raw bytes.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_7"><a class="anchor" href="#_request_7"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_7"><a class="anchor" href="#_response_7"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_7"><a class="anchor" href="#_code_200_ok_code_7"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_code_404_not_found_code_4"><a class="anchor" href="#_code_404_not_found_code_4"></a><code>404 Not Found</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "code": "ACTION_ERROR|ACTION_MISSING|BAD_FORMAT|COMPONENT_MISSING|CONFIGURATION_MISSING|DESIGN_MODEL_MISSING|FAMILY_MISSING|ICON_MISSING|PLUGIN_MISSING|UNAUTHORIZED|UNEXPECTED",
-    "description": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_component_index_code"><a class="anchor" href="#_code_get_api_v1_component_index_code"></a><code>GET api/v1/component/index</code></h4>
-<div class="paragraph">
-<p>Returns the list of available components.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_8"><a class="anchor" href="#_request_8"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>includeIconContent</code>, <code>boolean</code><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_8"><a class="anchor" href="#_response_8"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_8"><a class="anchor" href="#_code_200_ok_code_8"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentIndices</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "components": [
-        {
-            "categories": [
-                "string"
-            ],
-            "displayName": "string",
-            "familyDisplayName": "string",
-            "icon": {
-                "customIcon": {
-                },
-                "customIconType": "string",
-                "icon": "string"
-            },
-            "iconFamily": {
-                "customIcon": {
-                },
-                "customIconType": "string",
-                "icon": "string"
-            },
-            "id": {
-                "family": "string",
-                "familyId": "string",
-                "id": "string",
-                "name": "string",
-                "plugin": "string",
-                "pluginLocation": "string"
-            },
-            "links": [
-                {
-                    "contentType": "string",
-                    "name": "string",
-                    "path": "string"
-                }
-            ],
-            "version": 0
-        }
-    ]
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_post_api_v1_component_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_component_migrate_id_configurationversion_code"></a><code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></h4>
-<div class="paragraph">
-<p>Allows to migrate a component configuration without calling any component execution.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_9"><a class="anchor" href="#_request_9"></a>Request</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code><br>
-<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
-<strong>Path Param</strong>: <code>configurationVersion</code>, <code>int</code><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_9"><a class="anchor" href="#_response_9"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_9"><a class="anchor" href="#_code_200_ok_code_9"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_configurationtype_details_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_details_code"></a><code>GET api/v1/configurationtype/details</code></h4>
-<div class="paragraph">
-<p>Returns the set of metadata about a few configurations identified by their 'id'.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_10"><a class="anchor" href="#_request_10"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>identifiers</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_10"><a class="anchor" href="#_response_10"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_10"><a class="anchor" href="#_code_200_ok_code_10"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ConfigTypeNodes</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "nodes": {
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_configurationtype_index_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_index_code"></a><code>GET api/v1/configurationtype/index</code></h4>
-<div class="paragraph">
-<p>Returns all available configuration type - storable models.
-Note that the lightPayload flag allows to load all of them at once when you eagerly need
-to create a client model for all configurations.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_11"><a class="anchor" href="#_request_11"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>lightPayload</code>, <code>boolean</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_11"><a class="anchor" href="#_response_11"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_11"><a class="anchor" href="#_code_200_ok_code_11"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ConfigTypeNodes</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "nodes": {
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"></a><code>POST api/v1/configurationtype/migrate/{id}/{configurationVersion}</code></h4>
-<div class="paragraph">
-<p>Allows to migrate a configuration without calling any component execution.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_12"><a class="anchor" href="#_request_12"></a>Request</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code><br>
-<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
-<strong>Path Param</strong>: <code>configurationVersion</code>, <code>int</code><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_12"><a class="anchor" href="#_response_12"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_12"><a class="anchor" href="#_code_200_ok_code_12"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_documentation_component_id_code"><a class="anchor" href="#_code_get_api_v1_documentation_component_id_code"></a><code>GET api/v1/documentation/component/{id}</code></h4>
-<div class="paragraph">
-<p>Returns an asciidoctor version of the documentation for the component represented by its identifier <code>id</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format can be either asciidoc or html - if not it will fallback on asciidoc - and if html is selected you get
-a partial document.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-it is recommended to use asciidoc format and handle the conversion on your side if you can,
-the html flavor handles a limited set of the asciidoc syntax only like plain arrays, paragraph and titles.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The documentation will likely be the family documentation but you can use anchors to access a particular
-component (_componentname_inlowercase).</p>
-</div>
-<div class="sect4">
-<h5 id="_request_13"><a class="anchor" href="#_request_13"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br>
-<strong>Path Param</strong>: <code>id</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>format</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>language</code>, <code>java.lang.String</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_13"><a class="anchor" href="#_response_13"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_13"><a class="anchor" href="#_code_200_ok_code_13"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.DocumentationContent</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "source": "string",
-    "type": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_get_api_v1_environment_code"><a class="anchor" href="#_code_get_api_v1_environment_code"></a><code>GET api/v1/environment</code></h4>
-<div class="paragraph">
-<p>Returns the environment of this instance. Useful to check the version or configure a healthcheck for the server.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_14"><a class="anchor" href="#_request_14"></a>Request</h5>
-<div class="paragraph">
-<p><em>No body</em><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_14"><a class="anchor" href="#_response_14"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>*/*</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_200_ok_code_14"><a class="anchor" href="#_code_200_ok_code_14"></a><code>200 OK</code></h6>
-<div class="paragraph">
-<p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Environment</code>)</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "commit": "string",
-    "lastUpdated": {
-    },
-    "latestApiVersion": 0,
-    "time": "string",
-    "version": "string"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_post_api_v1_execution_read_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_read_family_component_code"></a><code>POST api/v1/execution/read/{family}/{component}</code></h4>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-deprecated
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Read inputs from an instance of mapper. The number of returned records if enforced to be limited to 1000.
-The format is a JSON based format where each like is a json record.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_15"><a class="anchor" href="#_request_15"></a>Request</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code><br>
-<strong>Request Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)
-<strong>Path Param</strong>: <code>component</code>, <code>java.lang.String</code><br>
-<strong>Path Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>size</code>, <code>long</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_15"><a class="anchor" href="#_response_15"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>talend/stream</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_204_no_content_code"><a class="anchor" href="#_code_204_no_content_code"></a><code>204 No Content</code></h6>
+<h3 id="_component_server_api"><a class="anchor" href="#_component_server_api"></a>Component Server API</h3>
+<script>
+(window.talend = (window.talend || {})).swaggerUi = {
+  "openapi":"3.0.1",
+  "paths":{
+    "/api/v1/action/index":{
+      "get":{
+        "deprecated":false,
+        "description":"This endpoint returns the list of available actions for a certain family and potentially filters the output limiting it to some families and types of actions.",
+        "operationId":"getIndex",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the types of actions",
+            "in":"query",
+            "name":"type",
+            "required":false,
+            "schema":{
+              "items":{
 
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_code_post_api_v1_execution_write_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_write_family_component_code"></a><code>POST api/v1/execution/write/{family}/{component}</code></h4>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-deprecated
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Sends records using a processor instance. Note that the processor should have only an input.
-Behavior for other processors is undefined.
-The input format is a JSON based format where each like is a json record - same as for the symmetric endpoint.</p>
-</div>
-<div class="sect4">
-<h5 id="_request_16"><a class="anchor" href="#_request_16"></a>Request</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>talend/stream</code><br>
-<strong>Request Body</strong>: (<code>java.io.InputStream</code>)
-<strong>Path Param</strong>: <code>component</code>, <code>java.lang.String</code><br>
-<strong>Path Param</strong>: <code>family</code>, <code>java.lang.String</code><br>
-<strong>Query Param</strong>: <code>group-size</code>, <code>long</code><br></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_16"><a class="anchor" href="#_response_16"></a>Response</h5>
-<div class="paragraph">
-<p><strong>Content-Type</strong>: <code>application/json</code></p>
-</div>
-<div class="sect5">
-<h6 id="_code_204_no_content_code_2"><a class="anchor" href="#_code_204_no_content_code_2"></a><code>204 No Content</code></h6>
+              },
+              "properties":{
+
+              }
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the families",
+            "in":"query",
+            "name":"family",
+            "required":false,
+            "schema":{
+              "items":{
+
+              },
+              "properties":{
+
+              }
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the language to use",
+            "in":"query",
+            "name":"language",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"The action index."
+          }
+        },
+        "tags":[
+          "Action"
+        ]
+      }
+    },
+    "/api/v1/action/execute":{
+      "post":{
+        "deprecated":false,
+        "description":"This endpoint will execute any UI action and serialize the response as a JSON (pojo model). It takes as input the family, type and name of the related action to identify it and its configuration as a flat key value set using the same kind of mapping than for components (option path as key).",
+        "operationId":"execute",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the component family",
+            "in":"query",
+            "name":"family",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the type of action",
+            "in":"query",
+            "name":"type",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the action name",
+            "in":"query",
+            "name":"action",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the requested language (as in a Locale) if supported by the action",
+            "in":"query",
+            "name":"language",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object"
+              }
+            }
+          },
+          "description":"the action parameters as a flat map of strings",
+          "required":true
+        },
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"The action payload serialized in JSON."
+          },
+          "520":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"If the action execution failed, payload will be an ErrorPayload with the code ACTION_ERROR."
+          },
+          "400":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"If the action is not set, payload will be an ErrorPayload with the code ACTION_MISSING."
+          },
+          "404":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"If the action can't be found, payload will be an ErrorPayload with the code ACTION_MISSING."
+          }
+        },
+        "tags":[
+          "Action"
+        ]
+      }
+    },
+    "/api/v1/component/migrate/{id}/{configurationVersion}":{
+      "post":{
+        "deprecated":false,
+        "description":"Allows to migrate a component configuration without calling any component execution.",
+        "operationId":"migrate",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the component identifier",
+            "in":"path",
+            "name":"id",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the configuration version you send",
+            "in":"path",
+            "name":"configurationVersion",
+            "required":false,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object"
+              }
+            }
+          },
+          "description":"the actual configuration in key/value form.",
+          "required":true
+        },
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"the new configuration for that component (or the same if no migration was needed)."
+          },
+          "404":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"The component is not found"
+          }
+        },
+        "tags":[
+          "Component"
+        ]
+      }
+    },
+    "/api/v1/component/icon/family/{id}":{
+      "get":{
+        "deprecated":false,
+        "description":"Returns the icon for a family.",
+        "operationId":"familyIcon",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the family identifier",
+            "in":"path",
+            "name":"id",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/octet-stream":{
+
+              }
+            },
+            "description":"Returns a particular family icon in raw bytes."
+          },
+          "404":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"The family or icon is not found"
+          }
+        },
+        "tags":[
+          "Component"
+        ]
+      }
+    },
+    "/api/v1/component/index":{
+      "get":{
+        "deprecated":false,
+        "description":"Returns the list of available components.",
+        "operationId":"getIndex",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the language for display names.",
+            "in":"query",
+            "name":"language",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"should the icon binary format be included in the payload.",
+            "in":"query",
+            "name":"includeIconContent",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/octet-stream":{
+
+              }
+            },
+            "description":"The index of available components."
+          }
+        },
+        "tags":[
+          "Component"
+        ]
+      }
+    },
+    "/api/v1/component/details":{
+      "get":{
+        "deprecated":false,
+        "description":"Returns the set of metadata about a few components identified by their 'id'.",
+        "operationId":"getDetail",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the language for display names.",
+            "in":"query",
+            "name":"language",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the component identifiers to request, comma separated.",
+            "in":"query",
+            "name":"identifiers",
+            "required":false,
+            "schema":{
+              "items":{
+
+              },
+              "properties":{
+
+              }
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"the list of details for the requested components."
+          },
+          "400":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"Some identifiers were not valid."
+          }
+        },
+        "tags":[
+          "Component"
+        ]
+      }
+    },
+    "/api/v1/component/dependencies":{
+      "get":{
+        "deprecated":false,
+        "description":"Returns a list of dependencies for the given components. IMPORTANT: don't forget to add the component itself since it will not be part of the dependencies.Then you can use /dependency/{id} to download the binary.",
+        "operationId":"getDependencies",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the list of component identifiers to find the dependencies for.",
+            "in":"query",
+            "name":"identifier",
+            "required":false,
+            "schema":{
+              "items":{
+
+              },
+              "properties":{
+
+              }
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"The list of dependencies per component"
+          }
+        },
+        "tags":[
+          "Component"
+        ]
+      }
+    },
+    "/api/v1/component/dependency/{id}":{
+      "get":{
+        "deprecated":false,
+        "description":"Return a binary of the dependency represented by `id`. It can be maven coordinates for dependencies or a component id.",
+        "operationId":"getDependency",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the dependency binary (jar).",
+            "in":"path",
+            "name":"id",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/octet-stream":{
+
+              }
+            },
+            "description":"The dependency binary (jar)."
+          }
+        },
+        "tags":[
+          "Component"
+        ]
+      }
+    },
+    "/api/v1/component/icon/{id}":{
+      "get":{
+        "deprecated":false,
+        "description":"Returns a particular component icon in raw bytes.",
+        "operationId":"icon",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the component icon identifier",
+            "in":"path",
+            "name":"id",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/octet-stream":{
+
+              }
+            },
+            "description":"The component icon in binary form."
+          },
+          "404":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"The family or icon is not found"
+          }
+        },
+        "tags":[
+          "Component"
+        ]
+      }
+    },
+    "/api/v1/configurationtype/migrate/{id}/{configurationVersion}":{
+      "post":{
+        "deprecated":false,
+        "description":"Allows to migrate a configuration without calling any component execution.",
+        "operationId":"migrate",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the configuration identifier",
+            "in":"path",
+            "name":"id",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the configuration version you send",
+            "in":"path",
+            "name":"configurationVersion",
+            "required":false,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "requestBody":{
+          "content":{
+            "application/json":{
+              "schema":{
+                "type":"object"
+              }
+            }
+          },
+          "description":"the actual configuration in key/value form.",
+          "required":true
+        },
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"the new values for that configuration (or the same if no migration was needed)."
+          },
+          "404":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"The configuration is not found"
+          }
+        },
+        "tags":[
+          "Configuration Type"
+        ]
+      }
+    },
+    "/api/v1/configurationtype/index":{
+      "get":{
+        "deprecated":false,
+        "description":"Returns all available configuration type - storable models. Note that the lightPayload flag allows to load all of them at once when you eagerly need  to create a client model for all configurations.",
+        "operationId":"getRepositoryModel",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the language for display names.",
+            "in":"query",
+            "name":"language",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"should the payload skip the forms and actions associated to the configuration.",
+            "in":"query",
+            "name":"lightPayload",
+            "required":false,
+            "schema":{
+              "type":"boolean"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"the list of available and storable configurations (datastore, dataset, ...)."
+          }
+        },
+        "tags":[
+          "Configuration Type"
+        ]
+      }
+    },
+    "/api/v1/configurationtype/details":{
+      "get":{
+        "deprecated":false,
+        "description":"Returns all available configuration type - storable models. Note that the lightPayload flag allows to load all of them at once when you eagerly need  to create a client model for all configurations.",
+        "operationId":"getDetail",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the language for display names.",
+            "in":"query",
+            "name":"language",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the comma separated list of identifiers to request.",
+            "in":"query",
+            "name":"identifiers",
+            "required":false,
+            "schema":{
+              "items":{
+
+              },
+              "properties":{
+
+              }
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"the list of available and storable configurations (datastore, dataset, ...)."
+          }
+        },
+        "tags":[
+          "Configuration Type"
+        ]
+      }
+    },
+    "/api/v1/documentation/component/{id}":{
+      "get":{
+        "deprecated":false,
+        "description":"Returns an asciidoctor version of the documentation for the component represented by its identifier `id`. Format can be either asciidoc or html - if not it will fallback on asciidoc - and if html is selected you get a partial document. IMPORTANT: it is recommended to use asciidoc format and handle the conversion on your side if you can, the html flavor handles a limited set of the asciidoc syntax only like plain arrays, paragraph and titles. The documentation will likely be the family documentation but you can use anchors to access a particular component (_componentname_inlowercase).",
+        "operationId":"getDocumentation",
+        "parameters":[
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the component identifier",
+            "in":"path",
+            "name":"id",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the language for display names.",
+            "in":"query",
+            "name":"language",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "allowEmptyValue":false,
+            "allowReserved":false,
+            "description":"the expected format (asciidoc or html).",
+            "in":"query",
+            "name":"format",
+            "required":false,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"the list of available and storable configurations (datastore, dataset, ...)."
+          }
+        },
+        "tags":[
+          "Documentation"
+        ]
+      }
+    },
+    "/api/v1/environment":{
+      "get":{
+        "deprecated":false,
+        "description":"Returns the environment of this instance. Useful to check the version or configure a healthcheck for the server.",
+        "operationId":"get",
+        "parameters":[
+        ],
+        "responses":{
+          "200":{
+            "content":{
+              "application/json":{
+
+              }
+            },
+            "description":"Current environment representation."
+          }
+        },
+        "tags":[
+          "Environment"
+        ]
+      }
+    }
+  },
+  "tags":[
+    {
+      "description":"Endpoints related to callbacks/triggers execution.",
+      "name":"Action"
+    },
+    {
+      "description":"Endpoints related to callbacks/triggers execution.",
+      "name":"Action"
+    },
+    {
+      "description":"Endpoints related to callbacks/triggers execution.",
+      "name":"Action"
+    },
+    {
+      "description":"Endpoints related to component metadata access.",
+      "name":"Component"
+    },
+    {
+      "description":"Endpoints related to component metadata access.",
+      "name":"Component"
+    },
+    {
+      "description":"Endpoints related to component metadata access.",
+      "name":"Component"
+    },
+    {
+      "description":"Endpoints related to component metadata access.",
+      "name":"Component"
+    },
+    {
+      "description":"Endpoints related to component metadata access.",
+      "name":"Component"
+    },
+    {
+      "description":"Endpoints related to component metadata access.",
+      "name":"Component"
+    },
+    {
+      "description":"Endpoints related to component metadata access.",
+      "name":"Component"
+    },
+    {
+      "description":"Endpoints related to component metadata access.",
+      "name":"Component"
+    },
+    {
+      "description":"Endpoints related to configuration types (reusable configuration) metadata access.",
+      "name":"Configuration Type"
+    },
+    {
+      "description":"Endpoints related to configuration types (reusable configuration) metadata access.",
+      "name":"Configuration Type"
+    },
+    {
+      "description":"Endpoints related to configuration types (reusable configuration) metadata access.",
+      "name":"Configuration Type"
+    },
+    {
+      "description":"Endpoints related to configuration types (reusable configuration) metadata access.",
+      "name":"Configuration Type"
+    },
+    {
+      "description":"Endpoint to retrieve embedded component documentation.",
+      "name":"Documentation"
+    },
+    {
+      "description":"Endpoint to retrieve embedded component documentation.",
+      "name":"Documentation"
+    },
+    {
+      "description":"Endpoint giving access to versions and last update timestamp of the server.",
+      "name":"Environment"
+    },
+    {
+      "description":"Endpoint giving access to versions and last update timestamp of the server.",
+      "name":"Environment"
+    }
+  ]
+};</script>
+<div id="swagger-ui"></div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -1228,9 +1252,6 @@ To make sure that the migration can be enabled, you need to set the version the 
 </td>
 </tr>
 </table>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -1761,6 +1782,11 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 <td class="tableblock halign-left valign-top"><p class="tableblock">${playx.application.home}</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.proxy.client.executor.threads</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For the client executor, the number of threads.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.proxy.client.providers</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of JAX-RS providers to register on the client, at least a JSON-B one should be here.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -1779,6 +1805,11 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.proxy.jcache.active</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Should the server use jcache to store catalog information and refresh it with some polling. If so the keys <code>talend.component.proxy.jcache.caches.$cacheName.expiry.duration</code>, <code>talend.component.proxy.jcache.caches.$cacheName.management.active</code> and <code>talend.component.proxy.jcache.caches.$cacheName.statistics.active</code> will be read to create a JCache <code>MutableConfiguration</code>. Also note that if all the cachesshare the same configuration you can ignore the <code>$cacheName</code> layer.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.proxy.jcache.cache-key.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A header to use in the cache key (to represent a tenant or equivalent).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.proxy.jcache.provider</p></td>
@@ -1811,7 +1842,7 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 <div class="sect3">
 <h4 id="_adding_custom_entries_to_the_forms"><a class="anchor" href="#_adding_custom_entries_to_the_forms"></a>Adding custom entries to the forms</h4>
 <div class="paragraph">
-<p>As shown in the table above, you can customize the forms by type. The format reuses Talend Component Kit REST API (properties model) and defines two main types of extensions:</p>
+<p>As shown in the table above, you can customize the forms by type. The format reuses Talend Component Kit HTTP API (properties model) and defines two main types of extensions:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1851,7 +1882,7 @@ Always make sure to define a root object for these properties. Do not use dots i
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-To make it a CDI bean, add <code>@Dependent</code> to the class and if you use the <a href="#play-integration">Play integration</a>, customize the bean array: <code>playx.cdi.beans.customs +=  {className: org.talend.myapp.MyConverter}.</code>
+To make it a CDI bean, add <code>@Dependent</code> to the class and if you use the Play integration, customize the bean array: <code>playx.cdi.beans.customs +=  {className: org.talend.myapp.MyConverter}.</code>
 </td>
 </tr>
 </table>
@@ -1900,9 +1931,174 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 </div>
 </div>
 <div class="sect3">
+<h4 id="_populate_a_dropdown_from_a_remote_call"><a class="anchor" href="#_populate_a_dropdown_from_a_remote_call"></a>Populate a dropdown from a remote call</h4>
+<div class="paragraph">
+<p>In some cases you will want to call a remote service giving you a list of data. For that there is a
+specific <code>http</code> <code>builtin</code> trigger which will be caught on the proxy and redirected to the configured server
+to map it as a <code>dynamic_values</code> trigger.</p>
+</div>
+<div class="paragraph">
+<p>Assume you want to call <code>http:://foo.com/bar</code> propagating the cookies to get the proposals for the
+entry <code>bar</code>, then you will configure it this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "prependProperties": [
+    {
+      "path": "$datasetMetadata",
+      "type": "OBJECT"
+    },
+    {
+      "path": "$datasetMetadata.bar",
+      "displayName": "Bar",
+      "type": "STRING",
+      "metadata": {
+        "action::dynamic_values": "builtin::http::dynamic_values(url=http:://foo.com/bar,headers=cookie)"
+      }
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The configuration of the call is passed through a comma separated list in parenthesis as seen in previous snippet.
+The configuration entries are the following ones:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target server to call. Note that placeholder are supported and filled from request headers (<code>placeholderProvider</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://proposals.service.com" class="bare">proposals.service.com</a></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">headers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma separated list of headers to propagate (using <code>placeholderProvider</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookie,Authorization</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">accept</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>Accept</code> header. Note that current we only support to parse JSON output and it defaults to <code>application/json</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/v1+json</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (default to <code>false</code>) to set to <code>true</code> if the response payload is an object and not a list.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">objectKey</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>object</code> is <code>true</code>, the key to extract to get the list to process.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>items</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the field to extract from an item of the response list to map to the identifier of the proposal (default to <code>id</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the field to extract from an item of the response list to map to the label of the proposal (default to <code>name</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>label</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_populate_a_dropdown_with_a_list_of_references"><a class="anchor" href="#_populate_a_dropdown_with_a_list_of_references"></a>Populate a dropdown with a list of references</h4>
+<div class="paragraph">
+<p>In some forms you will want to populate a dropdown with a list of entities available in your database.
+For that, the proxy will rely on a SPI called <code>Integration</code>. If you don&#8217;t implement it, it uses
+a Guice integration if Guice is in the classpath or a native CDI integration otherwise.</p>
+</div>
+<div class="paragraph">
+<p>The integration will then let the proxy lookup a <code>ReferenceService</code> implementation which will provide
+from a configuration type <code>type</code> and <code>name</code> (for instance <code>datastore</code>, <code>MyDataBaseConfig</code>) the list of
+references you want to propose to the end user.</p>
+</div>
+<div class="paragraph">
+<p>Here is very simple implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ApplicationScoped
+public class ReferenceServiceImpl implements ReferenceService {
+    @Inject
+    private Database db;
+
+    @Override
+    public CompletionStage&lt;Values&gt; findReferencesByTypeAndName(final String type, final String name) {
+        return CompletableFuture.completedFuture(new Values(db.findByTypeAndName(type, name).stream()
+            .map(it -&gt; new Values.Item(it.getId(), it.getName()))
+            .collect(toList())));
+    }
+
+    @Override
+    public CompletionStage&lt;Form&gt; findPropertiesById(final String id) {
+        final Entity entity = db.findById(id);
+        return CompletableFuture.completedFuture(Form.builder().properties(entity.getProperties()).formId(entity.getFormId()).build());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Generally this kind of completion will be activated under the hood by the proxy using this kind of metadata:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "action::dynamic_values": "builtin::references(type=xxxx,name=yyyy)"
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_going_further_make_this_field_hidden_when_empty"><a class="anchor" href="#_going_further_make_this_field_hidden_when_empty"></a>Going further: make this field hidden when empty</h5>
+<div class="paragraph">
+<p>In some cases you will want to hide this field if the proposals are &#8656; 1, in this case you can use a condition:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "prependProperties": [
+    {
+      "path": "$datasetMetadata",
+      "type": "OBJECT"
+    },
+    {
+      "path": "$datasetMetadata.bar",
+      "displayName": "Bar",
+      "type": "STRING",
+      "metadata": {
+        "action::dynamic_values": "builtin::http::dynamic_values(url=http:://foo.com/bar,headers=cookie)",
+        "condition::if::target": ".",
+        "condition::if::value": "0,1",
+        "condition::if::negate": "true",
+        "condition::if::evaluationStrategy": "LENGTH",
+      }
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_reloading_the_form_based_on_the_selected_root"><a class="anchor" href="#_reloading_the_form_based_on_the_selected_root"></a>Reloading the form based on the selected root</h4>
 <div class="paragraph">
-<p>The <code>builtin::root::reloadFromId</code> action, with the <code>jsonpatch</code> type,
+<p>The <code>builtin::root::reloadFromId</code> action, with the <code>reloadForm</code> type,
 allows to reload the whole form:</p>
 </div>
 <div class="listingblock">
@@ -1936,6 +2132,38 @@ allows to reload the whole form:</p>
 </div>
 <div class="paragraph">
 <p>The client side (javascript) is now fully encapsulated in <code>ComponentForm</code> from <code>@talend/ui</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reloading_the_form_based_on_a_selected_entity_reference"><a class="anchor" href="#_reloading_the_form_based_on_a_selected_entity_reference"></a>Reloading the form based on a selected entity reference</h4>
+<div class="paragraph">
+<p>The <code>builtin::root::reloadFromParentEntityId</code> action, with the <code>reloadFromParentEntityId</code> type,
+allows to reload the whole form:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "path": "$datasetMetadata.reference",
+  "displayName": "Reference",
+  "type": "STRING",
+  "metadata": {
+    "action::reloadFromParentEntityId": "builtin::root::reloadFromParentEntityId",
+    "action::reloadFromParentEntityId::parameters": "."
+  }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+references are automatically initialized if you use <code>PropertiesService#filterProperties</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -4300,13 +4528,13 @@ this assumes the project is built before you run that command.
 
                     <li>
                                 <a class="article-side-actions-link" target="_blank"
-                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fdocumentation-rest.html&text=Talend%20Component%20Kit%20%3E%3E%20Talend%20Component%20Kit%20REST%20API%20Documentation%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fdocumentation-rest.html">
+                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fdocumentation-rest.html&text=Talend%20Component%20Kit%20%3E%3E%20Component%20server%20and%20HTTP%20API%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fdocumentation-rest.html">
                                     <i class="fab fa-twitter"></i> &nbsp; &nbsp; Tweet
                                 </a>
                             </li>
                             <li>
                                 <a class="article-side-actions-link"
-                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Talend%20Component%20Kit%20REST%20API%20Documentation&body=Talend%20Component%20Kit%3A%20Talend%20Component%20Kit%20REST%20API%20Documentation%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fdocumentation-rest.html">
+                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Component%20server%20and%20HTTP%20API&body=Talend%20Component%20Kit%3A%20Component%20server%20and%20HTTP%20API%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fdocumentation-rest.html">
                                     <i class="far fa-envelope"></i> &nbsp; &nbsp; Mail
                                 </a>
                             </li>
@@ -4338,5 +4566,8 @@ this assumes the project is built before you run that command.
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
 <script src="https://cdn.rawgit.com/rmannibucau/00206484a54ac569e091513e6d2a1c01/raw/46cd5d77ba1abe678f83d11490e12a327b62d7ee/anchorific.js"></script>
 <script src="../../_/js/talend.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.17.6/swagger-ui-bundle.js" integrity="sha256-3jA+c2OgkNzYClyF7e/nz8y3QvjYK3/VD1DP4QVrk68=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.17.6/swagger-ui-standalone-preset.js" integrity="sha256-efpokdX5EnP9Wila8op8k1he7IACcRpq/wCNIonvezg=" crossorigin="anonymous"></script>
+<script src="../../_/js/talend-swaggerui.js"></script>
   </body>
 </html>

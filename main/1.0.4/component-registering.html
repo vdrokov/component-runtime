@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Registering components</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/component-registering.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-07T15:32:30.087Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-07T15:45:10.641Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -170,6 +170,9 @@
   <li data-depth="2">
     <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -179,7 +182,7 @@
     <a class="menu-link" href="system-prerequisites.html">System requirements</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-talend-intellij-plugin-usage.html">IntelliJ plugin</a>
+    <a class="menu-link" href="installing-talend-intellij-plugin.html">Installing the IntelliJ plugin</a>
   </li>
 </ul>
   </li>
@@ -198,19 +201,22 @@
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Creating components</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="component-definition.html">Defining a component</a>
+    <a class="menu-link" href="component-registering.html">Registering a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-processor-output.html">Defining a processor/output logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Configuring a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-registering.html">Registering a component</a>
-  </li>
-  <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-loading.html">Loading a component</a>
+    <a class="menu-link" href="component-versions-and-migration.html">Managing component versions</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
@@ -219,7 +225,13 @@
     <a class="menu-link" href="best-practices.html">Best practices</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="#">mapsub-build-tools.adoc</a>
+    <a class="menu-link" href="component-loading.html">Loading a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-maven.html">Building components with Maven</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-gradle.html">Building components with Gradle</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="wrapping-a-beam-io.html">Wrapping a Beam I/O</a>
@@ -281,6 +293,9 @@
   <li data-depth="2">
     <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="documentation-rest.html">Component server and HTTP API</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -337,7 +352,7 @@
     <a class="menu-link" href="ref-proxy-server-configuration.html">Proxy server configuration</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="ref-rest-resources.html">Component Runtime REST resources</a>
+    <a class="menu-link" href="ref-rest-resources.html">HTTP API</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="ref-scanning-exclusions.html">Scanning exclusions</a>
@@ -348,16 +363,21 @@
   <li data-depth="2">
     <a class="menu-link" href="ref-ui.html">UI API</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="apidocs.html">Javadocs</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
-    <a class="menu-link" href="apidocs.html">Javadocs</a>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Knowledge base</span></label>
+    <ul class="nav nav-list tree"  style="display:none">
+  <li data-depth="2">
+    <a class="menu-link" href="index-knowledge-base.html">Knowledge base articles</a>
   </li>
-  <li data-depth="1">
-    <a class="menu-link" href="index-knowledge-base.html">Knowledge base</a>
-  </li>
-  <li data-depth="1">
+  <li data-depth="2">
     <a class="menu-link" href="changelog.html">Changelog</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -383,11 +403,27 @@
               <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>As you may have read in the <a href="getting-started.html#getting-started-principles" class="page">Getting Started</a>, you need an annotation to register your component through the <code>family</code> method. Multiple components can use the same <code>family</code> value but the <code>family</code> + <code>name</code> pair must be unique for the system.</p>
+<p>Before implementing a component logic and configuration, you need to specify the family and the category it belongs to, the component type and name, as well as its name and a few other generic parameters. This set of metadata, and more particularly the family, categories and component type, is mandatory to recognize and load the component to Talend Studio or Cloud applications.</p>
 </div>
 <div class="paragraph">
-<p>In order to share the same component family name and to avoid repetitions in all <code>family</code> methods,
-you can use the <code>@Components</code> annotation on the root package of your component. It allows you to define the component family and the categories the component belongs to (<code>Misc</code> by default if not set).</p>
+<p>Some of these parameters are handled at the project generation using the starter, but can still be accessed and updated later on.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_component_family_and_categories"><a class="anchor" href="#_component_family_and_categories"></a>Component family and categories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The family and category of a component is automatically written in the <code>package-info.java</code> of the component package, using the <code>@Components</code> annotation. By default, these parameters are already configured in this file when you import your project in your IDE. Their value correspond to what was defined during the project definition with the starter.</p>
+</div>
+<div class="paragraph">
+<p>Multiple components can share the same <code>family</code> and <code>category</code> value, but the <code>family</code> + <code>name</code> pair must be unique for the system.</p>
+</div>
+<div class="paragraph">
+<p>A component can belong to one family only and to one or several categories. If not specified, the category defaults to <code>Misc</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>package-info.java</code> also defines the component family icon, which is different from the component icon. You can learn how to customize this icon in <a href="component-defining-custom-icon.html" class="page">this section</a>.</p>
 </div>
 <div class="paragraph">
 <p>Here is a sample <code>package-info.java</code>:</p>
@@ -414,40 +450,32 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_components_metadata"><a class="anchor" href="#_components_metadata"></a>Components metadata</h2>
+<h2 id="_component_icon_and_version"><a class="anchor" href="#_component_icon_and_version"></a>Component icon and version</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Components can require metadata to be integrated in Talend Studio or Cloud platforms.
 Metadata is set on the component class and belongs to the <code>org.talend.sdk.component.api.component</code> package.</p>
 </div>
-<table class="tableblock frame-all grid-all">
-<colgroup>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">API</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@Icon</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sets an icon key used to represent the component. You can use a custom key with the <code>custom()</code> method but the icon may not be rendered properly.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@Version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the component version. 1 by default.</p></td>
-</tr>
-</tbody>
-</table>
 <div class="paragraph">
-<p>Example:</p>
+<p>When you generate your project and import it in your IDE, icon and version both come with a default value.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@Icon</strong>: Sets an icon key used to represent the component. You can use a custom key with the <code>custom()</code> method but the icon may not be rendered properly. The icon defaults to <strong>Star</strong>.<br>
+Learn how to set a custom icon for your component in <a href="component-defining-custom-icon.html" class="page">this section</a>.</p>
+</li>
+<li>
+<p><strong>@Version</strong>: Sets the component version. 1 by default.<br>
+Learn how to manage different versions and migrations between your component versions in <a href="component-versions-and-migration.html" class="page">this section</a>.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
+<div class="title">Example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Icon(FILE_XML_O)
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(1)
+@Icon(FILE_XML_O)
 @PartitionMapper(name = "jaxbInput")
 public class JaxbPartitionMapper implements Serializable {
     // ...
@@ -455,108 +483,103 @@ public class JaxbPartitionMapper implements Serializable {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_managing_version_configuration"><a class="anchor" href="#_managing_version_configuration"></a>Managing version configuration</h3>
+<h3 id="_defining_a_custom_icon_for_a_component_or_component_family"><a class="anchor" href="#_defining_a_custom_icon_for_a_component_or_component_family"></a>Defining a custom icon for a component or component family</h3>
 <div class="paragraph">
-<p>If some changes impact the configuration, they can be managed through a migration handler at the <strong>component</strong> level (enabling trans-model migration support).</p>
+<p>Every component family and component needs to have a representative icon.<br>
+You can use one of the icons provided by the framework or you can use a custom icon.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For the component family the icon is defined in the <code>package-info.java</code> file.</p>
+</li>
+<li>
+<p>For the component itself, you need to declare the icon in the component class.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>The <code>@Version</code> annotation supports a <code>migrationHandler</code> method which migrates the incoming configuration to the current model.</p>
-</div>
-<div class="paragraph">
-<p>For example, if the <code>filepath</code> configuration entry from v1 changed to <code>location</code> in v2, you can remap the value in your <code>MigrationHandler</code> implementation.</p>
-</div>
-<div class="paragraph">
-<p>A best practice is to split migrations into services that you can inject in the migration handler (through constructor) rather than managing all migrations directly in the handler. For example:</p>
+<p>To use a custom icon, you need to have the icon file placed in the <code>resources/icons</code> folder of the project.
+The icon file needs to have a name following the convention <code>IconName_icon32.png</code>, where you can replace <code>IconName</code> by the name of your choice.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// full component code structure skipped for brievity, kept only migration part
-@Version(value = 3, migrationHandler = MyComponent.Migrations.class)
-public class MyComponent {
-    // the component code...
-
-
-    private interface VersionConfigurationHandler {
-        Map&lt;String, String&gt; migrate(Map&lt;String, String&gt; incomingData);
-    }
-
-    public static class Migrations {
-        private final List&lt;VersionConfigurationHandler&gt; handlers;
-
-        // VersionConfigurationHandler implementations are decorated with @Service
-        public Migrations(final List&lt;VersionConfigurationHandler&gt; migrations) {
-            this.handlers = migrations;
-            this.handlers.sort(/*some custom logic*/);
-        }
-
-        @Override
-        public Map&lt;String, String&gt; migrate(int incomingVersion, Map&lt;String, String&gt; incomingData) {
-            Map&lt;String, String&gt; out = incomingData;
-            for (MigrationHandler handler : handlers) {
-                out = handler.migrate(out);
-            }
-        }
-    }
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Icon(value = Icon.IconType.CUSTOM, custom = "IconName")</code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 relatedlinks">
+<h2 id="_component_type_and_name"><a class="anchor" href="#_component_type_and_name"></a>Component type and name</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The component type is declared in the component class. When you import your project generated from the starter in your IDE, the component type is already defined.</p>
 </div>
 <div class="paragraph">
-<p>What is important to notice in this snippet is not the way the code is organized, but rather the fact that you can organize your migrations the way that best fits your component.</p>
+<p><strong>Input</strong> components can be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A partition mapper. <code>@PartitionMapper</code> is the default for input components.</p>
+</li>
+<li>
+<p>An emitter. <code>@Emitter</code> is a shortcut for <code>@PartitionMapper</code> when you don&#8217;t support distribution. It enforces an implicit partition mapper execution with an assessor size of 1 and a split returning itself.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>If you need to apply migrations in a specific order, make sure that they are sorted.</p>
+<p><strong>Processor</strong>/<strong>Output</strong> components can be:</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Consider this API as a migration callback rather than a migration API.<br>
-Adjust the migration code structure you need behind the <code>MigrationHandler</code>, based on your component requirements, using service injection.
-</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>A processor. <code>@Processor</code> is the default for output components. A method decorated with <code>@Processor</code> is considered as a producer factory.</p>
+</li>
+<li>
+<p>Combiners are not supported by the framework. Combiners allow to aggregate results in a single partition.</p>
+</li>
+</ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_partitionmapper"><a class="anchor" href="#_partitionmapper"></a>@PartitionMapper</h3>
 <div class="paragraph">
-<p><code>@PartitionMapper</code> marks a partition mapper:</p>
+<p>The name of the component is defined there as well as a parameter of the component type</p>
+</div>
+<div class="paragraph">
+<p>Once the component type is defined, you can start implementing its specific logic:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="component-define-input.html" class="page">Defining an input component</a></p>
+</li>
+<li>
+<p><a href="component-define-processor-output.html" class="page">Defining a processor or output component</a></p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
+<div class="title">Partition mapper example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PartitionMapper(family = "demo", name = "my_mapper")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PartitionMapper(name = "my_mapper")
 public class MyMapper {
 }</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_emitter"><a class="anchor" href="#_emitter"></a>@Emitter</h4>
-<div class="paragraph">
-<p><code>@Emitter</code> is a shortcut for <code>@PartitionMapper</code> when you don&#8217;t support distribution. It enforces an implicit partition mapper execution with an assessor size of 1 and a split returning itself.</p>
-</div>
 <div class="listingblock">
+<div class="title">Emitter example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Emitter(family = "demo", name = "my_input")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Emitter(name = "my_input")
 public class MyInput {
 }</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_processor"><a class="anchor" href="#_processor"></a>@Processor</h3>
-<div class="paragraph">
-<p>A method decorated with <code>@Processor</code> is considered as a producer factory:</p>
-</div>
 <div class="listingblock">
+<div class="title">Processor example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Processor(family = "demo", name = "my_processor")
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Processor(name = "my_processor")
 public class MyProcessor {
 }</code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -567,22 +590,22 @@ public class MyProcessor {
 <div class="ulist">
 <ul>
 <li>
+<p><a href="methodology-creating-components.html" class="page">Methodology for creating components</a></p>
+</li>
+<li>
 <p><a href="tutorial-generate-project-using-starter.html" class="page">Generating a project using the starter</a></p>
 </li>
 <li>
-<p><a href="component-definition.html" class="page">Defining a component</a></p>
+<p><a href="component-versions-and-migration.html" class="page">Managing component versions</a></p>
+</li>
+<li>
+<p><a href="component-define-input.html" class="page">Defining an input component</a></p>
+</li>
+<li>
+<p><a href="component-define-processor-output.html" class="page">Defining a processor or output component</a></p>
 </li>
 <li>
 <p><a href="component-configuration.html" class="page">Configuring a component</a></p>
-</li>
-<li>
-<p><a href="component-internationalization.html" class="page">Internationalizing a component</a></p>
-</li>
-<li>
-<p><a href="component-loading.html" class="page">Loading a component</a></p>
-</li>
-<li>
-<p><a href="tutorial-configuration-sensitive-data.html" class="page">Masking sensitive data</a></p>
 </li>
 <li>
 <p><a href="best-practices.html" class="page">Best practices</a></p>
