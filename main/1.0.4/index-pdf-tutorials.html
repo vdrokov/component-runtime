@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Tutorials</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/index-pdf-tutorials.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-07T07:55:02.563Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-07T15:14:28.358Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -130,6 +130,7 @@
             <ul class="dropdown-menu">
               <li><a class="navbar-item" href="contributors.html">Contributors</a></li>
               <li><a class="navbar-item" href="https://community.talend.com/t5/Component-Development/bd-p/ComponentDevelopment" target="_blank">Forum</a></li>
+              <li><a class="navbar-item" href="https://help.talend.com/" target="_blank">Talend Help Center</a></li>
             </ul>
           </li>
         </ul>
@@ -169,6 +170,9 @@
   <li data-depth="2">
     <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -178,7 +182,7 @@
     <a class="menu-link" href="system-prerequisites.html">System requirements</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-talend-intellij-plugin-usage.html">IntelliJ plugin</a>
+    <a class="menu-link" href="installing-talend-intellij-plugin.html">Installing the IntelliJ plugin</a>
   </li>
 </ul>
   </li>
@@ -197,19 +201,22 @@
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Creating components</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="component-definition.html">Defining a component</a>
+    <a class="menu-link" href="component-registering.html">Registering a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-processor-output.html">Defining a processor/output logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Configuring a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-registering.html">Registering a component</a>
-  </li>
-  <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-loading.html">Loading a component</a>
+    <a class="menu-link" href="component-versions-and-migration.html">Managing component versions</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
@@ -218,7 +225,13 @@
     <a class="menu-link" href="best-practices.html">Best practices</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="index-sub-build-tools.html">Build tools</a>
+    <a class="menu-link" href="component-loading.html">Loading a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-maven.html">Building components with Maven</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-gradle.html">Building components with Gradle</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="wrapping-a-beam-io.html">Wrapping a Beam I/O</a>
@@ -280,6 +293,9 @@
   <li data-depth="2">
     <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="documentation-rest.html">Component server and HTTP API</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -336,7 +352,7 @@
     <a class="menu-link" href="ref-proxy-server-configuration.html">Proxy server configuration</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="ref-rest-resources.html">Component Runtime REST resources</a>
+    <a class="menu-link" href="ref-rest-resources.html">HTTP API</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="ref-scanning-exclusions.html">Scanning exclusions</a>
@@ -347,16 +363,21 @@
   <li data-depth="2">
     <a class="menu-link" href="ref-ui.html">UI API</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="apidocs.html">Javadocs</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
-    <a class="menu-link" href="apidocs.html">Javadocs</a>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Knowledge base</span></label>
+    <ul class="nav nav-list tree"  style="display:none">
+  <li data-depth="2">
+    <a class="menu-link" href="index-knowledge-base.html">Knowledge base articles</a>
   </li>
-  <li data-depth="1">
-    <a class="menu-link" href="index-knowledge-base.html">Knowledge base</a>
-  </li>
-  <li data-depth="1">
+  <li data-depth="2">
     <a class="menu-link" href="changelog.html">Changelog</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -369,7 +390,7 @@
               <div class="col-xs-12 col-sm-10 maincontent">
                 <div class="toolbar" role="navigation">
 
-    <ol class="breadcrumb grey-background">
+    <ol class="breadcrumb">
       <li class="crumb active"><a href="index-pdf-tutorials.html">Tutorials</a></li>
     </ol>
 </div>
@@ -620,7 +641,7 @@ The input in this tutorial is a generic record. Enable the <strong>Generic</stro
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generating_and_downloading_the_final_project"><a class="anchor" href="#_generating_and_downloading_the_final_project"></a>Generating and downloading the final project.</h3>
+<h3 id="_generating_and_downloading_the_final_project"><a class="anchor" href="#_generating_and_downloading_the_final_project"></a>Generating and downloading the final project</h3>
 <div class="paragraph">
 <p>Once your project is configured and all the components you need are created, you can generate and download the final project.
 In this tutorial, the project was configured and three components of different types (input, processor and output) have been defined.</p>
@@ -696,7 +717,10 @@ Import the project to your favorite IDE to start the implementation.</p>
 <p><a href="tutorial-create-components-rest-api.html" class="page">Creating a Zendesk REST API connector</a></p>
 </li>
 <li>
-<p><a href="component-definition.html" class="page">Defining a component</a></p>
+<p><a href="component-define-input.html" class="page">Defining an input component</a></p>
+</li>
+<li>
+<p><a href="component-define-processor-output.html" class="page">Defining a processor or output component</a></p>
 </li>
 </ul>
 </div>
@@ -849,7 +873,7 @@ In the example above, <strong>hazelcastXml</strong> and <strong>mapName</strong>
 <p>At runtime, this class heuristically estimates the size of the data to be handled. Based on this estimation and on the capacity of the execution engine of your component, it divides the work of your component to reduce the overall execution time.</p>
 </div>
 <div class="paragraph">
-<p>For more information about the partition mapper class, see <a href="component-definition.html#partition-mapper" class="page">Partition mapper</a>.</p>
+<p>For more information about the partition mapper class, see <a href="component-partition-mapper.html" class="page">Partition mapper</a>.</p>
 </div>
 <div class="paragraph">
 <p>The skeleton of the partition mapper looks as follows:</p>
@@ -1206,7 +1230,7 @@ public HazelcastSource createSource() {
 <div class="sect3">
 <h4 id="_full_implementation_of_the_partition_mapper"><a class="anchor" href="#_full_implementation_of_the_partition_mapper"></a>Full implementation of the Partition Mapper</h4>
 <div class="paragraph">
-<p>Once implemented, the Partition Mapper configuration is as follows. For more information about Partition Mappers, refer to <a href="component-definition.html#partition-mapper" class="page">this document</a>.</p>
+<p>Once implemented, the Partition Mapper configuration is as follows. For more information about Partition Mappers, refer to <a href="component-partition-mapper.html" class="page">this document</a>.</p>
 </div>
 <div class="listingblock initial-block-closed">
 <div class="content">
@@ -1455,7 +1479,7 @@ In this case, the Hazelcast instance created in the post construct method is shu
 </table>
 </div>
 <div class="paragraph">
-<p>To learn more about producers, refer to <a href="component-definition.html#_producer" class="page">this document</a>.</p>
+<p>To learn more about producers, refer to <a href="component-producer.html" class="page">this document</a>.</p>
 </div>
 <div class="paragraph">
 <p>You have now created a complete working input component. You can follow  <a href="tutorial-test-your-components.html" class="page">this tutorial</a> to learn how to create unit tests for your new component.</p>
@@ -1582,7 +1606,7 @@ In the context of this tutorial, the Hazelcast instance loaded in the post Const
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you need to bulk write the updates accordingly to groups, see <a href="component-definition.html#_processor" class="page">Processor description</a>.
+If you need to bulk write the updates accordingly to groups, see <a href="concept-processor-and-batch-processing.html" class="page">Processors and batch processing</a>.
 </td>
 </tr>
 </table>
@@ -1706,7 +1730,7 @@ In this tutorial, the data is passed to the Hazelcast map.</td>
 <div class="sect3">
 <h4 id="_full_implementation_of_the_output"><a class="anchor" href="#_full_implementation_of_the_output"></a>Full implementation of the Output</h4>
 <div class="paragraph">
-<p>Once implemented, the Output configuration is as follows. For more information about outputs, refer to <a href="component-definition.html#_output" class="page">this document</a>.</p>
+<p>Once implemented, the Output configuration is as follows. For more information about outputs, refer to <a href="component-define-processor-output.html" class="page">this document</a>.</p>
 </div>
 <div class="listingblock initial-block-closed">
 <div class="content">
@@ -1986,7 +2010,7 @@ public class SearchQuery {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The configuration class is marked as a <code>DataSet</code>. <a href="component-configuration.html#_marking_a_configuration_as_a_particular_type_of_data " class="page">Read more about configuration types</a>.</td>
+<td>The configuration class is marked as a <code>DataSet</code>. <a href="component-configuration.html#dataset-and-datastore" class="page">Read more about configuration types</a>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -2783,32 +2807,30 @@ You can configure the <strong>passthrough</strong> mode globally on your CI serv
           <div class="col-sm-3 container article-side-panel">
             <nav class="article-anchors">
               <div class="article-side-actions">
-                <h1>Actions</h1>
-                <ul class="list-inline">
+
+                <ul>
                     <li>
                       <a class="article-side-actions-link" target="_blank" href="https://github.com/Talend/component-runtime/edit/master/documentation/src/main/antora/modules/ROOT/pages/index-pdf-tutorials.adoc">
-                        <i class="fa fa-edit"></i> Edit
+                        <i class="fa fa-edit"></i> &nbsp; &nbsp; Suggest an edit
                       </a>
                     </li>
+
                     <li>
-                        <ul class="list-inline">
-                            <li>
                                 <a class="article-side-actions-link" target="_blank"
                                    href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Findex-pdf-tutorials.html&text=Talend%20Component%20Kit%20%3E%3E%20Tutorials%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Findex-pdf-tutorials.html">
-                                    <i class="fab fa-twitter"></i> Tweet
+                                    <i class="fab fa-twitter"></i> &nbsp; &nbsp; Tweet
                                 </a>
                             </li>
                             <li>
                                 <a class="article-side-actions-link"
                                    href="mailto:?subject=Talend%20Component%20Kit%3A%20Tutorials&body=Talend%20Component%20Kit%3A%20Tutorials%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Findex-pdf-tutorials.html">
-                                    <i class="far fa-envelope"></i> Mail
+                                    <i class="far fa-envelope"></i> &nbsp; &nbsp; Mail
                                 </a>
                             </li>
-                        </ul>
-                    </li>
+
                 </ul>
               </div>
-              <h1>On this page</h1>
+              <h1 class="article-side-toc">In this article</h1>
             </nav>
           </div>
           <a href="#top" class="top">Scroll to top</a>
