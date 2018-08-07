@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: UiSpec Server</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/server-uispec.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-07T15:14:28.492Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-07T15:23:45.816Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -170,9 +170,6 @@
   <li data-depth="2">
     <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
   </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-execution.html">General component execution logic</a>
-  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -182,7 +179,7 @@
     <a class="menu-link" href="system-prerequisites.html">System requirements</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="installing-talend-intellij-plugin.html">Installing the IntelliJ plugin</a>
+    <a class="menu-link" href="tutorial-talend-intellij-plugin-usage.html">IntelliJ plugin</a>
   </li>
 </ul>
   </li>
@@ -201,22 +198,19 @@
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Creating components</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="component-registering.html">Registering a component</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-define-processor-output.html">Defining a processor/output logic</a>
+    <a class="menu-link" href="component-definition.html">Defining a component</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Configuring a component</a>
   </li>
   <li data-depth="2">
+    <a class="menu-link" href="component-registering.html">Registering a component</a>
+  </li>
+  <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-versions-and-migration.html">Managing component versions</a>
+    <a class="menu-link" href="component-loading.html">Loading a component</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
@@ -225,13 +219,7 @@
     <a class="menu-link" href="best-practices.html">Best practices</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-loading.html">Loading a component</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="build-tools-maven.html">Building components with Maven</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="build-tools-gradle.html">Building components with Gradle</a>
+    <a class="menu-link" href="#">mapsub-build-tools.adoc</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="wrapping-a-beam-io.html">Wrapping a Beam I/O</a>
@@ -293,9 +281,6 @@
   <li data-depth="2">
     <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
   </li>
-  <li data-depth="2">
-    <a class="menu-link" href="documentation-rest.html">Component server and HTTP API</a>
-  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -352,7 +337,7 @@
     <a class="menu-link" href="ref-proxy-server-configuration.html">Proxy server configuration</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="ref-rest-resources.html">HTTP API</a>
+    <a class="menu-link" href="ref-rest-resources.html">Component Runtime REST resources</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="ref-scanning-exclusions.html">Scanning exclusions</a>
@@ -363,21 +348,16 @@
   <li data-depth="2">
     <a class="menu-link" href="ref-ui.html">UI API</a>
   </li>
-  <li data-depth="2">
-    <a class="menu-link" href="apidocs.html">Javadocs</a>
-  </li>
 </ul>
   </li>
   <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Knowledge base</span></label>
-    <ul class="nav nav-list tree"  style="display:none">
-  <li data-depth="2">
-    <a class="menu-link" href="index-knowledge-base.html">Knowledge base articles</a>
+    <a class="menu-link" href="apidocs.html">Javadocs</a>
   </li>
-  <li data-depth="2">
+  <li data-depth="1">
+    <a class="menu-link" href="index-knowledge-base.html">Knowledge base</a>
+  </li>
+  <li data-depth="1">
     <a class="menu-link" href="changelog.html">Changelog</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -462,11 +442,6 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 <td class="tableblock halign-left valign-top"><p class="tableblock">${playx.application.home}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.proxy.client.executor.threads</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">For the client executor, the number of threads.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.proxy.client.providers</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List of JAX-RS providers to register on the client, at least a JSON-B one should be here.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -485,11 +460,6 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.proxy.jcache.active</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Should the server use jcache to store catalog information and refresh it with some polling. If so the keys <code>talend.component.proxy.jcache.caches.$cacheName.expiry.duration</code>, <code>talend.component.proxy.jcache.caches.$cacheName.management.active</code> and <code>talend.component.proxy.jcache.caches.$cacheName.statistics.active</code> will be read to create a JCache <code>MutableConfiguration</code>. Also note that if all the cachesshare the same configuration you can ignore the <code>$cacheName</code> layer.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.proxy.jcache.cache-key.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A header to use in the cache key (to represent a tenant or equivalent).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.proxy.jcache.provider</p></td>
@@ -522,7 +492,7 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 <div class="sect2">
 <h3 id="_adding_custom_entries_to_the_forms"><a class="anchor" href="#_adding_custom_entries_to_the_forms"></a>Adding custom entries to the forms</h3>
 <div class="paragraph">
-<p>As shown in the table above, you can customize the forms by type. The format reuses Talend Component Kit HTTP API (properties model) and defines two main types of extensions:</p>
+<p>As shown in the table above, you can customize the forms by type. The format reuses Talend Component Kit REST API (properties model) and defines two main types of extensions:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -562,7 +532,7 @@ Always make sure to define a root object for these properties. Do not use dots i
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-To make it a CDI bean, add <code>@Dependent</code> to the class and if you use the Play integration, customize the bean array: <code>playx.cdi.beans.customs +=  {className: org.talend.myapp.MyConverter}.</code>
+To make it a CDI bean, add <code>@Dependent</code> to the class and if you use the <a href="#play-integration">Play integration</a>, customize the bean array: <code>playx.cdi.beans.customs +=  {className: org.talend.myapp.MyConverter}.</code>
 </td>
 </tr>
 </table>
@@ -611,174 +581,9 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 </div>
 </div>
 <div class="sect2">
-<h3 id="_populate_a_dropdown_from_a_remote_call"><a class="anchor" href="#_populate_a_dropdown_from_a_remote_call"></a>Populate a dropdown from a remote call</h3>
-<div class="paragraph">
-<p>In some cases you will want to call a remote service giving you a list of data. For that there is a
-specific <code>http</code> <code>builtin</code> trigger which will be caught on the proxy and redirected to the configured server
-to map it as a <code>dynamic_values</code> trigger.</p>
-</div>
-<div class="paragraph">
-<p>Assume you want to call <code>http:://foo.com/bar</code> propagating the cookies to get the proposals for the
-entry <code>bar</code>, then you will configure it this way:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "prependProperties": [
-    {
-      "path": "$datasetMetadata",
-      "type": "OBJECT"
-    },
-    {
-      "path": "$datasetMetadata.bar",
-      "displayName": "Bar",
-      "type": "STRING",
-      "metadata": {
-        "action::dynamic_values": "builtin::http::dynamic_values(url=http:://foo.com/bar,headers=cookie)"
-      }
-    }
-  ]
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The configuration of the call is passed through a comma separated list in parenthesis as seen in previous snippet.
-The configuration entries are the following ones:</p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Sample</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">url</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The target server to call. Note that placeholder are supported and filled from request headers (<code>placeholderProvider</code>).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="http://proposals.service.com" class="bare">proposals.service.com</a></code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">headers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comma separated list of headers to propagate (using <code>placeholderProvider</code>).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cookie,Authorization</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">accept</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>Accept</code> header. Note that current we only support to parse JSON output and it defaults to <code>application/json</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application/v1+json</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean (default to <code>false</code>) to set to <code>true</code> if the response payload is an object and not a list.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">objectKey</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>object</code> is <code>true</code>, the key to extract to get the list to process.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>items</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the field to extract from an item of the response list to map to the identifier of the proposal (default to <code>id</code>).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the field to extract from an item of the response list to map to the label of the proposal (default to <code>name</code>).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>label</code></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_populate_a_dropdown_with_a_list_of_references"><a class="anchor" href="#_populate_a_dropdown_with_a_list_of_references"></a>Populate a dropdown with a list of references</h3>
-<div class="paragraph">
-<p>In some forms you will want to populate a dropdown with a list of entities available in your database.
-For that, the proxy will rely on a SPI called <code>Integration</code>. If you don&#8217;t implement it, it uses
-a Guice integration if Guice is in the classpath or a native CDI integration otherwise.</p>
-</div>
-<div class="paragraph">
-<p>The integration will then let the proxy lookup a <code>ReferenceService</code> implementation which will provide
-from a configuration type <code>type</code> and <code>name</code> (for instance <code>datastore</code>, <code>MyDataBaseConfig</code>) the list of
-references you want to propose to the end user.</p>
-</div>
-<div class="paragraph">
-<p>Here is very simple implementation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ApplicationScoped
-public class ReferenceServiceImpl implements ReferenceService {
-    @Inject
-    private Database db;
-
-    @Override
-    public CompletionStage&lt;Values&gt; findReferencesByTypeAndName(final String type, final String name) {
-        return CompletableFuture.completedFuture(new Values(db.findByTypeAndName(type, name).stream()
-            .map(it -&gt; new Values.Item(it.getId(), it.getName()))
-            .collect(toList())));
-    }
-
-    @Override
-    public CompletionStage&lt;Form&gt; findPropertiesById(final String id) {
-        final Entity entity = db.findById(id);
-        return CompletableFuture.completedFuture(Form.builder().properties(entity.getProperties()).formId(entity.getFormId()).build());
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Generally this kind of completion will be activated under the hood by the proxy using this kind of metadata:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "action::dynamic_values": "builtin::references(type=xxxx,name=yyyy)"
-}</code></pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_going_further_make_this_field_hidden_when_empty"><a class="anchor" href="#_going_further_make_this_field_hidden_when_empty"></a>Going further: make this field hidden when empty</h4>
-<div class="paragraph">
-<p>In some cases you will want to hide this field if the proposals are &#8656; 1, in this case you can use a condition:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "prependProperties": [
-    {
-      "path": "$datasetMetadata",
-      "type": "OBJECT"
-    },
-    {
-      "path": "$datasetMetadata.bar",
-      "displayName": "Bar",
-      "type": "STRING",
-      "metadata": {
-        "action::dynamic_values": "builtin::http::dynamic_values(url=http:://foo.com/bar,headers=cookie)",
-        "condition::if::target": ".",
-        "condition::if::value": "0,1",
-        "condition::if::negate": "true",
-        "condition::if::evaluationStrategy": "LENGTH",
-      }
-    }
-  ]
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_reloading_the_form_based_on_the_selected_root"><a class="anchor" href="#_reloading_the_form_based_on_the_selected_root"></a>Reloading the form based on the selected root</h3>
 <div class="paragraph">
-<p>The <code>builtin::root::reloadFromId</code> action, with the <code>reloadForm</code> type,
+<p>The <code>builtin::root::reloadFromId</code> action, with the <code>jsonpatch</code> type,
 allows to reload the whole form:</p>
 </div>
 <div class="listingblock">
@@ -812,38 +617,6 @@ allows to reload the whole form:</p>
 </div>
 <div class="paragraph">
 <p>The client side (javascript) is now fully encapsulated in <code>ComponentForm</code> from <code>@talend/ui</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_reloading_the_form_based_on_a_selected_entity_reference"><a class="anchor" href="#_reloading_the_form_based_on_a_selected_entity_reference"></a>Reloading the form based on a selected entity reference</h3>
-<div class="paragraph">
-<p>The <code>builtin::root::reloadFromParentEntityId</code> action, with the <code>reloadFromParentEntityId</code> type,
-allows to reload the whole form:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "path": "$datasetMetadata.reference",
-  "displayName": "Reference",
-  "type": "STRING",
-  "metadata": {
-    "action::reloadFromParentEntityId": "builtin::root::reloadFromParentEntityId",
-    "action::reloadFromParentEntityId::parameters": "."
-  }
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-references are automatically initialized if you use <code>PropertiesService#filterProperties</code>.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
