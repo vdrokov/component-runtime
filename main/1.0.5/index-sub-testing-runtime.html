@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: component-runtime-testing</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/index-sub-testing-runtime.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-08T14:42:34.629Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-08T15:26:03.761Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -1116,6 +1116,41 @@ You can create it manually, as described in <a href="#component-runtime-http-jun
 <h3 id="_passthrough_mode"><a class="anchor" href="#_passthrough_mode"></a>Passthrough mode</h3>
 <div class="paragraph">
 <p>If you set the <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server acts as a proxy and executes each request to the actual server - similarly to the capturing mode.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_junit_5_and_capture_names"><a class="anchor" href="#_junit_5_and_capture_names"></a>JUnit 5 and capture names</h3>
+<div class="paragraph">
+<p>With its <code>@ParameterizedTest</code>, you can want to customize the name of the output file for JUnit 5 based captures/mocks.
+Concretely you want to ensure the replay of the same method with different data lead to different mock files.
+By default the framework will use the display name of the test to specialize it but it is not always very friendly.
+If you want some more advanced control over the name you can use <code>@HttpApiName("myCapture.json")</code> on the test method.
+To parameterize the name using <code>@HttpApiName</code>, you can use the placeholders <code>${class}</code> and <code>${method}</code> which represents
+the declaring class and method name, and <code>${displayName}</code> which represents the method name.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example to use the same capture file for all repeated test:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HttpApiName("${class}_${method}")
+@RepeatedTest(5)
+void run() throws Exception {
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And here, the same example but using different files for each repetition:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HttpApiName("${class}_${method}_${displayName}")
+@RepeatedTest(5)
+void run() throws Exception {
+    // ...
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
