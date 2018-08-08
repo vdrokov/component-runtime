@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Kit Developer Reference Guide :: Building components with Gradle</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/build-tools-gradle.html">
+    <title>Talend Component Kit Developer Reference Guide :: Gradle Plugin</title>
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/build-tools-gradle.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-08T13:17:15.331Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-08T13:30:36.152Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -62,10 +62,7 @@
               Version 1.0.4 <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-                <li class="navbar-item version is-latest">
-                    <a href="../1.0.5/index.html">1.0.5</a>
-                </li>
-                <li class="navbar-item version is-current">
+                <li class="navbar-item version is-current is-latest">
                     <a href="index.html">1.0.4</a>
                 </li>
                 <li class="navbar-item version">
@@ -173,9 +170,6 @@
   <li data-depth="2">
     <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
   </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-execution.html">General component execution logic</a>
-  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -185,7 +179,7 @@
     <a class="menu-link" href="system-prerequisites.html">System requirements</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="installing-talend-intellij-plugin.html">Installing the IntelliJ plugin</a>
+    <a class="menu-link" href="tutorial-talend-intellij-plugin-usage.html">IntelliJ plugin</a>
   </li>
 </ul>
   </li>
@@ -204,22 +198,19 @@
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Creating components</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="component-registering.html">Registering a component</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-define-processor-output.html">Defining a processor/output logic</a>
+    <a class="menu-link" href="component-definition.html">Defining a component</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Configuring a component</a>
   </li>
   <li data-depth="2">
+    <a class="menu-link" href="component-registering.html">Registering a component</a>
+  </li>
+  <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-versions-and-migration.html">Managing component versions</a>
+    <a class="menu-link" href="component-loading.html">Loading a component</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
@@ -228,13 +219,7 @@
     <a class="menu-link" href="best-practices.html">Best practices</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-loading.html">Loading a component</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="build-tools-maven.html">Building components with Maven</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="build-tools-gradle.html">Building components with Gradle</a>
+    <a class="menu-link" href="#">mapsub-build-tools.adoc</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="wrapping-a-beam-io.html">Wrapping a Beam I/O</a>
@@ -296,9 +281,6 @@
   <li data-depth="2">
     <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
   </li>
-  <li data-depth="2">
-    <a class="menu-link" href="documentation-rest.html">Component server and HTTP API</a>
-  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -355,7 +337,7 @@
     <a class="menu-link" href="ref-proxy-server-configuration.html">Proxy server configuration</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="ref-rest-resources.html">HTTP API</a>
+    <a class="menu-link" href="ref-rest-resources.html">Component Runtime REST resources</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="ref-scanning-exclusions.html">Scanning exclusions</a>
@@ -366,21 +348,16 @@
   <li data-depth="2">
     <a class="menu-link" href="ref-ui.html">UI API</a>
   </li>
-  <li data-depth="2">
-    <a class="menu-link" href="apidocs.html">Javadocs</a>
-  </li>
 </ul>
   </li>
   <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Knowledge base</span></label>
-    <ul class="nav nav-list tree"  style="display:none">
-  <li data-depth="2">
-    <a class="menu-link" href="index-knowledge-base.html">Knowledge base articles</a>
+    <a class="menu-link" href="apidocs.html">Javadocs</a>
   </li>
-  <li data-depth="2">
+  <li data-depth="1">
+    <a class="menu-link" href="index-knowledge-base.html">Knowledge base</a>
+  </li>
+  <li data-depth="1">
     <a class="menu-link" href="changelog.html">Changelog</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -394,22 +371,15 @@
                 <div class="toolbar" role="navigation">
 
     <ol class="breadcrumb">
-      <li class="crumb"><a href="index-creating-components.html">Creating components</a></li>
-      <li class="crumb active"><a href="build-tools-gradle.html">Building components with Gradle</a></li>
+      <li class="crumb active"><a href="build-tools-gradle.html">Gradle Plugin</a></li>
     </ol>
 </div>
                 <article class="doc">
         <div class="row">
           <div class="col-sm-9 row">
-              <h1>Building components with Gradle</h1>
+              <h1>Gradle Plugin</h1>
             <div class="article-content">
-              <div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>To develop new components, Talend Component Kit requires a build tool in which you will import the component project generated from the starter. With this build tool, you will also be able to implement the logic of your component and to install and deploy it to Talend applications.
-A Talend Component Kit plugin is available for each of the supported build tools.</p>
-</div>
-<div class="paragraph">
+              <div class="paragraph">
 <p><code>gradle-talend-component</code> helps you write components that match the best practices. It is inspired from the Maven plugin and adds the ability to generate automatically the <code>dependencies.txt</code> file used by the SDK to build the component classpath. For more information on the configuration, refer to the Maven properties matching the attributes.</p>
 </div>
 <div class="paragraph">
@@ -471,26 +441,6 @@ talendComponentKit {
 }</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1 relatedlinks">
-<h2 id="_related_articles"><a class="anchor" href="#_related_articles"></a>Related articles</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="best-practices.html" class="page">Best practices</a></p>
-</li>
-<li>
-<p><a href="build-tools-maven.html" class="page">Building components with Maven</a></p>
-</li>
-<li>
-<p><a href="studio.html" class="page">Integrating to the Studio</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
             </div>
           </div>
           <div class="col-sm-3 container article-side-panel">
@@ -499,20 +449,20 @@ talendComponentKit {
 
                 <ul>
                     <li>
-                      <a class="article-side-actions-link" target="_blank" href="https://github.com/Talend/component-runtime/blob/component-runtime-1.0.4/documentation/src/main/antora/modules/ROOT/pages/build-tools-gradle.adoc">
+                      <a class="article-side-actions-link" target="_blank" href="https://github.com/Talend/component-runtime/edit/master/documentation/src/main/antora/modules/ROOT/pages/build-tools-gradle.adoc">
                         <i class="fa fa-edit"></i> &nbsp; &nbsp; Suggest an edit
                       </a>
                     </li>
 
                     <li>
                                 <a class="article-side-actions-link" target="_blank"
-                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Fbuild-tools-gradle.html&text=Talend%20Component%20Kit%20%3E%3E%20Building%20components%20with%20Gradle%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Fbuild-tools-gradle.html">
+                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fbuild-tools-gradle.html&text=Talend%20Component%20Kit%20%3E%3E%20Gradle%20Plugin%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fbuild-tools-gradle.html">
                                     <i class="fab fa-twitter"></i> &nbsp; &nbsp; Tweet
                                 </a>
                             </li>
                             <li>
                                 <a class="article-side-actions-link"
-                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Building%20components%20with%20Gradle&body=Talend%20Component%20Kit%3A%20Building%20components%20with%20Gradle%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Fbuild-tools-gradle.html">
+                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Gradle%20Plugin&body=Talend%20Component%20Kit%3A%20Gradle%20Plugin%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Fbuild-tools-gradle.html">
                                     <i class="far fa-envelope"></i> &nbsp; &nbsp; Mail
                                 </a>
                             </li>
