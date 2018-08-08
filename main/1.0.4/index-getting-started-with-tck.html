@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talend Component Kit Developer Reference Guide :: Getting Started with Talend Component Kit</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.4/index-getting-started-with-tck.html">
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/index-getting-started-with-tck.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-08T13:57:34.710Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-08T14:42:33.990Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -62,7 +62,10 @@
               Version 1.0.4 <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-                <li class="navbar-item version is-current is-latest">
+                <li class="navbar-item version is-latest">
+                    <a href="../1.0.5/index.html">1.0.5</a>
+                </li>
+                <li class="navbar-item version is-current">
                     <a href="index.html">1.0.4</a>
                 </li>
                 <li class="navbar-item version">
@@ -170,6 +173,9 @@
   <li data-depth="2">
     <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -179,7 +185,7 @@
     <a class="menu-link" href="system-prerequisites.html">System requirements</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-talend-intellij-plugin-usage.html">IntelliJ plugin</a>
+    <a class="menu-link" href="installing-talend-intellij-plugin.html">Installing the IntelliJ plugin</a>
   </li>
 </ul>
   </li>
@@ -198,19 +204,22 @@
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Creating components</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="component-definition.html">Defining a component</a>
+    <a class="menu-link" href="component-registering.html">Registering a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-define-processor-output.html">Defining a processor/output logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Configuring a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-registering.html">Registering a component</a>
-  </li>
-  <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-loading.html">Loading a component</a>
+    <a class="menu-link" href="component-versions-and-migration.html">Managing component versions</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
@@ -219,7 +228,13 @@
     <a class="menu-link" href="best-practices.html">Best practices</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="#">mapsub-build-tools.adoc</a>
+    <a class="menu-link" href="component-loading.html">Loading a component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-maven.html">Building components with Maven</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="build-tools-gradle.html">Building components with Gradle</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="wrapping-a-beam-io.html">Wrapping a Beam I/O</a>
@@ -281,6 +296,9 @@
   <li data-depth="2">
     <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="documentation-rest.html">Component server and HTTP API</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -337,7 +355,7 @@
     <a class="menu-link" href="ref-proxy-server-configuration.html">Proxy server configuration</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="ref-rest-resources.html">Component Runtime REST resources</a>
+    <a class="menu-link" href="ref-rest-resources.html">HTTP API</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="ref-scanning-exclusions.html">Scanning exclusions</a>
@@ -348,16 +366,21 @@
   <li data-depth="2">
     <a class="menu-link" href="ref-ui.html">UI API</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="apidocs.html">Javadocs</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
-    <a class="menu-link" href="apidocs.html">Javadocs</a>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Knowledge base</span></label>
+    <ul class="nav nav-list tree"  style="display:none">
+  <li data-depth="2">
+    <a class="menu-link" href="index-knowledge-base.html">Knowledge base articles</a>
   </li>
-  <li data-depth="1">
-    <a class="menu-link" href="index-knowledge-base.html">Knowledge base</a>
-  </li>
-  <li data-depth="1">
+  <li data-depth="2">
     <a class="menu-link" href="changelog.html">Changelog</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -407,6 +430,9 @@
 <li>
 <p><a href="methodology-creating-components.html" class="page">Methodology for creating components</a></p>
 </li>
+<li>
+<p><a href="component-execution.html" class="page">General component execution logic</a></p>
+</li>
 </ul>
 </div>
 </div>
@@ -437,7 +463,7 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="index-generating-project.html" class="page">Creating a project</a> using the <a href="https://starter-toolkit.talend.io/">starter</a> or the <a href="tutorial-talend-intellij-plugin-usage.html" class="page">Talend IntelliJ plugin</a>. This step allows to build the skeleton of the project. It consists in:</p>
+<p><a href="index-generating-project.html" class="page">Creating a project</a> using the <a href="https://starter-toolkit.talend.io/">starter</a> or the <a href="installing-talend-intellij-plugin.html" class="page">Talend IntelliJ plugin</a>. This step allows to build the skeleton of the project. It consists in:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -460,7 +486,7 @@
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Registering the components family</p>
+<p>Registering the component by specifying its metadata: family, categories, version, icon, type, and name.</p>
 </li>
 <li>
 <p>Defining the layout and configurable part of the components</p>
@@ -511,6 +537,9 @@
 <li>
 <p><a href="tck-framework-overview.html" class="page">Talend Component Kit framework overview</a></p>
 </li>
+<li>
+<p><a href="component-execution.html" class="page">General component execution logic</a></p>
+</li>
 </ul>
 </div>
 </div>
@@ -519,6 +548,19 @@
 <div class="sect1">
 <h2 id="_talend_component_kit_overview"><a class="anchor" href="#_talend_component_kit_overview"></a>Talend Component Kit Overview</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p><em>Talend Component Kit</em> is a toolkit based on Java and designed to simplify the development of components at two levels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Runtime</strong>: Runtime is about injecting the specific component code into a job or pipeline. The framework helps unify as much as possible the code required to run in Data Integration (DI) and BEAM environments.</p>
+</li>
+<li>
+<p><strong>Graphical interface</strong>: The framework helps unify the code required to be able to render the component in a browser (web) or in the Eclipse-based Studio (SWT).</p>
+</li>
+</ul>
+</div>
 <div class="sect2">
 <h3 id="_component_api"><a class="anchor" href="#_component_api"></a>Component API</h3>
 <div class="paragraph">
@@ -711,8 +753,86 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 <li>
 <p><a href="methodology-creating-components.html" class="page">Methodology for creating components</a></p>
 </li>
+<li>
+<p><a href="component-execution.html" class="page">General component execution logic</a></p>
+</li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_general_component_execution_logic"><a class="anchor" href="#_general_component_execution_logic"></a>General component execution logic</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each type of component has its own execution logic. The same basic logic is applied to all components of the same type, and is then extended to implement each component specificities.
+The project generated from the starter already contains the basic logic for each component.</p>
+</div>
+<div class="paragraph">
+<p>Talend Component Kit framework relies on several primitive components.</p>
+</div>
+<div class="paragraph">
+<p>All components can use <code>@PostConstruct</code> and <code>@PreDestroy</code> annotations to initialize or release some underlying resource at the beginning and the end of a processing.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+In distributed environments, class constructor are called on cluster manager nodes. Methods annotated with <code>@PostConstruct</code> and <code>@PreDestroy</code> are called on worker nodes. Thus, partition plan computation and pipeline tasks are performed on different nodes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/deployment-diagram.png" alt="deployment diagram"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The created task is a JAR file containing class information, which describes the pipeline (flow) that should be processed in cluster.</p>
+</li>
+<li>
+<p>During the partition plan computation step, the pipeline is analyzed and split into stages. The cluster manager node instantiates mappers/processors, gets estimated data size using mappers, and splits created mappers according to the estimated data size.<br>
+All instances are then serialized and sent to the worker node.</p>
+</li>
+<li>
+<p>Serialized instances are received and deserialized. Methods annotated with <code>@PostConstruct</code> are called. After that, pipeline execution starts. The <code>@BeforeGroup</code> annotated method of the processor is called before processing the first element in chunk.<br>
+After processing the number of records estimated as chunk size, the <code>@AfterGroup</code> annotated method of the processor is called. Chunk size is calculated depending on the environment the pipeline is processed by. Once the pipeline is processed, methods annotated with <code>@PreDestroy</code> are called.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+All the methods managed by the framework must be public. Private methods are ignored.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/driver-processing-workflow.png" alt="driver processing workflow"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/worker-processing-workflow.png" alt="worker processing workflow"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The framework is designed to be as declarative as possible but also to stay extensible by not using fixed interfaces or method signatures. This allows to incrementally add new features of the underlying implementations.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -724,20 +844,20 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 
                 <ul>
                     <li>
-                      <a class="article-side-actions-link" target="_blank" href="https://github.com/Talend/component-runtime/edit/master/documentation/src/main/antora/modules/ROOT/pages/index-getting-started-with-tck.adoc">
+                      <a class="article-side-actions-link" target="_blank" href="https://github.com/Talend/component-runtime/blob/component-runtime-1.0.4/documentation/src/main/antora/modules/ROOT/pages/index-getting-started-with-tck.adoc">
                         <i class="fa fa-edit"></i> &nbsp; &nbsp; Suggest an edit
                       </a>
                     </li>
 
                     <li>
                                 <a class="article-side-actions-link" target="_blank"
-                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Findex-getting-started-with-tck.html&text=Talend%20Component%20Kit%20%3E%3E%20Getting%20Started%20with%20Talend%20Component%20Kit%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Findex-getting-started-with-tck.html">
+                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Findex-getting-started-with-tck.html&text=Talend%20Component%20Kit%20%3E%3E%20Getting%20Started%20with%20Talend%20Component%20Kit%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Findex-getting-started-with-tck.html">
                                     <i class="fab fa-twitter"></i> &nbsp; &nbsp; Tweet
                                 </a>
                             </li>
                             <li>
                                 <a class="article-side-actions-link"
-                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Getting%20Started%20with%20Talend%20Component%20Kit&body=Talend%20Component%20Kit%3A%20Getting%20Started%20with%20Talend%20Component%20Kit%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.4%2Findex-getting-started-with-tck.html">
+                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Getting%20Started%20with%20Talend%20Component%20Kit&body=Talend%20Component%20Kit%3A%20Getting%20Started%20with%20Talend%20Component%20Kit%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Findex-getting-started-with-tck.html">
                                     <i class="far fa-envelope"></i> &nbsp; &nbsp; Mail
                                 </a>
                             </li>
