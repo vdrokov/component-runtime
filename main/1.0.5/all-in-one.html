@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-12T18:09:20.849Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-13T15:53:13.374Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -176,6 +176,9 @@
   <li data-depth="2">
     <a class="menu-link" href="component-execution.html">General component execution logic</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="tutorial-create-my-first-component.html">Creating your first component</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -304,6 +307,9 @@
   <li data-depth="1">
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Tutorials</span></label>
     <ul class="nav nav-list tree"  style="display:none">
+  <li data-depth="2">
+    <a class="menu-link" href="tutorial-create-my-first-component.html">Creating your first component</a>
+  </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-generate-project-using-starter.html">Generating a project from the starter</a>
   </li>
@@ -498,7 +504,7 @@
 <p>Defining the partition mapper for Input components</p>
 </li>
 <li>
-<p>Implementing the source logic for Input components</p>
+<p>Implementing the source logic (producer) for Input components</p>
 </li>
 <li>
 <p>Defining the processor for Output components</p>
@@ -834,6 +840,405 @@ The framework is designed to be as declarative as possible but also to stay exte
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_creating_your_first_component"><a class="anchor" href="#_creating_your_first_component"></a>Creating your first component</h3>
+<div class="paragraph">
+<p>This tutorial walks you through all the required steps to get started with <strong>Talend Component Kit</strong>, from the creation of a simple component to its integration into <strong>Talend Open Studio</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The component created in this tutorial is a simple output component that receives data from the previous component and displays it in the logs, along with an extra information entered by a user.</p>
+</div>
+<div class="paragraph">
+<p>Once the prerequisites completed, this tutorial should take you about 20 minutes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tutorial_build_job_run.png" alt="Job run">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h4>
+<div class="paragraph">
+<p>This tutorial aims at helping you to create your very first component. But before, get your development environment ready:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Download and install a Java JDK 1.8 or greater.</p>
+</li>
+<li>
+<p>Download and install Talend Open Studio. For example, from <a href="https://sourceforge.net/projects/talend-studio">Sourceforge</a>.</p>
+</li>
+<li>
+<p>Download and install <a href="https://www.jetbrains.com/idea/download">IntelliJ</a>.</p>
+</li>
+<li>
+<p>Download the Talend Component Kit plugin for IntelliJ. The detailed installation steps for the plugin are available in <a href="installing-talend-intellij-plugin.html" class="page">this document</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_generating_a_simple_component_project"><a class="anchor" href="#_generating_a_simple_component_project"></a>Generating a simple component project</h4>
+<div class="paragraph">
+<p>The first step in this tutorial is to generate a project containing a simple output component using the <strong>Starter</strong> included in the Talend Component Kit plugin for IntelliJ.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start IntelliJ and create a new project. In the available options, you should see <strong>Talend Component</strong>.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/intellij_new_component_project.png" alt="New project">
+</div>
+</div>
+</li>
+<li>
+<p>Make sure that a <strong>Project SDK</strong> is selected. Then, select <strong>Talend Component</strong> and click <strong>Next</strong>.<br>
+The <strong>Talend Component Kit Starter</strong> opens.</p>
+</li>
+<li>
+<p>Enter the project details. The goal here is to define the component and project metadata. Change the default values as follows:<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/intellij_tutorial_project_metadata.png" alt="Project metadata">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <strong>Component Family</strong> and the <strong>Category</strong> will be used later in Talend Open Studio to find the new component.</p>
+</li>
+<li>
+<p>The project metadata are mostly used to identify the project structure. A common practice is to replace 'company' in the default value by a value of your own, like your domain name.<br></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Once the metadata is filled, select <strong>ADD A COMPONENT</strong>. A new screen is displayed in the <strong>Talend Component Kit Starter</strong> that lets you define the generic configuration of the component.</p>
+</li>
+<li>
+<p>Select <strong>PROCESSOR/OUTPUT</strong> and enter a valid Java name for the component. For example, <strong>Logger</strong>.</p>
+</li>
+<li>
+<p>Select <strong>CONFIGURATION MODEL</strong> and add a string field named <code>level</code>. This input field will be used in the component configuration to enter additional information to display in the logs.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model">
+</div>
+</div>
+</li>
+<li>
+<p>In the <strong>Input(s) / Output(s)</strong> section, click the default <strong>MAIN</strong> input branch to access its detail, and toggle the <strong>Generic</strong> option to specify that the component can receive any type of data. Leave the <strong>Name</strong> of the branch with its default <code>MAIN</code> value.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tutorial_component_generic_input.png" alt="Generic Input">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default, when selecting <strong>PROCESSOR/OUTPUT</strong>, there is one input branch and no output branch for the component, which is fine in the case of this tutorial. A processor without any output branch is considered an output component.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click <strong>Next</strong> and check the name and location of your project, then click <strong>Finish</strong> to generate the project in the IDE.<br></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>At this point, your component is technically already ready to be compiled and deployed to Talend Open Studio. But first, have a look at the generated project:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tutorial_generated_project_view.png" alt="Project view">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Two classes based on the name and type of component defined in the <strong>Talend Component Kit Starter</strong> have been generated:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>LoggerOutput</strong> is where the component logic is defined</p>
+</li>
+<li>
+<p><strong>LoggerOutputConfiguration</strong> is where the component layout and configurable fields are defined, including the <strong>level</strong> string field that was defined earlier in the configuration model of the component.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The <strong>package-info.java</strong> file contains the component metadata defined in the <strong>Talend Component Kit Starter</strong>, like the family and category.</p>
+</li>
+<li>
+<p>You can notice as well that the elements in the tree structure are named after the project metadata defined in the <strong>Talend Component Kit Starter</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These files are the starting point if you later need to edit the configuration, logic, and metadata of your component.</p>
+</div>
+<div class="paragraph">
+<p>There is more that you can do and configure with the <strong>Talend Component Kit Starter</strong>. This tutorial covers only the basics. You can find more information in <a href="tutorial-generate-project-using-starter.html" class="page">this document</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_compiling_and_deploying_the_component_to_talend_open_studio"><a class="anchor" href="#_compiling_and_deploying_the_component_to_talend_open_studio"></a>Compiling and deploying the component to Talend Open Studio</h4>
+<div class="paragraph">
+<p>Without any modification in the component code, you can compile the project and deploy the component to a local instance of Talend Open Studio.</p>
+</div>
+<div class="paragraph">
+<p>This way, it will be easy to check that what is visible in the Studio is what is intended.</p>
+</div>
+<div class="paragraph">
+<p>Before starting to run any command, make sure Talend Open Studio is not running.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From your component project in IntelliJ, open a terminal.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal">
+</div>
+</div>
+<div class="paragraph">
+<p>There, you can see that the terminal opens directly at the root of the project. All commands shown in this tutorial are performed from this folder.</p>
+</div>
+</li>
+<li>
+<p>Compile the project by running the following command: <code>mvnw clean install</code>.<br>
+The <code>mvnw</code> command refers to the Maven wrapper that is shipped with Talend Component Kit. It allows to use the right version of Maven for your project without having to install it manually beforehand. An equivalent wrapper is available for Gradle.</p>
+</li>
+<li>
+<p>Once the command is executed and you see <strong>BUILD SUCCESS</strong> in the terminal, deploy the component to your local instance of Talend Open Studio using the following command:<br>
+<code>mvnw talend-component:deploy-in-studio -Dtalend.component.studioHome="&lt;path to Talend Open Studio home&gt;"</code><br></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Replace the path by your own value. If the path contains spaces (for example, <code>Program Files</code>), enclose it with double quotes.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Make sure the build is successful.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tutorial_deploy_in_studio_success.png" alt="Build success">
+</div>
+</div>
+</li>
+<li>
+<p>Open Talend Open Studio and create a new Job:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The new component is present inside the new family and category that were specified in the <strong>Talend Component Kit Starter</strong>. You can add it to your job and open its settings.</p>
+</li>
+<li>
+<p>Notice that the <strong>level</strong> field that was specified in the configuration model of the component in the <strong>Talend Component Kit Starter</strong> is present.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tutorial_first_component_in_studio.png" alt="Component in Studio">
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>At this point, your new component is available in Talend Open Studio, and its configurable part is already set. But the component logic is still to be defined.<br>
+As a reminder, the initial goal of this component is to output the information it received in input in the logs of the job.
+Go to the next section to learn how to define a simple logic.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_editing_the_component"><a class="anchor" href="#_editing_the_component"></a>Editing the component</h4>
+<div class="paragraph">
+<p>You can now edit the component to implement a simple logic aiming at reading the data contained in the input branch of the component, to display it the execution logs of the job. The value of the <strong>level</strong> field of the component also needs to be displayed and changed to uppercase.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Save the job created earlier and close Talend Open Studio.</p>
+</li>
+<li>
+<p>Back in IntelliJ open the <strong>LoggerOutput</strong> class. This is the class where the component logic can be defined.</p>
+</li>
+<li>
+<p>Look for the <code>@ElementListener</code> method. It is already present and references the default input branch that was defined in the <strong>Talend Component Kit Starter</strong>, but it is not complete yet.</p>
+</li>
+<li>
+<p>To be able to log the data in input to the console, add the following lines:<br></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//Log to the console
+        System.out.println("["+configuration.getLevel().toUpperCase()+"] "+defaultInput);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>@ElementListener</code> method now looks as follows:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+    public void onNext(
+            @Input final JsonObject defaultInput) {
+        // this is the method allowing you to handle the input(s) and emit the output(s)
+        // after some custom logic you put here, to send a value to next element you can use an
+        // output parameter and call emit(value).
+
+        //Log to the console
+        System.out.println("["+configuration.getLevel().toUpperCase()+"] "+defaultInput);
+    }</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>Open the Terminal again to compile the project and deploy the component again. To do that, run successively the two following commands:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>mvnw clean install</code></p>
+</li>
+<li>
+<p><code>`mvnw talend-component:deploy-in-studio -Dtalend.component.studioHome="&lt;path to Talend Open Studio home&gt;"</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The update of the component logic should now be deployed to the Studio. After restarting the Studio, you will be ready to build a job and use your component for the first time.</p>
+</div>
+<div class="paragraph">
+<p>To learn the different possibilities and methods available to develop more complex logics, refer to <a href="component-define-processor-output.html" class="page">this document</a>.</p>
+</div>
+<div class="paragraph">
+<p>If you want to avoid having to close and re-open Talend Open Studio every time you need to make an edit, you can enable the developer mode, as explained in <a href="studio.html#developer-mode" class="page">this document</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_building_a_job_with_the_component"><a class="anchor" href="#_building_a_job_with_the_component"></a>Building a job with the component</h4>
+<div class="paragraph">
+<p>As the component is now ready to be used, it is time to create a job and check that it behaves as intended.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open Talend Open Studio again and go to the job created earlier. The new component is still there.</p>
+</li>
+<li>
+<p>Add a <strong>tRowGenerator</strong> component and connect it to the logger.</p>
+</li>
+<li>
+<p>Double-click the <strong>tRowGenerator</strong> to specify the data to generate:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add a first column named <code>firstName</code> and select the *TalendDataGenerator.getFirstName() function.</p>
+</li>
+<li>
+<p>Add a second column named 'lastName' and select the *TalendDataGenerator.getLastName() function.</p>
+</li>
+<li>
+<p>Set the <strong>Number of Rows for RowGenerator</strong> to <code>10</code>.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tutorial_build_job_trowgenerator.png" alt="tRowGenerator">
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Validate the <strong>tRowGenerator</strong> configuration.</p>
+</li>
+<li>
+<p>Open the <strong>TutorialFamilyLogger</strong> component and set the <strong>level</strong> field to <code>info</code>.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tutorial_build_job_logger.png" alt="Logger">
+</div>
+</div>
+</li>
+<li>
+<p>Go to the <strong>Run</strong> tab of the job and run the job.<br>
+The job is executed. You can observe in the console that each of the 10 generated rows is logged, and that the <code>info</code> value entered in the logger is also displayed with each record, in uppercase.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tutorial_build_job_run.png" alt="Job run">
+</div>
+</div>
+</div>
+<div class="sect3 relatedlinks">
+<h4 id="_related_articles_4"><a class="anchor" href="#_related_articles_4"></a>Related articles</h4>
+<div class="paragraph">
+<p>To go further and start implementing more complex components, you can refer to the following documents:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="methodology-creating-components.html" class="page">Methodology for creating components</a></p>
+</li>
+<li>
+<p><a href="tutorial-generate-project-using-starter.html" class="page">Generating a project using the Talend Component Kit Starter</a></p>
+</li>
+<li>
+<p><a href="component-registering.html" class="page">Registering a component</a></p>
+</li>
+<li>
+<p><a href="component-execution.html" class="page">General component execution logic</a></p>
+</li>
+<li>
+<p><a href="component-configuration.html" class="page">Configuring a component</a></p>
+</li>
+<li>
+<p><a href="component-define-input.html" class="page">Defining an input component logic</a></p>
+</li>
+<li>
+<p><a href="component-define-processor-output.html" class="page">Defining a processor/output logic</a></p>
+</li>
+<li>
+<p><a href="component-internationalization.html" class="page">Internationalizing a component</a></p>
+</li>
+<li>
+<p><a href="tutorial-configuration-sensitive-data.html" class="page">Masking sensitive data</a></p>
+</li>
+<li>
+<p><a href="best-practices.html" class="page">Best practices</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -850,28 +1255,43 @@ The framework is designed to be as declarative as possible but also to stay exte
 <p>Java JDK 1.8.x. You can download it from <a href="http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html">Oracle</a> website.</p>
 </li>
 <li>
-<p>A build tool:</p>
+<p>Talend Open Studio 7.0 or greater to integrate your components.</p>
+</li>
+<li>
+<p>A Java Integrated Development Environment such as Eclipse or IntelliJ. IntelliJ is recommended as a Talend Component Kit plugin is available.</p>
+</li>
+<li>
+<p>Optional: If you use IntelliJ, you can install the <a href="installing-talend-intellij-plugin.html" class="page">Talend Component Kit plugin for IntelliJ</a>.</p>
+</li>
+<li>
+<p>Optional: A build tool:</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Apache Maven 3.5.4 is recommended to develop a component or the project itself. You can download it from <a href="https://maven.apache.org/download.cgi?Preferred=ftp%3A%2F%2Fmirror.reverse.net%2Fpub%2Fapache%2F">Apache Maven</a> website.<br></p>
 </li>
 <li>
-<p>You can also use Gradle, but at the moment certain features are not supported, such as validations.</p>
+<p>You can also use Gradle, but at the moment certain features are not supported, such as validations.<br></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is optional to install a build tool independently since Maven and Gradle wrappers are already available with Talend Component Kit.
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>A Java Integrated Development Environment such as Eclipse or IntelliJ. IntelliJ is recommended as a Talend Component Kit plugin is available.</p>
-</li>
-<li>
-<p>The version of your Studio is 7.0.</p>
 </li>
 </ul>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_4"><a class="anchor" href="#_related_articles_4"></a>Related articles</h4>
+<h4 id="_related_articles_5"><a class="anchor" href="#_related_articles_5"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -962,7 +1382,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 </div>
 </div>
 <div class="paragraph">
-<p>The plugin is now installed on your IntelliJ IDEA. You can <a href="#">generating-project-using-intellij-plugin.adoc</a>.</p>
+<p>The plugin is now installed on your IntelliJ IDEA. You can <a href="generate-project-using-intellij-plugin.html" class="page">start using it</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1021,7 +1441,7 @@ The plugin automatically detects your configuration and provides you with key co
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_5"><a class="anchor" href="#_related_articles_5"></a>Related articles</h4>
+<h4 id="_related_articles_6"><a class="anchor" href="#_related_articles_6"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1340,7 +1760,7 @@ Import the project to your favorite IDE to start the implementation.</p>
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_6"><a class="anchor" href="#_related_articles_6"></a>Related articles</h4>
+<h4 id="_related_articles_7"><a class="anchor" href="#_related_articles_7"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1366,7 +1786,7 @@ Import the project to your favorite IDE to start the implementation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generating_a_project_using_intellij_plugin"><a class="anchor" href="#_generating_a_project_using_intellij_plugin"></a>Generating a project using intelliJ plugin</h3>
+<h3 id="_generating_a_project_using_intellij_plugin"><a class="anchor" href="#_generating_a_project_using_intellij_plugin"></a>Generating a project using IntelliJ plugin</h3>
 <div class="paragraph">
 <p>Once the plugin <a href="installing-talend-intellij-plugin.html" class="page">installed</a>, you can generate a component project.</p>
 </div>
@@ -1410,7 +1830,7 @@ For more information about the Talend Component Kit starter, check <a href="tuto
 <p>The project is automatically imported into the IDEA using the build tool that you have chosen.</p>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_7"><a class="anchor" href="#_related_articles_7"></a>Related articles</h4>
+<h4 id="_related_articles_8"><a class="anchor" href="#_related_articles_8"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1620,7 +2040,7 @@ public class MyProcessor {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_8"><a class="anchor" href="#_related_articles_8"></a>Related articles</h4>
+<h4 id="_related_articles_9"><a class="anchor" href="#_related_articles_9"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1792,7 +2212,7 @@ public MyData produces() {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_9"><a class="anchor" href="#_related_articles_9"></a>Related articles</h4>
+<h4 id="_related_articles_10"><a class="anchor" href="#_related_articles_10"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2113,7 +2533,7 @@ A combiner is the symmetric part of a partition mapper and allows to aggregate r
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_10"><a class="anchor" href="#_related_articles_10"></a>Related articles</h4>
+<h4 id="_related_articles_11"><a class="anchor" href="#_related_articles_11"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2926,7 +3346,7 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_11"><a class="anchor" href="#_related_articles_11"></a>Related articles</h4>
+<h4 id="_related_articles_12"><a class="anchor" href="#_related_articles_12"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3078,7 +3498,7 @@ If you have a display name using the property path, it overrides the display nam
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_12"><a class="anchor" href="#_related_articles_12"></a>Related articles</h4>
+<h4 id="_related_articles_13"><a class="anchor" href="#_related_articles_13"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3269,7 +3689,7 @@ public class RestApiConfiguration implements Serializable {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_13"><a class="anchor" href="#_related_articles_13"></a>Related articles</h4>
+<h4 id="_related_articles_14"><a class="anchor" href="#_related_articles_14"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3703,7 +4123,7 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_14"><a class="anchor" href="#_related_articles_14"></a>Related articles</h4>
+<h4 id="_related_articles_15"><a class="anchor" href="#_related_articles_15"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4538,7 +4958,7 @@ Call <code>mvn talend-component:help -Ddetail=true -Dgoal=&lt;goal-name&gt;</cod
 </table>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_15"><a class="anchor" href="#_related_articles_15"></a>Related articles</h4>
+<h4 id="_related_articles_16"><a class="anchor" href="#_related_articles_16"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4623,7 +5043,7 @@ talendComponentKit {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_16"><a class="anchor" href="#_related_articles_16"></a>Related articles</h4>
+<h4 id="_related_articles_17"><a class="anchor" href="#_related_articles_17"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4880,7 +5300,7 @@ public class KafkaInput extends PTransform&lt;PBegin, PCollection&lt;JsonObject&
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_17"><a class="anchor" href="#_related_articles_17"></a>Related articles</h4>
+<h4 id="_related_articles_18"><a class="anchor" href="#_related_articles_18"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -7090,7 +7510,7 @@ In such a case, exclusions win over inclusions.
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_18"><a class="anchor" href="#_related_articles_18"></a>Related articles</h4>
+<h4 id="_related_articles_19"><a class="anchor" href="#_related_articles_19"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -7269,7 +7689,7 @@ Add the <code>junit-jupiter-params</code> dependency to benefit from this featur
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_19"><a class="anchor" href="#_related_articles_19"></a>Related articles</h4>
+<h4 id="_related_articles_20"><a class="anchor" href="#_related_articles_20"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8040,7 +8460,7 @@ void run() throws Exception {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_20"><a class="anchor" href="#_related_articles_20"></a>Related articles</h4>
+<h4 id="_related_articles_21"><a class="anchor" href="#_related_articles_21"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8074,7 +8494,7 @@ void run() throws Exception {
 <p>Check <a href="https://beam.apache.org/contribute/testing/" class="bare">beam.apache.org/contribute/testing/</a> for more details.</p>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_21"><a class="anchor" href="#_related_articles_21"></a>Related articles</h4>
+<h4 id="_related_articles_22"><a class="anchor" href="#_related_articles_22"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8349,7 +8769,7 @@ class TheComponentTest {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_22"><a class="anchor" href="#_related_articles_22"></a>Related articles</h4>
+<h4 id="_related_articles_23"><a class="anchor" href="#_related_articles_23"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8405,7 +8825,7 @@ Even if you don&#8217;t use Maven on the platform, you can generate the <code>se
 </table>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_23"><a class="anchor" href="#_related_articles_23"></a>Related articles</h4>
+<h4 id="_related_articles_24"><a class="anchor" href="#_related_articles_24"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8499,7 +8919,7 @@ An alternative to data generation can be to import <em>real</em> data and use Ta
 <p>If you are using JUnit 5, you can have a look at <a href="https://glytching.github.io/junit-extensions/randomBeans" class="bare">glytching.github.io/junit-extensions/randomBeans</a>.</p>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_24"><a class="anchor" href="#_related_articles_24"></a>Related articles</h4>
+<h4 id="_related_articles_25"><a class="anchor" href="#_related_articles_25"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8811,7 +9231,7 @@ You can use <code>ViewsMappingTransform</code> or <code>CoGroupByKeyResultMappin
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_25"><a class="anchor" href="#_related_articles_25"></a>Related articles</h4>
+<h4 id="_related_articles_26"><a class="anchor" href="#_related_articles_26"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8910,7 +9330,7 @@ public interface Translator {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_26"><a class="anchor" href="#_related_articles_26"></a>Related articles</h4>
+<h4 id="_related_articles_27"><a class="anchor" href="#_related_articles_27"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8933,7 +9353,7 @@ public interface Translator {
 <h3 id="_providing_actions_for_consumers"><a class="anchor" href="#_providing_actions_for_consumers"></a>Providing actions for consumers</h3>
 <div class="paragraph">
 <p>In some cases you can need to add some actions that are not related to the runtime. For example,
-enabling clients - the users of the plugin/library - to test if a connection works properly.</p>
+enabling users of the plugin/library to test if a connection works properly.</p>
 </div>
 <div class="paragraph">
 <p>To do so, you need to define an <code>@Action</code>, which is a method with a name (representing the event name), in a class decorated with <code>@Service</code>:</p>
@@ -9105,7 +9525,7 @@ You can combine the <code>$lang</code> option with the <code>@Internationalized<
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_27"><a class="anchor" href="#_related_articles_27"></a>Related articles</h4>
+<h4 id="_related_articles_28"><a class="anchor" href="#_related_articles_28"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -9427,7 +9847,7 @@ By default, <code><strong>/</strong>+json</code> are mapped to JSON-P and <code>
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_28"><a class="anchor" href="#_related_articles_28"></a>Related articles</h4>
+<h4 id="_related_articles_29"><a class="anchor" href="#_related_articles_29"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -9525,7 +9945,7 @@ The <code>findAnnotation</code> annotation, inherited from <code>InterceptorHand
 </table>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_29"><a class="anchor" href="#_related_articles_29"></a>Related articles</h4>
+<h4 id="_related_articles_30"><a class="anchor" href="#_related_articles_30"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -9572,7 +9992,7 @@ public @interface MyLayout {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_30"><a class="anchor" href="#_related_articles_30"></a>Related articles</h4>
+<h4 id="_related_articles_31"><a class="anchor" href="#_related_articles_31"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -9750,7 +10170,7 @@ java.util.logging.SimpleFormatter.format = [%4$s] %5$s%6$s%n</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_developer_mode"><a class="anchor" href="#_developer_mode"></a>Developer mode</h5>
+<h5 id="developer-mode"><a class="anchor" href="#developer-mode"></a>Developer mode</h5>
 <div class="paragraph">
 <p>The developer mode adds a Talend Component Kit button in the main toolbar:</p>
 </div>
@@ -9781,7 +10201,7 @@ You still need to add and remove the components to see the changes.
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_31"><a class="anchor" href="#_related_articles_31"></a>Related articles</h4>
+<h4 id="_related_articles_32"><a class="anchor" href="#_related_articles_32"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10103,7 +10523,7 @@ Import the project to your favorite IDE to start the implementation.</p>
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_32"><a class="anchor" href="#_related_articles_32"></a>Related articles</h4>
+<h4 id="_related_articles_33"><a class="anchor" href="#_related_articles_33"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
