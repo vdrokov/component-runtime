@@ -8,7 +8,7 @@
     <meta name="description" content="How to develop an output component with Talend Component Kit">
     <meta name="keywords" content="output, processor">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-20T08:32:37.989Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-20T09:39:12.861Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -228,6 +228,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="concept-processor-and-batch-processing.html">Implementing batch processing</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="best-practices.html">Best practices</a>
@@ -580,7 +583,7 @@ public MyNewData map(@Input final MyData data, @Input("input2") final MyData2 da
 </div>
 </div>
 <div class="sect2">
-<h3 id="_processor_components_and_batch_processing"><a class="anchor" href="#_processor_components_and_batch_processing"></a>Processor components and batch processing</h3>
+<h3 id="_implementing_batch_processing"><a class="anchor" href="#_implementing_batch_processing"></a>Implementing batch processing</h3>
 <div class="paragraph">
 <p>Depending on several requirements, including the system capacity and business needs, a processor can process records differently.</p>
 </div>
@@ -674,6 +677,25 @@ public class BulkProcessor implements Serializable {
 <div class="paragraph">
 <p>You can learn more about processors in <a href="component-define-processor-output.html" class="page">this document</a>.</p>
 </div>
+<div class="sect3 relatedlinks">
+<h4 id="_related_articles"><a class="anchor" href="#_related_articles"></a>Related articles</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="component-define-processor-output.html" class="page">Defining a processor/output logic</a></p>
+</li>
+<li>
+<p><a href="component-execution.html" class="page">General component execution logic</a></p>
+</li>
+<li>
+<p><a href="concept-processor-and-batch-processing.html" class="page">Implementing bulk processing</a></p>
+</li>
+<li>
+<p><a href="best-practices.html" class="page">Best practices</a></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -712,7 +734,7 @@ A combiner is the symmetric part of a partition mapper and allows to aggregate r
 </div>
 </div>
 <div class="sect1 relatedlinks">
-<h2 id="_related_articles"><a class="anchor" href="#_related_articles"></a>Related articles</h2>
+<h2 id="_related_articles_2"><a class="anchor" href="#_related_articles_2"></a>Related articles</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -730,6 +752,9 @@ A combiner is the symmetric part of a partition mapper and allows to aggregate r
 </li>
 <li>
 <p><a href="component-configuration.html" class="page">Configuring a component</a></p>
+</li>
+<li>
+<p><a href="concept-processor-and-batch-processing.html" class="page">Implementing bulk processing</a></p>
 </li>
 <li>
 <p><a href="component-internationalization.html" class="page">Internationalizing a component</a></p>

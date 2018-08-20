@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-20T08:32:37.931Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-20T09:39:12.798Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -226,6 +226,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-configuration-sensitive-data.html">Masking sensitive data</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="concept-processor-and-batch-processing.html">Implementing batch processing</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="best-practices.html">Best practices</a>
@@ -2406,7 +2409,7 @@ public MyNewData map(@Input final MyData data, @Input("input2") final MyData2 da
 </div>
 </div>
 <div class="sect4">
-<h5 id="_processor_components_and_batch_processing"><a class="anchor" href="#_processor_components_and_batch_processing"></a>Processor components and batch processing</h5>
+<h5 id="_implementing_batch_processing"><a class="anchor" href="#_implementing_batch_processing"></a>Implementing batch processing</h5>
 <div class="paragraph">
 <p>Depending on several requirements, including the system capacity and business needs, a processor can process records differently.</p>
 </div>
@@ -2500,6 +2503,25 @@ public class BulkProcessor implements Serializable {
 <div class="paragraph">
 <p>You can learn more about processors in <a href="component-define-processor-output.html" class="page">this document</a>.</p>
 </div>
+<div class="sect5 relatedlinks">
+<h6 id="_related_articles_11"><a class="anchor" href="#_related_articles_11"></a>Related articles</h6>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="component-define-processor-output.html" class="page">Defining a processor/output logic</a></p>
+</li>
+<li>
+<p><a href="component-execution.html" class="page">General component execution logic</a></p>
+</li>
+<li>
+<p><a href="concept-processor-and-batch-processing.html" class="page">Implementing bulk processing</a></p>
+</li>
+<li>
+<p><a href="best-practices.html" class="page">Best practices</a></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -2533,7 +2555,7 @@ A combiner is the symmetric part of a partition mapper and allows to aggregate r
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_11"><a class="anchor" href="#_related_articles_11"></a>Related articles</h4>
+<h4 id="_related_articles_12"><a class="anchor" href="#_related_articles_12"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2550,6 +2572,9 @@ A combiner is the symmetric part of a partition mapper and allows to aggregate r
 </li>
 <li>
 <p><a href="component-configuration.html" class="page">Configuring a component</a></p>
+</li>
+<li>
+<p><a href="concept-processor-and-batch-processing.html" class="page">Implementing bulk processing</a></p>
 </li>
 <li>
 <p><a href="component-internationalization.html" class="page">Internationalizing a component</a></p>
@@ -3346,7 +3371,7 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_12"><a class="anchor" href="#_related_articles_12"></a>Related articles</h4>
+<h4 id="_related_articles_13"><a class="anchor" href="#_related_articles_13"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3498,7 +3523,7 @@ If you have a display name using the property path, it overrides the display nam
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_13"><a class="anchor" href="#_related_articles_13"></a>Related articles</h4>
+<h4 id="_related_articles_14"><a class="anchor" href="#_related_articles_14"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3689,7 +3714,7 @@ public class RestApiConfiguration implements Serializable {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_14"><a class="anchor" href="#_related_articles_14"></a>Related articles</h4>
+<h4 id="_related_articles_15"><a class="anchor" href="#_related_articles_15"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4123,7 +4148,7 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_15"><a class="anchor" href="#_related_articles_15"></a>Related articles</h4>
+<h4 id="_related_articles_16"><a class="anchor" href="#_related_articles_16"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4958,7 +4983,7 @@ Call <code>mvn talend-component:help -Ddetail=true -Dgoal=&lt;goal-name&gt;</cod
 </table>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_16"><a class="anchor" href="#_related_articles_16"></a>Related articles</h4>
+<h4 id="_related_articles_17"><a class="anchor" href="#_related_articles_17"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -5043,7 +5068,7 @@ talendComponentKit {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_17"><a class="anchor" href="#_related_articles_17"></a>Related articles</h4>
+<h4 id="_related_articles_18"><a class="anchor" href="#_related_articles_18"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -5300,7 +5325,7 @@ public class KafkaInput extends PTransform&lt;PBegin, PCollection&lt;JsonObject&
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_18"><a class="anchor" href="#_related_articles_18"></a>Related articles</h4>
+<h4 id="_related_articles_19"><a class="anchor" href="#_related_articles_19"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -7510,7 +7535,7 @@ In such a case, exclusions win over inclusions.
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_19"><a class="anchor" href="#_related_articles_19"></a>Related articles</h4>
+<h4 id="_related_articles_20"><a class="anchor" href="#_related_articles_20"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -7689,7 +7714,7 @@ Add the <code>junit-jupiter-params</code> dependency to benefit from this featur
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_20"><a class="anchor" href="#_related_articles_20"></a>Related articles</h4>
+<h4 id="_related_articles_21"><a class="anchor" href="#_related_articles_21"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8460,7 +8485,7 @@ void run() throws Exception {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_21"><a class="anchor" href="#_related_articles_21"></a>Related articles</h4>
+<h4 id="_related_articles_22"><a class="anchor" href="#_related_articles_22"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8494,7 +8519,7 @@ void run() throws Exception {
 <p>Check <a href="https://beam.apache.org/contribute/testing/" class="bare">beam.apache.org/contribute/testing/</a> for more details.</p>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_22"><a class="anchor" href="#_related_articles_22"></a>Related articles</h4>
+<h4 id="_related_articles_23"><a class="anchor" href="#_related_articles_23"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8769,7 +8794,7 @@ class TheComponentTest {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_23"><a class="anchor" href="#_related_articles_23"></a>Related articles</h4>
+<h4 id="_related_articles_24"><a class="anchor" href="#_related_articles_24"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8825,7 +8850,7 @@ Even if you don&#8217;t use Maven on the platform, you can generate the <code>se
 </table>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_24"><a class="anchor" href="#_related_articles_24"></a>Related articles</h4>
+<h4 id="_related_articles_25"><a class="anchor" href="#_related_articles_25"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -8919,7 +8944,7 @@ An alternative to data generation can be to import <em>real</em> data and use Ta
 <p>If you are using JUnit 5, you can have a look at <a href="https://glytching.github.io/junit-extensions/randomBeans" class="bare">glytching.github.io/junit-extensions/randomBeans</a>.</p>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_25"><a class="anchor" href="#_related_articles_25"></a>Related articles</h4>
+<h4 id="_related_articles_26"><a class="anchor" href="#_related_articles_26"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -9231,7 +9256,7 @@ You can use <code>ViewsMappingTransform</code> or <code>CoGroupByKeyResultMappin
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_26"><a class="anchor" href="#_related_articles_26"></a>Related articles</h4>
+<h4 id="_related_articles_27"><a class="anchor" href="#_related_articles_27"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -9330,7 +9355,7 @@ public interface Translator {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_27"><a class="anchor" href="#_related_articles_27"></a>Related articles</h4>
+<h4 id="_related_articles_28"><a class="anchor" href="#_related_articles_28"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -9525,7 +9550,7 @@ You can combine the <code>$lang</code> option with the <code>@Internationalized<
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_28"><a class="anchor" href="#_related_articles_28"></a>Related articles</h4>
+<h4 id="_related_articles_29"><a class="anchor" href="#_related_articles_29"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -9847,7 +9872,7 @@ By default, <code><strong>/</strong>+json</code> are mapped to JSON-P and <code>
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_29"><a class="anchor" href="#_related_articles_29"></a>Related articles</h4>
+<h4 id="_related_articles_30"><a class="anchor" href="#_related_articles_30"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -9945,7 +9970,7 @@ The <code>findAnnotation</code> annotation, inherited from <code>InterceptorHand
 </table>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_30"><a class="anchor" href="#_related_articles_30"></a>Related articles</h4>
+<h4 id="_related_articles_31"><a class="anchor" href="#_related_articles_31"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -9992,7 +10017,7 @@ public @interface MyLayout {
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_31"><a class="anchor" href="#_related_articles_31"></a>Related articles</h4>
+<h4 id="_related_articles_32"><a class="anchor" href="#_related_articles_32"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10201,7 +10226,7 @@ You still need to add and remove the components to see the changes.
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_32"><a class="anchor" href="#_related_articles_32"></a>Related articles</h4>
+<h4 id="_related_articles_33"><a class="anchor" href="#_related_articles_33"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -10523,7 +10548,7 @@ Import the project to your favorite IDE to start the implementation.</p>
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_33"><a class="anchor" href="#_related_articles_33"></a>Related articles</h4>
+<h4 id="_related_articles_34"><a class="anchor" href="#_related_articles_34"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
