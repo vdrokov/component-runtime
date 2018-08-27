@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talend Component Kit Developer Reference Guide :: Getting Started with Talend Component Kit</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/index-getting-started-with-tck.html">
+    <meta name="description" content="Get an overview of the Talend Component Kit framework and create your first component">
+    <meta name="keywords" content="quickstart, overview, principle, description">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-24T13:42:29.812Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-27T08:38:34.240Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -165,10 +167,13 @@
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Getting Started</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
+    <a class="menu-link" href="index-getting-started-with-tck.html">Getting Started overview</a>
+  </li>
+  <li data-depth="2">
     <a class="menu-link" href="what-is-a-talend-component.html">What is a Talend Component</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="methodology-creating-components.html">Methodology</a>
+    <a class="menu-link" href="methodology-creating-components.html">Development methodology</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
@@ -182,8 +187,46 @@
 </ul>
   </li>
   <li data-depth="1">
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Tutorials</span></label>
+    <ul class="nav nav-list tree"  style="display:none">
+  <li data-depth="2">
+    <a class="menu-link" href="index-tutorials.html">Tutorial overview</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="tutorial-create-my-first-component.html">Creating your first component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="tutorial-generate-project-using-starter.html">Generating a project from the starter</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="tutorial-create-an-input-component.html">Creating a Hazelcast input component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="tutorial-create-an-output-component.html">Creating a Hazelcast output component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="tutorial-create-components-rest-api.html">Creating a Zendesk REST API connector</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="tutorial-test-rest-api.html">Testing a Zendesk REST API connector</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="tutorial-test-your-components.html">Testing a Hazelcast component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="tutorial-dev-vs-ci-setup.html">Testing in a continuous integration environment</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="tutorial-handle-talend-component-migration.html">Handle Talend component migration</a>
+  </li>
+</ul>
+  </li>
+  <li data-depth="1">
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Setting up your environment</span></label>
     <ul class="nav nav-list tree"  style="display:none">
+  <li data-depth="2">
+    <a class="menu-link" href="index-setup-environment.html">Setup overview</a>
+  </li>
   <li data-depth="2">
     <a class="menu-link" href="system-prerequisites.html">System requirements</a>
   </li>
@@ -196,6 +239,9 @@
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Generating a project</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
+    <a class="menu-link" href="index-generating-project.html">Project generation overview</a>
+  </li>
+  <li data-depth="2">
     <a class="menu-link" href="tutorial-generate-project-using-starter.html">Using the starter</a>
   </li>
   <li data-depth="2">
@@ -204,10 +250,13 @@
 </ul>
   </li>
   <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Creating components</span></label>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Implementing components</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="component-registering.html">Registering a component</a>
+    <a class="menu-link" href="index-creating-components.html">Component implementation overview</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-registering.html">Defining component metadata</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
@@ -216,7 +265,7 @@
     <a class="menu-link" href="component-define-processor-output.html">Defining a processor/output logic</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="component-configuration.html">Configuring a component</a>
+    <a class="menu-link" href="component-configuration.html">Defining component configuration</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
@@ -251,6 +300,9 @@
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Defining services</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
+    <a class="menu-link" href="index-defining-services.html">Service overview</a>
+  </li>
+  <li data-depth="2">
     <a class="menu-link" href="services-internationalization.html">Internationalizing a service</a>
   </li>
   <li data-depth="2">
@@ -270,6 +322,9 @@
   <li data-depth="1">
       <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Testing components</span></label>
     <ul class="nav nav-list tree"  style="display:none">
+  <li data-depth="2">
+    <a class="menu-link" href="index-testing-components.html">Component testing overview</a>
+  </li>
   <li data-depth="2">
     <a class="menu-link" href="testing-best-practices.html">Component testing best practices</a>
   </li>
@@ -297,45 +352,38 @@
 </ul>
   </li>
   <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Deploying components</span></label>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Integrating into Talend Studio</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
+    <a class="menu-link" href="index-deploying-components.html">Studio integration overview</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="documentation-rest.html">Component server and HTTP API</a>
+    <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
   </li>
 </ul>
   </li>
   <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Tutorials</span></label>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Integrating into Talend Cloud</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-create-my-first-component.html">Creating your first component</a>
+    <a class="menu-link" href="index-cloud-integration.html">Cloud integration overview</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-generate-project-using-starter.html">Generating a project from the starter</a>
+    <a class="menu-link" href="documentation-rest.html">Component server and HTTP API</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-create-an-input-component.html">Creating a Hazelcast input component</a>
+    <a class="menu-link" href="server-uispec.html">UiSpec Server</a>
+  </li>
+</ul>
+  </li>
+  <li data-depth="1">
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Knowledge base</span></label>
+    <ul class="nav nav-list tree"  style="display:none">
+  <li data-depth="2">
+    <a class="menu-link" href="index-knowledge-base.html">Knowledge base articles</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-create-an-output-component.html">Creating a Hazelcast output component</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="tutorial-create-components-rest-api.html">Creating a Zendesk REST API connector</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="tutorial-test-rest-api.html">Testing a Zendesk REST API connector</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="tutorial-test-your-components.html">Testing a Hazelcast component</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="tutorial-dev-vs-ci-setup.html">Testing in a continuous integration environment</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="tutorial-handle-talend-component-migration.html">Handle Talend component migration</a>
+    <a class="menu-link" href="changelog.html">Changelog</a>
   </li>
 </ul>
   </li>
@@ -383,17 +431,6 @@
   </li>
 </ul>
   </li>
-  <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Knowledge base</span></label>
-    <ul class="nav nav-list tree"  style="display:none">
-  <li data-depth="2">
-    <a class="menu-link" href="index-knowledge-base.html">Knowledge base articles</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="changelog.html">Changelog</a>
-  </li>
-</ul>
-  </li>
 </ul>
   </li>
 </ul>
@@ -414,840 +451,34 @@
           <div class="col-sm-9 row">
               <h1>Getting Started with Talend Component Kit</h1>
             <div class="article-content">
-              <div class="sect1">
-<h2 id="_what_is_a_talend_component"><a class="anchor" href="#_what_is_a_talend_component"></a>What is a Talend Component</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Basically, a component (or connector) is a functional piece that performs a single operation from a Talend application. For example, <strong>tMysqlInput</strong> extracts data from a MySQL table, <strong>tFilterRow</strong> filters data based on a condition.</p>
+              <div class="paragraph">
+<p>If you are new to Talend component development or with the Talend Component Kit framework, you can start by reading the following articles to get a better overview of the framework design and Talend components in general.</p>
 </div>
-<div class="paragraph">
-<p>Physically, a component is a set of files stored within a folder named after the component name. All native components are located in the <code>&lt;Talend Studio installation dir&gt;/plugins/org.talend.designer.components.localprovider_[version]/components</code> directory. Each component is a sub-folder under this directory, the folder name is the component name.</p>
-</div>
-<div class="paragraph">
-<p>Graphically, a component is an icon that you can drag and drop from the Palette to the workspace.</p>
-</div>
-<div class="paragraph">
-<p>Technically, a component is a snippet of generated Java code that is part of a Job which is a Java class. A Job is made of one or more components or connectors. The job name will be the class name and each component in a job will be translated to a snippet of generated Java code. The Java code will be compiled automatically when you save the job.</p>
-</div>
-<div class="paragraph">
-<p><strong>Talend Component Kit</strong> helps you creating your own components.</p>
-</div>
-<div class="sect2 relatedlinks">
-<h3 id="_related_articles"><a class="anchor" href="#_related_articles"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="tck-framework-overview.html" class="page">Talend Component Kit framework overview</a></p>
+<p><a href="what-is-a-talend-component.html" class="page">What is a Talend Component</a></p>
 </li>
 <li>
-<p><a href="methodology-creating-components.html" class="page">Methodology for creating components</a></p>
+<p><a href="methodology-creating-components.html" class="page">Development methodology</a></p>
+</li>
+<li>
+<p><a href="tck-framework-overview.html" class="page">Framework Overview</a></p>
 </li>
 <li>
 <p><a href="component-execution.html" class="page">General component execution logic</a></p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_talend_component_kit_methodology"><a class="anchor" href="#_talend_component_kit_methodology"></a>Talend Component Kit methodology</h2>
-<div class="sectionbody">
-<div id="getting-started-introducing-talend-component" class="paragraph">
-<p><em>Talend Component Kit</em> is a framework designed to simplify the development of components at two levels:</p>
+<div class="paragraph">
+<p>You can also learn the basics of component development by following this tutorial:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Runtime</strong>: Runtime is about injecting the specific component code into a job or pipeline. The framework helps unify as much as possible the code required to run in Data Integration (DI) and BEAM environments.</p>
-</li>
-<li>
-<p><strong>Graphical interface</strong>: The framework helps unify the code required to be able to render the component in a browser (web) or in the Eclipse-based Studio (SWT).</p>
+<p><a href="tutorial-create-my-first-component.html" class="page">Creating your first component</a></p>
 </li>
 </ul>
-</div>
-<div id="getting-started-principles" class="paragraph">
-<p>Before being able to develop new components, check the <a href="system-prerequisites.html" class="page">prerequisites</a> to make sure that you have all you need to get started.</p>
-</div>
-<div class="paragraph">
-<p>Developing new components using the framework includes:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><a href="index-generating-project.html" class="page">Creating a project</a> using the <a href="https://starter-toolkit.talend.io/">starter</a> or the <a href="installing-talend-intellij-plugin.html" class="page">Talend IntelliJ plugin</a>. This step allows to build the skeleton of the project. It consists in:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Defining the general configuration model for each component in your project</p>
-</li>
-<li>
-<p>Generating and downloading the project archive from the starter</p>
-</li>
-<li>
-<p>Compiling the project</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Importing the compiled project in your IDE. This step is not required if you have generated the project using the IntelliJ plugin.</p>
-</li>
-<li>
-<p><a href="index-creating-components.html" class="page">Implementing the components</a>, including:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Registering the component by specifying its metadata: family, categories, version, icon, type, and name.</p>
-</li>
-<li>
-<p>Defining the layout and configurable part of the components</p>
-</li>
-<li>
-<p>Defining the partition mapper for Input components</p>
-</li>
-<li>
-<p>Implementing the source logic (producer) for Input components</p>
-</li>
-<li>
-<p>Defining the processor for Output components</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p><a href="index-testing-components.html" class="page">Testing the components</a></p>
-</li>
-<li>
-<p><a href="index-deploying-components.html" class="page">Deploying the components</a> to Talend Studio or Cloud applications</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Some additional configuration steps can be necessary according to your requirements:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="index-defining-services.html" class="page">Defining services</a> that can be reused in several components</p>
-</li>
-<li>
-<p><a href="tutorial-configuration-sensitive-data.html" class="page">Masking sensitive data</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/methodo.png" alt="methodo"></span></p>
-</div>
-<div class="sect2 relatedlinks">
-<h3 id="_related_articles_2"><a class="anchor" href="#_related_articles_2"></a>Related articles</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="what-is-a-talend-component.html" class="page">What is a Talend component</a></p>
-</li>
-<li>
-<p><a href="tck-framework-overview.html" class="page">Talend Component Kit framework overview</a></p>
-</li>
-<li>
-<p><a href="component-execution.html" class="page">General component execution logic</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_talend_component_kit_overview"><a class="anchor" href="#_talend_component_kit_overview"></a>Talend Component Kit Overview</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><em>Talend Component Kit</em> is a toolkit based on Java and designed to simplify the development of components at two levels:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Runtime</strong>: Runtime is about injecting the specific component code into a job or pipeline. The framework helps unify as much as possible the code required to run in Data Integration (DI) and BEAM environments.</p>
-</li>
-<li>
-<p><strong>Graphical interface</strong>: The framework helps unify the code required to be able to render the component in a browser (web) or in the Eclipse-based Studio (SWT).</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="_component_api"><a class="anchor" href="#_component_api"></a>Component API</h3>
-<div class="paragraph">
-<p>The component API is declarative (through annotations) to ensure it is:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Evolutive. It can get new features without breaking old code.</p>
-</li>
-<li>
-<p>As static as possible.</p>
-</li>
-</ol>
-</div>
-<div class="sect3">
-<h4 id="_evolutive"><a class="anchor" href="#_evolutive"></a>Evolutive</h4>
-<div class="paragraph">
-<p>Because it is fully declarative, any new API can be added iteratively without requiring
-any change to existing components.</p>
-</div>
-<div class="paragraph">
-<p>For example, in the case of Beam potential evolution:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public MyOutput onElement(MyInput data) {
-    return ...;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>would not be affected by the addition of the new Timer API, which can be used as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public MyOutput onElement(MyInput data,
-                          @Timer("my-timer") Timer timer) {
-    return ...;
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_static"><a class="anchor" href="#_static"></a>Static</h4>
-<div class="sect4">
-<h5 id="_ui_friendly"><a class="anchor" href="#_ui_friendly"></a>UI-friendly</h5>
-<div class="paragraph">
-<p>The intent of the framework is to be able to fit in a Java UI as well as in a web UI.</p>
-</div>
-<div class="paragraph">
-<p>It must be understood as colocalized and remote UI. The goal is to move as much as possible the logic to the UI side for UI-related actions. For example, validating a pattern, a size, and so on, should be done on the client side rather than on the server side. Being static encourages this practice.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_auditable_and_with_clear_expectations"><a class="anchor" href="#_auditable_and_with_clear_expectations"></a>Auditable and with clear expectations</h5>
-<div class="paragraph">
-<p>The other goal of being static in the API definition is to ensure that the model will not be mutated at runtime and that all the auditing and modeling can be done before, at the design phase.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_dev_friendly"><a class="anchor" href="#_dev_friendly"></a>Dev-friendly</h5>
-<div class="paragraph">
-<p>Being static also ensures that the development can be validated as much as possible through build tools.<br>
-This does not replace the requirement to test the components but helps developers to maintain components with automated tools.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_flexible_data_modeling"><a class="anchor" href="#_flexible_data_modeling"></a>Flexible data modeling</h4>
-
-</div>
-<div class="sect3">
-<h4 id="_generic_and_specific"><a class="anchor" href="#_generic_and_specific"></a>Generic and specific</h4>
-<div class="paragraph">
-<p>The processor API supports <code>JsonObject</code> as well as any custom model. The goal is to support generic component development that need to access configured "object paths", as well as specific components that rely on a defined path from the input.</p>
-</div>
-<div class="paragraph">
-<p>A generic component can look like:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public MyOutput onElement(JsonObject input) {
-    return ...;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>A specific component can look like (with <code>MyInput</code> a POJO):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public MyOutput onElement(MyInput input) {
-    return ...;
-}</code></pre>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_no_runtime_assumption"><a class="anchor" href="#_no_runtime_assumption"></a>No runtime assumption</h5>
-<div class="paragraph">
-<p>By design, the framework must run in DI (plain standalone Java program) and in Beam pipelines.<br>
-It is out of scope of the framework to handle the way the runtime serializes - if needed - the data.</p>
-</div>
-<div class="paragraph">
-<p>For that reason, it is critical not to import serialization constraints to the stack. As an example, this is the reason why <code>JsonObject</code> is not an <code>IndexedRecord</code> from Avro.</p>
-</div>
-<div class="paragraph">
-<p>Any serialization concern should either be hidden in the framework runtime (outside of the component developer scope) or in the runtime integration with the framework (for example, Beam integration).</p>
-</div>
-<div class="paragraph">
-<p>In this context, JSON-P can be good compromise because it brings a powerful API with very few constraints.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_isolated"><a class="anchor" href="#_isolated"></a>Isolated</h3>
-<div class="paragraph">
-<p>The components must be able to execute even if they have conflicting libraries. For that purpose,
-classloaders must be isolated. A component defines its dependencies based on a Maven format and is  always bound to its own classloader.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_rest"><a class="anchor" href="#_rest"></a>REST</h3>
-<div class="sect3">
-<h4 id="_consumable_model"><a class="anchor" href="#_consumable_model"></a>Consumable model</h4>
-<div class="paragraph">
-<p>The definition payload is as flat as possible and <em>strongly</em> typed to ensure it can be manipulated by consumers.
-This way, consumers can add or remove fields with simple mapping rules, without any abstract tree handling.</p>
-</div>
-<div class="paragraph">
-<p>The execution (runtime) configuration is the concatenation of framework metadata (only the version) and a key/value model of the instance of the configuration based on the definition properties paths for the keys. It enables consumers to maintain and work with the keys/values according to their need.</p>
-</div>
-<div class="paragraph">
-<p>The framework not being responsible for any persistence, it is very important to make sure that consumers can handle it from end to end, with the ability to search for values (update a machine, update a port and so on) and keys (for example, a new encryption rule on key <code>certificate</code>).</p>
-</div>
-<div class="paragraph">
-<p>Talend Component Kit is a metamodel provider (to build forms) and a runtime <strong>execution</strong> platform. It takes a configuration instance and uses it volatilely to execute a component logic. This implies it cannot own the data nor define the contract it has for these two endpoints and must let the consumers handle the data lifecycle (creation, encryption, deletion, and so on).</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_execution_with_streaming"><a class="anchor" href="#_execution_with_streaming"></a>Execution with streaming</h4>
-<div class="paragraph">
-<p>A new mime type called <code>talend/stream</code> is introduced to define a streaming format.</p>
-</div>
-<div class="paragraph">
-<p>It matches a JSON object per line:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{"key1":"value1"}
-{"key2":"value2"}
-{"key1":"value11"}
-{"key1":"value111"}
-{"key2":"value2"}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_fixed_set_of_icons"><a class="anchor" href="#_fixed_set_of_icons"></a>Fixed set of icons</h3>
-<div class="paragraph">
-<p>Icons (<code>@Icon</code>) are based on a fixed set. Custom icons can be used but their display cannot be guaranteed. Components can be used in any environment and require a consistent look that cannot be guaranteed outside of the UI itself. Defining keys only is the best way to communicate this information.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Once you know exactly how you will deploy your component in the Studio, then you
-can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon file.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2 relatedlinks">
-<h3 id="_related_articles_3"><a class="anchor" href="#_related_articles_3"></a>Related articles</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="what-is-a-talend-component.html" class="page">What is a Talend component</a></p>
-</li>
-<li>
-<p><a href="methodology-creating-components.html" class="page">Methodology for creating components</a></p>
-</li>
-<li>
-<p><a href="component-execution.html" class="page">General component execution logic</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_general_component_execution_logic"><a class="anchor" href="#_general_component_execution_logic"></a>General component execution logic</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Each type of component has its own execution logic. The same basic logic is applied to all components of the same type, and is then extended to implement each component specificities.
-The project generated from the starter already contains the basic logic for each component.</p>
-</div>
-<div class="paragraph">
-<p>Talend Component Kit framework relies on several primitive components.</p>
-</div>
-<div class="paragraph">
-<p>All components can use <code>@PostConstruct</code> and <code>@PreDestroy</code> annotations to initialize or release some underlying resource at the beginning and the end of a processing.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-In distributed environments, class constructor are called on cluster manager nodes. Methods annotated with <code>@PostConstruct</code> and <code>@PreDestroy</code> are called on worker nodes. Thus, partition plan computation and pipeline tasks are performed on different nodes.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/deployment-diagram.png" alt="deployment diagram"></span></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The created task is a JAR file containing class information, which describes the pipeline (flow) that should be processed in cluster.</p>
-</li>
-<li>
-<p>During the partition plan computation step, the pipeline is analyzed and split into stages. The cluster manager node instantiates mappers/processors, gets estimated data size using mappers, and splits created mappers according to the estimated data size.<br>
-All instances are then serialized and sent to the worker node.</p>
-</li>
-<li>
-<p>Serialized instances are received and deserialized. Methods annotated with <code>@PostConstruct</code> are called. After that, pipeline execution starts. The <code>@BeforeGroup</code> annotated method of the processor is called before processing the first element in chunk.<br>
-After processing the number of records estimated as chunk size, the <code>@AfterGroup</code> annotated method of the processor is called. Chunk size is calculated depending on the environment the pipeline is processed by. Once the pipeline is processed, methods annotated with <code>@PreDestroy</code> are called.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-All the methods managed by the framework must be public. Private methods are ignored.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/driver-processing-workflow.png" alt="driver processing workflow"></span></p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/worker-processing-workflow.png" alt="worker processing workflow"></span></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The framework is designed to be as declarative as possible but also to stay extensible by not using fixed interfaces or method signatures. This allows to incrementally add new features of the underlying implementations.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_creating_your_first_component"><a class="anchor" href="#_creating_your_first_component"></a>Creating your first component</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This tutorial walks you through all the required steps to get started with <strong>Talend Component Kit</strong>, from the creation of a simple component to its integration into <strong>Talend Open Studio</strong>.</p>
-</div>
-<div class="paragraph">
-<p>The component created in this tutorial is a simple output component that receives data from the previous component and displays it in the logs, along with an extra information entered by a user.</p>
-</div>
-<div class="paragraph">
-<p>Once the prerequisites completed, this tutorial should take you about 20 minutes.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/tutorial_build_job_run.png" alt="Job run">
-</div>
-</div>
-<div class="sect2">
-<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
-<div class="paragraph">
-<p>This tutorial aims at helping you to create your very first component. But before, get your development environment ready:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Download and install a Java JDK 1.8 or greater.</p>
-</li>
-<li>
-<p>Download and install Talend Open Studio. For example, from <a href="https://sourceforge.net/projects/talend-studio">Sourceforge</a>.</p>
-</li>
-<li>
-<p>Download and install <a href="https://www.jetbrains.com/idea/download">IntelliJ</a>.</p>
-</li>
-<li>
-<p>Download the Talend Component Kit plugin for IntelliJ. The detailed installation steps for the plugin are available in <a href="installing-talend-intellij-plugin.html" class="page">this document</a>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_generating_a_simple_component_project"><a class="anchor" href="#_generating_a_simple_component_project"></a>Generating a simple component project</h3>
-<div class="paragraph">
-<p>The first step in this tutorial is to generate a project containing a simple output component using the <strong>Starter</strong> included in the Talend Component Kit plugin for IntelliJ.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Start IntelliJ and create a new project. In the available options, you should see <strong>Talend Component</strong>.<br></p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/intellij_new_component_project.png" alt="New project">
-</div>
-</div>
-</li>
-<li>
-<p>Make sure that a <strong>Project SDK</strong> is selected. Then, select <strong>Talend Component</strong> and click <strong>Next</strong>.<br>
-The <strong>Talend Component Kit Starter</strong> opens.</p>
-</li>
-<li>
-<p>Enter the project details. The goal here is to define the component and project metadata. Change the default values as follows:<br></p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/intellij_tutorial_project_metadata.png" alt="Project metadata">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The <strong>Component Family</strong> and the <strong>Category</strong> will be used later in Talend Open Studio to find the new component.</p>
-</li>
-<li>
-<p>The project metadata are mostly used to identify the project structure. A common practice is to replace 'company' in the default value by a value of your own, like your domain name.<br></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Once the metadata is filled, select <strong>ADD A COMPONENT</strong>. A new screen is displayed in the <strong>Talend Component Kit Starter</strong> that lets you define the generic configuration of the component.</p>
-</li>
-<li>
-<p>Select <strong>PROCESSOR/OUTPUT</strong> and enter a valid Java name for the component. For example, <strong>Logger</strong>.</p>
-</li>
-<li>
-<p>Select <strong>CONFIGURATION MODEL</strong> and add a string field named <code>level</code>. This input field will be used in the component configuration to enter additional information to display in the logs.<br></p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model">
-</div>
-</div>
-</li>
-<li>
-<p>In the <strong>Input(s) / Output(s)</strong> section, click the default <strong>MAIN</strong> input branch to access its detail, and toggle the <strong>Generic</strong> option to specify that the component can receive any type of data. Leave the <strong>Name</strong> of the branch with its default <code>MAIN</code> value.<br></p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/tutorial_component_generic_input.png" alt="Generic Input">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-By default, when selecting <strong>PROCESSOR/OUTPUT</strong>, there is one input branch and no output branch for the component, which is fine in the case of this tutorial. A processor without any output branch is considered an output component.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Click <strong>Next</strong> and check the name and location of your project, then click <strong>Finish</strong> to generate the project in the IDE.<br></p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>At this point, your component is technically already ready to be compiled and deployed to Talend Open Studio. But first, have a look at the generated project:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/tutorial_generated_project_view.png" alt="Project view">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Two classes based on the name and type of component defined in the <strong>Talend Component Kit Starter</strong> have been generated:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>LoggerOutput</strong> is where the component logic is defined</p>
-</li>
-<li>
-<p><strong>LoggerOutputConfiguration</strong> is where the component layout and configurable fields are defined, including the <strong>level</strong> string field that was defined earlier in the configuration model of the component.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>The <strong>package-info.java</strong> file contains the component metadata defined in the <strong>Talend Component Kit Starter</strong>, like the family and category.</p>
-</li>
-<li>
-<p>You can notice as well that the elements in the tree structure are named after the project metadata defined in the <strong>Talend Component Kit Starter</strong>.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These files are the starting point if you later need to edit the configuration, logic, and metadata of your component.</p>
-</div>
-<div class="paragraph">
-<p>There is more that you can do and configure with the <strong>Talend Component Kit Starter</strong>. This tutorial covers only the basics. You can find more information in <a href="tutorial-generate-project-using-starter.html" class="page">this document</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_compiling_and_deploying_the_component_to_talend_open_studio"><a class="anchor" href="#_compiling_and_deploying_the_component_to_talend_open_studio"></a>Compiling and deploying the component to Talend Open Studio</h3>
-<div class="paragraph">
-<p>Without any modification in the component code, you can compile the project and deploy the component to a local instance of Talend Open Studio.</p>
-</div>
-<div class="paragraph">
-<p>This way, it will be easy to check that what is visible in the Studio is what is intended.</p>
-</div>
-<div class="paragraph">
-<p>Before starting to run any command, make sure Talend Open Studio is not running.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>From your component project in IntelliJ, open a terminal.<br></p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal">
-</div>
-</div>
-<div class="paragraph">
-<p>There, you can see that the terminal opens directly at the root of the project. All commands shown in this tutorial are performed from this folder.</p>
-</div>
-</li>
-<li>
-<p>Compile the project by running the following command: <code>mvnw clean install</code>.<br>
-The <code>mvnw</code> command refers to the Maven wrapper that is shipped with Talend Component Kit. It allows to use the right version of Maven for your project without having to install it manually beforehand. An equivalent wrapper is available for Gradle.</p>
-</li>
-<li>
-<p>Once the command is executed and you see <strong>BUILD SUCCESS</strong> in the terminal, deploy the component to your local instance of Talend Open Studio using the following command:<br>
-<code>mvnw talend-component:deploy-in-studio -Dtalend.component.studioHome="&lt;path to Talend Open Studio home&gt;"</code><br></p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Replace the path by your own value. If the path contains spaces (for example, <code>Program Files</code>), enclose it with double quotes.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Make sure the build is successful.<br></p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/tutorial_deploy_in_studio_success.png" alt="Build success">
-</div>
-</div>
-</li>
-<li>
-<p>Open Talend Open Studio and create a new Job:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The new component is present inside the new family and category that were specified in the <strong>Talend Component Kit Starter</strong>. You can add it to your job and open its settings.</p>
-</li>
-<li>
-<p>Notice that the <strong>level</strong> field that was specified in the configuration model of the component in the <strong>Talend Component Kit Starter</strong> is present.<br></p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/tutorial_first_component_in_studio.png" alt="Component in Studio">
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>At this point, your new component is available in Talend Open Studio, and its configurable part is already set. But the component logic is still to be defined.<br>
-As a reminder, the initial goal of this component is to output the information it received in input in the logs of the job.
-Go to the next section to learn how to define a simple logic.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_editing_the_component"><a class="anchor" href="#_editing_the_component"></a>Editing the component</h3>
-<div class="paragraph">
-<p>You can now edit the component to implement a simple logic aiming at reading the data contained in the input branch of the component, to display it the execution logs of the job. The value of the <strong>level</strong> field of the component also needs to be displayed and changed to uppercase.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Save the job created earlier and close Talend Open Studio.</p>
-</li>
-<li>
-<p>Back in IntelliJ open the <strong>LoggerOutput</strong> class. This is the class where the component logic can be defined.</p>
-</li>
-<li>
-<p>Look for the <code>@ElementListener</code> method. It is already present and references the default input branch that was defined in the <strong>Talend Component Kit Starter</strong>, but it is not complete yet.</p>
-</li>
-<li>
-<p>To be able to log the data in input to the console, add the following lines:<br></p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//Log to the console
-        System.out.println("["+configuration.getLevel().toUpperCase()+"] "+defaultInput);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The <code>@ElementListener</code> method now looks as follows:<br></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-    public void onNext(
-            @Input final JsonObject defaultInput) {
-        // this is the method allowing you to handle the input(s) and emit the output(s)
-        // after some custom logic you put here, to send a value to next element you can use an
-        // output parameter and call emit(value).
-
-        //Log to the console
-        System.out.println("["+configuration.getLevel().toUpperCase()+"] "+defaultInput);
-    }</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="5">
-<li>
-<p>Open the Terminal again to compile the project and deploy the component again. To do that, run successively the two following commands:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>mvnw clean install</code></p>
-</li>
-<li>
-<p><code>`mvnw talend-component:deploy-in-studio -Dtalend.component.studioHome="&lt;path to Talend Open Studio home&gt;"</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>The update of the component logic should now be deployed to the Studio. After restarting the Studio, you will be ready to build a job and use your component for the first time.</p>
-</div>
-<div class="paragraph">
-<p>To learn the different possibilities and methods available to develop more complex logics, refer to <a href="component-define-processor-output.html" class="page">this document</a>.</p>
-</div>
-<div class="paragraph">
-<p>If you want to avoid having to close and re-open Talend Open Studio every time you need to make an edit, you can enable the developer mode, as explained in <a href="studio.html#developer-mode" class="page">this document</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_building_a_job_with_the_component"><a class="anchor" href="#_building_a_job_with_the_component"></a>Building a job with the component</h3>
-<div class="paragraph">
-<p>As the component is now ready to be used, it is time to create a job and check that it behaves as intended.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open Talend Open Studio again and go to the job created earlier. The new component is still there.</p>
-</li>
-<li>
-<p>Add a <strong>tRowGenerator</strong> component and connect it to the logger.</p>
-</li>
-<li>
-<p>Double-click the <strong>tRowGenerator</strong> to specify the data to generate:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Add a first column named <code>firstName</code> and select the *TalendDataGenerator.getFirstName() function.</p>
-</li>
-<li>
-<p>Add a second column named 'lastName' and select the *TalendDataGenerator.getLastName() function.</p>
-</li>
-<li>
-<p>Set the <strong>Number of Rows for RowGenerator</strong> to <code>10</code>.<br></p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/tutorial_build_job_trowgenerator.png" alt="tRowGenerator">
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Validate the <strong>tRowGenerator</strong> configuration.</p>
-</li>
-<li>
-<p>Open the <strong>TutorialFamilyLogger</strong> component and set the <strong>level</strong> field to <code>info</code>.<br></p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/tutorial_build_job_logger.png" alt="Logger">
-</div>
-</div>
-</li>
-<li>
-<p>Go to the <strong>Run</strong> tab of the job and run the job.<br>
-The job is executed. You can observe in the console that each of the 10 generated rows is logged, and that the <code>info</code> value entered in the logger is also displayed with each record, in uppercase.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/tutorial_build_job_run.png" alt="Job run">
-</div>
-</div>
-</div>
-<div class="sect2 relatedlinks">
-<h3 id="_related_articles_4"><a class="anchor" href="#_related_articles_4"></a>Related articles</h3>
-<div class="paragraph">
-<p>To go further and start implementing more complex components, you can refer to the following documents:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="methodology-creating-components.html" class="page">Methodology for creating components</a></p>
-</li>
-<li>
-<p><a href="tutorial-generate-project-using-starter.html" class="page">Generating a project using the Talend Component Kit Starter</a></p>
-</li>
-<li>
-<p><a href="component-registering.html" class="page">Registering a component</a></p>
-</li>
-<li>
-<p><a href="component-execution.html" class="page">General component execution logic</a></p>
-</li>
-<li>
-<p><a href="component-configuration.html" class="page">Configuring a component</a></p>
-</li>
-<li>
-<p><a href="component-define-input.html" class="page">Defining an input component logic</a></p>
-</li>
-<li>
-<p><a href="component-define-processor-output.html" class="page">Defining a processor/output logic</a></p>
-</li>
-<li>
-<p><a href="component-internationalization.html" class="page">Internationalizing a component</a></p>
-</li>
-<li>
-<p><a href="tutorial-configuration-sensitive-data.html" class="page">Masking sensitive data</a></p>
-</li>
-<li>
-<p><a href="best-practices.html" class="page">Best practices</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 </div>
             </div>
           </div>
