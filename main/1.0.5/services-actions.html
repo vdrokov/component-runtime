@@ -8,7 +8,7 @@
     <meta name="description" content="How to define actions in a service">
     <meta name="keywords" content="service, action">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-29T14:32:23.049Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-31T13:02:45.846Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -516,90 +516,185 @@ public class PersonReader implements Serializable {
 <div class="paragraph">
 <p>Some common actions need a clear contract so they are defined as API first-class citizen. For example, this is the case for wizards or health checks. Here is the list of the available actions:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
-<colgroup>
-<col>
-<col>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">API</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Return type</th>
-<th class="tableblock halign-left valign-top">Sample returned type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.service.completion.DynamicValues</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dynamic_values</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a method as being useful to fill potential values of a string option for a property denoted by its value. You can link a field as being completable using @Proposable(value). The resolution of the completion action is then done through the component family and value of the action. The callback doesn&#8217;t take any parameter.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Values</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{  "items":[    {      "id":"value",      "label":"label"    }  ]}</code></pre>
+<div class="sect2">
+<h3 id="_dynamic_values"><a class="anchor" href="#_dynamic_values"></a>Dynamic Values</h3>
+<div class="paragraph">
+<p>Mark a method as being useful to fill potential values of a string option for a property denoted by its value. You can link a field as being completable using @Proposable(value). The resolution of the completion action is then done through the component family and value of the action. The callback doesn&#8217;t take any parameter.</p>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.service.healthcheck.HealthCheck</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">healthcheck</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This class marks an action doing a connection test</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HealthCheckStatus</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{  "comment":"Something went wrong",  "status":"KO"}</code></pre>
+<div class="ulist">
+<ul>
+<li>
+<p>Type: <code>dynamic_values</code></p>
+</li>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.service.completion.DynamicValues</code></p>
+</li>
+<li>
+<p>Returned type: <code>org.talend.sdk.component.api.service.completion.Values</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.service.schema.DiscoverSchema</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">schema</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark an action as returning a discovered schema. Its parameter MUST be the type decorated with <code>@Structure</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Schema</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{  "entries":[    {      "name":"column1",      "type":"STRING"    }  ]}</code></pre>
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
+  "items":[
+    {
+      "id":"value",
+      "label":"label"
+    }
+  ]
+}</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.service.completion.Suggestions</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">suggestions</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a method as being useful to fill potential values of a string option. You can link a field as being completable using @Suggestable(value). The resolution of the completion action is then done when the user requests it (generally by clicking on a button or entering the field depending the environment).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SuggestionValues</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_healthcheck"><a class="anchor" href="#_healthcheck"></a>Healthcheck</h3>
+<div class="paragraph">
+<p>This class marks an action doing a connection test</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type: <code>healthcheck</code></p>
+</li>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.service.healthcheck.HealthCheck</code></p>
+</li>
+<li>
+<p>Returned type: <code>org.talend.sdk.component.api.service.healthcheck.HealthCheckStatus</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{  "cacheable":false,  "items":[    {      "id":"value",      "label":"label"    }  ]}</code></pre>
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
+  "comment":"Something went wrong",
+  "status":"KO"
+}</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.service.Action</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">any</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>-</code></p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.service.asyncvalidation.AsyncValidation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">validation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a method as being used to validate a configuration. IMPORTANT: this is a server validation so only use it if you can&#8217;t use other client side validation to implement it.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ValidationResult</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_schema"><a class="anchor" href="#_schema"></a>Schema</h3>
+<div class="paragraph">
+<p>Mark an action as returning a discovered schema. Its parameter MUST be the type decorated with <code>@Structure</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type: <code>schema</code></p>
+</li>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.service.schema.DiscoverSchema</code></p>
+</li>
+<li>
+<p>Returned type: <code>org.talend.sdk.component.api.service.schema.Schema</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{  "comment":"Something went wrong",  "status":"KO"}</code></pre>
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
+  "entries":[
+    {
+      "name":"column1",
+      "type":"STRING"
+    }
+  ]
+}</code></pre>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_suggestions"><a class="anchor" href="#_suggestions"></a>Suggestions</h3>
+<div class="paragraph">
+<p>Mark a method as being useful to fill potential values of a string option. You can link a field as being completable using @Suggestable(value). The resolution of the completion action is then done when the user requests it (generally by clicking on a button or entering the field depending the environment).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type: <code>suggestions</code></p>
+</li>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.service.completion.Suggestions</code></p>
+</li>
+<li>
+<p>Returned type: <code>org.talend.sdk.component.api.service.completion.SuggestionValues</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
+  "cacheable":false,
+  "items":[
+    {
+      "id":"value",
+      "label":"label"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_user"><a class="anchor" href="#_user"></a>User</h3>
+<div class="paragraph">
+<p>-</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type: <code>user</code></p>
+</li>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.service.Action</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validation"><a class="anchor" href="#_validation"></a>Validation</h3>
+<div class="paragraph">
+<p>Mark a method as being used to validate a configuration. IMPORTANT: this is a server validation so only use it if you can&#8217;t use other client side validation to implement it.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type: <code>validation</code></p>
+</li>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.service.asyncvalidation.AsyncValidation</code></p>
+</li>
+<li>
+<p>Returned type: <code>org.talend.sdk.component.api.service.asyncvalidation.ValidationResult</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
+  "comment":"Something went wrong",
+  "status":"KO"
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">

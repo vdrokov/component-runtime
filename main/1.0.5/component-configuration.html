@@ -8,7 +8,7 @@
     <meta name="description" content="How to define the layout and configurable options of a component">
     <meta name="keywords" content="layout, option, field">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-29T14:32:22.677Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-31T13:02:45.512Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -694,154 +694,293 @@ Avoid using the Map type. Instead, prefer configuring your component with an obj
 <div class="paragraph">
 <p>You can use metadata to specify that a field is required or has a minimum size, and so on. This is done using the <code>validation</code> metadata in the <code>org.talend.sdk.component.api.configuration.constraint</code> package:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
-<colgroup>
-<col>
-<col>
-<col>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">API</th>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Parameter Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Supported Types</th>
-<th class="tableblock halign-left valign-top">Metadata sample</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Max</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">maxLength</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CharSequence</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="sect2">
+<h3 id="_maxlength"><a class="anchor" href="#_maxlength"></a>MaxLength</h3>
+<div class="paragraph">
+<p>Ensure the decorated option size is validated with a higher bound.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.constraint.Max</code></p>
+</li>
+<li>
+<p>Name: <code>maxLength</code></p>
+</li>
+<li>
+<p>Parameter Type: <code>double</code></p>
+</li>
+<li>
+<p>Supported Types:&#8201;&#8212;&#8201;<code>java.lang.CharSequence</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::maxLength":"12.34"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Min</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">minLength</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CharSequence</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_minlength"><a class="anchor" href="#_minlength"></a>MinLength</h3>
+<div class="paragraph">
+<p>Ensure the decorated option size is validated with a lower bound.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.constraint.Min</code></p>
+</li>
+<li>
+<p>Name: <code>minLength</code></p>
+</li>
+<li>
+<p>Parameter Type: <code>double</code></p>
+</li>
+<li>
+<p>Supported Types:&#8201;&#8212;&#8201;<code>java.lang.CharSequence</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::minLength":"12.34"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Pattern</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pattern</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Validate the decorated string with a <strong>javascript</strong> pattern (even into the Studio).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CharSequence</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pattern"><a class="anchor" href="#_pattern"></a>Pattern</h3>
+<div class="paragraph">
+<p>Validate the decorated string with a <strong>javascript</strong> pattern (even into the Studio).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.constraint.Pattern</code></p>
+</li>
+<li>
+<p>Name: <code>pattern</code></p>
+</li>
+<li>
+<p>Parameter Type: <code>java.lang.string</code></p>
+</li>
+<li>
+<p>Supported Types:&#8201;&#8212;&#8201;<code>java.lang.CharSequence</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::pattern":"test"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Max</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">max</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number, int, short, byte, long, double, float</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_max"><a class="anchor" href="#_max"></a>Max</h3>
+<div class="paragraph">
+<p>Ensure the decorated option size is validated with a higher bound.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.constraint.Max</code></p>
+</li>
+<li>
+<p>Name: <code>max</code></p>
+</li>
+<li>
+<p>Parameter Type: <code>double</code></p>
+</li>
+<li>
+<p>Supported Types:&#8201;&#8212;&#8201;<code>java.lang.Number</code>&#8201;&#8212;&#8201;<code>int</code>&#8201;&#8212;&#8201;<code>short</code>&#8201;&#8212;&#8201;<code>byte</code>&#8201;&#8212;&#8201;<code>long</code>&#8201;&#8212;&#8201;<code>double</code>&#8201;&#8212;&#8201;<code>float</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::max":"12.34"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Min</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">min</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number, int, short, byte, long, double, float</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_min"><a class="anchor" href="#_min"></a>Min</h3>
+<div class="paragraph">
+<p>Ensure the decorated option size is validated with a lower bound.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.constraint.Min</code></p>
+</li>
+<li>
+<p>Name: <code>min</code></p>
+</li>
+<li>
+<p>Parameter Type: <code>double</code></p>
+</li>
+<li>
+<p>Supported Types:&#8201;&#8212;&#8201;<code>java.lang.Number</code>&#8201;&#8212;&#8201;<code>int</code>&#8201;&#8212;&#8201;<code>short</code>&#8201;&#8212;&#8201;<code>byte</code>&#8201;&#8212;&#8201;<code>long</code>&#8201;&#8212;&#8201;<code>double</code>&#8201;&#8212;&#8201;<code>float</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::min":"12.34"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Required</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">required</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark the field as being mandatory.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Object</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_required"><a class="anchor" href="#_required"></a>Required</h3>
+<div class="paragraph">
+<p>Mark the field as being mandatory.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.constraint.Required</code></p>
+</li>
+<li>
+<p>Name: <code>required</code></p>
+</li>
+<li>
+<p>Parameter Type: <code>-</code></p>
+</li>
+<li>
+<p>Supported Types:&#8201;&#8212;&#8201;<code>java.lang.Object</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::required":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Max</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">maxItems</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_maxitems"><a class="anchor" href="#_maxitems"></a>MaxItems</h3>
+<div class="paragraph">
+<p>Ensure the decorated option size is validated with a higher bound.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.constraint.Max</code></p>
+</li>
+<li>
+<p>Name: <code>maxItems</code></p>
+</li>
+<li>
+<p>Parameter Type: <code>double</code></p>
+</li>
+<li>
+<p>Supported Types:&#8201;&#8212;&#8201;<code>java.util.Collection</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::maxItems":"12.34"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Min</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">minItems</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_minitems"><a class="anchor" href="#_minitems"></a>MinItems</h3>
+<div class="paragraph">
+<p>Ensure the decorated option size is validated with a lower bound.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.constraint.Min</code></p>
+</li>
+<li>
+<p>Name: <code>minItems</code></p>
+</li>
+<li>
+<p>Parameter Type: <code>double</code></p>
+</li>
+<li>
+<p>Supported Types:&#8201;&#8212;&#8201;<code>java.util.Collection</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::minItems":"12.34"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.constraint.Uniques</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">uniqueItems</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the elements of the collection must be distinct (kind of set).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uniqueitems"><a class="anchor" href="#_uniqueitems"></a>UniqueItems</h3>
+<div class="paragraph">
+<p>Ensure the elements of the collection must be distinct (kind of set).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.constraint.Uniques</code></p>
+</li>
+<li>
+<p>Name: <code>uniqueItems</code></p>
+</li>
+<li>
+<p>Parameter Type: <code>-</code></p>
+</li>
+<li>
+<p>Supported Types:&#8201;&#8212;&#8201;<code>java.util.Collection</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::uniqueItems":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -857,6 +996,7 @@ When using the programmatic API, metadata is prefixed by <code>tcomp::</code>. T
 <div class="paragraph">
 <p>Also note that these validations are executed before the runtime is started (when loading the component instance) and that the execution will fail if they don&#8217;t pass.
 If it breaks your application, you can disable that validation on the JVM by setting the system property <code>talend.component.configuration.validation.skip</code> to <code>true</code>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -876,50 +1016,53 @@ If it breaks your application, you can disable that validation on the JVM by set
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
-<colgroup>
-<col>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">API</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Metadata sample</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">o.t.s.c.api.configuration.type.DataSet</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dataset</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a model (complex object) as being a dataset.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="sect2">
+<h3 id="_dataset"><a class="anchor" href="#_dataset"></a>Dataset</h3>
+<div class="paragraph">
+<p>Mark a model (complex object) as being a dataset.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: @org.talend.sdk.component.api.configuration.type.DataSet</p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "tcomp::configurationtype::type":"dataset",
   "tcomp::configurationtype::name":"test"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">o.t.s.c.api.configuration.type.DataStore</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">datastore</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a model (complex object) as being a datastore (connection to a backend).</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_datastore"><a class="anchor" href="#_datastore"></a>Datastore</h3>
+<div class="paragraph">
+<p>Mark a model (complex object) as being a datastore (connection to a backend).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: @org.talend.sdk.component.api.configuration.type.DataStore</p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "tcomp::configurationtype::type":"datastore",
   "tcomp::configurationtype::name":"test"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -1024,33 +1167,32 @@ The component family associated with a configuration type (datastore/dataset) is
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="_defining_links_between_properties"><a class="anchor" href="#_defining_links_between_properties"></a>Defining links between properties</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you need to define a binding between properties, you can use a set of annotations:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
-<colgroup>
-<col>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">API</th>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Metadata Sample</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.condition.ActiveIf</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">if</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If the evaluation of the element at the location matches value then the element is considered active, otherwise it is deactivated.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="sect2">
+<h3 id="_activeif"><a class="anchor" href="#_activeif"></a>ActiveIf</h3>
+<div class="paragraph">
+<p>If the evaluation of the element at the location matches value then the element is considered active, otherwise it is deactivated.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.condition.ActiveIf</code></p>
+</li>
+<li>
+<p>Type: <code>if</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "condition::if::target":"test",
@@ -1059,13 +1201,27 @@ The component family associated with a configuration type (datastore/dataset) is
   "condition::if::negate":"false"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.condition.ActiveIfs</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ifs</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to set multiple visibility conditions on the same property.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_activeifs"><a class="anchor" href="#_activeifs"></a>ActiveIfs</h3>
+<div class="paragraph">
+<p>Allows to set multiple visibility conditions on the same property.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.condition.ActiveIfs</code></p>
+</li>
+<li>
+<p>Type: <code>ifs</code></p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "condition::ifs::operator":"AND",
@@ -1079,10 +1235,7 @@ The component family associated with a configuration type (datastore/dataset) is
   "condition::if::evaluationStrategy::1":"LENGTH"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 <div class="paragraph">
 <p>The target element location is specified as a relative path to the current location, using Unix path characters.
 The configuration class delimiter is <code>/</code>.<br>
@@ -1103,6 +1256,7 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="documentation-ui-hints"><a class="anchor" href="#documentation-ui-hints"></a>Adding hints about the rendering</h2>
 <div class="sectionbody">
@@ -1110,125 +1264,231 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 <p>In some cases, you may need to add metadata about the configuration to let the UI render that configuration properly.<br>
 For example, a password value that must be hidden and not a simple clear input box. For these cases - if you want to change the UI rendering - you can use a particular set of annotations:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">API</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Generated property metadata</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.DefaultValue</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provide a default value the UI can use - only for primitive fields.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="sect2">
+<h3 id="_defaultvalue"><a class="anchor" href="#_defaultvalue"></a>@DefaultValue</h3>
+<div class="paragraph">
+<p>Provide a default value the UI can use - only for primitive fields.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.DefaultValue</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::defaultvalue::value":"test"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.OptionsOrder</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to sort a class properties.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_optionsorder"><a class="anchor" href="#_optionsorder"></a>@OptionsOrder</h3>
+<div class="paragraph">
+<p>Allows to sort a class properties.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.OptionsOrder</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::optionsorder::value":"value1,value2"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.AutoLayout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Request the rendered to do what it thinks is best.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_autolayout"><a class="anchor" href="#_autolayout"></a>@AutoLayout</h3>
+<div class="paragraph">
+<p>Request the rendered to do what it thinks is best.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.layout.AutoLayout</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::autolayout":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.GridLayout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Advanced layout to place properties by row, this is exclusive with <code>@OptionsOrder</code>.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gridlayout"><a class="anchor" href="#_gridlayout"></a>@GridLayout</h3>
+<div class="paragraph">
+<p>Advanced layout to place properties by row, this is exclusive with <code>@OptionsOrder</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.layout.GridLayout</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::gridlayout::value1::value":"first|second,third",
   "ui::gridlayout::value2::value":"first|second,third"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.GridLayouts</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allow to configure multiple grid layouts on the same class, qualified with a classifier (name)</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gridlayouts"><a class="anchor" href="#_gridlayouts"></a>@GridLayouts</h3>
+<div class="paragraph">
+<p>Allow to configure multiple grid layouts on the same class, qualified with a classifier (name)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.layout.GridLayouts</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::gridlayout::Advanced::value":"another",
   "ui::gridlayout::Main::value":"first|second,third"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.HorizontalLayout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Put on a configuration class it notifies the UI an horizontal layout is preferred.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_horizontallayout"><a class="anchor" href="#_horizontallayout"></a>@HorizontalLayout</h3>
+<div class="paragraph">
+<p>Put on a configuration class it notifies the UI an horizontal layout is preferred.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.layout.HorizontalLayout</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::horizontallayout":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.VerticalLayout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Put on a configuration class it notifies the UI a vertical layout is preferred.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_verticallayout"><a class="anchor" href="#_verticallayout"></a>@VerticalLayout</h3>
+<div class="paragraph">
+<p>Put on a configuration class it notifies the UI a vertical layout is preferred.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.layout.VerticalLayout</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::verticallayout":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.Code</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being represented by some code widget (vs textarea for instance).</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code"><a class="anchor" href="#_code"></a>@Code</h3>
+<div class="paragraph">
+<p>Mark a field as being represented by some code widget (vs textarea for instance).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.widget.Code</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::code::value":"test"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.Credential</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being a credential. It is typically used to hide the value in the UI.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_credential"><a class="anchor" href="#_credential"></a>@Credential</h3>
+<div class="paragraph">
+<p>Mark a field as being a credential. It is typically used to hide the value in the UI.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.widget.Credential</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::credential":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.Structure</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a List&lt;String&gt; or Map&lt;String, String&gt; field as being represented as the component data selector (field names generally or field names as key and type as value).</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_structure"><a class="anchor" href="#_structure"></a>@Structure</h3>
+<div class="paragraph">
+<p>Mark a List&lt;String&gt; or Map&lt;String, String&gt; field as being represented as the component data selector (field names generally or field names as key and type as value).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.widget.Structure</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::structure::discoverSchema":"test",
@@ -1236,21 +1496,30 @@ For example, a password value that must be hidden and not a simple clear input b
   "ui::structure::value":"test"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.TextArea</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being represented by a textarea(multiline text input).</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_textarea"><a class="anchor" href="#_textarea"></a>@TextArea</h3>
+<div class="paragraph">
+<p>Mark a field as being represented by a textarea(multiline text input).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.widget.TextArea</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::textarea":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -1268,6 +1537,7 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </div>
 <div class="paragraph">
 <p>Target support should cover <code>org.talend.core.model.process.EParameterFieldType</code> but you need to ensure that the web renderer is able to handle the same widgets.</p>
+</div>
 </div>
 </div>
 </div>

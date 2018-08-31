@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: User Interface API</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/ref-ui.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-08-29T14:32:23.022Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-08-31T13:02:45.823Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -447,125 +447,250 @@
           <div class="col-sm-9 row">
               <h1>User Interface API</h1>
             <div class="article-content">
-              <table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">API</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Generated property metadata</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.DefaultValue</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Provide a default value the UI can use - only for primitive fields.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+              <div class="sect1">
+<h2 id="_defaultvalue"><a class="anchor" href="#_defaultvalue"></a>@DefaultValue</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Provide a default value the UI can use - only for primitive fields.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.DefaultValue</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::defaultvalue::value":"test"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.OptionsOrder</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to sort a class properties.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_optionsorder"><a class="anchor" href="#_optionsorder"></a>@OptionsOrder</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Allows to sort a class properties.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.OptionsOrder</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::optionsorder::value":"value1,value2"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.AutoLayout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Request the rendered to do what it thinks is best.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_autolayout"><a class="anchor" href="#_autolayout"></a>@AutoLayout</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Request the rendered to do what it thinks is best.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.layout.AutoLayout</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::autolayout":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.GridLayout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Advanced layout to place properties by row, this is exclusive with <code>@OptionsOrder</code>.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gridlayout"><a class="anchor" href="#_gridlayout"></a>@GridLayout</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Advanced layout to place properties by row, this is exclusive with <code>@OptionsOrder</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.layout.GridLayout</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::gridlayout::value1::value":"first|second,third",
   "ui::gridlayout::value2::value":"first|second,third"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.GridLayouts</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allow to configure multiple grid layouts on the same class, qualified with a classifier (name)</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gridlayouts"><a class="anchor" href="#_gridlayouts"></a>@GridLayouts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Allow to configure multiple grid layouts on the same class, qualified with a classifier (name)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.layout.GridLayouts</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::gridlayout::Advanced::value":"another",
   "ui::gridlayout::Main::value":"first|second,third"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.HorizontalLayout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Put on a configuration class it notifies the UI an horizontal layout is preferred.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_horizontallayout"><a class="anchor" href="#_horizontallayout"></a>@HorizontalLayout</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Put on a configuration class it notifies the UI an horizontal layout is preferred.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.layout.HorizontalLayout</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::horizontallayout":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.VerticalLayout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Put on a configuration class it notifies the UI a vertical layout is preferred.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verticallayout"><a class="anchor" href="#_verticallayout"></a>@VerticalLayout</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Put on a configuration class it notifies the UI a vertical layout is preferred.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.layout.VerticalLayout</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::verticallayout":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.Code</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being represented by some code widget (vs textarea for instance).</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code"><a class="anchor" href="#_code"></a>@Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mark a field as being represented by some code widget (vs textarea for instance).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.widget.Code</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::code::value":"test"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.Credential</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being a credential. It is typically used to hide the value in the UI.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_credential"><a class="anchor" href="#_credential"></a>@Credential</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mark a field as being a credential. It is typically used to hide the value in the UI.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.widget.Credential</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::credential":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.Structure</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a List&lt;String&gt; or Map&lt;String, String&gt; field as being represented as the component data selector (field names generally or field names as key and type as value).</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_structure"><a class="anchor" href="#_structure"></a>@Structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mark a List&lt;String&gt; or Map&lt;String, String&gt; field as being represented as the component data selector (field names generally or field names as key and type as value).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.widget.Structure</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::structure::discoverSchema":"test",
@@ -573,21 +698,34 @@
   "ui::structure::value":"test"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.TextArea</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being represented by a textarea(multiline text input).</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_textarea"><a class="anchor" href="#_textarea"></a>@TextArea</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mark a field as being represented by a textarea(multiline text input).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.configuration.ui.widget.TextArea</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sample:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::textarea":"true"
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
+</div>
             </div>
           </div>
           <div class="col-sm-3 container article-side-panel">
