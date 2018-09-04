@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-04T14:25:10.017Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-04T15:20:26.262Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -11696,6 +11696,14 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 </div>
 </div>
 <div class="sect5">
+<h6 id="_enabling_help_hints"><a class="anchor" href="#_enabling_help_hints"></a>Enabling help/hints</h6>
+<div class="paragraph">
+<p>It is possible to show under the inputs the help on each property,
+to do that you must set a <code>PropertyContext.Configuration</code> instance on the <code>UiSpecService</code>
+with the <code>includeDocumentationMetadata</code> attribute set to <code>true</code>.</p>
+</div>
+</div>
+<div class="sect5">
 <h6 id="_client_in_play"><a class="anchor" href="#_client_in_play"></a>Client in Play</h6>
 <div class="paragraph">
 <p>The client to use to connect to the Talend Component Kit server is the CXF client, using HttpClient HC (NIO) transport. When you use the Play module, it can be configured with its standard properties prefixed by <code>talend.component.proxy.</code>.</p>
@@ -14517,6 +14525,14 @@ To make it a CDI bean, add <code>@Dependent</code> to the class and if you use t
 <div class="paragraph">
 <p>This allows to use a custom <code>@Ui</code> API and advanced modeling when specific to applications.<br>
 Converters are sorted respecting to the <code>@Priority</code> value. If the annotation is missing, the priority defaults to <code>0</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_enabling_help_hints_2"><a class="anchor" href="#_enabling_help_hints_2"></a>Enabling help/hints</h5>
+<div class="paragraph">
+<p>It is possible to show under the inputs the help on each property,
+to do that you must set a <code>PropertyContext.Configuration</code> instance on the <code>UiSpecService</code>
+with the <code>includeDocumentationMetadata</code> attribute set to <code>true</code>.</p>
 </div>
 </div>
 <div class="sect4">
