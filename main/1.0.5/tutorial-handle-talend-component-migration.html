@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Kit Developer Reference Guide :: Handle Talend component migration</title>
+    <title>Talend Component Kit Developer Reference Guide :: Handling component version migration</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/tutorial-handle-talend-component-migration.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-04T15:20:26.888Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-05T08:23:30.831Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -212,7 +212,7 @@
     <a class="menu-link" href="tutorial-dev-vs-ci-setup.html">Testing in a continuous integration environment</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-handle-talend-component-migration.html">Handle Talend component migration</a>
+    <a class="menu-link" href="tutorial-handle-talend-component-migration.html">Handling component version migration</a>
   </li>
 </ul>
   </li>
@@ -439,45 +439,63 @@
 
     <ol class="breadcrumb">
       <li class="crumb"><a href="index-tutorials.html">Tutorials</a></li>
-      <li class="crumb active"><a href="tutorial-handle-talend-component-migration.html">Handle Talend component migration</a></li>
+      <li class="crumb active"><a href="tutorial-handle-talend-component-migration.html">Handling component version migration</a></li>
     </ol>
 </div>
                 <article class="doc">
         <div class="row">
           <div class="col-sm-9 row">
-              <h1>Handle Talend component migration</h1>
+              <h1>Handling component version migration</h1>
             <div class="article-content">
               <div id="preamble">
 <div class="sectionbody">
 <div id="tutorial-handle-talend-component-migration" class="paragraph">
-<p>In this tutorial we will walk through migration handler creation for a component that we will upgrade from a version 1 to a version 2 by adding some new options.
-Talend Component Kit provide a migration mechanism between two versions of a component to let you ensure backward compatibility.</p>
+<p>Talend Component Kit provides a migration mechanism between two versions of a component to let you ensure backward compatibility.</p>
 </div>
 <div class="paragraph">
-<p>For example a new version of a component may have some new options that we need to give some them default value in the old versions or that we need to deactivate.</p>
+<p>For example, a new version of a component may have some new options that need to be set with a default value in the older versions or that need to be disabled.</p>
+</div>
+<div class="paragraph">
+<p>This tutorial shows how to create a migration handler for a component that needs to be upgraded from a version 1 to a version 2. The upgrade to the newer version includes adding new options to the component.</p>
+</div>
+<div class="paragraph">
+<p>This tutorial assumes that you know <a href="methodology-creating-components.html" class="page">the basics</a> about component development and are familiar with component project <a href="index-generating-project.html" class="page">generation</a> and <a href="index-creating-components.html" class="page">implementation</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_requirements"><a class="anchor" href="#_requirements"></a>Requirements</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>To follow this tutorial, you need:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Java 8.</p>
+<p>Java 8</p>
 </li>
 <li>
-<p>Talend component development using Talend Component Kit.</p>
+<p>A Talend component development environment using Talend Component Kit. Refer to <a href="system-prerequisites.html" class="page">this document</a>.</p>
+</li>
+<li>
+<p>Have generated a project containing a simple processor component using the Talend Component Kit Starter.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_the_version_1_of_the_component"><a class="anchor" href="#_create_the_version_1_of_the_component"></a>Create the version 1 of the component</h2>
+<h2 id="_creating_the_version_1_of_the_component"><a class="anchor" href="#_creating_the_version_1_of_the_component"></a>Creating the version 1 of the component</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s start by creating a very simple configuration class that will represent a basic authentication that can be used in any component that need this kind of authentication.</p>
+<p>First, create a simple processor component configured as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a simple configuration class that represents a basic authentication and that can be used in any component requiring this kind of authentication.</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -497,8 +515,12 @@ public class BasicAuth {
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Now let&#8217;s create a simple output component that will use our configuration. the component configuration is injected into the component constructor.</p>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Create a simple output component that uses the configuration defined earlier. The component configuration is injected into the component constructor.</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -527,26 +549,41 @@ public class MyOutput implements Serializable {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Configuration version is aligned on the component version, as the configuration will be consumed by the component, it inherit from it version.
+The version of the configuration class is aligned with the component version. The configuration class is consumed by the component and inherits its version.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Here we have defined the first version of our simple component that use our basic authentication configuration.
-Now let&#8217;s add some new authentication mode into version 2 and handle the migration from the first version.</p>
+<p>By configuring these two classes, the first version of the component is ready to use a simple authentication mechanism.</p>
+</div>
+<div class="paragraph">
+<p>Now, assuming that the component needs to support a new authentication mode following a new requirement, the next steps are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Creating a version 2 of the component that supports the new authentication mode.</p>
+</li>
+<li>
+<p>Handling migration from the first version to the new version.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_create_the_version_2_of_the_component"><a class="anchor" href="#_create_the_version_2_of_the_component"></a>Create the version 2 of the component</h2>
+<h2 id="_creating_the_version_2_of_the_component"><a class="anchor" href="#_creating_the_version_2_of_the_component"></a>Creating the version 2 of the component</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this version we will add a new authentication method to our component and add a choice list that will let the user to choose which authentication mode he wants to use.
-Let&#8217;s say we want to add an Oauth2 authentication mode to our component in addition to tha basic mode.</p>
+<p>The second version of the component needs to support a new authentication method and let the user choose the authentication mode he wants to use using a dropdown list.</p>
 </div>
-<div class="paragraph">
-<p>A very simple configuration for Oauth2 will look like this:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add an Oauth2 authentication mode to the component in addition to the basic mode. For example:</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -567,8 +604,14 @@ public class Oauth2 {
 </div>
 </div>
 <div class="paragraph">
-<p>Now that we have defined the options of our new authentication mode, let&#8217;s wrap it in a global configuration with the basic authentication mode and add a choice list to let the user choose between them.
-For that we will create an AuthenticationConfiguration class that will look just like this :</p>
+<p>The options of the new authentication mode are now defined.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Wrap the configuration created above in a global configuration with the basic authentication mode and add an enumeration to let the user choose the mode to use. For example, create an <code>AuthenticationConfiguration</code> class as follows:</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -580,7 +623,7 @@ For that we will create an AuthenticationConfiguration class that will look just
 public class AuthenticationConfiguration {
 
     @Option
-    @Documentation("the authenticaitgon mode")
+    @Documentation("the authentication mode")
     private AuthMode authenticationMode = AuthMode.Oauth2; // we set the default value to the new mode
 
     @Option
@@ -595,7 +638,7 @@ public class AuthenticationConfiguration {
 
 
     /**
-    * This enum hold the authentication mode supported by this configuration
+    * This enum holds the authentication mode supported by this configuration
     */
     public enum AuthMode {
         Basic,
@@ -611,24 +654,28 @@ public class AuthenticationConfiguration {
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Notice the use of the <code>@ActiveIf</code> annotation that let us activate the authentication type according to the selected authentication Mode.
+Using the <code>@ActiveIf</code> annotation allows to activate the authentication type according to the selected authentication mode.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Now let&#8217;s upgrade our component to use our new configuration that support more authentication mode.
-We will also upgrade the component version from 1 to 2 as we have changed it configuration.</p>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Edit the component to use the new configuration that supports an additional authentication mode.
+Also upgrade the component version from 1 to 2 as its configuration has changed.</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(2) // we upgrade the component version
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(2) // upgrade the component version
 @Icon(Icon.IconType.DEFAULT)
 @Processor(name = "MyOutput")
 @Documentation("A simple output component")
 public class MyOutput implements Serializable {
 
-    private final AuthenticationConfiguration configuration; // we use the new configuration
+    private final AuthenticationConfiguration configuration; // use the new configuration
 
     public MyOutput(@Option("configuration") final AuthenticationConfiguration configuration) {
         this.configuration = configuration;
@@ -641,15 +688,21 @@ public class MyOutput implements Serializable {
 </div>
 </div>
 <div class="paragraph">
-<p>Now we have our component supporting more authentication mode in its version 2.</p>
+<p>The component now supports two authentication modes in its version 2.
+Once the new version is ready, you can implement the migration handler that will take care of adapting the old configuration to the new one.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_handling_the_migration_from_the_version_1_to_the_version_2"><a class="anchor" href="#_handling_the_migration_from_the_version_1_to_the_version_2"></a>Handling the migration from the version 1 to the version 2</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>What can happen if an old configuration is passed to the new component version?</strong></p>
 </div>
 <div class="paragraph">
-<p><strong>That&#8217;s great!, but what will happen if we pass an old configuration to our new component version?</strong></p>
-</div>
-<div class="paragraph">
-<p>The answer it&#8217;s simple, it will just fail. as the version 2 don&#8217;t recognize the old version anymore.
-This is why we need a migration handler that will adapt the old configuration to the new one.
-We can achieve that by defining the migration handler class in the <code>@Version</code> annotation on the component class.</p>
+<p>It simply fails, as the version 2 does not recognize the old version anymore.
+For that reason, a migration handler that adapts the old configuration to the new one is required.
+It can be achieved by defining a migration handler class in the <code>@Version</code> annotation of the component class.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -658,26 +711,31 @@ We can achieve that by defining the migration handler class in the <code>@Versio
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-An old configuration may be already persisted by an application that integrate the version 1 of the component (studio or web application).
+An old configuration may already be persisted by an application that integrates the version 1 of the component (Studio or web application).
 </td>
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_handle_the_migration_from_the_version_1_to_the_version_2"><a class="anchor" href="#_handle_the_migration_from_the_version_1_to_the_version_2"></a>Handle the migration from the version 1 to the version 2</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>So let&#8217;s add a migration handler class to our component version.</p>
+<div class="sect2">
+<h3 id="_declaring_the_migration_handler"><a class="anchor" href="#_declaring_the_migration_handler"></a>Declaring the migration handler</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a migration handler class to the component version.</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(value = 1, migrationHandler = MyOutputMigrationHandler.class)</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Now we will need to create the migration handler class <code>MyOutputMigrationHandler</code></p>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Create the migration handler class <code>MyOutputMigrationHandler</code></p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -685,7 +743,7 @@ An old configuration may be already persisted by an application that integrate t
 
        @Override
        public Map&lt;String, String&gt; migrate(final int incomingVersion, final Map&lt;String, String&gt; incomingData) { <i class="conum" data-value="2"></i><b>(2)</b>
-           // Here we will implement our migration logic to adapt the version 1 of the component ot the version 2
+           // Here we will implement our migration logic to adapt the version 1 of the component to the version 2
            return incomingData;
        }
 }</code></pre>
@@ -695,55 +753,74 @@ An old configuration may be already persisted by an application that integrate t
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The migration handler class need to implement the MigrationHandler interface.</td>
+<td>The migration handler class needs to implement the <code>MigrationHandler</code> interface.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>MigrationHandler interface has the migrate method that has the incoming version which is the version of the configuration that we are migrating
-and a map of (key, value) of the configuration where the key is the configuration path and the value is the value of the configuration.</td>
+<td>The <code>MigrationHandler</code> interface specifies the <code>migrate</code> method. This method references:<br>
+<div class="ulist">
+<ul>
+<li>
+<p>the incoming version, which is the version of the configuration that we are migrating from</p>
+</li>
+<li>
+<p>a map (key, value) of the configuration, where the key is the configuration path and the value is the value of the configuration.</p>
+</li>
+</ul>
+</div></td>
 </tr>
 </table>
 </div>
-<div class="admonitionblock important">
+</div>
+<div class="sect2">
+<h3 id="_implementing_the_migration_handler"><a class="anchor" href="#_implementing_the_migration_handler"></a>Implementing the migration handler</h3>
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 You need to be familiar with the component configuration path construction to better understand this part.
-For that please see this link <a href="component-configuration.html" class="page">component configuration</a>
+Refer to <a href="component-configuration.html" class="page">Defining component layout and configuration</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Now, you are familiar with component configuration path construction, let&#8217;s implement our migration handler.</p>
+<p>Assuming that you are familiar with component configuration path construction, let&#8217;s implement the migration handler.</p>
 </div>
 <div class="paragraph">
-<p>First let&#8217;s list what has changed since version 1</p>
+<p>As a reminder, the following changes were made since the version 1 of the component:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p>The configuration <code>BasicAuth</code> from the version 1 is not the root configuration anymore, as it&#8217;s under the <code>AuthenticationConfiguration</code>.</p>
+<p>The configuration <code>BasicAuth</code> from the version 1 is not the root configuration anymore, as it is under <code>AuthenticationConfiguration</code>.</p>
 </li>
 <li>
 <p><code>AuthenticationConfiguration</code> is the new root configuration.</p>
 </li>
 <li>
-<p>We have a new authentication mode (Oauth2) which is the default mode in the version 2.</p>
+<p>The component supports a new authentication mode (Oauth2) which is the default mode in the version 2 of the component.</p>
 </li>
-</ol>
+</ul>
 </div>
 <div class="paragraph">
-<p>So to migrate the old component version to the new version and to keep backward compatibility, we will need to:
-. Remap the old configuration to the new one
-. Give the adequate default values to some options.</p>
+<p>To migrate the old component version to the new version and to keep backward compatibility, you need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Remap the old configuration to the new one.</p>
+</li>
+<li>
+<p>Give the adequate default values to some options.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>For that we will make all the configuration with the version 1 having the <code>authenticationMode</code> to basic by default and remap the old basic authentication configuration to the new one.
-Let&#8217;s see how we can do that in code :</p>
+<p>In the case of this scenario, it means making all configurations based on the version 1 of the component have the <code>authenticationMode</code> set to basic by default and remapping the old basic authentication configuration to the new one.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -752,7 +829,7 @@ Let&#8217;s see how we can do that in code :</p>
        @Override
        public Map&lt;String, String&gt; migrate(final int incomingVersion, final Map&lt;String, String&gt; incomingData) {
            if(incomingVersion == 1){ <i class="conum" data-value="1"></i><b>(1)</b>
-               // we remap the old configuration <i class="conum" data-value="2"></i><b>(2)</b>
+               // remapping the old configuration <i class="conum" data-value="2"></i><b>(2)</b>
                String userName = incomingData.get("configuration.username");
                String password = incomingData.get("configuration.password");
                incomingData.put("configuration.basic.username", userName);
@@ -771,19 +848,19 @@ Let&#8217;s see how we can do that in code :</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>we do a safety check of the data version that we are migrating to be sure to only apply our migration logic to the right data version.</td>
+<td>Safety check of the incoming data version to make sure to only apply the migration logic to the version 1.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>we map the old configuration to the new version structure. as the BasicAuth is now under a the root configuration class, it&#8217;s path change and becomes <code>configuration.basic.*</code>.</td>
+<td>Mapping the old configuration to the new version structure. As the <code>BasicAuth</code> is now under the root configuration class, its path changes and becomes <code>configuration.basic.*</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>we set a new default value to the <code>authenticationMode</code> as we want it to be set to <code>Basic</code> for configuration that comes from version 1.</td>
+<td>Setting a new default value to the <code>authenticationMode</code> as it needs to be set to <code>Basic</code> for configuration coming from version 1.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>we return the new configuration data.</td>
+<td>Returning the new configuration data.</td>
 </tr>
 </table>
 </div>
@@ -794,16 +871,14 @@ Let&#8217;s see how we can do that in code :</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-if we have renamed a configuration between 2 component versions. we can get the old configuration option from the configuration map by it old path and set it value using it new path.
+if a configuration has been renamed between 2 component versions, you can get the old configuration option from the configuration map by using its old path and set its value using its new path.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>That&#8217;s all for component migration!</p>
+<p>You can now upgrade your component without losing backward compatibility.</p>
 </div>
-<div class="paragraph">
-<p>Now you can upgrade your component without loosing backward compatibility.</p>
 </div>
 </div>
 </div>
@@ -822,13 +897,13 @@ if we have renamed a configuration between 2 component versions. we can get the 
 
                     <li>
                                 <a class="article-side-actions-link" target="_blank"
-                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Ftutorial-handle-talend-component-migration.html&text=Talend%20Component%20Kit%20%3E%3E%20Handle%20Talend%20component%20migration%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Ftutorial-handle-talend-component-migration.html">
+                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Ftutorial-handle-talend-component-migration.html&text=Talend%20Component%20Kit%20%3E%3E%20Handling%20component%20version%20migration%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Ftutorial-handle-talend-component-migration.html">
                                     <i class="fab fa-twitter"></i> &nbsp; &nbsp; Tweet
                                 </a>
                             </li>
                             <li>
                                 <a class="article-side-actions-link"
-                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Handle%20Talend%20component%20migration&body=Talend%20Component%20Kit%3A%20Handle%20Talend%20component%20migration%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Ftutorial-handle-talend-component-migration.html">
+                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Handling%20component%20version%20migration&body=Talend%20Component%20Kit%3A%20Handling%20component%20version%20migration%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.0.5%2Ftutorial-handle-talend-component-migration.html">
                                     <i class="far fa-envelope"></i> &nbsp; &nbsp; Mail
                                 </a>
                             </li>

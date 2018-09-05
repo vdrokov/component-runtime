@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-04T15:20:26.262Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-05T08:23:29.816Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -212,7 +212,7 @@
     <a class="menu-link" href="tutorial-dev-vs-ci-setup.html">Testing in a continuous integration environment</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-handle-talend-component-migration.html">Handle Talend component migration</a>
+    <a class="menu-link" href="tutorial-handle-talend-component-migration.html">Handling component version migration</a>
   </li>
 </ul>
   </li>
@@ -685,185 +685,54 @@ The framework is designed to be as declarative as possible but also to stay exte
 </ul>
 </div>
 <div class="sect3">
-<h4 id="_component_api"><a class="anchor" href="#_component_api"></a>Component API</h4>
+<h4 id="_framework_tools"><a class="anchor" href="#_framework_tools"></a>Framework tools</h4>
 <div class="paragraph">
-<p>The component API is declarative (through annotations) to ensure it is:</p>
+<p>The <strong>Talend Component Kit</strong> framework is made of several tools designed to help you during the component development process. It allows to develop components that fit in both Java web UIs.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p>Evolutive. It can get new features without breaking old code.</p>
+<p><strong>Starter</strong>: Generate the skeleton of your development project using a user-friendly interface. The <strong>Talend Component Kit Starter</strong> is available as a <a href="https://starter-toolkit.talend.io">web tool</a> or as a <a href="https://plugins.jetbrains.com/plugin/10558-talend-component-kit&#8212;&#8203;intellij-plugin">plugin for the IntelliJ IDE</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/tutorial_component_configuration_model.png" alt="Starter" width="75%"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Component API</strong>: Check all classes available to implement components.</p>
 </li>
 <li>
-<p>As static as possible.</p>
+<p><strong>Build tools</strong>: The framework comes with <a href="build-tools-maven.html" class="page">Maven</a> and <a href="build-tools-gradle.html" class="page">Gradle</a> wrappers, which allow to always use the version of Maven or Gradle that is right for your component development environment and version.</p>
 </li>
-</ol>
-</div>
-<div class="sect4">
-<h5 id="_evolutive"><a class="anchor" href="#_evolutive"></a>Evolutive</h5>
-<div class="paragraph">
-<p>Because it is fully declarative, any new API can be added iteratively without requiring
-any change to existing components.</p>
+<li>
+<p><strong>Testing tools</strong>: Test components before integrating them into Talend Studio or Cloud applications. Testing tools include the <strong>Talend Component Kit Web Tester</strong>, which allows to check the web UI of your components on your local machine.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>For example, in the case of Beam potential evolution:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public MyOutput onElement(MyInput data) {
-    return ...;
-}</code></pre>
-</div>
+<p><span class="image"><img src="_images/component_kit_web_tester.png" alt="Web tester" width="75%"></span></p>
 </div>
 <div class="paragraph">
-<p>would not be affected by the addition of the new Timer API, which can be used as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public MyOutput onElement(MyInput data,
-                          @Timer("my-timer") Timer timer) {
-    return ...;
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_static"><a class="anchor" href="#_static"></a>Static</h5>
-<div class="sect5">
-<h6 id="_ui_friendly"><a class="anchor" href="#_ui_friendly"></a>UI-friendly</h6>
-<div class="paragraph">
-<p>The intent of the framework is to be able to fit in a Java UI as well as in a web UI.</p>
-</div>
-<div class="paragraph">
-<p>It must be understood as colocalized and remote UI. The goal is to move as much as possible the logic to the UI side for UI-related actions. For example, validating a pattern, a size, and so on, should be done on the client side rather than on the server side. Being static encourages this practice.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_auditable_and_with_clear_expectations"><a class="anchor" href="#_auditable_and_with_clear_expectations"></a>Auditable and with clear expectations</h6>
-<div class="paragraph">
-<p>The other goal of being static in the API definition is to ensure that the model will not be mutated at runtime and that all the auditing and modeling can be done before, at the design phase.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_dev_friendly"><a class="anchor" href="#_dev_friendly"></a>Dev-friendly</h6>
-<div class="paragraph">
-<p>Being static also ensures that the development can be validated as much as possible through build tools.<br>
-This does not replace the requirement to test the components but helps developers to maintain components with automated tools.</p>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_flexible_data_modeling"><a class="anchor" href="#_flexible_data_modeling"></a>Flexible data modeling</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_generic_and_specific"><a class="anchor" href="#_generic_and_specific"></a>Generic and specific</h5>
-<div class="paragraph">
-<p>The processor API supports <code>JsonObject</code> as well as any custom model. The goal is to support generic component development that need to access configured "object paths", as well as specific components that rely on a defined path from the input.</p>
-</div>
-<div class="paragraph">
-<p>A generic component can look like:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public MyOutput onElement(JsonObject input) {
-    return ...;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>A specific component can look like (with <code>MyInput</code> a POJO):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public MyOutput onElement(MyInput input) {
-    return ...;
-}</code></pre>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_no_runtime_assumption"><a class="anchor" href="#_no_runtime_assumption"></a>No runtime assumption</h6>
-<div class="paragraph">
-<p>By design, the framework must run in DI (plain standalone Java program) and in Beam pipelines.<br>
-It is out of scope of the framework to handle the way the runtime serializes - if needed - the data.</p>
-</div>
-<div class="paragraph">
-<p>For that reason, it is critical not to import serialization constraints to the stack. As an example, this is the reason why <code>JsonObject</code> is not an <code>IndexedRecord</code> from Avro.</p>
-</div>
-<div class="paragraph">
-<p>Any serialization concern should either be hidden in the framework runtime (outside of the component developer scope) or in the runtime integration with the framework (for example, Beam integration).</p>
-</div>
-<div class="paragraph">
-<p>In this context, JSON-P can be good compromise because it brings a powerful API with very few constraints.</p>
-</div>
-</div>
+<p>You can find more details about the framework design in <a href="framework_design.html" class="page">this document</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_isolated"><a class="anchor" href="#_isolated"></a>Isolated</h4>
+<h4 id="_repositories"><a class="anchor" href="#_repositories"></a>Repositories</h4>
 <div class="paragraph">
-<p>The components must be able to execute even if they have conflicting libraries. For that purpose,
-classloaders must be isolated. A component defines its dependencies based on a Maven format and is  always bound to its own classloader.</p>
+<p>The <strong>Talend Component Kit</strong> project is available on GitHub in the following repositories:</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_rest"><a class="anchor" href="#_rest"></a>REST</h4>
-<div class="sect4">
-<h5 id="_consumable_model"><a class="anchor" href="#_consumable_model"></a>Consumable model</h5>
-<div class="paragraph">
-<p>The definition payload is as flat as possible and <em>strongly</em> typed to ensure it can be manipulated by consumers.
-This way, consumers can add or remove fields with simple mapping rules, without any abstract tree handling.</p>
-</div>
-<div class="paragraph">
-<p>The execution (runtime) configuration is the concatenation of framework metadata (only the version) and a key/value model of the instance of the configuration based on the definition properties paths for the keys. It enables consumers to maintain and work with the keys/values according to their need.</p>
-</div>
-<div class="paragraph">
-<p>The framework not being responsible for any persistence, it is very important to make sure that consumers can handle it from end to end, with the ability to search for values (update a machine, update a port and so on) and keys (for example, a new encryption rule on key <code>certificate</code>).</p>
-</div>
-<div class="paragraph">
-<p>Talend Component Kit is a metamodel provider (to build forms) and a runtime <strong>execution</strong> platform. It takes a configuration instance and uses it volatilely to execute a component logic. This implies it cannot own the data nor define the contract it has for these two endpoints and must let the consumers handle the data lifecycle (creation, encryption, deletion, and so on).</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_execution_with_streaming"><a class="anchor" href="#_execution_with_streaming"></a>Execution with streaming</h5>
-<div class="paragraph">
-<p>A new mime type called <code>talend/stream</code> is introduced to define a streaming format.</p>
-</div>
-<div class="paragraph">
-<p>It matches a JSON object per line:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{"key1":"value1"}
-{"key2":"value2"}
-{"key1":"value11"}
-{"key1":"value111"}
-{"key2":"value2"}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_fixed_set_of_icons"><a class="anchor" href="#_fixed_set_of_icons"></a>Fixed set of icons</h4>
-<div class="paragraph">
-<p>Icons (<code>@Icon</code>) are based on a fixed set. Custom icons can be used but their display cannot be guaranteed. Components can be used in any environment and require a consistent look that cannot be guaranteed outside of the UI itself. Defining keys only is the best way to communicate this information.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Once you know exactly how you will deploy your component in the Studio, then you
-can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon file.
-</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/talend/component-runtime">Runtime repository</a></p>
+</li>
+<li>
+<p><a href="https://github.com/talend/component-api">API repository</a></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3 relatedlinks">
@@ -10213,8 +10082,8 @@ By default, <code><strong>/</strong>+json</code> are mapped to JSON-P and <code>
 <div class="sect4">
 <h5 id="_big_data_streams"><a class="anchor" href="#_big_data_streams"></a>Big data streams</h5>
 <div class="paragraph">
-<p>By default the client will load in memory the payload, for big payloads it can consume too much memory.
-For these cases you can get the payload as an <code>InputStream</code> - using the <code>Response</code> wrapper or not:</p>
+<p>By default, the client loads in memory the payload. In case of big payloads, it can consume too much memory.
+For these cases, you can get the payload as an <code>InputStream</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -10223,6 +10092,18 @@ For these cases you can get the payload as an <code>InputStream</code> - using t
     InputStream getData();
 }</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can use the <code>Response</code> wrapper, or not.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>===</p>
@@ -11698,9 +11579,8 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 <div class="sect5">
 <h6 id="_enabling_help_hints"><a class="anchor" href="#_enabling_help_hints"></a>Enabling help/hints</h6>
 <div class="paragraph">
-<p>It is possible to show under the inputs the help on each property,
-to do that you must set a <code>PropertyContext.Configuration</code> instance on the <code>UiSpecService</code>
-with the <code>includeDocumentationMetadata</code> attribute set to <code>true</code>.</p>
+<p>It is possible to show under the inputs the help about each property.
+To do that, you must set a <code>PropertyContext.Configuration</code> instance on <code>UiSpecService</code> with the <code>includeDocumentationMetadata</code> attribute set to <code>true</code>.</p>
 </div>
 </div>
 <div class="sect5">
@@ -14530,9 +14410,8 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 <div class="sect4">
 <h5 id="_enabling_help_hints_2"><a class="anchor" href="#_enabling_help_hints_2"></a>Enabling help/hints</h5>
 <div class="paragraph">
-<p>It is possible to show under the inputs the help on each property,
-to do that you must set a <code>PropertyContext.Configuration</code> instance on the <code>UiSpecService</code>
-with the <code>includeDocumentationMetadata</code> attribute set to <code>true</code>.</p>
+<p>It is possible to show under the inputs the help about each property.
+To do that, you must set a <code>PropertyContext.Configuration</code> instance on <code>UiSpecService</code> with the <code>includeDocumentationMetadata</code> attribute set to <code>true</code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -19373,6 +19252,432 @@ You can configure the <strong>passthrough</strong> mode globally on your CI serv
 </div>
 <div class="paragraph">
 <p>Now your tests run in a simulation mode on your development environment and in a passthrough mode on your CI server.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_handling_component_version_migration"><a class="anchor" href="#_handling_component_version_migration"></a>Handling component version migration</h3>
+<div id="tutorial-handle-talend-component-migration" class="paragraph">
+<p>Talend Component Kit provides a migration mechanism between two versions of a component to let you ensure backward compatibility.</p>
+</div>
+<div class="paragraph">
+<p>For example, a new version of a component may have some new options that need to be set with a default value in the older versions or that need to be disabled.</p>
+</div>
+<div class="paragraph">
+<p>This tutorial shows how to create a migration handler for a component that needs to be upgraded from a version 1 to a version 2. The upgrade to the newer version includes adding new options to the component.</p>
+</div>
+<div class="paragraph">
+<p>This tutorial assumes that you know <a href="methodology-creating-components.html" class="page">the basics</a> about component development and are familiar with component project <a href="index-generating-project.html" class="page">generation</a> and <a href="index-creating-components.html" class="page">implementation</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_requirements"><a class="anchor" href="#_requirements"></a>Requirements</h4>
+<div class="paragraph">
+<p>To follow this tutorial, you need:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Java 8</p>
+</li>
+<li>
+<p>A Talend component development environment using Talend Component Kit. Refer to <a href="system-prerequisites.html" class="page">this document</a>.</p>
+</li>
+<li>
+<p>Have generated a project containing a simple processor component using the Talend Component Kit Starter.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creating_the_version_1_of_the_component"><a class="anchor" href="#_creating_the_version_1_of_the_component"></a>Creating the version 1 of the component</h4>
+<div class="paragraph">
+<p>First, create a simple processor component configured as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a simple configuration class that represents a basic authentication and that can be used in any component requiring this kind of authentication.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GridLayout({
+        @GridLayout.Row({ "username", "password" })
+})
+public class BasicAuth {
+
+    @Option
+    @Documentation("username to authenticate")
+    private String username;
+
+    @Option
+    @Credential
+    @Documentation("user password")
+    private String password;
+}</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Create a simple output component that uses the configuration defined earlier. The component configuration is injected into the component constructor.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(1)
+@Icon(Icon.IconType.DEFAULT)
+@Processor(name = "MyOutput")
+@Documentation("A simple output component")
+public class MyOutput implements Serializable {
+
+    private final BasicAuth configuration;
+
+    public MyOutput(@Option("configuration") final BasicAuth configuration) {
+        this.configuration = configuration;
+    }
+
+    @ElementListener
+    public void onNext(@Input final JsonObject record) {
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The version of the configuration class is aligned with the component version. The configuration class is consumed by the component and inherits its version.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>By configuring these two classes, the first version of the component is ready to use a simple authentication mechanism.</p>
+</div>
+<div class="paragraph">
+<p>Now, assuming that the component needs to support a new authentication mode following a new requirement, the next steps are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Creating a version 2 of the component that supports the new authentication mode.</p>
+</li>
+<li>
+<p>Handling migration from the first version to the new version.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creating_the_version_2_of_the_component"><a class="anchor" href="#_creating_the_version_2_of_the_component"></a>Creating the version 2 of the component</h4>
+<div class="paragraph">
+<p>The second version of the component needs to support a new authentication method and let the user choose the authentication mode he wants to use using a dropdown list.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add an Oauth2 authentication mode to the component in addition to the basic mode. For example:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GridLayout({
+        @GridLayout.Row({ "clientId", "clientSecret" })
+})
+public class Oauth2 {
+
+    @Option
+    @Documentation("client id to authenticate")
+    private String clientId;
+
+    @Option
+    @Credential
+    @Documentation("client secret token")
+    private String clientSecret;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The options of the new authentication mode are now defined.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Wrap the configuration created above in a global configuration with the basic authentication mode and add an enumeration to let the user choose the mode to use. For example, create an <code>AuthenticationConfiguration</code> class as follows:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GridLayout({
+        @GridLayout.Row({ "authenticationMode" }),
+        @GridLayout.Row({ "basic" }),
+        @GridLayout.Row({ "oauth2" })
+})
+public class AuthenticationConfiguration {
+
+    @Option
+    @Documentation("the authentication mode")
+    private AuthMode authenticationMode = AuthMode.Oauth2; // we set the default value to the new mode
+
+    @Option
+    @ActiveIf(target = "authenticationMode", value = {"Basic"})
+    @Documentation("basic authentication")
+    private BasicAuth basic;
+
+    @Option
+    @ActiveIf(target = "authenticationMode", value = {"Oauth2"})
+    @Documentation("oauth2 authentication")
+    private Oauth2 oauth2;
+
+
+    /**
+    * This enum holds the authentication mode supported by this configuration
+    */
+    public enum AuthMode {
+        Basic,
+        Oauth2;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Using the <code>@ActiveIf</code> annotation allows to activate the authentication type according to the selected authentication mode.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Edit the component to use the new configuration that supports an additional authentication mode.
+Also upgrade the component version from 1 to 2 as its configuration has changed.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(2) // upgrade the component version
+@Icon(Icon.IconType.DEFAULT)
+@Processor(name = "MyOutput")
+@Documentation("A simple output component")
+public class MyOutput implements Serializable {
+
+    private final AuthenticationConfiguration configuration; // use the new configuration
+
+    public MyOutput(@Option("configuration") final AuthenticationConfiguration configuration) {
+        this.configuration = configuration;
+    }
+
+    @ElementListener
+    public void onNext(@Input final JsonObject record) {
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The component now supports two authentication modes in its version 2.
+Once the new version is ready, you can implement the migration handler that will take care of adapting the old configuration to the new one.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_handling_the_migration_from_the_version_1_to_the_version_2"><a class="anchor" href="#_handling_the_migration_from_the_version_1_to_the_version_2"></a>Handling the migration from the version 1 to the version 2</h4>
+<div class="paragraph">
+<p><strong>What can happen if an old configuration is passed to the new component version?</strong></p>
+</div>
+<div class="paragraph">
+<p>It simply fails, as the version 2 does not recognize the old version anymore.
+For that reason, a migration handler that adapts the old configuration to the new one is required.
+It can be achieved by defining a migration handler class in the <code>@Version</code> annotation of the component class.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An old configuration may already be persisted by an application that integrates the version 1 of the component (Studio or web application).
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_declaring_the_migration_handler"><a class="anchor" href="#_declaring_the_migration_handler"></a>Declaring the migration handler</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a migration handler class to the component version.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(value = 1, migrationHandler = MyOutputMigrationHandler.class)</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Create the migration handler class <code>MyOutputMigrationHandler</code></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyOutputMigrationHandler implements MigrationHandler{ <i class="conum" data-value="1"></i><b>(1)</b>
+
+       @Override
+       public Map&lt;String, String&gt; migrate(final int incomingVersion, final Map&lt;String, String&gt; incomingData) { <i class="conum" data-value="2"></i><b>(2)</b>
+           // Here we will implement our migration logic to adapt the version 1 of the component to the version 2
+           return incomingData;
+       }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The migration handler class needs to implement the <code>MigrationHandler</code> interface.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>MigrationHandler</code> interface specifies the <code>migrate</code> method. This method references:<br>
+<div class="ulist">
+<ul>
+<li>
+<p>the incoming version, which is the version of the configuration that we are migrating from</p>
+</li>
+<li>
+<p>a map (key, value) of the configuration, where the key is the configuration path and the value is the value of the configuration.</p>
+</li>
+</ul>
+</div></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_implementing_the_migration_handler"><a class="anchor" href="#_implementing_the_migration_handler"></a>Implementing the migration handler</h5>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You need to be familiar with the component configuration path construction to better understand this part.
+Refer to <a href="component-configuration.html" class="page">Defining component layout and configuration</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Assuming that you are familiar with component configuration path construction, let&#8217;s implement the migration handler.</p>
+</div>
+<div class="paragraph">
+<p>As a reminder, the following changes were made since the version 1 of the component:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The configuration <code>BasicAuth</code> from the version 1 is not the root configuration anymore, as it is under <code>AuthenticationConfiguration</code>.</p>
+</li>
+<li>
+<p><code>AuthenticationConfiguration</code> is the new root configuration.</p>
+</li>
+<li>
+<p>The component supports a new authentication mode (Oauth2) which is the default mode in the version 2 of the component.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To migrate the old component version to the new version and to keep backward compatibility, you need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Remap the old configuration to the new one.</p>
+</li>
+<li>
+<p>Give the adequate default values to some options.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the case of this scenario, it means making all configurations based on the version 1 of the component have the <code>authenticationMode</code> set to basic by default and remapping the old basic authentication configuration to the new one.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyOutputMigrationHandler implements MigrationHandler{
+
+       @Override
+       public Map&lt;String, String&gt; migrate(final int incomingVersion, final Map&lt;String, String&gt; incomingData) {
+           if(incomingVersion == 1){ <i class="conum" data-value="1"></i><b>(1)</b>
+               // remapping the old configuration <i class="conum" data-value="2"></i><b>(2)</b>
+               String userName = incomingData.get("configuration.username");
+               String password = incomingData.get("configuration.password");
+               incomingData.put("configuration.basic.username", userName);
+               incomingData.put("configuration.basic.password", password);
+
+               // setting default value for authenticationMode to Basic <i class="conum" data-value="3"></i><b>(3)</b>
+               incomingData.put("configuration.authenticationMode", "Basic");
+           }
+
+           return incomingData; <i class="conum" data-value="4"></i><b>(4)</b>
+       }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Safety check of the incoming data version to make sure to only apply the migration logic to the version 1.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Mapping the old configuration to the new version structure. As the <code>BasicAuth</code> is now under the root configuration class, its path changes and becomes <code>configuration.basic.*</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Setting a new default value to the <code>authenticationMode</code> as it needs to be set to <code>Basic</code> for configuration coming from version 1.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Returning the new configuration data.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+if a configuration has been renamed between 2 component versions, you can get the old configuration option from the configuration map by using its old path and set its value using its new path.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can now upgrade your component without losing backward compatibility.</p>
+</div>
 </div>
 </div>
 </div>
