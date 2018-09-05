@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-05T08:23:29.816Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-05T13:07:40.358Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -3765,6 +3765,10 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${family}.${configurationType}.${name}._displayName</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Display name of a configuration type (dataStore or dataSet). Important: this key is read from the family package (not the class package), to unify the localization of the metadata.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">actions.${family}.${actionType}.${actionName}._displayName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of an action of the family. Specifying it is optional and will default on the action name if not set.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">${family}.${component_name}._displayName</p></td>
@@ -10413,9 +10417,25 @@ public class PersonReader implements Serializable {
 </div>
 </div>
 <div class="sect4">
+<h5 id="_update"><a class="anchor" href="#_update"></a>Update</h5>
+<div class="paragraph">
+<p>This class marks an action returning a new instance replacing part of a form/configuration.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type: <code>update</code></p>
+</li>
+<li>
+<p>API: <code>@org.talend.sdk.component.api.service.update.Update</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
 <h5 id="_user"><a class="anchor" href="#_user"></a>User</h5>
 <div class="paragraph">
-<p>-</p>
+<p>Extension point for custom UI integrations and custom actions.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -10431,7 +10451,19 @@ public class PersonReader implements Serializable {
 <div class="sect4">
 <h5 id="_validation"><a class="anchor" href="#_validation"></a>Validation</h5>
 <div class="paragraph">
-<p>Mark a method as being used to validate a configuration. IMPORTANT: this is a server validation so only use it if you can&#8217;t use other client side validation to implement it.</p>
+<p>Mark a method as being used to validate a configuration.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+this is a server validation so only use it if you can&#8217;t use other client side validation to implement it.
+</td>
+</tr>
+</table>
 </div>
 <div class="ulist">
 <ul>
