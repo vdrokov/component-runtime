@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Reference guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.5/index-reference-guide.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-05T13:07:40.623Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-06T10:03:14.618Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -1151,10 +1151,10 @@ this is a server validation so only use it if you can&#8217;t use other client s
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
-  "condition::if::target":"test",
   "condition::if::evaluationStrategy":"DEFAULT",
-  "condition::if::value":"value1,value2",
-  "condition::if::negate":"false"
+  "condition::if::negate":"false",
+  "condition::if::target":"test",
+  "condition::if::value":"value1,value2"
 }</code></pre>
 </div>
 </div>
@@ -1180,15 +1180,15 @@ this is a server validation so only use it if you can&#8217;t use other client s
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
-  "condition::ifs::operator":"AND",
-  "condition::if::value::0":"value1,value2",
-  "condition::if::value::1":"SELECTED",
+  "condition::if::evaluationStrategy::0":"DEFAULT",
+  "condition::if::evaluationStrategy::1":"LENGTH",
+  "condition::if::negate::0":"false",
+  "condition::if::negate::1":"true",
   "condition::if::target::0":"sibling1",
   "condition::if::target::1":"../../other",
-  "condition::if::negate::1":"true",
-  "condition::if::negate::0":"false",
-  "condition::if::evaluationStrategy::0":"DEFAULT",
-  "condition::if::evaluationStrategy::1":"LENGTH"
+  "condition::if::value::0":"value1,value2",
+  "condition::if::value::1":"SELECTED",
+  "condition::ifs::operator":"AND"
 }</code></pre>
 </div>
 </div>
@@ -1216,8 +1216,8 @@ this is a server validation so only use it if you can&#8217;t use other client s
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
-  "tcomp::configurationtype::type":"dataset",
-  "tcomp::configurationtype::name":"test"
+  "tcomp::configurationtype::name":"test",
+  "tcomp::configurationtype::type":"dataset"
 }</code></pre>
 </div>
 </div>
@@ -1240,8 +1240,8 @@ this is a server validation so only use it if you can&#8217;t use other client s
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
-  "tcomp::configurationtype::type":"datastore",
-  "tcomp::configurationtype::name":"test"
+  "tcomp::configurationtype::name":"test",
+  "tcomp::configurationtype::type":"datastore"
 }</code></pre>
 </div>
 </div>

@@ -8,7 +8,7 @@
     <meta name="description" content="Get an overview of what are services and how to use services with Talend Component Kit">
     <meta name="keywords" content="service, reuse configuration, overview">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-05T13:07:40.698Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-06T10:03:14.632Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -631,6 +631,34 @@ All these <strong>injected</strong> services are serializable, which is importan
 </tr>
 </table>
 </div>
+<div class="sect3">
+<h4 id="_localconfiguration"><a class="anchor" href="#_localconfiguration"></a>LocalConfiguration</h4>
+<div class="paragraph">
+<p>The local configuration uses system properties and the environment (replacing dots per underscores) to look up the values.
+You can also put a <code>TALEND-INF/local-configuration.properties</code> file with default values. This allows to use the <code>local_configuration:&lt;key&gt;</code>
+syntax in <code>@Ui</code> annotation. Here is an example to read the default value of a property from the configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+@DefaultValue("local_configuration:myfamily.model.key")
+private String value;</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+it is super important to ensure your key is unique accross all component since one usage will be to override
+it globally on the JVM. In practise we recommand you to always use the family as a prefix.
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="httpclient_usage"><a class="anchor" href="#httpclient_usage"></a>Using HttpClient</h3>
@@ -779,6 +807,26 @@ By default, <code><strong>/</strong>+json</code> are mapped to JSON-P and <code>
 }</code></pre>
 </div>
 </div>
+<div class="sect4">
+<h5 id="_built_in_configurer"><a class="anchor" href="#_built_in_configurer"></a>Built-In configurer</h5>
+<div class="paragraph">
+<p>The framework provides in the <code>component-api</code> an <code>OAuth1.Configurer</code> which can be used as an example
+of configurer implementation. It expects a single <code>OAuth1.Configuration</code> parameter to be passed
+to the request as a <code>@ConfigurationOption</code>.</p>
+</div>
+<div class="paragraph">
+<p>Here is a sample showing how it can be used:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public interface OAuth1Client extends HttpClient {
+    @Request(path = "/oauth1")
+    @UseConfigurer(OAuth1.Configurer.class)
+    String get(@ConfigurerOption("oauth1") final OAuth1.Configuration configuration);
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_big_data_streams"><a class="anchor" href="#_big_data_streams"></a>Big data streams</h4>
@@ -805,9 +853,6 @@ You can use the <code>Response</code> wrapper, or not.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>===</p>
 </div>
 </div>
 </div>
