@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit design overview</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.0/framework_design.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-26T13:09:46.639Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-26T15:04:09.994Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -172,6 +172,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="record-types.html">Record types</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-execution.html">General component execution logic</a>
@@ -519,50 +522,8 @@ This does not replace the requirement to test the components but helps developer
 </div>
 <div class="sect2">
 <h3 id="_flexible_data_modeling"><a class="anchor" href="#_flexible_data_modeling"></a>Flexible data modeling</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_generic_and_specific"><a class="anchor" href="#_generic_and_specific"></a>Generic and specific</h3>
 <div class="paragraph">
-<p>The processor API supports <code>JsonObject</code> as well as any custom model. The goal is to support generic component development that need to access configured "object paths", as well as specific components that rely on a defined path from the input.</p>
-</div>
-<div class="paragraph">
-<p>A generic component can look like:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public MyOutput onElement(JsonObject input) {
-    return ...;
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>A specific component can look like (with <code>MyInput</code> a POJO):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public MyOutput onElement(MyInput input) {
-    return ...;
-}</code></pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_no_runtime_assumption"><a class="anchor" href="#_no_runtime_assumption"></a>No runtime assumption</h4>
-<div class="paragraph">
-<p>By design, the framework must run in DI (plain standalone Java program) and in Beam pipelines.<br>
-It is out of scope of the framework to handle the way the runtime serializes - if needed - the data.</p>
-</div>
-<div class="paragraph">
-<p>For that reason, it is critical not to import serialization constraints to the stack. As an example, this is the reason why <code>JsonObject</code> is not an <code>IndexedRecord</code> from Avro.</p>
-</div>
-<div class="paragraph">
-<p>Any serialization concern should either be hidden in the framework runtime (outside of the component developer scope) or in the runtime integration with the framework (for example, Beam integration).</p>
-</div>
-<div class="paragraph">
-<p>In this context, JSON-P can be good compromise because it brings a powerful API with very few constraints.</p>
-</div>
+<p>Refer to <a href="record-types.html" class="page">this document</a>.</p>
 </div>
 </div>
 </div>
