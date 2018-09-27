@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Server configuration</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.0/ref-server-configuration.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-27T14:21:23.653Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-27T14:53:01.552Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -462,77 +462,54 @@ the configuration is read from system properties, environment variables, &#8230;
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
-<colgroup>
-<col>
-<col>
-<col>
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Key</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.coordinates</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A comma separated list of gav to locate the components</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.extend.dependencies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the component extensions add required dependencies.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.component.registry</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.documentation.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Should the /documentation endpoint be activated.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.dataset.retriever.timeout</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the read execution endpoint can last (max)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">180</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.execution.pool.wait</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How long the application waits during shutdown for the execution tasks to complete</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PT10S</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.jaxrs.exceptionhandler.defaultMessage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.maven.repository</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The local maven repository used to locate components and their dependencies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.monitoring.brave.service.name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The name used by the brave integration (zipkin)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component-server</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.command.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a command/request. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">talend.component.server.security.connection.handler</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">How to validate a connection. Accepted values: securityNoopHandler.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">securityNoopHandler</p></td>
-</tr>
-</tbody>
-</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">talend.component.server.component.coordinates</dt>
+<dd>
+<p>A comma separated list of gav to locate the components</p>
+</dd>
+<dt class="hdlist1">talend.component.server.component.extend.dependencies</dt>
+<dd>
+<p>Should the component extensions add required dependencies. Default value: <code>true</code>.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.component.registry</dt>
+<dd>
+<p>A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p>
+</dd>
+<dt class="hdlist1">talend.component.server.documentation.active</dt>
+<dd>
+<p>Should the /documentation endpoint be activated. Default value: <code>true</code>.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.execution.dataset.retriever.timeout</dt>
+<dd>
+<p>How long the read execution endpoint can last (max) Default value: <code>180</code>.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.execution.pool.wait</dt>
+<dd>
+<p>How long the application waits during shutdown for the execution tasks to complete Default value: <code>PT10S</code>.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.jaxrs.exceptionhandler.defaultMessage</dt>
+<dd>
+<p>If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message. Default value: <code>false</code>.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.maven.repository</dt>
+<dd>
+<p>The local maven repository used to locate components and their dependencies</p>
+</dd>
+<dt class="hdlist1">talend.component.server.monitoring.brave.service.name</dt>
+<dd>
+<p>The name used by the brave integration (zipkin) Default value: <code>component-server</code>.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.security.command.handler</dt>
+<dd>
+<p>How to validate a command/request. Accepted values: securityNoopHandler. Default value: <code>securityNoopHandler</code>.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.security.connection.handler</dt>
+<dd>
+<p>How to validate a connection. Accepted values: securityNoopHandler. Default value: <code>securityNoopHandler</code>.</p>
+</dd>
+</dl>
+</div>
             </div>
           </div>
           <div class="col-sm-3 container article-side-panel">
