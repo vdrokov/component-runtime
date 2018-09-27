@@ -8,7 +8,7 @@
     <meta name="description" content="How to develop an output component with Talend Component Kit">
     <meta name="keywords" content="output, processor">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-27T09:27:43.784Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-27T14:21:23.558Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -485,9 +485,9 @@ public MyNewData map(final MyData data) {
 <p>Processors must be <strong>Serializable</strong> because they are distributed components.</p>
 </div>
 <div class="paragraph">
-<p>If you just need to access data on a map-based ruleset, you can use <code>JsonObject</code> as parameter type.<br>
+<p>If you just need to access data on a map-based ruleset, you can use <code>Record</code> or <code>JsonObject</code> as parameter type.<br>
 From there, Talend Component Kit wraps the data to allow you to access it as a map. The parameter type is not enforced.<br>
-This means that if you know you will get a <code>SuperCustomDto</code>, then you can use it as parameter type. But for generic components that are reusable in any chain, it is highly encouraged to use <code>JsonObject</code> until you have an evaluation language-based processor that has its own way to access components.</p>
+This means that if you know you will get a <code>SuperCustomDto</code>, then you can use it as parameter type. But for generic components that are reusable in any chain, it is highly encouraged to use <code>Record</code> until you have an evaluation language-based processor that has its own way to access components.</p>
 </div>
 <div class="paragraph">
 <p>For example:</p>
@@ -495,7 +495,7 @@ This means that if you know you will get a <code>SuperCustomDto</code>, then you
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public MyNewData map(final JsonObject incomingData) {
+public MyNewData map(final Record incomingData) {
     String name = incomingData.getString("name");
     int name = incomingData.getInt("age");
     return ...;
