@@ -8,7 +8,7 @@
     <meta name="description" content="List of built-in services available with Talend Component Kit">
     <meta name="keywords" content="service">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-27T07:30:37.007Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-27T09:27:43.891Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -638,6 +638,61 @@ private String value;</code></pre>
 <td class="content">
 Ensure your key is unique across all components to avoid global overrides on the JVM. In practice, it is strongly recommended to always use the family as a prefix.<br>
 Also note that you can use <code>@Configuration("prefix")</code> to inject a mapping of the <code>LocalConfiguration</code> in a component. It uses the same rules as for any configuration object.
+If you prefer to inject you configuration in a service, ensure to wrap it in a <code>Supplier</code> to always have
+an up to date version.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you want to ignore the <code>local-configuration.properties</code>, you can set the system property: <code>talend.component.configuration.${componentPluginId}.ignoreLocalConfiguration=true</code>.</p>
+</div>
+<div class="paragraph">
+<p>Here a sample <code>@Configuration</code> model:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Data // from lombok, optional
+public class MyConfig {
+  @Option
+  private String defaultUrl;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is how to use it from a service:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Service
+public class ConfiguredService {
+  @Configuration("myprefix")
+  private Supplier&lt;MyConfig&gt; config;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, here is how to use it in a component:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Service
+public class ConfiguredComponent {
+  public ConfiguredComponent(@Configuration("myprefix") final MyConfig config) {
+    // ...
+  }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+it is recommended to convert this configuration in a runtime model in components
+to avoid to transport more than desired during the job distribution.
 </td>
 </tr>
 </table>
