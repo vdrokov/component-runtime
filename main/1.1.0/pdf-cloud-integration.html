@@ -8,7 +8,7 @@
     <meta name="description" content="Integrate components into Talend Cloud and learn about the component server">
     <meta name="keywords" content="web, component server, cloud">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-28T07:33:55.125Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-28T08:50:04.224Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -1009,15 +1009,15 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 <dl>
 <dt class="hdlist1">talend.component.proxy.actions.proposable.cached</dt>
 <dd>
-<p>If true the proposable (suggestion lists only depending on the server state) will be cached, otherwise they will be requested for each form rendering. Default value: <code>true</code>.</p>
+<p>Default value: <code>true</code>. If true the proposable (suggestion lists only depending on the server state) will be cached, otherwise they will be requested for each form rendering.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.application.home</dt>
 <dd>
-<p>A home location for relative path resolution (optional). Default value: <code>${playx.application.home}</code>.</p>
+<p>Default value: <code>${playx.application.home}</code>. A home location for relative path resolution (optional).</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.client.executor.threads</dt>
 <dd>
-<p>For the client executor, the number of threads. Default value: <code>64</code>.</p>
+<p>Default value: <code>64</code>. For the client executor, the number of threads.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.client.providers</dt>
 <dd>
@@ -1025,15 +1025,15 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 </dd>
 <dt class="hdlist1">talend.component.proxy.client.timeouts.connect</dt>
 <dd>
-<p>The connect timeout for the communication with the server.base in ms. Default value: <code>60000</code>.</p>
+<p>Default value: <code>60000</code>. The connect timeout for the communication with the server.base in ms.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.client.timeouts.read</dt>
 <dd>
-<p>The read timeout for the communication with the server.base in ms. Default value: <code>600000</code>.</p>
+<p>Default value: <code>600000</code>. The read timeout for the communication with the server.base in ms.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.jcache.active</dt>
 <dd>
-<p>Should the server use jcache to store catalog information and refresh it with some polling. If so the keys <code>talend.component.proxy.jcache.caches.$cacheName.expiry.duration</code>, <code>talend.component.proxy.jcache.caches.$cacheName.management.active</code> and <code>talend.component.proxy.jcache.caches.$cacheName.statistics.active</code> will be read to create a JCache <code>MutableConfiguration</code>. Also note that if all the cachesshare the same configuration you can ignore the <code>$cacheName</code> layer. Default value: <code>true</code>.</p>
+<p>Default value: <code>true</code>. Should the server use jcache to store catalog information and refresh it with some polling. If so the keys <code>talend.component.proxy.jcache.caches.$cacheName.expiry.duration</code>, <code>talend.component.proxy.jcache.caches.$cacheName.management.active</code> and <code>talend.component.proxy.jcache.caches.$cacheName.statistics.active</code> will be read to create a JCache <code>MutableConfiguration</code>. Also note that if all the cachesshare the same configuration you can ignore the <code>$cacheName</code> layer.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.jcache.cache-key.name</dt>
 <dd>
@@ -1045,7 +1045,7 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 </dd>
 <dt class="hdlist1">talend.component.proxy.jcache.refresh.period</dt>
 <dd>
-<p>Number of seconds used to check if the server must be refreshed. Default value: <code>60</code>.</p>
+<p>Default value: <code>60</code>. Number of seconds used to check if the server must be refreshed.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.processing.headers</dt>
 <dd>
@@ -1053,12 +1053,12 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 </dd>
 <dt class="hdlist1">talend.component.proxy.processing.uiSpec.patch</dt>
 <dd>
-<p>An optional location (absolute or resolved from <code>APP_HOME</code> environment variable). It can take an optional query parameter <code>force</code> which specifies if the startup should fail if the  file is not resolved. The resolution is done per configuration type (<code>datastore</code>, <code>dataset</code>, &#8230;&#8203;) but fallbacks on <code>default</code> type if the file is not found.</p>
+<p>Default value: <code>component-uispec-metadata.%s.json?force=false</code>. An optional location (absolute or resolved from <code>APP_HOME</code> environment variable). It can take an optional query parameter <code>force</code> which specifies if the startup should fail if the  file is not resolved. The resolution is done per configuration type (<code>datastore</code>, <code>dataset</code>, &#8230;&#8203;) but fallbacks on <code>default</code> type if the file is not found.</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p>The values can be keys in the resource bundle <code>org.talend.sdk.component.proxy.enrichment.i18n.Messages</code>. Use that for display names, placeholders etc&#8230;&#8203;The content  Default value: <code>component-uispec-metadata.%s.json?force=false</code>.
+<p>The values can be keys in the resource bundle <code>org.talend.sdk.component.proxy.enrichment.i18n.Messages</code>. Use that for display names, placeholders etc&#8230;&#8203;The content
 talend.component.proxy.server.base:: The base to contact the remote server (NOTE: it is recommanded to put a load balancer if you have multiple instances.)</p>
 </div>
 <div class="sect4">
@@ -3362,7 +3362,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </dd>
 <dt class="hdlist1">talend.component.server.component.extend.dependencies</dt>
 <dd>
-<p>Should the component extensions add required dependencies. Default value: <code>true</code>.</p>
+<p>Default value: <code>true</code>. Should the component extensions add required dependencies.</p>
 </dd>
 <dt class="hdlist1">talend.component.server.component.registry</dt>
 <dd>
@@ -3370,19 +3370,19 @@ the configuration is read from system properties, environment variables, &#8230;
 </dd>
 <dt class="hdlist1">talend.component.server.documentation.active</dt>
 <dd>
-<p>Should the /documentation endpoint be activated. Default value: <code>true</code>.</p>
+<p>Default value: <code>true</code>. Should the /documentation endpoint be activated.</p>
 </dd>
 <dt class="hdlist1">talend.component.server.execution.dataset.retriever.timeout</dt>
 <dd>
-<p>How long the read execution endpoint can last (max) Default value: <code>180</code>.</p>
+<p>Default value: <code>180</code>. How long the read execution endpoint can last (max)</p>
 </dd>
 <dt class="hdlist1">talend.component.server.execution.pool.wait</dt>
 <dd>
-<p>How long the application waits during shutdown for the execution tasks to complete Default value: <code>PT10S</code>.</p>
+<p>Default value: <code>PT10S</code>. How long the application waits during shutdown for the execution tasks to complete</p>
 </dd>
 <dt class="hdlist1">talend.component.server.jaxrs.exceptionhandler.defaultMessage</dt>
 <dd>
-<p>If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message. Default value: <code>false</code>.</p>
+<p>Default value: <code>false</code>. If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p>
 </dd>
 <dt class="hdlist1">talend.component.server.maven.repository</dt>
 <dd>
@@ -3390,15 +3390,15 @@ the configuration is read from system properties, environment variables, &#8230;
 </dd>
 <dt class="hdlist1">talend.component.server.monitoring.brave.service.name</dt>
 <dd>
-<p>The name used by the brave integration (zipkin) Default value: <code>component-server</code>.</p>
+<p>Default value: <code>component-server</code>. The name used by the brave integration (zipkin)</p>
 </dd>
 <dt class="hdlist1">talend.component.server.security.command.handler</dt>
 <dd>
-<p>How to validate a command/request. Accepted values: securityNoopHandler. Default value: <code>securityNoopHandler</code>.</p>
+<p>Default value: <code>securityNoopHandler</code>. How to validate a command/request. Accepted values: securityNoopHandler.</p>
 </dd>
 <dt class="hdlist1">talend.component.server.security.connection.handler</dt>
 <dd>
-<p>How to validate a connection. Accepted values: securityNoopHandler. Default value: <code>securityNoopHandler</code>.</p>
+<p>Default value: <code>securityNoopHandler</code>. How to validate a connection. Accepted values: securityNoopHandler.</p>
 </dd>
 </dl>
 </div>
@@ -3633,15 +3633,15 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 <dl>
 <dt class="hdlist1">talend.component.proxy.actions.proposable.cached</dt>
 <dd>
-<p>If true the proposable (suggestion lists only depending on the server state) will be cached, otherwise they will be requested for each form rendering. Default value: <code>true</code>.</p>
+<p>Default value: <code>true</code>. If true the proposable (suggestion lists only depending on the server state) will be cached, otherwise they will be requested for each form rendering.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.application.home</dt>
 <dd>
-<p>A home location for relative path resolution (optional). Default value: <code>${playx.application.home}</code>.</p>
+<p>Default value: <code>${playx.application.home}</code>. A home location for relative path resolution (optional).</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.client.executor.threads</dt>
 <dd>
-<p>For the client executor, the number of threads. Default value: <code>64</code>.</p>
+<p>Default value: <code>64</code>. For the client executor, the number of threads.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.client.providers</dt>
 <dd>
@@ -3649,15 +3649,15 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 </dd>
 <dt class="hdlist1">talend.component.proxy.client.timeouts.connect</dt>
 <dd>
-<p>The connect timeout for the communication with the server.base in ms. Default value: <code>60000</code>.</p>
+<p>Default value: <code>60000</code>. The connect timeout for the communication with the server.base in ms.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.client.timeouts.read</dt>
 <dd>
-<p>The read timeout for the communication with the server.base in ms. Default value: <code>600000</code>.</p>
+<p>Default value: <code>600000</code>. The read timeout for the communication with the server.base in ms.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.jcache.active</dt>
 <dd>
-<p>Should the server use jcache to store catalog information and refresh it with some polling. If so the keys <code>talend.component.proxy.jcache.caches.$cacheName.expiry.duration</code>, <code>talend.component.proxy.jcache.caches.$cacheName.management.active</code> and <code>talend.component.proxy.jcache.caches.$cacheName.statistics.active</code> will be read to create a JCache <code>MutableConfiguration</code>. Also note that if all the cachesshare the same configuration you can ignore the <code>$cacheName</code> layer. Default value: <code>true</code>.</p>
+<p>Default value: <code>true</code>. Should the server use jcache to store catalog information and refresh it with some polling. If so the keys <code>talend.component.proxy.jcache.caches.$cacheName.expiry.duration</code>, <code>talend.component.proxy.jcache.caches.$cacheName.management.active</code> and <code>talend.component.proxy.jcache.caches.$cacheName.statistics.active</code> will be read to create a JCache <code>MutableConfiguration</code>. Also note that if all the cachesshare the same configuration you can ignore the <code>$cacheName</code> layer.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.jcache.cache-key.name</dt>
 <dd>
@@ -3669,7 +3669,7 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 </dd>
 <dt class="hdlist1">talend.component.proxy.jcache.refresh.period</dt>
 <dd>
-<p>Number of seconds used to check if the server must be refreshed. Default value: <code>60</code>.</p>
+<p>Default value: <code>60</code>. Number of seconds used to check if the server must be refreshed.</p>
 </dd>
 <dt class="hdlist1">talend.component.proxy.processing.headers</dt>
 <dd>
@@ -3677,12 +3677,12 @@ If you use <code>playx-microprofile-config</code>, you can also use typesafe con
 </dd>
 <dt class="hdlist1">talend.component.proxy.processing.uiSpec.patch</dt>
 <dd>
-<p>An optional location (absolute or resolved from <code>APP_HOME</code> environment variable). It can take an optional query parameter <code>force</code> which specifies if the startup should fail if the  file is not resolved. The resolution is done per configuration type (<code>datastore</code>, <code>dataset</code>, &#8230;&#8203;) but fallbacks on <code>default</code> type if the file is not found.</p>
+<p>Default value: <code>component-uispec-metadata.%s.json?force=false</code>. An optional location (absolute or resolved from <code>APP_HOME</code> environment variable). It can take an optional query parameter <code>force</code> which specifies if the startup should fail if the  file is not resolved. The resolution is done per configuration type (<code>datastore</code>, <code>dataset</code>, &#8230;&#8203;) but fallbacks on <code>default</code> type if the file is not found.</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p>The values can be keys in the resource bundle <code>org.talend.sdk.component.proxy.enrichment.i18n.Messages</code>. Use that for display names, placeholders etc&#8230;&#8203;The content  Default value: <code>component-uispec-metadata.%s.json?force=false</code>.
+<p>The values can be keys in the resource bundle <code>org.talend.sdk.component.proxy.enrichment.i18n.Messages</code>. Use that for display names, placeholders etc&#8230;&#8203;The content
 talend.component.proxy.server.base:: The base to contact the remote server (NOTE: it is recommanded to put a load balancer if you have multiple instances.)</p>
 </div>
 <div class="sect3">
@@ -5986,7 +5986,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </dd>
 <dt class="hdlist1">talend.component.server.component.extend.dependencies</dt>
 <dd>
-<p>Should the component extensions add required dependencies. Default value: <code>true</code>.</p>
+<p>Default value: <code>true</code>. Should the component extensions add required dependencies.</p>
 </dd>
 <dt class="hdlist1">talend.component.server.component.registry</dt>
 <dd>
@@ -5994,19 +5994,19 @@ the configuration is read from system properties, environment variables, &#8230;
 </dd>
 <dt class="hdlist1">talend.component.server.documentation.active</dt>
 <dd>
-<p>Should the /documentation endpoint be activated. Default value: <code>true</code>.</p>
+<p>Default value: <code>true</code>. Should the /documentation endpoint be activated.</p>
 </dd>
 <dt class="hdlist1">talend.component.server.execution.dataset.retriever.timeout</dt>
 <dd>
-<p>How long the read execution endpoint can last (max) Default value: <code>180</code>.</p>
+<p>Default value: <code>180</code>. How long the read execution endpoint can last (max)</p>
 </dd>
 <dt class="hdlist1">talend.component.server.execution.pool.wait</dt>
 <dd>
-<p>How long the application waits during shutdown for the execution tasks to complete Default value: <code>PT10S</code>.</p>
+<p>Default value: <code>PT10S</code>. How long the application waits during shutdown for the execution tasks to complete</p>
 </dd>
 <dt class="hdlist1">talend.component.server.jaxrs.exceptionhandler.defaultMessage</dt>
 <dd>
-<p>If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message. Default value: <code>false</code>.</p>
+<p>Default value: <code>false</code>. If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p>
 </dd>
 <dt class="hdlist1">talend.component.server.maven.repository</dt>
 <dd>
@@ -6014,15 +6014,15 @@ the configuration is read from system properties, environment variables, &#8230;
 </dd>
 <dt class="hdlist1">talend.component.server.monitoring.brave.service.name</dt>
 <dd>
-<p>The name used by the brave integration (zipkin) Default value: <code>component-server</code>.</p>
+<p>Default value: <code>component-server</code>. The name used by the brave integration (zipkin)</p>
 </dd>
 <dt class="hdlist1">talend.component.server.security.command.handler</dt>
 <dd>
-<p>How to validate a command/request. Accepted values: securityNoopHandler. Default value: <code>securityNoopHandler</code>.</p>
+<p>Default value: <code>securityNoopHandler</code>. How to validate a command/request. Accepted values: securityNoopHandler.</p>
 </dd>
 <dt class="hdlist1">talend.component.server.security.connection.handler</dt>
 <dd>
-<p>How to validate a connection. Accepted values: securityNoopHandler. Default value: <code>securityNoopHandler</code>.</p>
+<p>Default value: <code>securityNoopHandler</code>. How to validate a connection. Accepted values: securityNoopHandler.</p>
 </dd>
 </dl>
 </div>
