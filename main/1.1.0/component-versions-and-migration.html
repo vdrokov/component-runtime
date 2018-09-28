@@ -8,7 +8,7 @@
     <meta name="description" content="How to handle component versions and migration">
     <meta name="keywords" content="migrationHandler, version, migration">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-28T13:29:22.442Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-28T15:07:36.211Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -416,7 +416,9 @@
           <div class="col-sm-9 row">
               <h1>Managing component versions and migration</h1>
             <div class="article-content">
-              <div class="paragraph">
+              <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
 <p>If some changes impact the configuration, they can be managed through a migration handler at the <strong>component</strong> level (enabling trans-model migration support).</p>
 </div>
 <div class="paragraph">
@@ -478,6 +480,48 @@ Adjust the migration code structure you need behind the <code>MigrationHandler</
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_difference_between_migrating_a_component_configuration_and_a_nested_configuration"><a class="anchor" href="#_difference_between_migrating_a_component_configuration_and_a_nested_configuration"></a>Difference between migrating a component configuration and a nested configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A nested configuration will always migrate itself with any root prefix whereas the component configuration
+always roots the full configuration. Typically if your model is the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version
+// ...
+public class MyComponent implements Serializable {
+  public MyComponent(@Option("configuration") final MyConfig config) {
+    // ...
+  }
+
+  // ...
+}
+
+@DataStore
+public class MyConfig implements Serializable {
+  @Option
+  private MyDataStore datastore;
+}
+
+@Version
+@DataStore
+public class MyDataStore implements Serializable {
+  @Option
+  private String url;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then the component will see the path <code>configuration.datastore.url</code> for the datastore url whereas the datastore
+will see the path <code>url</code> for the same property. You can see it as configuration types - <code>@DataStore</code>, <code>@DataSet</code> - being
+configured with an empty root path.</p>
+</div>
+</div>
 </div>
             </div>
           </div>
