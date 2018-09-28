@@ -8,7 +8,7 @@
     <meta name="description" content="Get an overview of the main steps to code the logic of your custom Talend Componit Kit components">
     <meta name="keywords" content="create, code, class, logic, layout, configuration, dev, overview">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-09-27T15:13:36.652Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-09-28T07:33:55.129Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -3927,18 +3927,44 @@ See <code>org.talend.sdk.component.runtime.beam.transform.avro.IndexedRecordCode
 <div class="paragraph">
 <p>If your <code>PCollection</code> is made of <code>JsonObject</code> records, and you want to convert them to <code>IndexedRecord</code>, you can use the following <code>PTransforms</code>:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>IndexedRecordToJson</code>: to convert an <code>IndexedRecord</code> to a <code>JsonObject</code>.</p>
-</li>
-<li>
-<p><code>JsonToIndexedRecord</code>: to convert a <code>JsonObject</code> to an <code>IndexedRecord</code>.</p>
-</li>
-<li>
-<p><code>SchemalessJsonToIndexedRecord</code>: to convert a <code>JsonObject</code> to an <code>IndexedRecord</code> with AVRO schema inference.</p>
-</li>
-</ul>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>IndexedRecordToJson</code></dt>
+<dd>
+<p>converts an <code>IndexedRecord</code> to a <code>JsonObject</code>.</p>
+</dd>
+<dt class="hdlist1"><code>JsonToIndexedRecord</code></dt>
+<dd>
+<p>converts a <code>JsonObject</code> to an <code>IndexedRecord</code>.</p>
+</dd>
+<dt class="hdlist1"><code>SchemalessJsonToIndexedRecord</code></dt>
+<dd>
+<p>converts a <code>JsonObject</code> to an <code>IndexedRecord</code> with AVRO schema inference.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_record_coder"><a class="anchor" href="#_record_coder"></a>Record coder</h4>
+<div class="paragraph">
+<p>There are two main provided coder for <code>Record</code>:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>FullSerializationRecordCoder</code></dt>
+<dd>
+<p>it will unwrap the record as an Avro <code>IndexedRecord</code> and serialize it <strong>with its schema</strong>.
+This can indeed have a performance impact but, due to the structure of component, it will not impact the runtime
+performance in general - except with direct runner - because the runners will optimize the pipeline accurately.</p>
+</dd>
+<dt class="hdlist1"><code>SchemaRegistryCoder</code></dt>
+<dd>
+<p>it will serialize the Avro <code>IndexedRecord</code> as well but it will ensure the schema is in the
+<code>SchemaRegistry</code> to be able to deserialize it when needed. This implementation is faster <strong>but</strong> the default implementation
+of the registry is "in memory" so will only work with a single worker node. You can extend it using Java SPI mecanism to use a custom
+distributed implementation.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect3">
