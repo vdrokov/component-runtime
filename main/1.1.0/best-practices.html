@@ -8,7 +8,7 @@
     <meta name="description" content="List of best practices for developing Talend components.">
     <meta name="keywords" content="best practices, checklist">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-10-02T13:38:07.760Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-10-02T14:30:04.867Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -648,7 +648,19 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 <div class="sect3">
 <h4 id="_custom_validations"><a class="anchor" href="#_custom_validations"></a>Custom validations</h4>
 <div class="paragraph">
-<p>Custom validations enforce custom code to be executed, they are more heavy to process, so prefer using light validations when possible.</p>
+<p>Custom validations enforce custom code to be executed, they are more heavy to execute.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+always prefer using light validations when possible.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Define an action with the parameters needed for the validation and link the option you want to validate to this action.
@@ -717,6 +729,11 @@ It is recommended to use <code>@Option("value")</code> until you know exactly wh
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The validations are triggers based on "events" so if you mark part of a configuration as <code>@Validable</code> but it is translated
+to a widget without any interaction then nothing will never happen. The rule of thumb here is to ensure you mark only
+primitives and simple types (List of primitives) as validable.</p>
 </div>
 </div>
 </div>
