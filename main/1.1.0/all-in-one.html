@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.0/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-10-03T12:00:19.055Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-10-03T13:12:57.456Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -3732,40 +3732,100 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${family}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the family</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${family}._displayName</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Display name of the family</p>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${family}.${category}._category</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the category <code>${category}</code> in the family <code>${family}</code>.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${family}.${category}._category</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Display name of the category <code>${category}</code> in the family <code>${family}</code>.</p>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${family}.${configurationType}.${name}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of a configuration type (dataStore or dataSet). Important: this key is read from the family package (not the class package), to unify the localization of the metadata.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${family}.${configurationType}.${name}._displayName</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Display name of a configuration type (dataStore or dataSet). Important: this key is read from the family package (not the class package), to unify the localization of the metadata.</p>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${family}.actions.${actionType}.${actionName}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of an action of the family. Specifying it is optional and will default on the action name if not set.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${family}.actions.${actionType}.${actionName}._displayName</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Display name of an action of the family. Specifying it is optional and will default on the action name if not set.</p>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${family}.${component_name}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the component (used by the GUIs)</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${family}.${component_name}._displayName</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Display name of the component (used by the GUIs)</p>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${property_path}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the option.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${property_path}._displayName</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Display name of the option.</p>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${simple_class_name}.${property_name}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the option using its class name.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${property_path}._documentation</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Equivalent to <code>@Documentation("&#8230;&#8203;")</code> but supporting internationalization (see Maven/Gradle documentation goal/task).</p>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${enum_simple_class_name}.${enum_name}._displayName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the <code>enum_name</code> value of the <code>enum_simple_class_name</code> enumeration.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${property_path}._placeholder</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Placeholder of the option.</p>
+</div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">${property_path}._placeholder</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Placeholder of the option.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${simple_class_name}.${property_name}._displayName</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Display name of the option using its class name.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${simple_class_name}.${property_name}._documentation</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>See <code>${property_path}._documentation</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${simple_class_name}.${property_name}._placeholder</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>See <code>${property_path}._placeholder</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>${enum_simple_class_name}.${enum_name}._displayName</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Display name of the <code>enum_name</code> value of the <code>enum_simple_class_name</code> enumeration.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
