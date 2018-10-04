@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talend Component Kit Developer Reference Guide :: Providing actions for consumers</title>
-    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.0/services-actions.html">
+    <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.1/services-actions.html">
     <meta name="description" content="How to define actions in a service">
     <meta name="keywords" content="service, action">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-10-04T14:42:34.787Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-10-04T15:06:27.179Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -64,7 +64,10 @@
               Version 1.1.0 <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-                <li class="navbar-item version is-current is-latest">
+                <li class="navbar-item version is-latest">
+                    <a href="../1.1.1/index.html">1.1.1</a>
+                </li>
+                <li class="navbar-item version is-current">
                     <a href="index.html">1.1.0</a>
                 </li>
                 <li class="navbar-item version">
@@ -550,7 +553,7 @@ public class PersonReader implements Serializable {
 <div class="sect2">
 <h3 id="_schema"><a class="anchor" href="#_schema"></a>Schema</h3>
 <div class="paragraph">
-<p>Mark an action as returning a discovered schema. Its parameter MUST be the type decorated with <code>@Structure</code>.</p>
+<p>Mark an action as returning a discovered schema. Its parameter MUST be a dataset. Dataset is configuration type annotated with @DataSet. If component has multiple datasets, then dataset used as action parameter should have the same identifier as this @DiscoverSchema.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -758,20 +761,20 @@ You can combine the <code>$lang</code> option with the <code>@Internationalized<
 
                 <ul>
                     <li>
-                      <a class="article-side-actions-link" target="_blank" href="https://github.com/Talend/component-runtime/edit/master/documentation/src/main/antora/modules/ROOT/pages/services-actions.adoc">
+                      <a class="article-side-actions-link" target="_blank" href="https://github.com/Talend/component-runtime/blob/component-runtime-1.1.0/documentation/src/main/antora/modules/ROOT/pages/services-actions.adoc">
                         <i class="fa fa-edit"></i> &nbsp; &nbsp; Suggest an edit
                       </a>
                     </li>
 
                     <li>
                                 <a class="article-side-actions-link" target="_blank"
-                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.0%2Fservices-actions.html&text=Talend%20Component%20Kit%20%3E%3E%20Providing%20actions%20for%20consumers%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.0%2Fservices-actions.html">
+                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.1%2Fservices-actions.html&text=Talend%20Component%20Kit%20%3E%3E%20Providing%20actions%20for%20consumers%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.1%2Fservices-actions.html">
                                     <i class="fab fa-twitter"></i> &nbsp; &nbsp; Tweet
                                 </a>
                             </li>
                             <li>
                                 <a class="article-side-actions-link"
-                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Providing%20actions%20for%20consumers&body=Talend%20Component%20Kit%3A%20Providing%20actions%20for%20consumers%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.0%2Fservices-actions.html">
+                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Providing%20actions%20for%20consumers&body=Talend%20Component%20Kit%3A%20Providing%20actions%20for%20consumers%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.1%2Fservices-actions.html">
                                     <i class="far fa-envelope"></i> &nbsp; &nbsp; Mail
                                 </a>
                             </li>
