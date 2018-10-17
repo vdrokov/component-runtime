@@ -112,9 +112,9 @@
 <span class="sourceLineNo">104</span>                return emptyMap();<a name="line.104"></a>
 <span class="sourceLineNo">105</span>            }<a name="line.105"></a>
 <span class="sourceLineNo">106</span>            final String usedPrefix = ofNullable(byExample.prefix).orElse("configuration.");<a name="line.106"></a>
-<span class="sourceLineNo">107</span>            final ParameterMeta params = new SimpleParameterModelService().build(usedPrefix, usedPrefix,<a name="line.107"></a>
-<span class="sourceLineNo">108</span>                    byExample.instance.getClass(), new Annotation[0],<a name="line.108"></a>
-<span class="sourceLineNo">109</span>                    new ArrayList&lt;&gt;(singletonList(byExample.instance.getClass().getPackage().getName())));<a name="line.109"></a>
+<span class="sourceLineNo">107</span>            final ParameterMeta params = new SimpleParameterModelService()<a name="line.107"></a>
+<span class="sourceLineNo">108</span>                    .build(usedPrefix, usedPrefix, byExample.instance.getClass(), new Annotation[0],<a name="line.108"></a>
+<span class="sourceLineNo">109</span>                            new ArrayList&lt;&gt;(singletonList(byExample.instance.getClass().getPackage().getName())));<a name="line.109"></a>
 <span class="sourceLineNo">110</span>            return CONFIGURATION_MAPPER.map(params.getNestedParameters(), byExample.instance);<a name="line.110"></a>
 <span class="sourceLineNo">111</span>        }<a name="line.111"></a>
 <span class="sourceLineNo">112</span><a name="line.112"></a>

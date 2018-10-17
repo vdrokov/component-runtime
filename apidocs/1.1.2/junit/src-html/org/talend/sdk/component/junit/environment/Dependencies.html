@@ -66,83 +66,85 @@
 <span class="sourceLineNo">058</span>        if (repos != null &amp;&amp; !repos.isEmpty()) {<a name="line.58"></a>
 <span class="sourceLineNo">059</span>            for (final String repo : repos.split(",")) {<a name="line.59"></a>
 <span class="sourceLineNo">060</span>                final String[] parts = repo.split("::");<a name="line.60"></a>
-<span class="sourceLineNo">061</span>                final MavenRemoteRepository repository = MavenRemoteRepositories.createRemoteRepository(<a name="line.61"></a>
-<span class="sourceLineNo">062</span>                        parts.length == 1 ? "repo_" + parts[0].replace(':', '_').replace('/', '_') : parts[0],<a name="line.62"></a>
-<span class="sourceLineNo">063</span>                        parts.length == 1 ? parts[0] : parts[1], parts.length &lt; 3 ? "default" : parts[2]);<a name="line.63"></a>
-<span class="sourceLineNo">064</span>                repository.setUpdatePolicy(MavenUpdatePolicy.UPDATE_POLICY_DAILY);<a name="line.64"></a>
-<span class="sourceLineNo">065</span>                repository.setChecksumPolicy(MavenChecksumPolicy.CHECKSUM_POLICY_IGNORE);<a name="line.65"></a>
-<span class="sourceLineNo">066</span>                repositories.add(repository);<a name="line.66"></a>
-<span class="sourceLineNo">067</span>            }<a name="line.67"></a>
-<span class="sourceLineNo">068</span>        } else if (!Boolean.getBoolean("talend.component.junit.maven.skipPomReading")) {<a name="line.68"></a>
-<span class="sourceLineNo">069</span>            // try to grab from the root pom the repos - simplifying maven parsing for speed reasons and enough<a name="line.69"></a>
-<span class="sourceLineNo">070</span>            // generally<a name="line.70"></a>
-<span class="sourceLineNo">071</span>            File current = new File(".").getAbsoluteFile();<a name="line.71"></a>
-<span class="sourceLineNo">072</span>            while (new File(current, "pom.xml").exists()) {<a name="line.72"></a>
-<span class="sourceLineNo">073</span>                final File parent = current.getParentFile();<a name="line.73"></a>
-<span class="sourceLineNo">074</span>                if (parent != null &amp;&amp; new File(parent, "pom.xml").exists()) {<a name="line.74"></a>
-<span class="sourceLineNo">075</span>                    current = parent;<a name="line.75"></a>
-<span class="sourceLineNo">076</span>                    continue;<a name="line.76"></a>
-<span class="sourceLineNo">077</span>                }<a name="line.77"></a>
-<span class="sourceLineNo">078</span>                break;<a name="line.78"></a>
-<span class="sourceLineNo">079</span>            }<a name="line.79"></a>
-<span class="sourceLineNo">080</span>            final File pom = new File(current, "pom.xml");<a name="line.80"></a>
-<span class="sourceLineNo">081</span>            if (pom.exists()) {<a name="line.81"></a>
-<span class="sourceLineNo">082</span>                final PomEquippedResolveStage localPom = Maven.configureResolver().loadPomFromFile(pom);<a name="line.82"></a>
-<span class="sourceLineNo">083</span>                final MavenWorkingSession mavenWorkingSession =<a name="line.83"></a>
-<span class="sourceLineNo">084</span>                        PomEquippedResolveStageBaseImpl.class.cast(localPom).getMavenWorkingSession();<a name="line.84"></a>
-<span class="sourceLineNo">085</span>                try {<a name="line.85"></a>
-<span class="sourceLineNo">086</span>                    final Field remoteRepositories =<a name="line.86"></a>
-<span class="sourceLineNo">087</span>                            mavenWorkingSession.getClass().getDeclaredField("remoteRepositories");<a name="line.87"></a>
-<span class="sourceLineNo">088</span>                    if (!remoteRepositories.isAccessible()) {<a name="line.88"></a>
-<span class="sourceLineNo">089</span>                        remoteRepositories.setAccessible(true);<a name="line.89"></a>
-<span class="sourceLineNo">090</span>                    }<a name="line.90"></a>
-<span class="sourceLineNo">091</span>                    final List&lt;RemoteRepository&gt; pomRepos =<a name="line.91"></a>
-<span class="sourceLineNo">092</span>                            List.class.cast(remoteRepositories.get(mavenWorkingSession));<a name="line.92"></a>
-<span class="sourceLineNo">093</span>                    if (pomRepos != null &amp;&amp; !pomRepos.isEmpty()) {<a name="line.93"></a>
-<span class="sourceLineNo">094</span>                        pomRepos.forEach(r -&gt; {<a name="line.94"></a>
-<span class="sourceLineNo">095</span>                            final MavenRemoteRepository repository =<a name="line.95"></a>
-<span class="sourceLineNo">096</span>                                    MavenRemoteRepositories.createRemoteRepository(r.getId(), r.getUrl(), "default");<a name="line.96"></a>
-<span class="sourceLineNo">097</span>                            repository.setUpdatePolicy(MavenUpdatePolicy.UPDATE_POLICY_DAILY);<a name="line.97"></a>
-<span class="sourceLineNo">098</span>                            repository.setChecksumPolicy(MavenChecksumPolicy.CHECKSUM_POLICY_IGNORE);<a name="line.98"></a>
-<span class="sourceLineNo">099</span>                            repositories.add(repository);<a name="line.99"></a>
-<span class="sourceLineNo">100</span>                        });<a name="line.100"></a>
-<span class="sourceLineNo">101</span>                    }<a name="line.101"></a>
-<span class="sourceLineNo">102</span>                } catch (final Exception e) {<a name="line.102"></a>
-<span class="sourceLineNo">103</span>                    throw new IllegalStateException("Check your shrinkwrap maven version", e);<a name="line.103"></a>
-<span class="sourceLineNo">104</span>                }<a name="line.104"></a>
-<span class="sourceLineNo">105</span>            }<a name="line.105"></a>
-<span class="sourceLineNo">106</span>        }<a name="line.106"></a>
-<span class="sourceLineNo">107</span>        if (!Boolean.getBoolean("talend.component.junit.maven.central.skip")) {<a name="line.107"></a>
-<span class="sourceLineNo">108</span>            final MavenRemoteRepository central = MavenRemoteRepositories.createRemoteRepository("central_test_default",<a name="line.108"></a>
-<span class="sourceLineNo">109</span>                    "http://repo.maven.apache.org/maven2/", "default");<a name="line.109"></a>
-<span class="sourceLineNo">110</span>            central.setChecksumPolicy(MavenChecksumPolicy.CHECKSUM_POLICY_WARN);<a name="line.110"></a>
-<span class="sourceLineNo">111</span>            central.setUpdatePolicy(MavenUpdatePolicy.UPDATE_POLICY_NEVER);<a name="line.111"></a>
-<span class="sourceLineNo">112</span>            repositories.add(central);<a name="line.112"></a>
-<span class="sourceLineNo">113</span>        }<a name="line.113"></a>
-<span class="sourceLineNo">114</span><a name="line.114"></a>
-<span class="sourceLineNo">115</span>        return repositories;<a name="line.115"></a>
-<span class="sourceLineNo">116</span>    }<a name="line.116"></a>
-<span class="sourceLineNo">117</span><a name="line.117"></a>
-<span class="sourceLineNo">118</span>    private static final MavenResolutionStrategy STRATEGY =<a name="line.118"></a>
-<span class="sourceLineNo">119</span>            new AcceptScopesStrategy(ScopeType.COMPILE, ScopeType.RUNTIME);<a name="line.119"></a>
-<span class="sourceLineNo">120</span><a name="line.120"></a>
-<span class="sourceLineNo">121</span>    public static URL[] resolve(final MavenDependency dep) {<a name="line.121"></a>
-<span class="sourceLineNo">122</span>        return CACHE.computeIfAbsent(dep, d -&gt; {<a name="line.122"></a>
-<span class="sourceLineNo">123</span>            final ConfigurableMavenResolverSystem resolver =<a name="line.123"></a>
-<span class="sourceLineNo">124</span>                    Maven.configureResolver().withClassPathResolution(true).workOffline(<a name="line.124"></a>
-<span class="sourceLineNo">125</span>                            Boolean.getBoolean("talend.component.junit.maven.offline"));<a name="line.125"></a>
-<span class="sourceLineNo">126</span>            REPOSITORIES.forEach(resolver::withRemoteRepo);<a name="line.126"></a>
-<span class="sourceLineNo">127</span>            resolver.addDependency(dep);<a name="line.127"></a>
-<span class="sourceLineNo">128</span>            return Stream.of(resolver.resolve().using(STRATEGY).asFile()).distinct().map(f -&gt; {<a name="line.128"></a>
-<span class="sourceLineNo">129</span>                try {<a name="line.129"></a>
-<span class="sourceLineNo">130</span>                    return f.toURI().toURL();<a name="line.130"></a>
-<span class="sourceLineNo">131</span>                } catch (final MalformedURLException e) {<a name="line.131"></a>
-<span class="sourceLineNo">132</span>                    throw new IllegalStateException(e);<a name="line.132"></a>
-<span class="sourceLineNo">133</span>                }<a name="line.133"></a>
-<span class="sourceLineNo">134</span>            }).toArray(URL[]::new);<a name="line.134"></a>
-<span class="sourceLineNo">135</span>        });<a name="line.135"></a>
-<span class="sourceLineNo">136</span>    }<a name="line.136"></a>
-<span class="sourceLineNo">137</span>}<a name="line.137"></a>
+<span class="sourceLineNo">061</span>                final MavenRemoteRepository repository = MavenRemoteRepositories<a name="line.61"></a>
+<span class="sourceLineNo">062</span>                        .createRemoteRepository(<a name="line.62"></a>
+<span class="sourceLineNo">063</span>                                parts.length == 1 ? "repo_" + parts[0].replace(':', '_').replace('/', '_') : parts[0],<a name="line.63"></a>
+<span class="sourceLineNo">064</span>                                parts.length == 1 ? parts[0] : parts[1], parts.length &lt; 3 ? "default" : parts[2]);<a name="line.64"></a>
+<span class="sourceLineNo">065</span>                repository.setUpdatePolicy(MavenUpdatePolicy.UPDATE_POLICY_DAILY);<a name="line.65"></a>
+<span class="sourceLineNo">066</span>                repository.setChecksumPolicy(MavenChecksumPolicy.CHECKSUM_POLICY_IGNORE);<a name="line.66"></a>
+<span class="sourceLineNo">067</span>                repositories.add(repository);<a name="line.67"></a>
+<span class="sourceLineNo">068</span>            }<a name="line.68"></a>
+<span class="sourceLineNo">069</span>        } else if (!Boolean.getBoolean("talend.component.junit.maven.skipPomReading")) {<a name="line.69"></a>
+<span class="sourceLineNo">070</span>            // try to grab from the root pom the repos - simplifying maven parsing for speed reasons and enough<a name="line.70"></a>
+<span class="sourceLineNo">071</span>            // generally<a name="line.71"></a>
+<span class="sourceLineNo">072</span>            File current = new File(".").getAbsoluteFile();<a name="line.72"></a>
+<span class="sourceLineNo">073</span>            while (new File(current, "pom.xml").exists()) {<a name="line.73"></a>
+<span class="sourceLineNo">074</span>                final File parent = current.getParentFile();<a name="line.74"></a>
+<span class="sourceLineNo">075</span>                if (parent != null &amp;&amp; new File(parent, "pom.xml").exists()) {<a name="line.75"></a>
+<span class="sourceLineNo">076</span>                    current = parent;<a name="line.76"></a>
+<span class="sourceLineNo">077</span>                    continue;<a name="line.77"></a>
+<span class="sourceLineNo">078</span>                }<a name="line.78"></a>
+<span class="sourceLineNo">079</span>                break;<a name="line.79"></a>
+<span class="sourceLineNo">080</span>            }<a name="line.80"></a>
+<span class="sourceLineNo">081</span>            final File pom = new File(current, "pom.xml");<a name="line.81"></a>
+<span class="sourceLineNo">082</span>            if (pom.exists()) {<a name="line.82"></a>
+<span class="sourceLineNo">083</span>                final PomEquippedResolveStage localPom = Maven.configureResolver().loadPomFromFile(pom);<a name="line.83"></a>
+<span class="sourceLineNo">084</span>                final MavenWorkingSession mavenWorkingSession =<a name="line.84"></a>
+<span class="sourceLineNo">085</span>                        PomEquippedResolveStageBaseImpl.class.cast(localPom).getMavenWorkingSession();<a name="line.85"></a>
+<span class="sourceLineNo">086</span>                try {<a name="line.86"></a>
+<span class="sourceLineNo">087</span>                    final Field remoteRepositories =<a name="line.87"></a>
+<span class="sourceLineNo">088</span>                            mavenWorkingSession.getClass().getDeclaredField("remoteRepositories");<a name="line.88"></a>
+<span class="sourceLineNo">089</span>                    if (!remoteRepositories.isAccessible()) {<a name="line.89"></a>
+<span class="sourceLineNo">090</span>                        remoteRepositories.setAccessible(true);<a name="line.90"></a>
+<span class="sourceLineNo">091</span>                    }<a name="line.91"></a>
+<span class="sourceLineNo">092</span>                    final List&lt;RemoteRepository&gt; pomRepos =<a name="line.92"></a>
+<span class="sourceLineNo">093</span>                            List.class.cast(remoteRepositories.get(mavenWorkingSession));<a name="line.93"></a>
+<span class="sourceLineNo">094</span>                    if (pomRepos != null &amp;&amp; !pomRepos.isEmpty()) {<a name="line.94"></a>
+<span class="sourceLineNo">095</span>                        pomRepos.forEach(r -&gt; {<a name="line.95"></a>
+<span class="sourceLineNo">096</span>                            final MavenRemoteRepository repository =<a name="line.96"></a>
+<span class="sourceLineNo">097</span>                                    MavenRemoteRepositories.createRemoteRepository(r.getId(), r.getUrl(), "default");<a name="line.97"></a>
+<span class="sourceLineNo">098</span>                            repository.setUpdatePolicy(MavenUpdatePolicy.UPDATE_POLICY_DAILY);<a name="line.98"></a>
+<span class="sourceLineNo">099</span>                            repository.setChecksumPolicy(MavenChecksumPolicy.CHECKSUM_POLICY_IGNORE);<a name="line.99"></a>
+<span class="sourceLineNo">100</span>                            repositories.add(repository);<a name="line.100"></a>
+<span class="sourceLineNo">101</span>                        });<a name="line.101"></a>
+<span class="sourceLineNo">102</span>                    }<a name="line.102"></a>
+<span class="sourceLineNo">103</span>                } catch (final Exception e) {<a name="line.103"></a>
+<span class="sourceLineNo">104</span>                    throw new IllegalStateException("Check your shrinkwrap maven version", e);<a name="line.104"></a>
+<span class="sourceLineNo">105</span>                }<a name="line.105"></a>
+<span class="sourceLineNo">106</span>            }<a name="line.106"></a>
+<span class="sourceLineNo">107</span>        }<a name="line.107"></a>
+<span class="sourceLineNo">108</span>        if (!Boolean.getBoolean("talend.component.junit.maven.central.skip")) {<a name="line.108"></a>
+<span class="sourceLineNo">109</span>            final MavenRemoteRepository central = MavenRemoteRepositories<a name="line.109"></a>
+<span class="sourceLineNo">110</span>                    .createRemoteRepository("central_test_default", "http://repo.maven.apache.org/maven2/", "default");<a name="line.110"></a>
+<span class="sourceLineNo">111</span>            central.setChecksumPolicy(MavenChecksumPolicy.CHECKSUM_POLICY_WARN);<a name="line.111"></a>
+<span class="sourceLineNo">112</span>            central.setUpdatePolicy(MavenUpdatePolicy.UPDATE_POLICY_NEVER);<a name="line.112"></a>
+<span class="sourceLineNo">113</span>            repositories.add(central);<a name="line.113"></a>
+<span class="sourceLineNo">114</span>        }<a name="line.114"></a>
+<span class="sourceLineNo">115</span><a name="line.115"></a>
+<span class="sourceLineNo">116</span>        return repositories;<a name="line.116"></a>
+<span class="sourceLineNo">117</span>    }<a name="line.117"></a>
+<span class="sourceLineNo">118</span><a name="line.118"></a>
+<span class="sourceLineNo">119</span>    private static final MavenResolutionStrategy STRATEGY =<a name="line.119"></a>
+<span class="sourceLineNo">120</span>            new AcceptScopesStrategy(ScopeType.COMPILE, ScopeType.RUNTIME);<a name="line.120"></a>
+<span class="sourceLineNo">121</span><a name="line.121"></a>
+<span class="sourceLineNo">122</span>    public static URL[] resolve(final MavenDependency dep) {<a name="line.122"></a>
+<span class="sourceLineNo">123</span>        return CACHE.computeIfAbsent(dep, d -&gt; {<a name="line.123"></a>
+<span class="sourceLineNo">124</span>            final ConfigurableMavenResolverSystem resolver = Maven<a name="line.124"></a>
+<span class="sourceLineNo">125</span>                    .configureResolver()<a name="line.125"></a>
+<span class="sourceLineNo">126</span>                    .withClassPathResolution(true)<a name="line.126"></a>
+<span class="sourceLineNo">127</span>                    .workOffline(Boolean.getBoolean("talend.component.junit.maven.offline"));<a name="line.127"></a>
+<span class="sourceLineNo">128</span>            REPOSITORIES.forEach(resolver::withRemoteRepo);<a name="line.128"></a>
+<span class="sourceLineNo">129</span>            resolver.addDependency(dep);<a name="line.129"></a>
+<span class="sourceLineNo">130</span>            return Stream.of(resolver.resolve().using(STRATEGY).asFile()).distinct().map(f -&gt; {<a name="line.130"></a>
+<span class="sourceLineNo">131</span>                try {<a name="line.131"></a>
+<span class="sourceLineNo">132</span>                    return f.toURI().toURL();<a name="line.132"></a>
+<span class="sourceLineNo">133</span>                } catch (final MalformedURLException e) {<a name="line.133"></a>
+<span class="sourceLineNo">134</span>                    throw new IllegalStateException(e);<a name="line.134"></a>
+<span class="sourceLineNo">135</span>                }<a name="line.135"></a>
+<span class="sourceLineNo">136</span>            }).toArray(URL[]::new);<a name="line.136"></a>
+<span class="sourceLineNo">137</span>        });<a name="line.137"></a>
+<span class="sourceLineNo">138</span>    }<a name="line.138"></a>
+<span class="sourceLineNo">139</span>}<a name="line.139"></a>
 
 
 

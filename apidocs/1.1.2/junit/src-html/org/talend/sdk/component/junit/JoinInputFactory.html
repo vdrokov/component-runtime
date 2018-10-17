@@ -97,16 +97,18 @@
 <span class="sourceLineNo">089</span>            synchronized (this) {<a name="line.89"></a>
 <span class="sourceLineNo">090</span>                if (jsonb == null) {<a name="line.90"></a>
 <span class="sourceLineNo">091</span>                    jsonb = JsonbBuilder<a name="line.91"></a>
-<span class="sourceLineNo">092</span>                            .create(new JsonbConfig().withAdapters(new MultipleFormatDateAdapter()).setProperty(<a name="line.92"></a>
-<span class="sourceLineNo">093</span>                                    "johnzon.cdi.activated", false));<a name="line.93"></a>
-<span class="sourceLineNo">094</span>                }<a name="line.94"></a>
-<span class="sourceLineNo">095</span>            }<a name="line.95"></a>
-<span class="sourceLineNo">096</span>        }<a name="line.96"></a>
-<span class="sourceLineNo">097</span><a name="line.97"></a>
-<span class="sourceLineNo">098</span>        return new RecordConverters().toRecord(next, () -&gt; jsonb,<a name="line.98"></a>
-<span class="sourceLineNo">099</span>                () -&gt; ComponentManager.instance().getRecordBuilderFactoryProvider().apply(null));<a name="line.99"></a>
-<span class="sourceLineNo">100</span>    }<a name="line.100"></a>
-<span class="sourceLineNo">101</span>}<a name="line.101"></a>
+<span class="sourceLineNo">092</span>                            .create(new JsonbConfig()<a name="line.92"></a>
+<span class="sourceLineNo">093</span>                                    .withAdapters(new MultipleFormatDateAdapter())<a name="line.93"></a>
+<span class="sourceLineNo">094</span>                                    .setProperty("johnzon.cdi.activated", false));<a name="line.94"></a>
+<span class="sourceLineNo">095</span>                }<a name="line.95"></a>
+<span class="sourceLineNo">096</span>            }<a name="line.96"></a>
+<span class="sourceLineNo">097</span>        }<a name="line.97"></a>
+<span class="sourceLineNo">098</span><a name="line.98"></a>
+<span class="sourceLineNo">099</span>        return new RecordConverters()<a name="line.99"></a>
+<span class="sourceLineNo">100</span>                .toRecord(next, () -&gt; jsonb,<a name="line.100"></a>
+<span class="sourceLineNo">101</span>                        () -&gt; ComponentManager.instance().getRecordBuilderFactoryProvider().apply(null));<a name="line.101"></a>
+<span class="sourceLineNo">102</span>    }<a name="line.102"></a>
+<span class="sourceLineNo">103</span>}<a name="line.103"></a>
 
 
 
