@@ -8,7 +8,7 @@
     <meta name="description" content="Get an overview of the main steps to code the logic of your custom Talend Componit Kit components">
     <meta name="keywords" content="create, code, class, logic, layout, configuration, dev, overview">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-11-05T08:20:47.841Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-11-05T11:32:45.715Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -556,7 +556,7 @@ Metadata is set on the component class and belongs to the <code>org.talend.sdk.c
 <li>
 <p><strong>@Icon</strong>: Sets an icon key used to represent the component.
 You can use a custom key with the <code>custom()</code> method but the icon may not be rendered properly. The icon defaults to <strong>Star</strong>.<br>
-You can check the <a href="icons.html">icon gallery</a> to check out the available icons before creating your own.<br>
+You can use a custom icon from the <a href="icons.html">icon gallery</a> or create your own.<br>
 Learn how to set a custom icon for your component in <a href="component-defining-custom-icon.html" class="page">this section</a>.</p>
 </li>
 <li>
@@ -2620,8 +2620,8 @@ Adjust the migration code structure you need behind the <code>MigrationHandler</
 <div class="sect2">
 <h3 id="_difference_between_migrating_a_component_configuration_and_a_nested_configuration"><a class="anchor" href="#_difference_between_migrating_a_component_configuration_and_a_nested_configuration"></a>Difference between migrating a component configuration and a nested configuration</h3>
 <div class="paragraph">
-<p>A nested configuration will always migrate itself with any root prefix whereas the component configuration
-always roots the full configuration. Typically if your model is the following:</p>
+<p>A nested configuration always migrates itself with any root prefix, whereas a component configuration always roots the full configuration.<br>
+For example, if your model is the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3075,7 +3075,7 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateDataSet</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that any <code>@DataSet</code> has a unique name. Also ensures that there is a source instantiable just filling the dataset properties (all others not being required). Finally for each input and output component it checks it uses at least a dataset and that this dataset has a datastore.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that any <code>@DataSet</code> has a unique name. Also ensures that there is a source instantiable just filling the dataset properties (all others not being required). Finally, the validation checks that each input or output component uses a dataset and that this dataset has a datastore.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.validation.dataset</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
@@ -3445,10 +3445,9 @@ Make sure to install the artifact before using this command because it reads the
 </table>
 </div>
 <div class="sect4">
-<h5 id="_tip_change_the_ui_bundle"><a class="anchor" href="#_tip_change_the_ui_bundle"></a>Tip: change the UI bundle</h5>
+<h5 id="_changing_the_ui_bundle"><a class="anchor" href="#_changing_the_ui_bundle"></a>Changing the UI bundle</h5>
 <div class="paragraph">
-<p>If you built a custom UI (js+css) bundle and want to test it in the webapp
-you can configure it in the pom.xml:</p>
+<p>If you built a custom UI (JS + CSS) bundle and want to test it in the web application, you can configure it in the <code>pom.xml</code> file as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3467,8 +3466,7 @@ you can configure it in the pom.xml:</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-this is a very advanced feature, ensure to know why you use it if you do. It is recommended to not use it
-until a framework developper encourages you to do so.
+This is an advanced feature designed for expert users. Use it with caution.
 </td>
 </tr>
 </table>
@@ -3478,14 +3476,14 @@ until a framework developper encourages you to do so.
 </div>
 <div class="sect2">
 <h3 id="_generating_inputs_or_outputs"><a class="anchor" href="#_generating_inputs_or_outputs"></a>Generating inputs or outputs</h3>
-<div class="admonitionblock warning">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-this goal is deprecated and can be deleted in a future release.
+This goal is deprecated and will be removed in a future release.
 </td>
 </tr>
 </table>
@@ -4405,7 +4403,7 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 <div class="sect4">
 <h5 id="_custom_validations"><a class="anchor" href="#_custom_validations"></a>Custom validations</h5>
 <div class="paragraph">
-<p>Custom validations enforce custom code to be executed, they are more heavy to execute.</p>
+<p>Custom validations enforce custom code to be executed, but are heavier to execute.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -4414,7 +4412,7 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-always prefer using light validations when possible.
+Prefer using light validations when possible.
 </td>
 </tr>
 </table>
@@ -4488,9 +4486,8 @@ It is recommended to use <code>@Option("value")</code> until you know exactly wh
 </table>
 </div>
 <div class="paragraph">
-<p>The validations are triggers based on "events" so if you mark part of a configuration as <code>@Validable</code> but it is translated
-to a widget without any interaction then nothing will never happen. The rule of thumb here is to ensure you mark only
-primitives and simple types (List of primitives) as validable.</p>
+<p>Validations are triggers based on "events". If you mark part of a configuration as <code>@Validable</code> but this configuration is translated to a widget without any interaction, then no validation will happen. The rule of thumb is to mark only
+primitives and simple types (list of primitives) as <code>@Validable</code>.</p>
 </div>
 </div>
 </div>

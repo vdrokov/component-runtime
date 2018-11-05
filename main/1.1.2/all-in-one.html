@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.2/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-11-05T08:20:47.773Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-11-05T11:32:45.645Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -1924,7 +1924,7 @@ Metadata is set on the component class and belongs to the <code>org.talend.sdk.c
 <li>
 <p><strong>@Icon</strong>: Sets an icon key used to represent the component.
 You can use a custom key with the <code>custom()</code> method but the icon may not be rendered properly. The icon defaults to <strong>Star</strong>.<br>
-You can check the <a href="icons.html">icon gallery</a> to check out the available icons before creating your own.<br>
+You can use a custom icon from the <a href="icons.html">icon gallery</a> or create your own.<br>
 Learn how to set a custom icon for your component in <a href="component-defining-custom-icon.html" class="page">this section</a>.</p>
 </li>
 <li>
@@ -3978,8 +3978,8 @@ Adjust the migration code structure you need behind the <code>MigrationHandler</
 <div class="sect3">
 <h4 id="_difference_between_migrating_a_component_configuration_and_a_nested_configuration"><a class="anchor" href="#_difference_between_migrating_a_component_configuration_and_a_nested_configuration"></a>Difference between migrating a component configuration and a nested configuration</h4>
 <div class="paragraph">
-<p>A nested configuration will always migrate itself with any root prefix whereas the component configuration
-always roots the full configuration. Typically if your model is the following:</p>
+<p>A nested configuration always migrates itself with any root prefix, whereas a component configuration always roots the full configuration.<br>
+For example, if your model is the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4427,7 +4427,7 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateDataSet</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that any <code>@DataSet</code> has a unique name. Also ensures that there is a source instantiable just filling the dataset properties (all others not being required). Finally for each input and output component it checks it uses at least a dataset and that this dataset has a datastore.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that any <code>@DataSet</code> has a unique name. Also ensures that there is a source instantiable just filling the dataset properties (all others not being required). Finally, the validation checks that each input or output component uses a dataset and that this dataset has a datastore.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.validation.dataset</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
@@ -4797,10 +4797,9 @@ Make sure to install the artifact before using this command because it reads the
 </table>
 </div>
 <div class="sect5">
-<h6 id="_tip_change_the_ui_bundle"><a class="anchor" href="#_tip_change_the_ui_bundle"></a>Tip: change the UI bundle</h6>
+<h6 id="_changing_the_ui_bundle"><a class="anchor" href="#_changing_the_ui_bundle"></a>Changing the UI bundle</h6>
 <div class="paragraph">
-<p>If you built a custom UI (js+css) bundle and want to test it in the webapp
-you can configure it in the pom.xml:</p>
+<p>If you built a custom UI (JS + CSS) bundle and want to test it in the web application, you can configure it in the <code>pom.xml</code> file as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4819,8 +4818,7 @@ you can configure it in the pom.xml:</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-this is a very advanced feature, ensure to know why you use it if you do. It is recommended to not use it
-until a framework developper encourages you to do so.
+This is an advanced feature designed for expert users. Use it with caution.
 </td>
 </tr>
 </table>
@@ -4830,14 +4828,14 @@ until a framework developper encourages you to do so.
 </div>
 <div class="sect3">
 <h4 id="_generating_inputs_or_outputs"><a class="anchor" href="#_generating_inputs_or_outputs"></a>Generating inputs or outputs</h4>
-<div class="admonitionblock warning">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-this goal is deprecated and can be deleted in a future release.
+This goal is deprecated and will be removed in a future release.
 </td>
 </tr>
 </table>
@@ -5751,7 +5749,7 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 <div class="sect5">
 <h6 id="_custom_validations"><a class="anchor" href="#_custom_validations"></a>Custom validations</h6>
 <div class="paragraph">
-<p>Custom validations enforce custom code to be executed, they are more heavy to execute.</p>
+<p>Custom validations enforce custom code to be executed, but are heavier to execute.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -5760,7 +5758,7 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-always prefer using light validations when possible.
+Prefer using light validations when possible.
 </td>
 </tr>
 </table>
@@ -5834,9 +5832,8 @@ It is recommended to use <code>@Option("value")</code> until you know exactly wh
 </table>
 </div>
 <div class="paragraph">
-<p>The validations are triggers based on "events" so if you mark part of a configuration as <code>@Validable</code> but it is translated
-to a widget without any interaction then nothing will never happen. The rule of thumb here is to ensure you mark only
-primitives and simple types (List of primitives) as validable.</p>
+<p>Validations are triggers based on "events". If you mark part of a configuration as <code>@Validable</code> but this configuration is translated to a widget without any interaction, then no validation will happen. The rule of thumb is to mark only
+primitives and simple types (list of primitives) as <code>@Validable</code>.</p>
 </div>
 </div>
 </div>
@@ -11024,63 +11021,78 @@ public @interface MyLayout {
 <div class="sect2">
 <h3 id="_integrating_components_into_talend_studio_2"><a class="anchor" href="#_integrating_components_into_talend_studio_2"></a>Integrating components into Talend Studio</h3>
 <div class="paragraph">
-<p>Before integrating your components into the Studio, learn how to build and deploy them using <a href="build-tools-maven.html" class="page">Maven</a> or <a href="build-tools-gradle.html" class="page">Gradle</a> Talend Component Kit plugins.</p>
+<p>Integrate components developed using Talend Component Kit to <a href="https://sourceforge.net/projects/talend-studio/">Talend Studio</a> in a few steps. Also learn how to enable the developer and debugging modes to iterate on your component development.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%">
+</div>
 </div>
 <div class="sect3">
-<h4 id="_design"><a class="anchor" href="#_design"></a>Design</h4>
+<h4 id="_version_compatibility"><a class="anchor" href="#_version_compatibility"></a>Version compatibility</h4>
 <div class="paragraph">
-<p>The Studio integration relies on the Component Server (see <a href="documentation-rest.html" class="page">Web</a> for more details).</p>
+<p>The version of Talend Component Kit you need to use to develop new components depends on the version of Talend Studio in which components will be integrated.</p>
 </div>
-<div class="paragraph">
-<p>When the plugin is deployed, it starts a local server that the Studio uses to gather data about the components.</p>
-</div>
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Talend product</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Talend Component Kit version</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Studio 7.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework until 1.1.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Studio 7.0.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework until 0.0.5</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_installing_the_components"><a class="anchor" href="#_installing_the_components"></a>Installing the components</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Copy <code>org.talend.sdk.component.studio-integration.jar</code> in the <code>$STUDIO_HOME/plugins</code> directory of the Studio.</p>
-</li>
-<li>
-<p>Restart the Studio.</p>
-</li>
-<li>
-<p>Make sure that the <code>component-server</code> dependencies and <code>commons-cli</code> 1.4 are in the Studio Maven repository.<br>
-If you install any other component, ensure its dependencies are in the repository as well.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Learn how to build and deploy components to Talend Studio using <a href="build-tools-maven.html" class="page">Maven</a> or <a href="build-tools-gradle.html" class="page">Gradle</a> Talend Component Kit plugins.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-you can set the <code>maven.repository</code> value to <code>global</code> in <code>$STUDIO_HOME/configuration/config.ini</code> to reuse your local Maven repository.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>This can be done using the <code>deploy-in-studio</code> goal from your development environment.</p>
+</div>
+<div class="paragraph">
+<p>If you are unfamiliar with component development, you can also follow <a href="tutorial-create-my-first-component.html" class="page">this example</a> to go through the entire process, from creating a project to using your new component in Talend Studio.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_configuring_the_components"><a class="anchor" href="#_configuring_the_components"></a>Configuring the components</h4>
+<h4 id="_configuring_the_component_server"><a class="anchor" href="#_configuring_the_component_server"></a>Configuring the component server</h4>
 <div class="paragraph">
-<p>The configuration is done in the <code>$STUDIO_HOME/configuration/config.ini</code> file.</p>
+<p>The Studio integration relies on the Component Server, that the Studio uses to gather data about components created using Talend Component Kit.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<div class="paragraph">
+<p>You can change the default configuration of component server by modifying the <code>$STUDIO_HOME/configuration/config.ini</code> file.</p>
+</div>
+<div class="paragraph">
+<p>The following parameters are available:</p>
+</div>
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
 <col style="width: 33.3334%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default</p></td>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.environment</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enables the developer mode when set to <code>dev</code></p></td>
@@ -11123,7 +11135,7 @@ you can set the <code>maven.repository</code> value to <code>global</code> in <c
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">components.server.beam.active</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Active, if set to true, beam support (<em>Experimental</em>). It requires beam sdk java core dependencies to be available.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Active, if set to true, Beam support (<em>Experimental</em>). It requires Beam SDK Java core dependencies to be available.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 </tr>
 <tr>
@@ -11141,18 +11153,13 @@ is <code>%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%6$s%n</code
 </tbody>
 </table>
 <div class="paragraph">
-<p>A common developer <code>configuration/config.ini</code> file uses the following specific entries:</p>
+<p>Here is an example of a common developer <code>configuration/config.ini</code> file:</p>
 </div>
 <div class="listingblock">
-<div class="title">configuration/config.ini</div>
+<div class="title">configuration/config.ini example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># use local .m2 instead of embedded studio one
 maven.repository = global
-
-# load these component modules
-component.java.coordinates = \
-    group1:artifact1:0.0.1,\
-    group2:artifact2:0.2.1
 
 # during development, see developer model part
 component.environment = dev
@@ -11163,30 +11170,17 @@ java.util.logging.SimpleFormatter.format = [%4$s] %5$s%6$s%n</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_random_port_when_running_concurrent_studio_instances"><a class="anchor" href="#_random_port_when_running_concurrent_studio_instances"></a>Random port when running concurrent studio instances</h5>
+<h5 id="developer-mode"><a class="anchor" href="#developer-mode"></a>Enabling the developer mode</h5>
 <div class="paragraph">
-<p>If you run multiple Studio instances automatically in parallel, you can run into some issues with the random port computation. For example on a CI platform. For that purpose, you can create the  <code>$HOME/.talend/locks/org.talend.sdk.component.studio-integration.lock</code> file.</p>
-</div>
-<div class="paragraph">
-<p>Then, when a server starts, it acquires a lock on that file and prevents another server to get a port until it is started. It ensures that you can&#8217;t have two concurrent processes getting the same port allocated.</p>
-</div>
-<div class="paragraph">
-<p>However, it is highly unlikely to happen on a desktop. In that case, forcing a different value through <code>component.java.port</code> in your <code>config.ini</code> file is a better solution for local installations.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="developer-mode"><a class="anchor" href="#developer-mode"></a>Developer mode</h5>
-<div class="paragraph">
-<p>The developer mode adds a Talend Component Kit button in the main toolbar:</p>
+<p>The developer mode is especially useful to iterate on your component development and to avoid closing and restarting Talend Studio every time you make a change to a component. It adds a Talend Component Kit button in the main toolbar:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/studio-reload-button.png" alt="Studio Reload Button">
+<img src="_images/studio-reload-button.png" alt="Studio Reload Button" width="70%">
 </div>
 </div>
 <div class="paragraph">
-<p>When clicking this button, all components developed with the Talend Component Kit framework are reloaded.
-The cache is invalidated and the components refreshed.</p>
+<p>When clicking this button, all components developed with the Talend Component Kit framework are reloaded. The cache is invalidated and the components refreshed.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -11201,8 +11195,126 @@ You still need to add and remove the components to see the changes.
 </table>
 </div>
 <div class="paragraph">
-<p>The developer mode can be very useful to see some updates in components without having to restart entirely the Studio.</p>
+<p>To enable it, simply set the <code>component.environment</code> parameter to <code>dev</code> in the <code>config.ini</code> configuration file of the component server.</p>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_debugging_your_custom_component_in_talend_studio"><a class="anchor" href="#_debugging_your_custom_component_in_talend_studio"></a>Debugging your custom component in Talend Studio</h4>
+<div class="paragraph">
+<p>Several methods allow you to debug custom components created with Talend Component Kit in Talend Studio.</p>
+</div>
+<div class="sect4">
+<h5 id="_debugging_the_runtime_or_the_guess_schema_option_of_a_component"><a class="anchor" href="#_debugging_the_runtime_or_the_guess_schema_option_of_a_component"></a>Debugging the runtime or the Guess schema option of a component</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From your development tool, create a new <strong>Remote configuration</strong>, and copy the <strong>Command line arguments for running remote JVM</strong> field. For example, <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005</code>, where:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>the <strong>suspend</strong> parameter of the -agentlib argument specifies whether you want to suspend the debugged JVM until the debugger attaches to it. Possible values are <code>n</code> (no, default value) or <code>y</code> (yes).</p>
+</li>
+<li>
+<p>the <strong>address</strong> parameter of the -agentlib argument is the port used for the remote configuration. Make sure this port is available.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration" width="70%">
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Open Talend Studio.</p>
+</li>
+<li>
+<p>Create a new Job that uses the component you want to debug or open an existing one that already uses it.</p>
+</li>
+<li>
+<p>Go to the <strong>Run</strong> tab of the Job and select <strong>Use specific JVM arguments</strong>.</p>
+</li>
+<li>
+<p>Click <strong>New</strong> to add an argument.</p>
+</li>
+<li>
+<p>In the popup window, paste the arguments copied from the IDE.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/talend_studio_debug_remote_config_2.png" alt="IntelliJ remote configuration" width="70%">
+</div>
+</div>
+</li>
+<li>
+<p>Enter the corresponding debug mode:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To debug the runtime, run the Job and access the remote host configured in the IDE.</p>
+</li>
+<li>
+<p>To debug the <strong>Guess schema</strong> option, click the <strong>Guess schema</strong> action button of the component and access the remote host configured in the IDE.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_debugging_ui_actions_and_validations"><a class="anchor" href="#_debugging_ui_actions_and_validations"></a>Debugging UI actions and validations</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From your development tool, create a new <strong>Remote configuration</strong>, and copy the <strong>Command line arguments for running remote JVM</strong> field. For example, <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005</code>, where:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>suspend</strong> defines whether you need to access the defined configuration to run the remote JVM. Possible values are <code>n</code> (no, default value) or <code>y</code> (yes).</p>
+</li>
+<li>
+<p><strong>address</strong> is the port used for the remote configuration. Make sure this port is available.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration" width="70%">
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Access the installation directory of your Talend Sutdio.</p>
+</li>
+<li>
+<p>Open the <code>.ini</code> file corresponding to your Operating System. For example, <code>TOS_DI-win-x86_64.ini</code>.</p>
+</li>
+<li>
+<p>Paste the arguments copied from the IDE in a new line of the file.<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/talend_studio_debug_remote_config_3.png" alt="IntelliJ remote configuration" width="60%">
+</div>
+</div>
+</li>
+<li>
+<p>Go to Talend Studio to use the component, and access the host host configured in the IDE.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_random_port_when_running_concurrent_studio_instances"><a class="anchor" href="#_random_port_when_running_concurrent_studio_instances"></a>Random port when running concurrent studio instances</h4>
+<div class="paragraph">
+<p>If you run multiple Studio instances automatically in parallel, you can run into some issues with the random port computation. For example on a CI platform. For that purpose, you can create the  <code>$HOME/.talend/locks/org.talend.sdk.component.studio-integration.lock</code> file.</p>
+</div>
+<div class="paragraph">
+<p>Then, when a server starts, it acquires a lock on that file and prevents another server to get a port until it is started. It ensures that you can&#8217;t have two concurrent processes getting the same port allocated.</p>
+</div>
+<div class="paragraph">
+<p>However, it is highly unlikely to happen on a desktop. In that case, forcing a different value through <code>component.java.port</code> in your <code>config.ini</code> file is a better solution for local installations.</p>
 </div>
 </div>
 <div class="sect3 relatedlinks">
@@ -12126,17 +12238,17 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 <div class="sect4">
 <h5 id="_enabling_help_hints"><a class="anchor" href="#_enabling_help_hints"></a>Enabling help/hints</h5>
 <div class="paragraph">
-<p>It is possible to show under the inputs the help about each property.
+<p>It is possible to show the help about each property under the inputs.
 To do that, you must set a <code>PropertyContext.Configuration</code> instance on <code>UiSpecService</code> with the <code>includeDocumentationMetadata</code> attribute set to <code>true</code>.</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-this is only available with default documentation so it will likely be in english only.
+This feature is only available with default content of the <code>@Documentation</code> annotation of a property. This means that hints are only available in the default language of the component.
 </td>
 </tr>
 </table>
