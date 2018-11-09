@@ -8,7 +8,7 @@
     <meta name="description" content="Learn how to test your component logic in the environment you need using Talend Component Kit">
     <meta name="keywords" content="test, overview, environment, beam, runtime">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-11-08T16:07:46.922Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-11-09T15:31:09.200Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -682,6 +682,20 @@ Add the <code>junit-jupiter-params</code> dependency to benefit from this featur
 <p><code>collector</code>   : a mock of an output component</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+the collector is by default "per thread". If you are executing a Beam (or concurrent) job it will not work.
+To switch to a JVM wide storage you can set the system property <code>talend.component.junit.handler.state</code> to <code>static</code> (default being <code>thread</code>).
+This is likely done in a <code>maven-surefire-plugin</code> <code>execution</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_junit_4_2"><a class="anchor" href="#_junit_4_2"></a>JUnit 4</h4>
