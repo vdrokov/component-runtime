@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.3/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-11-16T11:27:12.720Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-11-16T14:21:00.754Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -350,6 +350,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="compatibility.html">Version compatibility</a>
   </li>
 </ul>
   </li>
@@ -3323,6 +3326,14 @@ The component family associated with a configuration type (datastore/dataset) is
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>The <code>validateDataSet</code> validation checks that each input or output (processor without output branch) component uses a dataset and that this dataset has a datastore.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/datastore_and_dataset_validation.png" target="_blank" rel="noopener"><img src="_images/datastore_and_dataset_validation.png" alt="Dataset validation" width="50%"></a>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -4994,7 +5005,7 @@ This goal is deprecated and will be removed in a future release.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attach</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether the component should archive should be attached.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether the component archive should be attached.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.car.attach</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
@@ -5205,10 +5216,11 @@ talendComponentKit {
     // documentation
     skipDocumentation = false
     documentationOutput = new File(....)
-    documentationLevel = 2 // first level will be == in the generated adoc
-    documentationTitle = 'My Component Family' // default to project name
-    documentationFormats = [:] // adoc attributes
+    documentationLevel = 2 // first level will be == in the generated .adoc
+    documentationTitle = 'My Component Family' // defaults to ${project.name}
+    documentationAttributes = [:] // adoc attributes
     documentationFormats = [:] // renderings to do
+    documentationVersion = 1.1 // defaults to the .pom version
 
     // validation
     skipValidation = false
@@ -5224,14 +5236,22 @@ talendComponentKit {
     validateActions = true
     validateLocalConfiguration = true
     validateOutputConnection = true
+    validateLayout = true
+    validateDocumentation = true
 
     // web
     serverArguments = []
     serverPort = 8080
 
     // car
+    carAttach = true
+    carClassifier = component // classifier to use if carAttach is set to true
     carOutput = new File(....)
     carMetadata = [:] // custom meta (string key-value pairs)
+    carPackaging = ${project.packaging}
+
+    // deploy-in-studio
+    studioHome = "C:\&lt;pathToSutdio&gt;"
 }</code></pre>
 </div>
 </div>
@@ -8486,9 +8506,9 @@ Add the <code>junit-jupiter-params</code> dependency to benefit from this featur
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-the collector is by default "per thread". If you are executing a Beam (or concurrent) job it will not work.
-To switch to a JVM wide storage you can set the system property <code>talend.component.junit.handler.state</code> to <code>static</code> (default being <code>thread</code>).
-This is likely done in a <code>maven-surefire-plugin</code> <code>execution</code>.
+The collector is "per thread" by default. If you are executing a Beam (or concurrent) job, it will not work.
+To switch to a JVM wide storage, set the <code>talend.component.junit.handler.state</code> system property to <code>static</code> (default being <code>thread</code>).
+You can do it in a <code>maven-surefire-plugin</code> <code>execution</code>.
 </td>
 </tr>
 </table>
@@ -11052,6 +11072,9 @@ public @interface MyLayout {
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Check the versions of the framework that are compatible with your version of Talend Studio in <a href="compatibility.html" class="page">this document</a>.</p>
+</div>
 <div class="sect2">
 <h3 id="_integrating_components_into_talend_studio_2"><a class="anchor" href="#_integrating_components_into_talend_studio_2"></a>Integrating components into Talend Studio</h3>
 <div class="paragraph">
@@ -11067,28 +11090,9 @@ public @interface MyLayout {
 <div class="paragraph">
 <p>The version of Talend Component Kit you need to use to develop new components depends on the version of Talend Studio in which components will be integrated.</p>
 </div>
-<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Talend product</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Talend Component Kit version</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Studio 7.1.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Framework until 1.1.1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Studio 7.0.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Framework until 0.0.5</p></td>
-</tr>
-</tbody>
-</table>
+<div class="paragraph">
+<p>Refer to <a href="compatibility.html" class="page">this document</a> to learn about compatibility between Talend Component Kit and the different versions of Talend applications.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_installing_the_components"><a class="anchor" href="#_installing_the_components"></a>Installing the components</h4>

@@ -8,7 +8,7 @@
     <meta name="description" content="Get an overview of the main steps to code the logic of your custom Talend Componit Kit components">
     <meta name="keywords" content="create, code, class, logic, layout, configuration, dev, overview">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-11-16T11:27:12.783Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-11-16T14:21:00.821Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -352,6 +352,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="compatibility.html">Version compatibility</a>
   </li>
 </ul>
   </li>
@@ -1960,6 +1963,14 @@ The component family associated with a configuration type (datastore/dataset) is
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The <code>validateDataSet</code> validation checks that each input or output (processor without output branch) component uses a dataset and that this dataset has a datastore.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/datastore_and_dataset_validation.png" target="_blank" rel="noopener"><img src="_images/datastore_and_dataset_validation.png" alt="Dataset validation" width="50%"></a>
+</div>
 </div>
 </div>
 </div>
@@ -3642,7 +3653,7 @@ This goal is deprecated and will be removed in a future release.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">attach</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether the component should archive should be attached.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies whether the component archive should be attached.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.car.attach</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
@@ -3855,10 +3866,11 @@ talendComponentKit {
     // documentation
     skipDocumentation = false
     documentationOutput = new File(....)
-    documentationLevel = 2 // first level will be == in the generated adoc
-    documentationTitle = 'My Component Family' // default to project name
-    documentationFormats = [:] // adoc attributes
+    documentationLevel = 2 // first level will be == in the generated .adoc
+    documentationTitle = 'My Component Family' // defaults to ${project.name}
+    documentationAttributes = [:] // adoc attributes
     documentationFormats = [:] // renderings to do
+    documentationVersion = 1.1 // defaults to the .pom version
 
     // validation
     skipValidation = false
@@ -3874,14 +3886,22 @@ talendComponentKit {
     validateActions = true
     validateLocalConfiguration = true
     validateOutputConnection = true
+    validateLayout = true
+    validateDocumentation = true
 
     // web
     serverArguments = []
     serverPort = 8080
 
     // car
+    carAttach = true
+    carClassifier = component // classifier to use if carAttach is set to true
     carOutput = new File(....)
     carMetadata = [:] // custom meta (string key-value pairs)
+    carPackaging = ${project.packaging}
+
+    // deploy-in-studio
+    studioHome = "C:\&lt;pathToSutdio&gt;"
 }</code></pre>
 </div>
 </div>
