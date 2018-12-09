@@ -8,7 +8,7 @@
     <meta name="description" content="Integrate components into Talend Cloud and learn about the component server">
     <meta name="keywords" content="web, component server, cloud">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-06T08:22:30.743Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-09T09:25:10.529Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -476,7 +476,7 @@ The WebSocket protocol is activated for the endpoints. Endpoints then use <code>
 </table>
 </div>
 <div class="paragraph">
-<p>The API description is browsable using <a href="rest-swagger.html" class="page">OpenAPI</a> browser.</p>
+<p>Browse the API description using <a href="rest-swagger.html" class="page">OpenAPI</a>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -836,7 +836,7 @@ final String json = jsonb.toJson(form1); <i class="conum" data-value="4"></i><b>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The <code>JsonSchema</code> is extracted from reflection on the <code>Form1</code> class. Note that <code>@JsonSchemaIgnore</code> allows to ignore a field and <code>@JsonSchemaProperty</code> allows to rename a property.</td>
+<td>The <code>JsonSchema</code> is extracted from reflection on the <code>Form1</code> class. <code>@JsonSchemaIgnore</code> allows to ignore a field and <code>@JsonSchemaProperty</code> allows to rename a property.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -884,7 +884,7 @@ final String json = jsonb.toJson(form1); <i class="conum" data-value="4"></i><b>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<code>component-kit.js</code> is no more available (previous versions stay on NPM) since it got replaced by <code>@talend/react-containers</code>.
+<code>component-kit.js</code> is no more available (previous versions stay on NPM) and is replaced by <code>@talend/react-containers</code>.
 The previous import can be replaced by <code>import kit from '@talend/react-containers/lib/ComponentForm/kit';</code>.
 </td>
 </tr>
@@ -1022,8 +1022,7 @@ You can compose previous layout (message format) and appenders (where logs are w
 <div class="sect2">
 <h3 id="_docker"><a class="anchor" href="#_docker"></a>Docker</h3>
 <div class="paragraph">
-<p>The server image is deployed on Docker. Its version is suffixed with a timestamp to ensure
-images are not overriden and can break your usage. You can check the available version on Docker hub.</p>
+<p>The server image is deployed on Docker. Its version is suffixed with a timestamp to ensure images are not overridden and can break your usage. You can check the available version on Docker hub.</p>
 </div>
 <div class="sect3">
 <h4 id="_run"><a class="anchor" href="#_run"></a>Run</h4>
@@ -1045,14 +1044,12 @@ images are not overriden and can break your usage. You can check the available v
 <div class="sect3">
 <h4 id="_maven_repository"><a class="anchor" href="#_maven_repository"></a>Maven repository</h4>
 <div class="paragraph">
-<p>The maven repository is the default one of the machine, you can change it setting the system property
-<code>talend_component_server_maven_repository=/path/to/your/m2</code>.</p>
+<p>The maven repository is the default one of the machine, you can change it setting the system property <code>talend_component_server_maven_repository=/path/to/your/m2</code>.</p>
 </div>
 <div class="sect4">
 <h5 id="_deploy_components_to_the_server"><a class="anchor" href="#_deploy_components_to_the_server"></a>Deploy components to the server</h5>
 <div class="paragraph">
-<p>If you want to deploy some components you can configure which ones in MEECROWAVE_OPTS (see server doc online)
-and redirect your local m2:</p>
+<p>If you want to deploy some components you can configure which ones in MEECROWAVE_OPTS (see server doc online) and redirect your local m2:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1068,17 +1065,15 @@ and redirect your local m2:</p>
 <div class="sect3">
 <h4 id="_logging_2"><a class="anchor" href="#_logging_2"></a>Logging</h4>
 <div class="paragraph">
-<p>The component server docker image comes with two log4j2 profile <code>default</code> and <code>kafka</code>.
-The logging profile can be changed by setting the environment variable <code>TALEND_COMPONENT_LOG4J2_PROFILE</code> to <code>kafka</code>
-the <code>default</code> profile is active by default.</p>
+<p>The component server docker image comes with two log4j2 profiles: <code>default</code> and <code>kafka</code>.
+The logging profile can be changed by setting the environment variable <code>TALEND_COMPONENT_LOG4J2_PROFILE</code> to <code>kafka</code>.
+The <code>default</code> profile is active by default.</p>
 </div>
 <div class="sect4">
 <h5 id="_default_profile"><a class="anchor" href="#_default_profile"></a>default profile</h5>
 <div class="paragraph">
 <p>The <strong>default</strong> profile has file and console logging capabilities.
-The console logging is off by default and you can activate it by setting <code>CONSOLE_LOG_LEVEL</code> environment variable
-to <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code> or any other log level supported by log4j2. In practise and during development you will want
-to see the logs without connecting to the server by activating console logging.</p>
+The console logging is off by default and you can activate it by setting <code>CONSOLE_LOG_LEVEL</code> environment variable to <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code> or any other log level supported by log4j2. In practice and during development you will want to see the logs without connecting to the server by activating console logging.</p>
 </div>
 <div class="paragraph">
 <p>Run docker image with console logging</p>
@@ -1094,11 +1089,10 @@ to see the logs without connecting to the server by activating console logging.<
 <div class="sect4">
 <h5 id="_kafka_profile"><a class="anchor" href="#_kafka_profile"></a>Kafka profile</h5>
 <div class="paragraph">
-<p><strong>Kafka</strong> profile let you send log to Kafka servers. The log are formatted in json and follow the layout defined by Talend
-and described here <a href="https://github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout" class="bare">github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout</a></p>
+<p>The <strong>Kafka</strong> profile lets you send logs to Kafka servers. The logs are formatted in JSON and follow the layout defined by Talend described here:  <a href="https://github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout" class="bare">github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout</a></p>
 </div>
 <div class="paragraph">
-<p>This profile require two environment variables</p>
+<p>This profile requires two environment variables:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1112,7 +1106,7 @@ This list should be in the form <code>url:port</code> separated by <code>,</code
 </ul>
 </div>
 <div class="paragraph">
-<p>Run docker image with kafka profile</p>
+<p>Run docker image with the <code>kafka</code> profile.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1126,22 +1120,19 @@ This list should be in the form <code>url:port</code> separated by <code>,</code
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Note</strong> : <code>LOG_KAFKA_TOPIC</code> will receive the application and the access logs
-and <code>TRACING_KAFKA_TOPIC</code> will receive brave tracing logs.</p>
+<p><strong>Note</strong> : <code>LOG_KAFKA_TOPIC</code> will receive the application and the access logs and <code>TRACING_KAFKA_TOPIC</code> will receive brave tracing logs.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_opentracing"><a class="anchor" href="#_opentracing"></a>OpenTracing</h5>
 <div class="paragraph">
-<p>The component server use Geronimo OpenTracing to monitor request.</p>
+<p>The component server uses Geronimo OpenTracing to monitor request.</p>
 </div>
 <div class="paragraph">
 <p>The tracing can be activated by setting the <code>TRACING_ON</code> environment variable to <code>true</code>.</p>
 </div>
 <div class="paragraph">
-<p>You can choose the reporter type by setting <code>talend_component_server_monitoring_brave_reporter_type</code> environment variable
-to <code>log</code> (this is the default value in this docker image) or to <code>noop</code>
-which will deactivate the tracing. <em>Other type of reporter may be added in the future.</em></p>
+<p>You can choose the reporter type by setting <code>talend_component_server_monitoring_brave_reporter_type</code> environment variable to <code>log</code> (this is the default value in this docker image) or to <code>noop</code>, which will deactivate the tracing. <em>Other types of reporter may be added in the future.</em></p>
 </div>
 <div class="paragraph">
 <p>The tracing rate is configurable by setting the <code>TRACING_SAMPLING_RATE</code> environment variable.
@@ -1182,7 +1173,7 @@ to wire it over any OpenTracing backend.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-this assumes the project is built before you run that command.
+This assumes the project is built before you run that command.
 </td>
 </tr>
 </table>

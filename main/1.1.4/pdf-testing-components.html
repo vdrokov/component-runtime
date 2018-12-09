@@ -8,7 +8,7 @@
     <meta name="description" content="Learn how to test your component logic in the environment you need using Talend Component Kit">
     <meta name="keywords" content="test, overview, environment, beam, runtime">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-06T08:22:30.772Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-09T09:25:10.548Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -935,8 +935,10 @@ class ComponentExtensionTest {
 <div class="paragraph">
 <p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility to get this map instance from a configuration instance.</p>
 </div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final MyComponentConfig componentConfig = new MyComponentConfig();
 componentConfig.setUser("....");
@@ -965,8 +967,10 @@ in order to use it with the <code>Job</code> DSL:</p>
 <div class="paragraph">
 <p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarily. You can get an instance from a configuration and execute this instance to collect the output.</p>
 </div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MapperTest {
 
@@ -990,8 +994,10 @@ in order to use it with the <code>Job</code> DSL:</p>
 <div class="paragraph">
 <p>As for a mapper, a processor is testable unitary. However, this case can be more complex in case of multiple inputs or outputs.</p>
 </div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class ProcessorTest {
 
@@ -1101,8 +1107,10 @@ This testing methodology works with <code>@Parameterized</code>. You can submit 
 <div class="paragraph">
 <p>The integration of that Spark cluster logic with JUnit 5 is done using the <code>@WithSpark</code> marker for the extension. Optionally, it allows you to inject—through <code>@SparkInject</code>—the <code>BaseSpark&lt;?&gt;</code> handler to access the Spark cluster meta information. For example, its host/port.</p>
 </div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WithSpark
 class SparkExtensionTest {
@@ -1629,8 +1637,10 @@ If you set the <code>&lt;environment name&gt;.skip</code> system property to <co
 <div class="paragraph">
 <p>The following dependencies bring the JUnit testing toolkit, the Beam integration and the multi-environment testing toolkit for JUnit into the test scope.</p>
 </div>
+<div class="paragraph">
+<p>Dependencies:</p>
+</div>
 <div class="listingblock">
-<div class="title">Dependencies</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">&lt;dependencies&gt;
   &lt;dependency&gt;
@@ -1890,7 +1900,7 @@ An alternative to data generation can be to import <em>real</em> data and use Ta
 <div class="sect2">
 <h3 id="_job_builder"><a class="anchor" href="#_job_builder"></a>Job Builder</h3>
 <div class="paragraph">
-<p>The <code>Job</code> builder lets you create a job pipeline programmatically using Talend components
+<p>The <strong>Job builder</strong> lets you create a job pipeline programmatically using Talend components
 (<a href="component-define-processor-output.html" class="page">Producers and Processors</a>).
 The job pipeline is an acyclic graph, allowing you to build complex pipelines.</p>
 </div>
@@ -1922,8 +1932,10 @@ The job pipeline is an acyclic graph, allowing you to build complex pipelines.</
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>URI example:</p>
+</div>
 <div class="listingblock">
-<div class="title">URI example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code>job://csvFileGen?__version=1&amp;path=/temp/result.csv&amp;encoding=utf-8"</code></pre>
 </div>
@@ -1940,8 +1952,10 @@ configuration parameters must be URI/URL encoded.
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Job example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Job example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Job.components()   <i class="conum" data-value="1"></i><b>(1)</b>
         .component("employee","db://input")
@@ -2017,13 +2031,13 @@ In this version, the execution of the job is linear. Components are not executed
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If an <code>org.talend.sdk.component.runtime.manager.chain.Job.ExecutorBuilder</code> class is passed through the job properties, then use it. The supported types are a <code>ExecutionBuilder</code> instance, a <code>Class</code> or a <code>String</code>.</p>
+<p>If an <code>org.talend.sdk.component.runtime.manager.chain.Job.ExecutorBuilder</code> class is passed through the job properties, then use it. The supported types are an <code>ExecutionBuilder</code> instance, a <code>Class</code> or a <code>String</code>.</p>
 </li>
 <li>
-<p>if an <code>ExecutionBuilder</code> SPI is present, use it. It is the case if <code>component-runtime-beam</code> is present in your classpath.</p>
+<p>If an <code>ExecutionBuilder</code> SPI is present, use it. It is the case if <code>component-runtime-beam</code> is present in your classpath.</p>
 </li>
 <li>
-<p>else, use a local/standalone execution.</p>
+<p>Else, use a local/standalone execution.</p>
 </li>
 </ol>
 </div>

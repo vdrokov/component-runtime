@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.4/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-06T08:22:30.619Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-09T09:25:10.439Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -576,7 +576,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/methodo.png" alt="Methodology" width="65%"></span></p>
+<p><span class="image"><a class="image" href="_images/methodo.png" target="_blank" rel="noopener"><img src="_images/methodo.png" alt="Methodology"></a></span></p>
 </div>
 <div class="sect3 relatedlinks">
 <h4 id="_related_articles"><a class="anchor" href="#_related_articles"></a>Related articles</h4>
@@ -617,22 +617,25 @@ In distributed environments, class constructor are called on cluster manager nod
 </table>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/deployment-diagram.png" alt="deployment diagram"></span></p>
+<p><span class="image"><a class="image" href="_images/deployment-diagram.png" target="_blank" rel="noopener"><img src="_images/deployment-diagram.png" alt="Deployment diagram" width="60%"></a></span></p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The created task is a JAR file containing class information, which describes the pipeline (flow) that should be processed in cluster.</p>
-</li>
-<li>
-<p>During the partition plan computation step, the pipeline is analyzed and split into stages. The cluster manager node instantiates mappers/processors, gets estimated data size using mappers, and splits created mappers according to the estimated data size.<br>
-All instances are then serialized and sent to the worker node.</p>
-</li>
-<li>
-<p>Serialized instances are received and deserialized. Methods annotated with <code>@PostConstruct</code> are called. After that, pipeline execution starts. The <code>@BeforeGroup</code> annotated method of the processor is called before processing the first element in chunk.<br>
-After processing the number of records estimated as chunk size, the <code>@AfterGroup</code> annotated method of the processor is called. Chunk size is calculated depending on the environment the pipeline is processed by. Once the pipeline is processed, methods annotated with <code>@PreDestroy</code> are called.</p>
-</li>
-</ol>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The created task is a JAR file containing class information, which describes the pipeline (flow) that should be processed in cluster.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>During the partition plan computation step, the pipeline is analyzed and split into stages. The cluster manager node instantiates mappers/processors, gets estimated data size using mappers, and splits created mappers according to the estimated data size.<br>
+All instances are then serialized and sent to the worker node.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Serialized instances are received and deserialized. Methods annotated with <code>@PostConstruct</code> are called. After that, pipeline execution starts. The <code>@BeforeGroup</code> annotated method of the processor is called before processing the first element in chunk.<br>
+After processing the number of records estimated as chunk size, the <code>@AfterGroup</code> annotated method of the processor is called. Chunk size is calculated depending on the environment the pipeline is processed by. Once the pipeline is processed, methods annotated with <code>@PreDestroy</code> are called.</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -647,10 +650,10 @@ All the methods managed by the framework must be public. Private methods are ign
 </table>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/driver-processing-workflow.png" alt="driver processing workflow"></span></p>
+<p><span class="image"><a class="image" href="_images/driver-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/driver-processing-workflow.png" alt="Driver processing workflow" width="40%"></a></span></p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/worker-processing-workflow.png" alt="worker processing workflow"></span></p>
+<p><span class="image"><a class="image" href="_images/worker-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/worker-processing-workflow.png" alt="Worker processing workflow" width="30%"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -693,7 +696,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/tutorial_component_configuration_model.png" alt="Starter" width="75%"></span></p>
+<p><span class="image"><a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Starter" width="75%"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -709,7 +712,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/component_kit_web_tester.png" alt="Web tester" width="75%"></span></p>
+<p><span class="image"><a class="image" href="_images/component_kit_web_tester.png" target="_blank" rel="noopener"><img src="_images/component_kit_web_tester.png" alt="Web tester" width="75%"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can find more details about the framework design in <a href="framework_design.html" class="page">this document</a>.</p>
@@ -758,7 +761,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tutorial_build_job_run.png" alt="Job run">
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
 </div>
 </div>
 <div class="sect3">
@@ -794,7 +797,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 <p>Start IntelliJ and create a new project. In the available options, you should see <strong>Talend Component</strong>.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/intellij_new_component_project.png" alt="New project">
+<a class="image" href="_images/intellij_new_component_project.png" target="_blank" rel="noopener"><img src="_images/intellij_new_component_project.png" alt="New project" width="70%"></a>
 </div>
 </div>
 </li>
@@ -806,7 +809,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>Enter the project details. The goal here is to define the component and project metadata. Change the default values as follows:<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/intellij_tutorial_project_metadata.png" alt="Project metadata">
+<a class="image" href="_images/intellij_tutorial_project_metadata.png" target="_blank" rel="noopener"><img src="_images/intellij_tutorial_project_metadata.png" alt="Project metadata" width="70%"></a>
 </div>
 </div>
 <div class="ulist">
@@ -830,7 +833,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>Select <strong>CONFIGURATION MODEL</strong> and add a string field named <code>level</code>. This input field will be used in the component configuration to enter additional information to display in the logs.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model">
+<a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model" width="70%"></a>
 </div>
 </div>
 </li>
@@ -838,7 +841,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>In the <strong>Input(s) / Output(s)</strong> section, click the default <strong>MAIN</strong> input branch to access its detail, and toggle the <strong>Generic</strong> option to specify that the component can receive any type of data. Leave the <strong>Name</strong> of the branch with its default <code>MAIN</code> value.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tutorial_component_generic_input.png" alt="Generic Input">
+<a class="image" href="_images/tutorial_component_generic_input.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_generic_input.png" alt="Generic Input" width="70%"></a>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -864,7 +867,7 @@ By default, when selecting <strong>PROCESSOR/OUTPUT</strong>, there is one input
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tutorial_generated_project_view.png" alt="Project view">
+<a class="image" href="_images/tutorial_generated_project_view.png" target="_blank" rel="noopener"><img src="_images/tutorial_generated_project_view.png" alt="Project view" width="70%"></a>
 </div>
 </div>
 <div class="ulist">
@@ -914,11 +917,11 @@ By default, when selecting <strong>PROCESSOR/OUTPUT</strong>, there is one input
 <p>From your component project in IntelliJ, open a terminal.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal">
+<a class="image" href="_images/tutorial_intellij_terminal_blank.png" target="_blank" rel="noopener"><img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal" width="70%"></a>
 </div>
 </div>
 <div class="paragraph">
-<p>There, you can see that the terminal opens directly at the root of the project. All commands shown in this tutorial are performed from this folder.</p>
+<p>There, you can see that the terminal opens directly at the root of the project. All commands shown in this tutorial are performed from this location.</p>
 </div>
 </li>
 <li>
@@ -945,7 +948,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Make sure the build is successful.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tutorial_deploy_in_studio_success.png" alt="Build success">
+<a class="image" href="_images/tutorial_deploy_in_studio_success.png" target="_blank" rel="noopener"><img src="_images/tutorial_deploy_in_studio_success.png" alt="Build success" width="70%"></a>
 </div>
 </div>
 </li>
@@ -960,7 +963,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Notice that the <strong>level</strong> field that was specified in the configuration model of the component in the <strong>Talend Component Kit Starter</strong> is present.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tutorial_first_component_in_studio.png" alt="Component in Studio">
+<a class="image" href="_images/tutorial_first_component_in_studio.png" target="_blank" rel="noopener"><img src="_images/tutorial_first_component_in_studio.png" alt="Component in Studio" width="70%"></a>
 </div>
 </div>
 </li>
@@ -1016,6 +1019,9 @@ Go to the next section to learn how to define a simple logic.</p>
     }</code></pre>
 </div>
 </div>
+</li>
+</ol>
+</div>
 <div class="olist arabic">
 <ol class="arabic" start="5">
 <li>
@@ -1029,9 +1035,6 @@ Go to the next section to learn how to define a simple logic.</p>
 <p><code>`mvnw talend-component:deploy-in-studio -Dtalend.component.studioHome="&lt;path to Talend Open Studio home&gt;"</code></p>
 </li>
 </ul>
-</div>
-</li>
-</ol>
 </div>
 </li>
 </ol>
@@ -1073,7 +1076,7 @@ Go to the next section to learn how to define a simple logic.</p>
 <p>Set the <strong>Number of Rows for RowGenerator</strong> to <code>10</code>.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tutorial_build_job_trowgenerator.png" alt="tRowGenerator">
+<a class="image" href="_images/tutorial_build_job_trowgenerator.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_trowgenerator.png" alt="tRowGenerator" width="70%"></a>
 </div>
 </div>
 </li>
@@ -1087,7 +1090,7 @@ Go to the next section to learn how to define a simple logic.</p>
 <p>Open the <strong>TutorialFamilyLogger</strong> component and set the <strong>level</strong> field to <code>info</code>.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tutorial_build_job_logger.png" alt="Logger">
+<a class="image" href="_images/tutorial_build_job_logger.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_logger.png" alt="Logger" width="70%"></a>
 </div>
 </div>
 </li>
@@ -1099,7 +1102,7 @@ The job is executed. You can observe in the console that each of the 10 generate
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tutorial_build_job_run.png" alt="Job run">
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
 </div>
 </div>
 </div>
@@ -1260,13 +1263,13 @@ It is optional to install a build tool independently since Maven and Gradle wrap
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/intellij/plugin/1-plugins.png" alt="Plugins">
+<a class="image" href="_images/intellij/plugin/1-plugins.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/1-plugins.png" alt="Plugins" width="70%"></a>
 </div>
 </div>
 <div class="olist arabic">
 <ol class="arabic" start="4">
 <li>
-<p>Enter <code>Talend</code> in the search field and choose <code>Talend Component Kit - Intellij Plugin</code>.</p>
+<p>Enter <code>Talend</code> in the search field and choose <strong>Talend Component Kit - Intellij Plugin</strong>.</p>
 </li>
 <li>
 <p>Select <strong>Install</strong> on the right.</p>
@@ -1275,7 +1278,7 @@ It is optional to install a build tool independently since Maven and Gradle wrap
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/intellij/plugin/2-browse-talend.png" alt="Browse talend plugin">
+<a class="image" href="_images/intellij/plugin/2-browse-talend.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/2-browse-talend.png" alt="Browse talend plugin" width="70%"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -1287,7 +1290,7 @@ It is optional to install a build tool independently since Maven and Gradle wrap
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/intellij/plugin/3-restart.png" alt="IDEA restart">
+<a class="image" href="_images/intellij/plugin/3-restart.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/3-restart.png" alt="IDEA restart" width="70%"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -1299,7 +1302,7 @@ It is optional to install a build tool independently since Maven and Gradle wrap
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/intellij/plugin/4-restart.png" alt="IDEA restart">
+<a class="image" href="_images/intellij/plugin/4-restart.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/4-restart.png" alt="IDEA restart" width="70%"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -1347,7 +1350,7 @@ public class BasicAuthConfig implements Serializable {
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a <code>Messages.properties</code> file in the project resources and add the label to that file.
+<p>Locate or create a <code>Messages.properties</code> file in the project resources and add the label to that file.
 The plugin automatically detects your configuration and provides you with key completion in the property file.</p>
 </li>
 <li>
@@ -1357,7 +1360,7 @@ The plugin automatically detects your configuration and provides you with key co
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/intellij/plugin/suggestion_1.png" alt="Keys suggestion">
+<a class="image" href="_images/intellij/plugin/suggestion_1.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/suggestion_1.png" alt="Keys suggestion" width="70%"></a>
 </div>
 </div>
 </div>
@@ -1433,7 +1436,7 @@ The plugin automatically detects your configuration and provides you with key co
 <p>Add the <strong>Talend Component Kit Testing</strong> facet to your project to automatically generate unit tests for the components created later in this tutorial. Add any facet you need.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_test_facet.png" alt="Test facet" width="80%">
+<a class="image" href="_images/starter/starter_test_facet.png" target="_blank" rel="noopener"><img src="_images/starter/starter_test_facet.png" alt="Test facet" width="80%"></a>
 </div>
 </div>
 </li>
@@ -1455,7 +1458,7 @@ This <strong>Databases</strong> category is used and displayed as the parent fam
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_project-config.png" alt="Project configuration" width="80%">
+<a class="image" href="_images/starter/starter_project-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-config.png" alt="Project configuration" width="80%"></a>
 </div>
 </div>
 </div>
@@ -1467,7 +1470,7 @@ The intent in this tutorial is to create an input component that connects to a M
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_input-config.png" alt="Input configuration" width="80%">
+<a class="image" href="_images/starter/starter_input-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_input-config.png" alt="Input configuration" width="80%"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -1534,7 +1537,7 @@ The intent in this tutorial is to create a simple processor component that recei
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_processor-config.png" alt="Processor configuration" width="80%">
+<a class="image" href="_images/starter/starter_processor-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_processor-config.png" alt="Processor configuration" width="80%"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -1588,7 +1591,7 @@ The intent in this tutorial is to create an output component that receives a rec
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_output-config.png" alt="Output configuration" width="80%">
+<a class="image" href="_images/starter/starter_output-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_output-config.png" alt="Output configuration" width="80%"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -1662,7 +1665,7 @@ In this tutorial, the project was configured and three components of different t
 <p>Click <strong>GO TO FINISH</strong> at the bottom of the page. You are redirected to a page that summarizes the project. On the left panel, you can also see all the components that you added to the project.</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_project-download.png" alt="Output configuration" width="80%">
+<a class="image" href="_images/starter/starter_project-download.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-download.png" alt="Output configuration" width="80%"></a>
 </div>
 </div>
 </li>
@@ -1753,7 +1756,7 @@ Import the project to your favorite IDE to start the implementation.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/intellij/plugin/new-project_1.png" alt="New Talend Project">
+<a class="image" href="_images/intellij/plugin/new-project_1.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/new-project_1.png" alt="New Talend Project" width="70%"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -1762,7 +1765,7 @@ For more information about the Talend Component Kit starter, check <a href="tuto
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/intellij/plugin/new-project_2.png" alt="New Talend Project">
+<a class="image" href="_images/intellij/plugin/new-project_2.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/new-project_2.png" alt="New Talend Project" width="70%"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -1774,7 +1777,7 @@ For more information about the Talend Component Kit starter, check <a href="tuto
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/intellij/plugin/new-project_3.png" alt="New Talend Project">
+<a class="image" href="_images/intellij/plugin/new-project_3.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/new-project_3.png" alt="New Talend Project" width="70%"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -1834,7 +1837,7 @@ For more information about the Talend Component Kit starter, check <a href="tuto
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/implementing-components.png" alt="Implementing component" width="50%"></span></p>
+<p><span class="image"><a class="image" href="_images/implementing-components.png" target="_blank" rel="noopener"><img src="_images/implementing-components.png" alt="Implementing component" width="50%"></a></span></p>
 </div>
 <div class="paragraph">
 <p>In some cases, you will require specific implementations to handle more advanced cases, such as:</p>
@@ -1899,16 +1902,16 @@ Using your Java IDE along with a build tool supported by the framework, you can 
 <div class="sect3">
 <h4 id="_component_family_and_categories"><a class="anchor" href="#_component_family_and_categories"></a>Component family and categories</h4>
 <div class="paragraph">
-<p>The family and category of a component is automatically written in the <code>package-info.java</code> of the component package, using the <code>@Components</code> annotation. By default, these parameters are already configured in this file when you import your project in your IDE. Their value correspond to what was defined during the project definition with the starter.</p>
+<p>The family and category of a component is automatically written in the <code>package-info.java</code> file of the component package, using the <code>@Components</code> annotation. By default, these parameters are already configured in this file when you import your project in your IDE. Their value correspond to what was defined during the project definition with the starter.</p>
 </div>
 <div class="paragraph">
-<p>Multiple components can share the same <code>family</code> and <code>category</code> value, but the <code>family</code> + <code>name</code> pair must be unique for the system.</p>
+<p>Multiple components can share the same <strong>family</strong> and <strong>category</strong> value, but the <strong>family</strong> + <strong>name</strong> pair must be unique for the system.</p>
 </div>
 <div class="paragraph">
 <p>A component can belong to one family only and to one or several categories. If not specified, the category defaults to <code>Misc</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>package-info.java</code> also defines the component family icon, which is different from the component icon. You can learn how to customize this icon in <a href="component-defining-custom-icon.html" class="page">this section</a>.</p>
+<p>The <code>package-info.java</code> file also defines the component family icon, which is different from the component icon. You can learn how to customize this icon in <a href="component-defining-custom-icon.html" class="page">this section</a>.</p>
 </div>
 <div class="paragraph">
 <p>Here is a sample <code>package-info.java</code>:</p>
@@ -1956,8 +1959,10 @@ Learn how to manage different versions and migrations between your component ver
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(1)
 @Icon(FILE_XML_O)
@@ -2026,7 +2031,7 @@ The icon file needs to have a name following the convention <code>IconName_icon3
 </ul>
 </div>
 <div class="paragraph">
-<p>The name of the component is defined there as well as a parameter of the component type</p>
+<p>The name of the component is defined there as well as a parameter of the component type.</p>
 </div>
 <div class="paragraph">
 <p>Once the component type is defined, you can start implementing its specific logic:</p>
@@ -2041,24 +2046,30 @@ The icon file needs to have a name following the convention <code>IconName_icon3
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Partition mapper example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Partition mapper example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PartitionMapper(name = "my_mapper")
 public class MyMapper {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Emitter example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Emitter example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Emitter(name = "my_input")
 public class MyInput {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Processor example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Processor example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Processor(name = "my_processor")
 public class MyProcessor {
@@ -2114,7 +2125,7 @@ public class MyProcessor {
 <div class="sect4">
 <h5 id="partition-mapper"><a class="anchor" href="#partition-mapper"></a>What is a partition mapper</h5>
 <div class="paragraph">
-<p>A <code>PartitionMapper</code> is a component able to split itself to make the execution more efficient.</p>
+<p>A <strong>Partition Mapper</strong> (<code>PartitionMapper</code>) is a component able to split itself to make the execution more efficient.</p>
 </div>
 <div class="paragraph">
 <p>This concept is borrowed from big data and useful in this context only (<code>BEAM</code> executions).
@@ -2224,10 +2235,10 @@ public MyProducer create() {
 <div class="sect3">
 <h4 id="_a_href_component_producer_html_class_page_defining_the_producer_method_a"><a class="anchor" href="#_a_href_component_producer_html_class_page_defining_the_producer_method_a"></a><a href="component-producer.html" class="page">Defining the producer method</a></h4>
 <div class="paragraph">
-<p>The <code>Producer</code> method defines the source logic of an input component. It handles the interaction with a physical source and produces input data for the processing flow.</p>
+<p>The <strong>Producer</strong> defines the source logic of an input component. It handles the interaction with a physical source and produces input data for the processing flow.</p>
 </div>
 <div class="paragraph">
-<p>A producer must have a <code>@Producer</code> method without any parameter. It is triggered by the <code>@Emitter</code> of the partition mapper and can return any data. It is defined in the <code>&lt;component_name&gt;Source.java</code> file:</p>
+<p>A producer must have a <code>@Producer</code> method without any parameter. It is triggered by the <code>@Emitter</code> method of the partition mapper and can return any data. It is defined in the <code>&lt;component_name&gt;Source.java</code> file:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2286,7 +2297,7 @@ public MyData produces() {
 <div class="sect4">
 <h5 id="component-type-processor"><a class="anchor" href="#component-type-processor"></a>What is a processor</h5>
 <div class="paragraph">
-<p>A <code>Processor</code> is a component that converts incoming data to a different model.</p>
+<p>A <strong>Processor</strong> is a component that converts incoming data to a different model.</p>
 </div>
 <div class="paragraph">
 <p>A processor must have a method decorated with <code>@ElementListener</code> taking an incoming data and returning the processed data:</p>
@@ -2476,7 +2487,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Processing schema (values are examples):</strong></div>
-<p><span class="image"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing" width="80%"></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing" width="80%"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Each group is processed as follows until there is no record left:</p>
@@ -2487,7 +2498,7 @@ The estimated group size logic is automatically implemented when a component is 
 <p>The <code>@BeforeGroup</code> method resets a record buffer at the beginning of each group.</p>
 </li>
 <li>
-<p>The records of the group are assessed one by one and placed in the buffer as follows: The @ElementListener method tests if the buffer size is greater or equal to the defined <code>maxBatchSize</code>. If it is, the records are processed. If not, then the current record is buffered.</p>
+<p>The records of the group are assessed one by one and placed in the buffer as follows: The <code>@ElementListener</code> method tests if the buffer size is greater or equal to the defined <code>maxBatchSize</code>. If it is, the records are processed. If not, then the current record is buffered.</p>
 </li>
 <li>
 <p>The previous step happens for all records of the group. Then the <code>@AfterGroup</code> method tests if the buffer is empty.</p>
@@ -2496,7 +2507,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Group execution detail (values are examples):</strong></div>
-<p><span class="image"><img src="_images/batch-processing-group.png" alt="Group batch processing" width="80%"></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing" width="80%"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can define the following logic in the processor configuration:</p>
@@ -2564,7 +2575,7 @@ public class BulkProcessor implements Serializable {
 <div class="sect4">
 <h5 id="_what_is_an_output"><a class="anchor" href="#_what_is_an_output"></a>What is an output</h5>
 <div class="paragraph">
-<p>An <code>Output</code> is a <code>Processor</code> that does not return any data.</p>
+<p>An <strong>Output</strong> is a <strong>Processor</strong> that does not return any data.</p>
 </div>
 <div class="paragraph">
 <p>Conceptually, an output is a data listener. It matches the concept of processor. Being the last component of the execution chain or returning no data makes your processor an output component:</p>
@@ -2584,8 +2595,8 @@ public void store(final MyData data) {
 <div class="sect4">
 <h5 id="_what_is_a_combiner"><a class="anchor" href="#_what_is_a_combiner"></a>What is a combiner</h5>
 <div class="paragraph">
-<p>Currently, Talend Component Kit does not allow you to define a <code>Combiner</code>.
-A combiner is the symmetric part of a partition mapper and allows to aggregate results in a single partition.</p>
+<p>Currently, Talend Component Kit does not allow you to define a <strong>Combiner</strong>.
+A combiner is the symmetric part of a partition mapper. It allows to aggregate results in a single partition.</p>
 </div>
 </div>
 </div>
@@ -2652,12 +2663,14 @@ A combiner is the symmetric part of a partition mapper and allows to aggregate r
 <p>Do not start the name with a <code>$</code>.</p>
 </li>
 <li>
-<p>Defining a name is optional. If you don&#8217;t set a specific name, it defaults to the bytecode name. This can require you to compile with a <code>-parameter</code> flag to avoid ending up with names such as <code>arg0</code>, <code>arg1</code>, and so on.</p>
+<p>Defining a name is optional. If you don&#8217;t set a specific name, it defaults to the bytecode name. This can require you to compile with a <code>-parameter</code> flag to avoid ending up with names such as <strong>arg0</strong>, <strong>arg1</strong>, and so on.</p>
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. Examples of option name:</caption>
+<div class="paragraph">
+<p>Examples of option name:</p>
+</div>
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3759,7 +3772,7 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 <div class="paragraph">
 <p>Out of the box components are internationalized using the same location logic for the resource bundle. The supported keys are:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -3772,100 +3785,52 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${family}._displayName</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Display name of the family</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${family}._displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the family</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${family}.${category}._category</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Display name of the category <code>${category}</code> in the family <code>${family}</code>.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${family}.${category}._category</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the category <code>${category}</code> in the family <code>${family}</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${family}.${configurationType}.${name}._displayName</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Display name of a configuration type (dataStore or dataSet). Important: this key is read from the family package (not the class package), to unify the localization of the metadata.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${family}.${configurationType}.${name}._displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of a configuration type (dataStore or dataSet). Important: this key is read from the family package (not the class package), to unify the localization of the metadata.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${family}.actions.${actionType}.${actionName}._displayName</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Display name of an action of the family. Specifying it is optional and will default on the action name if not set.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${family}.actions.${actionType}.${actionName}._displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of an action of the family. Specifying it is optional and will default on the action name if not set.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${family}.${component_name}._displayName</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Display name of the component (used by the GUIs)</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${family}.${component_name}._displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the component (used by the GUIs)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${property_path}._displayName</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Display name of the option.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${property_path}._displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the option.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${property_path}._documentation</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Equivalent to <code>@Documentation("&#8230;&#8203;")</code> but supporting internationalization (see Maven/Gradle documentation goal/task).</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${property_path}._documentation</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equivalent to <code>@Documentation("&#8230;&#8203;")</code> but supporting internationalization (see Maven/Gradle documentation goal/task).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${property_path}._placeholder</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Placeholder of the option.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${property_path}._placeholder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Placeholder of the option.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${simple_class_name}.${property_name}._displayName</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Display name of the option using its class name.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${simple_class_name}.${property_name}._displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the option using its class name.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${simple_class_name}.${property_name}._documentation</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>See <code>${property_path}._documentation</code>.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${simple_class_name}.${property_name}._documentation</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <code>${property_path}._documentation</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${simple_class_name}.${property_name}._placeholder</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>See <code>${property_path}._placeholder</code>.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${simple_class_name}.${property_name}._placeholder</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See <code>${property_path}._placeholder</code>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>${enum_simple_class_name}.${enum_name}._displayName</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Display name of the <code>enum_name</code> value of the <code>enum_simple_class_name</code> enumeration.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${enum_simple_class_name}.${enum_name}._displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the <code>enum_name</code> value of the <code>enum_simple_class_name</code> enumeration.</p></td>
 </tr>
 </tbody>
 </table>
@@ -4214,7 +4179,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Processing schema (values are examples):</strong></div>
-<p><span class="image"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing" width="80%"></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing" width="80%"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Each group is processed as follows until there is no record left:</p>
@@ -4225,7 +4190,7 @@ The estimated group size logic is automatically implemented when a component is 
 <p>The <code>@BeforeGroup</code> method resets a record buffer at the beginning of each group.</p>
 </li>
 <li>
-<p>The records of the group are assessed one by one and placed in the buffer as follows: The @ElementListener method tests if the buffer size is greater or equal to the defined <code>maxBatchSize</code>. If it is, the records are processed. If not, then the current record is buffered.</p>
+<p>The records of the group are assessed one by one and placed in the buffer as follows: The <code>@ElementListener</code> method tests if the buffer size is greater or equal to the defined <code>maxBatchSize</code>. If it is, the records are processed. If not, then the current record is buffered.</p>
 </li>
 <li>
 <p>The previous step happens for all records of the group. Then the <code>@AfterGroup</code> method tests if the buffer is empty.</p>
@@ -4234,7 +4199,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Group execution detail (values are examples):</strong></div>
-<p><span class="image"><img src="_images/batch-processing-group.png" alt="Group batch processing" width="80%"></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing" width="80%"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can define the following logic in the processor configuration:</p>
@@ -4306,7 +4271,7 @@ public class BulkProcessor implements Serializable {
 A Talend Component Kit plugin is available for each of the supported build tools.</p>
 </div>
 <div class="paragraph">
-<p><code>talend-component-maven-plugin</code> helps you write components that match best practices and generate transparently metadata used by Talend Studio.</p>
+<p><strong>talend-component-maven-plugin</strong> helps you write components that match best practices and generate transparently metadata used by Talend Studio.</p>
 </div>
 <div class="paragraph">
 <p>You can use it as follows:</p>
@@ -4342,7 +4307,7 @@ A Talend Component Kit plugin is available for each of the supported build tools
 For example, to compile the project and prepare for deploying your component, run <code>mvn clean install</code>. Using this command, the following goals are executed:</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/mvn_clean_install.png" alt="Maven clean install" width="70%"></span></p>
+<p><span class="image"><a class="image" href="_images/mvn_clean_install.png" target="_blank" rel="noopener"><img src="_images/mvn_clean_install.png" alt="Maven clean install" width="70%"></a></span></p>
 </div>
 <div class="paragraph">
 <p>The build is split into several phases. The different goals are executed in the order shown above. Talend Component Kit uses default goals from the Maven build lifecycle and adds additional goals to the building and packaging phases.</p>
@@ -4368,7 +4333,7 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 <div class="sect4">
 <h5 id="_dependencies"><a class="anchor" href="#_dependencies"></a>Dependencies</h5>
 <div class="paragraph">
-<p>The first goal is a shortcut for the <code>maven-dependency-plugin</code>. It creates the <code>TALEND-INF/dependencies.txt</code> file with the <code>compile</code> and <code>runtime</code> dependencies, allowing the component to use it at runtime:</p>
+<p>The first goal is a shortcut for the <strong>maven-dependency-plugin</strong>. It creates the <code>TALEND-INF/dependencies.txt</code> file with the <code>compile</code> and <code>runtime</code> dependencies, allowing the component to use it at runtime:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4413,12 +4378,12 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 <div class="paragraph">
 <p>It is bound to the <code>process-classes</code> phase by default. When executed, it performs several validations that can be disabled by setting the corresponding flags to <code>false</code> in the <code>&lt;configuration&gt;</code> block of the execution:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
 <colgroup>
-<col>
-<col>
-<col>
-<col>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
@@ -4504,8 +4469,14 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateLocalConfiguration</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that if any <code>TALEND-INF/local-configuration.properties</code> exists then keys start with the family name.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.validation.localConfiguration</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">validateOutputConnection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ensures that an output has only one input branch.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.validation.validateOutputConnection</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 </tbody>
 </table>
@@ -4532,12 +4503,12 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 &lt;/plugin&gt;</code></pre>
 </div>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
 <colgroup>
-<col>
-<col>
-<col>
-<col>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
@@ -4648,7 +4619,7 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt; (1)
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt; <i class="conum" data-value="1"></i><b>(1)</b>
   &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
   &lt;artifactId&gt;talend-component-maven-plugin&lt;/artifactId&gt;
   &lt;version&gt;${talend-component-kit.version}&lt;/version&gt;
@@ -4662,7 +4633,7 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
     &lt;/execution&gt;
   &lt;/executions&gt;
 &lt;/plugin&gt;
-&lt;plugin&gt; (2)
+&lt;plugin&gt; <i class="conum" data-value="2"></i><b>(2)</b>
   &lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
   &lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt;
   &lt;version&gt;1.5.7&lt;/version&gt;
@@ -4929,9 +4900,9 @@ This goal is deprecated and will be removed in a future release.
     -Dtalend.generator.type=[input|output] \ <i class="conum" data-value="1"></i><b>(1)</b>
     [-Dtalend.generator.classbase=com.test.MyComponent] \ <i class="conum" data-value="2"></i><b>(2)</b>
     [-Dtalend.generator.family=my-family] \ <i class="conum" data-value="3"></i><b>(3)</b>
-    [-Dtalend.generator.pom.read-only=false] <i class="conum" data-value="4"></i><b>(4)</b>
-    [-Dtalend.generator.pom.encoding=UTF-16] <i class="conum" data-value="5"></i><b>(5)</b>
-    [-Dtalend.generator.pom.spacing=4] <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+    [-Dtalend.generator.pom.read-only=false] \ <i class="conum" data-value="4"></i><b>(4)</b>
+    [-Dtalend.generator.pom.encoding=UTF-16] \ <i class="conum" data-value="5"></i><b>(5)</b>
+    [-Dtalend.generator.pom.spacing=4] \ <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -4977,7 +4948,7 @@ This goal is deprecated and will be removed in a future release.
 <div class="sect4">
 <h5 id="_generating_the_component_archive"><a class="anchor" href="#_generating_the_component_archive"></a>Generating the component archive</h5>
 <div class="paragraph">
-<p>Component ARchive (<code>.car</code>) is the way to bundle a component to share it in the Talend ecosystem. It is a plain Java ARchive (<code>.jar</code>) containing a metadata file and a nested Maven repository containing the component and its depenencies.</p>
+<p>Component ARchive (<strong>.car</strong>) is the way to bundle a component to share it in the Talend ecosystem. It is a plain Java ARchive (<strong>.jar</strong>) containing a metadata file and a nested Maven repository containing the component and its depenencies.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4985,17 +4956,17 @@ This goal is deprecated and will be removed in a future release.
 </div>
 </div>
 <div class="paragraph">
-<p>This command creates a <code>.car</code> file in your build directory. This file can be shared on Talend platforms.</p>
+<p>This command creates a <strong>.car</strong> file in your build directory. This file can be shared on Talend platforms.</p>
 </div>
 <div class="paragraph">
 <p>This command has some optional parameters:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
 <colgroup>
-<col>
-<col>
-<col>
-<col>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
@@ -5015,7 +4986,7 @@ This goal is deprecated and will be removed in a future release.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">classifier</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The classifier to use if attach is set to true.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.car.attach</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.car.classifier</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component</p></td>
 </tr>
 <tr>
@@ -5077,13 +5048,13 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 <div class="paragraph">
 <p>The <code>deploy-in-studio</code> goal deploys the current component module into a local Talend Studio instance.</p>
 </div>
-<table class="tableblock frame-all grid-all">
-<caption class="title">Table 2. Parameters</caption>
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
+<caption class="title">Table 1. Parameters</caption>
 <colgroup>
-<col>
-<col>
-<col>
-<col>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
 </colgroup>
 <thead>
 <tr>
@@ -5117,13 +5088,13 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 <p>The <code>help</code> goal displays help information on <code>talend-component-maven-plugin</code>.
 Call <code>mvn talend-component:help -Ddetail=true -Dgoal=&lt;goal-name&gt;</code> to display the parameter details of a specific goal.</p>
 </div>
-<table class="tableblock frame-all grid-all">
-<caption class="title">Table 3. Parameters</caption>
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
+<caption class="title">Table 2. Parameters</caption>
 <colgroup>
-<col>
-<col>
-<col>
-<col>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
@@ -5186,7 +5157,7 @@ Call <code>mvn talend-component:help -Ddetail=true -Dgoal=&lt;goal-name&gt;</cod
 A Talend Component Kit plugin is available for each of the supported build tools.</p>
 </div>
 <div class="paragraph">
-<p><code>gradle-talend-component</code> helps you write components that match the best practices. It is inspired from the Maven plugin and adds the ability to generate automatically the <code>dependencies.txt</code> file used by the SDK to build the component classpath. For more information on the configuration, refer to the <a href="build-tools-maven.html" class="page">Maven</a> properties matching the attributes.</p>
+<p><strong>gradle-talend-component</strong> helps you write components that match the best practices. It is inspired from the Maven plugin and adds the ability to generate automatically the <code>dependencies.txt</code> file used by the SDK to build the component classpath. For more information on the configuration, refer to the <a href="build-tools-maven.html" class="page">Maven</a> properties matching the attributes.</p>
 </div>
 <div class="paragraph">
 <p>You can use it as follows:</p>
@@ -5468,8 +5439,10 @@ distributed implementation.</p>
 </div>
 <div class="sect4">
 <h5 id="_sample"><a class="anchor" href="#_sample"></a>Sample</h5>
+<div class="paragraph">
+<p>Sample input based on Beam Kafka:</p>
+</div>
 <div class="listingblock">
-<div class="title">Sample input based on Beam Kafka</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version
 @Icon(Icon.IconType.KAFKA)
@@ -5628,11 +5601,11 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 <div class="paragraph">
 <p>For example:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
 <colgroup>
-<col>
-<col>
-<col>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
@@ -5687,13 +5660,13 @@ public class MyComponentConfiguration {
 <div class="paragraph">
 <p>The most common actions are the following ones:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
 <colgroup>
-<col style="width: 6.25%;">
-<col style="width: 6.25%;">
-<col style="width: 12.5%;">
-<col style="width: 37.5%;">
-<col style="width: 37.5%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
@@ -6049,7 +6022,7 @@ For example, the tree classloading is commonly used by Servlet containers where 
 <p>Here is a representation of this solution:</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/classloader-layout.png" alt="classloader layout"></span></p>
+<p><span class="image"><a class="image" href="_images/classloader-layout.png" target="_blank" rel="noopener"><img src="_images/classloader-layout.png" alt="Classloader layout" width="70%"></a></span></p>
 </div>
 <div class="paragraph">
 <p>The <em>shared</em> area contains Talend Component Kit API, which only contains by default the classes shared by the plugins.</p>
@@ -6116,7 +6089,7 @@ The following files have been resolved:
 <div class="ulist">
 <ul>
 <li>
-<p>The APIs (<code>component-api</code> and <code>geronimo-annotation_1.3_spec</code>) are <code>provided</code> because you can consider them to be there when executing (they come with the framework).</p>
+<p>The APIs (<strong>component-api0</strong> and <strong>geronimo-annotation_1.3_spec</strong>) are <code>provided</code> because you can consider them to be there when executing (they come with the framework).</p>
 </li>
 <li>
 <p>Your specific dependencies (<code>awesome-project</code> in the example above) are marked as <code>compile</code>: they are included as needed dependencies by the framework (note that using <code>runtime</code> works too).</p>
@@ -8754,8 +8727,10 @@ class ComponentExtensionTest {
 <div class="paragraph">
 <p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility to get this map instance from a configuration instance.</p>
 </div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example:</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final MyComponentConfig componentConfig = new MyComponentConfig();
 componentConfig.setUser("....");
@@ -8784,8 +8759,10 @@ in order to use it with the <code>Job</code> DSL:</p>
 <div class="paragraph">
 <p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarily. You can get an instance from a configuration and execute this instance to collect the output.</p>
 </div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MapperTest {
 
@@ -8809,8 +8786,10 @@ in order to use it with the <code>Job</code> DSL:</p>
 <div class="paragraph">
 <p>As for a mapper, a processor is testable unitary. However, this case can be more complex in case of multiple inputs or outputs.</p>
 </div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class ProcessorTest {
 
@@ -8920,8 +8899,10 @@ This testing methodology works with <code>@Parameterized</code>. You can submit 
 <div class="paragraph">
 <p>The integration of that Spark cluster logic with JUnit 5 is done using the <code>@WithSpark</code> marker for the extension. Optionally, it allows you to inject—through <code>@SparkInject</code>—the <code>BaseSpark&lt;?&gt;</code> handler to access the Spark cluster meta information. For example, its host/port.</p>
 </div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WithSpark
 class SparkExtensionTest {
@@ -9444,8 +9425,10 @@ If you set the <code>&lt;environment name&gt;.skip</code> system property to <co
 <div class="paragraph">
 <p>The following dependencies bring the JUnit testing toolkit, the Beam integration and the multi-environment testing toolkit for JUnit into the test scope.</p>
 </div>
+<div class="paragraph">
+<p>Dependencies:</p>
+</div>
 <div class="listingblock">
-<div class="title">Dependencies</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">&lt;dependencies&gt;
   &lt;dependency&gt;
@@ -9699,7 +9682,7 @@ An alternative to data generation can be to import <em>real</em> data and use Ta
 <div class="sect3">
 <h4 id="_job_builder"><a class="anchor" href="#_job_builder"></a>Job Builder</h4>
 <div class="paragraph">
-<p>The <code>Job</code> builder lets you create a job pipeline programmatically using Talend components
+<p>The <strong>Job builder</strong> lets you create a job pipeline programmatically using Talend components
 (<a href="component-define-processor-output.html" class="page">Producers and Processors</a>).
 The job pipeline is an acyclic graph, allowing you to build complex pipelines.</p>
 </div>
@@ -9731,8 +9714,10 @@ The job pipeline is an acyclic graph, allowing you to build complex pipelines.</
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>URI example:</p>
+</div>
 <div class="listingblock">
-<div class="title">URI example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code>job://csvFileGen?__version=1&amp;path=/temp/result.csv&amp;encoding=utf-8"</code></pre>
 </div>
@@ -9749,8 +9734,10 @@ configuration parameters must be URI/URL encoded.
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Job example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Job example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Job.components()   <i class="conum" data-value="1"></i><b>(1)</b>
         .component("employee","db://input")
@@ -9826,13 +9813,13 @@ In this version, the execution of the job is linear. Components are not executed
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If an <code>org.talend.sdk.component.runtime.manager.chain.Job.ExecutorBuilder</code> class is passed through the job properties, then use it. The supported types are a <code>ExecutionBuilder</code> instance, a <code>Class</code> or a <code>String</code>.</p>
+<p>If an <code>org.talend.sdk.component.runtime.manager.chain.Job.ExecutorBuilder</code> class is passed through the job properties, then use it. The supported types are an <code>ExecutionBuilder</code> instance, a <code>Class</code> or a <code>String</code>.</p>
 </li>
 <li>
-<p>if an <code>ExecutionBuilder</code> SPI is present, use it. It is the case if <code>component-runtime-beam</code> is present in your classpath.</p>
+<p>If an <code>ExecutionBuilder</code> SPI is present, use it. It is the case if <code>component-runtime-beam</code> is present in your classpath.</p>
 </li>
 <li>
-<p>else, use a local/standalone execution.</p>
+<p>Else, use a local/standalone execution.</p>
 </li>
 </ol>
 </div>
@@ -10047,10 +10034,10 @@ Talend Component Kit comes with a predefined set of services that you can easily
 </div>
 <div class="sect3">
 <h4 id="_lisf_of_built_in_services"><a class="anchor" href="#_lisf_of_built_in_services"></a>Lisf of built-in services</h4>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
 <colgroup>
-<col>
-<col>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -11085,7 +11072,7 @@ public @interface MyLayout {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%">
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
 </div>
 </div>
 <div class="sect3">
@@ -11122,9 +11109,9 @@ public @interface MyLayout {
 </div>
 <table class="tableblock frame-all grid-all spread table-striped table-hover table-ordered">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 25%;">
 </colgroup>
 <thead>
 <tr>
@@ -11197,7 +11184,6 @@ is <code>%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%6$s%n</code
 <p>Here is an example of a common developer <code>configuration/config.ini</code> file:</p>
 </div>
 <div class="listingblock">
-<div class="title">configuration/config.ini example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># use local .m2 instead of embedded studio one
 maven.repository = global
@@ -11217,7 +11203,7 @@ java.util.logging.SimpleFormatter.format = [%4$s] %5$s%6$s%n</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/studio-reload-button.png" alt="Studio Reload Button" width="70%">
+<a class="image" href="_images/studio-reload-button.png" target="_blank" rel="noopener"><img src="_images/studio-reload-button.png" alt="Studio Reload Button" width="70%"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -11260,7 +11246,7 @@ You still need to add and remove the components to see the changes.
 <p>the <strong>address</strong> parameter of the -agentlib argument is the port used for the remote configuration. Make sure this port is available.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration" width="70%">
+<a class="image" href="_images/talend_studio_debug_remote_config_1.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration" width="70%"></a>
 </div>
 </div>
 </li>
@@ -11283,7 +11269,7 @@ You still need to add and remove the components to see the changes.
 <p>In the popup window, paste the arguments copied from the IDE.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/talend_studio_debug_remote_config_2.png" alt="IntelliJ remote configuration" width="70%">
+<a class="image" href="_images/talend_studio_debug_remote_config_2.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_2.png" alt="IntelliJ remote configuration" width="70%"></a>
 </div>
 </div>
 </li>
@@ -11318,7 +11304,7 @@ You still need to add and remove the components to see the changes.
 <p><strong>address</strong> is the port used for the remote configuration. Make sure this port is available.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration" width="70%">
+<a class="image" href="_images/talend_studio_debug_remote_config_1.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration" width="70%"></a>
 </div>
 </div>
 </li>
@@ -11335,7 +11321,7 @@ You still need to add and remove the components to see the changes.
 <p>Paste the arguments copied from the IDE in a new line of the file.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/talend_studio_debug_remote_config_3.png" alt="IntelliJ remote configuration" width="60%">
+<a class="image" href="_images/talend_studio_debug_remote_config_3.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_3.png" alt="IntelliJ remote configuration" width="60%"></a>
 </div>
 </div>
 </li>
@@ -11410,7 +11396,7 @@ The WebSocket protocol is activated for the endpoints. Endpoints then use <code>
 </table>
 </div>
 <div class="paragraph">
-<p>The API description is browsable using <a href="rest-swagger.html" class="page">OpenAPI</a> browser.</p>
+<p>Browse the API description using <a href="rest-swagger.html" class="page">OpenAPI</a>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -11770,7 +11756,7 @@ final String json = jsonb.toJson(form1); <i class="conum" data-value="4"></i><b>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The <code>JsonSchema</code> is extracted from reflection on the <code>Form1</code> class. Note that <code>@JsonSchemaIgnore</code> allows to ignore a field and <code>@JsonSchemaProperty</code> allows to rename a property.</td>
+<td>The <code>JsonSchema</code> is extracted from reflection on the <code>Form1</code> class. <code>@JsonSchemaIgnore</code> allows to ignore a field and <code>@JsonSchemaProperty</code> allows to rename a property.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -11818,7 +11804,7 @@ final String json = jsonb.toJson(form1); <i class="conum" data-value="4"></i><b>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<code>component-kit.js</code> is no more available (previous versions stay on NPM) since it got replaced by <code>@talend/react-containers</code>.
+<code>component-kit.js</code> is no more available (previous versions stay on NPM) and is replaced by <code>@talend/react-containers</code>.
 The previous import can be replaced by <code>import kit from '@talend/react-containers/lib/ComponentForm/kit';</code>.
 </td>
 </tr>
@@ -11956,8 +11942,7 @@ You can compose previous layout (message format) and appenders (where logs are w
 <div class="sect3">
 <h4 id="_docker"><a class="anchor" href="#_docker"></a>Docker</h4>
 <div class="paragraph">
-<p>The server image is deployed on Docker. Its version is suffixed with a timestamp to ensure
-images are not overriden and can break your usage. You can check the available version on Docker hub.</p>
+<p>The server image is deployed on Docker. Its version is suffixed with a timestamp to ensure images are not overridden and can break your usage. You can check the available version on Docker hub.</p>
 </div>
 <div class="sect4">
 <h5 id="_run"><a class="anchor" href="#_run"></a>Run</h5>
@@ -11979,14 +11964,12 @@ images are not overriden and can break your usage. You can check the available v
 <div class="sect4">
 <h5 id="_maven_repository"><a class="anchor" href="#_maven_repository"></a>Maven repository</h5>
 <div class="paragraph">
-<p>The maven repository is the default one of the machine, you can change it setting the system property
-<code>talend_component_server_maven_repository=/path/to/your/m2</code>.</p>
+<p>The maven repository is the default one of the machine, you can change it setting the system property <code>talend_component_server_maven_repository=/path/to/your/m2</code>.</p>
 </div>
 <div class="sect5">
 <h6 id="_deploy_components_to_the_server"><a class="anchor" href="#_deploy_components_to_the_server"></a>Deploy components to the server</h6>
 <div class="paragraph">
-<p>If you want to deploy some components you can configure which ones in MEECROWAVE_OPTS (see server doc online)
-and redirect your local m2:</p>
+<p>If you want to deploy some components you can configure which ones in MEECROWAVE_OPTS (see server doc online) and redirect your local m2:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12002,17 +11985,15 @@ and redirect your local m2:</p>
 <div class="sect4">
 <h5 id="_logging_2"><a class="anchor" href="#_logging_2"></a>Logging</h5>
 <div class="paragraph">
-<p>The component server docker image comes with two log4j2 profile <code>default</code> and <code>kafka</code>.
-The logging profile can be changed by setting the environment variable <code>TALEND_COMPONENT_LOG4J2_PROFILE</code> to <code>kafka</code>
-the <code>default</code> profile is active by default.</p>
+<p>The component server docker image comes with two log4j2 profiles: <code>default</code> and <code>kafka</code>.
+The logging profile can be changed by setting the environment variable <code>TALEND_COMPONENT_LOG4J2_PROFILE</code> to <code>kafka</code>.
+The <code>default</code> profile is active by default.</p>
 </div>
 <div class="sect5">
 <h6 id="_default_profile"><a class="anchor" href="#_default_profile"></a>default profile</h6>
 <div class="paragraph">
 <p>The <strong>default</strong> profile has file and console logging capabilities.
-The console logging is off by default and you can activate it by setting <code>CONSOLE_LOG_LEVEL</code> environment variable
-to <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code> or any other log level supported by log4j2. In practise and during development you will want
-to see the logs without connecting to the server by activating console logging.</p>
+The console logging is off by default and you can activate it by setting <code>CONSOLE_LOG_LEVEL</code> environment variable to <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code> or any other log level supported by log4j2. In practice and during development you will want to see the logs without connecting to the server by activating console logging.</p>
 </div>
 <div class="paragraph">
 <p>Run docker image with console logging</p>
@@ -12028,11 +12009,10 @@ to see the logs without connecting to the server by activating console logging.<
 <div class="sect5">
 <h6 id="_kafka_profile"><a class="anchor" href="#_kafka_profile"></a>Kafka profile</h6>
 <div class="paragraph">
-<p><strong>Kafka</strong> profile let you send log to Kafka servers. The log are formatted in json and follow the layout defined by Talend
-and described here <a href="https://github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout" class="bare">github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout</a></p>
+<p>The <strong>Kafka</strong> profile lets you send logs to Kafka servers. The logs are formatted in JSON and follow the layout defined by Talend described here:  <a href="https://github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout" class="bare">github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout</a></p>
 </div>
 <div class="paragraph">
-<p>This profile require two environment variables</p>
+<p>This profile requires two environment variables:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -12046,7 +12026,7 @@ This list should be in the form <code>url:port</code> separated by <code>,</code
 </ul>
 </div>
 <div class="paragraph">
-<p>Run docker image with kafka profile</p>
+<p>Run docker image with the <code>kafka</code> profile.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12060,22 +12040,19 @@ This list should be in the form <code>url:port</code> separated by <code>,</code
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Note</strong> : <code>LOG_KAFKA_TOPIC</code> will receive the application and the access logs
-and <code>TRACING_KAFKA_TOPIC</code> will receive brave tracing logs.</p>
+<p><strong>Note</strong> : <code>LOG_KAFKA_TOPIC</code> will receive the application and the access logs and <code>TRACING_KAFKA_TOPIC</code> will receive brave tracing logs.</p>
 </div>
 </div>
 <div class="sect5">
 <h6 id="_opentracing"><a class="anchor" href="#_opentracing"></a>OpenTracing</h6>
 <div class="paragraph">
-<p>The component server use Geronimo OpenTracing to monitor request.</p>
+<p>The component server uses Geronimo OpenTracing to monitor request.</p>
 </div>
 <div class="paragraph">
 <p>The tracing can be activated by setting the <code>TRACING_ON</code> environment variable to <code>true</code>.</p>
 </div>
 <div class="paragraph">
-<p>You can choose the reporter type by setting <code>talend_component_server_monitoring_brave_reporter_type</code> environment variable
-to <code>log</code> (this is the default value in this docker image) or to <code>noop</code>
-which will deactivate the tracing. <em>Other type of reporter may be added in the future.</em></p>
+<p>You can choose the reporter type by setting <code>talend_component_server_monitoring_brave_reporter_type</code> environment variable to <code>log</code> (this is the default value in this docker image) or to <code>noop</code>, which will deactivate the tracing. <em>Other types of reporter may be added in the future.</em></p>
 </div>
 <div class="paragraph">
 <p>The tracing rate is configurable by setting the <code>TRACING_SAMPLING_RATE</code> environment variable.
@@ -12116,7 +12093,7 @@ to wire it over any OpenTracing backend.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-this assumes the project is built before you run that command.
+This assumes the project is built before you run that command.
 </td>
 </tr>
 </table>
@@ -12157,7 +12134,7 @@ this assumes the project is built before you run that command.
 <p>Add the <strong>Talend Component Kit Testing</strong> facet to your project to automatically generate unit tests for the components created later in this tutorial. Add any facet you need.<br></p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_test_facet.png" alt="Test facet" width="80%">
+<a class="image" href="_images/starter/starter_test_facet.png" target="_blank" rel="noopener"><img src="_images/starter/starter_test_facet.png" alt="Test facet" width="80%"></a>
 </div>
 </div>
 </li>
@@ -12179,7 +12156,7 @@ This <strong>Databases</strong> category is used and displayed as the parent fam
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_project-config.png" alt="Project configuration" width="80%">
+<a class="image" href="_images/starter/starter_project-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-config.png" alt="Project configuration" width="80%"></a>
 </div>
 </div>
 </div>
@@ -12191,7 +12168,7 @@ The intent in this tutorial is to create an input component that connects to a M
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_input-config.png" alt="Input configuration" width="80%">
+<a class="image" href="_images/starter/starter_input-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_input-config.png" alt="Input configuration" width="80%"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -12258,7 +12235,7 @@ The intent in this tutorial is to create a simple processor component that recei
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_processor-config.png" alt="Processor configuration" width="80%">
+<a class="image" href="_images/starter/starter_processor-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_processor-config.png" alt="Processor configuration" width="80%"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -12312,7 +12289,7 @@ The intent in this tutorial is to create an output component that receives a rec
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_output-config.png" alt="Output configuration" width="80%">
+<a class="image" href="_images/starter/starter_output-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_output-config.png" alt="Output configuration" width="80%"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -12386,7 +12363,7 @@ In this tutorial, the project was configured and three components of different t
 <p>Click <strong>GO TO FINISH</strong> at the bottom of the page. You are redirected to a page that summarizes the project. On the left panel, you can also see all the components that you added to the project.</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/starter/starter_project-download.png" alt="Output configuration" width="80%">
+<a class="image" href="_images/starter/starter_project-download.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-download.png" alt="Output configuration" width="80%"></a>
 </div>
 </div>
 </li>
@@ -12512,12 +12489,12 @@ package org.talend.hazelcast;</code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This define the family icon.</td>
+<td>This defines the family icon.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>In this line we define the component family and the component categories.
-Those information are used in the web and studio applications to group the components.</td>
+Those information are used in the Web and Studio applications to group the components.</td>
 </tr>
 </table>
 </div>
@@ -13263,7 +13240,7 @@ private String valueAttribute;</code></pre>
 <p>The output component needs to work in distributed environments and should implement a serializable interface.</p>
 </div>
 <div class="paragraph">
-<p>The skeleton of the output component looks as follows.</p>
+<p>The skeleton of the output component looks as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14104,8 +14081,10 @@ This simulation server has two modes :</p>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>Example to run in a simulation mode:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example to run in a simulation mode</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SearchTest {
 
@@ -14450,7 +14429,7 @@ in the <code>talend.maven.decrypter.m2.location</code> environment variable.
 <p>Click <strong>New Item</strong> to create a new build job.</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/jenkins/1_jenkins_new_item.png" alt="Create a new job">
+<a class="image" href="_images/jenkins/1_jenkins_new_item.png" target="_blank" rel="noopener"><img src="_images/jenkins/1_jenkins_new_item.png" alt="Create a new job" width="70%"></a>
 </div>
 </div>
 </li>
@@ -14458,7 +14437,7 @@ in the <code>talend.maven.decrypter.m2.location</code> environment variable.
 <p>Enter an Item name (Job name) and choose the freestyle job. Then click OK.</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/jenkins/2_jenkins_new_item.png" alt="Create a new job">
+<a class="image" href="_images/jenkins/2_jenkins_new_item.png" target="_blank" rel="noopener"><img src="_images/jenkins/2_jenkins_new_item.png" alt="Create a new job" width="70%"></a>
 </div>
 </div>
 </li>
@@ -14469,7 +14448,7 @@ in the <code>talend.maven.decrypter.m2.location</code> environment variable.
 <p>Specify the <code>master</code> branch as <strong>Branches to build</strong>.</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/jenkins/4_jenkins_source_code.png" alt="Source Code Management">
+<a class="image" href="_images/jenkins/4_jenkins_source_code.png" target="_blank" rel="noopener"><img src="_images/jenkins/4_jenkins_source_code.png" alt="Source Code Management" width="70%"></a>
 </div>
 </div>
 </li>
@@ -14477,7 +14456,7 @@ in the <code>talend.maven.decrypter.m2.location</code> environment variable.
 <p>In the <strong>Build</strong> section, click <strong>Add build step</strong> and choose <strong>Invoke top-level Maven targets</strong>.</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/jenkins/6_jenkins_build_cmd.png" alt="Build Section">
+<a class="image" href="_images/jenkins/6_jenkins_build_cmd.png" target="_blank" rel="noopener"><img src="_images/jenkins/6_jenkins_build_cmd.png" alt="Build Section" width="70%"></a>
 </div>
 </div>
 </li>
@@ -14485,7 +14464,7 @@ in the <code>talend.maven.decrypter.m2.location</code> environment variable.
 <p>Choose your Maven version and enter the Maven build command. In this case: <code>clean install</code>. Then, click <strong>Save</strong>.</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/jenkins/6_jenkins_build_cmd_2.png" alt="Build Section">
+<a class="image" href="_images/jenkins/6_jenkins_build_cmd_2.png" target="_blank" rel="noopener"><img src="_images/jenkins/6_jenkins_build_cmd_2.png" alt="Build Section" width="70%"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -14512,7 +14491,7 @@ You can configure the <strong>passthrough</strong> mode globally on your CI serv
 <p>Test the job by selecting <strong>Build now</strong>, and check that the job has built correctly.</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/jenkins/7_jenkins_build_result.png" alt="Test the job">
+<a class="image" href="_images/jenkins/7_jenkins_build_result.png" target="_blank" rel="noopener"><img src="_images/jenkins/7_jenkins_build_result.png" alt="Test the job" width="70%"></a>
 </div>
 </div>
 </li>
@@ -14564,10 +14543,7 @@ You can configure the <strong>passthrough</strong> mode globally on your CI serv
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a simple configuration class that represents a basic authentication and that can be used in any component requiring this kind of authentication.</p>
-</li>
-</ol>
-</div>
+<p>Create a simple configuration class that represents a basic authentication and that can be used in any component requiring this kind of authentication.<br></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GridLayout({
@@ -14586,13 +14562,13 @@ public class BasicAuth {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic" start="2">
-<li>
-<p>Create a simple output component that uses the configuration defined earlier. The component configuration is injected into the component constructor.</p>
 </li>
 </ol>
 </div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Create a simple output component that uses the configuration defined earlier. The component configuration is injected into the component constructor.<br></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(1)
@@ -14625,6 +14601,9 @@ The version of the configuration class is aligned with the component version. Th
 </tr>
 </table>
 </div>
+</li>
+</ol>
+</div>
 <div class="paragraph">
 <p>By configuring these two classes, the first version of the component is ready to use a simple authentication mechanism.</p>
 </div>
@@ -14650,10 +14629,7 @@ The version of the configuration class is aligned with the component version. Th
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add an Oauth2 authentication mode to the component in addition to the basic mode. For example:</p>
-</li>
-</ol>
-</div>
+<p>Add an Oauth2 authentication mode to the component in addition to the basic mode. For example:<br></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GridLayout({
@@ -14675,13 +14651,13 @@ public class Oauth2 {
 <div class="paragraph">
 <p>The options of the new authentication mode are now defined.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic" start="2">
-<li>
-<p>Wrap the configuration created above in a global configuration with the basic authentication mode and add an enumeration to let the user choose the mode to use. For example, create an <code>AuthenticationConfiguration</code> class as follows:</p>
 </li>
 </ol>
 </div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Wrap the configuration created above in a global configuration with the basic authentication mode and add an enumeration to let the user choose the mode to use. For example, create an <code>AuthenticationConfiguration</code> class as follows:<br></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GridLayout({
@@ -14728,14 +14704,14 @@ Using the <code>@ActiveIf</code> annotation allows to activate the authenticatio
 </tr>
 </table>
 </div>
+</li>
+</ol>
+</div>
 <div class="olist arabic">
 <ol class="arabic" start="3">
 <li>
 <p>Edit the component to use the new configuration that supports an additional authentication mode.
-Also upgrade the component version from 1 to 2 as its configuration has changed.</p>
-</li>
-</ol>
-</div>
+Also upgrade the component version from 1 to 2 as its configuration has changed.<br></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(2) // upgrade the component version
@@ -14755,6 +14731,9 @@ public class MyOutput implements Serializable {
     }
 }</code></pre>
 </div>
+</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>The component now supports two authentication modes in its version 2.
@@ -14788,22 +14767,19 @@ An old configuration may already be persisted by an application that integrates 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a migration handler class to the component version.</p>
-</li>
-</ol>
-</div>
+<p>Add a migration handler class to the component version.<br></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(value = 1, migrationHandler = MyOutputMigrationHandler.class)</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic" start="2">
-<li>
-<p>Create the migration handler class <code>MyOutputMigrationHandler</code></p>
 </li>
 </ol>
 </div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Create the migration handler class <code>MyOutputMigrationHandler</code>.<br></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyOutputMigrationHandler implements MigrationHandler{ <i class="conum" data-value="1"></i><b>(1)</b>
@@ -14837,6 +14813,9 @@ An old configuration may already be persisted by an application that integrates 
 </div></td>
 </tr>
 </table>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect4">

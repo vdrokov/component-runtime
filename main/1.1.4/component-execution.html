@@ -8,7 +8,7 @@
     <meta name="description" content="Learn how components are generally executed">
     <meta name="keywords" content="PostConstruct, PreDestroy, BeforeGroup, AfterGroup">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-06T08:22:30.643Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-09T09:25:10.460Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -465,22 +465,25 @@ In distributed environments, class constructor are called on cluster manager nod
 </table>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/deployment-diagram.png" alt="deployment diagram"></span></p>
+<p><span class="image"><a class="image" href="_images/deployment-diagram.png" target="_blank" rel="noopener"><img src="_images/deployment-diagram.png" alt="Deployment diagram" width="60%"></a></span></p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The created task is a JAR file containing class information, which describes the pipeline (flow) that should be processed in cluster.</p>
-</li>
-<li>
-<p>During the partition plan computation step, the pipeline is analyzed and split into stages. The cluster manager node instantiates mappers/processors, gets estimated data size using mappers, and splits created mappers according to the estimated data size.<br>
-All instances are then serialized and sent to the worker node.</p>
-</li>
-<li>
-<p>Serialized instances are received and deserialized. Methods annotated with <code>@PostConstruct</code> are called. After that, pipeline execution starts. The <code>@BeforeGroup</code> annotated method of the processor is called before processing the first element in chunk.<br>
-After processing the number of records estimated as chunk size, the <code>@AfterGroup</code> annotated method of the processor is called. Chunk size is calculated depending on the environment the pipeline is processed by. Once the pipeline is processed, methods annotated with <code>@PreDestroy</code> are called.</p>
-</li>
-</ol>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The created task is a JAR file containing class information, which describes the pipeline (flow) that should be processed in cluster.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>During the partition plan computation step, the pipeline is analyzed and split into stages. The cluster manager node instantiates mappers/processors, gets estimated data size using mappers, and splits created mappers according to the estimated data size.<br>
+All instances are then serialized and sent to the worker node.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Serialized instances are received and deserialized. Methods annotated with <code>@PostConstruct</code> are called. After that, pipeline execution starts. The <code>@BeforeGroup</code> annotated method of the processor is called before processing the first element in chunk.<br>
+After processing the number of records estimated as chunk size, the <code>@AfterGroup</code> annotated method of the processor is called. Chunk size is calculated depending on the environment the pipeline is processed by. Once the pipeline is processed, methods annotated with <code>@PreDestroy</code> are called.</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -495,10 +498,10 @@ All the methods managed by the framework must be public. Private methods are ign
 </table>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/driver-processing-workflow.png" alt="driver processing workflow"></span></p>
+<p><span class="image"><a class="image" href="_images/driver-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/driver-processing-workflow.png" alt="Driver processing workflow" width="40%"></a></span></p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/worker-processing-workflow.png" alt="worker processing workflow"></span></p>
+<p><span class="image"><a class="image" href="_images/worker-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/worker-processing-workflow.png" alt="Worker processing workflow" width="30%"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>

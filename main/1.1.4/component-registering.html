@@ -8,7 +8,7 @@
     <meta name="description" content="How to define component and component family metadata">
     <meta name="keywords" content="icon, component version, component name, family, category">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-06T08:22:30.653Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-09T09:25:10.468Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -456,16 +456,16 @@
 <h2 id="_component_family_and_categories"><a class="anchor" href="#_component_family_and_categories"></a>Component family and categories</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The family and category of a component is automatically written in the <code>package-info.java</code> of the component package, using the <code>@Components</code> annotation. By default, these parameters are already configured in this file when you import your project in your IDE. Their value correspond to what was defined during the project definition with the starter.</p>
+<p>The family and category of a component is automatically written in the <code>package-info.java</code> file of the component package, using the <code>@Components</code> annotation. By default, these parameters are already configured in this file when you import your project in your IDE. Their value correspond to what was defined during the project definition with the starter.</p>
 </div>
 <div class="paragraph">
-<p>Multiple components can share the same <code>family</code> and <code>category</code> value, but the <code>family</code> + <code>name</code> pair must be unique for the system.</p>
+<p>Multiple components can share the same <strong>family</strong> and <strong>category</strong> value, but the <strong>family</strong> + <strong>name</strong> pair must be unique for the system.</p>
 </div>
 <div class="paragraph">
 <p>A component can belong to one family only and to one or several categories. If not specified, the category defaults to <code>Misc</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>package-info.java</code> also defines the component family icon, which is different from the component icon. You can learn how to customize this icon in <a href="component-defining-custom-icon.html" class="page">this section</a>.</p>
+<p>The <code>package-info.java</code> file also defines the component family icon, which is different from the component icon. You can learn how to customize this icon in <a href="component-defining-custom-icon.html" class="page">this section</a>.</p>
 </div>
 <div class="paragraph">
 <p>Here is a sample <code>package-info.java</code>:</p>
@@ -515,8 +515,10 @@ Learn how to manage different versions and migrations between your component ver
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version(1)
 @Icon(FILE_XML_O)
@@ -587,7 +589,7 @@ The icon file needs to have a name following the convention <code>IconName_icon3
 </ul>
 </div>
 <div class="paragraph">
-<p>The name of the component is defined there as well as a parameter of the component type</p>
+<p>The name of the component is defined there as well as a parameter of the component type.</p>
 </div>
 <div class="paragraph">
 <p>Once the component type is defined, you can start implementing its specific logic:</p>
@@ -602,24 +604,30 @@ The icon file needs to have a name following the convention <code>IconName_icon3
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Partition mapper example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Partition mapper example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PartitionMapper(name = "my_mapper")
 public class MyMapper {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Emitter example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Emitter example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Emitter(name = "my_input")
 public class MyInput {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Processor example:</p>
+</div>
 <div class="listingblock">
-<div class="title">Processor example</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Processor(name = "my_processor")
 public class MyProcessor {

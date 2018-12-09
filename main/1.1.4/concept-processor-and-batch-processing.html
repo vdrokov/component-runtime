@@ -8,7 +8,7 @@
     <meta name="description" content="Optimize the way your processor component handle records using groups">
     <meta name="keywords" content="bulk, bulking, chunk, group, maxBatchSize, bulking">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-06T08:22:30.655Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-09T09:25:10.470Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
@@ -483,7 +483,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Processing schema (values are examples):</strong></div>
-<p><span class="image"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing" width="80%"></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing" width="80%"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Each group is processed as follows until there is no record left:</p>
@@ -494,7 +494,7 @@ The estimated group size logic is automatically implemented when a component is 
 <p>The <code>@BeforeGroup</code> method resets a record buffer at the beginning of each group.</p>
 </li>
 <li>
-<p>The records of the group are assessed one by one and placed in the buffer as follows: The @ElementListener method tests if the buffer size is greater or equal to the defined <code>maxBatchSize</code>. If it is, the records are processed. If not, then the current record is buffered.</p>
+<p>The records of the group are assessed one by one and placed in the buffer as follows: The <code>@ElementListener</code> method tests if the buffer size is greater or equal to the defined <code>maxBatchSize</code>. If it is, the records are processed. If not, then the current record is buffered.</p>
 </li>
 <li>
 <p>The previous step happens for all records of the group. Then the <code>@AfterGroup</code> method tests if the buffer is empty.</p>
@@ -503,7 +503,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Group execution detail (values are examples):</strong></div>
-<p><span class="image"><img src="_images/batch-processing-group.png" alt="Group batch processing" width="80%"></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing" width="80%"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can define the following logic in the processor configuration:</p>
