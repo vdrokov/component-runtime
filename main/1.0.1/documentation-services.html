@@ -6,11 +6,9 @@
     <title>Talend Component Kit Developer Reference Guide :: Services</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.4/index.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-12T17:00:35.645Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-14T21:12:32.856Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@talend/bootstrap-theme@0.200.1/dist/bootstrap.css">
@@ -778,7 +776,7 @@ public class PersonReader implements Serializable {
 <div class="paragraph">
 <p>Some common actions need a clear contract so they are defined as API first-class citizen. For example, this is the case for wizards or health checks. Here is the list of the available actions:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -878,7 +876,7 @@ You can combine the <code>$lang</code> option with the <code>@Internationalized<
 <div class="paragraph">
 <p>Here is the list:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -891,104 +889,104 @@ You can combine the <code>$lang</code> option with the <code>@Internationalized<
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.cache.LocalCache</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provides a small abstraction to cache data that does not need to be recomputed very often. Commonly used by actions for UI interactions.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.dependency.Resolver</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Allows to resolve a dependency from its Maven coordinates.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.bind.Jsonb</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-B instance. If your model is static and you don&#8217;t want to handle the serialization manually using JSON-P, you can inject that instance.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.spi.JsonProvider</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. Prefer other JSON-P instances if you don&#8217;t exactly know why you use this one.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.JsonBuilderFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one to optimize memory usage and speed.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.JsonWriterFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one to optimize memory usage and speed.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.JsonReaderFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one to optimize memory usage and speed.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.stream.JsonParserFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one to optimize memory usage and speed.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.stream.JsonGeneratorFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one to optimize memory usage and speed.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.configuration.LocalConfiguration</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Represents the local configuration that can be used during the design.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.dependency.Resolver</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Allows to resolve files from Maven coordinates (like <code>dependencies.txt</code> for component). Note that it assumes that the files are available in the component Maven repository.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.injector.Injector</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Utility to inject services in fields marked with <code>@Service</code>.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.factory.ObjectFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Allows to instantiate an object from its class name and properties.</p>
 </div>
 <div class="paragraph">
@@ -999,10 +997,10 @@ You can combine the <code>$lang</code> option with the <code>@Internationalized<
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Every interface that extends <code>HttpClient</code> and that contains methods annotated with <code>@Request</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Lets you define an HTTP client in a declarative manner using an annotated interface.</p>
 </div>
 <div class="paragraph">
@@ -1028,7 +1026,7 @@ All these <strong>injected</strong> services are serializable, which is importan
 <div class="paragraph">
 <p>The HttpClient usage is described in this section by using the REST API example below. It is assume that it requires a basic authentication header.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1378,7 +1376,7 @@ In this version, the execution of the job is linear. Components are not executed
 </table>
 </div>
 <div class="sect3">
-<h4 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>Environment/Runner</h4>
+<h4 id="_environmentrunner"><a class="anchor" href="#_environmentrunner"></a>Environment/Runner</h4>
 <div class="paragraph">
 <p>Depending on the configuration, you can select the environment which you execute your job in.</p>
 </div>
@@ -1520,7 +1518,7 @@ You can use <code>ViewsMappingTransform</code> or <code>CoGroupByKeyResultMappin
 </div>
 </div>
 <div class="sect3">
-<h4 id="_converting_a_beam_io_into_a_component_i_o"><a class="anchor" href="#_converting_a_beam_io_into_a_component_i_o"></a>Converting a Beam.io into a component I/O</h4>
+<h4 id="_converting_a_beam_io_into_a_component_io"><a class="anchor" href="#_converting_a_beam_io_into_a_component_io"></a>Converting a Beam.io into a component I/O</h4>
 <div class="paragraph">
 <p>For simple inputs and outputs, you can get an automatic and transparent conversion of the Beam.io into an I/O component, if you decorated your <code>PTransform</code> with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
 </div>

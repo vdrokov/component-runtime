@@ -6,11 +6,9 @@
     <title>Talend Component Kit Developer Reference Guide :: Defining component parameters and configuration</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.4/component-configuration.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-12T17:00:35.920Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-14T21:12:33.118Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@talend/bootstrap-theme@0.200.1/dist/bootstrap.css">
@@ -434,7 +432,7 @@
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Examples of option name:</caption>
 <colgroup>
 <col style="width: 50%;">
@@ -644,7 +642,7 @@ Avoid using the Map type. Instead, prefer configuring your component with an obj
 <div class="paragraph">
 <p>You can use metadata to specify that a field is required or has a minimum size, and so on. This is done using the <code>validation</code> metadata in the <code>org.talend.sdk.component.api.configuration.constraint</code> package:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -670,7 +668,7 @@ Avoid using the Map type. Instead, prefer configuring your component with an obj
 <td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CharSequence</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::maxLength":"12.34"
@@ -684,7 +682,7 @@ Avoid using the Map type. Instead, prefer configuring your component with an obj
 <td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CharSequence</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::minLength":"12.34"
@@ -698,7 +696,7 @@ Avoid using the Map type. Instead, prefer configuring your component with an obj
 <td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Validate the decorated string with a <strong>javascript</strong> pattern (even into the Studio).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CharSequence</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::pattern":"test"
@@ -712,7 +710,7 @@ Avoid using the Map type. Instead, prefer configuring your component with an obj
 <td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number, int, short, byte, long, double, float</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::max":"12.34"
@@ -726,7 +724,7 @@ Avoid using the Map type. Instead, prefer configuring your component with an obj
 <td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number, int, short, byte, long, double, float</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::min":"12.34"
@@ -740,7 +738,7 @@ Avoid using the Map type. Instead, prefer configuring your component with an obj
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark the field as being mandatory.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Object</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::required":"true"
@@ -754,7 +752,7 @@ Avoid using the Map type. Instead, prefer configuring your component with an obj
 <td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a higher bound.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::maxItems":"12.34"
@@ -768,7 +766,7 @@ Avoid using the Map type. Instead, prefer configuring your component with an obj
 <td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the decorated option size is validated with a lower bound.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::minItems":"12.34"
@@ -782,7 +780,7 @@ Avoid using the Map type. Instead, prefer configuring your component with an obj
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ensure the elements of the collection must be distinct (kind of set).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Collection</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "validation::uniqueItems":"true"
@@ -826,7 +824,7 @@ If it breaks your application, you can disable that validation on the JVM by set
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -846,7 +844,7 @@ If it breaks your application, you can disable that validation on the JVM by set
 <td class="tableblock halign-left valign-top"><p class="tableblock">o.t.s.c.api.configuration.type.DataSet</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">dataset</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a model (complex object) as being a dataset.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "tcomp::configurationtype::type":"dataset",
@@ -859,7 +857,7 @@ If it breaks your application, you can disable that validation on the JVM by set
 <td class="tableblock halign-left valign-top"><p class="tableblock">o.t.s.c.api.configuration.type.DataStore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">datastore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a model (complex object) as being a datastore (connection to a backend).</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "tcomp::configurationtype::type":"datastore",
@@ -956,7 +954,7 @@ The component family associated with a configuration type (datastore/dataset) is
 <div class="paragraph">
 <p>If you need to define a binding between properties, you can use a set of annotations:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -976,7 +974,7 @@ The component family associated with a configuration type (datastore/dataset) is
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.condition.ActiveIf</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">if</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If the evaluation of the element at the location matches value then the element is considered active, otherwise it is deactivated.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "condition::if::target":"test",
@@ -991,7 +989,7 @@ The component family associated with a configuration type (datastore/dataset) is
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.condition.ActiveIfs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ifs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows to set multiple visibility conditions on the same property.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "condition::if::value::0":"value1,value2",
@@ -1035,7 +1033,7 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 <p>In some cases, you may need to add metadata about the configuration to let the UI render that configuration properly.<br>
 For example, a password value that must be hidden and not a simple clear input box. For these cases - if you want to change the UI rendering - you can use a particular set of annotations:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -1052,7 +1050,7 @@ For example, a password value that must be hidden and not a simple clear input b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.DefaultValue</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provide a default value the UI can use - only for primitive fields.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::defaultvalue::value":"test"
@@ -1063,7 +1061,7 @@ For example, a password value that must be hidden and not a simple clear input b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.OptionsOrder</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows to sort a class properties.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::optionsorder::value":"value1,value2"
@@ -1074,7 +1072,7 @@ For example, a password value that must be hidden and not a simple clear input b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.AutoLayout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Request the rendered to do what it thinks is best.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::autolayout":"true"
@@ -1085,7 +1083,7 @@ For example, a password value that must be hidden and not a simple clear input b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.GridLayout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Advanced layout to place properties by row, this is exclusive with <code>@OptionsOrder</code>.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::gridlayout::value1::value":"first|second,third",
@@ -1097,7 +1095,7 @@ For example, a password value that must be hidden and not a simple clear input b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.GridLayouts</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allow to configure multiple grid layouts on the same class, qualified with a classifier (name)</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::gridlayout::Advanced::value":"another",
@@ -1109,7 +1107,7 @@ For example, a password value that must be hidden and not a simple clear input b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.HorizontalLayout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Put on a configuration class it notifies the UI an horizontal layout is preferred.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::horizontallayout":"true"
@@ -1120,7 +1118,7 @@ For example, a password value that must be hidden and not a simple clear input b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.layout.VerticalLayout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Put on a configuration class it notifies the UI a vertical layout is preferred.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::verticallayout":"true"
@@ -1131,7 +1129,7 @@ For example, a password value that must be hidden and not a simple clear input b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.Code</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being represented by some code widget (vs textarea for instance).</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::code::value":"test"
@@ -1142,7 +1140,7 @@ For example, a password value that must be hidden and not a simple clear input b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.Credential</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being a credential. It is typically used to hide the value in the UI.</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::credential":"true"
@@ -1153,7 +1151,7 @@ For example, a password value that must be hidden and not a simple clear input b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.Structure</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a List&lt;String&gt; or Map&lt;String, String&gt; field as being represented as the component data selector (field names generally or field names as key and type as value).</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::structure::discoverSchema":"test",
@@ -1166,7 +1164,7 @@ For example, a password value that must be hidden and not a simple clear input b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@o.t.s.c.api.configuration.ui.widget.TextArea</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mark a field as being represented by a textarea(multiline text input).</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
   "ui::textarea":"true"

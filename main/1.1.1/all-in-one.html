@@ -6,11 +6,9 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.4/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-12T17:00:36.124Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-14T21:12:33.320Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@talend/bootstrap-theme@0.200.1/dist/bootstrap.css">
@@ -2113,7 +2111,7 @@ public class MyProcessor {
 <p>Before implementing the component logic and defining its layout and configurable fields, make sure you have specified its basic metadata, as detailed in <a href="component-registering.html" class="page">this document</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="_a_href_component_partition_mapper_html_class_page_defining_a_partition_mapper_a"><a class="anchor" href="#_a_href_component_partition_mapper_html_class_page_defining_a_partition_mapper_a"></a><a href="component-partition-mapper.html" class="page">Defining a partition mapper</a></h4>
+<h4 id="_defining_a_partition_mapper"><a class="anchor" href="#_defining_a_partition_mapper"></a><a href="component-partition-mapper.html" class="page">Defining a partition mapper</a></h4>
 <div class="sect4">
 <h5 id="partition-mapper"><a class="anchor" href="#partition-mapper"></a>What is a partition mapper</h5>
 <div class="paragraph">
@@ -2225,7 +2223,7 @@ public MyProducer create() {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_a_href_component_producer_html_class_page_defining_the_producer_method_a"><a class="anchor" href="#_a_href_component_producer_html_class_page_defining_the_producer_method_a"></a><a href="component-producer.html" class="page">Defining the producer method</a></h4>
+<h4 id="_defining_the_producer_method"><a class="anchor" href="#_defining_the_producer_method"></a><a href="component-producer.html" class="page">Defining the producer method</a></h4>
 <div class="paragraph">
 <p>The <code>Producer</code> method defines the source logic of an input component. It handles the interaction with a physical source and produces input data for the processing flow.</p>
 </div>
@@ -2282,7 +2280,7 @@ public MyData produces() {
 <p>Before implementing the component logic and defining its layout and configurable fields, make sure you have specified its basic metadata, as detailed in <a href="component-registering.html" class="page">this document</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="_a_href_component_processor_html_class_page_defining_a_processor_a"><a class="anchor" href="#_a_href_component_processor_html_class_page_defining_a_processor_a"></a><a href="component-processor.html" class="page">Defining a processor</a></h4>
+<h4 id="_defining_a_processor"><a class="anchor" href="#_defining_a_processor"></a><a href="component-processor.html" class="page">Defining a processor</a></h4>
 <div class="sect4">
 <h5 id="component-type-processor"><a class="anchor" href="#component-type-processor"></a>What is a processor</h5>
 <div class="paragraph">
@@ -2560,7 +2558,7 @@ public class BulkProcessor implements Serializable {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_a_href_component_output_html_class_page_defining_an_output_a"><a class="anchor" href="#_a_href_component_output_html_class_page_defining_an_output_a"></a><a href="component-output.html" class="page">Defining an output</a></h4>
+<h4 id="_defining_an_output"><a class="anchor" href="#_defining_an_output"></a><a href="component-output.html" class="page">Defining an output</a></h4>
 <div class="sect4">
 <h5 id="_what_is_an_output"><a class="anchor" href="#_what_is_an_output"></a>What is an output</h5>
 <div class="paragraph">
@@ -2580,7 +2578,7 @@ public void store(final MyData data) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_a_href_component_combiner_html_class_page_defining_a_combiner_a"><a class="anchor" href="#_a_href_component_combiner_html_class_page_defining_a_combiner_a"></a><a href="component-combiner.html" class="page">Defining a combiner</a></h4>
+<h4 id="_defining_a_combiner"><a class="anchor" href="#_defining_a_combiner"></a><a href="component-combiner.html" class="page">Defining a combiner</a></h4>
 <div class="sect4">
 <h5 id="_what_is_a_combiner"><a class="anchor" href="#_what_is_a_combiner"></a>What is a combiner</h5>
 <div class="paragraph">
@@ -2656,7 +2654,7 @@ A combiner is the symmetric part of a partition mapper and allows to aggregate r
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Examples of option name:</caption>
 <colgroup>
 <col style="width: 50%;">
@@ -3751,7 +3749,7 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 <div class="paragraph">
 <p>Out of the box components are internationalized using the same location logic for the resource bundle. The supported keys are:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -3764,98 +3762,98 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${family}._displayName</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Display name of the family</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${family}.${category}._category</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Display name of the category <code>${category}</code> in the family <code>${family}</code>.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${family}.${configurationType}.${name}._displayName</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Display name of a configuration type (dataStore or dataSet). Important: this key is read from the family package (not the class package), to unify the localization of the metadata.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${family}.actions.${actionType}.${actionName}._displayName</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Display name of an action of the family. Specifying it is optional and will default on the action name if not set.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${family}.${component_name}._displayName</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Display name of the component (used by the GUIs)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${property_path}._displayName</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Display name of the option.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${property_path}._documentation</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Equivalent to <code>@Documentation("&#8230;&#8203;")</code> but supporting internationalization (see Maven/Gradle documentation goal/task).</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${property_path}._placeholder</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Placeholder of the option.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${simple_class_name}.${property_name}._displayName</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Display name of the option using its class name.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${simple_class_name}.${property_name}._documentation</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>See <code>${property_path}._documentation</code>.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${simple_class_name}.${property_name}._placeholder</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>See <code>${property_path}._placeholder</code>.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${enum_simple_class_name}.${enum_name}._displayName</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Display name of the <code>enum_name</code> value of the <code>enum_simple_class_name</code> enumeration.</p>
 </div></div></td>
 </tr>
@@ -4405,7 +4403,7 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 <div class="paragraph">
 <p>It is bound to the <code>process-classes</code> phase by default. When executed, it performs several validations that can be disabled by setting the corresponding flags to <code>false</code> in the <code>&lt;configuration&gt;</code> block of the execution:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -4524,7 +4522,7 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 &lt;/plugin&gt;</code></pre>
 </div>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -4544,17 +4542,17 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 <td class="tableblock halign-left valign-top"><p class="tableblock">level</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Level of the root title.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.documentation.level</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>2 (<code>==</code>)</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">output</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Output folder path. It is recommended to keep it to the default value.</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.documentation.output</code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${classes}/TALEND-INF/documentation.adoc</code></p>
 </div></div></td>
 </tr>
@@ -4972,7 +4970,7 @@ until a framework developper encourages you to do so.
 <div class="paragraph">
 <p>This command has some optional parameters:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -5059,7 +5057,7 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 <div class="paragraph">
 <p>The <code>deploy-in-studio</code> goal deploys the current component module into a local Talend Studio instance.</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <caption class="title">Table 2. Parameters</caption>
 <colgroup>
 <col>
@@ -5099,7 +5097,7 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 <p>The <code>help</code> goal displays help information on <code>talend-component-maven-plugin</code>.
 Call <code>mvn talend-component:help -Ddetail=true -Dgoal=&lt;goal-name&gt;</code> to display the parameter details of a specific goal.</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <caption class="title">Table 3. Parameters</caption>
 <colgroup>
 <col>
@@ -5249,7 +5247,7 @@ talendComponentKit {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wrapping_a_beam_i_o"><a class="anchor" href="#_wrapping_a_beam_i_o"></a>Wrapping a Beam I/O</h3>
+<h3 id="_wrapping_a_beam_io"><a class="anchor" href="#_wrapping_a_beam_io"></a>Wrapping a Beam I/O</h3>
 <div class="sect3">
 <h4 id="wrapping-a-beam-io__start"><a class="anchor" href="#wrapping-a-beam-io__start"></a>Limitations</h4>
 <div class="paragraph">
@@ -5601,7 +5599,7 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 <div class="paragraph">
 <p>For example:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -5660,7 +5658,7 @@ public class MyComponentConfiguration {
 <div class="paragraph">
 <p>The most common actions are the following ones:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 6.25%;">
 <col style="width: 6.25%;">
@@ -5682,7 +5680,7 @@ public class MyComponentConfiguration {
 <td class="tableblock halign-left valign-top"><p class="tableblock">DataStore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Checkable</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Exposes a way to ensure the datastore/connection works</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DataStore
 @Checkable
@@ -5703,7 +5701,7 @@ public class JdbcDataStore
 }</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HealthCheck
 public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastore) {
@@ -9505,7 +9503,7 @@ class TheComponentTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_secrets_passwords_and_maven"><a class="anchor" href="#_secrets_passwords_and_maven"></a>Secrets/Passwords and Maven</h3>
+<h3 id="_secretspasswords_and_maven"><a class="anchor" href="#_secretspasswords_and_maven"></a>Secrets/Passwords and Maven</h3>
 <div class="paragraph">
 <p>You can reuse Maven <code>settings.xml</code> server files, including the encrypted ones.
 <code>org.talend.sdk.component.maven.MavenDecrypter</code> allows yo to find a <code>username</code>/<code>password</code> from
@@ -9776,7 +9774,7 @@ In this version, the execution of the job is linear. Components are not executed
 </table>
 </div>
 <div class="sect4">
-<h5 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>Environment/Runner</h5>
+<h5 id="_environmentrunner"><a class="anchor" href="#_environmentrunner"></a>Environment/Runner</h5>
 <div class="paragraph">
 <p>Depending on the configuration, you can select the environment which you execute your job in.</p>
 </div>
@@ -9918,7 +9916,7 @@ You can use <code>ViewsMappingTransform</code> or <code>CoGroupByKeyResultMappin
 </div>
 </div>
 <div class="sect4">
-<h5 id="_converting_a_beam_io_into_a_component_i_o"><a class="anchor" href="#_converting_a_beam_io_into_a_component_i_o"></a>Converting a Beam.io into a component I/O</h5>
+<h5 id="_converting_a_beam_io_into_a_component_io"><a class="anchor" href="#_converting_a_beam_io_into_a_component_io"></a>Converting a Beam.io into a component I/O</h5>
 <div class="paragraph">
 <p>For simple inputs and outputs, you can get an automatic and transparent conversion of the Beam.io into an I/O component, if you decorated your <code>PTransform</code> with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
 </div>
@@ -10007,7 +10005,7 @@ Talend Component Kit comes with a predefined set of services that you can easily
 </div>
 <div class="sect3">
 <h4 id="_lisf_of_built_in_services"><a class="anchor" href="#_lisf_of_built_in_services"></a>Lisf of built-in services</h4>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -10020,112 +10018,112 @@ Talend Component Kit comes with a predefined set of services that you can easily
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.cache.LocalCache</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provides a small abstraction to cache data that does not need to be recomputed very often. Commonly used by actions for UI interactions.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.dependency.Resolver</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Allows to resolve a dependency from its Maven coordinates.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.bind.Jsonb</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-B instance. If your model is static and you don&#8217;t want to handle the serialization manually using JSON-P, you can inject that instance.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.spi.JsonProvider</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. Prefer other JSON-P instances if you don&#8217;t exactly know why you use this one.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.JsonBuilderFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one to optimize memory usage and speed.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.JsonWriterFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one to optimize memory usage and speed.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.JsonReaderFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one to optimize memory usage and speed.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.stream.JsonParserFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one to optimize memory usage and speed.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.stream.JsonGeneratorFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one to optimize memory usage and speed.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.configuration.LocalConfiguration</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Represents the local configuration that can be used during the design.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.dependency.Resolver</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Allows to resolve files from Maven coordinates (like <code>dependencies.txt</code> for component). Note that it assumes that the files are available in the component Maven repository.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.injector.Injector</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Utility to inject services in fields marked with <code>@Service</code>.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.factory.ObjectFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Allows to instantiate an object from its class name and properties.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.record.RecordBuilderFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Allows to instantiate a <a href="record-types.html#record" class="page">record</a>.</p>
 </div>
 <div class="paragraph">
@@ -10136,10 +10134,10 @@ Talend Component Kit comes with a predefined set of services that you can easily
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Every interface that extends <code>HttpClient</code> and that contains methods annotated with <code>@Request</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Lets you define an HTTP client in a declarative manner using an annotated interface.</p>
 </div>
 <div class="paragraph">
@@ -10249,7 +10247,7 @@ to avoid to transport more than desired during the job distribution.
 <div class="paragraph">
 <p>The HttpClient usage is described in this section by using the REST API example below. It is assume that it requires a basic authentication header.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -11083,7 +11081,7 @@ you can set the <code>maven.repository</code> value to <code>global</code> in <c
 <div class="paragraph">
 <p>The configuration is done in the <code>$STUDIO_HOME/configuration/config.ini</code> file.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -11142,7 +11140,7 @@ you can set the <code>maven.repository</code> value to <code>global</code> in <c
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">component.server.jul.forceConsole</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Adds a console handler to JUL to see logs in the console. This can be helpful in development because the formatting is clearer than the OSGi one in <code>workspace/.metadata/.log</code>.</p>
 </div>
 <div class="paragraph">
@@ -11900,7 +11898,7 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 </div>
 </div>
 <div class="sect5">
-<h6 id="_enabling_help_hints"><a class="anchor" href="#_enabling_help_hints"></a>Enabling help/hints</h6>
+<h6 id="_enabling_helphints"><a class="anchor" href="#_enabling_helphints"></a>Enabling help/hints</h6>
 <div class="paragraph">
 <p>It is possible to show under the inputs the help about each property.
 To do that, you must set a <code>PropertyContext.Configuration</code> instance on <code>UiSpecService</code> with the <code>includeDocumentationMetadata</code> attribute set to <code>true</code>.</p>
@@ -11979,7 +11977,7 @@ entry <code>bar</code>, then you will configure it this way:</p>
 <p>The configuration of the call is passed through a comma separated list in parenthesis as seen in previous snippet.
 The configuration entries are the following ones:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -12274,7 +12272,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -12289,50 +12287,50 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Query</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>action</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Query</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>family</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Query</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>language</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Query</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -12341,7 +12339,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -12356,48 +12354,48 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string, <a href="#_completionstagemapstringobject">CompletionStageMapStringObject</a> &gt; map</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>400</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>This response is returned when the action is null</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_proxyerrorpayload">ProxyErrorPayload</a></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>404</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>This response is returned when no action is found</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_proxyerrorpayload">ProxyErrorPayload</a></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>520</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>This response is returned when the action raise an unhandled error</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_proxyerrorpayload">ProxyErrorPayload</a></p>
 </div></div></td>
 </tr>
@@ -12453,7 +12451,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_responses_2"><a class="anchor" href="#_responses_2"></a>Responses</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -12468,15 +12466,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_nodes">Nodes</a></p>
 </div></div></td>
 </tr>
@@ -12526,7 +12524,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_parameters_2"><a class="anchor" href="#_parameters_2"></a>Parameters</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -12541,14 +12539,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -12557,7 +12555,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_responses_3"><a class="anchor" href="#_responses_3"></a>Responses</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -12572,15 +12570,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_nodes">Nodes</a></p>
 </div></div></td>
 </tr>
@@ -12639,7 +12637,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_parameters_3"><a class="anchor" href="#_parameters_3"></a>Parameters</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -12654,14 +12652,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -12670,7 +12668,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_responses_4"><a class="anchor" href="#_responses_4"></a>Responses</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -12685,15 +12683,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_uinode">UiNode</a></p>
 </div></div></td>
 </tr>
@@ -12752,7 +12750,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_parameters_4"><a class="anchor" href="#_parameters_4"></a>Parameters</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -12767,14 +12765,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -12783,7 +12781,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_responses_5"><a class="anchor" href="#_responses_5"></a>Responses</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -12798,15 +12796,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_completionstagebyte">CompletionStageByte[]</a></p>
 </div></div></td>
 </tr>
@@ -12856,7 +12854,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_parameters_5"><a class="anchor" href="#_parameters_5"></a>Parameters</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -12871,14 +12869,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -12887,7 +12885,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_responses_6"><a class="anchor" href="#_responses_6"></a>Responses</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -12902,15 +12900,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_entityref">EntityRef</a></p>
 </div></div></td>
 </tr>
@@ -12972,7 +12970,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_parameters_6"><a class="anchor" href="#_parameters_6"></a>Parameters</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -12987,14 +12985,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -13003,7 +13001,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_responses_7"><a class="anchor" href="#_responses_7"></a>Responses</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -13018,15 +13016,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_entityref">EntityRef</a></p>
 </div></div></td>
 </tr>
@@ -13088,7 +13086,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_parameters_7"><a class="anchor" href="#_parameters_7"></a>Parameters</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -13103,14 +13101,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>formId</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -13119,7 +13117,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect8">
 <h9 id="_responses_8"><a class="anchor" href="#_responses_8"></a>Responses</h9>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -13134,15 +13132,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_entityref">EntityRef</a></p>
 </div></div></td>
 </tr>
@@ -13236,7 +13234,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_entityref"><a class="anchor" href="#_entityref"></a>EntityRef</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
@@ -13251,14 +13249,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The identifier of the entity related to current request. It is generally thecreated entity of updated one.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -13267,7 +13265,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_jsonschema"><a class="anchor" href="#_jsonschema"></a>JsonSchema</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -13280,173 +13278,173 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>defaultValue</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>object</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>description</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>enumValues</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>items</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_jsonschema">JsonSchema</a></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>maxItems</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>integer (int32)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>maxLength</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>integer (int32)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>maximum</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>number (double)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>minItems</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>integer (int32)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>minLength</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>integer (int32)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>minimum</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>number (double)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>pattern</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>properties</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string, <a href="#_jsonschema">JsonSchema</a> &gt; map</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>ref</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>required</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>schema</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>title</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>uniqueItems</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
@@ -13455,7 +13453,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_namevalue"><a class="anchor" href="#_namevalue"></a>NameValue</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -13468,20 +13466,20 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>name</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>value</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -13490,7 +13488,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_node"><a class="anchor" href="#_node"></a>Node</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
@@ -13505,98 +13503,98 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>children</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The list of configuration reusing this one as a reference (can be created "next").</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>familyId</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The identifier of the family of this configuration.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>familyLabel</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The display name of the family of this configuration.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>icon</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The icon of this configuration. If you use an existing bundle (@talend/ui/icon), ensure it is present by default and if not do a request using the family on the related endpoint.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The identifier of this configuration/node.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>label</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The display name of this configuration.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>name</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The technical name of this node (it is human readable but not i18n friendly), useful for debug purposes.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>version</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The version of this configuration for the migration management.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>integer (int32)</p>
 </div></div></td>
 </tr>
@@ -13605,7 +13603,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_nodes"><a class="anchor" href="#_nodes"></a>Nodes</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
@@ -13620,14 +13618,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>nodes</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The list of nodes matching the request. The key is the node identifier.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string, <a href="#_node">Node</a> &gt; map</p>
 </div></div></td>
 </tr>
@@ -13636,7 +13634,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_option"><a class="anchor" href="#_option"></a>Option</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -13649,20 +13647,20 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>path</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -13671,7 +13669,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_parameter"><a class="anchor" href="#_parameter"></a>Parameter</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -13684,20 +13682,20 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>key</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>path</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -13706,7 +13704,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_proxyerrorpayload"><a class="anchor" href="#_proxyerrorpayload"></a>ProxyErrorPayload</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
@@ -13721,26 +13719,26 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>code</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The error code independently of the locale and not as precise as a message (not context aware).</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>message</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>A human readable message to help understanding the error</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -13749,7 +13747,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_trigger"><a class="anchor" href="#_trigger"></a>Trigger</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -13762,56 +13760,56 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>action</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>family</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>onEvent</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>options</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_option">Option</a> &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>parameters</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_parameter">Parameter</a> &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -13820,7 +13818,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_ui"><a class="anchor" href="#_ui"></a>Ui</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -13833,29 +13831,29 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>jsonSchema</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_jsonschema">JsonSchema</a></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>properties</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>object</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>uiSchema</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_uischema">UiSchema</a> &gt; array</p>
 </div></div></td>
 </tr>
@@ -13864,7 +13862,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_uinode"><a class="anchor" href="#_uinode"></a>UiNode</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
@@ -13879,26 +13877,26 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>metadata</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The metadata associated to the node if needed by the UI.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_node">Node</a></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>ui</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The ui specification corresponding to the requested node. It is literally the form representing this configuration.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_ui">Ui</a></p>
 </div></div></td>
 </tr>
@@ -13907,7 +13905,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_uischema"><a class="anchor" href="#_uischema"></a>UiSchema</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -13920,155 +13918,155 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>autoFocus</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>condition</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string, &lt; object &gt; array &gt; map</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>description</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>disabled</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>itemWidget</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>items</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_uischema">UiSchema</a> &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>key</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>options</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string, string &gt; map</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>placeholder</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>readOnly</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>required</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>restricted</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>title</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>titleMap</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_namevalue">NameValue</a> &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>triggers</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_trigger">Trigger</a> &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>widget</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -14522,7 +14520,7 @@ Converters are sorted respecting to the <code>@Priority</code> value. If the ann
 </div>
 </div>
 <div class="sect4">
-<h5 id="_enabling_help_hints_2"><a class="anchor" href="#_enabling_help_hints_2"></a>Enabling help/hints</h5>
+<h5 id="_enabling_helphints_2"><a class="anchor" href="#_enabling_helphints_2"></a>Enabling help/hints</h5>
 <div class="paragraph">
 <p>It is possible to show under the inputs the help about each property.
 To do that, you must set a <code>PropertyContext.Configuration</code> instance on <code>UiSpecService</code> with the <code>includeDocumentationMetadata</code> attribute set to <code>true</code>.</p>
@@ -14601,7 +14599,7 @@ entry <code>bar</code>, then you will configure it this way:</p>
 <p>The configuration of the call is passed through a comma separated list in parenthesis as seen in previous snippet.
 The configuration entries are the following ones:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -14896,7 +14894,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_parameters_8"><a class="anchor" href="#_parameters_8"></a>Parameters</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -14911,50 +14909,50 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Query</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>action</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Query</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>family</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Query</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>language</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Query</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -14963,7 +14961,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_responses_9"><a class="anchor" href="#_responses_9"></a>Responses</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -14978,48 +14976,48 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string, <a href="#_completionstagemapstringobject">CompletionStageMapStringObject</a> &gt; map</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>400</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>This response is returned when the action is null</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_proxyerrorpayload">ProxyErrorPayload</a></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>404</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>This response is returned when no action is found</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_proxyerrorpayload">ProxyErrorPayload</a></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>520</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>This response is returned when the action raise an unhandled error</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_proxyerrorpayload">ProxyErrorPayload</a></p>
 </div></div></td>
 </tr>
@@ -15075,7 +15073,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_responses_10"><a class="anchor" href="#_responses_10"></a>Responses</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -15090,15 +15088,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_nodes">Nodes</a></p>
 </div></div></td>
 </tr>
@@ -15148,7 +15146,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_parameters_9"><a class="anchor" href="#_parameters_9"></a>Parameters</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -15163,14 +15161,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -15179,7 +15177,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_responses_11"><a class="anchor" href="#_responses_11"></a>Responses</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -15194,15 +15192,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_nodes">Nodes</a></p>
 </div></div></td>
 </tr>
@@ -15261,7 +15259,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_parameters_10"><a class="anchor" href="#_parameters_10"></a>Parameters</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -15276,14 +15274,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -15292,7 +15290,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_responses_12"><a class="anchor" href="#_responses_12"></a>Responses</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -15307,15 +15305,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_uinode">UiNode</a></p>
 </div></div></td>
 </tr>
@@ -15374,7 +15372,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_parameters_11"><a class="anchor" href="#_parameters_11"></a>Parameters</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -15389,14 +15387,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -15405,7 +15403,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_responses_13"><a class="anchor" href="#_responses_13"></a>Responses</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -15420,15 +15418,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_completionstagebyte">CompletionStageByte[]</a></p>
 </div></div></td>
 </tr>
@@ -15478,7 +15476,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_parameters_12"><a class="anchor" href="#_parameters_12"></a>Parameters</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -15493,14 +15491,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -15509,7 +15507,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_responses_14"><a class="anchor" href="#_responses_14"></a>Responses</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -15524,15 +15522,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_entityref">EntityRef</a></p>
 </div></div></td>
 </tr>
@@ -15594,7 +15592,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_parameters_13"><a class="anchor" href="#_parameters_13"></a>Parameters</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -15609,14 +15607,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -15625,7 +15623,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_responses_15"><a class="anchor" href="#_responses_15"></a>Responses</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -15640,15 +15638,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_entityref">EntityRef</a></p>
 </div></div></td>
 </tr>
@@ -15710,7 +15708,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_parameters_14"><a class="anchor" href="#_parameters_14"></a>Parameters</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 22.2222%;">
 <col style="width: 33.3333%;">
@@ -15725,14 +15723,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>Path</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>formId</strong><br>
 <em>required</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -15741,7 +15739,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect7">
 <h8 id="_responses_16"><a class="anchor" href="#_responses_16"></a>Responses</h8>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 10%;">
 <col style="width: 70%;">
@@ -15756,15 +15754,15 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>200</strong></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>successful operation<br>
 <strong>Headers</strong> : <br>
 <code>Talend-Component-Server-Error</code> (boolean) : This header indicate the error origin. true indicate an error from the component server, false indicate that the error is from this proxy.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_entityref">EntityRef</a></p>
 </div></div></td>
 </tr>
@@ -15858,7 +15856,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_entityref"><a class="anchor" href="#_entityref"></a>EntityRef</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
@@ -15873,14 +15871,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The identifier of the entity related to current request. It is generally thecreated entity of updated one.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -15889,7 +15887,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_jsonschema"><a class="anchor" href="#_jsonschema"></a>JsonSchema</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -15902,173 +15900,173 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>defaultValue</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>object</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>description</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>enumValues</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>items</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_jsonschema">JsonSchema</a></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>maxItems</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>integer (int32)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>maxLength</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>integer (int32)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>maximum</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>number (double)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>minItems</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>integer (int32)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>minLength</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>integer (int32)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>minimum</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>number (double)</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>pattern</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>properties</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string, <a href="#_jsonschema">JsonSchema</a> &gt; map</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>ref</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>required</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>schema</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>title</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>uniqueItems</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
@@ -16077,7 +16075,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_namevalue"><a class="anchor" href="#_namevalue"></a>NameValue</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -16090,20 +16088,20 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>name</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>value</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -16112,7 +16110,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_node"><a class="anchor" href="#_node"></a>Node</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
@@ -16127,98 +16125,98 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>children</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The list of configuration reusing this one as a reference (can be created "next").</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>familyId</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The identifier of the family of this configuration.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>familyLabel</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The display name of the family of this configuration.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>icon</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The icon of this configuration. If you use an existing bundle (@talend/ui/icon), ensure it is present by default and if not do a request using the family on the related endpoint.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>id</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The identifier of this configuration/node.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>label</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The display name of this configuration.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>name</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The technical name of this node (it is human readable but not i18n friendly), useful for debug purposes.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>version</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The version of this configuration for the migration management.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>integer (int32)</p>
 </div></div></td>
 </tr>
@@ -16227,7 +16225,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_nodes"><a class="anchor" href="#_nodes"></a>Nodes</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
@@ -16242,14 +16240,14 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>nodes</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The list of nodes matching the request. The key is the node identifier.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string, <a href="#_node">Node</a> &gt; map</p>
 </div></div></td>
 </tr>
@@ -16258,7 +16256,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_option"><a class="anchor" href="#_option"></a>Option</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -16271,20 +16269,20 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>path</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -16293,7 +16291,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_parameter"><a class="anchor" href="#_parameter"></a>Parameter</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -16306,20 +16304,20 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>key</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>path</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -16328,7 +16326,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_proxyerrorpayload"><a class="anchor" href="#_proxyerrorpayload"></a>ProxyErrorPayload</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
@@ -16343,26 +16341,26 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>code</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The error code independently of the locale and not as precise as a message (not context aware).</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>message</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>A human readable message to help understanding the error</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -16371,7 +16369,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_trigger"><a class="anchor" href="#_trigger"></a>Trigger</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -16384,56 +16382,56 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>action</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>family</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>onEvent</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>options</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_option">Option</a> &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>parameters</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_parameter">Parameter</a> &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
@@ -16442,7 +16440,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_ui"><a class="anchor" href="#_ui"></a>Ui</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -16455,29 +16453,29 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>jsonSchema</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_jsonschema">JsonSchema</a></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>properties</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>object</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>uiSchema</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_uischema">UiSchema</a> &gt; array</p>
 </div></div></td>
 </tr>
@@ -16486,7 +16484,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_uinode"><a class="anchor" href="#_uinode"></a>UiNode</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
@@ -16501,26 +16499,26 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>metadata</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The metadata associated to the node if needed by the UI.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_node">Node</a></p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>ui</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>The ui specification corresponding to the requested node. It is literally the form representing this configuration.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><a href="#_ui">Ui</a></p>
 </div></div></td>
 </tr>
@@ -16529,7 +16527,7 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </div>
 <div class="sect6">
 <h7 id="_uischema"><a class="anchor" href="#_uischema"></a>UiSchema</h7>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 42.8571%;">
 <col style="width: 57.1429%;">
@@ -16542,155 +16540,155 @@ references are automatically initialized if you use <code>PropertiesService#filt
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>autoFocus</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>condition</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string, &lt; object &gt; array &gt; map</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>description</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>disabled</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>itemWidget</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>items</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_uischema">UiSchema</a> &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>key</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>options</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; string, string &gt; map</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>placeholder</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>readOnly</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>required</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>restricted</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>boolean</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>title</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>titleMap</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_namevalue">NameValue</a> &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>triggers</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>&lt; <a href="#_trigger">Trigger</a> &gt; array</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>type</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p><strong>widget</strong><br>
 <em>optional</em></p>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div><div class="paragraph">
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
 <p>string</p>
 </div></div></td>
 </tr>

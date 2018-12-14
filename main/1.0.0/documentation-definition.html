@@ -6,11 +6,9 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Components Definitions Documentation</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.4/index.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-12T17:00:35.417Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-14T21:12:32.715Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@talend/bootstrap-theme@0.200.1/dist/bootstrap.css">
@@ -1241,12 +1239,12 @@ with an object) don&#8217;t use it.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_constraints_and_validation_on_the_configuration_input"><a class="anchor" href="#_constraints_and_validation_on_the_configuration_input"></a>Constraints and validation on the configuration/input</h3>
+<h3 id="_constraints_and_validation_on_the_configurationinput"><a class="anchor" href="#_constraints_and_validation_on_the_configurationinput"></a>Constraints and validation on the configuration/input</h3>
 <div class="paragraph">
 <p>It is common to need to add as metadata a field is required, another has a minimum size etc. This is done with the
 validation in <code>org.talend.sdk.component.api.configuration.constraint</code> package:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -1370,7 +1368,7 @@ are the:</p>
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -1478,7 +1476,7 @@ into the targeted platforms (studio, web applications&#8230;&#8203;)</p>
 <div class="paragraph">
 <p>It can be needed to define a binding between properties, a set of annotations allows to do it:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -1534,7 +1532,7 @@ the previous table uses the web keys.
 A simple example is a password value must be hidden and not a simple clear input box. For these cases - when the component developper
 wants to influence the UI rendering - you can use a particular set of annotations:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -1566,17 +1564,12 @@ wants to influence the UI rendering - you can use a particular set of annotation
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.GridLayout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Advanced layout to place properties by row, this is exclusive with <code>@OptionsOrder</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::value1::value":"first|{"ui::gridlayout::value1::value":"first\</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::value1::value":"first|second,third","ui::gridlayout::value2::value":"first|second,third"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">second,third","ui::gridlayout::value2::value":"first|second,third","ui::gridlayout::value2::value":"first\</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">second,third"}</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.GridLayouts</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allow to configure multiple grid layouts on the same class, qualified with a classifier (name)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::Advanced::value":"another","ui::gridlayout::Main::value":"first|{"ui::gridlayout::Advanced::value":"another","ui::gridlayout::Main::value":"first\</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">second,third"}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::Advanced::value":"another","ui::gridlayout::Main::value":"first|second,third"}</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.HorizontalLayout</p></td>
@@ -1643,7 +1636,7 @@ target support should cover <code>org.talend.core.model.process.EParameterFieldT
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_widgets"><a class="anchor" href="#_widgets"></a>Widgets</h3>
-<table class="tableblock frame-all grid-all table gallery">
+<table class="tableblock frame-all grid-all fit-content table gallery">
 <colgroup>
 <col>
 <col>
@@ -1661,18 +1654,18 @@ target support should cover <code>org.talend.core.model.process.EParameterFieldT
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Input/Text</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 String config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/input.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/input.png" alt="Studio Input"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/input.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/input.png" alt="Web Input"></a>
 </div>
@@ -1680,19 +1673,19 @@ String config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Password</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 @Credential
 String config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/password.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/password.png" alt="Studio Password"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/password.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/password.png" alt="Web Password"></a>
 </div>
@@ -1700,19 +1693,19 @@ String config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Textarea</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 @Textarea
 String config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/textarea.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/textarea.png" alt="Studio Textarea"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/textarea.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/textarea.png" alt="Web Textarea"></a>
 </div>
@@ -1720,18 +1713,18 @@ String config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Checkbox</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 Boolean config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/checkbox.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/checkbox.png" alt="Studio Checkbox"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/checkbox.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/checkbox.png" alt="Web Checkbox"></a>
 </div>
@@ -1739,7 +1732,7 @@ Boolean config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 @Proposable("valuesProvider")
@@ -1753,12 +1746,12 @@ public Values vendors(){
  }</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/list.png" alt="Studio List"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/list.png" alt="Web List"></a>
 </div>
@@ -1766,7 +1759,7 @@ public Values vendors(){
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 ActionEnum config;
@@ -1776,12 +1769,12 @@ enum ActionEnum {Delete,
     Update}</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/list.png" alt="Studio List"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/list.png" alt="Web List"></a>
 </div>
@@ -1789,18 +1782,18 @@ enum ActionEnum {Delete,
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Table</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 Object config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/table.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/table.png" alt="Studio Table"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/table.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/table.png" alt="Web Table"></a>
 </div>
@@ -1808,19 +1801,19 @@ Object config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Code</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Code("java")
 @Option
 String config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/javaCode.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/javaCode.png" alt="Studio Code"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/javaCode.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/javaCode.png" alt="Web Code"></a>
 </div>
@@ -1828,19 +1821,19 @@ String config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Schema</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 @Structure
 List&lt;String&gt; config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/schema.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/schema.png" alt="Studio Schema"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/schema.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/schema.png" alt="Web Schema"></a>
 </div>
@@ -1851,7 +1844,7 @@ List&lt;String&gt; config;</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_validations"><a class="anchor" href="#_validations"></a>Validations</h3>
-<table class="tableblock frame-all grid-all table gallery">
+<table class="tableblock frame-all grid-all fit-content table gallery">
 <colgroup>
 <col>
 <col>
@@ -1869,7 +1862,7 @@ List&lt;String&gt; config;</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Property validation</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/** configuration class */
 @Option
@@ -1882,12 +1875,12 @@ ValidationResult doValidate(String url) {
 }</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_property.png" alt="Studio Code"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_property.png" alt="Web Code"></a>
 </div>
@@ -1895,7 +1888,7 @@ ValidationResult doValidate(String url) {
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Property validation with Pattern</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/** configuration class */
 @Option
@@ -1903,12 +1896,12 @@ ValidationResult doValidate(String url) {
 String username;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_pattern.png" alt="Studio Code"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_pattern.png" alt="Web Code"></a>
 </div>
@@ -1916,7 +1909,7 @@ String username;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Data store validation</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Datastore
 @Checkable
@@ -1931,12 +1924,12 @@ public HealthCheckStatus testConnection(){
 }</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_datastore.png" alt="Studio Code"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_datastore.png" alt="Web Code"></a>
 </div>
@@ -2001,7 +1994,7 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 <p>Components can require a few metadata to be integrated in Talend Studio or Cloud platform. Here is how to provide these information.
 These metadata are set on the component class and belongs to <code>org.talend.sdk.component.api.component</code> package.</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -2158,7 +2151,7 @@ The location of the properties file should be in the same package as the related
 <p>Out of the box components are internationalized using the same location logic for the resource bundle and here is the list
 of supported keys:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>

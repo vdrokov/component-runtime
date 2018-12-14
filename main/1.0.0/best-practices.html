@@ -6,11 +6,9 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Best Practices</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.4/best-practices.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-12T17:00:35.379Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-14T21:12:32.677Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@talend/bootstrap-theme@0.200.1/dist/bootstrap.css">
@@ -654,7 +652,7 @@ it is likely you will pass it through your components which can be serialized.</
 </div>
 </div>
 <div class="sect1">
-<h2 id="_i_o_configuration"><a class="anchor" href="#_i_o_configuration"></a>I/O configuration</h2>
+<h2 id="_io_configuration"><a class="anchor" href="#_io_configuration"></a>I/O configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The first step to build a component is to identify the way it must be configured.</p>
@@ -675,7 +673,7 @@ it is likely you will pass it through your components which can be serialized.</
 <div class="paragraph">
 <p>Here are some examples to let you get an idea of what you put in each categories:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -752,7 +750,7 @@ will take the mapping between the input and output model:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_i_o_recommendations"><a class="anchor" href="#_i_o_recommendations"></a>I/O recommendations</h2>
+<h2 id="_io_recommendations"><a class="anchor" href="#_io_recommendations"></a>I/O recommendations</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>I/O are particular because they can be linked to a set of actions. It is recommended to wire all the ones you can apply
@@ -761,7 +759,7 @@ to ensure the consumers of your component can provide a rich experience to their
 <div class="paragraph">
 <p>Here are the most common ones:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 6.25%;">
 <col style="width: 6.25%;">
@@ -783,7 +781,7 @@ to ensure the consumers of your component can provide a rich experience to their
 <td class="tableblock halign-left valign-top"><p class="tableblock">DataStore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Checkable</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Expose a way to ensure the datastore/connection works</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DataStore
 @Checkable
@@ -804,7 +802,7 @@ public class JdbcDataStore
 }</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HealthCheck
 public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastore) {
@@ -822,7 +820,7 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </div>
 </div>
 <div class="sect1">
-<h2 id="_i_o_limitations"><a class="anchor" href="#_i_o_limitations"></a>I/O limitations</h2>
+<h2 id="_io_limitations"><a class="anchor" href="#_io_limitations"></a>I/O limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Until the studio integration is complete, it is recommended to limit processors to 1 input.</p>
@@ -950,7 +948,7 @@ public CompletionList findDrivers() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_don_t_forget_the_component_representation"><a class="anchor" href="#_don_t_forget_the_component_representation"></a>Don&#8217;t forget the component representation</h3>
+<h3 id="_dont_forget_the_component_representation"><a class="anchor" href="#_dont_forget_the_component_representation"></a>Don&#8217;t forget the component representation</h3>
 <div class="paragraph">
 <p>Each component must have its own icon:</p>
 </div>
@@ -1022,7 +1020,7 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect1">
-<h2 id="_don_t_forget_to_test"><a class="anchor" href="#_don_t_forget_to_test"></a>Don&#8217;t forget to test</h2>
+<h2 id="_dont_forget_to_test"><a class="anchor" href="#_dont_forget_to_test"></a>Don&#8217;t forget to test</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Testing the components is crucial, you can use unit tests and simple standalone JUnit but it is highly recommended

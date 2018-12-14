@@ -6,11 +6,9 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.4/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-12T17:00:35.310Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-14T21:12:32.596Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch.min.css" integrity="sha256-vusmcqkVvKdkwoueSJZLlO9y2P+Lp9fN3WwQUV9Uwfw=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/2.8.0/instantsearch-theme-algolia.min.css" integrity="sha256-ZqsS4QagZnfArbOyheCO4qVjzzsMbg/WMvf5tLtId/Q=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@talend/bootstrap-theme@0.200.1/dist/bootstrap.css">
@@ -854,7 +852,7 @@ can use `@Icon(value = CUSTOM, custom = "&#8230;&#8203;") to use a custom icon f
 </li>
 <li>
 <p><strong>Advanced:</strong>
-<a href="documentation-testing.html" class="page">Testing</a></p>
+<a href="#documentation-testing.adoc">Testing</a></p>
 </li>
 </ul>
 </div>
@@ -1562,12 +1560,12 @@ with an object) don&#8217;t use it.
 </div>
 </div>
 <div class="sect4">
-<h5 id="_constraints_and_validation_on_the_configuration_input"><a class="anchor" href="#_constraints_and_validation_on_the_configuration_input"></a>Constraints and validation on the configuration/input</h5>
+<h5 id="_constraints_and_validation_on_the_configurationinput"><a class="anchor" href="#_constraints_and_validation_on_the_configurationinput"></a>Constraints and validation on the configuration/input</h5>
 <div class="paragraph">
 <p>It is common to need to add as metadata a field is required, another has a minimum size etc. This is done with the
 validation in <code>org.talend.sdk.component.api.configuration.constraint</code> package:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -1691,7 +1689,7 @@ are the:</p>
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -1799,7 +1797,7 @@ into the targeted platforms (studio, web applications&#8230;&#8203;)</p>
 <div class="paragraph">
 <p>It can be needed to define a binding between properties, a set of annotations allows to do it:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -1855,7 +1853,7 @@ the previous table uses the web keys.
 A simple example is a password value must be hidden and not a simple clear input box. For these cases - when the component developper
 wants to influence the UI rendering - you can use a particular set of annotations:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -1887,17 +1885,12 @@ wants to influence the UI rendering - you can use a particular set of annotation
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.GridLayout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Advanced layout to place properties by row, this is exclusive with <code>@OptionsOrder</code>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::value1::value":"first|{"ui::gridlayout::value1::value":"first\</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::value1::value":"first|second,third","ui::gridlayout::value2::value":"first|second,third"}</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">second,third","ui::gridlayout::value2::value":"first|second,third","ui::gridlayout::value2::value":"first\</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">second,third"}</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.GridLayouts</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allow to configure multiple grid layouts on the same class, qualified with a classifier (name)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::Advanced::value":"another","ui::gridlayout::Main::value":"first|{"ui::gridlayout::Advanced::value":"another","ui::gridlayout::Main::value":"first\</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">second,third"}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{"ui::gridlayout::Advanced::value":"another","ui::gridlayout::Main::value":"first|second,third"}</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">@org.talend.sdk.component.api.configuration.ui.layout.HorizontalLayout</p></td>
@@ -1962,7 +1955,7 @@ target support should cover <code>org.talend.core.model.process.EParameterFieldT
 <h4 id="_gallery"><a class="anchor" href="#_gallery"></a>Gallery</h4>
 <div class="sect4">
 <h5 id="_widgets"><a class="anchor" href="#_widgets"></a>Widgets</h5>
-<table class="tableblock frame-all grid-all table gallery">
+<table class="tableblock frame-all grid-all fit-content table gallery">
 <colgroup>
 <col>
 <col>
@@ -1980,18 +1973,18 @@ target support should cover <code>org.talend.core.model.process.EParameterFieldT
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Input/Text</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 String config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/input.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/input.png" alt="Studio Input"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/input.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/input.png" alt="Web Input"></a>
 </div>
@@ -1999,19 +1992,19 @@ String config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Password</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 @Credential
 String config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/password.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/password.png" alt="Studio Password"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/password.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/password.png" alt="Web Password"></a>
 </div>
@@ -2019,19 +2012,19 @@ String config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Textarea</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 @Textarea
 String config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/textarea.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/textarea.png" alt="Studio Textarea"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/textarea.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/textarea.png" alt="Web Textarea"></a>
 </div>
@@ -2039,18 +2032,18 @@ String config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Checkbox</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 Boolean config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/checkbox.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/checkbox.png" alt="Studio Checkbox"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/checkbox.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/checkbox.png" alt="Web Checkbox"></a>
 </div>
@@ -2058,7 +2051,7 @@ Boolean config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 @Proposable("valuesProvider")
@@ -2072,12 +2065,12 @@ public Values vendors(){
  }</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/list.png" alt="Studio List"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/list.png" alt="Web List"></a>
 </div>
@@ -2085,7 +2078,7 @@ public Values vendors(){
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 ActionEnum config;
@@ -2095,12 +2088,12 @@ enum ActionEnum {Delete,
     Update}</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/list.png" alt="Studio List"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/list.png" alt="Web List"></a>
 </div>
@@ -2108,18 +2101,18 @@ enum ActionEnum {Delete,
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Table</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 Object config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/table.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/table.png" alt="Studio Table"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/table.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/table.png" alt="Web Table"></a>
 </div>
@@ -2127,19 +2120,19 @@ Object config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Code</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Code("java")
 @Option
 String config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/javaCode.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/javaCode.png" alt="Studio Code"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/javaCode.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/javaCode.png" alt="Web Code"></a>
 </div>
@@ -2147,19 +2140,19 @@ String config;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Schema</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 @Structure
 List&lt;String&gt; config;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/schema.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/schema.png" alt="Studio Schema"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/schema.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/schema.png" alt="Web Schema"></a>
 </div>
@@ -2170,7 +2163,7 @@ List&lt;String&gt; config;</code></pre>
 </div>
 <div class="sect4">
 <h5 id="_validations"><a class="anchor" href="#_validations"></a>Validations</h5>
-<table class="tableblock frame-all grid-all table gallery">
+<table class="tableblock frame-all grid-all fit-content table gallery">
 <colgroup>
 <col>
 <col>
@@ -2188,7 +2181,7 @@ List&lt;String&gt; config;</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Property validation</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/** configuration class */
 @Option
@@ -2201,12 +2194,12 @@ ValidationResult doValidate(String url) {
 }</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_property.png" alt="Studio Code"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_property.png" alt="Web Code"></a>
 </div>
@@ -2214,7 +2207,7 @@ ValidationResult doValidate(String url) {
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Property validation with Pattern</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/** configuration class */
 @Option
@@ -2222,12 +2215,12 @@ ValidationResult doValidate(String url) {
 String username;</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_pattern.png" alt="Studio Code"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_pattern.png" alt="Web Code"></a>
 </div>
@@ -2235,7 +2228,7 @@ String username;</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Data store validation</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Datastore
 @Checkable
@@ -2250,12 +2243,12 @@ public HealthCheckStatus testConnection(){
 }</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/studio/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_datastore.png" alt="Studio Code"></a>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <a class="image" href="_images/gallery/widgets/web/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_datastore.png" alt="Web Code"></a>
 </div>
@@ -2318,7 +2311,7 @@ import org.talend.sdk.component.api.component.Components;</code></pre>
 <p>Components can require a few metadata to be integrated in Talend Studio or Cloud platform. Here is how to provide these information.
 These metadata are set on the component class and belongs to <code>org.talend.sdk.component.api.component</code> package.</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -2473,7 +2466,7 @@ The location of the properties file should be in the same package as the related
 <p>Out of the box components are internationalized using the same location logic for the resource bundle and here is the list
 of supported keys:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -2813,7 +2806,7 @@ we just talked about.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_code_maven_shade_plugin_code_extensions"><a class="anchor" href="#_code_maven_shade_plugin_code_extensions"></a><code>maven-shade-plugin</code> extensions</h6>
+<h6 id="_maven_shade_plugin_extensions"><a class="anchor" href="#_maven_shade_plugin_extensions"></a><code>maven-shade-plugin</code> extensions</h6>
 <div class="paragraph">
 <p>Here is a final job/application bundle based on maven shade plugin:</p>
 </div>
@@ -4695,7 +4688,7 @@ with the <code>compile</code> and <code>runtime</code> dependencies to let the c
 <p>By default it will be bound to <code>process-classes</code> phase. When executing it will do several validations which can be switched off
 adding the corresponding flags to <code>false</code> in the <code>&lt;configuration&gt;</code> block of the execution:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -4780,7 +4773,7 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 &lt;/plugin&gt;</code></pre>
 </div>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -4797,16 +4790,16 @@ adding the corresponding flags to <code>false</code> in the <code>&lt;configurat
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">level</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Which level are the root title</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>2 which means <code>==</code></p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">output</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Where to store the output, it is <strong>NOT</strong> recommended to change it</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>${classes}/TALEND-INF/documentation.adoc</code></p>
 </div></div></td>
 </tr>
@@ -5344,7 +5337,7 @@ public interface Translator {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_providing_some_actions_for_consumers_clients"><a class="anchor" href="#_providing_some_actions_for_consumers_clients"></a>Providing some actions for consumers/clients</h4>
+<h4 id="_providing_some_actions_for_consumersclients"><a class="anchor" href="#_providing_some_actions_for_consumersclients"></a>Providing some actions for consumers/clients</h4>
 <div class="paragraph">
 <p>In some cases you will desire to add some actions unrelated to the runtime. A simple example
 is to enable clients - the users of the plugin/library - to test if a connection works. Even more concretely: <em>does my database is up?</em>.</p>
@@ -5428,7 +5421,7 @@ service is passed to constructor automatically, it can be used as a bean. Only c
 <p>Some actions are that common and need a clear contract so they are defined as API first citizen, this is the case for wizards or healthchecks
 for instance. Here is the list of all actions:</p>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -5493,7 +5486,7 @@ for instance. Here is the list of all actions:</p>
 <div class="paragraph">
 <p>Here is the list:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -5506,80 +5499,80 @@ for instance. Here is the list of all actions:</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.cache.LocalCache</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provides a small abstraction to cache data which don&#8217;t need to be recomputed very often. Commonly used by actions for the UI interactions.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.dependency.Resolver</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Allows to resolve a dependency from its Maven coordinates.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.bind.Jsonb</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-B instance. If your model is static and you don&#8217;t want to handle the serialization manually using JSON-P you can inject that instance.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.spi.JsonProvider</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. Prefer other JSON-P instances if you don&#8217;t exactly know why you use this one.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.JsonBuilderFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one for memory/speed optimizations.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.JsonWriterFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one for memory/speed optimizations.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.JsonReaderFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one for memory/speed optimizations.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.stream.JsonParserFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one for memory/speed optimizations.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>javax.json.stream.JsonGeneratorFactory</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A JSON-P instance. It is recommended to use this one instead of a custom one for memory/speed optimizations.</p>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.configuration.LocalConfiguration</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Represents the local configuration which can be used during the design.</p>
 </div>
 <div class="admonitionblock warning">
@@ -5608,10 +5601,10 @@ you can also use the local cache as an interceptor with <code>@Cached</code>
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Every interface that extends <code>HttpClient</code> and that contains methods annotated with <code>@Request</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>This let you define an http client in a declarative manner using an annotated interface.</p>
 </div>
 <div class="admonitionblock tip">
@@ -5648,7 +5641,7 @@ instances over custom ones.
 <div class="paragraph">
 <p>Let assume that we have a REST API defined like below, and that it requires a basic authentication header.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -5998,7 +5991,7 @@ may be independents.
 </table>
 </div>
 <div class="sect5">
-<h6 id="_environment_runner"><a class="anchor" href="#_environment_runner"></a>Environment/Runner</h6>
+<h6 id="_environmentrunner"><a class="anchor" href="#_environmentrunner"></a>Environment/Runner</h6>
 <div class="paragraph">
 <p>Depending the configuration you can select which environment you execute your job in.</p>
 </div>
@@ -6080,7 +6073,7 @@ and the <code>branch Name</code>.</p>
 <p>For <a href="https://beam.apache.org/">beam</a> case, you need to rely on beam pipeline definition and use <code>component-runtime-beam</code> dependency which provides Beam bridges.</p>
 </div>
 <div class="sect5">
-<h6 id="_i_o"><a class="anchor" href="#_i_o"></a>I/O</h6>
+<h6 id="_io"><a class="anchor" href="#_io"></a>I/O</h6>
 <div class="paragraph">
 <p><code>org.talend.sdk.component.runtime.beam.TalendIO</code> provides a way to convert a partition mapper or a processor to an input
  or processor
@@ -6147,7 +6140,7 @@ but materialized as a <code>JsonObject</code>. Input data must be of type <code>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_convert_a_beam_io_in_a_component_i_o"><a class="anchor" href="#_convert_a_beam_io_in_a_component_i_o"></a>Convert a Beam.io in a component I/O</h6>
+<h6 id="_convert_a_beam_io_in_a_component_io"><a class="anchor" href="#_convert_a_beam_io_in_a_component_io"></a>Convert a Beam.io in a component I/O</h6>
 <div class="paragraph">
 <p>For simple I/O you can get automatic conversion of the Beam.io to a component I/O transparently if you decorated your <code>PTransform</code>
 with <code>@PartitionMapper</code> or <code>@Processor</code>.</p>
@@ -7109,7 +7102,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -7274,7 +7267,7 @@ class TheComponentTest {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_secrets_passwords_and_maven"><a class="anchor" href="#_secrets_passwords_and_maven"></a>Secrets/Passwords and Maven</h4>
+<h4 id="_secretspasswords_and_maven"><a class="anchor" href="#_secretspasswords_and_maven"></a>Secrets/Passwords and Maven</h4>
 <div class="paragraph">
 <p>If you desire you can reuse your Maven <code>settings.xml</code> servers - including the encrypted ones.
 <code>org.talend.sdk.component.maven.MavenDecrypter</code> will give you the ability to find a server <code>username</code>/<code>password</code> from
@@ -8289,7 +8282,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -8454,7 +8447,7 @@ class TheComponentTest {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_secrets_passwords_and_maven_2"><a class="anchor" href="#_secrets_passwords_and_maven_2"></a>Secrets/Passwords and Maven</h3>
+<h3 id="_secretspasswords_and_maven_2"><a class="anchor" href="#_secretspasswords_and_maven_2"></a>Secrets/Passwords and Maven</h3>
 <div class="paragraph">
 <p>If you desire you can reuse your Maven <code>settings.xml</code> servers - including the encrypted ones.
 <code>org.talend.sdk.component.maven.MavenDecrypter</code> will give you the ability to find a server <code>username</code>/<code>password</code> from
@@ -8604,7 +8597,7 @@ it is likely you will pass it through your components which can be serialized.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="_i_o_configuration"><a class="anchor" href="#_i_o_configuration"></a>I/O configuration</h3>
+<h3 id="_io_configuration"><a class="anchor" href="#_io_configuration"></a>I/O configuration</h3>
 <div class="paragraph">
 <p>The first step to build a component is to identify the way it must be configured.</p>
 </div>
@@ -8624,7 +8617,7 @@ it is likely you will pass it through your components which can be serialized.</
 <div class="paragraph">
 <p>Here are some examples to let you get an idea of what you put in each categories:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -8698,7 +8691,7 @@ will take the mapping between the input and output model:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_i_o_recommendations"><a class="anchor" href="#_i_o_recommendations"></a>I/O recommendations</h3>
+<h3 id="_io_recommendations"><a class="anchor" href="#_io_recommendations"></a>I/O recommendations</h3>
 <div class="paragraph">
 <p>I/O are particular because they can be linked to a set of actions. It is recommended to wire all the ones you can apply
 to ensure the consumers of your component can provide a rich experience to their users.</p>
@@ -8706,7 +8699,7 @@ to ensure the consumers of your component can provide a rich experience to their
 <div class="paragraph">
 <p>Here are the most common ones:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 6.25%;">
 <col style="width: 6.25%;">
@@ -8728,7 +8721,7 @@ to ensure the consumers of your component can provide a rich experience to their
 <td class="tableblock halign-left valign-top"><p class="tableblock">DataStore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Checkable</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Expose a way to ensure the datastore/connection works</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DataStore
 @Checkable
@@ -8749,7 +8742,7 @@ public class JdbcDataStore
 }</code></pre>
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HealthCheck
 public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastore) {
@@ -8766,7 +8759,7 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
 </table>
 </div>
 <div class="sect2">
-<h3 id="_i_o_limitations"><a class="anchor" href="#_i_o_limitations"></a>I/O limitations</h3>
+<h3 id="_io_limitations"><a class="anchor" href="#_io_limitations"></a>I/O limitations</h3>
 <div class="paragraph">
 <p>Until the studio integration is complete, it is recommended to limit processors to 1 input.</p>
 </div>
@@ -8891,7 +8884,7 @@ public CompletionList findDrivers() {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_don_t_forget_the_component_representation"><a class="anchor" href="#_don_t_forget_the_component_representation"></a>Don&#8217;t forget the component representation</h4>
+<h4 id="_dont_forget_the_component_representation"><a class="anchor" href="#_dont_forget_the_component_representation"></a>Don&#8217;t forget the component representation</h4>
 <div class="paragraph">
 <p>Each component must have its own icon:</p>
 </div>
@@ -8960,7 +8953,7 @@ public class JdbcPartitionMapper
 </div>
 </div>
 <div class="sect2">
-<h3 id="_don_t_forget_to_test"><a class="anchor" href="#_don_t_forget_to_test"></a>Don&#8217;t forget to test</h3>
+<h3 id="_dont_forget_to_test"><a class="anchor" href="#_dont_forget_to_test"></a>Don&#8217;t forget to test</h3>
 <div class="paragraph">
 <p>Testing the components is crucial, you can use unit tests and simple standalone JUnit but it is highly recommended
 to have a few Beam tests to ensure your component works in Big Data world.</p>
@@ -9016,7 +9009,7 @@ WebSocket protocol is activated for the endpoints as well, instead of <code>/api
 <p>1.0.0</p>
 </div>
 <div class="sect4">
-<h5 id="_code_post_api_v1_action_execute_code"><a class="anchor" href="#_code_post_api_v1_action_execute_code"></a><code>POST api/v1/action/execute</code></h5>
+<h5 id="_post_apiv1actionexecute"><a class="anchor" href="#_post_apiv1actionexecute"></a><code>POST api/v1/action/execute</code></h5>
 <div class="paragraph">
 <p>This endpoint will execute any UI action and serialize the response as a JSON (pojo model)
 It takes as input the family, type and name of the related action to identify it and its configuration
@@ -9038,13 +9031,13 @@ as a flat key value set using the same kind of mapping than for components (opti
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code"><a class="anchor" href="#_code_200_ok_code"></a><code>200 OK</code></h7>
+<h7 id="_200_ok"><a class="anchor" href="#_200_ok"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>java.lang.RuntimeException</code>)</p>
 </div>
 </div>
 <div class="sect6">
-<h7 id="_code_400_bad_request_code"><a class="anchor" href="#_code_400_bad_request_code"></a><code>400 Bad Request</code></h7>
+<h7 id="_400_bad_request"><a class="anchor" href="#_400_bad_request"></a><code>400 Bad Request</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
 </div>
@@ -9058,7 +9051,7 @@ as a flat key value set using the same kind of mapping than for components (opti
 </div>
 </div>
 <div class="sect6">
-<h7 id="_code_404_not_found_code"><a class="anchor" href="#_code_404_not_found_code"></a><code>404 Not Found</code></h7>
+<h7 id="_404_not_found"><a class="anchor" href="#_404_not_found"></a><code>404 Not Found</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
 </div>
@@ -9074,7 +9067,7 @@ as a flat key value set using the same kind of mapping than for components (opti
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_get_api_v1_action_index_code"><a class="anchor" href="#_code_get_api_v1_action_index_code"></a><code>GET api/v1/action/index</code></h5>
+<h5 id="_get_apiv1actionindex"><a class="anchor" href="#_get_apiv1actionindex"></a><code>GET api/v1/action/index</code></h5>
 <div class="paragraph">
 <p>This endpoint returns the list of available actions for a certain family and potentially filters the "
 output limiting it to some families and types of actions.</p>
@@ -9094,7 +9087,7 @@ output limiting it to some families and types of actions.</p>
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_2"><a class="anchor" href="#_code_200_ok_code_2"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_2"><a class="anchor" href="#_200_ok_2"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ActionList</code>)</p>
 </div>
@@ -9143,7 +9136,7 @@ output limiting it to some families and types of actions.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_get_api_v1_component_dependencies_code"><a class="anchor" href="#_code_get_api_v1_component_dependencies_code"></a><code>GET api/v1/component/dependencies</code></h5>
+<h5 id="_get_apiv1componentdependencies"><a class="anchor" href="#_get_apiv1componentdependencies"></a><code>GET api/v1/component/dependencies</code></h5>
 <div class="paragraph">
 <p>Returns a list of dependencies for the given components.</p>
 </div>
@@ -9175,7 +9168,7 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_3"><a class="anchor" href="#_code_200_ok_code_3"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_3"><a class="anchor" href="#_200_ok_3"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Dependencies</code>)</p>
 </div>
@@ -9191,7 +9184,7 @@ don&#8217;t forget to add the component itself since it will not be part of the 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_get_api_v1_component_dependency_id_code"><a class="anchor" href="#_code_get_api_v1_component_dependency_id_code"></a><code>GET api/v1/component/dependency/{id}</code></h5>
+<h5 id="_get_apiv1componentdependencyid"><a class="anchor" href="#_get_apiv1componentdependencyid"></a><code>GET api/v1/component/dependency/{id}</code></h5>
 <div class="paragraph">
 <p>Return a binary of the dependency represented by <code>id</code>.
 It can be maven coordinates for dependencies or a component id.</p>
@@ -9209,13 +9202,13 @@ It can be maven coordinates for dependencies or a component id.</p>
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_4"><a class="anchor" href="#_code_200_ok_code_4"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_4"><a class="anchor" href="#_200_ok_4"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>javax.ws.rs.core.StreamingOutput</code>)</p>
 </div>
 </div>
 <div class="sect6">
-<h7 id="_code_404_not_found_code_2"><a class="anchor" href="#_code_404_not_found_code_2"></a><code>404 Not Found</code></h7>
+<h7 id="_404_not_found_2"><a class="anchor" href="#_404_not_found_2"></a><code>404 Not Found</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
 </div>
@@ -9231,7 +9224,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_get_api_v1_component_details_code"><a class="anchor" href="#_code_get_api_v1_component_details_code"></a><code>GET api/v1/component/details</code></h5>
+<h5 id="_get_apiv1componentdetails"><a class="anchor" href="#_get_apiv1componentdetails"></a><code>GET api/v1/component/details</code></h5>
 <div class="paragraph">
 <p>Returns the set of metadata about a few components identified by their 'id'.</p>
 </div>
@@ -9249,7 +9242,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_5"><a class="anchor" href="#_code_200_ok_code_5"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_5"><a class="anchor" href="#_200_ok_5"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentDetailList</code>)</p>
 </div>
@@ -9353,7 +9346,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect6">
-<h7 id="_code_400_bad_request_code_2"><a class="anchor" href="#_code_400_bad_request_code_2"></a><code>400 Bad Request</code></h7>
+<h7 id="_400_bad_request_2"><a class="anchor" href="#_400_bad_request_2"></a><code>400 Bad Request</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, org.talend.sdk.component.server.front.model.error.ErrorPayload&gt;</code>)</p>
 </div>
@@ -9361,7 +9354,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_get_api_v1_component_icon_family_id_code"><a class="anchor" href="#_code_get_api_v1_component_icon_family_id_code"></a><code>GET api/v1/component/icon/family/{id}</code></h5>
+<h5 id="_get_apiv1componenticonfamilyid"><a class="anchor" href="#_get_apiv1componenticonfamilyid"></a><code>GET api/v1/component/icon/family/{id}</code></h5>
 <div class="paragraph">
 <p>Returns a particular family icon in raw bytes.</p>
 </div>
@@ -9378,7 +9371,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_6"><a class="anchor" href="#_code_200_ok_code_6"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_6"><a class="anchor" href="#_200_ok_6"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
 </div>
@@ -9390,7 +9383,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect6">
-<h7 id="_code_404_not_found_code_3"><a class="anchor" href="#_code_404_not_found_code_3"></a><code>404 Not Found</code></h7>
+<h7 id="_404_not_found_3"><a class="anchor" href="#_404_not_found_3"></a><code>404 Not Found</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
 </div>
@@ -9406,7 +9399,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_get_api_v1_component_icon_id_code"><a class="anchor" href="#_code_get_api_v1_component_icon_id_code"></a><code>GET api/v1/component/icon/{id}</code></h5>
+<h5 id="_get_apiv1componenticonid"><a class="anchor" href="#_get_apiv1componenticonid"></a><code>GET api/v1/component/icon/{id}</code></h5>
 <div class="paragraph">
 <p>Returns a particular component icon in raw bytes.</p>
 </div>
@@ -9423,7 +9416,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_7"><a class="anchor" href="#_code_200_ok_code_7"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_7"><a class="anchor" href="#_200_ok_7"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>byte[]</code>)</p>
 </div>
@@ -9435,7 +9428,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect6">
-<h7 id="_code_404_not_found_code_4"><a class="anchor" href="#_code_404_not_found_code_4"></a><code>404 Not Found</code></h7>
+<h7 id="_404_not_found_4"><a class="anchor" href="#_404_not_found_4"></a><code>404 Not Found</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.error.ErrorPayload</code>)</p>
 </div>
@@ -9451,7 +9444,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_get_api_v1_component_index_code"><a class="anchor" href="#_code_get_api_v1_component_index_code"></a><code>GET api/v1/component/index</code></h5>
+<h5 id="_get_apiv1componentindex"><a class="anchor" href="#_get_apiv1componentindex"></a><code>GET api/v1/component/index</code></h5>
 <div class="paragraph">
 <p>Returns the list of available components.</p>
 </div>
@@ -9469,7 +9462,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_8"><a class="anchor" href="#_code_200_ok_code_8"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_8"><a class="anchor" href="#_200_ok_8"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ComponentIndices</code>)</p>
 </div>
@@ -9520,7 +9513,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_post_api_v1_component_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_component_migrate_id_configurationversion_code"></a><code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></h5>
+<h5 id="_post_apiv1componentmigrateidconfigurationversion"><a class="anchor" href="#_post_apiv1componentmigrateidconfigurationversion"></a><code>POST api/v1/component/migrate/{id}/{configurationVersion}</code></h5>
 <div class="paragraph">
 <p>Allows to migrate a component configuration without calling any component execution.</p>
 </div>
@@ -9539,7 +9532,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_9"><a class="anchor" href="#_code_200_ok_code_9"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_9"><a class="anchor" href="#_200_ok_9"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)</p>
 </div>
@@ -9547,7 +9540,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_get_api_v1_configurationtype_details_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_details_code"></a><code>GET api/v1/configurationtype/details</code></h5>
+<h5 id="_get_apiv1configurationtypedetails"><a class="anchor" href="#_get_apiv1configurationtypedetails"></a><code>GET api/v1/configurationtype/details</code></h5>
 <div class="paragraph">
 <p>Returns the set of metadata about a few configurations identified by their 'id'.</p>
 </div>
@@ -9565,7 +9558,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_10"><a class="anchor" href="#_code_200_ok_code_10"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_10"><a class="anchor" href="#_200_ok_10"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ConfigTypeNodes</code>)</p>
 </div>
@@ -9581,7 +9574,7 @@ It can be maven coordinates for dependencies or a component id.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_get_api_v1_configurationtype_index_code"><a class="anchor" href="#_code_get_api_v1_configurationtype_index_code"></a><code>GET api/v1/configurationtype/index</code></h5>
+<h5 id="_get_apiv1configurationtypeindex"><a class="anchor" href="#_get_apiv1configurationtypeindex"></a><code>GET api/v1/configurationtype/index</code></h5>
 <div class="paragraph">
 <p>Returns all available configuration type - storable models.
 Note that the lightPayload flag allows to load all of them at once when you eagerly need
@@ -9601,7 +9594,7 @@ to create a client model for all configurations.</p>
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_11"><a class="anchor" href="#_code_200_ok_code_11"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_11"><a class="anchor" href="#_200_ok_11"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.ConfigTypeNodes</code>)</p>
 </div>
@@ -9617,7 +9610,7 @@ to create a client model for all configurations.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"><a class="anchor" href="#_code_post_api_v1_configurationtype_migrate_id_configurationversion_code"></a><code>POST api/v1/configurationtype/migrate/{id}/{configurationVersion}</code></h5>
+<h5 id="_post_apiv1configurationtypemigrateidconfigurationversion"><a class="anchor" href="#_post_apiv1configurationtypemigrateidconfigurationversion"></a><code>POST api/v1/configurationtype/migrate/{id}/{configurationVersion}</code></h5>
 <div class="paragraph">
 <p>Allows to migrate a configuration without calling any component execution.</p>
 </div>
@@ -9636,7 +9629,7 @@ to create a client model for all configurations.</p>
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_12"><a class="anchor" href="#_code_200_ok_code_12"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_12"><a class="anchor" href="#_200_ok_12"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>java.util.Map&lt;java.lang.String, java.lang.String&gt;</code>)</p>
 </div>
@@ -9644,7 +9637,7 @@ to create a client model for all configurations.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_get_api_v1_documentation_component_id_code"><a class="anchor" href="#_code_get_api_v1_documentation_component_id_code"></a><code>GET api/v1/documentation/component/{id}</code></h5>
+<h5 id="_get_apiv1documentationcomponentid"><a class="anchor" href="#_get_apiv1documentationcomponentid"></a><code>GET api/v1/documentation/component/{id}</code></h5>
 <div class="paragraph">
 <p>Returns an asciidoctor version of the documentation for the component represented by its identifier <code>id</code>.</p>
 </div>
@@ -9684,7 +9677,7 @@ component (_componentname_inlowercase).</p>
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_13"><a class="anchor" href="#_code_200_ok_code_13"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_13"><a class="anchor" href="#_200_ok_13"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.DocumentationContent</code>)</p>
 </div>
@@ -9700,7 +9693,7 @@ component (_componentname_inlowercase).</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_get_api_v1_environment_code"><a class="anchor" href="#_code_get_api_v1_environment_code"></a><code>GET api/v1/environment</code></h5>
+<h5 id="_get_apiv1environment"><a class="anchor" href="#_get_apiv1environment"></a><code>GET api/v1/environment</code></h5>
 <div class="paragraph">
 <p>Returns the environment of this instance. Useful to check the version or configure a healthcheck for the server.</p>
 </div>
@@ -9716,7 +9709,7 @@ component (_componentname_inlowercase).</p>
 <p><strong>Content-Type</strong>: <code>*/*</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_200_ok_code_14"><a class="anchor" href="#_code_200_ok_code_14"></a><code>200 OK</code></h7>
+<h7 id="_200_ok_14"><a class="anchor" href="#_200_ok_14"></a><code>200 OK</code></h7>
 <div class="paragraph">
 <p><strong>Response Body</strong>: (<code>org.talend.sdk.component.server.front.model.Environment</code>)</p>
 </div>
@@ -9734,7 +9727,7 @@ component (_componentname_inlowercase).</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_post_api_v1_execution_read_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_read_family_component_code"></a><code>POST api/v1/execution/read/{family}/{component}</code></h5>
+<h5 id="_post_apiv1executionreadfamilycomponent"><a class="anchor" href="#_post_apiv1executionreadfamilycomponent"></a><code>POST api/v1/execution/read/{family}/{component}</code></h5>
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -9767,13 +9760,13 @@ The format is a JSON based format where each like is a json record.</p>
 <p><strong>Content-Type</strong>: <code>talend/stream</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_204_no_content_code"><a class="anchor" href="#_code_204_no_content_code"></a><code>204 No Content</code></h7>
+<h7 id="_204_no_content"><a class="anchor" href="#_204_no_content"></a><code>204 No Content</code></h7>
 
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_code_post_api_v1_execution_write_family_component_code"><a class="anchor" href="#_code_post_api_v1_execution_write_family_component_code"></a><code>POST api/v1/execution/write/{family}/{component}</code></h5>
+<h5 id="_post_apiv1executionwritefamilycomponent"><a class="anchor" href="#_post_apiv1executionwritefamilycomponent"></a><code>POST api/v1/execution/write/{family}/{component}</code></h5>
 <div class="admonitionblock caution">
 <table>
 <tr>
@@ -9807,7 +9800,7 @@ The input format is a JSON based format where each like is a json record - same 
 <p><strong>Content-Type</strong>: <code>application/json</code></p>
 </div>
 <div class="sect6">
-<h7 id="_code_204_no_content_code_2"><a class="anchor" href="#_code_204_no_content_code_2"></a><code>204 No Content</code></h7>
+<h7 id="_204_no_content_2"><a class="anchor" href="#_204_no_content_2"></a><code>204 No Content</code></h7>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -10347,7 +10340,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all table-striped table-hover table-ordered">
+<table class="tableblock frame-all grid-all fit-content table-striped table-hover table-ordered">
 <colgroup>
 <col>
 <col>
@@ -10473,7 +10466,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </div>
 </div>
 <div class="sect1">
-<h2 id="_wrapping_a_beam_i_o"><a class="anchor" href="#_wrapping_a_beam_i_o"></a>Wrapping a Beam I/O</h2>
+<h2 id="_wrapping_a_beam_io"><a class="anchor" href="#_wrapping_a_beam_io"></a>Wrapping a Beam I/O</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="wrapping-a-beam-io__start"><a class="anchor" href="#wrapping-a-beam-io__start"></a>Limitations</h3>
