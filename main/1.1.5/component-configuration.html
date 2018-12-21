@@ -8,7 +8,7 @@
     <meta name="description" content="How to define the layout and configurable options of a component">
     <meta name="keywords" content="layout, option, field">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-21T15:01:16.646Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-21T15:40:08.139Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -1241,7 +1241,42 @@ The component family associated with a configuration type (datastore/dataset) is
 </div>
 </div>
 <div class="paragraph">
-<p>The target element location is specified as a relative path to the current location, using Unix path characters.
+<p>Where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>target</strong> is the element to evaluate.</p>
+</li>
+<li>
+<p><strong>value</strong> is the value to compare against.</p>
+</li>
+<li>
+<p><strong>strategy</strong> (optional) is the evaluation criteria. Possible values are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CONTAINS</code>: Checks if a string or list of strings contains the defined <strong>value</strong>.</p>
+</li>
+<li>
+<p><code>DEFAULT</code>: Compares against the raw <strong>value</strong>.</p>
+</li>
+<li>
+<p><code>LENGTH</code>: For an array or string, evaluates the size of the <strong>value</strong> instead of the <strong>value</strong> itself.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>negate</strong> (optional) defines if the test must be positive (default, set to <code>false</code>) or negative (set to <code>true</code>).</p>
+</li>
+<li>
+<p><strong>operator</strong> (optional) is the comparison operator used to combine several conditions, if applicable. Possible values are <code>AND</code> and <code>OR</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <strong>target</strong> element location is specified as a relative path to the current location, using Unix path characters.
 The configuration class delimiter is <code>/</code>.<br>
 The parent configuration class is specified by <code>..</code>.<br>
 Thus, <code>../targetProperty</code> denotes a property, which is located in the parent configuration class and is named <code>targetProperty</code>.</p>
@@ -1257,6 +1292,41 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>For more details, refer to the related <a href="apidocs.html" class="page">Javadocs</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_activeif_example"><a class="anchor" href="#_activeif_example"></a>ActiveIf example</h3>
+<div class="paragraph">
+<p>A common use of the ActiveIf condition consists in testing if a target property has a value. To do that, it is possible to test if the length of the property value is different from 0:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>target: <code>foo</code> - the path to the property to evaluate.</p>
+</li>
+<li>
+<p>strategy: <code>LENGTH</code> - the strategy consists here in testing the length of the property value.</p>
+</li>
+<li>
+<p>value: <code>0</code> - the length of the property value is compared to <code>0</code>.</p>
+</li>
+<li>
+<p>negate: <code>true</code> - setting <strong>negate</strong> to <code>true</code> means that the <strong>strategy</strong> of the <strong>target</strong> must be different from the <strong>value</strong> defined. In this case, the <code>LENGTH</code> of the value of the <code>foo</code> property must be different from <code>0</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">{
+  "condition::if::target": "foo",
+  "condition::if::value": "0",
+  "condition::if::negate": "true",
+  "condition::if::evaluationStrategy": "LENGTH",
+}</code></pre>
+</div>
 </div>
 </div>
 </div>

@@ -8,7 +8,7 @@
     <meta name="description" content="How plugins and dependencies are loaded.">
     <meta name="keywords" content="plugin, scanning">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-21T15:01:16.652Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-21T15:40:08.146Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -611,7 +611,7 @@ The nested repository option needs some configuration during the packaging to en
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
   &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;3.2.1&lt;/version&gt;
   &lt;executions&gt;
     &lt;execution&gt;
       &lt;phase&gt;package&lt;/phase&gt;
@@ -652,7 +652,7 @@ The nested repository option needs some configuration during the packaging to en
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
   &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;3.2.1&lt;/version&gt;
   &lt;executions&gt;
     &lt;execution&gt;
       &lt;phase&gt;package&lt;/phase&gt;
@@ -689,7 +689,7 @@ The nested repository option needs some configuration during the packaging to en
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
   &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;3.2.1&lt;/version&gt;
   &lt;configuration&gt;
     &lt;createDependencyReducedPom&gt;false&lt;/createDependencyReducedPom&gt;
     &lt;filters&gt;
@@ -783,16 +783,13 @@ The configuration unrelated to transformers depends on your application.
 <p><code>exclude</code>: a comma-separated list of artifacts to exclude in the artifact filtering.</p>
 </li>
 <li>
-<p><code>userArtifacts</code>: a list of artifacts (groupId, artifactId, version, type - optional, file - optional for plugin transformer, scope - optional) which can be forced inline. This parameter is mainly useful for <code>PluginTransformer</code>.</p>
+<p><code>userArtifacts</code>: set of artifacts to include (groupId, artifactId, version, type - optional, file - optional for plugin transformer, scope - optional) which can be forced inline. This parameter is mainly useful for <code>PluginTransformer</code>.</p>
 </li>
 <li>
-<p><code>includeTransitiveDependencies</code>: should transitive dependencies of the components be included. Set to <code>true</code> by default.</p>
+<p><code>includeTransitiveDependencies</code>: should transitive dependencies of the components be included. Set to <code>true</code> by default. It is active for <code>userArtifacts</code>.</p>
 </li>
 <li>
-<p><code>includeProjectComponentDependencies</code>: should project component dependencies be included. Set to <code>false</code> by default. It is not needed when a job project uses isolation for components.</p>
-</li>
-<li>
-<p><code>userArtifacts</code>: set of component artifacts to include.</p>
+<p><code>includeProjectComponentDependencies</code>: should component project dependencies be included. Set to <code>false</code> by default. It is not needed when a job project uses isolation for components.</p>
 </li>
 </ul>
 </div>

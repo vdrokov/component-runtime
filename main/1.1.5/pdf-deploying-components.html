@@ -8,7 +8,7 @@
     <meta name="description" content="Get an overview of how to integrate your components created using Talend Component Kit to Talend Studio">
     <meta name="keywords" content="integration, deployment, open studio">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-21T15:01:16.688Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-21T15:40:08.180Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -463,6 +463,104 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_version_compatibility"><a class="anchor" href="#_version_compatibility"></a>Version compatibility</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can integrate and start using components developed using Talend Component Kit in Talend applications very easily.</p>
+</div>
+<div class="paragraph">
+<p>As both the development framework and Talend applications evolve over time, you need to ensure compatibility between the components you develop and the versions of Talend applications that you are targeting, by making sure that you use the right version of Talend Component Kit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compatibility_matrix"><a class="anchor" href="#_compatibility_matrix"></a>Compatibility matrix</h3>
+<div class="paragraph">
+<p>The version of Talend Component Kit you need to use to develop new components depends on the versions of the Talend applications in which these components will be integrated.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Talend product</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Talend Component Kit version</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Talend Studio 7.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework until 1.1.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Talend Studio 7.0.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework until 0.0.5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Talend Cloud</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework from 1.1.x</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>More recent versions of Talend Component Kit contain many fixes, improvements and features that help developing your components. However, they can cause some compatibility issues when deploying these components to older/different versions of Talend Studio and Talend Cloud. Choose the version of Talend Component Kit that best fits your needs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_changing_the_talend_component_kit_version_of_your_project"><a class="anchor" href="#_changing_the_talend_component_kit_version_of_your_project"></a>Changing the Talend Component Kit version of your project</h3>
+<div class="paragraph">
+<p>Creating a project using the Component Kit Starter always uses the latest release of Talend Component Kit.</p>
+</div>
+<div class="paragraph">
+<p>However, you can manually change the version of Talend Component Kit directly in the generated project.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to your IDE and access the project root .pom file.</p>
+</li>
+<li>
+<p>Look for the <code>org.talend.sdk.component</code> dependency nodes.</p>
+</li>
+<li>
+<p>Replace the <strong>version</strong> in the relevant nodes with the version that you need to use for your project.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can use a Snapshot of the version under development using the <code>-SNAPSHOT</code> version and Sonatype snapshot <a href="https://oss.sonatype.org/content/repositories/snapshots/">repository</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2 relatedlinks">
+<h3 id="_related_articles"><a class="anchor" href="#_related_articles"></a>Related articles</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="studio.html" class="page">Integrating components into Talend Studio</a></p>
+</li>
+<li>
+<p><a href="build-tools-maven.html" class="page">Building components with Maven</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_integrating_components_into_talend_studio"><a class="anchor" href="#_integrating_components_into_talend_studio"></a>Integrating components into Talend Studio</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -474,7 +572,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_version_compatibility"><a class="anchor" href="#_version_compatibility"></a>Version compatibility</h3>
+<h3 id="_version_compatibility_2"><a class="anchor" href="#_version_compatibility_2"></a>Version compatibility</h3>
 <div class="paragraph">
 <p>The version of Talend Component Kit you need to use to develop new components depends on the version of Talend Studio in which components will be integrated.</p>
 </div>
@@ -743,7 +841,7 @@ You still need to add and remove the components to see the changes.
 </div>
 </div>
 <div class="sect2 relatedlinks">
-<h3 id="_related_articles"><a class="anchor" href="#_related_articles"></a>Related articles</h3>
+<h3 id="_related_articles_2"><a class="anchor" href="#_related_articles_2"></a>Related articles</h3>
 <div class="ulist">
 <ul>
 <li>

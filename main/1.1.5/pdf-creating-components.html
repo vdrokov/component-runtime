@@ -8,7 +8,7 @@
     <meta name="description" content="Get an overview of the main steps to code the logic of your custom Talend Componit Kit components">
     <meta name="keywords" content="create, code, class, logic, layout, configuration, dev, overview">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-21T15:01:16.684Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-21T15:40:08.176Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -2056,7 +2056,42 @@ The component family associated with a configuration type (datastore/dataset) is
 </div>
 </div>
 <div class="paragraph">
-<p>The target element location is specified as a relative path to the current location, using Unix path characters.
+<p>Where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>target</strong> is the element to evaluate.</p>
+</li>
+<li>
+<p><strong>value</strong> is the value to compare against.</p>
+</li>
+<li>
+<p><strong>strategy</strong> (optional) is the evaluation criteria. Possible values are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CONTAINS</code>: Checks if a string or list of strings contains the defined <strong>value</strong>.</p>
+</li>
+<li>
+<p><code>DEFAULT</code>: Compares against the raw <strong>value</strong>.</p>
+</li>
+<li>
+<p><code>LENGTH</code>: For an array or string, evaluates the size of the <strong>value</strong> instead of the <strong>value</strong> itself.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>negate</strong> (optional) defines if the test must be positive (default, set to <code>false</code>) or negative (set to <code>true</code>).</p>
+</li>
+<li>
+<p><strong>operator</strong> (optional) is the comparison operator used to combine several conditions, if applicable. Possible values are <code>AND</code> and <code>OR</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <strong>target</strong> element location is specified as a relative path to the current location, using Unix path characters.
 The configuration class delimiter is <code>/</code>.<br>
 The parent configuration class is specified by <code>..</code>.<br>
 Thus, <code>../targetProperty</code> denotes a property, which is located in the parent configuration class and is named <code>targetProperty</code>.</p>
@@ -2072,6 +2107,41 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>For more details, refer to the related <a href="apidocs.html" class="page">Javadocs</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_activeif_example"><a class="anchor" href="#_activeif_example"></a>ActiveIf example</h4>
+<div class="paragraph">
+<p>A common use of the ActiveIf condition consists in testing if a target property has a value. To do that, it is possible to test if the length of the property value is different from 0:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>target: <code>foo</code> - the path to the property to evaluate.</p>
+</li>
+<li>
+<p>strategy: <code>LENGTH</code> - the strategy consists here in testing the length of the property value.</p>
+</li>
+<li>
+<p>value: <code>0</code> - the length of the property value is compared to <code>0</code>.</p>
+</li>
+<li>
+<p>negate: <code>true</code> - setting <strong>negate</strong> to <code>true</code> means that the <strong>strategy</strong> of the <strong>target</strong> must be different from the <strong>value</strong> defined. In this case, the <code>LENGTH</code> of the value of the <code>foo</code> property must be different from <code>0</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">{
+  "condition::if::target": "foo",
+  "condition::if::value": "0",
+  "condition::if::negate": "true",
+  "condition::if::evaluationStrategy": "LENGTH",
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -2902,6 +2972,220 @@ public class BulkProcessor implements Serializable {
 <p><a href="best-practices.html" class="page">Best practices</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implementing_streaming_on_a_component"><a class="anchor" href="#_implementing_streaming_on_a_component"></a>Implementing streaming on a component</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, input components are designed to receive a one-time batch of data to process. By enabling the streaming mode, you can instead set your component to process a continuous incoming flow of data.</p>
+</div>
+<div class="paragraph">
+<p>When streaming is enabled on an input component, the component tries to pull data from its producer. When no data is pulled, it waits for a defined period of time before trying to pull data again, and so on. This period of time between tries is defined by a strategy.</p>
+</div>
+<div class="paragraph">
+<p>This document explains how to configure this strategy and the cases where it can fit your needs.</p>
+</div>
+<div class="sect2">
+<h3 id="_choosing_between_batch_and_streaming"><a class="anchor" href="#_choosing_between_batch_and_streaming"></a>Choosing between batch and streaming</h3>
+<div class="paragraph">
+<p>Before enabling streaming on your component, make sure that it fits the scope and requirements of your project and that regular batch processing cannot be used instead.</p>
+</div>
+<div class="paragraph">
+<p>Streaming is designed to help you dealing with real-time or near real-time data processing cases, and should be used only for such cases.
+Enabling streaming will impact the performance when processing batches of data.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enabling_streaming_from_the_component_kit_starter"><a class="anchor" href="#_enabling_streaming_from_the_component_kit_starter"></a>Enabling streaming from the Component Kit starter</h3>
+<div class="paragraph">
+<p>You can enable streaming right from the design phase of the project by enabling the <strong>Stream</strong> toggle in the basic configuration of your future component in the Component Kit Starter.</p>
+</div>
+<div class="paragraph">
+<p>Doing so adds a default streaming-ready configuration to your component when generating the project.<br>
+This default configuration implements a constant pause duration of 500 ms between retries, with no limit of retries.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/starter/starter_enabling_streaming.png" target="_blank" rel="noopener"><img src="_images/starter/starter_enabling_streaming.png" alt="Stream Toggle" width="80%"></a>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_streaming_from_the_project"><a class="anchor" href="#_configuring_streaming_from_the_project"></a>Configuring streaming from the project</h3>
+<div class="paragraph">
+<p>If streaming was not enabled at all during the project generation or if you need to implement a more specific configuration, you can change the default settings according to your needs:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the <code>infinite=true</code> parameter to your component class.</p>
+</li>
+<li>
+<p>Define the number of retries allowed in the component family <a href="services-built-in.html#_localconfiguration" class="page">LocalConfiguration</a>, using the <code>talend.input.streaming.retry.maxRetries</code> parameter. It is set by default to <code>Integer.MAX_VALUE</code>.</p>
+</li>
+<li>
+<p>Define the pausing strategy between retries in the component family <code>LocalConfiguration</code>, using the <code>talend.input.streaming.retry.strategy</code> parameter. Possible values are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>constant</code> (default). It sets a constant pause duration between retries.</p>
+</li>
+<li>
+<p><code>exponential</code>. It sets an exponential backoff pause duration.<br></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+See the tables below for more details about each strategy.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_constant_strategy"><a class="anchor" href="#_constant_strategy"></a>Constant strategy</h4>
+<table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.input.streaming.retry.constant.timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pause duration for the <code>constant</code> strategy, in ms.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>500</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_exponential_strategy"><a class="anchor" href="#_exponential_strategy"></a>Exponential strategy</h4>
+<table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.input.streaming.retry.exponential.exponent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exponent of the exponential calculation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.input.streaming.retry.exponential.randomizationFactor</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Randomization factor used in the calculation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0.5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.input.streaming.retry.exponential.maxDuration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum pausing duration between two retries.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5*60*1000</code> (5 minutes)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.input.streaming.retry.exponential.initialBackOff</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initial backoff value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1000</code> (1 second)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The values of these parameters are then used in the following calculations to determine the exact pausing duration between two retries.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For more clarity in the formulas below, parameter names have been replaced with variables.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>First, the current interval duration is calculated:</p>
+</div>
+<div class="paragraph">
+<p>\$A = min(B xx E^I, F)\$</p>
+</div>
+<div class="paragraph">
+<p>Where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A: currentIntervalMillis</p>
+</li>
+<li>
+<p>B: initialBackOff</p>
+</li>
+<li>
+<p>E: exponent</p>
+</li>
+<li>
+<p>I: current number of retries</p>
+</li>
+<li>
+<p>F: maxDuration</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Then, from the current interval duration, the next interval duration is calculated:</p>
+</div>
+<div class="paragraph">
+<p>\$D = min(F, A + ((R xx 2-1) xx C xx A))\$</p>
+</div>
+<div class="paragraph">
+<p>Where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>D: nextBackoffMillis</p>
+</li>
+<li>
+<p>F: maxDuration</p>
+</li>
+<li>
+<p>A: currentIntervalMillis</p>
+</li>
+<li>
+<p>R: random</p>
+</li>
+<li>
+<p>C: randomizationFactor</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -4809,7 +5093,7 @@ The nested repository option needs some configuration during the packaging to en
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
   &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;3.2.1&lt;/version&gt;
   &lt;executions&gt;
     &lt;execution&gt;
       &lt;phase&gt;package&lt;/phase&gt;
@@ -4850,7 +5134,7 @@ The nested repository option needs some configuration during the packaging to en
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
   &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;3.2.1&lt;/version&gt;
   &lt;executions&gt;
     &lt;execution&gt;
       &lt;phase&gt;package&lt;/phase&gt;
@@ -4887,7 +5171,7 @@ The nested repository option needs some configuration during the packaging to en
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
   &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;3.2.1&lt;/version&gt;
   &lt;configuration&gt;
     &lt;createDependencyReducedPom&gt;false&lt;/createDependencyReducedPom&gt;
     &lt;filters&gt;
@@ -4981,16 +5265,13 @@ The configuration unrelated to transformers depends on your application.
 <p><code>exclude</code>: a comma-separated list of artifacts to exclude in the artifact filtering.</p>
 </li>
 <li>
-<p><code>userArtifacts</code>: a list of artifacts (groupId, artifactId, version, type - optional, file - optional for plugin transformer, scope - optional) which can be forced inline. This parameter is mainly useful for <code>PluginTransformer</code>.</p>
+<p><code>userArtifacts</code>: set of artifacts to include (groupId, artifactId, version, type - optional, file - optional for plugin transformer, scope - optional) which can be forced inline. This parameter is mainly useful for <code>PluginTransformer</code>.</p>
 </li>
 <li>
-<p><code>includeTransitiveDependencies</code>: should transitive dependencies of the components be included. Set to <code>true</code> by default.</p>
+<p><code>includeTransitiveDependencies</code>: should transitive dependencies of the components be included. Set to <code>true</code> by default. It is active for <code>userArtifacts</code>.</p>
 </li>
 <li>
-<p><code>includeProjectComponentDependencies</code>: should project component dependencies be included. Set to <code>false</code> by default. It is not needed when a job project uses isolation for components.</p>
-</li>
-<li>
-<p><code>userArtifacts</code>: set of component artifacts to include.</p>
+<p><code>includeProjectComponentDependencies</code>: should component project dependencies be included. Set to <code>false</code> by default. It is not needed when a job project uses isolation for components.</p>
 </li>
 </ul>
 </div>

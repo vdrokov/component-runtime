@@ -8,7 +8,7 @@
     <meta name="description" content="How to modelize data processed or emitted by components.">
     <meta name="keywords" content="record, pojo,">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-21T15:01:16.694Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-21T15:40:08.186Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -464,7 +464,7 @@ It is out of scope of the framework to handle the way the runtime serializes - i
 <h2 id="record"><a class="anchor" href="#record"></a>Record</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>Record</code> is the default format. It offers more possibilities and can evolve depending on the Talend platform needs. Its structure is data-driven and exposes a schema that allows to browse it.</p>
+<p><code>Record</code> is the default format. It offers many possibilities and can evolve depending on the Talend platform needs. Its structure is data-driven and exposes a schema that allows to browse it.</p>
 </div>
 <div class="paragraph">
 <p>Projects generated from the <a href="index-generating-project.html" class="page">Talend Component Kit Starter</a> are by default designed to handle this format of data.</p>
@@ -657,6 +657,59 @@ public Schema guessSchema(@Option MyDataset dataset, final MyDataLoaderService m
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_authorized_characters_in_entry_names"><a class="anchor" href="#_authorized_characters_in_entry_names"></a>Authorized characters in entry names</h3>
+<div class="paragraph">
+<p>Entry names for <code>Record</code> and <code>JsonObject</code> types must comply with the following rules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The name must start with a letter or with <code>_</code>. If not, the invalid characters are ignored until the first valid character.</p>
+</li>
+<li>
+<p>Following characters of the name must be a letter, a number, or <code><em></code>. If not, the invalid character is replaced with <code></em></code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>1foo</code> becomes <code>foo</code>.</p>
+</li>
+<li>
+<p><code>f@o</code> becomes <code>f_o</code>.</p>
+</li>
+<li>
+<p><code>1234f5@o</code> becomes <code>___f5_o</code>.</p>
+</li>
+<li>
+<p><code>foo123</code> stays <code>foo123</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_types_in_arrays"><a class="anchor" href="#_data_types_in_arrays"></a>Data types in arrays</h3>
+<div class="paragraph">
+<p>Each array uses only one schema for all of its elements. If an array contains several elements, they must be of the same data type.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following array is not correct as it contains a <strong>string</strong> and an <strong>object</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"Value":[
+  {"value":"v1"},
+  {"value":[]}
+  ]
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -667,6 +720,9 @@ public Schema guessSchema(@Option MyDataset dataset, final MyDataLoaderService m
 </div>
 <div class="paragraph">
 <p>This format is close to the <code>Record</code> format, except that it does not natively support the Datetime type and has a unique Number type to represent Int, Long, Float and Double types. It also does not provide entry metadata like <code>nullable</code> or <code>comment</code>, for example.</p>
+</div>
+<div class="paragraph">
+<p>It also inherits the <code>Record</code> format limitations.</p>
 </div>
 </div>
 </div>

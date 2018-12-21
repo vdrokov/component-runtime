@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.5/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2018-12-21T15:01:16.631Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2018-12-21T15:40:08.124Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -3433,7 +3433,42 @@ The component family associated with a configuration type (datastore/dataset) is
 </div>
 </div>
 <div class="paragraph">
-<p>The target element location is specified as a relative path to the current location, using Unix path characters.
+<p>Where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>target</strong> is the element to evaluate.</p>
+</li>
+<li>
+<p><strong>value</strong> is the value to compare against.</p>
+</li>
+<li>
+<p><strong>strategy</strong> (optional) is the evaluation criteria. Possible values are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CONTAINS</code>: Checks if a string or list of strings contains the defined <strong>value</strong>.</p>
+</li>
+<li>
+<p><code>DEFAULT</code>: Compares against the raw <strong>value</strong>.</p>
+</li>
+<li>
+<p><code>LENGTH</code>: For an array or string, evaluates the size of the <strong>value</strong> instead of the <strong>value</strong> itself.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>negate</strong> (optional) defines if the test must be positive (default, set to <code>false</code>) or negative (set to <code>true</code>).</p>
+</li>
+<li>
+<p><strong>operator</strong> (optional) is the comparison operator used to combine several conditions, if applicable. Possible values are <code>AND</code> and <code>OR</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <strong>target</strong> element location is specified as a relative path to the current location, using Unix path characters.
 The configuration class delimiter is <code>/</code>.<br>
 The parent configuration class is specified by <code>..</code>.<br>
 Thus, <code>../targetProperty</code> denotes a property, which is located in the parent configuration class and is named <code>targetProperty</code>.</p>
@@ -3449,6 +3484,41 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>For more details, refer to the related <a href="apidocs.html" class="page">Javadocs</a>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_activeif_example"><a class="anchor" href="#_activeif_example"></a>ActiveIf example</h5>
+<div class="paragraph">
+<p>A common use of the ActiveIf condition consists in testing if a target property has a value. To do that, it is possible to test if the length of the property value is different from 0:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>target: <code>foo</code> - the path to the property to evaluate.</p>
+</li>
+<li>
+<p>strategy: <code>LENGTH</code> - the strategy consists here in testing the length of the property value.</p>
+</li>
+<li>
+<p>value: <code>0</code> - the length of the property value is compared to <code>0</code>.</p>
+</li>
+<li>
+<p>negate: <code>true</code> - setting <strong>negate</strong> to <code>true</code> means that the <strong>strategy</strong> of the <strong>target</strong> must be different from the <strong>value</strong> defined. In this case, the <code>LENGTH</code> of the value of the <code>foo</code> property must be different from <code>0</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">{
+  "condition::if::target": "foo",
+  "condition::if::value": "0",
+  "condition::if::negate": "true",
+  "condition::if::evaluationStrategy": "LENGTH",
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -4271,6 +4341,218 @@ public class BulkProcessor implements Serializable {
 <p><a href="best-practices.html" class="page">Best practices</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implementing_streaming_on_a_component"><a class="anchor" href="#_implementing_streaming_on_a_component"></a>Implementing streaming on a component</h3>
+<div class="paragraph">
+<p>By default, input components are designed to receive a one-time batch of data to process. By enabling the streaming mode, you can instead set your component to process a continuous incoming flow of data.</p>
+</div>
+<div class="paragraph">
+<p>When streaming is enabled on an input component, the component tries to pull data from its producer. When no data is pulled, it waits for a defined period of time before trying to pull data again, and so on. This period of time between tries is defined by a strategy.</p>
+</div>
+<div class="paragraph">
+<p>This document explains how to configure this strategy and the cases where it can fit your needs.</p>
+</div>
+<div class="sect3">
+<h4 id="_choosing_between_batch_and_streaming"><a class="anchor" href="#_choosing_between_batch_and_streaming"></a>Choosing between batch and streaming</h4>
+<div class="paragraph">
+<p>Before enabling streaming on your component, make sure that it fits the scope and requirements of your project and that regular batch processing cannot be used instead.</p>
+</div>
+<div class="paragraph">
+<p>Streaming is designed to help you dealing with real-time or near real-time data processing cases, and should be used only for such cases.
+Enabling streaming will impact the performance when processing batches of data.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_enabling_streaming_from_the_component_kit_starter"><a class="anchor" href="#_enabling_streaming_from_the_component_kit_starter"></a>Enabling streaming from the Component Kit starter</h4>
+<div class="paragraph">
+<p>You can enable streaming right from the design phase of the project by enabling the <strong>Stream</strong> toggle in the basic configuration of your future component in the Component Kit Starter.</p>
+</div>
+<div class="paragraph">
+<p>Doing so adds a default streaming-ready configuration to your component when generating the project.<br>
+This default configuration implements a constant pause duration of 500 ms between retries, with no limit of retries.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/starter/starter_enabling_streaming.png" target="_blank" rel="noopener"><img src="_images/starter/starter_enabling_streaming.png" alt="Stream Toggle" width="80%"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuring_streaming_from_the_project"><a class="anchor" href="#_configuring_streaming_from_the_project"></a>Configuring streaming from the project</h4>
+<div class="paragraph">
+<p>If streaming was not enabled at all during the project generation or if you need to implement a more specific configuration, you can change the default settings according to your needs:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the <code>infinite=true</code> parameter to your component class.</p>
+</li>
+<li>
+<p>Define the number of retries allowed in the component family <a href="services-built-in.html#_localconfiguration" class="page">LocalConfiguration</a>, using the <code>talend.input.streaming.retry.maxRetries</code> parameter. It is set by default to <code>Integer.MAX_VALUE</code>.</p>
+</li>
+<li>
+<p>Define the pausing strategy between retries in the component family <code>LocalConfiguration</code>, using the <code>talend.input.streaming.retry.strategy</code> parameter. Possible values are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>constant</code> (default). It sets a constant pause duration between retries.</p>
+</li>
+<li>
+<p><code>exponential</code>. It sets an exponential backoff pause duration.<br></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+See the tables below for more details about each strategy.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="_constant_strategy"><a class="anchor" href="#_constant_strategy"></a>Constant strategy</h5>
+<table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.input.streaming.retry.constant.timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pause duration for the <code>constant</code> strategy, in ms.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>500</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_exponential_strategy"><a class="anchor" href="#_exponential_strategy"></a>Exponential strategy</h5>
+<table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.input.streaming.retry.exponential.exponent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exponent of the exponential calculation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.input.streaming.retry.exponential.randomizationFactor</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Randomization factor used in the calculation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0.5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.input.streaming.retry.exponential.maxDuration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum pausing duration between two retries.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5*60*1000</code> (5 minutes)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.input.streaming.retry.exponential.initialBackOff</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initial backoff value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1000</code> (1 second)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The values of these parameters are then used in the following calculations to determine the exact pausing duration between two retries.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For more clarity in the formulas below, parameter names have been replaced with variables.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>First, the current interval duration is calculated:</p>
+</div>
+<div class="paragraph">
+<p>\$A = min(B xx E^I, F)\$</p>
+</div>
+<div class="paragraph">
+<p>Where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A: currentIntervalMillis</p>
+</li>
+<li>
+<p>B: initialBackOff</p>
+</li>
+<li>
+<p>E: exponent</p>
+</li>
+<li>
+<p>I: current number of retries</p>
+</li>
+<li>
+<p>F: maxDuration</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Then, from the current interval duration, the next interval duration is calculated:</p>
+</div>
+<div class="paragraph">
+<p>\$D = min(F, A + ((R xx 2-1) xx C xx A))\$</p>
+</div>
+<div class="paragraph">
+<p>Where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>D: nextBackoffMillis</p>
+</li>
+<li>
+<p>F: maxDuration</p>
+</li>
+<li>
+<p>A: currentIntervalMillis</p>
+</li>
+<li>
+<p>R: random</p>
+</li>
+<li>
+<p>C: randomizationFactor</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -6168,7 +6450,7 @@ The nested repository option needs some configuration during the packaging to en
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
   &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;3.2.1&lt;/version&gt;
   &lt;executions&gt;
     &lt;execution&gt;
       &lt;phase&gt;package&lt;/phase&gt;
@@ -6209,7 +6491,7 @@ The nested repository option needs some configuration during the packaging to en
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
   &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;3.2.1&lt;/version&gt;
   &lt;executions&gt;
     &lt;execution&gt;
       &lt;phase&gt;package&lt;/phase&gt;
@@ -6246,7 +6528,7 @@ The nested repository option needs some configuration during the packaging to en
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
   &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0&lt;/version&gt;
+  &lt;version&gt;3.2.1&lt;/version&gt;
   &lt;configuration&gt;
     &lt;createDependencyReducedPom&gt;false&lt;/createDependencyReducedPom&gt;
     &lt;filters&gt;
@@ -6340,16 +6622,13 @@ The configuration unrelated to transformers depends on your application.
 <p><code>exclude</code>: a comma-separated list of artifacts to exclude in the artifact filtering.</p>
 </li>
 <li>
-<p><code>userArtifacts</code>: a list of artifacts (groupId, artifactId, version, type - optional, file - optional for plugin transformer, scope - optional) which can be forced inline. This parameter is mainly useful for <code>PluginTransformer</code>.</p>
+<p><code>userArtifacts</code>: set of artifacts to include (groupId, artifactId, version, type - optional, file - optional for plugin transformer, scope - optional) which can be forced inline. This parameter is mainly useful for <code>PluginTransformer</code>.</p>
 </li>
 <li>
-<p><code>includeTransitiveDependencies</code>: should transitive dependencies of the components be included. Set to <code>true</code> by default.</p>
+<p><code>includeTransitiveDependencies</code>: should transitive dependencies of the components be included. Set to <code>true</code> by default. It is active for <code>userArtifacts</code>.</p>
 </li>
 <li>
-<p><code>includeProjectComponentDependencies</code>: should project component dependencies be included. Set to <code>false</code> by default. It is not needed when a job project uses isolation for components.</p>
-</li>
-<li>
-<p><code>userArtifacts</code>: set of component artifacts to include.</p>
+<p><code>includeProjectComponentDependencies</code>: should component project dependencies be included. Set to <code>false</code> by default. It is not needed when a job project uses isolation for components.</p>
 </li>
 </ul>
 </div>
@@ -9434,7 +9713,7 @@ If you set the <code>&lt;environment name&gt;.skip</code> system property to <co
 <div class="sect4">
 <h5 id="_advanced_usage"><a class="anchor" href="#_advanced_usage"></a>Advanced usage</h5>
 <div class="paragraph">
-<p>This usage assumes that Beam 2.4.0 is used.</p>
+<p>This usage assumes that Beam 2.4.0 or later is used.</p>
 </div>
 <div class="paragraph">
 <p>The following dependencies bring the JUnit testing toolkit, the Beam integration and the multi-environment testing toolkit for JUnit into the test scope.</p>
@@ -11080,6 +11359,102 @@ public @interface MyLayout {
 <p>Check the versions of the framework that are compatible with your version of Talend Studio in <a href="compatibility.html" class="page">this document</a>.</p>
 </div>
 <div class="sect2">
+<h3 id="_version_compatibility"><a class="anchor" href="#_version_compatibility"></a>Version compatibility</h3>
+<div class="paragraph">
+<p>You can integrate and start using components developed using Talend Component Kit in Talend applications very easily.</p>
+</div>
+<div class="paragraph">
+<p>As both the development framework and Talend applications evolve over time, you need to ensure compatibility between the components you develop and the versions of Talend applications that you are targeting, by making sure that you use the right version of Talend Component Kit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_compatibility_matrix"><a class="anchor" href="#_compatibility_matrix"></a>Compatibility matrix</h4>
+<div class="paragraph">
+<p>The version of Talend Component Kit you need to use to develop new components depends on the versions of the Talend applications in which these components will be integrated.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Talend product</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Talend Component Kit version</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Talend Studio 7.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework until 1.1.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Talend Studio 7.0.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework until 0.0.5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Talend Cloud</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework from 1.1.x</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>More recent versions of Talend Component Kit contain many fixes, improvements and features that help developing your components. However, they can cause some compatibility issues when deploying these components to older/different versions of Talend Studio and Talend Cloud. Choose the version of Talend Component Kit that best fits your needs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_changing_the_talend_component_kit_version_of_your_project"><a class="anchor" href="#_changing_the_talend_component_kit_version_of_your_project"></a>Changing the Talend Component Kit version of your project</h4>
+<div class="paragraph">
+<p>Creating a project using the Component Kit Starter always uses the latest release of Talend Component Kit.</p>
+</div>
+<div class="paragraph">
+<p>However, you can manually change the version of Talend Component Kit directly in the generated project.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to your IDE and access the project root .pom file.</p>
+</li>
+<li>
+<p>Look for the <code>org.talend.sdk.component</code> dependency nodes.</p>
+</li>
+<li>
+<p>Replace the <strong>version</strong> in the relevant nodes with the version that you need to use for your project.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can use a Snapshot of the version under development using the <code>-SNAPSHOT</code> version and Sonatype snapshot <a href="https://oss.sonatype.org/content/repositories/snapshots/">repository</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3 relatedlinks">
+<h4 id="_related_articles_33"><a class="anchor" href="#_related_articles_33"></a>Related articles</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="studio.html" class="page">Integrating components into Talend Studio</a></p>
+</li>
+<li>
+<p><a href="build-tools-maven.html" class="page">Building components with Maven</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_integrating_components_into_talend_studio_2"><a class="anchor" href="#_integrating_components_into_talend_studio_2"></a>Integrating components into Talend Studio</h3>
 <div class="paragraph">
 <p>Integrate components developed using Talend Component Kit to <a href="https://sourceforge.net/projects/talend-studio/">Talend Studio</a> in a few steps. Also learn how to enable the developer and debugging modes to iterate on your component development.</p>
@@ -11090,7 +11465,7 @@ public @interface MyLayout {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_version_compatibility"><a class="anchor" href="#_version_compatibility"></a>Version compatibility</h4>
+<h4 id="_version_compatibility_2"><a class="anchor" href="#_version_compatibility_2"></a>Version compatibility</h4>
 <div class="paragraph">
 <p>The version of Talend Component Kit you need to use to develop new components depends on the version of Talend Studio in which components will be integrated.</p>
 </div>
@@ -11359,7 +11734,7 @@ You still need to add and remove the components to see the changes.
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_33"><a class="anchor" href="#_related_articles_33"></a>Related articles</h4>
+<h4 id="_related_articles_34"><a class="anchor" href="#_related_articles_34"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -12117,6 +12492,417 @@ This assumes the project is built before you run that command.
 <h2 id="_tutorials"><a class="anchor" href="#_tutorials"></a>Tutorials</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_creating_your_first_component_2"><a class="anchor" href="#_creating_your_first_component_2"></a>Creating your first component</h3>
+<div class="paragraph">
+<p>This tutorial walks you through all the required steps to get started with <strong>Talend Component Kit</strong>, from the creation of a simple component to its integration into <strong>Talend Open Studio</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The component created in this tutorial is a simple output component that receives data from the previous component and displays it in the logs, along with an extra information entered by a user.</p>
+</div>
+<div class="paragraph">
+<p>Once the prerequisites completed, this tutorial should take you about 20 minutes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_prerequisites_2"><a class="anchor" href="#_prerequisites_2"></a>Prerequisites</h4>
+<div class="paragraph">
+<p>This tutorial aims at helping you to create your very first component. But before, get your development environment ready:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Download and install a Java JDK 1.8 or greater.</p>
+</li>
+<li>
+<p>Download and install Talend Open Studio. For example, from <a href="https://sourceforge.net/projects/talend-studio">Sourceforge</a>.</p>
+</li>
+<li>
+<p>Download and install <a href="https://www.jetbrains.com/idea/download">IntelliJ</a>.</p>
+</li>
+<li>
+<p>Download the Talend Component Kit plugin for IntelliJ. The detailed installation steps for the plugin are available in <a href="installing-talend-intellij-plugin.html" class="page">this document</a>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+For this tutorial to work correctly, you must use the version 1.1.1 or below of the plugin (for both <code>component-api</code> and <code>talend-component-maven-plugin</code> artifacts.). Check how to change the framework version in <a href="compatibility.html" class="page">this document</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_generating_a_simple_component_project_2"><a class="anchor" href="#_generating_a_simple_component_project_2"></a>Generating a simple component project</h4>
+<div class="paragraph">
+<p>The first step in this tutorial is to generate a project containing a simple output component using the <strong>Starter</strong> included in the Talend Component Kit plugin for IntelliJ.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start IntelliJ and create a new project. In the available options, you should see <strong>Talend Component</strong>.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/intellij_new_component_project.png" target="_blank" rel="noopener"><img src="_images/intellij_new_component_project.png" alt="New project" width="70%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Make sure that a <strong>Project SDK</strong> is selected. Then, select <strong>Talend Component</strong> and click <strong>Next</strong>.<br>
+The <strong>Talend Component Kit Starter</strong> opens.</p>
+</li>
+<li>
+<p>Enter the project details. The goal here is to define the component and project metadata. Change the default values as follows:<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/intellij_tutorial_project_metadata.png" target="_blank" rel="noopener"><img src="_images/intellij_tutorial_project_metadata.png" alt="Project metadata" width="70%"></a>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <strong>Component Family</strong> and the <strong>Category</strong> will be used later in Talend Open Studio to find the new component.</p>
+</li>
+<li>
+<p>The project metadata are mostly used to identify the project structure. A common practice is to replace 'company' in the default value by a value of your own, like your domain name.<br></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Once the metadata is filled, select <strong>ADD A COMPONENT</strong>. A new screen is displayed in the <strong>Talend Component Kit Starter</strong> that lets you define the generic configuration of the component.</p>
+</li>
+<li>
+<p>Select <strong>PROCESSOR/OUTPUT</strong> and enter a valid Java name for the component. For example, <strong>Logger</strong>.</p>
+</li>
+<li>
+<p>Select <strong>CONFIGURATION MODEL</strong> and add a string field named <code>level</code>. This input field will be used in the component configuration to enter additional information to display in the logs.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model" width="70%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>In the <strong>Input(s) / Output(s)</strong> section, click the default <strong>MAIN</strong> input branch to access its detail, and toggle the <strong>Generic</strong> option to specify that the component can receive any type of data. Leave the <strong>Name</strong> of the branch with its default <code>MAIN</code> value.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_component_generic_input.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_generic_input.png" alt="Generic Input" width="70%"></a>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default, when selecting <strong>PROCESSOR/OUTPUT</strong>, there is one input branch and no output branch for the component, which is fine in the case of this tutorial. A processor without any output branch is considered an output component.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click <strong>Next</strong> and check the name and location of your project, then click <strong>Finish</strong> to generate the project in the IDE.<br></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>At this point, your component is technically already ready to be compiled and deployed to Talend Open Studio. But first, have a look at the generated project:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_generated_project_view.png" target="_blank" rel="noopener"><img src="_images/tutorial_generated_project_view.png" alt="Project view" width="70%"></a>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Two classes based on the name and type of component defined in the <strong>Talend Component Kit Starter</strong> have been generated:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>LoggerOutput</strong> is where the component logic is defined</p>
+</li>
+<li>
+<p><strong>LoggerOutputConfiguration</strong> is where the component layout and configurable fields are defined, including the <strong>level</strong> string field that was defined earlier in the configuration model of the component.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The <strong>package-info.java</strong> file contains the component metadata defined in the <strong>Talend Component Kit Starter</strong>, like the family and category.</p>
+</li>
+<li>
+<p>You can notice as well that the elements in the tree structure are named after the project metadata defined in the <strong>Talend Component Kit Starter</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These files are the starting point if you later need to edit the configuration, logic, and metadata of your component.</p>
+</div>
+<div class="paragraph">
+<p>There is more that you can do and configure with the <strong>Talend Component Kit Starter</strong>. This tutorial covers only the basics. You can find more information in <a href="tutorial-generate-project-using-starter.html" class="page">this document</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_compiling_and_deploying_the_component_to_talend_open_studio_2"><a class="anchor" href="#_compiling_and_deploying_the_component_to_talend_open_studio_2"></a>Compiling and deploying the component to Talend Open Studio</h4>
+<div class="paragraph">
+<p>Without any modification in the component code, you can compile the project and deploy the component to a local instance of Talend Open Studio.</p>
+</div>
+<div class="paragraph">
+<p>This way, it will be easy to check that what is visible in the Studio is what is intended.</p>
+</div>
+<div class="paragraph">
+<p>Before starting to run any command, make sure Talend Open Studio is not running.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From your component project in IntelliJ, open a terminal.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_intellij_terminal_blank.png" target="_blank" rel="noopener"><img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal" width="70%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>There, you can see that the terminal opens directly at the root of the project. All commands shown in this tutorial are performed from this location.</p>
+</div>
+</li>
+<li>
+<p>Compile the project by running the following command: <code>mvnw clean install</code>.<br>
+The <code>mvnw</code> command refers to the Maven wrapper that is shipped with Talend Component Kit. It allows to use the right version of Maven for your project without having to install it manually beforehand. An equivalent wrapper is available for Gradle.</p>
+</li>
+<li>
+<p>Once the command is executed and you see <strong>BUILD SUCCESS</strong> in the terminal, deploy the component to your local instance of Talend Open Studio using the following command:<br>
+<code>mvnw talend-component:deploy-in-studio -Dtalend.component.studioHome="&lt;path to Talend Open Studio home&gt;"</code><br></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Replace the path by your own value. If the path contains spaces (for example, <code>Program Files</code>), enclose it with double quotes.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Make sure the build is successful.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_deploy_in_studio_success.png" target="_blank" rel="noopener"><img src="_images/tutorial_deploy_in_studio_success.png" alt="Build success" width="70%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Open Talend Open Studio and create a new Job:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The new component is present inside the new family and category that were specified in the <strong>Talend Component Kit Starter</strong>. You can add it to your job and open its settings.</p>
+</li>
+<li>
+<p>Notice that the <strong>level</strong> field that was specified in the configuration model of the component in the <strong>Talend Component Kit Starter</strong> is present.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_first_component_in_studio.png" target="_blank" rel="noopener"><img src="_images/tutorial_first_component_in_studio.png" alt="Component in Studio" width="70%"></a>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>At this point, your new component is available in Talend Open Studio, and its configurable part is already set. But the component logic is still to be defined.<br>
+As a reminder, the initial goal of this component is to output the information it received in input in the logs of the job.
+Go to the next section to learn how to define a simple logic.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_editing_the_component_2"><a class="anchor" href="#_editing_the_component_2"></a>Editing the component</h4>
+<div class="paragraph">
+<p>You can now edit the component to implement a simple logic aiming at reading the data contained in the input branch of the component, to display it the execution logs of the job. The value of the <strong>level</strong> field of the component also needs to be displayed and changed to uppercase.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Save the job created earlier and close Talend Open Studio.</p>
+</li>
+<li>
+<p>Back in IntelliJ open the <strong>LoggerOutput</strong> class. This is the class where the component logic can be defined.</p>
+</li>
+<li>
+<p>Look for the <code>@ElementListener</code> method. It is already present and references the default input branch that was defined in the <strong>Talend Component Kit Starter</strong>, but it is not complete yet.</p>
+</li>
+<li>
+<p>To be able to log the data in input to the console, add the following lines:<br></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">//Log to the console
+        System.out.println("["+configuration.getLevel().toUpperCase()+"] "+defaultInput);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>@ElementListener</code> method now looks as follows:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
+    public void onNext(
+            @Input final Record defaultInput) {
+        // this is the method allowing you to handle the input(s) and emit the output(s)
+        // after some custom logic you put here, to send a value to next element you can use an
+        // output parameter and call emit(value).
+
+        //Log to the console
+        System.out.println("["+configuration.getLevel().toUpperCase()+"] "+defaultInput);
+    }</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>Open the Terminal again to compile the project and deploy the component again. To do that, run successively the two following commands:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>mvnw clean install</code></p>
+</li>
+<li>
+<p><code>`mvnw talend-component:deploy-in-studio -Dtalend.component.studioHome="&lt;path to Talend Open Studio home&gt;"</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The update of the component logic should now be deployed to the Studio. After restarting the Studio, you will be ready to build a job and use your component for the first time.</p>
+</div>
+<div class="paragraph">
+<p>To learn the different possibilities and methods available to develop more complex logics, refer to <a href="component-define-processor-output.html" class="page">this document</a>.</p>
+</div>
+<div class="paragraph">
+<p>If you want to avoid having to close and re-open Talend Open Studio every time you need to make an edit, you can enable the developer mode, as explained in <a href="studio.html#developer-mode" class="page">this document</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_building_a_job_with_the_component_2"><a class="anchor" href="#_building_a_job_with_the_component_2"></a>Building a job with the component</h4>
+<div class="paragraph">
+<p>As the component is now ready to be used, it is time to create a job and check that it behaves as intended.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open Talend Open Studio again and go to the job created earlier. The new component is still there.</p>
+</li>
+<li>
+<p>Add a <strong>tRowGenerator</strong> component and connect it to the logger.</p>
+</li>
+<li>
+<p>Double-click the <strong>tRowGenerator</strong> to specify the data to generate:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add a first column named <code>firstName</code> and select the *TalendDataGenerator.getFirstName() function.</p>
+</li>
+<li>
+<p>Add a second column named 'lastName' and select the *TalendDataGenerator.getLastName() function.</p>
+</li>
+<li>
+<p>Set the <strong>Number of Rows for RowGenerator</strong> to <code>10</code>.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_build_job_trowgenerator.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_trowgenerator.png" alt="tRowGenerator" width="70%"></a>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Validate the <strong>tRowGenerator</strong> configuration.</p>
+</li>
+<li>
+<p>Open the <strong>TutorialFamilyLogger</strong> component and set the <strong>level</strong> field to <code>info</code>.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_build_job_logger.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_logger.png" alt="Logger" width="70%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Go to the <strong>Run</strong> tab of the job and run the job.<br>
+The job is executed. You can observe in the console that each of the 10 generated rows is logged, and that the <code>info</code> value entered in the logger is also displayed with each record, in uppercase.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
+</div>
+</div>
+</div>
+<div class="sect3 relatedlinks">
+<h4 id="_related_articles_35"><a class="anchor" href="#_related_articles_35"></a>Related articles</h4>
+<div class="paragraph">
+<p>To go further and start implementing more complex components, you can refer to the following documents:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="methodology-creating-components.html" class="page">Methodology for creating components</a></p>
+</li>
+<li>
+<p><a href="tutorial-generate-project-using-starter.html" class="page">Generating a project using the Talend Component Kit Starter</a></p>
+</li>
+<li>
+<p><a href="component-registering.html" class="page">Registering a component</a></p>
+</li>
+<li>
+<p><a href="component-execution.html" class="page">General component execution logic</a></p>
+</li>
+<li>
+<p><a href="component-configuration.html" class="page">Configuring a component</a></p>
+</li>
+<li>
+<p><a href="component-define-input.html" class="page">Defining an input component logic</a></p>
+</li>
+<li>
+<p><a href="component-define-processor-output.html" class="page">Defining a processor/output logic</a></p>
+</li>
+<li>
+<p><a href="component-internationalization.html" class="page">Internationalizing a component</a></p>
+</li>
+<li>
+<p><a href="tutorial-configuration-sensitive-data.html" class="page">Masking sensitive data</a></p>
+</li>
+<li>
+<p><a href="best-practices.html" class="page">Best practices</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_generating_a_project_using_the_component_kit_starter_2"><a class="anchor" href="#_generating_a_project_using_the_component_kit_starter_2"></a>Generating a project using the Component Kit starter</h3>
 <div id="tutorial-generate-project-using-starter" class="paragraph">
 <p>The Component Kit starter lets you design your components configuration and generates a ready-to-implement project structure.</p>
@@ -12422,7 +13208,7 @@ Import the project to your favorite IDE to start the implementation.</p>
 </div>
 </div>
 <div class="sect3 relatedlinks">
-<h4 id="_related_articles_34"><a class="anchor" href="#_related_articles_34"></a>Related articles</h4>
+<h4 id="_related_articles_36"><a class="anchor" href="#_related_articles_36"></a>Related articles</h4>
 <div class="ulist">
 <ul>
 <li>
