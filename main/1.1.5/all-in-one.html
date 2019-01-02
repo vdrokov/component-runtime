@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.5/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-01-02T09:30:50.641Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-01-02T14:52:50.442Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -12370,15 +12370,13 @@ You can compose previous layout (message format) and appenders (where logs are w
 <div class="sect4">
 <h5 id="_logging_2"><a class="anchor" href="#_logging_2"></a>Logging</h5>
 <div class="paragraph">
-<p>The component server docker image comes with two log4j2 profiles: <code>default</code> and <code>kafka</code>.
-The logging profile can be changed by setting the environment variable <code>TALEND_COMPONENT_LOG4J2_PROFILE</code> to <code>kafka</code>.
-The <code>default</code> profile is active by default.</p>
+<p>The component server docker image comes with two log4j2 profiles: <code>TEXT</code> (default) and <code>JSON</code>.
+The logging profile can be changed by setting the environment variable <code>LOGGING_LAYOUT</code> to <code>JSON</code>.</p>
 </div>
 <div class="sect5">
 <h6 id="_default_profile"><a class="anchor" href="#_default_profile"></a>default profile</h6>
 <div class="paragraph">
-<p>The <strong>default</strong> profile has file and console logging capabilities.
-The console logging is off by default and you can activate it by setting <code>CONSOLE_LOG_LEVEL</code> environment variable to <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code> or any other log level supported by log4j2. In practice and during development you will want to see the logs without connecting to the server by activating console logging.</p>
+<p>The console logging is on at <code>INFO</code> level by default and you can customize it by setting <code>CONSOLE_LOG_LEVEL</code> environment variable to <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code> or any other log level supported by log4j2.</p>
 </div>
 <div class="paragraph">
 <p>Run docker image with console logging</p>
@@ -12386,46 +12384,9 @@ The console logging is off by default and you can activate it by setting <code>C
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">sudo docker run -p 8080:8080 \
-	-e CONSOLE_LOG_LEVEL=INFO \
+	-e CONSOLE_LOG_LEVEL=DEBUG \
 	component-server</code></pre>
 </div>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_kafka_profile"><a class="anchor" href="#_kafka_profile"></a>Kafka profile</h6>
-<div class="paragraph">
-<p>The <strong>Kafka</strong> profile lets you send logs to Kafka servers. The logs are formatted in JSON and follow the layout defined by Talend described here:  <a href="https://github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout" class="bare">github.com/Talend/daikon/tree/master/daikon-logging/logging-event-layout</a></p>
-</div>
-<div class="paragraph">
-<p>This profile requires two environment variables:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>LOG_KAFKA_TOPIC</code> : Kafka topic.</p>
-</li>
-<li>
-<p><code>LOG_KAFKA_URL</code>   : A list of host/port pairs to use for establishing the initial connection to the Kafka cluster.
-This list should be in the form <code>url:port</code> separated by <code>,</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Run docker image with the <code>kafka</code> profile.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">sudo docker run -p 8080:8080 \
-    -e TALEND_COMPONENT_LOG4J2_PROFILE=kafka \
-    -e LOG_KAFKA_URL=`log kafka url:port` \
-    -e LOG_KAFKA_TOPIC=`log kafka topic` \
-	-e TRACING_KAFKA_URL=`tracing kafka url:port` \
-	-e TRACING_KAFKA_TOPIC=`tracing kafka topic` \
-	tacokit/component-server</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Note</strong> : <code>LOG_KAFKA_TOPIC</code> will receive the application and the access logs and <code>TRACING_KAFKA_TOPIC</code> will receive brave tracing logs.</p>
 </div>
 </div>
 <div class="sect5">
@@ -12466,22 +12427,9 @@ to wire it over any OpenTracing backend.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">docker build --build-arg ARTIFACT_ID=component-starter-server \
-             --build-arg SERVER_VERSION=`component starter server version` \
-             --tag tacokit/component-server .</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd images/component-server-images
+mvn clean compile jib:dockerBuild</code></pre>
 </div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-This assumes the project is built before you run that command.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
