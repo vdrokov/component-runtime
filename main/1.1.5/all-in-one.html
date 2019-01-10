@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.5/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-01-09T17:32:58.943Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-01-10T08:42:22.423Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -12408,8 +12408,23 @@ You can compose previous layout (message format) and appenders (where logs are w
 <p>The component server docker image comes with two log4j2 profiles: <code>TEXT</code> (default) and <code>JSON</code>.
 The logging profile can be changed by setting the environment variable <code>LOGGING_LAYOUT</code> to <code>JSON</code>.</p>
 </div>
+<div class="paragraph">
+<p>Note that Component Server adds to these default Talend profiles the profile <code>KAFKA</code> for a mode where all logs are sent to kafka.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+if you want the exact configuration you can check our <code>component-runtime/images/component-server-image/src/main/resources</code> folder.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect5">
-<h6 id="_default_profile"><a class="anchor" href="#_default_profile"></a>default profile</h6>
+<h6 id="_default_or_text_profile"><a class="anchor" href="#_default_or_text_profile"></a>default or TEXT profile</h6>
 <div class="paragraph">
 <p>The console logging is on at <code>INFO</code> level by default and you can customize it by setting <code>CONSOLE_LOG_LEVEL</code> environment variable to <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code> or any other log level supported by log4j2.</p>
 </div>
@@ -12425,6 +12440,65 @@ The logging profile can be changed by setting the environment variable <code>LOG
 </div>
 </div>
 <div class="sect5">
+<h6 id="_json_profile"><a class="anchor" href="#_json_profile"></a>JSON profile</h6>
+<div class="paragraph">
+<p>The JSON profile does the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>logs on the console using <code>CONSOLE_LOG_LEVEL</code> configuration as in default profile. It uses the formatting you will find just after this list.</p>
+</li>
+<li>
+<p>if <code>TRACING_KAFKA_URL</code> environment variable is set it logs the opentracing data on this Kafka using the topic <code>TRACING_KAFKA_TOPIC</code>. This level can be customized using <code>KAFKA_LOG_LEVEL</code>, default being <code>INFO</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>It uses the following format for log events:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+   "eventUUID":"%uuid{RANDOM}",
+   "correlationId":"%X{traceId}",
+   "spanId":"%X{spanId}",
+   "traceId":"%X{traceId}",
+   "category":"components",
+   "eventType":"LOGEvent",
+   "severity":"%level",
+   "logMessage":"%encode{%message}{JSON}",
+   "logSource":{
+      "class.name":"%class",
+      "file.name":"%file",
+      "host.name":"%X{hostname}",
+      "line.number":"%line",
+      "logger.name":"%logger",
+      "method.name":"%method",
+      "process.id":"%pid"
+   },
+   "service":"${env:LOG_SERVICE_NAME:-component-server}",
+   "application":"${env:LOG_APP_NAME:-component-server}",
+   "exportable":"${env:LOG_EXPORTABLE:-true}",
+   "audit":"${env:LOG_AUDIT:-false}",
+   "logTimestamp":"%d{ISO8601}{UTC}",
+   "serverTimestamp":"%d{ISO8601}{UTC}",
+   "customInfo":{
+      "threadName":"%encode{%thread}{JSON}",
+      "stackTrace":"%encode{%xThrowable{full}}{JSON}"
+   }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_kafka_profile"><a class="anchor" href="#_kafka_profile"></a>KAFKA profile</h6>
+<div class="paragraph">
+<p>This profile is very close to the previous one except it logs even the default logs - and not only the tracing ones,
+on Kafka. It adds the configuration <code>LOG_KAFKA_TOPIC</code> and <code>LOG_KAFKA_URL</code> - same as the tracing flavors but for the other logs.</p>
+</div>
+</div>
+<div class="sect5">
 <h6 id="_opentracing"><a class="anchor" href="#_opentracing"></a>OpenTracing</h6>
 <div class="paragraph">
 <p>The component server uses Geronimo OpenTracing to monitor request.</p>
@@ -12433,11 +12507,20 @@ The logging profile can be changed by setting the environment variable <code>LOG
 <p>The tracing can be activated by setting the <code>TRACING_ON</code> environment variable to <code>true</code>.</p>
 </div>
 <div class="paragraph">
-<p>You can choose the reporter type by setting <code>talend_component_server_monitoring_brave_reporter_type</code> environment variable to <code>log</code> (this is the default value in this docker image) or to <code>noop</code>, which will deactivate the tracing. <em>Other types of reporter may be added in the future.</em></p>
-</div>
-<div class="paragraph">
 <p>The tracing rate is configurable by setting the <code>TRACING_SAMPLING_RATE</code> environment variable.
 It accepts <code>0</code> (none) and <code>1</code> (all, default) as values to ensure the consistency of the reporting.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+you can find all the details on the configuration in <code>org.talend.sdk.component.server.configuration.OpenTracingConfigSource</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Run docker image with tracing on.</p>
@@ -12458,11 +12541,11 @@ to wire it over any OpenTracing backend.</p>
 <div class="sect4">
 <h5 id="_build_the_image_yourself"><a class="anchor" href="#_build_the_image_yourself"></a>Build the image yourself</h5>
 <div class="paragraph">
-<p>You can build component starter server in docker following those instructions :</p>
+<p>You can register component server images in docker using those instructions in the corresponding image directory :</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">cd images/component-server-images
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># ex: cd images/component-server-image
 mvn clean compile jib:dockerBuild</code></pre>
 </div>
 </div>
