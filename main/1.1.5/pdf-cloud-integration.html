@@ -8,7 +8,7 @@
     <meta name="description" content="Integrate components into Talend Cloud and learn about the component server">
     <meta name="keywords" content="web, component server, cloud">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-01-10T09:48:04.469Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-01-10T10:58:28.198Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -1045,7 +1045,7 @@ You can compose previous layout (message format) and appenders (where logs are w
 <div class="sect3">
 <h4 id="_maven_repository"><a class="anchor" href="#_maven_repository"></a>Maven repository</h4>
 <div class="paragraph">
-<p>The maven repository is the default one of the machine, you can change it setting the system property <code>talend_component_server_maven_repository=/path/to/your/m2</code>.</p>
+<p>The maven repository is the default one of the machine, you can change it setting the system property <code>talend.component.server.maven.repository=/path/to/your/m2</code>.</p>
 </div>
 <div class="sect4">
 <h5 id="_deploy_components_to_the_server"><a class="anchor" href="#_deploy_components_to_the_server"></a>Deploy components to the server</h5>
@@ -1070,7 +1070,7 @@ You can compose previous layout (message format) and appenders (where logs are w
 The logging profile can be changed by setting the environment variable <code>LOGGING_LAYOUT</code> to <code>JSON</code>.</p>
 </div>
 <div class="paragraph">
-<p>Note that Component Server adds to these default Talend profiles the profile <code>KAFKA</code> for a mode where all logs are sent to kafka.</p>
+<p>Note that Component Server adds to these default Talend profiles the <code>KAFKA</code> profile. With this profile, all logs are sent to Kafka.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1079,7 +1079,7 @@ The logging profile can be changed by setting the environment variable <code>LOG
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-if you want the exact configuration you can check our <code>component-runtime/images/component-server-image/src/main/resources</code> folder.
+You can check the exact configuration in the <code>component-runtime/images/component-server-image/src/main/resources</code> folder.
 </td>
 </tr>
 </table>
@@ -1087,10 +1087,10 @@ if you want the exact configuration you can check our <code>component-runtime/im
 <div class="sect4">
 <h5 id="_default_or_text_profile"><a class="anchor" href="#_default_or_text_profile"></a>default or TEXT profile</h5>
 <div class="paragraph">
-<p>The console logging is on at <code>INFO</code> level by default and you can customize it by setting <code>CONSOLE_LOG_LEVEL</code> environment variable to <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code> or any other log level supported by log4j2.</p>
+<p>The console logging is on at <code>INFO</code> level by default. You can customize it by setting the <code>CONSOLE_LOG_LEVEL</code> environment variable to <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code> or to any other log level supported by log4j2.</p>
 </div>
 <div class="paragraph">
-<p>Run docker image with console logging</p>
+<p>Run docker image with console logging:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1108,15 +1108,15 @@ if you want the exact configuration you can check our <code>component-runtime/im
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>logs on the console using <code>CONSOLE_LOG_LEVEL</code> configuration as in default profile. It uses the formatting you will find just after this list.</p>
+<p>Logs on the console using the <code>CONSOLE_LOG_LEVEL</code> configuration as the default profile. It uses the formatting shown below.</p>
 </li>
 <li>
-<p>if <code>TRACING_KAFKA_URL</code> environment variable is set it logs the opentracing data on this Kafka using the topic <code>TRACING_KAFKA_TOPIC</code>. This level can be customized using <code>KAFKA_LOG_LEVEL</code>, default being <code>INFO</code>.</p>
+<p>If the <code>TRACING_KAFKA_URL</code> environment variable is set, it logs the opentracing data on the defined Kafka using the topic <code>TRACING_KAFKA_TOPIC</code>. This level can be customized by setting the <code>KAFKA_LOG_LEVEL</code> environment variable (<code>INFO</code> by default).</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>It uses the following format for log events:</p>
+<p>Events are logged in the following format:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1155,8 +1155,7 @@ if you want the exact configuration you can check our <code>component-runtime/im
 <div class="sect4">
 <h5 id="_kafka_profile"><a class="anchor" href="#_kafka_profile"></a>KAFKA profile</h5>
 <div class="paragraph">
-<p>This profile is very close to the previous one except it logs even the default logs - and not only the tracing ones,
-on Kafka. It adds the configuration <code>LOG_KAFKA_TOPIC</code> and <code>LOG_KAFKA_URL</code> - same as the tracing flavors but for the other logs.</p>
+<p>This profile is very close to the JSON profile and also adds the <code>LOG_KAFKA_TOPIC</code> and <code>LOG_KAFKA_URL</code> configuration. The difference is that it logs the default logs on Kafka in addition to the tracing logs.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1178,13 +1177,13 @@ It accepts <code>0</code> (none) and <code>1</code> (all, default) as values to 
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-you can find all the details on the configuration in <code>org.talend.sdk.component.server.configuration.OpenTracingConfigSource</code>.
+You can find all the details on the configuration in <code>org.talend.sdk.component.server.configuration.OpenTracingConfigSource</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Run docker image with tracing on.</p>
+<p>Run docker image with tracing on:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1202,12 +1201,91 @@ to wire it over any OpenTracing backend.</p>
 <div class="sect3">
 <h4 id="_build_the_image_yourself"><a class="anchor" href="#_build_the_image_yourself"></a>Build the image yourself</h4>
 <div class="paragraph">
-<p>You can register component server images in docker using those instructions in the corresponding image directory :</p>
+<p>You can register component server images in docker using these instructions in the corresponding image directory:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># ex: cd images/component-server-image
 mvn clean compile jib:dockerBuild</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_how_to_integrate_components_into_the_image"><a class="anchor" href="#_how_to_integrate_components_into_the_image"></a>How to integrate components into the image</h4>
+<div class="sect4">
+<h5 id="_docker_compose"><a class="anchor" href="#_docker_compose"></a>Docker Compose</h5>
+<div class="paragraph">
+<p>Docker Compose is a nice way to deploy the server with components. The idea is to mount the component volume
+into the server image. Here is a <code>docker-compose.yml</code> doing it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">version: '3.2'
+
+services:
+  component-server:
+    healthcheck:
+      timeout: 3s
+      interval: 3s
+      retries: 3
+      test: curl --fail http://localhost:1234/api/v1/environment
+    image: tacokit/component-server:${COMPONENT_SERVER_IMAGE:-1.1.2_20181108161652}
+    environment:
+    - CONSOLE_LOG_LEVEL=INFO
+    - _JAVA_OPTIONS=
+        -Xmx1024m
+        -Dhttp=1234
+        -Dtalend.component.server.component.registry=/opt/talend/connectors/component-registry.properties
+        -Dtalend.component.server.maven.repository=/opt/talend/connectors
+    ports:
+    - 1234:1234/tcp
+    volumes:
+    - type: bind
+      read_only: true
+      source: ${CONNECTORS_REPOSITORY}
+      target: /opt/talend/connectors
+      volume:
+        nocopy: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to mount it from another image you can use this compose configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">version: '3.2'
+
+services:
+  component-server:
+    healthcheck:
+      timeout: 3s
+      interval: 3s
+      retries: 3
+      test: curl --fail http://localhost:1234/api/v1/environment
+    image: tacokit/component-server:${COMPONENT_SERVER_IMAGE:-1.1.5_20190110093338}
+    environment:
+    - _JAVA_OPTIONS=
+        -Xmx1024m
+        -Dhttp=1234
+        -Dtalend.component.server.component.registry=/opt/talend/connectors/component-registry.properties
+        -Dtalend.component.server.maven.repository=/opt/talend/connectors
+    ports:
+    - 1234:1234/tcp
+    volumes:
+    - connectors:/opt/talend/connectors:ro
+
+  connectors:
+    image: ${TALEND_REGISTRY}/talend/connectors-se:${CONNECTORS:-1.0.0_master_20190110080009}
+    volumes:
+    - connectors:/opt/talend/connectors-se:ro
+
+
+volumes:
+  connectors:</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run one of both compose you can use <code>docker-compose -f docker-compose.yml up</code>.</p>
 </div>
 </div>
 </div>
