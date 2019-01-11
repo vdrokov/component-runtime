@@ -8,7 +8,7 @@
     <meta name="description" content="How to modelize data processed or emitted by components.">
     <meta name="keywords" content="record, pojo,">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-01-11T15:16:08.328Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-01-11T17:31:33.330Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -498,6 +498,38 @@ It is out of scope of the framework to handle the way the runtime serializes - i
             .build();
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public Record createRecord() {
+    return factory.newRecordBuilder(myAlreadyBuiltSchemaWithSchemaBuilder)
+            .withString("name", "Gary")
+            .withDateTime("date", ZonedDateTime.of(LocalDateTime.of(2011, 2, 6, 8, 0), ZoneId.of("UTC")))
+            .build();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The main difference between both cases is the fact the last sample uses a pre-built schema - with <code>factory.newSchemaBuilder(Schema.Type.RECORD)</code> -
+whereas in the first case the schema is dynamic from the data. In the case where you provide a schema, the entries passed to the record builder
+will be validated which means that if you pass a value - generally null or an entry type not matching the provided schema the record creation will fail.
+It will also fail if you try to add an entry which does not exist or if you didn&#8217;t set a not nullable entry.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+using a dynamic schema can be needed for some backend but it also means the users will have more issues
+to create a pipeline to process the data. If you can prefer the last option which is more reliable for end users.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
