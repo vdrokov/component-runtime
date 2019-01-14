@@ -8,7 +8,7 @@
     <meta name="description" content="Integrate components into Talend Cloud and learn about the component server">
     <meta name="keywords" content="web, component server, cloud">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-01-13T18:09:13.439Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-01-14T17:35:17.586Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -1199,9 +1199,9 @@ to wire it over any OpenTracing backend.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_build_the_image_yourself"><a class="anchor" href="#_build_the_image_yourself"></a>Build the image yourself</h4>
+<h4 id="_building_the_docker_image"><a class="anchor" href="#_building_the_docker_image"></a>Building the docker image</h4>
 <div class="paragraph">
-<p>You can register component server images in docker using these instructions in the corresponding image directory:</p>
+<p>You can register component server images in Docker using these instructions in the corresponding image directory:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1211,12 +1211,15 @@ mvn clean compile jib:dockerBuild</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_how_to_integrate_components_into_the_image"><a class="anchor" href="#_how_to_integrate_components_into_the_image"></a>How to integrate components into the image</h4>
+<h4 id="_integrating_components_into_the_image"><a class="anchor" href="#_integrating_components_into_the_image"></a>Integrating components into the image</h4>
 <div class="sect4">
 <h5 id="_docker_compose"><a class="anchor" href="#_docker_compose"></a>Docker Compose</h5>
 <div class="paragraph">
-<p>Docker Compose is a nice way to deploy the server with components. The idea is to mount the component volume
-into the server image. Here is a <code>docker-compose.yml</code> doing it:</p>
+<p>Docker Compose allows you to deploy the server with components, by mounting the component volume
+into the server image.</p>
+</div>
+<div class="paragraph">
+<p><code>docker-compose.yml</code> example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1249,7 +1252,7 @@ services:
 </div>
 </div>
 <div class="paragraph">
-<p>If you want to mount it from another image you can use this compose configuration:</p>
+<p>If you want to mount it from another image, you can use this compose configuration:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1289,7 +1292,7 @@ volumes:
 </div>
 </div>
 <div class="paragraph">
-<p>To run one of both compose you can use <code>docker-compose -f docker-compose.yml up</code>.</p>
+<p>To run one of the previous compose examples, you can use <code>docker-compose -f docker-compose.yml up</code>.</p>
 </div>
 </div>
 </div>
