@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.6/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-02-12T14:28:44.811Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-02-12T18:06:04.344Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -240,7 +240,7 @@
     <a class="menu-link" href="index-generating-project.html">Project generation overview</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="tutorial-generate-project-using-starter.html">Using the starter</a>
+    <a class="menu-link" href="tutorial-generate-project-using-starter.html">Using the Starter</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="generate-project-using-intellij-plugin.html">Using the IntelliJ plugin</a>
@@ -371,6 +371,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="documentation-rest.html">Component server and HTTP API</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="vault-proxy.html">Component Server Vault Proxy</a>
   </li>
 </ul>
   </li>
@@ -758,7 +761,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 <p>This tutorial walks you through all the required steps to get started with <strong>Talend Component Kit</strong>, from the creation of a simple component to its integration into <strong>Talend Open Studio</strong>.</p>
 </div>
 <div class="paragraph">
-<p>The component created in this tutorial is a simple output component that receives data from the previous component and displays it in the logs, along with an extra information entered by a user.</p>
+<p>The component created in this tutorial is a simple processor component that receives data from the previous component and displays it in the logs, along with an extra information entered by a user.</p>
 </div>
 <div class="paragraph">
 <p>Once the prerequisites completed, this tutorial should take you about 20 minutes.</p>
@@ -788,18 +791,6 @@ The framework is designed to be as declarative as possible but also to stay exte
 <p>Download the Talend Component Kit plugin for IntelliJ. The detailed installation steps for the plugin are available in <a href="installing-talend-intellij-plugin.html" class="page">this document</a>.</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-For this tutorial to work correctly, you must use the version 1.1.1 or below of the plugin (for both <code>component-api</code> and <code>talend-component-maven-plugin</code> artifacts.). Check how to change the framework version in <a href="compatibility.html" class="page">this document</a>.
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect3">
@@ -840,13 +831,13 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 </div>
 </li>
 <li>
-<p>Once the metadata is filled, select <strong>ADD A COMPONENT</strong>. A new screen is displayed in the <strong>Talend Component Kit Starter</strong> that lets you define the generic configuration of the component.</p>
+<p>Once the metadata is filled, select <strong>Add a component</strong>. A new screen is displayed in the <strong>Talend Component Kit Starter</strong> that lets you define the generic configuration of the component. By default, new components are processors,</p>
 </li>
 <li>
-<p>Select <strong>PROCESSOR/OUTPUT</strong> and enter a valid Java name for the component. For example, <strong>Logger</strong>.</p>
+<p>Enter a valid Java name for the component. For example, <strong>Logger</strong>.</p>
 </li>
 <li>
-<p>Select <strong>CONFIGURATION MODEL</strong> and add a string field named <code>level</code>. This input field will be used in the component configuration to enter additional information to display in the logs.<br></p>
+<p>Select <strong>Configuration Model</strong> and add a string field named <code>level</code>. This input field will be used in the component configuration to enter additional information to display in the logs.<br></p>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model" width="70%"></a>
@@ -854,12 +845,15 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 </div>
 </li>
 <li>
-<p>In the <strong>Input(s) / Output(s)</strong> section, click the default <strong>MAIN</strong> input branch to access its detail, and toggle the <strong>Generic</strong> option to specify that the component can receive any type of data. Leave the <strong>Name</strong> of the branch with its default <code>MAIN</code> value.<br></p>
+<p>In the <strong>Input(s) / Output(s)</strong> section, click the default <strong>MAIN</strong> input branch to access its detail, and make sure that the record model is set to <strong>Generic</strong>. Leave the <strong>Name</strong> of the branch with its default <code>MAIN</code> value.<br></p>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/tutorial_component_generic_input.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_generic_input.png" alt="Generic Input" width="70%"></a>
 </div>
 </div>
+</li>
+<li>
+<p>Repeat the same step for the default <strong>MAIN</strong> output branch.<br></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -867,7 +861,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-By default, when selecting <strong>PROCESSOR/OUTPUT</strong>, there is one input branch and no output branch for the component, which is fine in the case of this tutorial. A processor without any output branch is considered an output component.
+Because the component is a processor, it has an output branch by default. A processor without any output branch is considered an output component. Yo ucan create output components when the <strong>Activate IO</strong> option is selected.
 </td>
 </tr>
 </table>
@@ -893,10 +887,10 @@ By default, when selecting <strong>PROCESSOR/OUTPUT</strong>, there is one input
 <div class="ulist">
 <ul>
 <li>
-<p><strong>LoggerOutput</strong> is where the component logic is defined</p>
+<p><strong>LoggerProcessor</strong> is where the component logic is defined</p>
 </li>
 <li>
-<p><strong>LoggerOutputConfiguration</strong> is where the component layout and configurable fields are defined, including the <strong>level</strong> string field that was defined earlier in the configuration model of the component.</p>
+<p><strong>LoggerProcessorConfiguration</strong> is where the component layout and configurable fields are defined, including the <strong>level</strong> string field that was defined earlier in the configuration model of the component.</p>
 </li>
 </ul>
 </div>
@@ -930,14 +924,11 @@ By default, when selecting <strong>PROCESSOR/OUTPUT</strong>, there is one input
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>From your component project in IntelliJ, open a terminal.<br></p>
+<p>From your component project in IntelliJ, open a terminal and make sure that the selected directory is the root of the project. All commands shown in this tutorial are performed from this location.<br></p>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/tutorial_intellij_terminal_blank.png" target="_blank" rel="noopener"><img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal" width="70%"></a>
 </div>
-</div>
-<div class="paragraph">
-<p>There, you can see that the terminal opens directly at the root of the project. All commands shown in this tutorial are performed from this location.</p>
 </div>
 </li>
 <li>
@@ -989,15 +980,13 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 </ol>
 </div>
 <div class="paragraph">
-<p>At this point, your new component is available in Talend Open Studio, and its configurable part is already set. But the component logic is still to be defined.<br>
-As a reminder, the initial goal of this component is to output the information it received in input in the logs of the job.
-Go to the next section to learn how to define a simple logic.</p>
+<p>At this point, your new component is available in Talend Open Studio, and its configurable part is already set. But the component logic is still to be defined.<br></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_editing_the_component"><a class="anchor" href="#_editing_the_component"></a>Editing the component</h4>
 <div class="paragraph">
-<p>You can now edit the component to implement a simple logic aiming at reading the data contained in the input branch of the component, to display it the execution logs of the job. The value of the <strong>level</strong> field of the component also needs to be displayed and changed to uppercase.</p>
+<p>You can now edit the component to implement a simple logic: reading the data contained in the input branch of the component to display it the execution logs of the job. The value of the <strong>level</strong> field of the component also needs to be displayed and changed to uppercase.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1005,7 +994,7 @@ Go to the next section to learn how to define a simple logic.</p>
 <p>Save the job created earlier and close Talend Open Studio.</p>
 </li>
 <li>
-<p>Back in IntelliJ open the <strong>LoggerOutput</strong> class. This is the class where the component logic can be defined.</p>
+<p>Back in IntelliJ open the <strong>LoggerProcessor</strong> class. This is the class where the component logic can be defined.</p>
 </li>
 <li>
 <p>Look for the <code>@ElementListener</code> method. It is already present and references the default input branch that was defined in the <strong>Talend Component Kit Starter</strong>, but it is not complete yet.</p>
@@ -1083,10 +1072,10 @@ Go to the next section to learn how to define a simple logic.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Add a first column named <code>firstName</code> and select the *TalendDataGenerator.getFirstName() function.</p>
+<p>Add a first column named <code>firstName</code> and select the <strong>TalendDataGenerator.getFirstName()</strong> function.</p>
 </li>
 <li>
-<p>Add a second column named 'lastName' and select the *TalendDataGenerator.getLastName() function.</p>
+<p>Add a second column named 'lastName' and select the <strong>TalendDataGenerator.getLastName()</strong> function.</p>
 </li>
 <li>
 <p>Set the <strong>Number of Rows for RowGenerator</strong> to <code>10</code>.<br></p>
@@ -1425,12 +1414,27 @@ The plugin automatically detects your configuration and provides you with key co
 <p>Once your project is generated, you can start <a href="index-creating-components.html" class="page">implementing the component logic</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="_generating_a_project_using_the_component_kit_starter"><a class="anchor" href="#_generating_a_project_using_the_component_kit_starter"></a>Generating a project using the Component Kit starter</h3>
+<h3 id="_generating_a_project_using_the_component_kit_starter"><a class="anchor" href="#_generating_a_project_using_the_component_kit_starter"></a>Generating a project using the Component Kit Starter</h3>
 <div id="tutorial-generate-project-using-starter" class="paragraph">
 <p>The Component Kit starter lets you design your components configuration and generates a ready-to-implement project structure.</p>
 </div>
 <div class="paragraph">
-<p>This tutorial shows you how to use the Component Kit starter to generate new components for MySQL databases. Before starting, make sure that you have correctly setup your environment. See <a href="getting-started.html#getting-started-system-requirements" class="page">this section</a>.</p>
+<p>The starter is available on the web or as an <a href="generate-project-using-intellij-plugin.html" class="page">IntelliJ plugin</a>.</p>
+</div>
+<div class="paragraph">
+<p>This tutorial shows you how to use the Component Kit Starter to generate new components for MySQL databases. Before starting, make sure that you have correctly setup your environment. See <a href="getting-started.html#getting-started-system-requirements" class="page">this section</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+When defining a project using the Starter, do not refresh the page to avoid losing your configuration.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_configuring_the_project"><a class="anchor" href="#_configuring_the_project"></a>Configuring the project</h4>
@@ -1468,20 +1472,121 @@ This <strong>Databases</strong> category is used and displayed as the parent fam
 <p>Complete the project metadata by entering the <strong>Group</strong>, <strong>Artifact</strong> and <strong>Package</strong>.</p>
 </li>
 <li>
-<p>Click the <strong>ADD A COMPONENT</strong> button to start designing your components.</p>
+<p>If you need to create <strong>Input</strong> or <strong>Output</strong> components, select <strong>Activate IO</strong>. By doing this:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You can add datasets and datastores to your project, as they are required for input and output components.<br></p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Input and Output components without dataset (itself containing a datastore) will not pass the validation step when building the components. Learn more about datasets and datastores in <a href="component-configuration.html#dataset-and-datastore" class="page">this document</a>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Components added to the project using <strong>Add A Component</strong> are now input or output components by default. When <strong>Activate IO</strong> is not enabled, new components are processors by default. Note that you are still able to define processors even with datasets and datastores activated.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/starter/starter_activate_io.png" target="_blank" rel="noopener"><img src="_images/starter/starter_activate_io.png" alt="Activate IO" width="80%"></a>
+</div>
+</div>
+</li>
+</ul>
+</div>
 </li>
 </ol>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="_images/starter/starter_project-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-config.png" alt="Project configuration" width="80%"></a>
 </div>
+<div class="sect3">
+<h4 id="_defining_a_datastore"><a class="anchor" href="#_defining_a_datastore"></a>Defining a Datastore</h4>
+<div class="paragraph">
+<p>A datastore represents the data needed by an input or output component to connect to a database.</p>
+</div>
+<div class="paragraph">
+<p>When building a component, the <code>validateDataSet</code> validation checks that each input or output (processor without output branch) component uses a dataset and that this dataset has a datastore.</p>
+</div>
+<div class="paragraph">
+<p>You can define one or several datastores if you have selected the <strong>Activate IO</strong> step.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select <strong>Datastore</strong>. The list of datastores opens. By default, a datastore is already open but not configured. You can configure it or create a new one using the <strong>Add new Datastore</strong> button.</p>
+</li>
+<li>
+<p>Edit the datastore configuration. A typical configuration includes connection details to a database:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>JDBC URL</p>
+</li>
+<li>
+<p>Username</p>
+</li>
+<li>
+<p>Password.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Save</strong> the datastore configuration.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_defining_a_dataset"><a class="anchor" href="#_defining_a_dataset"></a>Defining a Dataset</h4>
+<div class="paragraph">
+<p>A dataset represents the data coming from or sent to a database and needed by input and output components to operate.</p>
+</div>
+<div class="paragraph">
+<p>The <code>validateDataSet</code> validation checks that each input or output (processor without output branch) component uses a dataset and that this dataset has a datastore.</p>
+</div>
+<div class="paragraph">
+<p>You can define one or several datasets if you have selected the <strong>Activate IO</strong> step.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select <strong>Dataset</strong>. The list of datasets opens. By default, a dataset is already open but not configured. You can configure it or create a new one using the <strong>Add new Dataset</strong> button.</p>
+</li>
+<li>
+<p>Edit the dataset configuration. A typical configuration includes details of the data to retrieve:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Datastore to use (that contains the connection details to the database)</p>
+</li>
+<li>
+<p>Table name</p>
+</li>
+<li>
+<p>Data</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Save</strong> the dataset configuration.</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_creating_an_input_component"><a class="anchor" href="#_creating_an_input_component"></a>Creating an Input component</h4>
 <div class="paragraph">
-<p>When clicking <strong>ADD A COMPONENT</strong> in the starter, a new step that allows you to define a new component is created in your project.<br>
+<p>To create an input component, make sure you have selected <strong>Activate IO</strong>.</p>
+</div>
+<div class="paragraph">
+<p>When clicking <strong>Add A Component</strong> in the starter, a new step allows you to define a new component in your project.<br>
 The intent in this tutorial is to create an input component that connects to a MySQL database, executes a SQL query and gets the result.</p>
 </div>
 <div class="imageblock">
@@ -1492,30 +1597,24 @@ The intent in this tutorial is to create an input component that connects to a M
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Choose the component type. <strong>INPUT</strong> in this case.</p>
+<p>Choose the component type. <strong>Input</strong> in this case.</p>
 </li>
 <li>
 <p>Enter the component name. For example, <em>MySQLInput</em>.</p>
 </li>
 <li>
-<p>Click <strong>CONFIGURATION MODEL</strong>. This button lets you specify the required configuration for the component.</p>
+<p>Click <strong>Configuration model</strong>. This button lets you specify the required configuration for the component. By default, a dataset is already specified.</p>
 </li>
 <li>
-<p>For each parameter that you need to add, click the <strong>(+)</strong> button on the right panel. Enter the name and choose the type of the parameter, then click the tick button to save the changes.<br>
+<p>For each parameter that you need to add, click the <strong>(+)</strong> button on the right panel. Enter the parameter name and choose its type then click the tick button to save the changes.<br>
 In this tutorial, to be able to execute a SQL query on the Input MySQL database, the configuration requires the following parameters:+</p>
 <div class="ulist">
 <ul>
 <li>
-<p>a connection URL (string)</p>
+<p>a dataset (which contains the datastore with the connection information)</p>
 </li>
 <li>
-<p>a username (string)</p>
-</li>
-<li>
-<p>a password (string)</p>
-</li>
-<li>
-<p>the SQL query to be executed (string).<br></p>
+<p>a timeout parameter.<br></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1523,7 +1622,7 @@ In this tutorial, to be able to execute a SQL query on the Input MySQL database,
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Closing the configuration panel on the right does <strong>not</strong> delete your configuration.
+Closing the configuration panel on the right does <strong>not</strong> delete your configuration. However, refreshing the page resets the configuration.
 </td>
 </tr>
 </table>
@@ -1533,10 +1632,10 @@ Closing the configuration panel on the right does <strong>not</strong> delete yo
 </div>
 </li>
 <li>
-<p>Specify whether the component issues a stream or not. In this tutorial, the MySQL input component created is an ordinary (non streaming) component. In this case, let the toggle button disabled.</p>
+<p>Specify whether the component issues a stream or not. In this tutorial, the MySQL input component created is an ordinary (non streaming) component. In this case, leave the <strong>Stream</strong> option disabled.</p>
 </li>
 <li>
-<p>Select the <strong>Record Type</strong> generated by the component. In this tutorial, select <strong>Generic</strong> because the component is designed to generate records in the <code>Record</code> format.<br>
+<p>Select the <strong>Record Type</strong> generated by the component. In this tutorial, select <strong>Generic</strong> because the component is designed to generate records in the default <code>Record</code> format.<br>
 You can also select <strong>Custom</strong> to define a POJO that represents your records.</p>
 </li>
 </ol>
@@ -1548,8 +1647,21 @@ You can also select <strong>Custom</strong> to define a POJO that represents you
 <div class="sect3">
 <h4 id="_creating_a_processor_component"><a class="anchor" href="#_creating_a_processor_component"></a>Creating a Processor component</h4>
 <div class="paragraph">
-<p>When clicking <strong>ADD A COMPONENT</strong> in the starter, a new step that allows you to define a new component is created in your project.<br>
+<p>When clicking <strong>Add A Component</strong> in the starter, a new step allows you to define a new component in your project.
 The intent in this tutorial is to create a simple processor component that receives a record, logs it and returns it at it is.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you did not select <strong>Activate IO</strong>, all new components you add to the project are processors by default.<br>
+If you selected <strong>Activate IO</strong>, you can choose the component type. In this case, to create a Processor component, you have to manually add at least one output.
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1559,29 +1671,38 @@ The intent in this tutorial is to create a simple processor component that recei
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Choose the component type. <strong>PROCESSOR/OUTPUT</strong> in this case.</p>
+<p>If required, choose the component type: <strong>Processor/Output</strong> in this case.</p>
 </li>
 <li>
 <p>Enter the component name. For example, <em>RecordLogger</em>, as the processor created in this tutorial logs the records.</p>
 </li>
 <li>
-<p>Specify the <strong>CONFIGURATION MODEL</strong> of the component. In this tutorial, the component doesn&#8217;t need any specific configuration. Skip this step.</p>
+<p>Specify the <strong>Configuration Model</strong> of the component. In this tutorial, the component doesn&#8217;t need any specific configuration. Skip this step.</p>
 </li>
 <li>
-<p>Define the <strong>Input(s)</strong> of the component. For each input that you need to define, click <strong>ADD INPUT</strong>. In this tutorial, only one input is needed to receive the record to log.</p>
+<p>Define the <strong>Input(s)</strong> of the component. For each input that you need to define, click <strong>Add Input</strong>. In this tutorial, only one input is needed to receive the record to log.</p>
 </li>
 <li>
 <p>Click the input name to access its configuration. You can change the name of the input and define its structure using a POJO. If you added several inputs, repeat this step for each one of them.<br>
-The input in this tutorial is a generic record. Enable the <strong>Generic</strong> option.</p>
+The input in this tutorial is a generic record. Enable the <strong>Generic</strong> option and click <strong>Save</strong>.</p>
 </li>
 <li>
-<p>Define the <strong>Output(s)</strong> of the component. For each output that you need to define, click <strong>ADD OUTPUT</strong>. In this tutorial, only one generic output is needed to return the received record.<br>
+<p>Define the <strong>Output(s)</strong> of the component. For each output that you need to define, click <strong>Add Output</strong>. In this tutorial, only one generic output is needed to return the received record.<br>
 Outputs can be configured the same way as inputs (see previous steps).</p>
 </li>
-<li>
-<p>Make sure to check the configuration of inputs and outputs as they are not set to <strong>Generic</strong> by default.</p>
-</li>
 </ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Make sure to check the configuration of inputs and outputs as they are not set to <strong>Generic</strong> by default.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Your processor component is now defined. You can add another component or generate and download your project.</p>
@@ -1590,7 +1711,10 @@ Outputs can be configured the same way as inputs (see previous steps).</p>
 <div class="sect3">
 <h4 id="_creating_an_output_component"><a class="anchor" href="#_creating_an_output_component"></a>Creating an Output component</h4>
 <div class="paragraph">
-<p>When clicking <strong>ADD A COMPONENT</strong> in the starter, a new step that allows you to define a new component is created in your project.<br>
+<p>To create an output component, make sure you have selected <strong>Activate IO</strong>.</p>
+</div>
+<div class="paragraph">
+<p>When clicking <strong>Add A Component</strong> in the starter, a new step allows you to define a new component in your project.<br>
 The intent in this tutorial is to create an output component that receives a record and inserts it into a MySQL database table.</p>
 </div>
 <div class="admonitionblock note">
@@ -1613,13 +1737,13 @@ The intent in this tutorial is to create an output component that receives a rec
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Choose the component type. <strong>PROCESSOR/OUTPUT</strong> in this case.</p>
+<p>Choose the component type. <strong>Processor/Output</strong> in this case.</p>
 </li>
 <li>
 <p>Enter the component name. For example, <em>MySQLOutput</em>.</p>
 </li>
 <li>
-<p>Click <strong>CONFIGURATION MODEL</strong>. This button lets you specify the required configuration for the component.</p>
+<p>Click <strong>Configuration Model</strong>. This button lets you specify the required configuration for the component. By default, a dataset is already specified.</p>
 </li>
 <li>
 <p>For each parameter that you need to add, click the <strong>(+)</strong> button on the right panel. Enter the name and choose the type of the parameter, then click the tick button to save the changes.<br>
@@ -1627,16 +1751,10 @@ In this tutorial, to be able to insert a record in the output MySQL database, th
 <div class="ulist">
 <ul>
 <li>
-<p>a connection URL (string)</p>
+<p>a dataset (which contains the datastore with the connection information)</p>
 </li>
 <li>
-<p>a username (string)</p>
-</li>
-<li>
-<p>a password (string)</p>
-</li>
-<li>
-<p>the name of the table to insert the record in (string).<br></p>
+<p>a timeout parameter.<br></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1644,7 +1762,7 @@ In this tutorial, to be able to insert a record in the output MySQL database, th
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Closing the configuration panel on the right does <strong>not</strong> delete your configuration.
+Closing the configuration panel on the right does <strong>not</strong> delete your configuration. However, refreshing the page resets the configuration.
 </td>
 </tr>
 </table>
@@ -1654,16 +1772,25 @@ Closing the configuration panel on the right does <strong>not</strong> delete yo
 </div>
 </li>
 <li>
-<p>Define the <strong>Input(s)</strong> of the component. For each input that you need to define, click <strong>ADD INPUT</strong>. In this tutorial, only one input is needed.</p>
+<p>Define the <strong>Input(s)</strong> of the component. For each input that you need to define, click <strong>Add Input</strong>. In this tutorial, only one input is needed.</p>
 </li>
 <li>
 <p>Click the input name to access its configuration. You can change the name of the input and define its structure using a POJO. If you added several inputs, repeat this step for each one of them.<br>
-The input in this tutorial is a generic record. Enable the <strong>Generic</strong> option.</p>
-</li>
-<li>
-<p>Do not create any output because the component does not produce any record. This is the only difference between an output an a processor component.</p>
+The input in this tutorial is a generic record. Enable the <strong>Generic</strong> option and click <strong>Save</strong>.</p>
 </li>
 </ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Do not create any output because the component does not produce any record. This is the only difference between an output an a processor component.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Your output component is now defined. You can add another component or generate and download your project.</p>
@@ -1678,7 +1805,7 @@ In this tutorial, the project was configured and three components of different t
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Click <strong>GO TO FINISH</strong> at the bottom of the page. You are redirected to a page that summarizes the project. On the left panel, you can also see all the components that you added to the project.</p>
+<p>Click <strong>Finish</strong> on the left panel. You are redirected to a page that summarizes the project. On the left panel, you can also see all the components that you added to the project.</p>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/starter/starter_project-download.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-download.png" alt="Output configuration" width="80%"></a>
@@ -1690,10 +1817,10 @@ In this tutorial, the project was configured and three components of different t
 <div class="ulist">
 <ul>
 <li>
-<p>Download it locally as a ZIP file using the <strong>DOWNLOAD AS ZIP</strong> button.</p>
+<p>Download it locally as a ZIP file using the <strong>Download as ZIP</strong> button.</p>
 </li>
 <li>
-<p>Create a GitHub repository and push the project to it using the <strong>CREATE ON GITHUB</strong> button.</p>
+<p>Create a GitHub repository and push the project to it using the <strong>Create on Github</strong> button.</p>
 </li>
 </ul>
 </div>
@@ -3342,7 +3469,7 @@ The component family associated with a configuration type (datastore/dataset) is
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The model allows you to define meta information without restrictions. However, it is highly recommended to ensure that:</p>
+<p>Make sure that:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -11790,12 +11917,15 @@ You still need to add and remove the components to see the changes.
 <h2 id="_integrating_components_into_talend_cloud"><a class="anchor" href="#_integrating_components_into_talend_cloud"></a>Integrating components into Talend Cloud</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Learn about the component server with the following articles:</p>
+<p>Learn about the Component Server with the following articles:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="documentation-rest.html" class="page">Component server and HTTP API</a></p>
+</li>
+<li>
+<p><a href="vault-proxy.html" class="page">Component Server Vault Proxy</a></p>
 </li>
 </ul>
 </div>
@@ -12663,9 +12793,399 @@ Only use the configuration related to port <code>5005</code> (in <code>ports</c
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_component_server_vault_proxy"><a class="anchor" href="#_component_server_vault_proxy"></a>Component Server Vault Proxy</h3>
+<div class="paragraph">
+<p>A Vault proxy dedicated to the component server allows to safely manage credential encryption when operating in a Cloud environment.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="_images/tacokit_vault_proxy.png" target="_blank" rel="noopener"><img src="_images/tacokit_vault_proxy.png" alt="Vault proxy" width="80%"></a></span></p>
+</div>
+<div class="paragraph">
+<p>The Vault Proxy only concerns data marked as <code>@Credential</code> in the <a href="tutorial-configuration-sensitive-data.html" class="page">component configuration</a>.</p>
+</div>
+<div class="paragraph">
+<p>This Vault proxy:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>receives an encrypted payload containing sensitive data from the remote engine, via HTTP.</p>
+</li>
+<li>
+<p>decrypts the data</p>
+</li>
+<li>
+<p>caches in memory the decrypted value of the data for performance reasons.</p>
+</li>
+<li>
+<p>sends unencrypted data to the component server using HTTPS. An SSL certificate can be automatically generated and secures the data.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_vault_proxy_configuration"><a class="anchor" href="#_vault_proxy_configuration"></a>Vault proxy configuration</h4>
+<div class="paragraph">
+<p>The configuration mechanism is the same as for the component server (microprofile config).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the configuration is read from system properties, environment variables, &#8230;&#8203;.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">alend.vault.cache.security.tokens</dt>
+<dd>
+<p>Default value: <code>-</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.certificate.acceptAny</dt>
+<dd>
+<p>Default value: <code>false</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.executor.server.core</dt>
+<dd>
+<p>Default value: <code>64</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.executor.server.keepAlive</dt>
+<dd>
+<p>Default value: <code>60000</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.executor.server.max</dt>
+<dd>
+<p>Default value: <code>256</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.executor.vault.core</dt>
+<dd>
+<p>Default value: <code>64</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.executor.vault.keepAlive</dt>
+<dd>
+<p>Default value: <code>60000</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.executor.vault.max</dt>
+<dd>
+<p>Default value: <code>256</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.providers</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.server.authorization</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.server.certificate.keystore.location</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.server.certificate.keystore.password</dt>
+<dd>
+<p>Default value: <code>changeit</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.server.certificate.keystore.type</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.server.certificate.truststore.type</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.server.hostname.accepted</dt>
+<dd>
+<p>Default value: <code>localhost,127.0.0.1,0:0:0:0:0:0:0:1</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.timeout.connect</dt>
+<dd>
+<p>Default value: <code>30000</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.timeout.read</dt>
+<dd>
+<p>Default value: <code>30000</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.vault.certificate.keystore.location</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.vault.certificate.keystore.password</dt>
+<dd>
+<p>Default value: <code>changeit</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.vault.certificate.keystore.type</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.vault.certificate.truststore.type</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.client.vault.hostname.accepted</dt>
+<dd>
+<p>Default value: <code>localhost,127.0.0.1,0:0:0:0:0:0:0:1</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.jcache.cache.expiry</dt>
+<dd>
+<p>Default value: <code>3600</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.jcache.cache.management</dt>
+<dd>
+<p>Default value: <code>false</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.jcache.cache.statistics</dt>
+<dd>
+<p>Default value: <code>false</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.jcache.manager.properties</dt>
+<dd>
+<p>Default value: ``. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.jcache.manager.uri</dt>
+<dd>
+<p>Default value: <code>geronimo://simple-jcache.properties</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.jcache.maxCacheSize</dt>
+<dd>
+<p>Default value: <code>100000</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.jcache.refresh.period</dt>
+<dd>
+<p>Default value: <code>30000</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.security.allowedIps</dt>
+<dd>
+<p>Default value: <code>localhost,127.0.0.1,0:0:0:0:0:0:0:1</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.service.auth.refreshDelayMargin</dt>
+<dd>
+<p>Default value: <code>600000</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.service.auth.refreshDelayOnFailure</dt>
+<dd>
+<p>Default value: <code>10000</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.talendComponentKit.url</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.vault.auth.endpoint</dt>
+<dd>
+<p>Default value: <code>v1/auth/approle/login</code>. -</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.vault.auth.roleId</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.vault.auth.secretId</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.vault.decrypt.endpoint</dt>
+<dd>
+<p>-</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.vault.url</dt>
+<dd>
+<p>-</p>
+</dd>
+</dl>
 </div>
 </div>
-<div class="sect1">
+<div class="sect3">
+<h4 id="_adding_the_vault_proxy_to_your_docker_compose"><a class="anchor" href="#_adding_the_vault_proxy_to_your_docker_compose"></a>Adding the Vault Proxy to your Docker Compose</h4>
+<div class="paragraph">
+<p>The YAML below is the recommended configuration to enable the Vault Proxy and Component Server to communicate over HTTPS.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_docker_compose_2"><a class="anchor" href="#_docker_compose_2"></a>Docker Compose</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">version: '3.2'
+
+services:
+  component-server: <i class="conum" data-value="1"></i><b>(1)</b>
+    healthcheck:
+      timeout: 3s
+      interval: 3s
+      retries: 3
+      test: curl --fail http://localhost:8080/api/v1/environment
+    image: tacokit/component-server:${COMPONENT_SERVER_IMAGE_VERSION:-1.1.6_20190208104207}
+    environment:
+    - _JAVA_OPTIONS=
+        -Djava.library.path=/opt/talend/component-kit/work/sigar/sigar:/usr/lib/jvm/java-1.8-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-1.8-openjdk/jre/lib/amd64:/usr/lib/jvm/java-1.8-openjdk/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+        -Dtalend.component.server.filter.secured.tokens=vault-proxy <i class="conum" data-value="2"></i><b>(2)</b>
+        -Dtalend.component.server.ssl.active=true <i class="conum" data-value="3"></i><b>(3)</b>
+        -Dtalend.component.server.ssl.keystore.location=/opt/talend/configuration/https.p12 <i class="conum" data-value="3"></i><b>(3)</b>
+        -Dtalend.component.server.ssl.keystore.type=PKCS12 <i class="conum" data-value="3"></i><b>(3)</b>
+        -Dtalend.component.server.component.registry=/opt/talend/connectors/component-registry.properties <i class="conum" data-value="4"></i><b>(4)</b>
+        -Dtalend.component.server.maven.repository=/opt/talend/connectors <i class="conum" data-value="4"></i><b>(4)</b>
+    volumes:
+    - connectors:/opt/talend/connectors:ro  <i class="conum" data-value="4"></i><b>(4)</b>
+    - vault-proxy-configuration:/opt/talend/configuration <i class="conum" data-value="3"></i><b>(3)</b>
+
+
+  component-server-vault-proxy: <i class="conum" data-value="5"></i><b>(5)</b>
+    healthcheck:
+      timeout: 3s
+      interval: 3s
+      retries: 3
+      test: curl --fail http://localhost:8080/api/v1/proxy/environment
+    image: tacokit/component-server-vault-proxy:${COMPONENT_SERVER_VAULT_PROXY_IMAGE_VERSION:-1.1.6_20190208104221}
+    environment:
+    - _JAVA_OPTIONS=
+        -Djava.library.path=/opt/talend/component-kit/work/sigar/sigar:/usr/lib/jvm/java-1.8-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-1.8-openjdk/jre/lib/amd64:/usr/lib/jvm/java-1.8-openjdk/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+        -Dtalend.vault.cache.client.server.certificate.keystore.location=/opt/talend/configuration/https.p12 <i class="conum" data-value="6"></i><b>(6)</b>
+        -Dtalend.vault.cache.client.server.certificate.keystore.type=PKCS12 <i class="conum" data-value="6"></i><b>(6)</b>
+        -Dtalend.vault.cache.client.server.hostname.accepted=component-server <i class="conum" data-value="6"></i><b>(6)</b>
+        -Dtalend.vault.cache.client.server.authorization=vault-proxy <i class="conum" data-value="7"></i><b>(7)</b>
+        -Dtalend.vault.cache.talendComponentKit.url=https://component-server:8080/api/v1 <i class="conum" data-value="7"></i><b>(7)</b>
+        -Dtalend.vault.cache.vault.url=http://vault:8200 <i class="conum" data-value="8"></i><b>(8)</b>
+        -Dtalend.vault.cache.vault.auth.roleId=myrole <i class="conum" data-value="8"></i><b>(8)</b>
+        -Dtalend.vault.cache.vault.decrypt.endpoint=v1/something/decrypt/00000001 <i class="conum" data-value="8"></i><b>(8)</b>
+        -Dtalend.vault.cache.security.allowedIps=${COMPONENT_SERVER_VAULT_PROXY_CLIENT_IP:-127.0.0.1} <i class="conum" data-value="9"></i><b>(9)</b>
+    ports:
+    - 9090:8080/tcp
+    links: <i class="conum" data-value="10"></i><b>(10)</b>
+    - "component-server:component-server"
+    # - "vault:vault"
+    volumes:
+    - vault-proxy-configuration:/opt/talend/configuration:ro
+
+  connectors: <i class="conum" data-value="11"></i><b>(11)</b>
+    image: registry.datapwn.com/talend/connectors:${CONNECTORS_IMAGE_VERSION:-1.0.0_master_20190208091312}
+    environment:
+    - CONNECTORS_SETUP_OPTS=setup --wait-for-end
+    volumes:
+    - connectors:/opt/talend/connectors:ro
+
+volumes: <i class="conum" data-value="12"></i><b>(12)</b>
+  connectors:
+  vault-proxy-configuration:</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The standard Component Server entry</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Ensure only a client with a particular token can call the server (it is a kind of shared secret and only enables to call the server in "remote" mode since only local mode is enabled by default)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Activates and configure the auto generation of a X.509 certificate which will be used for HTTPS connector on the server</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Bind as usual the components to deploy into the server</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>This is where we will define the vault proxy service which will do the mediation between Vault and Component Server.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Since both server are colocalized we inherit from the Component Server certificate to create the client which will connect on it</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>We configure the base url to connect to the server - see &lt;10&gt;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>We configure vault connection and security informations</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>We ensure we can connect from <code>$COMPONENT_SERVER_VAULT_PROXY_CLIENT_IP</code> to vault proxy (other IP will be rejected)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>We link both services to let them communicate between them, it allows to not expose the Component Server port outside its own container (no <code>ports</code> mapping in Component Server service definition). Note that if your vault is a service as well you can link it here as well.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>The common component image service definition (as previously)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="12"></i><b>12</b></td>
+<td>The volumes used by the services, the <code>connectors</code> one is the same as before but we added <code>vault-proxy-configuration</code> for the automatic HTTPS configuration.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This setup enables the Vault Proxy and Component Server to communicate, now you can use
+the Vault Proxy as if it was the Component Server, just use <code><a href="http://localhost:9090" class="bare">localhost:9090</a></code> - or any other host matching your deployment - instead of the
+Component Server directly.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_linking_the_vault_proxy_to_the_component_server_through_https"><a class="anchor" href="#_linking_the_vault_proxy_to_the_component_server_through_https"></a>Linking the Vault Proxy to the Component Server through HTTPS</h4>
+<div class="paragraph">
+<p>When the Vault Proxy is enabled, ensure you configure HTTPS on the Component Server using the following parameters:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">talend.component.server.ssl.active</dt>
+<dd>
+<p><code>true</code> or <code>false</code>. Indicates if the SSL protocol is enabled.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.ssl.password</dt>
+<dd>
+<p>Keystore password.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.ssl.keystore.location</dt>
+<dd>
+<p>Path to Keystore.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.ssl.keystore.alias</dt>
+<dd>
+<p>Private key/certificate alias.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.ssl.keystore.type</dt>
+<dd>
+<p>Keystore type.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.ssl.keystore.generation.force</dt>
+<dd>
+<p><code>true</code> or <code>false</code>.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.ssl.keystore.generation.command</dt>
+<dd>
+<p>Specifies if a custom command is to be used to generate the certificate.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.ssl.keypair.algorithm</dt>
+<dd>
+<p>Encryption algorithm. <code>RSA</code> by default.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.ssl.certificate.dname</dt>
+<dd>
+<p>Distinguished name.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.ssl.keypair.size</dt>
+<dd>
+<p>Size of the key. <code>2048</code> by default.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.ssl.port</dt>
+<dd>
+<p>SSL port to use.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 relatedlinks">
 <h2 id="_tutorials"><a class="anchor" href="#_tutorials"></a>Tutorials</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -12674,7 +13194,7 @@ Only use the configuration related to port <code>5005</code> (in <code>ports</c
 <p>This tutorial walks you through all the required steps to get started with <strong>Talend Component Kit</strong>, from the creation of a simple component to its integration into <strong>Talend Open Studio</strong>.</p>
 </div>
 <div class="paragraph">
-<p>The component created in this tutorial is a simple output component that receives data from the previous component and displays it in the logs, along with an extra information entered by a user.</p>
+<p>The component created in this tutorial is a simple processor component that receives data from the previous component and displays it in the logs, along with an extra information entered by a user.</p>
 </div>
 <div class="paragraph">
 <p>Once the prerequisites completed, this tutorial should take you about 20 minutes.</p>
@@ -12704,18 +13224,6 @@ Only use the configuration related to port <code>5005</code> (in <code>ports</c
 <p>Download the Talend Component Kit plugin for IntelliJ. The detailed installation steps for the plugin are available in <a href="installing-talend-intellij-plugin.html" class="page">this document</a>.</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-For this tutorial to work correctly, you must use the version 1.1.1 or below of the plugin (for both <code>component-api</code> and <code>talend-component-maven-plugin</code> artifacts.). Check how to change the framework version in <a href="compatibility.html" class="page">this document</a>.
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect3">
@@ -12756,13 +13264,13 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 </div>
 </li>
 <li>
-<p>Once the metadata is filled, select <strong>ADD A COMPONENT</strong>. A new screen is displayed in the <strong>Talend Component Kit Starter</strong> that lets you define the generic configuration of the component.</p>
+<p>Once the metadata is filled, select <strong>Add a component</strong>. A new screen is displayed in the <strong>Talend Component Kit Starter</strong> that lets you define the generic configuration of the component. By default, new components are processors,</p>
 </li>
 <li>
-<p>Select <strong>PROCESSOR/OUTPUT</strong> and enter a valid Java name for the component. For example, <strong>Logger</strong>.</p>
+<p>Enter a valid Java name for the component. For example, <strong>Logger</strong>.</p>
 </li>
 <li>
-<p>Select <strong>CONFIGURATION MODEL</strong> and add a string field named <code>level</code>. This input field will be used in the component configuration to enter additional information to display in the logs.<br></p>
+<p>Select <strong>Configuration Model</strong> and add a string field named <code>level</code>. This input field will be used in the component configuration to enter additional information to display in the logs.<br></p>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model" width="70%"></a>
@@ -12770,12 +13278,15 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 </div>
 </li>
 <li>
-<p>In the <strong>Input(s) / Output(s)</strong> section, click the default <strong>MAIN</strong> input branch to access its detail, and toggle the <strong>Generic</strong> option to specify that the component can receive any type of data. Leave the <strong>Name</strong> of the branch with its default <code>MAIN</code> value.<br></p>
+<p>In the <strong>Input(s) / Output(s)</strong> section, click the default <strong>MAIN</strong> input branch to access its detail, and make sure that the record model is set to <strong>Generic</strong>. Leave the <strong>Name</strong> of the branch with its default <code>MAIN</code> value.<br></p>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/tutorial_component_generic_input.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_generic_input.png" alt="Generic Input" width="70%"></a>
 </div>
 </div>
+</li>
+<li>
+<p>Repeat the same step for the default <strong>MAIN</strong> output branch.<br></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -12783,7 +13294,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-By default, when selecting <strong>PROCESSOR/OUTPUT</strong>, there is one input branch and no output branch for the component, which is fine in the case of this tutorial. A processor without any output branch is considered an output component.
+Because the component is a processor, it has an output branch by default. A processor without any output branch is considered an output component. Yo ucan create output components when the <strong>Activate IO</strong> option is selected.
 </td>
 </tr>
 </table>
@@ -12809,10 +13320,10 @@ By default, when selecting <strong>PROCESSOR/OUTPUT</strong>, there is one input
 <div class="ulist">
 <ul>
 <li>
-<p><strong>LoggerOutput</strong> is where the component logic is defined</p>
+<p><strong>LoggerProcessor</strong> is where the component logic is defined</p>
 </li>
 <li>
-<p><strong>LoggerOutputConfiguration</strong> is where the component layout and configurable fields are defined, including the <strong>level</strong> string field that was defined earlier in the configuration model of the component.</p>
+<p><strong>LoggerProcessorConfiguration</strong> is where the component layout and configurable fields are defined, including the <strong>level</strong> string field that was defined earlier in the configuration model of the component.</p>
 </li>
 </ul>
 </div>
@@ -12846,14 +13357,11 @@ By default, when selecting <strong>PROCESSOR/OUTPUT</strong>, there is one input
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>From your component project in IntelliJ, open a terminal.<br></p>
+<p>From your component project in IntelliJ, open a terminal and make sure that the selected directory is the root of the project. All commands shown in this tutorial are performed from this location.<br></p>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/tutorial_intellij_terminal_blank.png" target="_blank" rel="noopener"><img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal" width="70%"></a>
 </div>
-</div>
-<div class="paragraph">
-<p>There, you can see that the terminal opens directly at the root of the project. All commands shown in this tutorial are performed from this location.</p>
 </div>
 </li>
 <li>
@@ -12905,15 +13413,13 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 </ol>
 </div>
 <div class="paragraph">
-<p>At this point, your new component is available in Talend Open Studio, and its configurable part is already set. But the component logic is still to be defined.<br>
-As a reminder, the initial goal of this component is to output the information it received in input in the logs of the job.
-Go to the next section to learn how to define a simple logic.</p>
+<p>At this point, your new component is available in Talend Open Studio, and its configurable part is already set. But the component logic is still to be defined.<br></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_editing_the_component_2"><a class="anchor" href="#_editing_the_component_2"></a>Editing the component</h4>
 <div class="paragraph">
-<p>You can now edit the component to implement a simple logic aiming at reading the data contained in the input branch of the component, to display it the execution logs of the job. The value of the <strong>level</strong> field of the component also needs to be displayed and changed to uppercase.</p>
+<p>You can now edit the component to implement a simple logic: reading the data contained in the input branch of the component to display it the execution logs of the job. The value of the <strong>level</strong> field of the component also needs to be displayed and changed to uppercase.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -12921,7 +13427,7 @@ Go to the next section to learn how to define a simple logic.</p>
 <p>Save the job created earlier and close Talend Open Studio.</p>
 </li>
 <li>
-<p>Back in IntelliJ open the <strong>LoggerOutput</strong> class. This is the class where the component logic can be defined.</p>
+<p>Back in IntelliJ open the <strong>LoggerProcessor</strong> class. This is the class where the component logic can be defined.</p>
 </li>
 <li>
 <p>Look for the <code>@ElementListener</code> method. It is already present and references the default input branch that was defined in the <strong>Talend Component Kit Starter</strong>, but it is not complete yet.</p>
@@ -12999,10 +13505,10 @@ Go to the next section to learn how to define a simple logic.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Add a first column named <code>firstName</code> and select the *TalendDataGenerator.getFirstName() function.</p>
+<p>Add a first column named <code>firstName</code> and select the <strong>TalendDataGenerator.getFirstName()</strong> function.</p>
 </li>
 <li>
-<p>Add a second column named 'lastName' and select the *TalendDataGenerator.getLastName() function.</p>
+<p>Add a second column named 'lastName' and select the <strong>TalendDataGenerator.getLastName()</strong> function.</p>
 </li>
 <li>
 <p>Set the <strong>Number of Rows for RowGenerator</strong> to <code>10</code>.<br></p>
@@ -13080,12 +13586,27 @@ The job is executed. You can observe in the console that each of the 10 generate
 </div>
 </div>
 <div class="sect2">
-<h3 id="_generating_a_project_using_the_component_kit_starter_2"><a class="anchor" href="#_generating_a_project_using_the_component_kit_starter_2"></a>Generating a project using the Component Kit starter</h3>
+<h3 id="_generating_a_project_using_the_component_kit_starter_2"><a class="anchor" href="#_generating_a_project_using_the_component_kit_starter_2"></a>Generating a project using the Component Kit Starter</h3>
 <div id="tutorial-generate-project-using-starter" class="paragraph">
 <p>The Component Kit starter lets you design your components configuration and generates a ready-to-implement project structure.</p>
 </div>
 <div class="paragraph">
-<p>This tutorial shows you how to use the Component Kit starter to generate new components for MySQL databases. Before starting, make sure that you have correctly setup your environment. See <a href="getting-started.html#getting-started-system-requirements" class="page">this section</a>.</p>
+<p>The starter is available on the web or as an <a href="generate-project-using-intellij-plugin.html" class="page">IntelliJ plugin</a>.</p>
+</div>
+<div class="paragraph">
+<p>This tutorial shows you how to use the Component Kit Starter to generate new components for MySQL databases. Before starting, make sure that you have correctly setup your environment. See <a href="getting-started.html#getting-started-system-requirements" class="page">this section</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+When defining a project using the Starter, do not refresh the page to avoid losing your configuration.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_configuring_the_project_2"><a class="anchor" href="#_configuring_the_project_2"></a>Configuring the project</h4>
@@ -13123,20 +13644,121 @@ This <strong>Databases</strong> category is used and displayed as the parent fam
 <p>Complete the project metadata by entering the <strong>Group</strong>, <strong>Artifact</strong> and <strong>Package</strong>.</p>
 </li>
 <li>
-<p>Click the <strong>ADD A COMPONENT</strong> button to start designing your components.</p>
+<p>If you need to create <strong>Input</strong> or <strong>Output</strong> components, select <strong>Activate IO</strong>. By doing this:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You can add datasets and datastores to your project, as they are required for input and output components.<br></p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Input and Output components without dataset (itself containing a datastore) will not pass the validation step when building the components. Learn more about datasets and datastores in <a href="component-configuration.html#dataset-and-datastore" class="page">this document</a>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Components added to the project using <strong>Add A Component</strong> are now input or output components by default. When <strong>Activate IO</strong> is not enabled, new components are processors by default. Note that you are still able to define processors even with datasets and datastores activated.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="_images/starter/starter_activate_io.png" target="_blank" rel="noopener"><img src="_images/starter/starter_activate_io.png" alt="Activate IO" width="80%"></a>
+</div>
+</div>
+</li>
+</ul>
+</div>
 </li>
 </ol>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="_images/starter/starter_project-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-config.png" alt="Project configuration" width="80%"></a>
 </div>
+<div class="sect3">
+<h4 id="_defining_a_datastore_2"><a class="anchor" href="#_defining_a_datastore_2"></a>Defining a Datastore</h4>
+<div class="paragraph">
+<p>A datastore represents the data needed by an input or output component to connect to a database.</p>
+</div>
+<div class="paragraph">
+<p>When building a component, the <code>validateDataSet</code> validation checks that each input or output (processor without output branch) component uses a dataset and that this dataset has a datastore.</p>
+</div>
+<div class="paragraph">
+<p>You can define one or several datastores if you have selected the <strong>Activate IO</strong> step.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select <strong>Datastore</strong>. The list of datastores opens. By default, a datastore is already open but not configured. You can configure it or create a new one using the <strong>Add new Datastore</strong> button.</p>
+</li>
+<li>
+<p>Edit the datastore configuration. A typical configuration includes connection details to a database:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>JDBC URL</p>
+</li>
+<li>
+<p>Username</p>
+</li>
+<li>
+<p>Password.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Save</strong> the datastore configuration.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_defining_a_dataset_2"><a class="anchor" href="#_defining_a_dataset_2"></a>Defining a Dataset</h4>
+<div class="paragraph">
+<p>A dataset represents the data coming from or sent to a database and needed by input and output components to operate.</p>
+</div>
+<div class="paragraph">
+<p>The <code>validateDataSet</code> validation checks that each input or output (processor without output branch) component uses a dataset and that this dataset has a datastore.</p>
+</div>
+<div class="paragraph">
+<p>You can define one or several datasets if you have selected the <strong>Activate IO</strong> step.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select <strong>Dataset</strong>. The list of datasets opens. By default, a dataset is already open but not configured. You can configure it or create a new one using the <strong>Add new Dataset</strong> button.</p>
+</li>
+<li>
+<p>Edit the dataset configuration. A typical configuration includes details of the data to retrieve:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Datastore to use (that contains the connection details to the database)</p>
+</li>
+<li>
+<p>Table name</p>
+</li>
+<li>
+<p>Data</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Save</strong> the dataset configuration.</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_creating_an_input_component_2"><a class="anchor" href="#_creating_an_input_component_2"></a>Creating an Input component</h4>
 <div class="paragraph">
-<p>When clicking <strong>ADD A COMPONENT</strong> in the starter, a new step that allows you to define a new component is created in your project.<br>
+<p>To create an input component, make sure you have selected <strong>Activate IO</strong>.</p>
+</div>
+<div class="paragraph">
+<p>When clicking <strong>Add A Component</strong> in the starter, a new step allows you to define a new component in your project.<br>
 The intent in this tutorial is to create an input component that connects to a MySQL database, executes a SQL query and gets the result.</p>
 </div>
 <div class="imageblock">
@@ -13147,30 +13769,24 @@ The intent in this tutorial is to create an input component that connects to a M
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Choose the component type. <strong>INPUT</strong> in this case.</p>
+<p>Choose the component type. <strong>Input</strong> in this case.</p>
 </li>
 <li>
 <p>Enter the component name. For example, <em>MySQLInput</em>.</p>
 </li>
 <li>
-<p>Click <strong>CONFIGURATION MODEL</strong>. This button lets you specify the required configuration for the component.</p>
+<p>Click <strong>Configuration model</strong>. This button lets you specify the required configuration for the component. By default, a dataset is already specified.</p>
 </li>
 <li>
-<p>For each parameter that you need to add, click the <strong>(+)</strong> button on the right panel. Enter the name and choose the type of the parameter, then click the tick button to save the changes.<br>
+<p>For each parameter that you need to add, click the <strong>(+)</strong> button on the right panel. Enter the parameter name and choose its type then click the tick button to save the changes.<br>
 In this tutorial, to be able to execute a SQL query on the Input MySQL database, the configuration requires the following parameters:+</p>
 <div class="ulist">
 <ul>
 <li>
-<p>a connection URL (string)</p>
+<p>a dataset (which contains the datastore with the connection information)</p>
 </li>
 <li>
-<p>a username (string)</p>
-</li>
-<li>
-<p>a password (string)</p>
-</li>
-<li>
-<p>the SQL query to be executed (string).<br></p>
+<p>a timeout parameter.<br></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -13178,7 +13794,7 @@ In this tutorial, to be able to execute a SQL query on the Input MySQL database,
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Closing the configuration panel on the right does <strong>not</strong> delete your configuration.
+Closing the configuration panel on the right does <strong>not</strong> delete your configuration. However, refreshing the page resets the configuration.
 </td>
 </tr>
 </table>
@@ -13188,10 +13804,10 @@ Closing the configuration panel on the right does <strong>not</strong> delete yo
 </div>
 </li>
 <li>
-<p>Specify whether the component issues a stream or not. In this tutorial, the MySQL input component created is an ordinary (non streaming) component. In this case, let the toggle button disabled.</p>
+<p>Specify whether the component issues a stream or not. In this tutorial, the MySQL input component created is an ordinary (non streaming) component. In this case, leave the <strong>Stream</strong> option disabled.</p>
 </li>
 <li>
-<p>Select the <strong>Record Type</strong> generated by the component. In this tutorial, select <strong>Generic</strong> because the component is designed to generate records in the <code>Record</code> format.<br>
+<p>Select the <strong>Record Type</strong> generated by the component. In this tutorial, select <strong>Generic</strong> because the component is designed to generate records in the default <code>Record</code> format.<br>
 You can also select <strong>Custom</strong> to define a POJO that represents your records.</p>
 </li>
 </ol>
@@ -13203,8 +13819,21 @@ You can also select <strong>Custom</strong> to define a POJO that represents you
 <div class="sect3">
 <h4 id="_creating_a_processor_component_2"><a class="anchor" href="#_creating_a_processor_component_2"></a>Creating a Processor component</h4>
 <div class="paragraph">
-<p>When clicking <strong>ADD A COMPONENT</strong> in the starter, a new step that allows you to define a new component is created in your project.<br>
+<p>When clicking <strong>Add A Component</strong> in the starter, a new step allows you to define a new component in your project.
 The intent in this tutorial is to create a simple processor component that receives a record, logs it and returns it at it is.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you did not select <strong>Activate IO</strong>, all new components you add to the project are processors by default.<br>
+If you selected <strong>Activate IO</strong>, you can choose the component type. In this case, to create a Processor component, you have to manually add at least one output.
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -13214,29 +13843,38 @@ The intent in this tutorial is to create a simple processor component that recei
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Choose the component type. <strong>PROCESSOR/OUTPUT</strong> in this case.</p>
+<p>If required, choose the component type: <strong>Processor/Output</strong> in this case.</p>
 </li>
 <li>
 <p>Enter the component name. For example, <em>RecordLogger</em>, as the processor created in this tutorial logs the records.</p>
 </li>
 <li>
-<p>Specify the <strong>CONFIGURATION MODEL</strong> of the component. In this tutorial, the component doesn&#8217;t need any specific configuration. Skip this step.</p>
+<p>Specify the <strong>Configuration Model</strong> of the component. In this tutorial, the component doesn&#8217;t need any specific configuration. Skip this step.</p>
 </li>
 <li>
-<p>Define the <strong>Input(s)</strong> of the component. For each input that you need to define, click <strong>ADD INPUT</strong>. In this tutorial, only one input is needed to receive the record to log.</p>
+<p>Define the <strong>Input(s)</strong> of the component. For each input that you need to define, click <strong>Add Input</strong>. In this tutorial, only one input is needed to receive the record to log.</p>
 </li>
 <li>
 <p>Click the input name to access its configuration. You can change the name of the input and define its structure using a POJO. If you added several inputs, repeat this step for each one of them.<br>
-The input in this tutorial is a generic record. Enable the <strong>Generic</strong> option.</p>
+The input in this tutorial is a generic record. Enable the <strong>Generic</strong> option and click <strong>Save</strong>.</p>
 </li>
 <li>
-<p>Define the <strong>Output(s)</strong> of the component. For each output that you need to define, click <strong>ADD OUTPUT</strong>. In this tutorial, only one generic output is needed to return the received record.<br>
+<p>Define the <strong>Output(s)</strong> of the component. For each output that you need to define, click <strong>Add Output</strong>. In this tutorial, only one generic output is needed to return the received record.<br>
 Outputs can be configured the same way as inputs (see previous steps).</p>
 </li>
-<li>
-<p>Make sure to check the configuration of inputs and outputs as they are not set to <strong>Generic</strong> by default.</p>
-</li>
 </ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Make sure to check the configuration of inputs and outputs as they are not set to <strong>Generic</strong> by default.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Your processor component is now defined. You can add another component or generate and download your project.</p>
@@ -13245,7 +13883,10 @@ Outputs can be configured the same way as inputs (see previous steps).</p>
 <div class="sect3">
 <h4 id="_creating_an_output_component_2"><a class="anchor" href="#_creating_an_output_component_2"></a>Creating an Output component</h4>
 <div class="paragraph">
-<p>When clicking <strong>ADD A COMPONENT</strong> in the starter, a new step that allows you to define a new component is created in your project.<br>
+<p>To create an output component, make sure you have selected <strong>Activate IO</strong>.</p>
+</div>
+<div class="paragraph">
+<p>When clicking <strong>Add A Component</strong> in the starter, a new step allows you to define a new component in your project.<br>
 The intent in this tutorial is to create an output component that receives a record and inserts it into a MySQL database table.</p>
 </div>
 <div class="admonitionblock note">
@@ -13268,13 +13909,13 @@ The intent in this tutorial is to create an output component that receives a rec
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Choose the component type. <strong>PROCESSOR/OUTPUT</strong> in this case.</p>
+<p>Choose the component type. <strong>Processor/Output</strong> in this case.</p>
 </li>
 <li>
 <p>Enter the component name. For example, <em>MySQLOutput</em>.</p>
 </li>
 <li>
-<p>Click <strong>CONFIGURATION MODEL</strong>. This button lets you specify the required configuration for the component.</p>
+<p>Click <strong>Configuration Model</strong>. This button lets you specify the required configuration for the component. By default, a dataset is already specified.</p>
 </li>
 <li>
 <p>For each parameter that you need to add, click the <strong>(+)</strong> button on the right panel. Enter the name and choose the type of the parameter, then click the tick button to save the changes.<br>
@@ -13282,16 +13923,10 @@ In this tutorial, to be able to insert a record in the output MySQL database, th
 <div class="ulist">
 <ul>
 <li>
-<p>a connection URL (string)</p>
+<p>a dataset (which contains the datastore with the connection information)</p>
 </li>
 <li>
-<p>a username (string)</p>
-</li>
-<li>
-<p>a password (string)</p>
-</li>
-<li>
-<p>the name of the table to insert the record in (string).<br></p>
+<p>a timeout parameter.<br></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -13299,7 +13934,7 @@ In this tutorial, to be able to insert a record in the output MySQL database, th
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Closing the configuration panel on the right does <strong>not</strong> delete your configuration.
+Closing the configuration panel on the right does <strong>not</strong> delete your configuration. However, refreshing the page resets the configuration.
 </td>
 </tr>
 </table>
@@ -13309,16 +13944,25 @@ Closing the configuration panel on the right does <strong>not</strong> delete yo
 </div>
 </li>
 <li>
-<p>Define the <strong>Input(s)</strong> of the component. For each input that you need to define, click <strong>ADD INPUT</strong>. In this tutorial, only one input is needed.</p>
+<p>Define the <strong>Input(s)</strong> of the component. For each input that you need to define, click <strong>Add Input</strong>. In this tutorial, only one input is needed.</p>
 </li>
 <li>
 <p>Click the input name to access its configuration. You can change the name of the input and define its structure using a POJO. If you added several inputs, repeat this step for each one of them.<br>
-The input in this tutorial is a generic record. Enable the <strong>Generic</strong> option.</p>
-</li>
-<li>
-<p>Do not create any output because the component does not produce any record. This is the only difference between an output an a processor component.</p>
+The input in this tutorial is a generic record. Enable the <strong>Generic</strong> option and click <strong>Save</strong>.</p>
 </li>
 </ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Do not create any output because the component does not produce any record. This is the only difference between an output an a processor component.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Your output component is now defined. You can add another component or generate and download your project.</p>
@@ -13333,7 +13977,7 @@ In this tutorial, the project was configured and three components of different t
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Click <strong>GO TO FINISH</strong> at the bottom of the page. You are redirected to a page that summarizes the project. On the left panel, you can also see all the components that you added to the project.</p>
+<p>Click <strong>Finish</strong> on the left panel. You are redirected to a page that summarizes the project. On the left panel, you can also see all the components that you added to the project.</p>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="_images/starter/starter_project-download.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-download.png" alt="Output configuration" width="80%"></a>
@@ -13345,10 +13989,10 @@ In this tutorial, the project was configured and three components of different t
 <div class="ulist">
 <ul>
 <li>
-<p>Download it locally as a ZIP file using the <strong>DOWNLOAD AS ZIP</strong> button.</p>
+<p>Download it locally as a ZIP file using the <strong>Download as ZIP</strong> button.</p>
 </li>
 <li>
-<p>Create a GitHub repository and push the project to it using the <strong>CREATE ON GITHUB</strong> button.</p>
+<p>Create a GitHub repository and push the project to it using the <strong>Create on Github</strong> button.</p>
 </li>
 </ul>
 </div>
