@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.6/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-02-12T18:06:04.344Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-02-13T09:17:56.409Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -12122,6 +12122,10 @@ the configuration is read from system properties, environment variables, &#8230;
 </ul>
 </div>
 </dd>
+<dt class="hdlist1">talend.component.server.user.extensions.provisioning.location</dt>
+<dd>
+<p>Default value: <code>auto</code>. Should the implicit artifacts be provisionned to a m2. If set to <code>auto</code> it tries to detect if there is a m2 to provision - recommended, if set to <code>skip</code> it is ignored, else it uses the value as a m2 path.</p>
+</dd>
 </dl>
 </div>
 </div>
@@ -12842,157 +12846,157 @@ the configuration is read from system properties, environment variables, &#8230;
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">alend.vault.cache.security.tokens</dt>
-<dd>
-<p>Default value: <code>-</code>. -</p>
-</dd>
 <dt class="hdlist1">talend.vault.cache.client.certificate.acceptAny</dt>
 <dd>
-<p>Default value: <code>false</code>. -</p>
+<p>Default value: <code>false</code>. Should any certificate be accepted - only for dev purposes.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.executor.server.core</dt>
 <dd>
-<p>Default value: <code>64</code>. -</p>
+<p>Default value: <code>64</code>. Thread pool core size for Component Server client.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.executor.server.keepAlive</dt>
 <dd>
-<p>Default value: <code>60000</code>. -</p>
+<p>Default value: <code>60000</code>. Thread keep alive (in ms) for Component Server client thread pool.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.executor.server.max</dt>
 <dd>
-<p>Default value: <code>256</code>. -</p>
+<p>Default value: <code>256</code>. Thread pool max size for Component Server client.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.executor.vault.core</dt>
 <dd>
-<p>Default value: <code>64</code>. -</p>
+<p>Default value: <code>64</code>. Thread pool core size for Vault client.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.executor.vault.keepAlive</dt>
 <dd>
-<p>Default value: <code>60000</code>. -</p>
+<p>Default value: <code>60000</code>. Thread keep alive (in ms) for Vault client thread pool.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.executor.vault.max</dt>
 <dd>
-<p>Default value: <code>256</code>. -</p>
+<p>Default value: <code>256</code>. Thread pool max size for Vault client.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.providers</dt>
 <dd>
-<p>-</p>
+<p>JAX-RS fully qualified name of the provides (message body readers/writers) for vault and component-server clients.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.server.authorization</dt>
 <dd>
-<p>-</p>
+<p>The token to use to call component-server if any.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.server.certificate.keystore.location</dt>
 <dd>
-<p>-</p>
+<p>Where the keystore to use to connect to Component Server is located.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.server.certificate.keystore.password</dt>
 <dd>
-<p>Default value: <code>changeit</code>. -</p>
+<p>Default value: <code>changeit</code>. The keystore password for <code>talend.vault.cache.client.server.certificate.keystore.location</code>.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.server.certificate.keystore.type</dt>
 <dd>
-<p>-</p>
+<p>The keystore type for <code>talend.vault.cache.client.server.certificate.keystore.location</code>.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.server.certificate.truststore.type</dt>
 <dd>
-<p>-</p>
+<p>The truststore type for <code>talend.vault.cache.client.server.certificate.keystore.location</code>.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.server.hostname.accepted</dt>
 <dd>
-<p>Default value: <code>localhost,127.0.0.1,0:0:0:0:0:0:0:1</code>. -</p>
+<p>Default value: <code>localhost,127.0.0.1,0:0:0:0:0:0:0:1</code>. Valid hostnames for the Component Server certificates (see <code>java.net.ssl.HostnameVerifier</code>).</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.timeout.connect</dt>
 <dd>
-<p>Default value: <code>30000</code>. -</p>
+<p>Default value: <code>30000</code>. HTTP connection timeout to vault server.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.timeout.read</dt>
 <dd>
-<p>Default value: <code>30000</code>. -</p>
+<p>Default value: <code>30000</code>. HTTP read timeout to vault server.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.vault.certificate.keystore.location</dt>
 <dd>
-<p>-</p>
+<p>Where the keystore to use to connect to vault is located.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.vault.certificate.keystore.password</dt>
 <dd>
-<p>Default value: <code>changeit</code>. -</p>
+<p>Default value: <code>changeit</code>. The keystore password for <code>talend.vault.cache.client.vault.certificate.keystore.location</code>.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.vault.certificate.keystore.type</dt>
 <dd>
-<p>-</p>
+<p>The keystore type for <code>talend.vault.cache.client.vault.certificate.keystore.location</code>.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.vault.certificate.truststore.type</dt>
 <dd>
-<p>-</p>
+<p>The truststore type for <code>talend.vault.cache.client.vault.certificate.keystore.location</code>.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.client.vault.hostname.accepted</dt>
 <dd>
-<p>Default value: <code>localhost,127.0.0.1,0:0:0:0:0:0:0:1</code>. -</p>
+<p>Default value: <code>localhost,127.0.0.1,0:0:0:0:0:0:0:1</code>. Valid hostnames for the Vault certificates (see <code>java.net.ssl.HostnameVerifier</code>).</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.jcache.cache.expiry</dt>
 <dd>
-<p>Default value: <code>3600</code>. -</p>
+<p>Default value: <code>3600</code>. JCache expiry for decrypted values (ms).</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.jcache.cache.management</dt>
 <dd>
-<p>Default value: <code>false</code>. -</p>
+<p>Default value: <code>false</code>. Should JCache MBeans be registered.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.jcache.cache.statistics</dt>
 <dd>
-<p>Default value: <code>false</code>. -</p>
+<p>Default value: <code>false</code>. Should JCache statistics be enabled.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.jcache.manager.properties</dt>
 <dd>
-<p>Default value: ``. -</p>
+<p>Default value: <code>`. JCache `CacheManager</code> properties used to initialized the instance.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.jcache.manager.uri</dt>
 <dd>
-<p>Default value: <code>geronimo://simple-jcache.properties</code>. -</p>
+<p>Default value: <code>geronimo://simple-jcache.properties</code>. Configuration for JCache setup, default implementation is Geronimo Simple Cache.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.jcache.maxCacheSize</dt>
 <dd>
-<p>Default value: <code>100000</code>. -</p>
+<p>Default value: <code>100000</code>. JCache max size per cache.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.jcache.refresh.period</dt>
 <dd>
-<p>Default value: <code>30000</code>. -</p>
+<p>Default value: <code>30000</code>. How often (in ms) the Component Server should be checked to invalidate the caches on the component parameters (to identify credentials).</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.security.allowedIps</dt>
 <dd>
-<p>Default value: <code>localhost,127.0.0.1,0:0:0:0:0:0:0:1</code>. -</p>
+<p>Default value: <code>localhost,127.0.0.1,0:0:0:0:0:0:0:1</code>. The IP or hosts allowed to call that server on <code>/api/*</code> if no token is passed.</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.security.tokens</dt>
+<dd>
+<p>Default value: <code>-</code>. The tokens enabling a client to call this server without being in <code>allowedIp</code> whitelist.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.service.auth.refreshDelayMargin</dt>
 <dd>
-<p>Default value: <code>600000</code>. -</p>
+<p>Default value: <code>600000</code>. How often (in ms) to refresh the vault token.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.service.auth.refreshDelayOnFailure</dt>
 <dd>
-<p>Default value: <code>10000</code>. -</p>
+<p>Default value: <code>10000</code>. How often (in ms) to refresh the vault token in case of an authentication failure.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.talendComponentKit.url</dt>
 <dd>
-<p>-</p>
+<p>Base URL to connect to Component Server</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.vault.auth.endpoint</dt>
 <dd>
-<p>Default value: <code>v1/auth/approle/login</code>. -</p>
+<p>Default value: <code>v1/auth/approle/login</code>. The vault path to retrieve a token.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.vault.auth.roleId</dt>
 <dd>
-<p>-</p>
+<p>The vault role identifier to use to log in.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.vault.auth.secretId</dt>
 <dd>
-<p>-</p>
+<p>The vault secret identifier to use to log in.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.vault.decrypt.endpoint</dt>
 <dd>
-<p>-</p>
+<p>The vault path to decrypt values.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.vault.url</dt>
 <dd>
-<p>-</p>
+<p>Base URL to connect to Vault.</p>
 </dd>
 </dl>
 </div>
