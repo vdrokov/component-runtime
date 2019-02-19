@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.7/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-02-18T09:07:42.468Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-02-19T10:02:44.798Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -10544,14 +10544,6 @@ Talend Component Kit comes with a predefined set of services that you can easily
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>org.talend.sdk.component.api.service.configuration.LocalConfiguration</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Represents the local configuration that can be used during the design.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>org.talend.sdk.component.api.service.dependency.Resolver</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -10580,6 +10572,22 @@ Talend Component Kit comes with a predefined set of services that you can easily
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Allows to instantiate a <a href="record-types.html#record" class="page">record</a>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>org.talend.sdk.component.api.service.record.RecordPointerFactory</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Allows to instantiate a <code>RecordPointer</code> which enables to extract a data from a <code>Record</code> based on <a href="https://tools.ietf.org/html/rfc6901">jsonpointer</a> specification.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>org.talend.sdk.component.api.service.configuration.LocalConfiguration</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Represents the local configuration that can be used during the design.</p>
 </div>
 <div class="paragraph">
 <p>It is not recommended to use it for the runtime because the local configuration is usually different and the instances are distinct.</p>
@@ -12983,23 +12991,23 @@ the configuration is read from system properties, environment variables, &#8230;
 </dd>
 <dt class="hdlist1">talend.vault.cache.vault.auth.endpoint</dt>
 <dd>
-<p>Default value: <code>v1/auth/approle/login</code>. The vault path to retrieve a token.</p>
+<p>Default value: <code>v1/auth/engines/login</code>. The vault path to retrieve a token.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.vault.auth.roleId</dt>
 <dd>
-<p>The vault role identifier to use to log in (if token is not set).</p>
+<p>Default value: <code>-</code>. The vault role identifier to use to log in (if token is not set). <code>-</code> means it is ignored.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.vault.auth.secretId</dt>
 <dd>
-<p>The vault secret identifier to use to log in (if token is not set).</p>
+<p>Default value: <code>-</code>. The vault secret identifier to use to log in (if token is not set). <code>-</code> means it is ignored.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.vault.auth.token</dt>
 <dd>
-<p>The vault token to use to log in (will make roleId and secretId ignored).</p>
+<p>Default value: <code>-</code>. The vault token to use to log in (will make roleId and secretId ignored). <code>-</code> means it is ignored.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.vault.decrypt.endpoint</dt>
 <dd>
-<p>The vault path to decrypt values.</p>
+<p>Default value: <code>v1/tenants-keyrings/decrypt/{x-talend-tenant-id}</code>. The vault path to decrypt values. You can use the variable <code>{x-talend-tenant-id}</code> to replace by <code>x-talend-tenant-id</code> header value.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.vault.url</dt>
 <dd>
