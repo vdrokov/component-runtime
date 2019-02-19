@@ -8,7 +8,7 @@
     <meta name="description" content="A Vault Proxy manages credential encryption before the data reaches the component server.">
     <meta name="keywords" content="component server vault proxy, credentials, cloud">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-02-19T16:34:17.856Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-02-19T17:10:01.496Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -725,7 +725,7 @@ values if needed which can be used with Docker integrations or not (it works for
 </ol>
 </div>
 <div class="paragraph">
-<p>High level it uses a master password stored obfuscated in a <code>master_key</code> file. Then it uses algorithm to cipher the value
+<p>High level it uses a master password stored obfuscated in a <code>master_key</code> file. Then it uses algorithm <code>AES/CBC/PKCS5Padding</code> to cipher the value
 and finally it encodes the result in base64 to ensure it can be managed as a plain text and easily passed through all
 potential ways you can set a configuration.</p>
 </div>
