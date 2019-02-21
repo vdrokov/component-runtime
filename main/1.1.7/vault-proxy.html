@@ -8,7 +8,7 @@
     <meta name="description" content="A Vault Proxy manages credential encryption before the data reaches the component server.">
     <meta name="keywords" content="component server vault proxy, credentials, cloud">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-02-21T10:12:31.387Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-02-21T11:12:29.149Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -823,7 +823,6 @@ services:
     image: tacokit/component-server:${COMPONENT_SERVER_IMAGE_VERSION:-1.1.6_20190208104207}
     environment:
     - _JAVA_OPTIONS=
-        -Djava.library.path=/opt/talend/component-kit/work/sigar/sigar:/usr/lib/jvm/java-1.8-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-1.8-openjdk/jre/lib/amd64:/usr/lib/jvm/java-1.8-openjdk/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
         -Dtalend.component.server.filter.secured.tokens=vault-proxy <i class="conum" data-value="2"></i><b>(2)</b>
         -Dtalend.component.server.ssl.active=true <i class="conum" data-value="3"></i><b>(3)</b>
         -Dtalend.component.server.ssl.keystore.location=/opt/talend/configuration/https.p12 <i class="conum" data-value="3"></i><b>(3)</b>
@@ -844,7 +843,6 @@ services:
     image: tacokit/component-server-vault-proxy:${COMPONENT_SERVER_VAULT_PROXY_IMAGE_VERSION:-1.1.6_20190208104221}
     environment:
     - _JAVA_OPTIONS=
-        -Djava.library.path=/opt/talend/component-kit/work/sigar/sigar:/usr/lib/jvm/java-1.8-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-1.8-openjdk/jre/lib/amd64:/usr/lib/jvm/java-1.8-openjdk/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
         -Dtalend.vault.cache.client.server.certificate.keystore.location=/opt/talend/configuration/https.p12 <i class="conum" data-value="6"></i><b>(6)</b>
         -Dtalend.vault.cache.client.server.certificate.keystore.type=PKCS12 <i class="conum" data-value="6"></i><b>(6)</b>
         -Dtalend.vault.cache.client.server.hostname.accepted=component-server <i class="conum" data-value="6"></i><b>(6)</b>
