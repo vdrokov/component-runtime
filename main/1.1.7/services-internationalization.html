@@ -8,7 +8,7 @@
     <meta name="description" content="How to internationalize a service using Talend Component Kit">
     <meta name="keywords" content="service, internationalization">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-02-21T11:37:59.878Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-02-22T09:00:04.991Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -486,7 +486,9 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Internationalized <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.superbiz;
+
+@Internationalized <i class="conum" data-value="1"></i><b>(1)</b>
 public interface Translator {
 
     String message();
@@ -518,6 +520,22 @@ public interface Translator {
 <td><code>@Language</code> also supports the <code>String</code> type.</td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The corresponding <code>Messages.properties</code> placed in <code>org/superbiz</code> resource folder will contain:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">org.superbiz.Translator.message = Some message
+org.superbiz.Translator.templatizedMessage = Some message with string {0} and with number {1}
+org.superbiz.Translator.localized = Some other message with string {0}
+
+# or the short version
+
+Translator.message = Some message
+Translator.templatizedMessage = Some message with string {0} and with number {1}
+Translator.localized = Some other message with string {0}</code></pre>
+</div>
 </div>
 </div>
 </div>
