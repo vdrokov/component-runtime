@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Server configuration</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.7/ref-server-configuration.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-02-24T15:55:32.389Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-02-25T16:00:50.894Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -478,6 +478,14 @@ the configuration is read from system properties, environment variables, &#8230;
 <dd>
 <p>Default value: <code>true</code>. Should the component extensions add required dependencies.</p>
 </dd>
+<dt class="hdlist1">talend.component.server.component.extension.maven.repository</dt>
+<dd>
+<p>If you deploy some extension, where they can create their dependencies if needed.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.component.extension.startup.timeout</dt>
+<dd>
+<p>Default value: <code>180000</code>. Timeout for extension initialization at startup, since it ensures the startup wait extensions are ready and loaded it allows to control the latency it implies.</p>
+</dd>
 <dt class="hdlist1">talend.component.server.component.registry</dt>
 <dd>
 <p>A property file where the value is a gav of a component to register (complementary with <code>coordinates</code>)</p>
@@ -501,6 +509,10 @@ the configuration is read from system properties, environment variables, &#8230;
 <dt class="hdlist1">talend.component.server.maven.repository</dt>
 <dd>
 <p>The local maven repository used to locate components and their dependencies</p>
+</dd>
+<dt class="hdlist1">talend.component.server.request.log</dt>
+<dd>
+<p>Default value: <code>false</code>. Should the all requests/responses be logged (debug purposes - only work when running with CXF).</p>
 </dd>
 <dt class="hdlist1">talend.component.server.security.command.handler</dt>
 <dd>

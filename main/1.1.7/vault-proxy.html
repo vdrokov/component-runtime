@@ -8,7 +8,7 @@
     <meta name="description" content="A Vault Proxy manages credential encryption before the data reaches the component server.">
     <meta name="keywords" content="component server vault proxy, credentials, cloud">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-02-24T15:55:32.419Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-02-25T16:00:50.919Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -616,6 +616,10 @@ the configuration is read from system properties, environment variables, &#8230;
 <dt class="hdlist1">talend.vault.cache.security.allowedIps</dt>
 <dd>
 <p>Default value: <code>localhost,127.0.0.1,0:0:0:0:0:0:0:1</code>. The IP or hosts allowed to call that server on <code>/api/*</code> if no token is passed.</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.security.hostname.sanitizer</dt>
+<dd>
+<p>Default value: <code>none</code>. Enable to sanitize the hostname before testing them. Default to <code>none</code> which is a noop. Supported values are <code>docker</code> (for <code>&lt;folder&gt;_&lt;service&gt;_&lt;number&gt;.&lt;folder&gt;_&lt;network&gt;</code> pattern) and <code>weave</code> (for <code>&lt;prefix&gt;_dataset_&lt;number&gt;.&lt;suffix&gt;</code> pattern).</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.security.tokens</dt>
 <dd>
