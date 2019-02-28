@@ -8,7 +8,7 @@
     <meta name="description" content="Integrate components into Talend Cloud and learn about the component server">
     <meta name="keywords" content="web, component server, cloud">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-02-27T10:13:01.864Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-02-28T07:57:18.630Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -489,7 +489,7 @@ The WebSocket protocol is activated for the endpoints. Endpoints then use <code>
 </table>
 </div>
 <div class="paragraph">
-<p>Browse the API description using <a href="rest-swagger.html" class="page">OpenAPI</a>.</p>
+<p>Browse the API description using <a href="rest-openapi.html" class="page">OpenAPI</a>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1491,6 +1491,9 @@ Only use the configuration related to port <code>5005</code> (in <code>ports</c
 <h2 id="_component_server_vault_proxy"><a class="anchor" href="#_component_server_vault_proxy"></a>Component Server Vault Proxy</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>Browse the API description using <a href="rest-openapi-vault.html" class="page">OpenAPI</a>.</p>
+</div>
+<div class="paragraph">
 <p>A Vault proxy dedicated to the component server allows to safely manage credential encryption when operating in a Cloud environment.</p>
 </div>
 <div class="paragraph">
@@ -1660,7 +1663,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </dd>
 <dt class="hdlist1">talend.vault.cache.service.auth.cantDecipherStatusCode</dt>
 <dd>
-<p>Default value: <code>422</code>. -</p>
+<p>Default value: <code>422</code>. Status code sent when vault can&#8217;t decipher some values.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.service.auth.refreshDelayMargin</dt>
 <dd>
@@ -1669,6 +1672,10 @@ the configuration is read from system properties, environment variables, &#8230;
 <dt class="hdlist1">talend.vault.cache.service.auth.refreshDelayOnFailure</dt>
 <dd>
 <p>Default value: <code>10000</code>. How often (in ms) to refresh the vault token in case of an authentication failure.</p>
+</dd>
+<dt class="hdlist1">talend.vault.cache.service.decipher.skip.regex</dt>
+<dd>
+<p>Default value: <code>vault\:v[0-9]+\:.*</code>. The regex to whitelist ciphered keys, others will be passthrough in the output without going to vault.</p>
 </dd>
 <dt class="hdlist1">talend.vault.cache.talendComponentKit.url</dt>
 <dd>
