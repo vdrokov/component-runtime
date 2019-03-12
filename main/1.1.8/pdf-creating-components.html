@@ -8,7 +8,7 @@
     <meta name="description" content="Get an overview of the main steps to code the logic of your custom Talend Componit Kit components">
     <meta name="keywords" content="create, code, class, logic, layout, configuration, dev, overview">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-03-12T15:57:35.506Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-03-12T16:38:37.797Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -1187,7 +1187,22 @@ public class BulkProcessor implements Serializable {
 
     @AfterGroup
     public void commit() {
-        // save buffer records at once (bulk)
+        // save buffered records at once (bulk)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use the condensed syntax for this kind of processor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Processor(name = "BulkOutputDemo")
+public class BulkProcessor implements Serializable {
+
+    @AfterGroup
+    public void commit(final Collection&lt;Record&gt; records) {
+        // save records
     }
 }</code></pre>
 </div>
@@ -1212,6 +1227,24 @@ public class BulkProcessor implements Serializable {
 <p><a href="best-practices.html" class="page">Best practices</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_shortcut_syntax_for_bulk_output_processors"><a class="anchor" href="#_shortcut_syntax_for_bulk_output_processors"></a>Shortcut syntax for bulk output processors</h4>
+<div class="paragraph">
+<p>For the case of output components (not emitting any data) using bulking you can pass the list of records to the after group method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Processor(name = "DocOutput")
+public class DocOutput implements Serializable {
+
+    @AfterGroup
+    public void onCommit(final Collection&lt;Record&gt; records) {
+        // save records
+    }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -2959,7 +2992,22 @@ public class BulkProcessor implements Serializable {
 
     @AfterGroup
     public void commit() {
-        // save buffer records at once (bulk)
+        // save buffered records at once (bulk)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use the condensed syntax for this kind of processor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Processor(name = "BulkOutputDemo")
+public class BulkProcessor implements Serializable {
+
+    @AfterGroup
+    public void commit(final Collection&lt;Record&gt; records) {
+        // save records
     }
 }</code></pre>
 </div>
