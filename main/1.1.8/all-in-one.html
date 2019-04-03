@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.8/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-04-02T15:19:41.465Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-04-03T15:00:12.713Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -367,6 +367,9 @@
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="javajet-to-componentkit.html">From Javajet to the Component Kit</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -630,7 +633,7 @@ In distributed environments, class constructor are called on cluster manager nod
 </table>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/deployment-diagram.png" target="_blank" rel="noopener"><img src="_images/deployment-diagram.png" alt="Deployment diagram" width="60%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/deployment-diagram.png" target="_blank" rel="noopener"><img src="_images/deployment-diagram.png" alt="Deployment diagram"></a></span></p>
 </div>
 <div class="colist arabic">
 <table>
@@ -663,10 +666,10 @@ All the methods managed by the framework must be public. Private methods are ign
 </table>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/driver-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/driver-processing-workflow.png" alt="Driver processing workflow" width="40%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/driver-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/driver-processing-workflow.png" alt="Driver processing workflow"></a></span></p>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/worker-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/worker-processing-workflow.png" alt="Worker processing workflow" width="30%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/worker-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/worker-processing-workflow.png" alt="Worker processing workflow"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -709,7 +712,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Starter" width="75%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Starter"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -725,7 +728,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/component_kit_web_tester.png" target="_blank" rel="noopener"><img src="_images/component_kit_web_tester.png" alt="Web tester" width="75%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/component_kit_web_tester.png" target="_blank" rel="noopener"><img src="_images/component_kit_web_tester.png" alt="Web tester"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can find more details about the framework design in <a href="framework_design.html" class="page">this document</a>.</p>
@@ -772,9 +775,21 @@ The framework is designed to be as declarative as possible but also to stay exte
 <div class="paragraph">
 <p>Once the prerequisites completed, this tutorial should take you about 20 minutes.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The component designed in this tutorial is a processor and does not require nor show any <a href="component-configuration.html#dataset-and-datastore" class="page">datastore and dataset</a> configuration. Datasets and datastores are required only for input and output components.
+</td>
+</tr>
+</table>
+</div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
 </div>
 </div>
 <div class="sect3">
@@ -810,7 +825,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 <p>Start IntelliJ and create a new project. In the available options, you should see <strong>Talend Component</strong>.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij_new_component_project.png" target="_blank" rel="noopener"><img src="_images/intellij_new_component_project.png" alt="New project" width="70%"></a>
+<a class="image" href="_images/intellij_new_component_project.png" target="_blank" rel="noopener"><img src="_images/intellij_new_component_project.png" alt="New project"></a>
 </div>
 </div>
 </li>
@@ -822,7 +837,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>Enter the project details. The goal here is to define the component and project metadata. Change the default values as follows:<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij_tutorial_project_metadata.png" target="_blank" rel="noopener"><img src="_images/intellij_tutorial_project_metadata.png" alt="Project metadata" width="70%"></a>
+<a class="image" href="_images/intellij_tutorial_project_metadata.png" target="_blank" rel="noopener"><img src="_images/intellij_tutorial_project_metadata.png" alt="Project metadata"></a>
 </div>
 </div>
 <div class="ulist">
@@ -846,7 +861,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>Select <strong>Configuration Model</strong> and add a string field named <code>level</code>. This input field will be used in the component configuration to enter additional information to display in the logs.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model" width="70%"></a>
+<a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model"></a>
 </div>
 </div>
 </li>
@@ -854,7 +869,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>In the <strong>Input(s) / Output(s)</strong> section, click the default <strong>MAIN</strong> input branch to access its detail, and make sure that the record model is set to <strong>Generic</strong>. Leave the <strong>Name</strong> of the branch with its default <code>MAIN</code> value.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_component_generic_input.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_generic_input.png" alt="Generic Input" width="70%"></a>
+<a class="image" href="_images/tutorial_component_generic_input.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_generic_input.png" alt="Generic Input"></a>
 </div>
 </div>
 </li>
@@ -867,7 +882,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Because the component is a processor, it has an output branch by default. A processor without any output branch is considered an output component. Yo ucan create output components when the <strong>Activate IO</strong> option is selected.
+Because the component is a processor, it has an output branch by default. A processor without any output branch is considered an output component. You can create output components when the <strong>Activate IO</strong> option is selected.
 </td>
 </tr>
 </table>
@@ -883,7 +898,7 @@ Because the component is a processor, it has an output branch by default. A proc
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_generated_project_view.png" target="_blank" rel="noopener"><img src="_images/tutorial_generated_project_view.png" alt="Project view" width="70%"></a>
+<a class="image" href="_images/tutorial_generated_project_view.png" target="_blank" rel="noopener"><img src="_images/tutorial_generated_project_view.png" alt="Project view"></a>
 </div>
 </div>
 <div class="ulist">
@@ -933,7 +948,7 @@ Because the component is a processor, it has an output branch by default. A proc
 <p>From your component project in IntelliJ, open a terminal and make sure that the selected directory is the root of the project. All commands shown in this tutorial are performed from this location.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_intellij_terminal_blank.png" target="_blank" rel="noopener"><img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal" width="70%"></a>
+<a class="image" href="_images/tutorial_intellij_terminal_blank.png" target="_blank" rel="noopener"><img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal"></a>
 </div>
 </div>
 </li>
@@ -961,7 +976,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Make sure the build is successful.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_deploy_in_studio_success.png" target="_blank" rel="noopener"><img src="_images/tutorial_deploy_in_studio_success.png" alt="Build success" width="70%"></a>
+<a class="image" href="_images/tutorial_deploy_in_studio_success.png" target="_blank" rel="noopener"><img src="_images/tutorial_deploy_in_studio_success.png" alt="Build success"></a>
 </div>
 </div>
 </li>
@@ -976,7 +991,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Notice that the <strong>level</strong> field that was specified in the configuration model of the component in the <strong>Talend Component Kit Starter</strong> is present.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_first_component_in_studio.png" target="_blank" rel="noopener"><img src="_images/tutorial_first_component_in_studio.png" alt="Component in Studio" width="70%"></a>
+<a class="image" href="_images/tutorial_first_component_in_studio.png" target="_blank" rel="noopener"><img src="_images/tutorial_first_component_in_studio.png" alt="Component in Studio"></a>
 </div>
 </div>
 </li>
@@ -1087,7 +1102,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Set the <strong>Number of Rows for RowGenerator</strong> to <code>10</code>.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_trowgenerator.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_trowgenerator.png" alt="tRowGenerator" width="70%"></a>
+<a class="image" href="_images/tutorial_build_job_trowgenerator.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_trowgenerator.png" alt="tRowGenerator"></a>
 </div>
 </div>
 </li>
@@ -1101,7 +1116,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Open the <strong>TutorialFamilyLogger</strong> component and set the <strong>level</strong> field to <code>info</code>.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_logger.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_logger.png" alt="Logger" width="70%"></a>
+<a class="image" href="_images/tutorial_build_job_logger.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_logger.png" alt="Logger"></a>
 </div>
 </div>
 </li>
@@ -1113,7 +1128,7 @@ The job is executed. You can observe in the console that each of the 10 generate
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
 </div>
 </div>
 </div>
@@ -1268,40 +1283,31 @@ It is optional to install a build tool independently since Maven and Gradle wrap
 <p>On the left panel, select <strong>Plugins</strong>.</p>
 </li>
 <li>
-<p>Select <strong>Browse repositories&#8230;&#8203;</strong></p>
+<p>Access the <strong>Marketplace</strong> tab.</p>
+</li>
+<li>
+<p>Enter <code>Talend</code> in the search field and Select <strong>Talend Component Kit</strong>.</p>
+</li>
+<li>
+<p>Select <strong>Install</strong>.</p>
 </li>
 </ol>
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij/plugin/1-plugins.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/1-plugins.png" alt="Plugins" width="70%"></a>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="4">
-<li>
-<p>Enter <code>Talend</code> in the search field and choose <strong>Talend Component Kit - Intellij Plugin</strong>.</p>
-</li>
-<li>
-<p>Select <strong>Install</strong> on the right.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="_images/intellij/plugin/2-browse-talend.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/2-browse-talend.png" alt="Browse talend plugin" width="70%"></a>
+<a class="image" href="_images/intellij/plugin/2-browse-talend.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/2-browse-talend.png" alt="Browse talend plugin"></a>
 </div>
 </div>
 <div class="olist arabic">
 <ol class="arabic" start="6">
 <li>
-<p>Click the <strong>Restart IntelliJ IDEA</strong> button.</p>
+<p>Click the <strong>Restart IDE</strong> button.</p>
 </li>
 </ol>
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij/plugin/3-restart.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/3-restart.png" alt="IDEA restart" width="70%"></a>
+<a class="image" href="_images/intellij/plugin/3-restart.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/3-restart.png" alt="IDEA restart"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -1313,7 +1319,7 @@ It is optional to install a build tool independently since Maven and Gradle wrap
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij/plugin/4-restart.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/4-restart.png" alt="IDEA restart" width="70%"></a>
+<a class="image" href="_images/intellij/plugin/4-restart.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/4-restart.png" alt="IDEA restart"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -1371,7 +1377,7 @@ The plugin automatically detects your configuration and provides you with key co
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij/plugin/suggestion_1.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/suggestion_1.png" alt="Keys suggestion" width="70%"></a>
+<a class="image" href="_images/intellij/plugin/suggestion_1.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/suggestion_1.png" alt="Keys suggestion"></a>
 </div>
 </div>
 </div>
@@ -1462,7 +1468,7 @@ When defining a project using the Starter, do not refresh the page to avoid losi
 <p>Add the <strong>Talend Component Kit Testing</strong> facet to your project to automatically generate unit tests for the components created later in this tutorial. Add any facet you need.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_test_facet.png" target="_blank" rel="noopener"><img src="_images/starter/starter_test_facet.png" alt="Test facet" width="80%"></a>
+<a class="image" href="_images/starter/starter_test_facet.png" target="_blank" rel="noopener"><img src="_images/starter/starter_test_facet.png" alt="Test facet"></a>
 </div>
 </div>
 </li>
@@ -1500,7 +1506,7 @@ Input and Output components without dataset (itself containing a datastore) will
 <p>Components added to the project using <strong>Add A Component</strong> are now input or output components by default. When <strong>Activate IO</strong> is not enabled, new components are processors by default. Note that you are still able to define processors even with datasets and datastores activated.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_activate_io.png" target="_blank" rel="noopener"><img src="_images/starter/starter_activate_io.png" alt="Activate IO" width="80%"></a>
+<a class="image" href="_images/starter/starter_activate_io.png" target="_blank" rel="noopener"><img src="_images/starter/starter_activate_io.png" alt="Activate IO"></a>
 </div>
 </div>
 </li>
@@ -1597,7 +1603,7 @@ The intent in this tutorial is to create an input component that connects to a M
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_input-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_input-config.png" alt="Input configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_input-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_input-config.png" alt="Input configuration"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -1671,7 +1677,7 @@ If you selected <strong>Activate IO</strong>, you can choose the component type.
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_processor-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_processor-config.png" alt="Processor configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_processor-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_processor-config.png" alt="Processor configuration"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -1693,8 +1699,9 @@ If you selected <strong>Activate IO</strong>, you can choose the component type.
 The input in this tutorial is a generic record. Enable the <strong>Generic</strong> option and click <strong>Save</strong>.</p>
 </li>
 <li>
-<p>Define the <strong>Output(s)</strong> of the component. For each output that you need to define, click <strong>Add Output</strong>. In this tutorial, only one generic output is needed to return the received record.<br>
-Outputs can be configured the same way as inputs (see previous steps).</p>
+<p>Define the <strong>Output(s)</strong> of the component. For each output that you need to define, click <strong>Add Output</strong>. The first output must be named <code>MAIN</code>. In this tutorial, only one generic output is needed to return the received record.<br>
+Outputs can be configured the same way as inputs (see previous steps).<br>
+You can define a reject output connection by naming it <code>REJECT</code>. This naming is used by Talend applications to automatically set the connection type to Reject.</p>
 </li>
 </ol>
 </div>
@@ -1737,7 +1744,7 @@ The intent in this tutorial is to create an output component that receives a rec
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_output-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_output-config.png" alt="Output configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_output-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_output-config.png" alt="Output configuration"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -1814,7 +1821,7 @@ In this tutorial, the project was configured and three components of different t
 <p>Click <strong>Finish</strong> on the left panel. You are redirected to a page that summarizes the project. On the left panel, you can also see all the components that you added to the project.</p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_project-download.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-download.png" alt="Output configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_project-download.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-download.png" alt="Output configuration"></a>
 </div>
 </div>
 </li>
@@ -1905,7 +1912,7 @@ Import the project to your favorite IDE to start the implementation.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij/plugin/new-project_1.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/new-project_1.png" alt="New Talend Project" width="70%"></a>
+<a class="image" href="_images/intellij/plugin/new-project_1.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/new-project_1.png" alt="New Talend Project"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -1914,7 +1921,7 @@ For more information about the Talend Component Kit starter, check <a href="tuto
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij/plugin/new-project_2.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/new-project_2.png" alt="New Talend Project" width="70%"></a>
+<a class="image" href="_images/intellij/plugin/new-project_2.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/new-project_2.png" alt="New Talend Project"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -1926,7 +1933,7 @@ For more information about the Talend Component Kit starter, check <a href="tuto
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij/plugin/new-project_3.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/new-project_3.png" alt="New Talend Project" width="70%"></a>
+<a class="image" href="_images/intellij/plugin/new-project_3.png" target="_blank" rel="noopener"><img src="_images/intellij/plugin/new-project_3.png" alt="New Talend Project"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -1986,7 +1993,7 @@ For more information about the Talend Component Kit starter, check <a href="tuto
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/implementing-components.png" target="_blank" rel="noopener"><img src="_images/implementing-components.png" alt="Implementing component" width="50%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/implementing-components.png" target="_blank" rel="noopener"><img src="_images/implementing-components.png" alt="Implementing component"></a></span></p>
 </div>
 <div class="paragraph">
 <p>In some cases, you will require specific implementations to handle more advanced cases, such as:</p>
@@ -2533,12 +2540,37 @@ public void endBatch() {
 </div>
 </div>
 <div class="sect4">
-<h5 id="_defining_multiple_outputs"><a class="anchor" href="#_defining_multiple_outputs"></a>Defining multiple outputs</h5>
+<h5 id="_defining_output_connections"><a class="anchor" href="#_defining_output_connections"></a>Defining output connections</h5>
 <div class="paragraph">
-<p>In some cases, you may need to split the output of a processor in two. A common example is to have "main" and "reject" branches where part of the incoming data are passed to a specific bucket to be processed later.</p>
+<p>In some cases, you may need to split the output of a processor in two or more connections. A common example is to have "main" and "reject" output connections where part of the incoming data are passed to a specific bucket and processed later.</p>
 </div>
 <div class="paragraph">
-<p>To do that, you can use <code>@Output</code> as replacement of the returned value:</p>
+<p>Talend Component Kit supports two types of output connections: Flow and Reject.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Flow</strong> is the main and standard output connection.</p>
+</li>
+<li>
+<p>The <strong>Reject</strong> connection handles records rejected during the processing. A component can only have one reject connection, if any. Its name must be <code>REJECT</code> to be processed correctly in Talend applications.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can also define the different output connections of your component in the Starter.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To define an output connection, you can use <code>@Output</code> as replacement of the returned value in the <code>@ElementListener</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2556,7 +2588,7 @@ public void map(final MyData data, @Output final OutputEmitter&lt;MyNewData&gt; 
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
 public void map(final MyData data,
                 @Output final OutputEmitter&lt;MyNewData&gt; main,
-                @Output("rejected") final OutputEmitter&lt;MyNewDataWithError&gt; rejected) {
+                @Output("REJECT") final OutputEmitter&lt;MyNewDataWithError&gt; rejected) {
     if (isRejected(data)) {
         rejected.emit(createNewData(data));
     } else {
@@ -2568,7 +2600,7 @@ public void map(final MyData data,
 
 @ElementListener
 public MyNewData map(final MyData data,
-                    @Output("rejected") final OutputEmitter&lt;MyNewDataWithError&gt; rejected) {
+                    @Output("REJECT") final OutputEmitter&lt;MyNewDataWithError&gt; rejected) {
     if (isSuspicious(data)) {
         rejected.emit(createNewData(data));
         return createNewData(data); // in this case the processing continues but notifies another channel
@@ -2636,7 +2668,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Processing schema (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing" width="80%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Each group is processed as follows until there is no record left:</p>
@@ -2656,7 +2688,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Group execution detail (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing" width="80%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can define the following logic in the processor configuration:</p>
@@ -3529,7 +3561,7 @@ The component family associated with a configuration type (datastore/dataset) is
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/datastore_and_dataset_validation.png" target="_blank" rel="noopener"><img src="_images/datastore_and_dataset_validation.png" alt="Dataset validation" width="50%"></a>
+<a class="image" href="_images/datastore_and_dataset_validation.png" target="_blank" rel="noopener"><img src="_images/datastore_and_dataset_validation.png" alt="Dataset validation"></a>
 </div>
 </div>
 </div>
@@ -4431,7 +4463,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Processing schema (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing" width="80%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Each group is processed as follows until there is no record left:</p>
@@ -4451,7 +4483,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Group execution detail (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing" width="80%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can define the following logic in the processor configuration:</p>
@@ -4560,7 +4592,7 @@ This default configuration implements a constant pause duration of 500 ms betwee
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_enabling_streaming.png" target="_blank" rel="noopener"><img src="_images/starter/starter_enabling_streaming.png" alt="Stream Toggle" width="80%"></a>
+<a class="image" href="_images/starter/starter_enabling_streaming.png" target="_blank" rel="noopener"><img src="_images/starter/starter_enabling_streaming.png" alt="Stream Toggle"></a>
 </div>
 </div>
 </div>
@@ -4786,7 +4818,7 @@ A Talend Component Kit plugin is available for each of the supported build tools
 For example, to compile the project and prepare for deploying your component, run <code>mvn clean install</code>. Using this command, the following goals are executed:</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/mvn_clean_install.png" target="_blank" rel="noopener"><img src="_images/mvn_clean_install.png" alt="Maven clean install" width="70%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/mvn_clean_install.png" target="_blank" rel="noopener"><img src="_images/mvn_clean_install.png" alt="Maven clean install"></a></span></p>
 </div>
 <div class="paragraph">
 <p>The build is split into several phases. The different goals are executed in the order shown above. Talend Component Kit uses default goals from the Maven build lifecycle and adds additional goals to the building and packaging phases.</p>
@@ -4835,9 +4867,7 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 <div class="sect4">
 <h5 id="_scan"><a class="anchor" href="#_scan"></a>Scan</h5>
 <div class="paragraph">
-<p>This goal named <code>scan-descriptor</code> will scan the current module - optional other configured folders - to precompute the list
-of interesting classes for the framework (components, services). This saves some bootstrap time when launching a job which
-is interesting for some execution cases:</p>
+<p>The <code>scan-descriptor</code> goal scans the current module and optionally other configured folders to precompute the list of interesting classes for the framework (components, services). It allows to save some bootstrap time when launching a job, which can be useful in some execution cases:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4857,7 +4887,7 @@ is interesting for some execution cases:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Configuration - excluding the ones used for defaults only:</p>
+<p>Configuration - excluding parameters used by default only:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
 <colgroup>
@@ -4877,7 +4907,7 @@ is interesting for some execution cases:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">output</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Where to dump the scan result. Note it is not supported to change that value in the runtime.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Where to dump the scan result. Note: It is not supported to change that value in the runtime.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.scan.output</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>${project.build.outputDirectory}/TALEND-INF/scanning.properties</code></p></td>
 </tr>
@@ -4885,11 +4915,11 @@ is interesting for some execution cases:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">scannedDirectories</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Explicit list of directories to scan.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.scan.scannedDirectories</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If not set default to <code>${project.build.outputDirectory}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If not set, defaults to <code>${project.build.outputDirectory}</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">scannedDependencies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Explicit list of dependencies to scan - set them in format <code>groupId:artifactId</code>. It is appended to the file to scan.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explicit list of dependencies to scan - set them in the <code>groupId:artifactId</code> format. The list is appended to the file to scan.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.scan.scannedDependencies</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -6203,29 +6233,15 @@ public class MyComponentConfiguration {
 <div class="paragraph">
 <p>The most common actions are the following ones:</p>
 </div>
-<table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Action</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Configuration example</th>
-<th class="tableblock halign-left valign-top">Action example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DataStore</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Checkable</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exposes a way to ensure the datastore/connection works</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="sect6">
+<h7 id="_checkable_datastore"><a class="anchor" href="#_checkable_datastore"></a>@Checkable (DataStore)</h7>
+<div class="paragraph">
+<p>This action exposes a way to ensure the datastore/connection works.</p>
+</div>
+<div class="paragraph">
+<p>Configuration example:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DataStore
 @Checkable
@@ -6245,8 +6261,11 @@ public class JdbcDataStore
   private String password;
 }</code></pre>
 </div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+</div>
+<div class="paragraph">
+<p>Action example:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HealthCheck
 public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastore) {
@@ -6257,10 +6276,8 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
     return new HealthCheckStatus(Status.KO, e.getMessage());
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_limitations"><a class="anchor" href="#_limitations"></a>Limitations</h6>
@@ -6565,7 +6582,7 @@ For example, the tree classloading is commonly used by Servlet containers where 
 <p>Here is a representation of this solution:</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/classloader-layout.png" target="_blank" rel="noopener"><img src="_images/classloader-layout.png" alt="Classloader layout" width="70%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/classloader-layout.png" target="_blank" rel="noopener"><img src="_images/classloader-layout.png" alt="Classloader layout"></a></span></p>
 </div>
 <div class="paragraph">
 <p>The <em>shared</em> area contains Talend Component Kit API, which only contains by default the classes shared by the plugins.</p>
@@ -9219,7 +9236,7 @@ class ComponentExtensionTest {
 <div class="sect4">
 <h5 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>Mocking the output</h5>
 <div class="paragraph">
-<p>Using the "test"/"collector" component as shown in the previous sample stores all records emitted by the chain (typically your source) in memory. You can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>.</p>
+<p>Using the <code>test://collector</code> component as shown in the previous sample stores all records emitted by the chain (typically your source) in memory. You can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>.</p>
 </div>
 <div class="paragraph">
 <p>Note that this method filters by type. If you don&#8217;t need any specific type, you can use <code>Object.class</code>.</p>
@@ -9246,7 +9263,7 @@ class ComponentExtensionTest {
              .component("out", "yourcomponentfamily://myoutput?"+createComponentConfig())
            .connections()
               .from("emitter").to("out")
-           .build
+           .build()
            .run();
 
         assertMyOutputProcessedTheInputData();
@@ -10823,7 +10840,10 @@ to avoid to transport more than desired during the job distribution.
 <div class="sect3">
 <h4 id="httpclient_usage"><a class="anchor" href="#httpclient_usage"></a>Using HttpClient</h4>
 <div class="paragraph">
-<p>The HttpClient usage is described in this section by using the REST API example below. It is assume that it requires a basic authentication header.</p>
+<p>You can access the API reference in the <a href="https://talend.github.io/component-runtime/apidocs/1.1.8/api/org/talend/sdk/component/api/service/http/package-summary.html">Javadocs</a>.</p>
+</div>
+<div class="paragraph">
+<p>The HttpClient usage is described in this section by using the REST API example below. Assuming that it requires a basic authentication header:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -11103,7 +11123,7 @@ public interface Translator {
 </table>
 </div>
 <div class="paragraph">
-<p>The corresponding <code>Messages.properties</code> placed in <code>org/superbiz</code> resource folder will contain:</p>
+<p>The corresponding <code>Messages.properties</code> placed in the <code>org/superbiz</code> resource folder contains the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11673,7 +11693,7 @@ public @interface MyLayout {
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
 </div>
 </div>
 <div class="sect3">
@@ -11693,6 +11713,10 @@ public @interface MyLayout {
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Talend Studio 7.2.1 M3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Framework until 1.1.4</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Talend Studio 7.1.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Framework until 1.1.1</p></td>
@@ -11766,7 +11790,7 @@ You can use a Snapshot of the version under development using the <code>-SNAPSHO
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
 </div>
 </div>
 <div class="sect3">
@@ -11897,7 +11921,7 @@ java.util.logging.SimpleFormatter.format = [%4$s] %5$s%6$s%n</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/studio-reload-button.png" target="_blank" rel="noopener"><img src="_images/studio-reload-button.png" alt="Studio Reload Button" width="70%"></a>
+<a class="image" href="_images/studio-reload-button.png" target="_blank" rel="noopener"><img src="_images/studio-reload-button.png" alt="Studio Reload Button"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -11940,7 +11964,7 @@ You still need to add and remove the components to see the changes.
 <p>the <strong>address</strong> parameter of the -agentlib argument is the port used for the remote configuration. Make sure this port is available.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/talend_studio_debug_remote_config_1.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration" width="70%"></a>
+<a class="image" href="_images/talend_studio_debug_remote_config_1.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration"></a>
 </div>
 </div>
 </li>
@@ -11963,7 +11987,7 @@ You still need to add and remove the components to see the changes.
 <p>In the popup window, paste the arguments copied from the IDE.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/talend_studio_debug_remote_config_2.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_2.png" alt="IntelliJ remote configuration" width="70%"></a>
+<a class="image" href="_images/talend_studio_debug_remote_config_2.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_2.png" alt="IntelliJ remote configuration"></a>
 </div>
 </div>
 </li>
@@ -11998,7 +12022,7 @@ You still need to add and remove the components to see the changes.
 <p><strong>address</strong> is the port used for the remote configuration. Make sure this port is available.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/talend_studio_debug_remote_config_1.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration" width="70%"></a>
+<a class="image" href="_images/talend_studio_debug_remote_config_1.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration"></a>
 </div>
 </div>
 </li>
@@ -12015,7 +12039,7 @@ You still need to add and remove the components to see the changes.
 <p>Paste the arguments copied from the IDE in a new line of the file.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/talend_studio_debug_remote_config_3.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_3.png" alt="IntelliJ remote configuration" width="60%"></a>
+<a class="image" href="_images/talend_studio_debug_remote_config_3.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_3.png" alt="IntelliJ remote configuration"></a>
 </div>
 </div>
 </li>
@@ -12050,6 +12074,625 @@ You still need to add and remove the components to see the changes.
 </li>
 <li>
 <p><a href="build-tools-gradle.html" class="page">Building components with Gradle</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_from_javajet_to_talend_component_kit"><a class="anchor" href="#_from_javajet_to_talend_component_kit"></a>From Javajet to Talend Component Kit</h3>
+<div class="paragraph">
+<p>From the version 7.0 of Talend Studio, Talend Component Kit becomes the recommended framework to use to develop components.</p>
+</div>
+<div class="paragraph">
+<p>This framework is being introduced to ensure that newly developed components can be deployed and executed both in on-premise/local and cloud/big data environments.</p>
+</div>
+<div class="paragraph">
+<p>From that new approach comes the need to provide a complete yet unique and compatible way of developing components.</p>
+</div>
+<div class="paragraph">
+<p>With the Component Kit, custom components are entirely implemented in Java. To help you get started with a new custom component development project, a <a href="https://starter-toolkit.talend.io/">Starter</a> is available. Using it, you will be able to generate the skeleton of your project.</p>
+</div>
+<div class="sect3">
+<h4 id="_defining_the_component_configuration"><a class="anchor" href="#_defining_the_component_configuration"></a>Defining the component configuration</h4>
+<div class="paragraph">
+<p>With the previous Javajet framework, metadata,  widgets and configurable parts of a custom component were specified in XML.
+With the Component Kit, they are now defined in the <code>&lt;component_name&gt;&lt;component_type&gt;Configuration</code> (for example, <code>LoggerProcessorConfiguration</code>) Java class of your development project.</p>
+</div>
+<div class="paragraph">
+<p>Note that most of this configuration is transparent if you specified the Configuration Model of your components right before generating the project from the Starter.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Any undocumented feature or option is considered not supported by the Component Kit framework.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can find examples of output in Studio or Cloud environments in the <a href="gallery.html" class="page">Gallery</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_widgets"><a class="anchor" href="#_widgets"></a>Widgets</h5>
+<div class="sect5">
+<h6 id="_inputtext"><a class="anchor" href="#_inputtext"></a>Input/Text</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;PARAMETER
+    NAME="CONFIG"
+    FIELD="TEXT"
+    NUM_ROW="10"&gt;
+        &lt;DEFAULT&gt;""&lt;/DEFAULT&gt;
+&lt;/PARAMETER&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+String config;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_password"><a class="anchor" href="#_password"></a>Password</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;PARAMETER
+    NAME="PASSWORD"
+    FIELD="PASSWORD"
+    NUM_ROW="10"
+    REQUIRED="true"&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+@Credential
+String password;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_textarea_2"><a class="anchor" href="#_textarea_2"></a>Textarea</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;PARAMETER NAME="QUERY"
+    FIELD="MEMO"
+    NUM_ROW="1"&gt;
+        &lt;DEFAULT&gt;""&lt;/DEFAULT&gt;
+&lt;/PARAMETER&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+@Textarea
+String query;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_integer"><a class="anchor" href="#_integer"></a>Integer</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;!-- There were no specific widget for number fields --&gt;
+&lt;PARAMETER
+    NAME="CONFIG"
+    FIELD="TEXT"
+    NUM_ROW="10"&gt;
+        &lt;DEFAULT&gt;""&lt;/DEFAULT&gt;
+&lt;/PARAMETER&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+@Documentation("This is a number")
+public Integer number;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_checkbox"><a class="anchor" href="#_checkbox"></a>Checkbox</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;PARAMETER
+    NAME="PRETTY_FORMAT"
+    FIELD="CHECK"
+    NUM_ROW="10"&gt;
+        &lt;DEFAULT&gt;false&lt;/DEFAULT&gt;
+&lt;/PARAMETER&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+Boolean pretty_format;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_list"><a class="anchor" href="#_list"></a>List</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;PARAMETER
+    NAME="ACTION"
+    FIELD="CLOSED_LIST"
+    NUM_ROW="10"&gt;
+    &lt;ITEMS DEFAULT="1"&gt;
+        &lt;ITEM NAME="DELETE" VALUE="1" /&gt;
+        &lt;ITEM NAME="INSERT" VALUE="2" /&gt;
+        &lt;ITEM NAME="UPDATE" VALUE="3" /&gt;
+    &lt;/ITEMS&gt;
+&lt;/PARAMETER&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+@Proposable("valuesProvider")
+String action;
+/** service class */
+@DynamicValues("valuesProvider")
+public Values actions(){
+  return new Values(asList(new Values.Item("1", "Delete"),
+                    new Values.Item("2", "Insert"),
+                    new Values.Item("3", "Update")));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+ActionEnum action;
+
+/** Define enum */
+enum ActionEnum {
+    Delete,
+    Insert,
+    Update
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_suggestions_2"><a class="anchor" href="#_suggestions_2"></a>Suggestions</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;!-- There were no simple way to load proposals from service in javajet --&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+@Suggestable(value = "loadModules", parameters = { "myconfig" })
+@Documentation("module names are loaded using service")
+public String moduleName;
+
+
+// In Service class
+@Suggestions("loadModules")
+public SuggestionValues loadModules(@Option final MyConfig myconfig) { }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_table"><a class="anchor" href="#_table"></a>Table</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;!-- There were no simple way to select complex objects in javajet --&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+List&lt;MyObject&gt; config;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_code_2"><a class="anchor" href="#_code_2"></a>Code</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;PARAMETERS&gt;
+    &lt;PARAMETER NAME="CODE" FIELD="MEMO_JAVA" RAW="true" REQUIRED="false" NUM_ROW="10" NB_LINES="10"&gt;
+        &lt;DEFAULT&gt;String foo = "bar";&lt;/DEFAULT&gt;
+    &lt;/PARAMETER&gt;
+&lt;/PARAMETERS&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Code("java")
+@Option
+String code;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_schema_2"><a class="anchor" href="#_schema_2"></a>Schema</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;PARAMETER
+    NAME="COLUMNS"
+    FIELD="COLUMN_LIST"
+    NUM_ROW="10"/&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+@Structure
+List&lt;String&gt; columns;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_validations_2"><a class="anchor" href="#_validations_2"></a>Validations</h5>
+<div class="sect5">
+<h6 id="_property_validation"><a class="anchor" href="#_property_validation"></a>Property validation</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;!-- There were no url pattern validation in javajet --&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/** configuration class */
+@Option
+@Validable("url")
+String config;
+
+/** service class */
+@AsyncValidation("url")
+ValidationResult doValidate(String url) {
+//validate the property
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_property_validation_with_pattern"><a class="anchor" href="#_property_validation_with_pattern"></a>Property validation with Pattern</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;!-- There were no regex validation in javajet --&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/** configuration class */
+@Option
+@Pattern("/^[a-zA-Z\\-]+$/")
+String username;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_data_store_validation"><a class="anchor" href="#_data_store_validation"></a>Data store validation</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;!-- There were no healthcheck javajet --&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Datastore
+@Checkable
+public class config {
+/** config ...*/
+}
+
+/** service class */
+@HealthCheck
+public HealthCheckStatus testConnection(){
+
+//validate the connection
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_binding_properties"><a class="anchor" href="#_binding_properties"></a>Binding properties</h5>
+<div class="sect5">
+<h6 id="_activeif_2"><a class="anchor" href="#_activeif_2"></a>ActiveIf</h6>
+<div class="paragraph">
+<p>Javajet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-XML hljs" data-lang="XML">&lt;PARAMETER
+    NAME="AUTH_TYPE"
+    FIELD="CLOSED_LIST"
+    NUM_ROW="10"&gt;
+    &lt;ITEMS DEFAULT="NOAUTH"&gt;
+        &lt;ITEM NAME="NOAUTH" VALUE="NOAUTH" /&gt;
+        &lt;ITEM NAME="BASIC" VALUE="BASIC" /&gt;
+        &lt;ITEM NAME="BASIC" VALUE="OAUTH2" /&gt;
+    &lt;/ITEMS&gt;
+&lt;/PARAMETER&gt;
+
+&lt;PARAMETER
+    NAME="LOGIN"
+    FIELD="TEXT"
+    NUM_ROW="20"
+    SHOW_IF="AUTH_TYPE == 'BASIC'"&gt;
+        &lt;DEFAULT&gt;"login"&lt;/DEFAULT&gt;
+&lt;/PARAMETER&gt;
+
+&lt;PARAMETER
+    NAME="LOGIN"
+    FIELD="PASSWORD"
+    NUM_ROW="20"
+    SHOW_IF="AUTH_TYPE='BASIC'"&gt;
+        &lt;DEFAULT&gt;"login"&lt;/DEFAULT&gt;
+&lt;/PARAMETER&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Component Kit</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"> enum AuthorizationType {
+        NoAuth,
+        Basic,
+        oauth2
+}
+
+@Option
+@Required
+@Documentation("")
+private AuthorizationType type = AuthorizationType.NoAuth;
+
+@Option
+@required
+@ActiveIf(target = "type", value = "Basic")
+@Documentation("Username for the basic authentication")
+private String login;
+
+@Option
+@required
+@credential
+@ActiveIf(target = "type", value = "Basic")
+@Documentation("password for the basic authentication")
+private String password;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_defining_the_runtime"><a class="anchor" href="#_defining_the_runtime"></a>Defining the runtime</h4>
+<div class="paragraph">
+<p>Previously, the execution of a custom component was described through several Javajet files:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&lt;component_name&gt;_begin.javajet, containing the code required to initialize the component.</p>
+</li>
+<li>
+<p>&lt;component_name&gt;_main.javajet, containing the code required to process each line of the incoming data.</p>
+</li>
+<li>
+<p>&lt;component_name&gt;_end.javajet, containing the code required to end the processing and go to the following step of the execution.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With the Component Kit, the entire execution flow of a component is described through its main Java class <code>&lt;component_name&gt;&lt;component_type&gt;</code> (for example, <code>LoggerProcessor</code>) and through services for reusable parts.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_general_component_execution_logic_2"><a class="anchor" href="#_general_component_execution_logic_2"></a>General component execution logic</h4>
+<div class="paragraph">
+<p>Each type of component has its own execution logic. The same basic logic is applied to all components of the same type, and is then extended to implement each component specificities.
+The project generated from the starter already contains the basic logic for each component.</p>
+</div>
+<div class="paragraph">
+<p>Talend Component Kit framework relies on several primitive components.</p>
+</div>
+<div class="paragraph">
+<p>All components can use <code>@PostConstruct</code> and <code>@PreDestroy</code> annotations to initialize or release some underlying resource at the beginning and the end of a processing.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+In distributed environments, class constructor are called on cluster manager nodes. Methods annotated with <code>@PostConstruct</code> and <code>@PreDestroy</code> are called on worker nodes. Thus, partition plan computation and pipeline tasks are performed on different nodes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="_images/deployment-diagram.png" target="_blank" rel="noopener"><img src="_images/deployment-diagram.png" alt="Deployment diagram"></a></span></p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The created task is a JAR file containing class information, which describes the pipeline (flow) that should be processed in cluster.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>During the partition plan computation step, the pipeline is analyzed and split into stages. The cluster manager node instantiates mappers/processors, gets estimated data size using mappers, and splits created mappers according to the estimated data size.<br>
+All instances are then serialized and sent to the worker node.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Serialized instances are received and deserialized. Methods annotated with <code>@PostConstruct</code> are called. After that, pipeline execution starts. The <code>@BeforeGroup</code> annotated method of the processor is called before processing the first element in chunk.<br>
+After processing the number of records estimated as chunk size, the <code>@AfterGroup</code> annotated method of the processor is called. Chunk size is calculated depending on the environment the pipeline is processed by. Once the pipeline is processed, methods annotated with <code>@PreDestroy</code> are called.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+All the methods managed by the framework must be public. Private methods are ignored.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="_images/driver-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/driver-processing-workflow.png" alt="Driver processing workflow"></a></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="_images/worker-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/worker-processing-workflow.png" alt="Worker processing workflow"></a></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The framework is designed to be as declarative as possible but also to stay extensible by not using fixed interfaces or method signatures. This allows to incrementally add new features of the underlying implementations.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_main_changes"><a class="anchor" href="#_main_changes"></a>Main changes</h5>
+<div class="paragraph">
+<p>To ensure that the Cloud-compatible approach of the Component Kit framework is respected, some changes were introduced on the implementation side, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <strong>File</strong> mode is no longer supported. You can still work with URIs and remote storage systems to use files. The file collection must be handled at the component implementation level.</p>
+</li>
+<li>
+<p>The input and output connections between two components can only be of the <strong>Flow</strong> or <strong>Reject</strong> types. Other types of connections are not supported.</p>
+</li>
+<li>
+<p>Every Output component must have a corresponding Input component and use a dataset. All datasets must use a datastore.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_resources_and_examples"><a class="anchor" href="#_resources_and_examples"></a>Resources and examples</h4>
+<div class="paragraph">
+<p>To get started with the Component Kit framework, you can go through the following documents:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="index-getting-started-with-tck.html" class="page">Learn the basics about Talend Component Kit</a></p>
+</li>
+<li>
+<p><a href="tutorial-create-my-first-component.html" class="page">Create and deploy your first Component Kit component</a></p>
+</li>
+<li>
+<p><a href="tutorial-generate-project-using-starter.html" class="page">Learn about the Starter</a></p>
+</li>
+<li>
+<p><a href="index-creating-components.html" class="page">Start implementing components</a></p>
+</li>
+<li>
+<p><a href="index-deploying-components.html" class="page">Integrate a component to Talend Studio</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Talend/connectors-se">Check some examples of components built with Talend Component Kit</a></p>
 </li>
 </ul>
 </div>
@@ -12252,6 +12895,10 @@ the configuration is read from system properties, environment variables, &#8230;
 <dd>
 <p>Default value: <code>false</code>. If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p>
 </dd>
+<dt class="hdlist1">talend.component.server.lastUpdated.useStartTime</dt>
+<dd>
+<p>Default value: <code>false</code>. Should the lastUpdated timestamp value of <code>/environment</code> endpoint be updated with server start time.</p>
+</dd>
 <dt class="hdlist1">talend.component.server.maven.repository</dt>
 <dd>
 <p>The local maven repository used to locate components and their dependencies</p>
@@ -12294,13 +12941,13 @@ the configuration is read from system properties, environment variables, &#8230;
 <p>The configuration uses Microprofile Config for most entries. It means it can be passed through system properties and environment variables (by replacing dots with underscores and making the keys uppercase).</p>
 </div>
 <div class="paragraph">
-<p>To configure a Docker image rather than a standalone instance, Docker Config and secrets integration allow you to read the configuration from files. You can customize the configuration of these integrations through system properties, as described below in this document.</p>
+<p>To configure a Docker image rather than a standalone instance, Docker Config and secrets integration allows you to read the configuration from files. You can customize the configuration of these integrations through system properties.</p>
 </div>
 <div class="paragraph">
-<p>Also note that Docker integration provides a <code>secure:</code> support to encrypt values when required. it also works for system properties.</p>
+<p>Docker integration provides a <code>secure:</code> support to encrypt values and  system properties, when required.</p>
 </div>
 <div class="paragraph">
-<p>It is fully implemented using <a href="http://geronimo.apache.org/microprofile/extensions.html">Apache Geronimo Microprofile Config</a> extensions.</p>
+<p>It is fully implemented using the <a href="http://geronimo.apache.org/microprofile/extensions.html">Apache Geronimo Microprofile Config</a> extensions.</p>
 </div>
 </div>
 </div>
@@ -12316,6 +12963,70 @@ the configuration is read from system properties, environment variables, &#8230;
 # this skips the http port binding and only binds https on the port 8443, and setups the correct certificate
 export _JAVA_OPTIONS="-Dskip-http=true -Dssl=true -Dhttps=8443 -Dkeystore-type=PKCS12 -Dkeystore-alias=talend -Dkeystore-password=talend -Dkeystore-file=/opt/certificates/component.p12"</code></pre>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_defining_queries"><a class="anchor" href="#_defining_queries"></a>Defining queries</h4>
+<div class="paragraph">
+<p>You can define simple queries on the <a href="rest-openapi.html#/Configuration%20Type/getRepositoryModel">configuration types</a> and <a href="rest-openapi.html#/Component/getIndex">components</a> endpoints. These two endpoints support different parameters.</p>
+</div>
+<div class="paragraph">
+<p>Queries on the <code>configurationtype/index</code> endpoint supports the following parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>type</code></p>
+</li>
+<li>
+<p><code>id</code></p>
+</li>
+<li>
+<p><code>name</code></p>
+</li>
+<li>
+<p><code>metadata</code> of the first configuration property as parameters.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Queries on the <code>component/index</code> endpoint supports the following parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>plugin</code></p>
+</li>
+<li>
+<p><code>name</code></p>
+</li>
+<li>
+<p><code>id</code></p>
+</li>
+<li>
+<p><code>familyId</code></p>
+</li>
+<li>
+<p><code>metadata</code> of the first configuration property as parameters.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In both cases, you can combine several conditions using <code>OR</code> and <code>AND</code> operators. If you combine more than two conditions, note that they are evaluated in the order they are written.</p>
+</div>
+<div class="paragraph">
+<p>Each supported parameter in a condition can be "equal to" (<code>=</code>) or "not equal to" (<code>!=</code>) a defined value (case-sensitive).</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">(metadata[configurationtype::type] = dataset) AND (plugin = jdbc-component) OR (name = input)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, the query gets components that have a dataset and belong to the jdbc-component plugin, or components that are named <code>input</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -12981,7 +13692,7 @@ Only use the configuration related to port <code>5005</code> (in <code>ports</c
 <p>A Vault proxy dedicated to the component server allows to safely manage credential encryption when operating in a Cloud environment.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/tacokit_vault_proxy.png" target="_blank" rel="noopener"><img src="_images/tacokit_vault_proxy.png" alt="Vault proxy" width="80%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/tacokit_vault_proxy.png" target="_blank" rel="noopener"><img src="_images/tacokit_vault_proxy.png" alt="Vault proxy"></a></span></p>
 </div>
 <div class="paragraph">
 <p>The Vault Proxy only concerns data marked as <code>@Credential</code> in the <a href="tutorial-configuration-sensitive-data.html" class="page">component configuration</a>.</p>
@@ -13197,13 +13908,13 @@ the configuration is read from system properties, environment variables, &#8230;
 <p>The configuration uses Microprofile Config for most entries. It means it can be passed through system properties and environment variables (by replacing dots with underscores and making the keys uppercase).</p>
 </div>
 <div class="paragraph">
-<p>To configure a Docker image rather than a standalone instance, Docker Config and secrets integration allow you to read the configuration from files. You can customize the configuration of these integrations through system properties, as described below in this document.</p>
+<p>To configure a Docker image rather than a standalone instance, Docker Config and secrets integration allows you to read the configuration from files. You can customize the configuration of these integrations through system properties.</p>
 </div>
 <div class="paragraph">
-<p>Also note that Docker integration provides a <code>secure:</code> support to encrypt values when required. it also works for system properties.</p>
+<p>Docker integration provides a <code>secure:</code> support to encrypt values and  system properties, when required.</p>
 </div>
 <div class="paragraph">
-<p>It is fully implemented using <a href="http://geronimo.apache.org/microprofile/extensions.html">Apache Geronimo Microprofile Config</a> extensions.</p>
+<p>It is fully implemented using the <a href="http://geronimo.apache.org/microprofile/extensions.html">Apache Geronimo Microprofile Config</a> extensions.</p>
 </div>
 </div>
 </div>
@@ -13405,9 +14116,21 @@ volumes: <i class="conum" data-value="12"></i><b>(12)</b>
 <div class="paragraph">
 <p>Once the prerequisites completed, this tutorial should take you about 20 minutes.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The component designed in this tutorial is a processor and does not require nor show any <a href="component-configuration.html#dataset-and-datastore" class="page">datastore and dataset</a> configuration. Datasets and datastores are required only for input and output components.
+</td>
+</tr>
+</table>
+</div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
 </div>
 </div>
 <div class="sect3">
@@ -13443,7 +14166,7 @@ volumes: <i class="conum" data-value="12"></i><b>(12)</b>
 <p>Start IntelliJ and create a new project. In the available options, you should see <strong>Talend Component</strong>.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij_new_component_project.png" target="_blank" rel="noopener"><img src="_images/intellij_new_component_project.png" alt="New project" width="70%"></a>
+<a class="image" href="_images/intellij_new_component_project.png" target="_blank" rel="noopener"><img src="_images/intellij_new_component_project.png" alt="New project"></a>
 </div>
 </div>
 </li>
@@ -13455,7 +14178,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>Enter the project details. The goal here is to define the component and project metadata. Change the default values as follows:<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij_tutorial_project_metadata.png" target="_blank" rel="noopener"><img src="_images/intellij_tutorial_project_metadata.png" alt="Project metadata" width="70%"></a>
+<a class="image" href="_images/intellij_tutorial_project_metadata.png" target="_blank" rel="noopener"><img src="_images/intellij_tutorial_project_metadata.png" alt="Project metadata"></a>
 </div>
 </div>
 <div class="ulist">
@@ -13479,7 +14202,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>Select <strong>Configuration Model</strong> and add a string field named <code>level</code>. This input field will be used in the component configuration to enter additional information to display in the logs.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model" width="70%"></a>
+<a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model"></a>
 </div>
 </div>
 </li>
@@ -13487,7 +14210,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>In the <strong>Input(s) / Output(s)</strong> section, click the default <strong>MAIN</strong> input branch to access its detail, and make sure that the record model is set to <strong>Generic</strong>. Leave the <strong>Name</strong> of the branch with its default <code>MAIN</code> value.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_component_generic_input.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_generic_input.png" alt="Generic Input" width="70%"></a>
+<a class="image" href="_images/tutorial_component_generic_input.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_generic_input.png" alt="Generic Input"></a>
 </div>
 </div>
 </li>
@@ -13500,7 +14223,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Because the component is a processor, it has an output branch by default. A processor without any output branch is considered an output component. Yo ucan create output components when the <strong>Activate IO</strong> option is selected.
+Because the component is a processor, it has an output branch by default. A processor without any output branch is considered an output component. You can create output components when the <strong>Activate IO</strong> option is selected.
 </td>
 </tr>
 </table>
@@ -13516,7 +14239,7 @@ Because the component is a processor, it has an output branch by default. A proc
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_generated_project_view.png" target="_blank" rel="noopener"><img src="_images/tutorial_generated_project_view.png" alt="Project view" width="70%"></a>
+<a class="image" href="_images/tutorial_generated_project_view.png" target="_blank" rel="noopener"><img src="_images/tutorial_generated_project_view.png" alt="Project view"></a>
 </div>
 </div>
 <div class="ulist">
@@ -13566,7 +14289,7 @@ Because the component is a processor, it has an output branch by default. A proc
 <p>From your component project in IntelliJ, open a terminal and make sure that the selected directory is the root of the project. All commands shown in this tutorial are performed from this location.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_intellij_terminal_blank.png" target="_blank" rel="noopener"><img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal" width="70%"></a>
+<a class="image" href="_images/tutorial_intellij_terminal_blank.png" target="_blank" rel="noopener"><img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal"></a>
 </div>
 </div>
 </li>
@@ -13594,7 +14317,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Make sure the build is successful.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_deploy_in_studio_success.png" target="_blank" rel="noopener"><img src="_images/tutorial_deploy_in_studio_success.png" alt="Build success" width="70%"></a>
+<a class="image" href="_images/tutorial_deploy_in_studio_success.png" target="_blank" rel="noopener"><img src="_images/tutorial_deploy_in_studio_success.png" alt="Build success"></a>
 </div>
 </div>
 </li>
@@ -13609,7 +14332,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Notice that the <strong>level</strong> field that was specified in the configuration model of the component in the <strong>Talend Component Kit Starter</strong> is present.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_first_component_in_studio.png" target="_blank" rel="noopener"><img src="_images/tutorial_first_component_in_studio.png" alt="Component in Studio" width="70%"></a>
+<a class="image" href="_images/tutorial_first_component_in_studio.png" target="_blank" rel="noopener"><img src="_images/tutorial_first_component_in_studio.png" alt="Component in Studio"></a>
 </div>
 </div>
 </li>
@@ -13720,7 +14443,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Set the <strong>Number of Rows for RowGenerator</strong> to <code>10</code>.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_trowgenerator.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_trowgenerator.png" alt="tRowGenerator" width="70%"></a>
+<a class="image" href="_images/tutorial_build_job_trowgenerator.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_trowgenerator.png" alt="tRowGenerator"></a>
 </div>
 </div>
 </li>
@@ -13734,7 +14457,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Open the <strong>TutorialFamilyLogger</strong> component and set the <strong>level</strong> field to <code>info</code>.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_logger.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_logger.png" alt="Logger" width="70%"></a>
+<a class="image" href="_images/tutorial_build_job_logger.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_logger.png" alt="Logger"></a>
 </div>
 </div>
 </li>
@@ -13746,7 +14469,7 @@ The job is executed. You can observe in the console that each of the 10 generate
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run" width="70%"></a>
+<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
 </div>
 </div>
 </div>
@@ -13834,7 +14557,7 @@ When defining a project using the Starter, do not refresh the page to avoid losi
 <p>Add the <strong>Talend Component Kit Testing</strong> facet to your project to automatically generate unit tests for the components created later in this tutorial. Add any facet you need.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_test_facet.png" target="_blank" rel="noopener"><img src="_images/starter/starter_test_facet.png" alt="Test facet" width="80%"></a>
+<a class="image" href="_images/starter/starter_test_facet.png" target="_blank" rel="noopener"><img src="_images/starter/starter_test_facet.png" alt="Test facet"></a>
 </div>
 </div>
 </li>
@@ -13872,7 +14595,7 @@ Input and Output components without dataset (itself containing a datastore) will
 <p>Components added to the project using <strong>Add A Component</strong> are now input or output components by default. When <strong>Activate IO</strong> is not enabled, new components are processors by default. Note that you are still able to define processors even with datasets and datastores activated.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_activate_io.png" target="_blank" rel="noopener"><img src="_images/starter/starter_activate_io.png" alt="Activate IO" width="80%"></a>
+<a class="image" href="_images/starter/starter_activate_io.png" target="_blank" rel="noopener"><img src="_images/starter/starter_activate_io.png" alt="Activate IO"></a>
 </div>
 </div>
 </li>
@@ -13969,7 +14692,7 @@ The intent in this tutorial is to create an input component that connects to a M
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_input-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_input-config.png" alt="Input configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_input-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_input-config.png" alt="Input configuration"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -14043,7 +14766,7 @@ If you selected <strong>Activate IO</strong>, you can choose the component type.
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_processor-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_processor-config.png" alt="Processor configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_processor-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_processor-config.png" alt="Processor configuration"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -14065,8 +14788,9 @@ If you selected <strong>Activate IO</strong>, you can choose the component type.
 The input in this tutorial is a generic record. Enable the <strong>Generic</strong> option and click <strong>Save</strong>.</p>
 </li>
 <li>
-<p>Define the <strong>Output(s)</strong> of the component. For each output that you need to define, click <strong>Add Output</strong>. In this tutorial, only one generic output is needed to return the received record.<br>
-Outputs can be configured the same way as inputs (see previous steps).</p>
+<p>Define the <strong>Output(s)</strong> of the component. For each output that you need to define, click <strong>Add Output</strong>. The first output must be named <code>MAIN</code>. In this tutorial, only one generic output is needed to return the received record.<br>
+Outputs can be configured the same way as inputs (see previous steps).<br>
+You can define a reject output connection by naming it <code>REJECT</code>. This naming is used by Talend applications to automatically set the connection type to Reject.</p>
 </li>
 </ol>
 </div>
@@ -14109,7 +14833,7 @@ The intent in this tutorial is to create an output component that receives a rec
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_output-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_output-config.png" alt="Output configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_output-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_output-config.png" alt="Output configuration"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -14186,7 +14910,7 @@ In this tutorial, the project was configured and three components of different t
 <p>Click <strong>Finish</strong> on the left panel. You are redirected to a page that summarizes the project. On the left panel, you can also see all the components that you added to the project.</p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_project-download.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-download.png" alt="Output configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_project-download.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-download.png" alt="Output configuration"></a>
 </div>
 </div>
 </li>
@@ -16252,7 +16976,7 @@ in the <code>talend.maven.decrypter.m2.location</code> environment variable.
 <p>Click <strong>New Item</strong> to create a new build job.</p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/jenkins/1_jenkins_new_item.png" target="_blank" rel="noopener"><img src="_images/jenkins/1_jenkins_new_item.png" alt="Create a new job" width="70%"></a>
+<a class="image" href="_images/jenkins/1_jenkins_new_item.png" target="_blank" rel="noopener"><img src="_images/jenkins/1_jenkins_new_item.png" alt="Create a new job"></a>
 </div>
 </div>
 </li>
@@ -16260,7 +16984,7 @@ in the <code>talend.maven.decrypter.m2.location</code> environment variable.
 <p>Enter an Item name (Job name) and choose the freestyle job. Then click OK.</p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/jenkins/2_jenkins_new_item.png" target="_blank" rel="noopener"><img src="_images/jenkins/2_jenkins_new_item.png" alt="Create a new job" width="70%"></a>
+<a class="image" href="_images/jenkins/2_jenkins_new_item.png" target="_blank" rel="noopener"><img src="_images/jenkins/2_jenkins_new_item.png" alt="Create a new job"></a>
 </div>
 </div>
 </li>
@@ -16271,7 +16995,7 @@ in the <code>talend.maven.decrypter.m2.location</code> environment variable.
 <p>Specify the <code>master</code> branch as <strong>Branches to build</strong>.</p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/jenkins/4_jenkins_source_code.png" target="_blank" rel="noopener"><img src="_images/jenkins/4_jenkins_source_code.png" alt="Source Code Management" width="70%"></a>
+<a class="image" href="_images/jenkins/4_jenkins_source_code.png" target="_blank" rel="noopener"><img src="_images/jenkins/4_jenkins_source_code.png" alt="Source Code Management"></a>
 </div>
 </div>
 </li>
@@ -16279,7 +17003,7 @@ in the <code>talend.maven.decrypter.m2.location</code> environment variable.
 <p>In the <strong>Build</strong> section, click <strong>Add build step</strong> and choose <strong>Invoke top-level Maven targets</strong>.</p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/jenkins/6_jenkins_build_cmd.png" target="_blank" rel="noopener"><img src="_images/jenkins/6_jenkins_build_cmd.png" alt="Build Section" width="70%"></a>
+<a class="image" href="_images/jenkins/6_jenkins_build_cmd.png" target="_blank" rel="noopener"><img src="_images/jenkins/6_jenkins_build_cmd.png" alt="Build Section"></a>
 </div>
 </div>
 </li>
@@ -16287,7 +17011,7 @@ in the <code>talend.maven.decrypter.m2.location</code> environment variable.
 <p>Choose your Maven version and enter the Maven build command. In this case: <code>clean install</code>. Then, click <strong>Save</strong>.</p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/jenkins/6_jenkins_build_cmd_2.png" target="_blank" rel="noopener"><img src="_images/jenkins/6_jenkins_build_cmd_2.png" alt="Build Section" width="70%"></a>
+<a class="image" href="_images/jenkins/6_jenkins_build_cmd_2.png" target="_blank" rel="noopener"><img src="_images/jenkins/6_jenkins_build_cmd_2.png" alt="Build Section"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -16314,7 +17038,7 @@ You can configure the <strong>passthrough</strong> mode globally on your CI serv
 <p>Test the job by selecting <strong>Build now</strong>, and check that the job has built correctly.</p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/jenkins/7_jenkins_build_result.png" target="_blank" rel="noopener"><img src="_images/jenkins/7_jenkins_build_result.png" alt="Test the job" width="70%"></a>
+<a class="image" href="_images/jenkins/7_jenkins_build_result.png" target="_blank" rel="noopener"><img src="_images/jenkins/7_jenkins_build_result.png" alt="Test the job"></a>
 </div>
 </div>
 </li>

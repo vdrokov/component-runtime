@@ -8,7 +8,7 @@
     <meta name="description" content="Testing component logic using Talend Component Kit tooling">
     <meta name="keywords" content="runtime, testing, JUnit, Spark, HTTP">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-04-02T15:19:41.510Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-04-03T15:00:12.758Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -369,6 +369,9 @@
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="javajet-to-componentkit.html">From Javajet to the Component Kit</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -693,7 +696,7 @@ class ComponentExtensionTest {
 <div class="sect2">
 <h3 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>Mocking the output</h3>
 <div class="paragraph">
-<p>Using the "test"/"collector" component as shown in the previous sample stores all records emitted by the chain (typically your source) in memory. You can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>.</p>
+<p>Using the <code>test://collector</code> component as shown in the previous sample stores all records emitted by the chain (typically your source) in memory. You can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>.</p>
 </div>
 <div class="paragraph">
 <p>Note that this method filters by type. If you don&#8217;t need any specific type, you can use <code>Object.class</code>.</p>
@@ -720,7 +723,7 @@ class ComponentExtensionTest {
              .component("out", "yourcomponentfamily://myoutput?"+createComponentConfig())
            .connections()
               .from("emitter").to("out")
-           .build
+           .build()
            .run();
 
         assertMyOutputProcessedTheInputData();

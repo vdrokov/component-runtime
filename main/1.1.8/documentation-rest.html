@@ -8,7 +8,7 @@
     <meta name="description" content="Learn about Talend Component Kit HTTP API and the component server">
     <meta name="keywords" content="REST API">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-04-02T15:19:41.495Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-04-03T15:00:12.743Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -369,6 +369,9 @@
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="javajet-to-componentkit.html">From Javajet to the Component Kit</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -635,6 +638,10 @@ the configuration is read from system properties, environment variables, &#8230;
 <dd>
 <p>Default value: <code>false</code>. If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p>
 </dd>
+<dt class="hdlist1">talend.component.server.lastUpdated.useStartTime</dt>
+<dd>
+<p>Default value: <code>false</code>. Should the lastUpdated timestamp value of <code>/environment</code> endpoint be updated with server start time.</p>
+</dd>
 <dt class="hdlist1">talend.component.server.maven.repository</dt>
 <dd>
 <p>The local maven repository used to locate components and their dependencies</p>
@@ -677,13 +684,13 @@ the configuration is read from system properties, environment variables, &#8230;
 <p>The configuration uses Microprofile Config for most entries. It means it can be passed through system properties and environment variables (by replacing dots with underscores and making the keys uppercase).</p>
 </div>
 <div class="paragraph">
-<p>To configure a Docker image rather than a standalone instance, Docker Config and secrets integration allow you to read the configuration from files. You can customize the configuration of these integrations through system properties, as described below in this document.</p>
+<p>To configure a Docker image rather than a standalone instance, Docker Config and secrets integration allows you to read the configuration from files. You can customize the configuration of these integrations through system properties.</p>
 </div>
 <div class="paragraph">
-<p>Also note that Docker integration provides a <code>secure:</code> support to encrypt values when required. it also works for system properties.</p>
+<p>Docker integration provides a <code>secure:</code> support to encrypt values and  system properties, when required.</p>
 </div>
 <div class="paragraph">
-<p>It is fully implemented using <a href="http://geronimo.apache.org/microprofile/extensions.html">Apache Geronimo Microprofile Config</a> extensions.</p>
+<p>It is fully implemented using the <a href="http://geronimo.apache.org/microprofile/extensions.html">Apache Geronimo Microprofile Config</a> extensions.</p>
 </div>
 </div>
 </div>
@@ -701,6 +708,72 @@ the configuration is read from system properties, environment variables, &#8230;
 # this skips the http port binding and only binds https on the port 8443, and setups the correct certificate
 export _JAVA_OPTIONS="-Dskip-http=true -Dssl=true -Dhttps=8443 -Dkeystore-type=PKCS12 -Dkeystore-alias=talend -Dkeystore-password=talend -Dkeystore-file=/opt/certificates/component.p12"</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_defining_queries"><a class="anchor" href="#_defining_queries"></a>Defining queries</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can define simple queries on the <a href="rest-openapi.html#/Configuration%20Type/getRepositoryModel">configuration types</a> and <a href="rest-openapi.html#/Component/getIndex">components</a> endpoints. These two endpoints support different parameters.</p>
+</div>
+<div class="paragraph">
+<p>Queries on the <code>configurationtype/index</code> endpoint supports the following parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>type</code></p>
+</li>
+<li>
+<p><code>id</code></p>
+</li>
+<li>
+<p><code>name</code></p>
+</li>
+<li>
+<p><code>metadata</code> of the first configuration property as parameters.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Queries on the <code>component/index</code> endpoint supports the following parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>plugin</code></p>
+</li>
+<li>
+<p><code>name</code></p>
+</li>
+<li>
+<p><code>id</code></p>
+</li>
+<li>
+<p><code>familyId</code></p>
+</li>
+<li>
+<p><code>metadata</code> of the first configuration property as parameters.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In both cases, you can combine several conditions using <code>OR</code> and <code>AND</code> operators. If you combine more than two conditions, note that they are evaluated in the order they are written.</p>
+</div>
+<div class="paragraph">
+<p>Each supported parameter in a condition can be "equal to" (<code>=</code>) or "not equal to" (<code>!=</code>) a defined value (case-sensitive).</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">(metadata[configurationtype::type] = dataset) AND (plugin = jdbc-component) OR (name = input)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, the query gets components that have a dataset and belong to the jdbc-component plugin, or components that are named <code>input</code>.</p>
 </div>
 </div>
 </div>

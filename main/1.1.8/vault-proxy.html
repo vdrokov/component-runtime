@@ -8,7 +8,7 @@
     <meta name="description" content="A Vault Proxy manages credential encryption before the data reaches the component server.">
     <meta name="keywords" content="component server vault proxy, credentials, cloud">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-04-02T15:19:41.562Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-04-03T15:00:12.818Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -369,6 +369,9 @@
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="javajet-to-componentkit.html">From Javajet to the Component Kit</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -464,7 +467,7 @@
 <p>A Vault proxy dedicated to the component server allows to safely manage credential encryption when operating in a Cloud environment.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/tacokit_vault_proxy.png" target="_blank" rel="noopener"><img src="_images/tacokit_vault_proxy.png" alt="Vault proxy" width="80%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/tacokit_vault_proxy.png" target="_blank" rel="noopener"><img src="_images/tacokit_vault_proxy.png" alt="Vault proxy"></a></span></p>
 </div>
 <div class="paragraph">
 <p>The Vault Proxy only concerns data marked as <code>@Credential</code> in the <a href="tutorial-configuration-sensitive-data.html" class="page">component configuration</a>.</p>
@@ -683,13 +686,13 @@ the configuration is read from system properties, environment variables, &#8230;
 <p>The configuration uses Microprofile Config for most entries. It means it can be passed through system properties and environment variables (by replacing dots with underscores and making the keys uppercase).</p>
 </div>
 <div class="paragraph">
-<p>To configure a Docker image rather than a standalone instance, Docker Config and secrets integration allow you to read the configuration from files. You can customize the configuration of these integrations through system properties, as described below in this document.</p>
+<p>To configure a Docker image rather than a standalone instance, Docker Config and secrets integration allows you to read the configuration from files. You can customize the configuration of these integrations through system properties.</p>
 </div>
 <div class="paragraph">
-<p>Also note that Docker integration provides a <code>secure:</code> support to encrypt values when required. it also works for system properties.</p>
+<p>Docker integration provides a <code>secure:</code> support to encrypt values and  system properties, when required.</p>
 </div>
 <div class="paragraph">
-<p>It is fully implemented using <a href="http://geronimo.apache.org/microprofile/extensions.html">Apache Geronimo Microprofile Config</a> extensions.</p>
+<p>It is fully implemented using the <a href="http://geronimo.apache.org/microprofile/extensions.html">Apache Geronimo Microprofile Config</a> extensions.</p>
 </div>
 </div>
 </div>

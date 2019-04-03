@@ -8,7 +8,7 @@
     <meta name="description" content="Learn how to define the basic configuration of a component using the Talend Component Kit Starter to start your project">
     <meta name="keywords" content="tutorial, example, starter">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-04-02T15:19:41.559Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-04-03T15:00:12.814Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -369,6 +369,9 @@
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="javajet-to-componentkit.html">From Javajet to the Component Kit</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -501,7 +504,7 @@ When defining a project using the Starter, do not refresh the page to avoid losi
 <p>Add the <strong>Talend Component Kit Testing</strong> facet to your project to automatically generate unit tests for the components created later in this tutorial. Add any facet you need.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_test_facet.png" target="_blank" rel="noopener"><img src="_images/starter/starter_test_facet.png" alt="Test facet" width="80%"></a>
+<a class="image" href="_images/starter/starter_test_facet.png" target="_blank" rel="noopener"><img src="_images/starter/starter_test_facet.png" alt="Test facet"></a>
 </div>
 </div>
 </li>
@@ -539,7 +542,7 @@ Input and Output components without dataset (itself containing a datastore) will
 <p>Components added to the project using <strong>Add A Component</strong> are now input or output components by default. When <strong>Activate IO</strong> is not enabled, new components are processors by default. Note that you are still able to define processors even with datasets and datastores activated.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_activate_io.png" target="_blank" rel="noopener"><img src="_images/starter/starter_activate_io.png" alt="Activate IO" width="80%"></a>
+<a class="image" href="_images/starter/starter_activate_io.png" target="_blank" rel="noopener"><img src="_images/starter/starter_activate_io.png" alt="Activate IO"></a>
 </div>
 </div>
 </li>
@@ -642,7 +645,7 @@ The intent in this tutorial is to create an input component that connects to a M
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_input-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_input-config.png" alt="Input configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_input-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_input-config.png" alt="Input configuration"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -718,7 +721,7 @@ If you selected <strong>Activate IO</strong>, you can choose the component type.
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_processor-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_processor-config.png" alt="Processor configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_processor-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_processor-config.png" alt="Processor configuration"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -740,8 +743,9 @@ If you selected <strong>Activate IO</strong>, you can choose the component type.
 The input in this tutorial is a generic record. Enable the <strong>Generic</strong> option and click <strong>Save</strong>.</p>
 </li>
 <li>
-<p>Define the <strong>Output(s)</strong> of the component. For each output that you need to define, click <strong>Add Output</strong>. In this tutorial, only one generic output is needed to return the received record.<br>
-Outputs can be configured the same way as inputs (see previous steps).</p>
+<p>Define the <strong>Output(s)</strong> of the component. For each output that you need to define, click <strong>Add Output</strong>. The first output must be named <code>MAIN</code>. In this tutorial, only one generic output is needed to return the received record.<br>
+Outputs can be configured the same way as inputs (see previous steps).<br>
+You can define a reject output connection by naming it <code>REJECT</code>. This naming is used by Talend applications to automatically set the connection type to Reject.</p>
 </li>
 </ol>
 </div>
@@ -786,7 +790,7 @@ The intent in this tutorial is to create an output component that receives a rec
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_output-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_output-config.png" alt="Output configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_output-config.png" target="_blank" rel="noopener"><img src="_images/starter/starter_output-config.png" alt="Output configuration"></a>
 </div>
 </div>
 <div class="olist arabic">
@@ -865,7 +869,7 @@ In this tutorial, the project was configured and three components of different t
 <p>Click <strong>Finish</strong> on the left panel. You are redirected to a page that summarizes the project. On the left panel, you can also see all the components that you added to the project.</p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_project-download.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-download.png" alt="Output configuration" width="80%"></a>
+<a class="image" href="_images/starter/starter_project-download.png" target="_blank" rel="noopener"><img src="_images/starter/starter_project-download.png" alt="Output configuration"></a>
 </div>
 </div>
 </li>

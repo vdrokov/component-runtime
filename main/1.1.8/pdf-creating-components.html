@@ -8,7 +8,7 @@
     <meta name="description" content="Get an overview of the main steps to code the logic of your custom Talend Componit Kit components">
     <meta name="keywords" content="create, code, class, logic, layout, configuration, dev, overview">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-04-02T15:19:41.516Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-04-03T15:00:12.765Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -369,6 +369,9 @@
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="javajet-to-componentkit.html">From Javajet to the Component Kit</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -476,7 +479,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/implementing-components.png" target="_blank" rel="noopener"><img src="_images/implementing-components.png" alt="Implementing component" width="50%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/implementing-components.png" target="_blank" rel="noopener"><img src="_images/implementing-components.png" alt="Implementing component"></a></span></p>
 </div>
 <div class="paragraph">
 <p>In some cases, you will require specific implementations to handle more advanced cases, such as:</p>
@@ -1030,12 +1033,37 @@ public void endBatch() {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_defining_multiple_outputs"><a class="anchor" href="#_defining_multiple_outputs"></a>Defining multiple outputs</h4>
+<h4 id="_defining_output_connections"><a class="anchor" href="#_defining_output_connections"></a>Defining output connections</h4>
 <div class="paragraph">
-<p>In some cases, you may need to split the output of a processor in two. A common example is to have "main" and "reject" branches where part of the incoming data are passed to a specific bucket to be processed later.</p>
+<p>In some cases, you may need to split the output of a processor in two or more connections. A common example is to have "main" and "reject" output connections where part of the incoming data are passed to a specific bucket and processed later.</p>
 </div>
 <div class="paragraph">
-<p>To do that, you can use <code>@Output</code> as replacement of the returned value:</p>
+<p>Talend Component Kit supports two types of output connections: Flow and Reject.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Flow</strong> is the main and standard output connection.</p>
+</li>
+<li>
+<p>The <strong>Reject</strong> connection handles records rejected during the processing. A component can only have one reject connection, if any. Its name must be <code>REJECT</code> to be processed correctly in Talend applications.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can also define the different output connections of your component in the Starter.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To define an output connection, you can use <code>@Output</code> as replacement of the returned value in the <code>@ElementListener</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1053,7 +1081,7 @@ public void map(final MyData data, @Output final OutputEmitter&lt;MyNewData&gt; 
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
 public void map(final MyData data,
                 @Output final OutputEmitter&lt;MyNewData&gt; main,
-                @Output("rejected") final OutputEmitter&lt;MyNewDataWithError&gt; rejected) {
+                @Output("REJECT") final OutputEmitter&lt;MyNewDataWithError&gt; rejected) {
     if (isRejected(data)) {
         rejected.emit(createNewData(data));
     } else {
@@ -1065,7 +1093,7 @@ public void map(final MyData data,
 
 @ElementListener
 public MyNewData map(final MyData data,
-                    @Output("rejected") final OutputEmitter&lt;MyNewDataWithError&gt; rejected) {
+                    @Output("REJECT") final OutputEmitter&lt;MyNewDataWithError&gt; rejected) {
     if (isSuspicious(data)) {
         rejected.emit(createNewData(data));
         return createNewData(data); // in this case the processing continues but notifies another channel
@@ -1133,7 +1161,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Processing schema (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing" width="80%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Each group is processed as follows until there is no record left:</p>
@@ -1153,7 +1181,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Group execution detail (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing" width="80%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can define the following logic in the processor configuration:</p>
@@ -2028,7 +2056,7 @@ The component family associated with a configuration type (datastore/dataset) is
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/datastore_and_dataset_validation.png" target="_blank" rel="noopener"><img src="_images/datastore_and_dataset_validation.png" alt="Dataset validation" width="50%"></a>
+<a class="image" href="_images/datastore_and_dataset_validation.png" target="_blank" rel="noopener"><img src="_images/datastore_and_dataset_validation.png" alt="Dataset validation"></a>
 </div>
 </div>
 </div>
@@ -2938,7 +2966,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Processing schema (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing" width="80%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Each group is processed as follows until there is no record left:</p>
@@ -2958,7 +2986,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Group execution detail (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing" width="80%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can define the following logic in the processor configuration:</p>
@@ -3069,7 +3097,7 @@ This default configuration implements a constant pause duration of 500 ms betwee
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_enabling_streaming.png" target="_blank" rel="noopener"><img src="_images/starter/starter_enabling_streaming.png" alt="Stream Toggle" width="80%"></a>
+<a class="image" href="_images/starter/starter_enabling_streaming.png" target="_blank" rel="noopener"><img src="_images/starter/starter_enabling_streaming.png" alt="Stream Toggle"></a>
 </div>
 </div>
 </div>
@@ -3297,7 +3325,7 @@ A Talend Component Kit plugin is available for each of the supported build tools
 For example, to compile the project and prepare for deploying your component, run <code>mvn clean install</code>. Using this command, the following goals are executed:</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/mvn_clean_install.png" target="_blank" rel="noopener"><img src="_images/mvn_clean_install.png" alt="Maven clean install" width="70%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/mvn_clean_install.png" target="_blank" rel="noopener"><img src="_images/mvn_clean_install.png" alt="Maven clean install"></a></span></p>
 </div>
 <div class="paragraph">
 <p>The build is split into several phases. The different goals are executed in the order shown above. Talend Component Kit uses default goals from the Maven build lifecycle and adds additional goals to the building and packaging phases.</p>
@@ -3346,9 +3374,7 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 <div class="sect3">
 <h4 id="_scan"><a class="anchor" href="#_scan"></a>Scan</h4>
 <div class="paragraph">
-<p>This goal named <code>scan-descriptor</code> will scan the current module - optional other configured folders - to precompute the list
-of interesting classes for the framework (components, services). This saves some bootstrap time when launching a job which
-is interesting for some execution cases:</p>
+<p>The <code>scan-descriptor</code> goal scans the current module and optionally other configured folders to precompute the list of interesting classes for the framework (components, services). It allows to save some bootstrap time when launching a job, which can be useful in some execution cases:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3368,7 +3394,7 @@ is interesting for some execution cases:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Configuration - excluding the ones used for defaults only:</p>
+<p>Configuration - excluding parameters used by default only:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
 <colgroup>
@@ -3388,7 +3414,7 @@ is interesting for some execution cases:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">output</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Where to dump the scan result. Note it is not supported to change that value in the runtime.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Where to dump the scan result. Note: It is not supported to change that value in the runtime.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.scan.output</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>${project.build.outputDirectory}/TALEND-INF/scanning.properties</code></p></td>
 </tr>
@@ -3396,11 +3422,11 @@ is interesting for some execution cases:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">scannedDirectories</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Explicit list of directories to scan.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.scan.scannedDirectories</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If not set default to <code>${project.build.outputDirectory}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If not set, defaults to <code>${project.build.outputDirectory}</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">scannedDependencies</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Explicit list of dependencies to scan - set them in format <code>groupId:artifactId</code>. It is appended to the file to scan.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explicit list of dependencies to scan - set them in the <code>groupId:artifactId</code> format. The list is appended to the file to scan.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>talend.scan.scannedDependencies</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 </tr>
@@ -4720,29 +4746,15 @@ public class MyComponentConfiguration {
 <div class="paragraph">
 <p>The most common actions are the following ones:</p>
 </div>
-<table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Action</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Configuration example</th>
-<th class="tableblock halign-left valign-top">Action example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DataStore</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Checkable</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exposes a way to ensure the datastore/connection works</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="sect5">
+<h6 id="_checkable_datastore"><a class="anchor" href="#_checkable_datastore"></a>@Checkable (DataStore)</h6>
+<div class="paragraph">
+<p>This action exposes a way to ensure the datastore/connection works.</p>
+</div>
+<div class="paragraph">
+<p>Configuration example:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DataStore
 @Checkable
@@ -4762,8 +4774,11 @@ public class JdbcDataStore
   private String password;
 }</code></pre>
 </div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+</div>
+<div class="paragraph">
+<p>Action example:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HealthCheck
 public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastore) {
@@ -4774,10 +4789,8 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
     return new HealthCheckStatus(Status.KO, e.getMessage());
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_limitations"><a class="anchor" href="#_limitations"></a>Limitations</h5>
@@ -5084,7 +5097,7 @@ For example, the tree classloading is commonly used by Servlet containers where 
 <p>Here is a representation of this solution:</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/classloader-layout.png" target="_blank" rel="noopener"><img src="_images/classloader-layout.png" alt="Classloader layout" width="70%"></a></span></p>
+<p><span class="image"><a class="image" href="_images/classloader-layout.png" target="_blank" rel="noopener"><img src="_images/classloader-layout.png" alt="Classloader layout"></a></span></p>
 </div>
 <div class="paragraph">
 <p>The <em>shared</em> area contains Talend Component Kit API, which only contains by default the classes shared by the plugins.</p>

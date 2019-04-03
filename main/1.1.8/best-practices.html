@@ -8,7 +8,7 @@
     <meta name="description" content="List of best practices for developing Talend components.">
     <meta name="keywords" content="best practices, checklist">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-04-02T15:19:41.473Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-04-03T15:00:12.721Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -369,6 +369,9 @@
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="javajet-to-componentkit.html">From Javajet to the Component Kit</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -579,29 +582,15 @@ public class MyComponentConfiguration {
 <div class="paragraph">
 <p>The most common actions are the following ones:</p>
 </div>
-<table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Action</th>
-<th class="tableblock halign-left valign-top">Description</th>
-<th class="tableblock halign-left valign-top">Configuration example</th>
-<th class="tableblock halign-left valign-top">Action example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DataStore</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Checkable</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exposes a way to ensure the datastore/connection works</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="sect4">
+<h5 id="_checkable_datastore"><a class="anchor" href="#_checkable_datastore"></a>@Checkable (DataStore)</h5>
+<div class="paragraph">
+<p>This action exposes a way to ensure the datastore/connection works.</p>
+</div>
+<div class="paragraph">
+<p>Configuration example:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@DataStore
 @Checkable
@@ -621,8 +610,11 @@ public class JdbcDataStore
   private String password;
 }</code></pre>
 </div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+</div>
+<div class="paragraph">
+<p>Action example:</p>
+</div>
+<div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HealthCheck
 public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastore) {
@@ -633,10 +625,8 @@ public HealthCheckStatus healthCheck(@Option("datastore") JdbcDataStore datastor
     return new HealthCheckStatus(Status.KO, e.getMessage());
 }</code></pre>
 </div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_limitations"><a class="anchor" href="#_limitations"></a>Limitations</h4>

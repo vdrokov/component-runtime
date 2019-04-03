@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Server configuration</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.8/ref-server-configuration.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-04-02T15:19:41.534Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-04-03T15:00:12.782Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -367,6 +367,9 @@
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
   </li>
+  <li data-depth="2">
+    <a class="menu-link" href="javajet-to-componentkit.html">From Javajet to the Component Kit</a>
+  </li>
 </ul>
   </li>
   <li data-depth="1">
@@ -513,6 +516,10 @@ the configuration is read from system properties, environment variables, &#8230;
 <dd>
 <p>Default value: <code>false</code>. If set it will replace any message for exceptions. Set to <code>false</code> to use the actual exception message.</p>
 </dd>
+<dt class="hdlist1">talend.component.server.lastUpdated.useStartTime</dt>
+<dd>
+<p>Default value: <code>false</code>. Should the lastUpdated timestamp value of <code>/environment</code> endpoint be updated with server start time.</p>
+</dd>
 <dt class="hdlist1">talend.component.server.maven.repository</dt>
 <dd>
 <p>The local maven repository used to locate components and their dependencies</p>
@@ -558,13 +565,13 @@ the configuration is read from system properties, environment variables, &#8230;
 <p>The configuration uses Microprofile Config for most entries. It means it can be passed through system properties and environment variables (by replacing dots with underscores and making the keys uppercase).</p>
 </div>
 <div class="paragraph">
-<p>To configure a Docker image rather than a standalone instance, Docker Config and secrets integration allow you to read the configuration from files. You can customize the configuration of these integrations through system properties, as described below in this document.</p>
+<p>To configure a Docker image rather than a standalone instance, Docker Config and secrets integration allows you to read the configuration from files. You can customize the configuration of these integrations through system properties.</p>
 </div>
 <div class="paragraph">
-<p>Also note that Docker integration provides a <code>secure:</code> support to encrypt values when required. it also works for system properties.</p>
+<p>Docker integration provides a <code>secure:</code> support to encrypt values and  system properties, when required.</p>
 </div>
 <div class="paragraph">
-<p>It is fully implemented using <a href="http://geronimo.apache.org/microprofile/extensions.html">Apache Geronimo Microprofile Config</a> extensions.</p>
+<p>It is fully implemented using the <a href="http://geronimo.apache.org/microprofile/extensions.html">Apache Geronimo Microprofile Config</a> extensions.</p>
 </div>
 </div>
 </div>
