@@ -8,7 +8,7 @@
     <meta name="description" content="Integrate components into Talend Cloud and learn about the component server">
     <meta name="keywords" content="web, component server, cloud">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-05-09T15:39:46.883Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-05-09T16:21:32.574Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -1442,6 +1442,13 @@ Only use the configuration related to port <code>5005</code> (in <code>ports</c
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_adding_extensions_to_the_server"><a class="anchor" href="#_adding_extensions_to_the_server"></a>Adding extensions to the server</h4>
+<div class="paragraph">
+<p>You can mount a volume in <code>/opt/talend/component-kit/custom/</code> and the jars in that folder which will be deployed with the server.
+Since the server relies on CDI (Apache OpenWebBeans) you can use that technology to enrich it, including JAX-RS endpoints, interceptors etc&#8230;&#8203;or just libraries needing to be in the JVM.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1860,6 +1867,13 @@ volumes: <i class="conum" data-value="12"></i><b>(12)</b>
 <p>SSL port to use.</p>
 </dd>
 </dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_extensions_to_the_instance"><a class="anchor" href="#_adding_extensions_to_the_instance"></a>Adding extensions to the instance</h3>
+<div class="paragraph">
+<p>You can mount a volume in <code>/opt/talend/component-kit-vault-proxy/custom/</code> and the jars in that folder which will be deployed with the server.
+Since the server relies on CDI (Apache OpenWebBeans) you can use that technology to enrich it, including JAX-RS endpoints, interceptors etc&#8230;&#8203;or just libraries needing to be in the JVM.</p>
 </div>
 </div>
 </div>
