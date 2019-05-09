@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Kit Developer Reference Guide :: Integrating components into Talend Studio</title>
+    <title>Talend Component Kit Developer Reference Guide :: Iterating on component development with Talend Studio</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.9/studio.html">
     <meta name="description" content="How to install and configure components developed with Talend Component Kit in Talend Open Studio">
     <meta name="keywords" content="component server, deploy, install">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-05-09T14:37:59.289Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-05-09T15:39:46.914Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -172,25 +172,16 @@
       
     <ul class="nav nav-list tree" >
   <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Getting Started</span></label>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>First steps</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="index-getting-started-with-tck.html">Getting Started overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="methodology-creating-components.html">Development methodology</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="record-types.html">Record types</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+    <a class="menu-link" href="getting-started.html">Getting Started</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-create-my-first-component.html">Creating your first component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="record-types.html">Record types</a>
   </li>
 </ul>
   </li>
@@ -267,6 +258,9 @@
     <a class="menu-link" href="component-registering.html">Defining component metadata</a>
   </li>
   <li data-depth="2">
+    <a class="menu-link" href="creating-dataset-datastore.html">Defining datasets and datastores</a>
+  </li>
+  <li data-depth="2">
     <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
   </li>
   <li data-depth="2">
@@ -274,6 +268,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Defining component configuration</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">Component execution logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
@@ -366,7 +363,10 @@
     <a class="menu-link" href="index-deploying-components.html">Studio integration overview</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
+    <a class="menu-link" href="studio.html">Iterating on component development</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="studio-from-car.html">Installing components from a CAR file</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
@@ -452,22 +452,22 @@
 
     <ol class="breadcrumb">
       <li class="crumb"><a href="index-deploying-components.html">Integrating into Talend Studio</a></li>
-      <li class="crumb active"><a href="studio.html">Deploying to Talend Studio</a></li>
+      <li class="crumb active"><a href="studio.html">Iterating on component development</a></li>
     </ol>
 </div>
                 <article class="doc">
         <div class="row">
           <div class="col-sm-9 row">
-              <h1>Integrating components into Talend Studio</h1>
+              <h1>Iterating on component development with Talend Studio</h1>
             <div class="article-content">
               <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Integrate components developed using Talend Component Kit to <a href="https://sourceforge.net/projects/talend-studio/">Talend Studio</a> in a few steps. Also learn how to enable the developer and debugging modes to iterate on your component development.</p>
+<p>Integrate components you developed using Talend Component Kit to <a href="https://sourceforge.net/projects/talend-studio/">Talend Studio</a> in a few steps. Also learn how to enable the developer and debugging modes to iterate on your component development.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
 </div>
 </div>
 </div>
@@ -605,7 +605,7 @@ java.util.logging.SimpleFormatter.format = [%4$s] %5$s%6$s%n</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/studio-reload-button.png" target="_blank" rel="noopener"><img src="_images/studio-reload-button.png" alt="Studio Reload Button"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/studio-reload-button.png" target="_blank" rel="noopener"><img src="_images/studio-reload-button.png" alt="Studio Reload Button"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -650,7 +650,7 @@ You still need to add and remove the components to see the changes.
 <p>the <strong>address</strong> parameter of the -agentlib argument is the port used for the remote configuration. Make sure this port is available.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/talend_studio_debug_remote_config_1.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/talend_studio_debug_remote_config_1.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration"></a>
 </div>
 </div>
 </li>
@@ -673,7 +673,7 @@ You still need to add and remove the components to see the changes.
 <p>In the popup window, paste the arguments copied from the IDE.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/talend_studio_debug_remote_config_2.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_2.png" alt="IntelliJ remote configuration"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/talend_studio_debug_remote_config_2.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_2.png" alt="IntelliJ remote configuration"></a>
 </div>
 </div>
 </li>
@@ -708,7 +708,7 @@ You still need to add and remove the components to see the changes.
 <p><strong>address</strong> is the port used for the remote configuration. Make sure this port is available.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/talend_studio_debug_remote_config_1.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/talend_studio_debug_remote_config_1.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_1.png" alt="IntelliJ remote configuration"></a>
 </div>
 </div>
 </li>
@@ -725,7 +725,7 @@ You still need to add and remove the components to see the changes.
 <p>Paste the arguments copied from the IDE in a new line of the file.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/talend_studio_debug_remote_config_3.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_3.png" alt="IntelliJ remote configuration"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/talend_studio_debug_remote_config_3.png" target="_blank" rel="noopener"><img src="_images/talend_studio_debug_remote_config_3.png" alt="IntelliJ remote configuration"></a>
 </div>
 </div>
 </li>
@@ -765,6 +765,9 @@ You still need to add and remove the components to see the changes.
 <li>
 <p><a href="build-tools-gradle.html" class="page">Building components with Gradle</a></p>
 </li>
+<li>
+<p><a href="creating-dataset-datastore.html" class="page">Learn how to use datasets and datastores with TAlend Studio</a></p>
+</li>
 </ul>
 </div>
 </div>
@@ -784,13 +787,13 @@ You still need to add and remove the components to see the changes.
 
                     <li>
                                 <a class="article-side-actions-link" target="_blank"
-                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.9%2Fstudio.html&text=Talend%20Component%20Kit%20%3E%3E%20Integrating%20components%20into%20Talend%20Studio%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.9%2Fstudio.html">
+                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.9%2Fstudio.html&text=Talend%20Component%20Kit%20%3E%3E%20Iterating%20on%20component%20development%20with%20Talend%20Studio%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.9%2Fstudio.html">
                                     <i class="fab fa-twitter"></i> &nbsp; &nbsp; Tweet
                                 </a>
                             </li>
                             <li>
                                 <a class="article-side-actions-link"
-                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Integrating%20components%20into%20Talend%20Studio&body=Talend%20Component%20Kit%3A%20Integrating%20components%20into%20Talend%20Studio%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.9%2Fstudio.html">
+                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Iterating%20on%20component%20development%20with%20Talend%20Studio&body=Talend%20Component%20Kit%3A%20Iterating%20on%20component%20development%20with%20Talend%20Studio%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.9%2Fstudio.html">
                                     <i class="far fa-envelope"></i> &nbsp; &nbsp; Mail
                                 </a>
                             </li>

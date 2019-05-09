@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talend Component Kit Developer Reference Guide :: Getting started with Talend Component Kit</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.9/getting-started.html">
+    <meta name="description" content="Learn the basics about Talend Component Kit framework and get ready to create new components">
+    <meta name="keywords" content="quickstart, overview, principle, description">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-05-09T14:37:59.242Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-05-09T15:39:46.865Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -170,25 +172,16 @@
       
     <ul class="nav nav-list tree" >
   <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Getting Started</span></label>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>First steps</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="index-getting-started-with-tck.html">Getting Started overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="methodology-creating-components.html">Development methodology</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="record-types.html">Record types</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+    <a class="menu-link" href="getting-started.html">Getting Started</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-create-my-first-component.html">Creating your first component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="record-types.html">Record types</a>
   </li>
 </ul>
   </li>
@@ -265,6 +258,9 @@
     <a class="menu-link" href="component-registering.html">Defining component metadata</a>
   </li>
   <li data-depth="2">
+    <a class="menu-link" href="creating-dataset-datastore.html">Defining datasets and datastores</a>
+  </li>
+  <li data-depth="2">
     <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
   </li>
   <li data-depth="2">
@@ -272,6 +268,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Defining component configuration</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">Component execution logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
@@ -364,7 +363,10 @@
     <a class="menu-link" href="index-deploying-components.html">Studio integration overview</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
+    <a class="menu-link" href="studio.html">Iterating on component development</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="studio-from-car.html">Installing components from a CAR file</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
@@ -449,7 +451,7 @@
                 <div class="toolbar" role="navigation">
 
     <ol class="breadcrumb">
-      <li class="crumb active"><a href="getting-started.html">Getting started with Talend Component Kit</a></li>
+      <li class="crumb active"><a href="getting-started.html">First steps</a></li>
     </ol>
 </div>
                 <article class="doc">
@@ -460,7 +462,7 @@
               <div id="preamble">
 <div class="sectionbody">
 <div id="getting-started-introducing-talend-component" class="paragraph">
-<p><em>Talend Component Kit</em> is a framework designed to simplify the development of components at two levels:</p>
+<p><em>Talend Component Kit</em> is a Java framework designed to simplify the development of components at two levels:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -468,53 +470,54 @@
 <p><strong>Runtime</strong>: Runtime is about injecting the specific component code into a job or pipeline. The framework helps unify as much as possible the code required to run in Data Integration (DI) and BEAM environments.</p>
 </li>
 <li>
-<p><strong>Graphical interface</strong>: The framework helps unify the code required to be able to render the component in a browser (web) or in the Eclipse-based Studio (SWT).</p>
+<p><strong>Graphical interface</strong>: The framework helps unifying the code required to be able to render the component in a browser (web) or in the Eclipse-based Studio (SWT).</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="getting-started-system-requirements"><a class="anchor" href="#getting-started-system-requirements"></a>System Requirements</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>In order to use Talend Component Kit, you need the following tools installed on your machine:</p>
+<p>Most part of the development happens as a Maven or Gradle project and requires a dedicated tool such as IntelliJ.</p>
+</div>
+<div class="paragraph">
+<p>The Component Kit is made of:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Java JDK 1.8.x. You can download it from <a href="http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html">Oracle</a> website.</p>
+<p>A Starter, that is a graphical interface allowing you to define the skeleton of your development project.</p>
 </li>
 <li>
-<p>Apache Maven 3.5.x is recommended to develop a component or the project itself. You can download it from <a href="https://maven.apache.org/download.cgi?Preferred=ftp%3A%2F%2Fmirror.reverse.net%2Fpub%2Fapache%2F">Apache Maven</a> website. You can also use Gradle.</p>
+<p>APIs to implement components UI and runtime.</p>
 </li>
 <li>
-<p>A Java Integrated Development Environment such as Eclipse or IntelliJ.</p>
+<p>Development tools: Maven and Gradle wrappers, validation rules, packaging, Web preview, etc.</p>
 </li>
 <li>
-<p>The version of your Studio is 7.0 and onwards.</p>
+<p>A testing kit based on JUnit 4 and 5.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>By using this tooling in a basic development environment, you can start creating components as described below.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="getting-started-principles"><a class="anchor" href="#getting-started-principles"></a>Main principles</h2>
+<h2 id="_talend_component_kit_methodology"><a class="anchor" href="#_talend_component_kit_methodology"></a>Talend Component Kit methodology</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Developing new components using the framework includes:</p>
+<div id="getting-started-principles" class="paragraph">
+<p>Developing new components using the Component Kit framework includes:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Creating a project using the <a href="https://starter-toolkit.talend.io/">starter</a> or the <a href="installing-talend-intellij-plugin.html" class="page">Talend IntelliJ plugin</a>.</p>
+<p><a href="index-generating-project.html" class="page">Creating a project</a> using the <a href="https://starter-toolkit.talend.io/">starter</a> or the <a href="installing-talend-intellij-plugin.html" class="page">Talend IntelliJ plugin</a>. This step allows to build the skeleton of the project. It consists in:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
 <p>Defining the general configuration model for each component in your project</p>
 </li>
 <li>
-<p>Generating and downloading the project&#8217;s archive from the starter</p>
+<p>Generating and downloading the project archive from the starter</p>
 </li>
 <li>
 <p>Compiling the project</p>
@@ -523,60 +526,112 @@
 </div>
 </li>
 <li>
-<p>Implementing the components</p>
+<p>Importing the compiled project in your IDE. This step is not required if you have generated the project using the IntelliJ plugin.</p>
+</li>
+<li>
+<p><a href="index-creating-components.html" class="page">Implementing the components</a>, including:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Registering the components family</p>
+<p>Registering the components by specifying their metadata: family, categories, version, icon, type, and name.</p>
 </li>
 <li>
 <p>Defining the layout and configurable part of the components</p>
 </li>
 <li>
-<p>Defining the partition mapper for Input components</p>
-</li>
-<li>
-<p>Implementing the source logic for Input components</p>
-</li>
-<li>
-<p>Defining the processor for Output components</p>
+<p>Defining the execution logic of the components, also called runtime.</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>Testing the components</p>
+<p><a href="index-testing-components.html" class="page">Testing the components</a>.</p>
+</li>
+<li>
+<p><a href="index-deploying-components.html" class="page">Deploying the components</a> to Talend Studio or Cloud applications.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Some additional configuration steps can be necessary according to your requirements:</p>
+<p>Optionally, you can use <a href="index-defining-services.html" class="page">services</a>. Services are predefined or user-defined configurations that can be reused in several components.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/methodo.png" target="_blank" rel="noopener"><img src="_images/methodo.png" alt="Methodology"></a></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_component_types"><a class="anchor" href="#_component_types"></a>Component types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are three types of components, each type coming with its specificities, especially on the runtime side.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="tutorial-generate-project-using-starter.html" class="page">Generate a component</a></p>
+<p>Input components: Retrieve the data to process from a defined source. An input component is made of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The execution logic of the component, represented by a <code>Mapper</code> or an <code>Emitter</code> class.</p>
 </li>
 <li>
-<p><a href="tutorial-create-an-input-component.html" class="page">Create an input component</a></p>
+<p>The source logic of the component, represented by a <code>Source</code> class.</p>
 </li>
 <li>
-<p><a href="tutorial-create-an-output-component.html" class="page">Create an output component</a></p>
+<p>The layout of the component and the configuration that the end-user will need to provide when using the component, defined by a <code>Configuration</code> class. All input components must have a dataset specified in their configuration, and every dataset must use a datastore.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><a href="tutorial-test-your-components.html" class="page">Test your components</a></p>
+<p>Processors: Process and transform the data. A processor is made of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The execution logic of the component, describing how to process each records or batches of records it receives. It also describes how to pass records to its output connections. This logic is defined in a <code>Processor</code> class.</p>
 </li>
 <li>
-<p><a href="tutorial-configuration-sensitive-data.html" class="page">Configuration and sensitive data</a></p>
+<p>The layout of the component and the configuration that the end-user will need to provide when using the component, defined by a <code>Configuration</code> class.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><a href="tutorial-create-components-rest-api.html" class="page">Create components for REST API</a></p>
+<p>Output components: Send the processed data to a defined destination. An output component is made of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The execution logic of the component, describing how to process each records or batches of records it receives. This logic is defined in an <code>Output</code> class. Unlike processors, output components are the last components of the execution and return no data.</p>
 </li>
 <li>
-<p><a href="tutorial-test-rest-api.html" class="page">How to test a REST API</a></p>
+<p>The layout of the component and the configuration that the end-user will need to provide when using the component, defined by a <code>Configuration</code> class. All input components must have a dataset specified in their configuration, and every dataset must use a datastore.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following example shows the different classes of an input components in a multi-component development project:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/input_intellij.png" target="_blank" rel="noopener"><img src="_images/input_intellij.png" alt="Input"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_next"><a class="anchor" href="#_next"></a>Next</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="system-prerequisites.html" class="page">Setup your development environment</a></p>
 </li>
 <li>
-<p><a href="tutorial-dev-vs-ci-setup.html" class="page">Dev vs CI setup</a></p>
+<p><a href="tutorial-create-my-first-component.html" class="page">Generate your first project and develop your first component</a></p>
 </li>
 </ul>
 </div>

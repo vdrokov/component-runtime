@@ -8,7 +8,7 @@
     <meta name="description" content="Create your first component using Talend Component Kit and integrate it to Talend Open Studio to build a job">
     <meta name="keywords" content="first, start, Studio, integration, palette">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-05-09T14:37:59.302Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-05-09T15:39:46.927Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -172,25 +172,16 @@
       
     <ul class="nav nav-list tree" >
   <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Getting Started</span></label>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>First steps</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="index-getting-started-with-tck.html">Getting Started overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="methodology-creating-components.html">Development methodology</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="record-types.html">Record types</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+    <a class="menu-link" href="getting-started.html">Getting Started</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-create-my-first-component.html">Creating your first component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="record-types.html">Record types</a>
   </li>
 </ul>
   </li>
@@ -267,6 +258,9 @@
     <a class="menu-link" href="component-registering.html">Defining component metadata</a>
   </li>
   <li data-depth="2">
+    <a class="menu-link" href="creating-dataset-datastore.html">Defining datasets and datastores</a>
+  </li>
+  <li data-depth="2">
     <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
   </li>
   <li data-depth="2">
@@ -274,6 +268,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Defining component configuration</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">Component execution logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
@@ -366,7 +363,10 @@
     <a class="menu-link" href="index-deploying-components.html">Studio integration overview</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
+    <a class="menu-link" href="studio.html">Iterating on component development</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="studio-from-car.html">Installing components from a CAR file</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
@@ -451,7 +451,7 @@
                 <div class="toolbar" role="navigation">
 
     <ol class="breadcrumb">
-      <li class="crumb"><a href="index-getting-started-with-tck.html">Getting Started</a></li>
+      <li class="crumb"><a href="getting-started.html">First steps</a></li>
       <li class="crumb active"><a href="tutorial-create-my-first-component.html">Creating your first component</a></li>
     </ol>
 </div>
@@ -485,7 +485,7 @@ The component designed in this tutorial is a processor and does not require nor 
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
 </div>
 </div>
 </div>
@@ -526,7 +526,7 @@ The component designed in this tutorial is a processor and does not require nor 
 <p>Start IntelliJ and create a new project. In the available options, you should see <strong>Talend Component</strong>.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij_new_component_project.png" target="_blank" rel="noopener"><img src="_images/intellij_new_component_project.png" alt="New project"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/intellij_new_component_project.png" target="_blank" rel="noopener"><img src="_images/intellij_new_component_project.png" alt="New project"></a>
 </div>
 </div>
 </li>
@@ -538,7 +538,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>Enter the project details. The goal here is to define the component and project metadata. Change the default values as follows:<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/intellij_tutorial_project_metadata.png" target="_blank" rel="noopener"><img src="_images/intellij_tutorial_project_metadata.png" alt="Project metadata"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/intellij_tutorial_project_metadata.png" target="_blank" rel="noopener"><img src="_images/intellij_tutorial_project_metadata.png" alt="Project metadata"></a>
 </div>
 </div>
 <div class="ulist">
@@ -562,7 +562,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>Select <strong>Configuration Model</strong> and add a string field named <code>level</code>. This input field will be used in the component configuration to enter additional information to display in the logs.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/tutorial_component_configuration_model.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_configuration_model.png" alt="Configuration Model"></a>
 </div>
 </div>
 </li>
@@ -570,7 +570,7 @@ The <strong>Talend Component Kit Starter</strong> opens.</p>
 <p>In the <strong>Input(s) / Output(s)</strong> section, click the default <strong>MAIN</strong> input branch to access its detail, and make sure that the record model is set to <strong>Generic</strong>. Leave the <strong>Name</strong> of the branch with its default <code>MAIN</code> value.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_component_generic_input.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_generic_input.png" alt="Generic Input"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/tutorial_component_generic_input.png" target="_blank" rel="noopener"><img src="_images/tutorial_component_generic_input.png" alt="Generic Input"></a>
 </div>
 </div>
 </li>
@@ -599,7 +599,7 @@ Because the component is a processor, it has an output branch by default. A proc
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_generated_project_view.png" target="_blank" rel="noopener"><img src="_images/tutorial_generated_project_view.png" alt="Project view"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/tutorial_generated_project_view.png" target="_blank" rel="noopener"><img src="_images/tutorial_generated_project_view.png" alt="Project view"></a>
 </div>
 </div>
 <div class="ulist">
@@ -651,7 +651,7 @@ Because the component is a processor, it has an output branch by default. A proc
 <p>From your component project in IntelliJ, open a terminal and make sure that the selected directory is the root of the project. All commands shown in this tutorial are performed from this location.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_intellij_terminal_blank.png" target="_blank" rel="noopener"><img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/tutorial_intellij_terminal_blank.png" target="_blank" rel="noopener"><img src="_images/tutorial_intellij_terminal_blank.png" alt="Compile terminal"></a>
 </div>
 </div>
 </li>
@@ -679,7 +679,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Make sure the build is successful.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_deploy_in_studio_success.png" target="_blank" rel="noopener"><img src="_images/tutorial_deploy_in_studio_success.png" alt="Build success"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/tutorial_deploy_in_studio_success.png" target="_blank" rel="noopener"><img src="_images/tutorial_deploy_in_studio_success.png" alt="Build success"></a>
 </div>
 </div>
 </li>
@@ -694,7 +694,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Notice that the <strong>level</strong> field that was specified in the configuration model of the component in the <strong>Talend Component Kit Starter</strong> is present.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_first_component_in_studio.png" target="_blank" rel="noopener"><img src="_images/tutorial_first_component_in_studio.png" alt="Component in Studio"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/tutorial_first_component_in_studio.png" target="_blank" rel="noopener"><img src="_images/tutorial_first_component_in_studio.png" alt="Component in Studio"></a>
 </div>
 </div>
 </li>
@@ -809,7 +809,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Set the <strong>Number of Rows for RowGenerator</strong> to <code>10</code>.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_trowgenerator.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_trowgenerator.png" alt="tRowGenerator"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/tutorial_build_job_trowgenerator.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_trowgenerator.png" alt="tRowGenerator"></a>
 </div>
 </div>
 </li>
@@ -823,7 +823,7 @@ Replace the path by your own value. If the path contains spaces (for example, <c
 <p>Open the <strong>TutorialFamilyLogger</strong> component and set the <strong>level</strong> field to <code>info</code>.<br></p>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_logger.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_logger.png" alt="Logger"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/tutorial_build_job_logger.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_logger.png" alt="Logger"></a>
 </div>
 </div>
 </li>
@@ -835,7 +835,7 @@ The job is executed. You can observe in the console that each of the 10 generate
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/tutorial_build_job_run.png" target="_blank" rel="noopener"><img src="_images/tutorial_build_job_run.png" alt="Job run"></a>
 </div>
 </div>
 </div>

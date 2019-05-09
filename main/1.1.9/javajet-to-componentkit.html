@@ -8,7 +8,7 @@
     <meta name="description" content="The Javajet framework is being replaced by the new Talend Component Kit. Learn the main differences and the new approach introduced with this framework.">
     <meta name="keywords" content="javajet, studio, learning, getting started, principles">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-05-09T14:37:59.257Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-05-09T15:39:46.881Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -172,25 +172,16 @@
       
     <ul class="nav nav-list tree" >
   <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Getting Started</span></label>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>First steps</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="index-getting-started-with-tck.html">Getting Started overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="methodology-creating-components.html">Development methodology</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="record-types.html">Record types</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+    <a class="menu-link" href="getting-started.html">Getting Started</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-create-my-first-component.html">Creating your first component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="record-types.html">Record types</a>
   </li>
 </ul>
   </li>
@@ -267,6 +258,9 @@
     <a class="menu-link" href="component-registering.html">Defining component metadata</a>
   </li>
   <li data-depth="2">
+    <a class="menu-link" href="creating-dataset-datastore.html">Defining datasets and datastores</a>
+  </li>
+  <li data-depth="2">
     <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
   </li>
   <li data-depth="2">
@@ -274,6 +268,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Defining component configuration</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">Component execution logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
@@ -366,7 +363,10 @@
     <a class="menu-link" href="index-deploying-components.html">Studio integration overview</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
+    <a class="menu-link" href="studio.html">Iterating on component development</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="studio-from-car.html">Installing components from a CAR file</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
@@ -472,7 +472,7 @@
 <p>From that new approach comes the need to provide a complete yet unique and compatible way of developing components.</p>
 </div>
 <div class="paragraph">
-<p>With the Component Kit, custom components are entirely implemented in Java. To help you get started with a new custom component development project, a <a href="https://starter-toolkit.talend.io/">Starter</a> is available. Using it, you will be able to generate the skeleton of your project.</p>
+<p>With the Component Kit, custom components are entirely implemented in Java. To help you get started with a new custom component development project, a <a href="https://starter-toolkit.talend.io/">Starter</a> is available. Using it, you will be able to generate the skeleton of your project. By importing this skeleton in a development tool, you can then implement the components layout and execution logic in Java.</p>
 </div>
 </div>
 </div>
@@ -962,7 +962,7 @@ private String password;</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_general_component_execution_logic"><a class="anchor" href="#_general_component_execution_logic"></a>General component execution logic</h2>
+<h2 id="_component_execution_logic"><a class="anchor" href="#_component_execution_logic"></a>Component execution logic</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Each type of component has its own execution logic. The same basic logic is applied to all components of the same type, and is then extended to implement each component specificities.
@@ -987,7 +987,7 @@ In distributed environments, class constructor are called on cluster manager nod
 </table>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/deployment-diagram.png" target="_blank" rel="noopener"><img src="_images/deployment-diagram.png" alt="Deployment diagram"></a></span></p>
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/deployment-diagram.png" target="_blank" rel="noopener"><img src="_images/deployment-diagram.png" alt="Deployment diagram"></a></span></p>
 </div>
 <div class="colist arabic">
 <table>
@@ -1020,10 +1020,10 @@ All the methods managed by the framework must be public. Private methods are ign
 </table>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/driver-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/driver-processing-workflow.png" alt="Driver processing workflow"></a></span></p>
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/driver-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/driver-processing-workflow.png" alt="Driver processing workflow"></a></span></p>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/worker-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/worker-processing-workflow.png" alt="Worker processing workflow"></a></span></p>
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/worker-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/worker-processing-workflow.png" alt="Worker processing workflow"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1067,7 +1067,7 @@ The framework is designed to be as declarative as possible but also to stay exte
 <div class="ulist">
 <ul>
 <li>
-<p><a href="index-getting-started-with-tck.html" class="page">Learn the basics about Talend Component Kit</a></p>
+<p><a href="getting-started.html" class="page">Learn the basics about Talend Component Kit</a></p>
 </li>
 <li>
 <p><a href="tutorial-create-my-first-component.html" class="page">Create and deploy your first Component Kit component</a></p>

@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Reference guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.9/index-reference-guide.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-05-09T14:37:59.252Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-05-09T15:39:46.875Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -170,25 +170,16 @@
       
     <ul class="nav nav-list tree" >
   <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Getting Started</span></label>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>First steps</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="index-getting-started-with-tck.html">Getting Started overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="methodology-creating-components.html">Development methodology</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="record-types.html">Record types</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+    <a class="menu-link" href="getting-started.html">Getting Started</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-create-my-first-component.html">Creating your first component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="record-types.html">Record types</a>
   </li>
 </ul>
   </li>
@@ -265,6 +256,9 @@
     <a class="menu-link" href="component-registering.html">Defining component metadata</a>
   </li>
   <li data-depth="2">
+    <a class="menu-link" href="creating-dataset-datastore.html">Defining datasets and datastores</a>
+  </li>
+  <li data-depth="2">
     <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
   </li>
   <li data-depth="2">
@@ -272,6 +266,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Defining component configuration</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">Component execution logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
@@ -364,7 +361,10 @@
     <a class="menu-link" href="index-deploying-components.html">Studio integration overview</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
+    <a class="menu-link" href="studio.html">Iterating on component development</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="studio-from-car.html">Installing components from a CAR file</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
@@ -463,6 +463,64 @@
 <div class="paragraph">
 <p>This gallery shows how widgets and validations are rendered in both Studio and web environments, along with sample implementation code.</p>
 </div>
+<div class="paragraph">
+<p>You can also find sample working components for each of the configuration cases below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=activeif-component-distribution">ActiveIf</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=checkbox-component-distribution">Checkbox</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=code-component-distribution">Code</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=credentials-component-distribution">Credential</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=datastorevalidation-component-distribution">Datastore</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=dropdownlist-component-distribution">Datalist</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=integer-component-distribution">Integer</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=minmaxvalidation-component-distribution">Min/Max</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=multiselect-component-distribution">Multiselect</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=patternvalidation-component-distribution">Pattern</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=requiredvalidation-component-distribution">Required</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=suggestions-component-distribution">Suggestions</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=table-component-distribution">Table</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=textarea-component-distribution">Textarea</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=textinput-component-distribution">Input</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=updatable-component-distribution">Update</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=urlvalidation-component-distribution">Validation</a>: A generated component project</p>
+</li>
+</ul>
+</div>
 <div class="sect2">
 <h3 id="_widgets"><a class="anchor" href="#_widgets"></a>Widgets</h3>
 <div class="paragraph">
@@ -491,12 +549,12 @@ String config;</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/input.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/input.png" alt="Studio Input" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/input.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/input.png" alt="Studio Input" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/input.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/input.png" alt="Web Input" width="40%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/input.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/input.png" alt="Web Input" width="40%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -527,12 +585,12 @@ String config;</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/password.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/password.png" alt="Studio Password" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/password.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/password.png" alt="Studio Password" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/password.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/password.png" alt="Web Password" width="50%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/password.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/password.png" alt="Web Password" width="50%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -563,12 +621,12 @@ String config;</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/textarea.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/textarea.png" alt="Studio Textarea" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/textarea.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/textarea.png" alt="Studio Textarea" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/textarea.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/textarea.png" alt="Web Textarea" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/textarea.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/textarea.png" alt="Web Textarea" width="100%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -599,12 +657,12 @@ public Integer number;</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/studio_talend_component_kit_number_widget.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/studio_talend_component_kit_number_widget.png" alt="Studio Integer" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/studio_talend_component_kit_number_widget.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/studio_talend_component_kit_number_widget.png" alt="Studio Integer" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/web_talend_component_kit_number_widget.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/web_talend_component_kit_number_widget.png" alt="Web Textarea" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/web_talend_component_kit_number_widget.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/web_talend_component_kit_number_widget.png" alt="Web Textarea" width="100%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -634,12 +692,12 @@ Boolean config;</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/checkbox.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/checkbox.png" alt="Studio Checkbox" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/checkbox.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/checkbox.png" alt="Studio Checkbox" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/checkbox.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/checkbox.png" alt="Web Checkbox" width="40%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/checkbox.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/checkbox.png" alt="Web Checkbox" width="40%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -693,12 +751,12 @@ enum ActionEnum {
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/list.png" alt="Studio List" width="40%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/list.png" alt="Studio List" width="40%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/list.png" alt="Web List" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/list.png" alt="Web List" width="100%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -735,24 +793,24 @@ public SuggestionValues loadModules(@Option final MyConfig myconfig) { }</code><
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loading.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loading.png" alt="Studio suggestions loading" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loading.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loading.png" alt="Studio suggestions loading" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loading.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loading.png" alt="Web suggestions loading" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loading.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loading.png" alt="Web suggestions loading" width="100%"></a>
 </div>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loaded.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loaded.png" alt="Studio suggestions loaded" width="80%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loaded.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loaded.png" alt="Studio suggestions loaded" width="80%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loaded.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loaded.png" alt="Web suggestions loaded" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loaded.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loaded.png" alt="Web suggestions loaded" width="100%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -782,12 +840,12 @@ List&lt;MyObject&gt; config;</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/table.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/table.png" alt="Studio Table" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/table.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/table.png" alt="Studio Table" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/table.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/table.png" alt="Web Table" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/table.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/table.png" alt="Web Table" width="100%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -818,12 +876,12 @@ String config;</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/javaCode.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/javaCode.png" alt="Studio Code" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/javaCode.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/javaCode.png" alt="Studio Code" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/javaCode.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/javaCode.png" alt="Web Code" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/javaCode.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/javaCode.png" alt="Web Code" width="100%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -854,12 +912,12 @@ List&lt;String&gt; config;</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/schema.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/schema.png" alt="Studio Schema" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/schema.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/schema.png" alt="Studio Schema" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/schema.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/schema.png" alt="Web Schema" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/schema.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/schema.png" alt="Web Schema" width="100%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -903,12 +961,12 @@ ValidationResult doValidate(String url) {
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_property.png" alt="Studio Code" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_property.png" alt="Studio Code" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_property.png" alt="Web Code" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_property.png" alt="Web Code" width="100%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -940,12 +998,12 @@ String username;</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_pattern.png" alt="Studio Code" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_pattern.png" alt="Studio Code" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_pattern.png" alt="Web Code" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_pattern.png" alt="Web Code" width="100%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -985,12 +1043,12 @@ public HealthCheckStatus testConnection(){
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/studio/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_datastore.png" alt="Studio Code" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/studio/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_datastore.png" alt="Studio Code" width="100%"></a>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
-<a class="image" href="_images/gallery/widgets/web/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_datastore.png" alt="Web Code" width="100%"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/gallery/widgets/web/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_datastore.png" alt="Web Code" width="100%"></a>
 </div>
 </div></div></td>
 </tr>
@@ -1002,10 +1060,10 @@ public HealthCheckStatus testConnection(){
 <div class="ulist">
 <ul>
 <li>
-<p><code>@Min</code>, <code>@Max</code> for numbers.</p>
+<p><code>@Min</code>, <code>@Max</code> to specify a minimum and maximum value for numerical fields.</p>
 </li>
 <li>
-<p><code>@Unique</code> for collection values.</p>
+<p><code>@Uniques</code> for collection values.</p>
 </li>
 <li>
 <p><code>@Required</code> for a required configuration.</p>

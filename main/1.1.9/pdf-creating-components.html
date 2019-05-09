@@ -8,7 +8,7 @@
     <meta name="description" content="Get an overview of the main steps to code the logic of your custom Talend Componit Kit components">
     <meta name="keywords" content="create, code, class, logic, layout, configuration, dev, overview">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-05-09T14:37:59.261Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-05-09T15:39:46.884Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -172,25 +172,16 @@
       
     <ul class="nav nav-list tree" >
   <li data-depth="1">
-      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>Getting Started</span></label>
+      <label class="tree-toggler nav-header"><i class="fa fa-angle-right"></i><span>First steps</span></label>
     <ul class="nav nav-list tree"  style="display:none">
   <li data-depth="2">
-    <a class="menu-link" href="index-getting-started-with-tck.html">Getting Started overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="methodology-creating-components.html">Development methodology</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="tck-framework-overview.html">Framework Overview</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="record-types.html">Record types</a>
-  </li>
-  <li data-depth="2">
-    <a class="menu-link" href="component-execution.html">General component execution logic</a>
+    <a class="menu-link" href="getting-started.html">Getting Started</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="tutorial-create-my-first-component.html">Creating your first component</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="record-types.html">Record types</a>
   </li>
 </ul>
   </li>
@@ -267,6 +258,9 @@
     <a class="menu-link" href="component-registering.html">Defining component metadata</a>
   </li>
   <li data-depth="2">
+    <a class="menu-link" href="creating-dataset-datastore.html">Defining datasets and datastores</a>
+  </li>
+  <li data-depth="2">
     <a class="menu-link" href="component-define-input.html">Defining an input component logic</a>
   </li>
   <li data-depth="2">
@@ -274,6 +268,9 @@
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-configuration.html">Defining component configuration</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="component-execution.html">Component execution logic</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="component-internationalization.html">Internationalizing a component</a>
@@ -366,7 +363,10 @@
     <a class="menu-link" href="index-deploying-components.html">Studio integration overview</a>
   </li>
   <li data-depth="2">
-    <a class="menu-link" href="studio.html">Deploying to Talend Studio</a>
+    <a class="menu-link" href="studio.html">Iterating on component development</a>
+  </li>
+  <li data-depth="2">
+    <a class="menu-link" href="studio-from-car.html">Installing components from a CAR file</a>
   </li>
   <li data-depth="2">
     <a class="menu-link" href="compatibility.html">Version compatibility</a>
@@ -481,7 +481,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/implementing-components.png" target="_blank" rel="noopener"><img src="_images/implementing-components.png" alt="Implementing component"></a></span></p>
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/implementing-components.png" target="_blank" rel="noopener"><img src="_images/implementing-components.png" alt="Implementing component"></a></span></p>
 </div>
 <div class="paragraph">
 <p>In some cases, you will require specific implementations to handle more advanced cases, such as:</p>
@@ -755,22 +755,399 @@ public class MyProcessor {
 </div>
 </div>
 <div class="sect1">
+<h2 id="_defining_datasets_and_datastores"><a class="anchor" href="#_defining_datasets_and_datastores"></a>Defining datasets and datastores</h2>
+<div class="sectionbody">
+<div id="dataset-and-datastore" class="paragraph">
+<p>Datasets and datastores are configuration types that define how and where to pull the data from. They are used at design time to create shared configurations that can be stored and used at runtime.</p>
+</div>
+<div class="paragraph">
+<p>All input and output components created using Talend Component Kit must reference a valid dataset. Each dataset must reference a datastore.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Datastore: The data you need to connect to the backend.</p>
+</li>
+<li>
+<p>Dataset: A datastore coupled with the data you need to execute an action.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/datastore_and_dataset_validation.png" target="_blank" rel="noopener"><img src="_images/datastore_and_dataset_validation.png" alt="Dataset validation"></a>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Make sure that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a datastore is used in each dataset.</p>
+</li>
+<li>
+<p>each dataset has a corresponding input component (mapper or emitter) which has a configuration that is usable if the software only fills the dataset part. All other properties must not be required.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These rules are enforced by the <code>validateDataSet</code> validation. If the conditions are not met, the component builds will fail.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_defining_a_datastore"><a class="anchor" href="#_defining_a_datastore"></a>Defining a datastore</h3>
+<div class="paragraph">
+<p>A datastore defines the information required to connect to a data source. For example, it can be made of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a URL</p>
+</li>
+<li>
+<p>a username</p>
+</li>
+<li>
+<p>a password.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can specify a datastore and its context of use (in which dataset, etc.) from the <a href="tutorial-generate-project-using-starter.html" class="page">Component Kit Starter</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Make sure to modelize the data your components are designed to handle before defining datasets and datastores in the Component Kit Starter.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once you generate and import the project into an IDE, you can find your datastores under a specific <code>datastore</code> node.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/datastore_view_intellij.png" target="_blank" rel="noopener"><img src="_images/datastore_view_intellij.png" alt="Datastore view"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Example of datastore:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.mycomponent.components.datastore;
+
+@DataStore("DatastoreA") <i class="conum" data-value="1"></i><b>(1)</b>
+@GridLayout({ <i class="conum" data-value="2"></i><b>(2)</b>
+    // the generated layout put one configuration entry per line,
+    // customize it as much as needed
+    @GridLayout.Row({ "apiurl" }),
+    @GridLayout.Row({ "username" }),
+    @GridLayout.Row({ "password" })
+})
+@Documentation("A Datastore made of an API URL, a username, and a password. The password is marked as Credential.") <i class="conum" data-value="3"></i><b>(3)</b>
+public class DatastoreA implements Serializable {
+    @Option
+    @Documentation("")
+    private String apiurl;
+
+    @Option
+    @Documentation("")
+    private String username;
+
+    @Option
+    @Credential
+    @Documentation("")
+    private String password;
+
+    public String getApiurl() {
+        return apiurl;
+    }
+
+    public DatastoreA setApiurl(String apiurl) {
+        this.apiurl = apiurl;
+        return this;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public DatastoreA setuUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public DatastoreA setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Identifying the class as a datastore and naming it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Defining the layout of the datastore configuration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Defining each element of the configuration: a URL, a username, and a password. Note that the password is also marked as being a credential.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defining_a_dataset"><a class="anchor" href="#_defining_a_dataset"></a>Defining a dataset</h3>
+<div class="paragraph">
+<p>A dataset represents the inbound data. It is generally made of:
+* A datastore that defines the connection information needed to access the data.
+* A query.</p>
+</div>
+<div class="paragraph">
+<p>You can specify a dataset and its context of use (in which input and output component it is used) from the <a href="tutorial-generate-project-using-starter.html" class="page">Component Kit Starter</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Make sure to modelize the data your components are designed to handle before defining datasets and datastores in the Component Kit Starter.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once you generate and import the project into an IDE, you can find your datastores under a specific <code>dataset</code> node.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/dataset_view_intellij.png" target="_blank" rel="noopener"><img src="_images/dataset_view_intellij.png" alt="Dataset view"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Example of dataset referencing the datastore shown above:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.datastorevalidation.components.dataset;
+
+@DataSet("DatasetA") <i class="conum" data-value="1"></i><b>(1)</b>
+@GridLayout({
+    // the generated layout put one configuration entry per line,
+    // customize it as much as needed
+    @GridLayout.Row({ "datastore" })
+})
+@Documentation("A Dataset configuration containing a simple datastore") <i class="conum" data-value="2"></i><b>(2)</b>
+public class DatasetA implements Serializable {
+    @Option
+    @Documentation("Datastore")
+    private DatastoreA datastore;
+
+    public DatastoreA getDatastore() {
+        return datastore;
+    }
+
+    public DatasetA setDatastore(DatastoreA datastore) {
+        this.datastore = datastore;
+        return this;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Identifying the class as a dataset and naming it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Implementing the dataset and referencing DatastoreA as the datastore to use.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_internationalizing_datasets_and_datastores"><a class="anchor" href="#_internationalizing_datasets_and_datastores"></a>Internationalizing datasets and datastores</h3>
+<div class="paragraph">
+<p>The display name of each dataset and datastore must be referenced in the <code>message.properties</code> file of the family package.</p>
+</div>
+<div class="paragraph">
+<p>The key for dataset and datastore display names follows a defined pattern: <code>${family}.${configurationType}.${name}._displayName</code>. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ComponentFamily.dataset.DatasetA._displayName=Dataset A
+ComponentFamily.datastore.DatastoreA._displayName=Datastore A</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These keys are automatically added for datasets and datastores defined from the Component Kit Starter.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reusing_datasets_and_datastores_in_talend_studio"><a class="anchor" href="#_reusing_datasets_and_datastores_in_talend_studio"></a>Reusing datasets and datastores in Talend Studio</h3>
+<div class="paragraph">
+<p>When deploying a component or set of components that include datasets and datastores to Talend Studio, a new node is created under <strong>Metadata</strong>. This node has the name of the component family that was deployed.</p>
+</div>
+<div class="paragraph">
+<p>It allows users to create reusable configurations for datastores and datasets.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/studio_create_dataset.png" target="_blank" rel="noopener"><img src="_images/studio_create_dataset.png" alt="Dataset in Studio"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>With predefined datasets and datastores, users can then quickly fill the component configuration in their jobs. They can do so by selecting <strong>Repository</strong> as <strong>Property Type</strong> and by browsing to the predefined dataset or datastore.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/studio_select_predefined_dataset.png" target="_blank" rel="noopener"><img src="_images/studio_select_predefined_dataset.png" alt="Dataset in Component"></a>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_does_the_component_server_interact_with_datasets_and_datastores"><a class="anchor" href="#_how_does_the_component_server_interact_with_datasets_and_datastores"></a>How does the component server interact with datasets and datastores</h3>
+<div class="paragraph">
+<p>The component server scans all configuration types and returns a configuration type index. This index can be used for the integration into the targeted platforms (Studio, web applications, and so on).</p>
+</div>
+<div class="sect3">
+<h4 id="_dataset"><a class="anchor" href="#_dataset"></a>Dataset</h4>
+<div class="paragraph">
+<p>Mark a model (complex object) as being a dataset.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: @org.talend.sdk.component.api.configuration.type.DataSet</p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
+  "tcomp::configurationtype::name":"test",
+  "tcomp::configurationtype::type":"dataset"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_datastore"><a class="anchor" href="#_datastore"></a>Datastore</h4>
+<div class="paragraph">
+<p>Mark a model (complex object) as being a datastore (connection to a backend).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>API: @org.talend.sdk.component.api.configuration.type.DataStore</p>
+</li>
+<li>
+<p>Sample:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">{
+  "tcomp::configurationtype::name":"test",
+  "tcomp::configurationtype::type":"datastore"
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The component family associated with a configuration type (datastore/dataset) is always the one related to the component using that configuration.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The configuration type index is represented as a flat tree that contains all the configuration types, which themselves are represented as nodes and indexed by ID.</p>
+</div>
+<div class="paragraph">
+<p>Every node can point to other nodes. This relation is represented as an array of edges that provides the child IDs.</p>
+</div>
+<div class="paragraph">
+<p>As an illustration, a configuration type index for the example above can be defined as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{nodes: {
+             "idForDstore": { datastore:"datastore data", edges:[id:"idForDset"] },
+             "idForDset":   { dataset:"dataset data" }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_defining_an_input_component_logic"><a class="anchor" href="#_defining_an_input_component_logic"></a>Defining an input component logic</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Input components are the components generally placed at the beginning of a Talend job. They are in charge of retrieving the data that will later be processed in the job.</p>
 </div>
 <div class="paragraph">
-<p>An input component is primarily made of three distinct logics:
-- The execution logic of the component itself, defined through a partition mapper.
-- The configurable part of the component, defined through the mapper configuration.
-- The source logic defined through a producer.</p>
+<p>An input component is primarily made of three distinct logics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The execution logic of the component itself, defined through a partition mapper.</p>
+</li>
+<li>
+<p>The configurable part of the component, defined through the mapper configuration.</p>
+</li>
+<li>
+<p>The source logic defined through a producer.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Before implementing the component logic and defining its layout and configurable fields, make sure you have specified its basic metadata, as detailed in <a href="component-registering.html" class="page">this document</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="_defining_a_partition_mapper"><a class="anchor" href="#_defining_a_partition_mapper"></a><a href="component-partition-mapper.html" class="page">Defining a partition mapper</a></h3>
+<h3 id="_defining_a_partition_mapper"><a class="anchor" href="#_defining_a_partition_mapper"></a>Defining a partition mapper</h3>
 <div class="sect3">
 <h4 id="partition-mapper"><a class="anchor" href="#partition-mapper"></a>What is a partition mapper</h4>
 <div class="paragraph">
@@ -882,7 +1259,7 @@ public MyProducer create() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_defining_the_producer_method"><a class="anchor" href="#_defining_the_producer_method"></a><a href="component-producer.html" class="page">Defining the producer method</a></h3>
+<h3 id="_defining_the_producer_method"><a class="anchor" href="#_defining_the_producer_method"></a>Defining the producer method</h3>
 <div class="paragraph">
 <p>The <strong>Producer</strong> defines the source logic of an input component. It handles the interaction with a physical source and produces input data for the processing flow.</p>
 </div>
@@ -944,7 +1321,7 @@ public MyData produces() {
 <p>Before implementing the component logic and defining its layout and configurable fields, make sure you have specified its basic metadata, as detailed in <a href="component-registering.html" class="page">this document</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="_defining_a_processor"><a class="anchor" href="#_defining_a_processor"></a><a href="component-processor.html" class="page">Defining a processor</a></h3>
+<h3 id="_defining_a_processor"><a class="anchor" href="#_defining_a_processor"></a>Defining a processor</h3>
 <div class="sect3">
 <h4 id="component-type-processor"><a class="anchor" href="#component-type-processor"></a>What is a processor</h4>
 <div class="paragraph">
@@ -1163,7 +1540,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Processing schema (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing"></a></span></p>
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Each group is processed as follows until there is no record left:</p>
@@ -1183,7 +1560,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Group execution detail (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing"></a></span></p>
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can define the following logic in the processor configuration:</p>
@@ -1280,7 +1657,7 @@ public class DocOutput implements Serializable {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_defining_an_output"><a class="anchor" href="#_defining_an_output"></a><a href="component-output.html" class="page">Defining an output</a></h3>
+<h3 id="_defining_an_output"><a class="anchor" href="#_defining_an_output"></a>Defining an output</h3>
 <div class="sect3">
 <h4 id="_what_is_an_output"><a class="anchor" href="#_what_is_an_output"></a>What is an output</h4>
 <div class="paragraph">
@@ -1300,7 +1677,7 @@ public void store(final MyData data) {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_defining_a_combiner"><a class="anchor" href="#_defining_a_combiner"></a><a href="component-combiner.html" class="page">Defining a combiner</a></h3>
+<h3 id="_defining_a_combiner"><a class="anchor" href="#_defining_a_combiner"></a>Defining a combiner</h3>
 <div class="sect3">
 <h4 id="_what_is_a_combiner"><a class="anchor" href="#_what_is_a_combiner"></a>What is a combiner</h4>
 <div class="paragraph">
@@ -1353,6 +1730,18 @@ A combiner is the symmetric part of a partition mapper. It allows to aggregate r
 </div>
 <div class="paragraph">
 <p>To do that, you can specify parameters. When you import the project in your IDE, the parameters that you have specified in the starter are already present.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+All input and output components must reference a dataset in their configuration. Refer to <a href="creating-dataset-datastore.html" class="page">Defining datasets and datastores</a>.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_parameter_name"><a class="anchor" href="#_parameter_name"></a>Parameter name</h3>
@@ -1890,9 +2279,12 @@ If it breaks your application, you can disable that validation on the JVM by set
 </div>
 </div>
 <div class="sect2">
-<h3 id="dataset-and-datastore"><a class="anchor" href="#dataset-and-datastore"></a>Marking a configuration as dataset or datastore</h3>
+<h3 id="_defining_datasets_and_datastores_2"><a class="anchor" href="#_defining_datasets_and_datastores_2"></a>Defining datasets and datastores</h3>
+<div id="dataset-and-datastore" class="paragraph">
+<p>Datasets and datastores are configuration types that define how and where to pull the data from. They are used at design time to create shared configurations that can be stored and used at runtime.</p>
+</div>
 <div class="paragraph">
-<p>It is common to classify the incoming data. It is similar to tagging data with several types. Data can commonly be categorized as follows:</p>
+<p>All input and output components created using Talend Component Kit must reference a valid dataset. Each dataset must reference a datastore.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1904,8 +2296,275 @@ If it breaks your application, you can disable that validation on the JVM by set
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/datastore_and_dataset_validation.png" target="_blank" rel="noopener"><img src="_images/datastore_and_dataset_validation.png" alt="Dataset validation"></a>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Make sure that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a datastore is used in each dataset.</p>
+</li>
+<li>
+<p>each dataset has a corresponding input component (mapper or emitter) which has a configuration that is usable if the software only fills the dataset part. All other properties must not be required.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These rules are enforced by the <code>validateDataSet</code> validation. If the conditions are not met, the component builds will fail.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
-<h4 id="_dataset"><a class="anchor" href="#_dataset"></a>Dataset</h4>
+<h4 id="_defining_a_datastore_2"><a class="anchor" href="#_defining_a_datastore_2"></a>Defining a datastore</h4>
+<div class="paragraph">
+<p>A datastore defines the information required to connect to a data source. For example, it can be made of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a URL</p>
+</li>
+<li>
+<p>a username</p>
+</li>
+<li>
+<p>a password.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can specify a datastore and its context of use (in which dataset, etc.) from the <a href="tutorial-generate-project-using-starter.html" class="page">Component Kit Starter</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Make sure to modelize the data your components are designed to handle before defining datasets and datastores in the Component Kit Starter.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once you generate and import the project into an IDE, you can find your datastores under a specific <code>datastore</code> node.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/datastore_view_intellij.png" target="_blank" rel="noopener"><img src="_images/datastore_view_intellij.png" alt="Datastore view"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Example of datastore:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.mycomponent.components.datastore;
+
+@DataStore("DatastoreA") <i class="conum" data-value="1"></i><b>(1)</b>
+@GridLayout({ <i class="conum" data-value="2"></i><b>(2)</b>
+    // the generated layout put one configuration entry per line,
+    // customize it as much as needed
+    @GridLayout.Row({ "apiurl" }),
+    @GridLayout.Row({ "username" }),
+    @GridLayout.Row({ "password" })
+})
+@Documentation("A Datastore made of an API URL, a username, and a password. The password is marked as Credential.") <i class="conum" data-value="3"></i><b>(3)</b>
+public class DatastoreA implements Serializable {
+    @Option
+    @Documentation("")
+    private String apiurl;
+
+    @Option
+    @Documentation("")
+    private String username;
+
+    @Option
+    @Credential
+    @Documentation("")
+    private String password;
+
+    public String getApiurl() {
+        return apiurl;
+    }
+
+    public DatastoreA setApiurl(String apiurl) {
+        this.apiurl = apiurl;
+        return this;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public DatastoreA setuUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public DatastoreA setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Identifying the class as a datastore and naming it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Defining the layout of the datastore configuration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Defining each element of the configuration: a URL, a username, and a password. Note that the password is also marked as being a credential.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_defining_a_dataset_2"><a class="anchor" href="#_defining_a_dataset_2"></a>Defining a dataset</h4>
+<div class="paragraph">
+<p>A dataset represents the inbound data. It is generally made of:
+* A datastore that defines the connection information needed to access the data.
+* A query.</p>
+</div>
+<div class="paragraph">
+<p>You can specify a dataset and its context of use (in which input and output component it is used) from the <a href="tutorial-generate-project-using-starter.html" class="page">Component Kit Starter</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Make sure to modelize the data your components are designed to handle before defining datasets and datastores in the Component Kit Starter.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once you generate and import the project into an IDE, you can find your datastores under a specific <code>dataset</code> node.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/dataset_view_intellij.png" target="_blank" rel="noopener"><img src="_images/dataset_view_intellij.png" alt="Dataset view"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Example of dataset referencing the datastore shown above:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.datastorevalidation.components.dataset;
+
+@DataSet("DatasetA") <i class="conum" data-value="1"></i><b>(1)</b>
+@GridLayout({
+    // the generated layout put one configuration entry per line,
+    // customize it as much as needed
+    @GridLayout.Row({ "datastore" })
+})
+@Documentation("A Dataset configuration containing a simple datastore") <i class="conum" data-value="2"></i><b>(2)</b>
+public class DatasetA implements Serializable {
+    @Option
+    @Documentation("Datastore")
+    private DatastoreA datastore;
+
+    public DatastoreA getDatastore() {
+        return datastore;
+    }
+
+    public DatasetA setDatastore(DatastoreA datastore) {
+        this.datastore = datastore;
+        return this;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Identifying the class as a dataset and naming it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Implementing the dataset and referencing DatastoreA as the datastore to use.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_internationalizing_datasets_and_datastores_2"><a class="anchor" href="#_internationalizing_datasets_and_datastores_2"></a>Internationalizing datasets and datastores</h4>
+<div class="paragraph">
+<p>The display name of each dataset and datastore must be referenced in the <code>message.properties</code> file of the family package.</p>
+</div>
+<div class="paragraph">
+<p>The key for dataset and datastore display names follows a defined pattern: <code>${family}.${configurationType}.${name}._displayName</code>. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ComponentFamily.dataset.DatasetA._displayName=Dataset A
+ComponentFamily.datastore.DatastoreA._displayName=Datastore A</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These keys are automatically added for datasets and datastores defined from the Component Kit Starter.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reusing_datasets_and_datastores_in_talend_studio_2"><a class="anchor" href="#_reusing_datasets_and_datastores_in_talend_studio_2"></a>Reusing datasets and datastores in Talend Studio</h4>
+<div class="paragraph">
+<p>When deploying a component or set of components that include datasets and datastores to Talend Studio, a new node is created under <strong>Metadata</strong>. This node has the name of the component family that was deployed.</p>
+</div>
+<div class="paragraph">
+<p>It allows users to create reusable configurations for datastores and datasets.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/studio_create_dataset.png" target="_blank" rel="noopener"><img src="_images/studio_create_dataset.png" alt="Dataset in Studio"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>With predefined datasets and datastores, users can then quickly fill the component configuration in their jobs. They can do so by selecting <strong>Repository</strong> as <strong>Property Type</strong> and by browsing to the predefined dataset or datastore.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/studio_select_predefined_dataset.png" target="_blank" rel="noopener"><img src="_images/studio_select_predefined_dataset.png" alt="Dataset in Component"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_how_does_the_component_server_interact_with_datasets_and_datastores_2"><a class="anchor" href="#_how_does_the_component_server_interact_with_datasets_and_datastores_2"></a>How does the component server interact with datasets and datastores</h4>
+<div class="paragraph">
+<p>The component server scans all configuration types and returns a configuration type index. This index can be used for the integration into the targeted platforms (Studio, web applications, and so on).</p>
+</div>
+<div class="sect4">
+<h5 id="_dataset_2"><a class="anchor" href="#_dataset_2"></a>Dataset</h5>
 <div class="paragraph">
 <p>Mark a model (complex object) as being a dataset.</p>
 </div>
@@ -1928,8 +2587,8 @@ If it breaks your application, you can disable that validation on the JVM by set
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_datastore"><a class="anchor" href="#_datastore"></a>Datastore</h4>
+<div class="sect4">
+<h5 id="_datastore_2"><a class="anchor" href="#_datastore_2"></a>Datastore</h5>
 <div class="paragraph">
 <p>Mark a model (complex object) as being a datastore (connection to a backend).</p>
 </div>
@@ -1951,65 +2610,17 @@ If it breaks your application, you can disable that validation on the JVM by set
 }</code></pre>
 </div>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 The component family associated with a configuration type (datastore/dataset) is always the one related to the component using that configuration.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Those configuration types can be composed to provide one configuration item. For example, a dataset type often needs a datastore type to be provided. A datastore type (that provides the connection information) is used to create a dataset type.</p>
-</div>
-<div class="paragraph">
-<p>Those configuration types are also used at design time to create shared configurations that can be stored and used at runtime.</p>
-</div>
-<div class="paragraph">
-<p>For example, in the case of a relational database that supports JDBC:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A datastore can be made of:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>a JDBC URL</p>
-</li>
-<li>
-<p>a username</p>
-</li>
-<li>
-<p>a password.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>A dataset can be made of:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>a datastore (that provides the data required to connect to the database)</p>
-</li>
-<li>
-<p>a table name</p>
-</li>
-<li>
-<p>data.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The component server scans all configuration types and returns a configuration type index. This index can be used for the integration into the targeted platforms (Studio, web applications, and so on).</p>
 </div>
 <div class="paragraph">
 <p>The configuration type index is represented as a flat tree that contains all the configuration types, which themselves are represented as nodes and indexed by ID.</p>
@@ -2028,37 +2639,6 @@ The component family associated with a configuration type (datastore/dataset) is
     }
 }</code></pre>
 </div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Make sure that:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>a datastore is used in each dataset.</p>
-</li>
-<li>
-<p>each dataset has a corresponding source (mapper or emitter) which has a configuration that is usable if the software only fills the dataset part. All other properties must not be required.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The <code>validateDataSet</code> validation checks that each input or output (processor without output branch) component uses a dataset and that this dataset has a datastore.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="_images/datastore_and_dataset_validation.png" target="_blank" rel="noopener"><img src="_images/datastore_and_dataset_validation.png" alt="Dataset validation"></a>
 </div>
 </div>
 </div>
@@ -2188,7 +2768,9 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_activeif_example"><a class="anchor" href="#_activeif_example"></a>ActiveIf example</h4>
+<h4 id="_activeif_examples"><a class="anchor" href="#_activeif_examples"></a>ActiveIf examples</h4>
+<div class="sect4">
+<h5 id="_example_1"><a class="anchor" href="#_example_1"></a>Example 1</h5>
 <div class="paragraph">
 <p>A common use of the ActiveIf condition consists in testing if a target property has a value. To do that, it is possible to test if the length of the property value is different from 0:</p>
 </div>
@@ -2216,6 +2798,75 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
   "condition::if::negate": "true",
   "condition::if::evaluationStrategy": "LENGTH",
 }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_example_2"><a class="anchor" href="#_example_2"></a>Example 2</h5>
+<div class="paragraph">
+<p>The following example shows how to implement visibility conditions on several fields based on several checkbox configurations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the first checkbox is selected, an additional input field is displayed.</p>
+</li>
+<li>
+<p>if the second or the third checkbox is selected, an additional input field is displayed.</p>
+</li>
+<li>
+<p>if both second and third checkboxes are selected, an additional input field is displayed.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@GridLayout({
+    // the generated layout put one configuration entry per line,
+    // customize it as much as needed
+    @GridLayout.Row({ "checkbox1" }),
+    @GridLayout.Row({ "checkbox2" }),
+    @GridLayout.Row({ "checkbox3" }),
+    @GridLayout.Row({ "configuration4" }),
+    @GridLayout.Row({ "configuration5" }),
+    @GridLayout.Row({ "configuration6" })
+})
+@Documentation("A sample configuration with different visibility condition cases")
+public class ActiveifProcessorProcessorConfiguration implements Serializable {
+    @Option
+    @Documentation("")
+    private boolean checkbox1;
+
+    @Option
+    @Documentation("")
+    private boolean checkbox2;
+
+    @Option
+    @Documentation("")
+    private boolean checkbox3;
+
+    @Option
+    @ActiveIf(target = "checkbox1", value = "true")
+    @Documentation("Active if checkbox1 is selected")
+    private String configuration4;
+
+    @Option
+    @ActiveIfs(operator = ActiveIfs.Operator.OR, value = {
+            @ActiveIf(target = "checkbox2", value = "true"),
+            @ActiveIf(target = "checkbox3", value = "true")
+    })
+    @Documentation("Active if checkbox2 or checkbox 3 are selected")
+    private String configuration5;
+
+    @Option
+    @ActiveIfs(operator = ActiveIfs.Operator.AND, value = {
+            @ActiveIf(target = "checkbox2", value = "true"),
+            @ActiveIf(target = "checkbox3", value = "true")
+    })
+    @Documentation("Active if checkbox2 and checkbox 3 are selected")
+    private String configuration6;
+  }</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -2502,6 +3153,67 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_implementation_samples"><a class="anchor" href="#_implementation_samples"></a>Implementation samples</h3>
+<div class="paragraph">
+<p>You can find sample working components for each of the configuration cases below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=activeif-component-distribution">ActiveIf</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=checkbox-component-distribution">Checkbox</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=code-component-distribution">Code</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=credentials-component-distribution">Credential</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=datastorevalidation-component-distribution">Datastore</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=dropdownlist-component-distribution">Datalist</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=integer-component-distribution">Integer</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=minmaxvalidation-component-distribution">Min/Max</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=multiselect-component-distribution">Multiselect</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=patternvalidation-component-distribution">Pattern</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=requiredvalidation-component-distribution">Required</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=suggestions-component-distribution">Suggestions</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=table-component-distribution">Table</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=textarea-component-distribution">Textarea</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=textinput-component-distribution">Input</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=updatable-component-distribution">Update</a>: A generated component project</p>
+</li>
+<li>
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/content?r=snapshots&amp;g=org.talend.sdk.component&amp;a=documentation-sample&amp;v=1.1.9-SNAPSHOT&amp;e=zip&amp;c=urlvalidation-component-distribution">Validation</a>: A generated component project</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2 relatedlinks">
 <h3 id="_related_articles_5"><a class="anchor" href="#_related_articles_5"></a>Related articles</h3>
 <div class="ulist">
@@ -2535,6 +3247,84 @@ When using the programmatic API, metadata is prefixed with <code>tcomp::</code>.
 </li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_component_execution_logic"><a class="anchor" href="#_component_execution_logic"></a>Component execution logic</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each type of component has its own execution logic. The same basic logic is applied to all components of the same type, and is then extended to implement each component specificities.
+The project generated from the starter already contains the basic logic for each component.</p>
+</div>
+<div class="paragraph">
+<p>Talend Component Kit framework relies on several primitive components.</p>
+</div>
+<div class="paragraph">
+<p>All components can use <code>@PostConstruct</code> and <code>@PreDestroy</code> annotations to initialize or release some underlying resource at the beginning and the end of a processing.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+In distributed environments, class constructor are called on cluster manager nodes. Methods annotated with <code>@PostConstruct</code> and <code>@PreDestroy</code> are called on worker nodes. Thus, partition plan computation and pipeline tasks are performed on different nodes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/deployment-diagram.png" target="_blank" rel="noopener"><img src="_images/deployment-diagram.png" alt="Deployment diagram"></a></span></p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The created task is a JAR file containing class information, which describes the pipeline (flow) that should be processed in cluster.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>During the partition plan computation step, the pipeline is analyzed and split into stages. The cluster manager node instantiates mappers/processors, gets estimated data size using mappers, and splits created mappers according to the estimated data size.<br>
+All instances are then serialized and sent to the worker node.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Serialized instances are received and deserialized. Methods annotated with <code>@PostConstruct</code> are called. After that, pipeline execution starts. The <code>@BeforeGroup</code> annotated method of the processor is called before processing the first element in chunk.<br>
+After processing the number of records estimated as chunk size, the <code>@AfterGroup</code> annotated method of the processor is called. Chunk size is calculated depending on the environment the pipeline is processed by. Once the pipeline is processed, methods annotated with <code>@PreDestroy</code> are called.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+All the methods managed by the framework must be public. Private methods are ignored.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/driver-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/driver-processing-workflow.png" alt="Driver processing workflow"></a></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/worker-processing-workflow.png" target="_blank" rel="noopener"><img src="_images/worker-processing-workflow.png" alt="Worker processing workflow"></a></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The framework is designed to be as declarative as possible but also to stay extensible by not using fixed interfaces or method signatures. This allows to incrementally add new features of the underlying implementations.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2968,7 +3758,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Processing schema (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing"></a></span></p>
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/batch-processing-maxbatchsize.png" target="_blank" rel="noopener"><img src="_images/batch-processing-maxbatchsize.png" alt="Batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Each group is processed as follows until there is no record left:</p>
@@ -2988,7 +3778,7 @@ The estimated group size logic is automatically implemented when a component is 
 </div>
 <div class="paragraph">
 <div class="title"><strong>Group execution detail (values are examples):</strong></div>
-<p><span class="image"><a class="image" href="_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing"></a></span></p>
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/batch-processing-group.png" target="_blank" rel="noopener"><img src="_images/batch-processing-group.png" alt="Group batch processing"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can define the following logic in the processor configuration:</p>
@@ -3099,7 +3889,7 @@ This default configuration implements a constant pause duration of 500 ms betwee
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="_images/starter/starter_enabling_streaming.png" target="_blank" rel="noopener"><img src="_images/starter/starter_enabling_streaming.png" alt="Stream Toggle"></a>
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/starter/starter_enabling_streaming.png" target="_blank" rel="noopener"><img src="_images/starter/starter_enabling_streaming.png" alt="Stream Toggle"></a>
 </div>
 </div>
 </div>
@@ -3327,7 +4117,7 @@ A Talend Component Kit plugin is available for each of the supported build tools
 For example, to compile the project and prepare for deploying your component, run <code>mvn clean install</code>. Using this command, the following goals are executed:</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/mvn_clean_install.png" target="_blank" rel="noopener"><img src="_images/mvn_clean_install.png" alt="Maven clean install"></a></span></p>
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/mvn_clean_install.png" target="_blank" rel="noopener"><img src="_images/mvn_clean_install.png" alt="Maven clean install"></a></span></p>
 </div>
 <div class="paragraph">
 <p>The build is split into several phases. The different goals are executed in the order shown above. Talend Component Kit uses default goals from the Maven build lifecycle and adds additional goals to the building and packaging phases.</p>
@@ -4030,7 +4820,7 @@ This goal is deprecated and will be removed in a future release.
 <div class="sect3">
 <h4 id="_generating_the_component_archive"><a class="anchor" href="#_generating_the_component_archive"></a>Generating the component archive</h4>
 <div class="paragraph">
-<p>Component ARchive (<strong>.car</strong>) is the way to bundle a component to share it in the Talend ecosystem. It is a plain Java ARchive (<strong>.jar</strong>) containing a metadata file and a nested Maven repository containing the component and its depenencies.</p>
+<p>Component ARchive (<strong>.car</strong>) is the way to bundle a component to share it in the Talend ecosystem. It is an executable Java ARchive (<strong>.jar</strong>) containing a metadata file and a nested Maven repository containing the component and its dependencies.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4242,6 +5032,9 @@ A Talend Component Kit plugin is available for each of the supported build tools
 </div>
 <div class="paragraph">
 <p><strong>gradle-talend-component</strong> helps you write components that match the best practices. It is inspired from the Maven plugin and adds the ability to generate automatically the <code>dependencies.txt</code> file used by the SDK to build the component classpath. For more information on the configuration, refer to the <a href="build-tools-maven.html" class="page">Maven</a> properties matching the attributes.</p>
+</div>
+<div class="paragraph">
+<p>By default, Gradle does not log information messages. To see messages, use <code>--info</code> in your commands. Refer to <a href="https://docs.gradle.org/current/userguide/logging.html">Gradle&#8217;s documentation</a> to learn about log levels.</p>
 </div>
 <div class="paragraph">
 <p>You can use it as follows:</p>
@@ -4634,7 +5427,7 @@ public class KafkaInput extends PTransform&lt;PBegin, PCollection&lt;Record&gt;&
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Make sure to create a <code>package-info.java file</code> with the component family/categories at the root of your component package:</p>
+<p>Make sure to create a <code>package-info.java</code> file with the component family/categories at the root of your component package:</p>
 </li>
 </ol>
 </div>
@@ -5099,7 +5892,7 @@ For example, the tree classloading is commonly used by Servlet containers where 
 <p>Here is a representation of this solution:</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><a class="image" href="_images/classloader-layout.png" target="_blank" rel="noopener"><img src="_images/classloader-layout.png" alt="Classloader layout"></a></span></p>
+<p><span class="image"><a class="image" href="https://talend.github.io/component-runtime/main/1.1.9/_images/classloader-layout.png" target="_blank" rel="noopener"><img src="_images/classloader-layout.png" alt="Classloader layout"></a></span></p>
 </div>
 <div class="paragraph">
 <p>The <em>shared</em> area contains Talend Component Kit API, which only contains by default the classes shared by the plugins.</p>
