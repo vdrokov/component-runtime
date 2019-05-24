@@ -8,7 +8,7 @@
     <meta name="description" content="How to define component and component family metadata">
     <meta name="keywords" content="icon, component version, component name, family, category">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-05-24T09:44:22.405Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-05-24T15:12:15.253Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -566,13 +566,38 @@ You can use one of the icons provided by the framework or you can use a custom i
 </ul>
 </div>
 <div class="paragraph">
-<p>To use a custom icon, you need to have the icon file placed in the <code>resources/icons</code> folder of the project.
-The icon file needs to have a name following the convention <code>IconName_icon32.png</code>, where you can replace <code>IconName</code> by the name of your choice.</p>
+<p>To use a custom icon, you need to have the icon file placed in the <code>src/main/resources/icons</code> folder of the project.
+The icon file needs to have a name following the convention <code>IconName.svg</code> - or the convention <code>IconName_icon32.png</code> which will run in degraded mode in Talend Cloud.
+Indeed, you can replace <code>IconName</code> by the name of your choice.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Icon(value = Icon.IconType.CUSTOM, custom = "IconName")</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+even in SVG, the icon must be squared.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+the Maven (or Gradle) <code>svg2png</code> plugin takes care of converting the SVG into PNG, if you want a finer control over both images, you can provide both in your component.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
