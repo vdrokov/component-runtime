@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.10/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-05-25T10:43:22.209Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-05-27T13:01:06.678Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -9810,7 +9810,7 @@ final Server decrypted = decrypter.find("my-test-server");
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Even if you don&#8217;t use Maven on the platform, you can generate the <code>settings.xml</code> and`settings-security.xml` files to use that feature. See <a href="https://maven.apache.org/guides/mini/guide-encryption.html" class="bare">maven.apache.org/guides/mini/guide-encryption.html</a> for more details.
+Even if you do not use Maven on the platform, you can generate the <code>settings.xml</code> and`settings-security.xml` files to use that feature. See <a href="https://maven.apache.org/guides/mini/guide-encryption.html" class="bare">maven.apache.org/guides/mini/guide-encryption.html</a> for more details.
 </td>
 </tr>
 </table>
@@ -10628,7 +10628,7 @@ public class MyService {
     public MyService(...,APIClient client){
         //...
         this.client = client;
-        client.base("http://localhost:8080");// init the base of the api, ofen in a PostConstruct or init method
+        client.base("http://localhost:8080");// init the base of the api, often in a PostConstruct or init method
     }
 
     //...
@@ -11796,7 +11796,7 @@ You still need to add and remove the components to see the changes.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_installing_components_from_a_car_file"><a class="anchor" href="#_installing_components_from_a_car_file"></a>Installing components from a CAR file</h3>
+<h3 id="_installing_components_using_a_car_file"><a class="anchor" href="#_installing_components_using_a_car_file"></a>Installing components using a CAR file</h3>
 <div class="paragraph">
 <p>Components built using Talend Component Kit can be shared as component archives (.car). These CAR files are executable files allowing to easily deploy the components it contains to any compatible version of <a href="https://sourceforge.net/projects/talend-studio/">Talend Studio</a>.</p>
 </div>
@@ -11806,8 +11806,10 @@ You still need to add and remove the components to see the changes.
 <div class="paragraph">
 <p>This document assumes that you have a component archive (.car) file and need to deploy it to Talend Studio.</p>
 </div>
+<div class="sect3">
+<h4 id="_deploying_from_the_car_file_to_talend_studio"><a class="anchor" href="#_deploying_from_the_car_file_to_talend_studio"></a>Deploying from the CAR file to Talend Studio</h4>
 <div class="paragraph">
-<p>This CAR is executable and exposes the <code>studio-deploy</code> command which takes a Talend Studio home path as parameter. When executed, it installs the dependencies into the Studio and registers the component in your instance. For example:</p>
+<p>The component archive (.car) is executable and exposes the <code>studio-deploy</code> command which takes a Talend Studio home path as parameter. When executed, it installs the dependencies into the Studio and registers the component in your instance. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11836,6 +11838,56 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">--pass "Y0u will \ not G4iess i' ^"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_deploying_a_component_archive_to_a_remote_project_from_talend_studio"><a class="anchor" href="#_deploying_a_component_archive_to_a_remote_project_from_talend_studio"></a>Deploying a component archive to a remote project from Talend Studio</h4>
+<div class="paragraph">
+<p>Talend Studio allows you to share components you have created using Talend Component Kit to other users working on the same remote project.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Remote projects are available with Enterprise versions of Talend Studio only.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Make sure you are connected to a remote project and the artifact repository for component sharing has been properly configured.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On the toolbar of the Studio main window, click  or click <strong>File</strong> &gt; <strong>Edit Project Properties</strong> from the menu bar to open the Project Settings dialog box.</p>
+</li>
+<li>
+<p>In the tree view of the dialog box, select <strong>Repository Share</strong> to open the corresponding view.</p>
+</li>
+<li>
+<p>Select the <strong>Propagate components update to Artifact Repository</strong> check box.</p>
+</li>
+<li>
+<p>In the Repository ID field, specify the artifact repository configured for component sharing, and then click <strong>Check connection</strong> to verify the connectivity.</p>
+</li>
+<li>
+<p>Click <strong>Apply and Close</strong> to validate the settings and close the dialog box.</p>
+</li>
+<li>
+<p>Create a folder named <code>patches</code> at the root of your Talend Studio installation directory, then copy the .car files of the components you want share to this folder.</p>
+</li>
+<li>
+<p>Restart your Talend Studio and connect to the remote project.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The components are deployed automatically to the repository and available in the Palette for other users when connected to a remote project with the same sharing repository configuration.</p>
 </div>
 </div>
 </div>
@@ -12653,7 +12705,7 @@ the configuration is read from system properties, environment variables, &#8230;
 </dd>
 <dt class="hdlist1">talend.component.server.icon.paths</dt>
 <dd>
-<p>Default value: <code>%s_icon32.png,icons/%s_icon32.png,icons/png/%s_icon32.png</code>. These patterns are used to find the icons in the classpath(s).</p>
+<p>Default value: <code>icons/%s.svg,icons/svg/%s.svg,icons/%s_icon32.png,icons/png/%s_icon32.png</code>. These patterns are used to find the icons in the classpath(s).</p>
 </dd>
 <dt class="hdlist1">talend.component.server.jaxrs.exceptionhandler.defaultMessage</dt>
 <dd>

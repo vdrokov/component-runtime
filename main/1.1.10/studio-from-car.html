@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Kit Developer Reference Guide :: Installing components from a CAR file</title>
+    <title>Talend Component Kit Developer Reference Guide :: Installing components using a CAR file</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.10/studio-from-car.html">
     <meta name="description" content="How to build a component archive that you can easily share and how to install the shared .car file in Talend Studio.">
     <meta name="keywords" content="deploy, install, car, .car, component archive">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-05-25T10:43:22.308Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-05-27T13:01:06.884Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -461,9 +461,11 @@
                 <article class="doc">
         <div class="row">
           <div class="col-sm-9 row">
-              <h1>Installing components from a CAR file</h1>
+              <h1>Installing components using a CAR file</h1>
             <div class="article-content">
-              <div class="paragraph">
+              <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
 <p>Components built using Talend Component Kit can be shared as component archives (.car). These CAR files are executable files allowing to easily deploy the components it contains to any compatible version of <a href="https://sourceforge.net/projects/talend-studio/">Talend Studio</a>.</p>
 </div>
 <div class="paragraph">
@@ -472,8 +474,13 @@
 <div class="paragraph">
 <p>This document assumes that you have a component archive (.car) file and need to deploy it to Talend Studio.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_from_the_car_file_to_talend_studio"><a class="anchor" href="#_deploying_from_the_car_file_to_talend_studio"></a>Deploying from the CAR file to Talend Studio</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>This CAR is executable and exposes the <code>studio-deploy</code> command which takes a Talend Studio home path as parameter. When executed, it installs the dependencies into the Studio and registers the component in your instance. For example:</p>
+<p>The component archive (.car) is executable and exposes the <code>studio-deploy</code> command which takes a Talend Studio home path as parameter. When executed, it installs the dependencies into the Studio and registers the component in your instance. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -504,6 +511,59 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">--pass "Y0u will \ not G4iess i' ^"</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_a_component_archive_to_a_remote_project_from_talend_studio"><a class="anchor" href="#_deploying_a_component_archive_to_a_remote_project_from_talend_studio"></a>Deploying a component archive to a remote project from Talend Studio</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Talend Studio allows you to share components you have created using Talend Component Kit to other users working on the same remote project.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Remote projects are available with Enterprise versions of Talend Studio only.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Make sure you are connected to a remote project and the artifact repository for component sharing has been properly configured.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On the toolbar of the Studio main window, click  or click <strong>File</strong> &gt; <strong>Edit Project Properties</strong> from the menu bar to open the Project Settings dialog box.</p>
+</li>
+<li>
+<p>In the tree view of the dialog box, select <strong>Repository Share</strong> to open the corresponding view.</p>
+</li>
+<li>
+<p>Select the <strong>Propagate components update to Artifact Repository</strong> check box.</p>
+</li>
+<li>
+<p>In the Repository ID field, specify the artifact repository configured for component sharing, and then click <strong>Check connection</strong> to verify the connectivity.</p>
+</li>
+<li>
+<p>Click <strong>Apply and Close</strong> to validate the settings and close the dialog box.</p>
+</li>
+<li>
+<p>Create a folder named <code>patches</code> at the root of your Talend Studio installation directory, then copy the .car files of the components you want share to this folder.</p>
+</li>
+<li>
+<p>Restart your Talend Studio and connect to the remote project.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The components are deployed automatically to the repository and available in the Palette for other users when connected to a remote project with the same sharing repository configuration.</p>
+</div>
+</div>
+</div>
             </div>
           </div>
           <div class="col-sm-3 container article-side-panel">
@@ -519,13 +579,13 @@ java -jar mycomponent.car maven-deploy --location /path/to/.m2/repository</code>
 
                     <li>
                                 <a class="article-side-actions-link" target="_blank"
-                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.10%2Fstudio-from-car.html&text=Talend%20Component%20Kit%20%3E%3E%20Installing%20components%20from%20a%20CAR%20file%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.10%2Fstudio-from-car.html">
+                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.10%2Fstudio-from-car.html&text=Talend%20Component%20Kit%20%3E%3E%20Installing%20components%20using%20a%20CAR%20file%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.10%2Fstudio-from-car.html">
                                     <i class="fab fa-twitter"></i> &nbsp; &nbsp; Tweet
                                 </a>
                             </li>
                             <li>
                                 <a class="article-side-actions-link"
-                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Installing%20components%20from%20a%20CAR%20file&body=Talend%20Component%20Kit%3A%20Installing%20components%20from%20a%20CAR%20file%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.10%2Fstudio-from-car.html">
+                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Installing%20components%20using%20a%20CAR%20file&body=Talend%20Component%20Kit%3A%20Installing%20components%20using%20a%20CAR%20file%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.10%2Fstudio-from-car.html">
                                     <i class="far fa-envelope"></i> &nbsp; &nbsp; Mail
                                 </a>
                             </li>
