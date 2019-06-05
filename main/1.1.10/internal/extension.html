@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Extension Points</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.10/internal/extension.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-06-05T12:09:05.111Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-06-05T13:51:38.891Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -565,6 +565,36 @@ the contributor is used even if no customizer disabled dependencies, this means 
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_change_the_way_component_are_mapped_to_a_model"><a class="anchor" href="#_change_the_way_component_are_mapped_to_a_model"></a>Change the way Component are mapped to a model</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This part is very useful for component using a potential other API - but not generic, i.e. 1 class == 1 component.</p>
+</div>
+<div class="paragraph">
+<p>The SPI is <code>org.talend.sdk.component.spi.component.ComponentExtension</code>.</p>
+</div>
+<div class="paragraph">
+<p>It enables to:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add specific dependencies (for instance beam for beam components),</p>
+</li>
+<li>
+<p>Add transformers (to modify the bytecode of the component + dependencies),</p>
+</li>
+<li>
+<p>Provide an alternative way to instantiate components,</p>
+</li>
+<li>
+<p>Disable the validation of components - if you know you used an incompatible programming model.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
