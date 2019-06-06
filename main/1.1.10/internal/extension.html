@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Extension Points</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.10/internal/extension.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-06-05T14:23:57.556Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-06-06T08:00:28.494Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -751,6 +751,30 @@ public class InMemorySchemaRegistry implements SchemaRegistry {
 </div>
 <div class="paragraph">
 <p>A sample can be seen on github through <a href="https://github.com/Talend/component-runtime/tree/component-runtime-1.1.9/component-server-parent/extensions/stitch">stitch PoC</a> module.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_build_enrichment"><a class="anchor" href="#_build_enrichment"></a>Build enrichment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>During the build of components, several phases are executed (dependencies, validation, documentation etc&#8230;&#8203;).
+For now it is only possible to extend the validations - if you add custom API.</p>
+</div>
+<div class="paragraph">
+<p>It goes through the SPI <code>org.talend.sdk.component.tools.spi.ValidationExtension</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+implementing this API you must add your validation implementation as a dependency of the <code>talend-component-maven-plugin</code> <strong>plugin</strong> and not module dependencies.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
