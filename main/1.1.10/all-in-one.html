@@ -6,7 +6,7 @@
     <title>Talend Component Kit Developer Reference Guide :: Talend Component Kit Developer Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.10/all-in-one.html">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-06-07T06:45:53.135Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-06-07T09:10:03.182Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -77,11 +77,12 @@
         <a class="navbar-single-link" href="index.html">Talend Component Kit</a>
         <div class="btn-group navbar-versions">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              1.1.10 (dev) <span class="caret"></span>
+                1.1.10 (dev)
+              <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-                <li class="navbar-item version is-current is-latest">
-                    <a href="index.html">1.1.10 (dev)</a>
+                <li class="navbar-item version">
+                    <a href="index.html">1.1.10</a>
                 </li>
                 <li class="navbar-item version">
                     <a href="../1.1.9/index.html">1.1.9</a>
@@ -134,14 +135,15 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Repositories <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a class="navbar-item" href="https://github.com/talend/component-runtime" target="_blank">Runtime</a></li>
+              <li><a class="navbar-item" href="/main/blog/release-notes.html" target="_blank">Release Notes</a></li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Community <span class="caret"></span></a>
             <ul class="dropdown-menu">
+              <li><a class="navbar-item" href="https://github.com/talend/component-runtime" target="_blank">GitHub Repository</a></li>
               <li><a class="navbar-item" href="contributors.html">Contributors</a></li>
               <li><a class="navbar-item" href="https://community.talend.com/t5/Component-Development/bd-p/ComponentDevelopment" target="_blank">Forum</a></li>
               <li><a class="navbar-item" href="https://help.talend.com/" target="_blank">Talend Help Center</a></li>
@@ -2053,6 +2055,66 @@ If you don&#8217;t have Maven installed on your machine, you can use the Maven w
 Import the project to your favorite IDE to start the implementation.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_generating_a_project_using_an_openapi_json_descriptor"><a class="anchor" href="#_generating_a_project_using_an_openapi_json_descriptor"></a>Generating a project using an OpenAPI JSON descriptor</h4>
+<div class="paragraph">
+<p>The Component Kit Starter allows you to generate a component development project from an OpenAPI JSON descriptor.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <a href="https://starter-toolkit.talend.io">Starter</a> in the web browser of your choice.</p>
+</li>
+<li>
+<p>Enable the <strong>OpenAPI</strong> mode using the toggle in the header.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.10/_images/starter_openapi_toggle.png" target="_blank" rel="noopener"><img src="_images/starter_openapi_toggle.png" alt="Open API toggle"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Go to the <strong>API</strong> menu.</p>
+</li>
+<li>
+<p>Paste the OpenAPI JSON descriptor in the right part of the screen. All the described endpoints are detected.</p>
+</li>
+<li>
+<p>Unselect the endpoints that you do not want to use in the future components. By default, all detected endpoints are selected.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.10/_images/starter_openapi_json.png" target="_blank" rel="noopener"><img src="_images/starter_openapi_json.png" alt="Open API menu"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Go to the <strong>Finish</strong> menu.</p>
+</li>
+<li>
+<p>Download the project.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When exploring the project generated from an OpenAPI descriptor, you can notice the following elements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>sources</p>
+</li>
+<li>
+<p>the API dataset</p>
+</li>
+<li>
+<p>an HTTP client for the API</p>
+</li>
+<li>
+<p>a connection folder containing the component configuration. By default, the configuration is only made of a simple datastore with a <code>baseUrl</code> parameter.</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect3 relatedlinks">
 <h4 id="_related_articles_4"><a class="anchor" href="#_related_articles_4"></a>Related articles</h4>
 <div class="ulist">
@@ -3589,6 +3651,12 @@ public MyFileReader(@Option("file-path") final File file,
 </li>
 <li>
 <p><code>Pattern</code></p>
+</li>
+<li>
+<p><code>LocalDateTime</code></p>
+</li>
+<li>
+<p><code>ZonedDateTime</code></p>
 </li>
 </ul>
 </div>
@@ -6002,7 +6070,7 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 </div>
 </div>
 <div class="paragraph">
-<p>Configuration - excluding parameters used by default only:</p>
+<p>Configuration:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch table-striped table-hover table-ordered">
 <colgroup>
@@ -6025,6 +6093,12 @@ The default lifecycle is detailed in <a href="https://maven.apache.org/guides/in
 <td class="tableblock halign-left valign-top"><p class="tableblock">Where to scan for the SVG icons to convert in PNG.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">talend.icons.source</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>${project.build.outputDirectory}/icons</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">workarounds</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By default the shape of the icon will be enforce in the RGB channels (in white) using the alpha as reference. This is useful for black/white images using alpha to shape the picture because Eclipse - Talend Studio - caches icons using RGB but not alpha channel, pictures not using alpha channel to draw their shape should disable that workaround.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">talend.icons.workaround</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -6929,6 +7003,10 @@ talendComponentKit {
 
     // deploy-in-studio
     studioHome = "C:\&lt;pathToSutdio&gt;"
+
+    // svg2png
+    icons = 'resources/main/icons'
+    useIconWorkarounds = true
 }</code></pre>
 </div>
 </div>
@@ -14839,6 +14917,66 @@ If you don&#8217;t have Maven installed on your machine, you can use the Maven w
 Import the project to your favorite IDE to start the implementation.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_generating_a_project_using_an_openapi_json_descriptor_2"><a class="anchor" href="#_generating_a_project_using_an_openapi_json_descriptor_2"></a>Generating a project using an OpenAPI JSON descriptor</h4>
+<div class="paragraph">
+<p>The Component Kit Starter allows you to generate a component development project from an OpenAPI JSON descriptor.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <a href="https://starter-toolkit.talend.io">Starter</a> in the web browser of your choice.</p>
+</li>
+<li>
+<p>Enable the <strong>OpenAPI</strong> mode using the toggle in the header.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.10/_images/starter_openapi_toggle.png" target="_blank" rel="noopener"><img src="_images/starter_openapi_toggle.png" alt="Open API toggle"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Go to the <strong>API</strong> menu.</p>
+</li>
+<li>
+<p>Paste the OpenAPI JSON descriptor in the right part of the screen. All the described endpoints are detected.</p>
+</li>
+<li>
+<p>Unselect the endpoints that you do not want to use in the future components. By default, all detected endpoints are selected.<br></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.10/_images/starter_openapi_json.png" target="_blank" rel="noopener"><img src="_images/starter_openapi_json.png" alt="Open API menu"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Go to the <strong>Finish</strong> menu.</p>
+</li>
+<li>
+<p>Download the project.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When exploring the project generated from an OpenAPI descriptor, you can notice the following elements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>sources</p>
+</li>
+<li>
+<p>the API dataset</p>
+</li>
+<li>
+<p>an HTTP client for the API</p>
+</li>
+<li>
+<p>a connection folder containing the component configuration. By default, the configuration is only made of a simple datastore with a <code>baseUrl</code> parameter.</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect3 relatedlinks">
 <h4 id="_related_articles_34"><a class="anchor" href="#_related_articles_34"></a>Related articles</h4>
 <div class="ulist">
@@ -17024,7 +17162,7 @@ public class MyOutput implements Serializable {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The version of the configuration class is aligned with the component version. The configuration class is consumed by the component and inherits its version.
+The version of the configuration class corresponds to the component version.
 </td>
 </tr>
 </table>
@@ -17260,9 +17398,6 @@ Refer to <a href="component-configuration.html" class="page">Defining component 
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Assuming that you are familiar with component configuration path construction, let&#8217;s implement the migration handler.</p>
 </div>
 <div class="paragraph">
 <p>As a reminder, the following changes were made since the version 1 of the component:</p>
