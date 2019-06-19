@@ -8,7 +8,7 @@
     <meta name="description" content="Sample screenshots of the Talend Component Kit available widgets and validation methods">
     <meta name="keywords" content="Widget, validation">
     <meta name="generator" content="Talend Component Kit Generator">
-<meta name="date" content="2019-06-19T08:50:13.529Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-06-19T09:21:42.030Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -728,256 +728,401 @@ Boolean config;</code></pre>
 LocalDateTime startTime;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>===
-|Studio Rendering | Web Rendering</p>
-</div>
-<div class="paragraph">
-<p>|image::gallery/widgets/studio/widget_calendar.png[Studio Calendar,40%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/widget_calendar.png"]
-|image::gallery/widgets/web/widget_calendar.png[Web Calendar,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/widget_calendar.png"]</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all stretch table gallery table-striped">
 <colgroup>
-<col style="width: 100%;">
+<col>
+<col>
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Studio Rendering</th>
+<th class="tableblock halign-left valign-top">Web Rendering</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">=== List</p>
-<p class="tableblock">[source,java]
-----
-@Option
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/widget_calendar.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/widget_calendar.png" alt="Studio Calendar" width="40%"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/widget_calendar.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/widget_calendar.png" alt="Web Calendar" width="100%"></a>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_list"><a class="anchor" href="#_list"></a>List</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 @Proposable("valuesProvider")
 String config;
-/<strong> service class */
+/** service class */
 @DynamicValues("valuesProvider")
 public Values actions(){
   return new Values(asList(new Values.Item("1", "Delete"),
                     new Values.Item("2", "Insert"),
                     new Values.Item("3", "Update")));
-}
-----</p>
-<p class="tableblock">or</p>
-<p class="tableblock">[source,java]
-----
-@Option
-ActionEnum config;</p>
-<p class="tableblock">/</strong> Define enum */
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+ActionEnum config;
+
+/** Define enum */
 enum ActionEnum {
     Delete,
     Insert,
     Update
-}
-----</p>
-<p class="tableblock">[cols="1a,1a",role="table gallery table-striped",options="header,autowidth",width="100%"]</p></td>
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch table gallery table-striped">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Studio Rendering</th>
+<th class="tableblock halign-left valign-top">Web Rendering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/list.png" alt="Studio List" width="40%"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/list.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/list.png" alt="Web List" width="100%"></a>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>|Studio Rendering | Web Rendering</p>
 </div>
-<div class="paragraph">
-<p>|image::gallery/widgets/studio/list.png[Studio List,40%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/list.png"]
-|image::gallery/widgets/web/list.png[Web List,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/list.png"]</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">=== Suggestions</p>
-<p class="tableblock">[source,java]
-----
-@Option
+<div class="sect2">
+<h3 id="_suggestions"><a class="anchor" href="#_suggestions"></a>Suggestions</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 @Suggestable(value = "loadModules", parameters = { "myconfig" })
 @Documentation("module names are loaded using service")
-public String moduleName;</p>
-<p class="tableblock">@Suggestions("loadModules")
-public SuggestionValues loadModules(@Option final MyConfig myconfig) { }
-----</p>
-<p class="tableblock">[cols="1a,1a",role="table gallery table-striped",options="header,autowidth",width="100%"]</p></td>
+public String moduleName;
+
+
+// In Service class
+@Suggestions("loadModules")
+public SuggestionValues loadModules(@Option final MyConfig myconfig) { }</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch table gallery table-striped">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Studio Rendering</th>
+<th class="tableblock halign-left valign-top">Web Rendering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loading.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loading.png" alt="Studio suggestions loading" width="100%"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loading.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loading.png" alt="Web suggestions loading" width="100%"></a>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loaded.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loaded.png" alt="Studio suggestions loaded" width="80%"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loaded.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loaded.png" alt="Web suggestions loaded" width="100%"></a>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>|Studio Rendering | Web Rendering</p>
 </div>
-<div class="paragraph">
-<p>|image::gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loading.png[Studio suggestions loading,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loading.png"]
-|image::gallery/widgets/web/web_talend_component_kit_suggestion_widget_loading.png[Web suggestions loading,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loading.png"]
-|image::gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loaded.png[Studio suggestions loaded,80%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/studio_talend_component_kit_suggestion_widget_loaded.png"]
-|image::gallery/widgets/web/web_talend_component_kit_suggestion_widget_loaded.png[Web suggestions loaded,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/web_talend_component_kit_suggestion_widget_loaded.png"]</p>
+<div class="sect2">
+<h3 id="_table"><a class="anchor" href="#_table"></a>Table</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
+List&lt;MyObject&gt; config;</code></pre>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+</div>
+<table class="tableblock frame-all grid-all stretch table gallery table-striped">
 <colgroup>
-<col style="width: 100%;">
+<col>
+<col>
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Studio Rendering</th>
+<th class="tableblock halign-left valign-top">Web Rendering</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">=== Table</p>
-<p class="tableblock">[source,java]
-----
-@Option
-List&lt;MyObject&gt; config;
-----</p>
-<p class="tableblock">[cols="1a,1a",role="table gallery table-striped",options="header,autowidth",width="100%"]</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/table.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/table.png" alt="Studio Table" width="100%"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/table.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/table.png" alt="Web Table" width="100%"></a>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>|Studio Rendering | Web Rendering</p>
 </div>
-<div class="paragraph">
-<p>|image::gallery/widgets/studio/table.png[Studio Table,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/table.png"]
-|image::gallery/widgets/web/table.png[Web Table,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/table.png"]</p>
+<div class="sect2">
+<h3 id="_code"><a class="anchor" href="#_code"></a>Code</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Code("java")
+@Option
+String config;</code></pre>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+</div>
+<table class="tableblock frame-all grid-all stretch table gallery table-striped">
 <colgroup>
-<col style="width: 100%;">
+<col>
+<col>
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Studio Rendering</th>
+<th class="tableblock halign-left valign-top">Web Rendering</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">=== Code</p>
-<p class="tableblock">[source,java]
-----
-@Code("java")
-@Option
-String config;
-----</p>
-<p class="tableblock">[cols="1a,1a",role="table gallery table-striped",options="header,autowidth",width="100%"]</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/javaCode.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/javaCode.png" alt="Studio Code" width="100%"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/javaCode.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/javaCode.png" alt="Web Code" width="100%"></a>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>|Studio Rendering | Web Rendering</p>
 </div>
-<div class="paragraph">
-<p>|image::gallery/widgets/studio/javaCode.png[Studio Code,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/javaCode.png"]
-|image::gallery/widgets/web/javaCode.png[Web Code,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/javaCode.png"]</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">=== Schema</p>
-<p class="tableblock">[source,java]
-----
-@Option
+<div class="sect2">
+<h3 id="_schema"><a class="anchor" href="#_schema"></a>Schema</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
 @Structure
-List&lt;String&gt; config;
-----</p>
-<p class="tableblock">[cols="1a,1a",role="table gallery table-striped",options="header,autowidth",width="100%"]</p></td>
+List&lt;String&gt; config;</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch table gallery table-striped">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Studio Rendering</th>
+<th class="tableblock halign-left valign-top">Web Rendering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/schema.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/schema.png" alt="Studio Schema" width="100%"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/schema.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/schema.png" alt="Web Schema" width="100%"></a>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>|Studio Rendering | Web Rendering</p>
 </div>
-<div class="paragraph">
-<p>|image::gallery/widgets/studio/schema.png[Studio Schema,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/schema.png"]
-|image::gallery/widgets/web/schema.png[Web Schema,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/schema.png"]</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">== Validations</p>
-<p class="tableblock">Validations help restricting what can be entered or selected in an input field, to make sure that the value complies with the expected type of information.</p>
-<p class="tableblock">=== Property validation</p>
-<p class="tableblock">[source,java]
-----
-/<strong> configuration class */
+</div>
+<div class="sect1">
+<h2 id="_validations"><a class="anchor" href="#_validations"></a>Validations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Validations help restricting what can be entered or selected in an input field, to make sure that the value complies with the expected type of information.</p>
+</div>
+<div class="sect2">
+<h3 id="_property_validation"><a class="anchor" href="#_property_validation"></a>Property validation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/** configuration class */
 @Option
 @Validable("url")
-String config;</p>
-<p class="tableblock">/</strong> service class */
+String config;
+
+/** service class */
 @AsyncValidation("url")
 ValidationResult doValidate(String url) {
-}
-----</p>
-<p class="tableblock">[cols="1a,1a",role="table gallery table-striped",options="header,autowidth",width="100%"]</p></td>
+//validate the property
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch table gallery table-striped">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Studio Rendering</th>
+<th class="tableblock halign-left valign-top">Web Rendering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_property.png" alt="Studio Code" width="100%"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/validation_property.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_property.png" alt="Web Code" width="100%"></a>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>|Studio Rendering | Web Rendering</p>
 </div>
-<div class="paragraph">
-<p>|image::gallery/widgets/studio/validation_property.png[Studio Code,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/validation_property.png"]
-|image::gallery/widgets/web/validation_property.png[Web Code,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/validation_property.png"]</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">=== Property validation with Pattern</p>
-<p class="tableblock">[source,java]
-----
-/** configuration class */
+<div class="sect2">
+<h3 id="_property_validation_with_pattern"><a class="anchor" href="#_property_validation_with_pattern"></a>Property validation with Pattern</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/** configuration class */
 @Option
 @Pattern("/^[a-zA-Z\\-]+$/")
-String username;
-----</p>
-<p class="tableblock">[cols="1a,1a",role="table gallery table-striped",options="header,autowidth",width="100%"]</p></td>
+String username;</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch table gallery table-striped">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Studio Rendering</th>
+<th class="tableblock halign-left valign-top">Web Rendering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_pattern.png" alt="Studio Code" width="100%"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/validation_pattern.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_pattern.png" alt="Web Code" width="100%"></a>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>|Studio Rendering | Web Rendering</p>
 </div>
-<div class="paragraph">
-<p>|image::gallery/widgets/studio/validation_pattern.png[Studio Code,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/validation_pattern.png"]
-|image::gallery/widgets/web/validation_pattern.png[Web Code,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/validation_pattern.png"]</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">=== Data store validation</p>
-<p class="tableblock">[source,java]
-----
-@Datastore
+<div class="sect2">
+<h3 id="_data_store_validation"><a class="anchor" href="#_data_store_validation"></a>Data store validation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Datastore
 @Checkable
 public class config {
-/<strong> config &#8230;&#8203;*/
-}</p>
-<p class="tableblock">/</strong> service class */
+/** config ...*/
+}
+
+/** service class */
 @HealthCheck
-public HealthCheckStatus testConnection(){</p>
-<p class="tableblock">}
-----</p>
-<p class="tableblock">[cols="1a,1a",role="table gallery table-striped",options="header,autowidth",width="100%"]</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>|Studio Rendering | Web Rendering</p>
+public HealthCheckStatus testConnection(){
+
+//validate the connection
+}</code></pre>
 </div>
-<div class="paragraph">
-<p>|image::gallery/widgets/studio/validation_datastore.png[Studio Code,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/prop_validation.png"]
-|image::gallery/widgets/web/validation_datastore.png[Web Code,100%,window="_blank",link="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/prop_validation.png"]</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all stretch table gallery table-striped">
 <colgroup>
-<col style="width: 100%;">
+<col>
+<col>
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Studio Rendering</th>
+<th class="tableblock halign-left valign-top">Web Rendering</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">You can also use other types of validation that are similar to <code>@Pattern</code>:</p>
-<p class="tableblock">* <code>@Min</code>, <code>@Max</code> to specify a minimum and maximum value for numerical fields.
-* <code>@Uniques</code> for collection values.
-* <code>@Required</code> for a required configuration.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/studio/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/studio/validation_datastore.png" alt="Studio Code" width="100%"></a>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
+<div class="content">
+<a class="image" href="https://talend.github.io/component-runtime/main/1.1.11/_images/gallery/widgets/web/prop_validation.png" target="_blank" rel="noopener"><img src="_images/gallery/widgets/web/validation_datastore.png" alt="Web Code" width="100%"></a>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>You can also use other types of validation that are similar to <code>@Pattern</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@Min</code>, <code>@Max</code> to specify a minimum and maximum value for numerical fields.</p>
+</li>
+<li>
+<p><code>@Uniques</code> for collection values.</p>
+</li>
+<li>
+<p><code>@Required</code> for a required configuration.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
