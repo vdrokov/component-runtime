@@ -11,7 +11,7 @@
     <title>Talend Component Kit Developer Guide :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.12/all-in-one.html">
     <meta name="generator" content="Antora 2.0.0">
-<meta name="date" content="2019-07-01T06:05:26.526Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-07-01T08:38:19.748Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -12857,6 +12857,13 @@ the configuration is read from system properties, environment variables, &#8230;
 <dt class="hdlist1">talend.component.server.lastUpdated.useStartTime</dt>
 <dd>
 <p>Default value: <code>false</code>. Should the lastUpdated timestamp value of <code>/environment</code> endpoint be updated with server start time.</p>
+</dd>
+<dt class="hdlist1">talend.component.server.locale.mapping</dt>
+<dd>
+<p>Default value: <code>en*=en
+fr*=fr
+zh*=zh_CN
+ja*=ja</code>. For caching reasons the goal is to reduce the locales to the minimum required numbers. For instance we avoid <code>fr</code> and <code>fr_FR</code> which would lead to the same entries but x2 in terms of memory. This mapping enables that by whitelisting allowed locales, default being <code>en</code>. If the key ends with <code><strong></code> it means all string starting with the prefix will match. For instance <code>fr</strong></code> will match <code>fr_FR</code> but also <code>fr_CA</code>.</p>
 </dd>
 <dt class="hdlist1">talend.component.server.maven.repository</dt>
 <dd>
