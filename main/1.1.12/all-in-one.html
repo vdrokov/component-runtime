@@ -11,7 +11,7 @@
     <title>Talend Component Kit Developer Guide :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.12/all-in-one.html">
     <meta name="generator" content="Antora 2.0.0">
-<meta name="date" content="2019-07-08T13:00:47.147Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-07-09T10:24:26.584Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -5235,6 +5235,10 @@ The framework is designed to be as declarative as possible but also to stay exte
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>${enum_simple_class_name}.${enum_name}._displayName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Display name of the <code>enum_name</code> value of the <code>enum_simple_class_name</code> enumeration.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${property_path or simple_class_name}._gridlayout.${layout_name}._displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Display name of tab corresponding to the layout (tab). Note that this requires the server <code>talend.component.server.gridlayout.translation.support</code> option to be set to <code>true</code> and it is not yet supported by the Studio.</p></td>
 </tr>
 </tbody>
 </table>
@@ -12845,6 +12849,10 @@ the configuration is read from system properties, environment variables, &#8230;
 <dt class="hdlist1">talend.component.server.filter.secured.tokens</dt>
 <dd>
 <p>Default value: <code>-</code>. Accepted tokens in Authorization header for remote calls to secured endpoints (/api/v1/environment or /documentation).</p>
+</dd>
+<dt class="hdlist1">talend.component.server.gridlayout.translation.support</dt>
+<dd>
+<p>Default value: <code>false</code>. Should the components using a <code>@GridLayout</code> support tab translation. Studio does not suppot that feature yet so this is not enabled by default.</p>
 </dd>
 <dt class="hdlist1">talend.component.server.icon.paths</dt>
 <dd>
