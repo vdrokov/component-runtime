@@ -11,7 +11,7 @@
     <title>Talend Component Kit Developer Guide :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.12/all-in-one.html">
     <meta name="generator" content="Antora 2.0.0">
-<meta name="date" content="2019-07-30T16:17:06.218Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-07-31T13:24:57.344Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -6615,121 +6615,6 @@ This is an advanced feature designed for expert users. Use it with caution.
 </tr>
 </table>
 </div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_generating_inputs_or_outputs"><a class="anchor" href="#_generating_inputs_or_outputs"></a>Generating inputs or outputs</h4>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-This goal is deprecated and will be removed in a future release.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The Mojo <code>generate</code> (Maven plugin goal) of the same plugin also embeds a generator that you can use to bootstrap any input or output component:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
-  &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
-  &lt;artifactId&gt;talend-component-maven-plugin&lt;/artifactId&gt;
-  &lt;version&gt;${talend-component.version}&lt;/version&gt;
-  &lt;executions&gt;
-    &lt;execution&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-      &lt;id&gt;generate-input&lt;/id&gt;
-      &lt;phase&gt;generate-sources&lt;/phase&gt;
-      &lt;goals&gt;
-        &lt;goal&gt;generate&lt;/goal&gt;
-      &lt;/goals&gt;
-      &lt;configuration&gt;
-        &lt;type&gt;input&lt;/type&gt;
-      &lt;/configuration&gt;
-    &lt;/execution&gt;
-    &lt;execution&gt; <i class="conum" data-value="2"></i><b>(2)</b>
-      &lt;id&gt;generate-output&lt;/id&gt;
-      &lt;phase&gt;generate-sources&lt;/phase&gt;
-      &lt;goals&gt;
-        &lt;goal&gt;generate&lt;/goal&gt;
-      &lt;/goals&gt;
-      &lt;configuration&gt;
-        &lt;type&gt;output&lt;/type&gt;
-      &lt;/configuration&gt;
-    &lt;/execution&gt;
-  &lt;/executions&gt;
-&lt;/plugin&gt;</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The first execution generates an input (partition mapper and producer).</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>the second execution generates an output (processor).</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>It is intended to be used from the command line (or IDE Maven integration) as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ mvn talend-component:generate \
-    -Dtalend.generator.type=[input|output] \ <i class="conum" data-value="1"></i><b>(1)</b>
-    [-Dtalend.generator.classbase=com.test.MyComponent] \ <i class="conum" data-value="2"></i><b>(2)</b>
-    [-Dtalend.generator.family=my-family] \ <i class="conum" data-value="3"></i><b>(3)</b>
-    [-Dtalend.generator.pom.read-only=false] \ <i class="conum" data-value="4"></i><b>(4)</b>
-    [-Dtalend.generator.pom.encoding=UTF-16] \ <i class="conum" data-value="5"></i><b>(5)</b>
-    [-Dtalend.generator.pom.spacing=4] \ <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Select the type of component you want: <code>input</code> to generate a mapper and an emitter, or <code>output</code> to generate an output processor. The type is mandatory.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Set the class name base (automatically suffixed by the component type). If not set, the package is guessed and the classname is based on the basedir name.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Set the component family to use. If not specified, it defaults to the basedir name and removes "component[s]" from it. for example, <code>my-component</code> leads to <code>my</code> as family, unless it is explicitly set.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Specify if the generator needs to add <code>component-api</code> to the POM, if not already there. If you already added it, you can set it to <code>false</code> directly in the POM.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Specify the encoding of the component. If not specified, it defaults to UTF-8.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Specify the tabulation spacing. If not specified, it defaults to 2.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For this command to work, you need to register the plugin as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
-  &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
-  &lt;artifactId&gt;talend-component-maven-plugin&lt;/artifactId&gt;
-  &lt;version&gt;${talend-component.version}&lt;/version&gt;
-&lt;/plugin&gt;</code></pre>
 </div>
 </div>
 <div class="sect4">
