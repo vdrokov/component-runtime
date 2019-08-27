@@ -15,7 +15,7 @@
     <meta name="description" content="Write a custom singer tap/target in Java">
     <meta name="keywords" content="singer, tap, target, stitch">
     <meta name="generator" content="Antora 2.0.0">
-<meta name="date" content="2019-08-27T02:32:49.721Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-08-27T13:23:37.301Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -573,6 +573,29 @@ myplugin = org.superbiz:myplugin:1.2.3</code></pre>
   -cp component-kitap-$KIT_VERSION-fatjar.jar:/path/containing/TALEND_INF_folder \
   org.talend.sdk.component.singer.kitap.Kitap \
   --config config.json [--discover] [--catalog catalog.json] [--state state.json]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively you can use <code>org.talend.sdk.component.singer.kitap.Carpates</code> main to launch the application, it differs from <code>Kitap</code> in the sense it takes a <code>.car</code> as option and avoids to pre-build the m2 repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java \
+  -jar component-kitap-$KIT_VERSION-fatjar.jar \
+  --component-archive /path/to/my-component.car \
+  [--work-dir /path/to/work/dir/or/default/to/tmp] \
+  --config config.json [--discover] [--catalog catalog.json] [--state state.json]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here is an example with a real component:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java -jar component-kitap-$KIT_VERSION-fatjar.jar \
+  --component-archive /opt/talend/components/mailio-1.0.0.car \
+  --work-dir /opt/talend/works/test \
+  --config config.json</code></pre>
 </div>
 </div>
 </div>
