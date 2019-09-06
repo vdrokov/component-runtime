@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talend Component Kit Developer Reference Guide :: Implementing an Output component</title>
+    <title>Talend Component Kit Developer Reference Guide :: Implementing an Output component for Hazelcast</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.13/tutorial-create-an-output-component.html">
     <meta name="description" content="Example of output component implementation with Talend Component Kit">
     <meta name="keywords" content="tutorial, example, output, processor, hazelcast">
     <meta name="generator" content="Talend Component Kit Generator">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Implementing an Output component :: Talend Component Kit Developer Reference Guide</title>
+    <title>Implementing an Output component for Hazelcast :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.13/tutorial-create-an-output-component.html">
     <meta name="description" content="Example of output component implementation with Talend Component Kit">
     <meta name="keywords" content="tutorial, example, output, processor, hazelcast">
     <meta name="generator" content="Antora 2.0.0">
-<meta name="date" content="2019-09-06T09:47:00.773Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-09-06T15:31:47.461Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -479,22 +479,26 @@
                 <article class="doc">
         <div class="row">
           <div class="col-sm-9 row">
-              <h1>Implementing an Output component</h1>
+              <h1>Implementing an Output component for Hazelcast</h1>
             <div class="article-content">
               <div id="preamble">
 <div class="sectionbody">
-<div id="tutorial-create-an-output-component" class="paragraph">
-<p>This tutorial shows how to create a complete working output component for <a href="https://hazelcast.org">Hazelcast</a>, including:</p>
+<div id="tutorial-create-an-output-component" class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This tutorial is the continuation of
+<a href="tutorial-create-an-input-component.html" class="page">Talend Input component for Hazelcast</a> tutorial. We will not walk through
+the project creation again, So please start from there before taking this one.
+</td>
+</tr>
+</table>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Defining the configurable part and the layout of the component.</p>
-</li>
-<li>
-<p>Defining the output that is responsible for connecting and writing data to the data source.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>This tutorial shows how to create a complete working output component for <a href="https://hazelcast.org">Hazelcast</a></p>
 </div>
 </div>
 </div>
@@ -502,100 +506,140 @@
 <h2 id="_defining_the_configurable_part_and_the_layout_of_the_component"><a class="anchor" href="#_defining_the_configurable_part_and_the_layout_of_the_component"></a>Defining the configurable part and the layout of the component</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The methodology to define the component configuration is described in the <a href="tutorial-create-an-input-component.html#defining-component-configuration" class="page">Implementing an input component</a> tutorial.</p>
+<p>As seen before, in Hazelcast there is multiple data source type. You can find queues, topics, cache, maps&#8230;&#8203;</p>
 </div>
 <div class="paragraph">
-<p>In this case, the input component configuration defined in the tutorial mentioned above can be used as a starting point.</p>
+<p>In this tutorials we will stick with the Map dataset and all what we will see here is applicable to the other types.</p>
 </div>
 <div class="paragraph">
-<p>Two additional fields are required for the output component:</p>
+<p>Let&#8217;s assume that our Hazelcast output component will be responsible of inserting data into a distributed Map.
+For that, we will need to know which attribute from the incoming data is to be used as a key in the map. The value will be the hole record
+encoded into a json format.</p>
+</div>
+<div class="paragraph">
+<p>Bu that in mind, we can design our output configuration as: the same Datastore and Dataset from the input component
+and an additional configuration that will define the key attribute.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s create our Output configuration class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Option
-private String keyAttribute;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.talend.components.hazelcast;
 
-@Option
-private String valueAttribute;</code></pre>
+import org.talend.sdk.component.api.configuration.Option;
+import org.talend.sdk.component.api.configuration.ui.layout.GridLayout;
+import org.talend.sdk.component.api.meta.Documentation;import java.io.Serializable;
+
+@GridLayout({
+                @GridLayout.Row("dataset"),
+                @GridLayout.Row("key")
+})
+@Documentation("Hazelcast output configuration")
+public class HazelcastOutputConfig implements Serializable {
+
+    @Option
+    @Documentation("the hazelcast dataset")
+    private HazelcastDataset dataset;
+
+    @Option
+    @Documentation("The key attribute")
+    private String key;
+
+
+    // Getters &amp; Setters omitted for simplicity
+    // You need to generate them
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>These fields are used to determine the key and value attributes for the Hazelcast map.</p>
+<p>Let&#8217;s add the i18n properties of our configuration into the <code>Messages.properties file</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties"># Output config
+HazelcastOutputConfig.dataset._displayName=Hazelcast dataset
+HazelcastOutputConfig.key._displayName=Key attribute</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring_the_output"><a class="anchor" href="#_configuring_the_output"></a>Configuring the Output</h2>
+<h2 id="_output_implementation"><a class="anchor" href="#_output_implementation"></a>Output Implementation</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The output component needs to work in distributed environments and should implement a serializable interface.</p>
-</div>
 <div class="paragraph">
 <p>The skeleton of the output component looks as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version <i class="conum" data-value="1"></i><b>(1)</b>
-@Icon(custom = "hazelcastOutput", value = CUSTOM) <i class="conum" data-value="2"></i><b>(2)</b>
-@Processor(name = "Output") <i class="conum" data-value="3"></i><b>(3)</b>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.talend.components.hazelcast;
+
+import org.talend.sdk.component.api.component.Icon;
+import org.talend.sdk.component.api.component.Version;
+import org.talend.sdk.component.api.configuration.Option;
+import org.talend.sdk.component.api.processor.ElementListener;
+import org.talend.sdk.component.api.meta.Documentation;
+import org.talend.sdk.component.api.processor.Processor;
+import org.talend.sdk.component.api.record.Record;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import java.io.Serializable;
+
+import static org.talend.sdk.component.api.component.Icon.IconType.CUSTOM;
+
+@Version
+@Icon(custom = "Hazelcast", value = CUSTOM)
+@Processor(name = "Output")
+@Documentation("Hazelcast output component")
 public class HazelcastOutput implements Serializable {
-    private final HazelcastConfiguration configuration;
-    private final JsonBuilderFactory jsonFactory;
-    private final Jsonb jsonb;
-    private final HazelcastService service;
 
-
-    public HazelcastOutput(@Option("configuration") final HazelcastConfiguration configuration,
-                           final JsonBuilderFactory jsonFactory,
-                           final Jsonb jsonb,
-                           final HazelcastService service) {} <i class="conum" data-value="4"></i><b>(4)</b>
+    public HazelcastOutput(@Option("configuration") final HazelcastOutputConfig configuration) {
+    }
 
     @PostConstruct
-    public void init() {} <i class="conum" data-value="5"></i><b>(5)</b>
+    public void init() {
+    }
 
     @PreDestroy
-    public void release() {} <i class="conum" data-value="6"></i><b>(6)</b>
+    public void release() {
+    }
 
     @ElementListener
-    public void onElement(final JsonObject defaultInput) {} <i class="conum" data-value="7"></i><b>(7)</b>
+    public void onElement(final Record record) {
+    }
 
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The <code>@Version</code> annotation indicates the version of the component. It is used to migrate the component configuration if needed.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <code>@Icon</code> annotation indicates the icon of the component. Here, the icon is a custom icon that needs to be bundled in the component JAR under <code>resources/icons</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The <code>@Processor</code> annotation indicates that this class is the processor (output) and defines the name of the component.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This constructor of the processor is responsible for injecting the component configuration and services. Configuration parameters are annotated with <code>@Option</code>.<br>
-The other parameters are considered as services and are injected by the component framework. Services can be local (class annotated with <code>@Service</code>) or provided by the component framework.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>The method annotated with <code>@PostConstruct</code> is executed once by instance and can be used for initialization.
-Here, the goal is to get the Hazelcast instance according to the provided configuration.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>The method annotated with <code>@PreDestroy</code> is used to clean resources at the end of the execution of the output.<br>
-In the context of this tutorial, the Hazelcast instance loaded in the post Construct method is shut down.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>Data is passed to the method annotated with <code>@ElementListener</code>. That method is responsible for handling the data output. You can define all the related logic in this method.</td>
-</tr>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@Version</code> annotation indicates the version of the component. It is used to migrate the component configuration if needed.</p>
+</li>
+<li>
+<p><code>@Icon</code> annotation indicates the icon of the component. Here, the icon is a custom icon that needs to be bundled in
+the component JAR under <code>resources/icons</code>.</p>
+</li>
+<li>
+<p><code>@Processor</code> annotation indicates that this class is the processor (output) and defines the name of the component.</p>
+</li>
+<li>
+<p><code>constructor</code> of the processor is responsible for injecting the component configuration and services.
+Configuration parameters are annotated with <code>@Option</code>. The other parameters are considered as services and are injected
+by the component framework. Services can be local (class annotated with <code>@Service</code>) or provided by the component framework.</p>
+</li>
+<li>
+<p>The method annotated with <code>@PostConstruct</code> is executed once by instance and can be used for initialization.</p>
+</li>
+<li>
+<p>The method annotated with <code>@PreDestroy</code> is used to clean resources at the end of the execution of the output.</p>
+</li>
+<li>
+<p>Data is passed to the method annotated with <code>@ElementListener</code>. That method is responsible for handling the data output.
+You can define all the related logic in this method.</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -610,53 +654,25 @@ If you need to bulk write the updates accordingly to groups, see <a href="concep
 </table>
 </div>
 <div class="paragraph">
-<p>Each of the methods mentioned above now needs to be created.</p>
+<p>Now, we will need to add the display name of the Output to the i18n resources file <code>Messages.properties</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">#Output
+Hazelcast.Output._displayName=Output</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Let&#8217;s implement all of those methods</p>
+</div>
+</blockquote>
 </div>
 <div class="sect2">
 <h3 id="_defining_the_constructor_method"><a class="anchor" href="#_defining_the_constructor_method"></a>Defining the constructor method</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public HazelcastOutput(@Option("configuration") final HazelcastConfiguration configuration,
-                       final JsonBuilderFactory jsonFactory,
-                       final Jsonb jsonb,
-                       final HazelcastService service) {
-    this.configuration = configuration;
-    this.jsonFactory = jsonFactory;
-    this.jsonb = jsonb;
-    this.service = service;
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_defining_the_postconstruct_method"><a class="anchor" href="#_defining_the_postconstruct_method"></a>Defining the PostConstruct method</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private transient HazelcastInstance instance;
-private transient IMap&lt;Object, Object&gt; map;
-
-@PostConstruct
-public void init() {
-    instance = service.findInstance(configuration.newConfig()); <i class="conum" data-value="1"></i><b>(1)</b>
-    map = instance.getMap(configuration.getMapName()); <i class="conum" data-value="2"></i><b>(2)</b>
-}</code></pre>
-</div>
-</div>
 <div class="paragraph">
-<p>To make it work, a Hazelcast instance and a Hazelcast map are required. The corresponding attributes need to be added to the output.</p>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Create an instance of Hazelcast according to the provided configuration.
-In this case, the injected HazelcastService instance is used. This service is implemented in the project. See the implementation in the <a href="tutorial-create-an-input-component.html#post-construct-method" class="page">Implementing an input component</a> tutorial.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Get the Hazelcast map according to the map name provided in the configuration, using the Hazelcast instance.</td>
-</tr>
-</table>
+<p>We will create the outpu contructor to inject the component configuration and some additional local and built in services.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -665,131 +681,392 @@ In this case, the injected HazelcastService instance is used. This service is im
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-In production, avoid creating one instance per thread/worker.
+Built in services are services provided by TCK.
 </td>
 </tr>
 </table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.talend.components.hazelcast;
+
+import org.talend.sdk.component.api.component.Icon;
+import org.talend.sdk.component.api.component.Version;
+import org.talend.sdk.component.api.configuration.Option;
+import org.talend.sdk.component.api.processor.ElementListener;
+import org.talend.sdk.component.api.meta.Documentation;
+import org.talend.sdk.component.api.processor.Processor;
+import org.talend.sdk.component.api.record.Record;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.json.bind.Jsonb;
+import java.io.Serializable;
+
+import static org.talend.sdk.component.api.component.Icon.IconType.CUSTOM;
+
+@Version
+@Icon(custom = "Hazelcast", value = CUSTOM)
+@Processor(name = "Output")
+@Documentation("Hazelcast output component")
+public class HazelcastOutput implements Serializable {
+
+    private final HazelcastOutputConfig configuration;
+
+    private final HazelcastService hazelcastService;
+
+    private final Jsonb jsonb;
+
+    public HazelcastOutput(@Option("configuration") final HazelcastOutputConfig configuration,
+            final HazelcastService hazelcastService, final Jsonb jsonb) {
+        this.configuration = configuration;
+        this.hazelcastService = hazelcastService;
+        this.jsonb = jsonb;
+    }
+
+    @PostConstruct
+    public void init() {
+    }
+
+    @PreDestroy
+    public void release() {
+    }
+
+    @ElementListener
+    public void onElement(final Record record) {
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here we find:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>configuration</code> is the component configuration class</p>
+</li>
+<li>
+<p><code>hazelcastService</code> is the service that we have implemented in the input component tutorial. it will be responsible of creating a hazelcast
+client instance.</p>
+</li>
+<li>
+<p><code>jsonb</code> is a built in service provided by tck to handle json object serialization and deserialization. We will use it to
+convert the incoming record to json format before inseting them into the map.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defining_the_postconstruct_method"><a class="anchor" href="#_defining_the_postconstruct_method"></a>Defining the PostConstruct method</h3>
+<div class="paragraph">
+<p>Nothing to do in the post construct method. but we could for example initialize a hazle cast instance there. but we will
+do it in a lazy way on the first call in the <code>@ElementListener</code> method</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_defining_the_predestroy_method"><a class="anchor" href="#_defining_the_predestroy_method"></a>Defining the PreDestroy method</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@PreDestroy
-public void close() {
-    instance.getLifecycleService().shutdown();
-    map = null;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.talend.components.hazelcast;
+
+import org.talend.sdk.component.api.component.Icon;
+import org.talend.sdk.component.api.component.Version;
+import org.talend.sdk.component.api.configuration.Option;
+import org.talend.sdk.component.api.processor.ElementListener;
+import org.talend.sdk.component.api.meta.Documentation;
+import org.talend.sdk.component.api.processor.Processor;
+import org.talend.sdk.component.api.record.Record;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.json.bind.Jsonb;
+import java.io.Serializable;
+
+import static org.talend.sdk.component.api.component.Icon.IconType.CUSTOM;
+
+@Version
+@Icon(custom = "Hazelcast", value = CUSTOM)
+@Processor(name = "Output")
+@Documentation("Hazelcast output component")
+public class HazelcastOutput implements Serializable {
+
+    private final HazelcastOutputConfig configuration;
+
+    private final HazelcastService hazelcastService;
+
+    private final Jsonb jsonb;
+
+    public HazelcastOutput(@Option("configuration") final HazelcastOutputConfig configuration,
+            final HazelcastService hazelcastService, final Jsonb jsonb) {
+        this.configuration = configuration;
+        this.hazelcastService = hazelcastService;
+        this.jsonb = jsonb;
+    }
+
+    @PostConstruct
+    public void init() {
+        //no-op
+    }
+
+    @PreDestroy
+    public void release() {
+        this.hazelcastService.shutdownInstance();
+    }
+
+    @ElementListener
+    public void onElement(final Record record) {
+    }
+
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Shut down the Hazelcast client instance created by the method annotated with <code>@PostConstruct</code> and thus free the Hazelcast map reference.</p>
+<p>Shut down the Hazelcast client instance and thus free the Hazelcast map reference.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_defining_the_elementlistener_method"><a class="anchor" href="#_defining_the_elementlistener_method"></a>Defining the ElementListener method</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ElementListener
-public void onElement(final JsonObject defaultInput) { <i class="conum" data-value="1"></i><b>(1)</b>
-    final Object key = toValue(defaultInput.get(configuration.getKeyAttribute()));
-    final Object value = toValue(defaultInput.get(configuration.getValueAttribute()));
-    map.put(key, value);
-}
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.talend.components.hazelcast;
 
-private Object toValue(final JsonValue jsonValue) { <i class="conum" data-value="2"></i><b>(2)</b>
-    if (jsonValue == null) {
-        return null;
-    }
-    if (jsonValue.getValueType() == STRING) {
-        return JsonString.class.cast(jsonValue).getString();
-    }
-    if (jsonValue.getValueType() == NUMBER) {
-        return JsonNumber.class.cast(jsonValue).doubleValue();
-    }
-    return jsonValue.asJsonObject();
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This method is used to pass the incoming data to the output. Every object passed should be a JsonObject instance. This method can include any logic required to write data to the data source.<br>
-In this tutorial, the data is passed to the Hazelcast map.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>This is the inner method used to transform incoming values into the format required to pass data to the Hazelcast map.</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_full_implementation_of_the_output"><a class="anchor" href="#_full_implementation_of_the_output"></a>Full implementation of the Output</h3>
-<div class="paragraph">
-<p>Once implemented, the Output configuration is as follows. For more information about outputs, refer to <a href="component-define-processor-output.html" class="page">this document</a>.</p>
-</div>
-<div class="listingblock initial-block-closed">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Version <i class="conum" data-value="1"></i><b>(1)</b>
-@Icon(custom = "hazelcastOutput", value = CUSTOM) <i class="conum" data-value="2"></i><b>(2)</b>
-@Processor(name = "Output") <i class="conum" data-value="3"></i><b>(3)</b>
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.IMap;
+import org.talend.sdk.component.api.component.Icon;
+import org.talend.sdk.component.api.component.Version;
+import org.talend.sdk.component.api.configuration.Option;
+import org.talend.sdk.component.api.meta.Documentation;
+import org.talend.sdk.component.api.processor.ElementListener;
+import org.talend.sdk.component.api.processor.Processor;
+import org.talend.sdk.component.api.record.Record;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.json.bind.Jsonb;
+import java.io.Serializable;
+
+import static org.talend.sdk.component.api.component.Icon.IconType.CUSTOM;
+
+@Version
+@Icon(custom = "Hazelcast", value = CUSTOM)
+@Processor(name = "Output")
+@Documentation("Hazelcast output component")
 public class HazelcastOutput implements Serializable {
-    private final HazelcastConfiguration configuration;
-    private final JsonBuilderFactory jsonFactory;
+
+    private final HazelcastOutputConfig configuration;
+
+    private final HazelcastService hazelcastService;
+
     private final Jsonb jsonb;
-    private final HazelcastService service;
 
-    private transient HazelcastInstance instance;
-    private transient IMap&lt;Object, Object&gt; map;
-
-    public HazelcastOutput(@Option("configuration") final HazelcastConfiguration configuration,
-                           final JsonBuilderFactory jsonFactory,
-                           final Jsonb jsonb,
-                           final HazelcastService service) {
+    public HazelcastOutput(@Option("configuration") final HazelcastOutputConfig configuration,
+            final HazelcastService hazelcastService, final Jsonb jsonb) {
         this.configuration = configuration;
-        this.jsonFactory = jsonFactory;
+        this.hazelcastService = hazelcastService;
         this.jsonb = jsonb;
-        this.service = service;
     }
 
     @PostConstruct
     public void init() {
-        instance = service.findInstance(configuration.newConfig());
-        map = instance.getMap(configuration.getMapName());
-    }
-
-    @ElementListener
-    public void onElement(final JsonObject defaultInput) {
-        final Object key = toValue(defaultInput.get(configuration.getKeyAttribute()));
-        final Object value = toValue(defaultInput.get(configuration.getValueAttribute()));
-        map.put(key, value);
+        //no-op
     }
 
     @PreDestroy
     public void release() {
-        instance.getLifecycleService().shutdown();
-        map = null;
+        this.hazelcastService.shutdownInstance();
     }
 
-    private Object toValue(final JsonValue jsonValue) {
-        if (jsonValue == null) {
-            return null;
-        }
-        if (jsonValue.getValueType() == STRING) {
-            return JsonString.class.cast(jsonValue).getString();
-        }
-        if (jsonValue.getValueType() == NUMBER) {
-            return JsonNumber.class.cast(jsonValue).doubleValue();
-        }
-        return jsonValue.asJsonObject();
+    @ElementListener
+    public void onElement(final Record record) {
+        final String key = record.getString(configuration.getKey());
+        final String value = jsonb.toJson(record);
+
+        final HazelcastInstance hz = hazelcastService.getOrCreateIntance(configuration.getDataset().getConnection());
+        final IMap&lt;String, String&gt; map = hz.getMap(configuration.getDataset().getMapName());
+        map.put(key, value);
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We get the key attribute from the incoming record and then convert the hole record to a json string. Then we insert
+the key/value into the hazelcast map.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_the_output_component"><a class="anchor" href="#_testing_the_output_component"></a>Testing the output component</h3>
+<div class="paragraph">
+<p>Let&#8217;s create a unit test for our output component. The idea will be to create a job that will insert the data using
+this output implementation.</p>
+</div>
+<div class="paragraph">
+<p>So, let&#8217;s create out test class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.talend.components.hazelcast;
+
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.IMap;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.talend.sdk.component.junit.BaseComponentsHandler;
+import org.talend.sdk.component.junit5.Injected;
+import org.talend.sdk.component.junit5.WithComponents;
+
+@WithComponents("org.talend.components.hazelcast")
+class HazelcastOuputTest {
+
+    private static final String MAP_NAME = "MY-DISTRIBUTED-MAP";
+
+    private static HazelcastInstance hazelcastInstance;
+
+    @Injected
+    protected BaseComponentsHandler componentsHandler;
+
+    @BeforeAll
+    static void init() {
+        hazelcastInstance = Hazelcast.newHazelcastInstance();
+        //init the map
+        final IMap&lt;String, String&gt; map = hazelcastInstances.getMap(MAP_NAME);
+
+    }
+
+    @AfterAll
+    static void shutdown() {
+        hazelcastInstance.shutdown();
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here we start by creating a hazelcast test instance, and we initialize the map. we also shutdown the instance after all the
+test are executed.</p>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s create our output test.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package org.talend.components.hazelcast;
+
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.IMap;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.talend.sdk.component.api.record.Record;
+import org.talend.sdk.component.api.service.Service;
+import org.talend.sdk.component.api.service.record.RecordBuilderFactory;
+import org.talend.sdk.component.junit.BaseComponentsHandler;
+import org.talend.sdk.component.junit5.Injected;
+import org.talend.sdk.component.junit5.WithComponents;
+import org.talend.sdk.component.runtime.manager.chain.Job;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.talend.sdk.component.junit.SimpleFactory.configurationByExample;
+
+@WithComponents("org.talend.components.hazelcast")
+class HazelcastOuputTest {
+
+    private static final String MAP_NAME = "MY-DISTRIBUTED-MAP";
+
+    private static HazelcastInstance hazelcastInstance;
+
+    @Injected
+    protected BaseComponentsHandler componentsHandler;
+
+    @Service
+    protected RecordBuilderFactory recordBuilderFactory;
+
+    @BeforeAll
+    static void init() {
+        hazelcastInstance = Hazelcast.newHazelcastInstance();
+        //init the map
+        final IMap&lt;String, String&gt; map = hazelcastInstance.getMap(MAP_NAME);
+
+    }
+
+    @Test
+    void outputTest() {
+        final HazelcastDatastore connection = new HazelcastDatastore();
+        connection.setClusterIpAddress(
+                hazelcastInstance.getCluster().getMembers().iterator().next().getAddress().getHost());
+        connection.setGroupName(hazelcastInstance.getConfig().getGroupConfig().getName());
+        connection.setPassword(hazelcastInstance.getConfig().getGroupConfig().getPassword());
+        final HazelcastDataset dataset = new HazelcastDataset();
+        dataset.setConnection(connection);
+        dataset.setMapName(MAP_NAME);
+
+        HazelcastOutputConfig config = new HazelcastOutputConfig();
+        config.setDataset(dataset);
+        config.setKey("id");
+
+        final String configUri = configurationByExample().forInstance(config).configured().toQueryString();
+
+        componentsHandler.setInputData(generateTestData(10));
+        Job.components()
+                .component("Input", "test://emitter")
+                .component("Output", "Hazelcast://Output?" + configUri)
+                .connections()
+                .from("Input")
+                .to("Output")
+                .build()
+                .run();
+
+        final IMap&lt;String, String&gt; map = hazelcastInstance.getMap(MAP_NAME);
+        assertEquals(10, map.size());
+    }
+
+    private List&lt;Record&gt; generateTestData(int count) {
+        return IntStream.range(0, count)
+                .mapToObj(i -&gt; recordBuilderFactory.newRecordBuilder()
+                        .withString("id", UUID.randomUUID().toString())
+                        .withString("val1", UUID.randomUUID().toString())
+                        .withString("val2", UUID.randomUUID().toString())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
+    @AfterAll
+    static void shutdown() {
+        hazelcastInstance.shutdown();
     }
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You have now created a complete working output component. You can follow  <a href="tutorial-test-your-components.html" class="page">this tutorial</a> to learn how to create unit tests for your new component.</p>
+<p>Here we start preparing the <code>emitter</code> test component provided bt TCK that we use in our test job
+to generate random data for our output. Then, we use the output component to fill the hazelcast map.</p>
+</div>
+<div class="paragraph">
+<p>By the end we test that the map contains the exact amount of data inserted by the job.</p>
+</div>
+<div class="paragraph">
+<p>Run the test and check that it&#8217;s working.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ mvn clean test</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Congratulation you just finished your output component.</p>
+</div>
+</blockquote>
 </div>
 </div>
 </div>
@@ -809,13 +1086,13 @@ public class HazelcastOutput implements Serializable {
 
                     <li>
                                 <a class="article-side-actions-link" target="_blank"
-                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.13%2Ftutorial-create-an-output-component.html&text=Talend%20Component%20Kit%20%3E%3E%20Implementing%20an%20Output%20component%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.13%2Ftutorial-create-an-output-component.html">
+                                   href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.13%2Ftutorial-create-an-output-component.html&text=Talend%20Component%20Kit%20%3E%3E%20Implementing%20an%20Output%20component%20for%20Hazelcast%20%3E%3E%20&tw_p=tweetbutton&url=https%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.13%2Ftutorial-create-an-output-component.html">
                                     <i class="fab fa-twitter"></i> &nbsp; &nbsp; Tweet
                                 </a>
                             </li>
                             <li>
                                 <a class="article-side-actions-link"
-                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Implementing%20an%20Output%20component&body=Talend%20Component%20Kit%3A%20Implementing%20an%20Output%20component%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.13%2Ftutorial-create-an-output-component.html">
+                                   href="mailto:?subject=Talend%20Component%20Kit%3A%20Implementing%20an%20Output%20component%20for%20Hazelcast&body=Talend%20Component%20Kit%3A%20Implementing%20an%20Output%20component%20for%20Hazelcast%0A%0Ahttps%3A%2F%2Ftalend.github.io%2Fcomponent-runtime%2Fmain%2F1.1.13%2Ftutorial-create-an-output-component.html">
                                     <i class="far fa-envelope"></i> &nbsp; &nbsp; Mail
                                 </a>
                             </li>
