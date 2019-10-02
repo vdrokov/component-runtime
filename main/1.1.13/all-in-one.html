@@ -11,7 +11,7 @@
     <title>Talend Component Kit Developer Guide :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.13/all-in-one.html">
     <meta name="generator" content="Antora 2.0.0">
-<meta name="date" content="2019-10-01T14:36:52.652Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-10-02T10:20:35.501Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -13128,6 +13128,122 @@ final String json = jsonb.toJson(form1); <i class="conum" data-value="4"></i><b>
   &lt;version&gt;${johnzon.version}&lt;/version&gt; &lt;!-- 1.1.5 for instance --&gt;
 &lt;/dependency&gt;</code></pre>
 </div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_using_the_uispec_for_custom_models"><a class="anchor" href="#_using_the_uispec_for_custom_models"></a>Using the UiSpec for custom models</h5>
+<div class="paragraph">
+<p>The following module enables you to define through annotations a uispec on your own models:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
+  &lt;artifactId&gt;component-uispec-mapper&lt;/artifactId&gt;
+  &lt;version&gt;${talend-component-kit.version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+this can&#8217;t be used in components and is only intended for web applications.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>org.talend.sdk.component.form.uispec.mapper.api.service.UiSpecMapper</code> enables to create a <code>Ui</code> instance from a custom type annotated with
+<code>org.talend.sdk.component.form.uispec.mapper.api.model.View</code> and <code>org.talend.sdk.component.form.uispec.mapper.api.model.View.Schema</code>.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Data
+public abstract class BaseModel {
+    @View.Skip
+    private String id;
+
+    @View.Skip
+    private Date created;
+
+    @View.Skip
+    private Date updated;
+
+    @View.Schema(type = "hidden", readOnly = true)
+    private long version;
+}
+
+@Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class ComponentModel extends BaseModel {
+    @View.Schema(length = 1024, required = true, position = 1, reference = "vendors")
+    private String vendor;
+
+    @View.Schema(length = 2048, required = true, position = 2)
+    private String name;
+
+    @View.Schema(length = 2048, required = true, position = 3)
+    private String license;
+
+    @View.Schema(length = 2048, required = true, position = 4)
+    private String sources;
+
+    @View.Schema(length = 2048, required = true, position = 5)
+    private String bugtracker;
+
+    @View.Schema(length = 2048, required = true, position = 6)
+    private String documentation;
+
+    @View.Schema(widget = "textarea", length = 8192, required = true, position = 7)
+    private String description;
+
+    @View.Schema(widget = "textarea", length = 8192, position = 8)
+    private String changelog;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This API maps directly the UiSpec model (json schema and ui schema of Talend `UIForm).</p>
+</div>
+<div class="paragraph">
+<p>The default implementation of the mapper is available at <code>org.talend.sdk.component.form.uispec.mapper.impl.UiSpecMapperImpl</code>.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private UiSpecMapper mapper = new UiSpecMapperImpl(new Configuration(getTitleMapProviders()));
+
+@GET
+public Ui getNewComponentModelForm() {
+    return mapper.createFormFor(ComponentModel.class);
+}
+
+@GET
+@Path("{id}")
+public Ui editComponentModelForm(final @PathParam("id") final String id) {
+    final ComponentModel component = findComponent(id);
+    final Ui spec = mapper.createFormFor(ComponentModel.class);
+    return Ui.ui()
+            .withJsonSchema(spec.getJsonSchema())
+            .withUiSchema(spec.getUiSchema())
+            .withProperties(component)
+            .build();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>getTitleMapProviders()</code> method will generally lookup a set of <code>TitleMapProvider</code> instances in your IoC context.
+This API is used to fill the <code>titleMap</code> of the form when a reference identifier is set on the <code>@Schema</code> annotation.</p>
 </div>
 </div>
 <div class="sect4">
