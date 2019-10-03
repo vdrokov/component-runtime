@@ -11,7 +11,7 @@
     <title>Talend Component Kit Developer Guide :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.1.13/all-in-one.html">
     <meta name="generator" content="Antora 2.0.0">
-<meta name="date" content="2019-10-03T15:43:45.615Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-10-03T17:37:21.381Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -13160,6 +13160,19 @@ this can&#8217;t be used in components and is only intended for web applications
 <p><code>org.talend.sdk.component.form.uispec.mapper.api.service.UiSpecMapper</code> enables to create a <code>Ui</code> instance from a custom type annotated with
 <code>org.talend.sdk.component.form.uispec.mapper.api.model.View</code> and <code>org.talend.sdk.component.form.uispec.mapper.api.model.View.Schema</code>.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>UiSpecMapper</code> returns a <code>Supplier</code> and not directly an <code>Ui</code> because the ui-schema is re-evaluated when `get()̀  is called.
+This enables to update the title maps for example.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Here is an example:</p>
 </div>
@@ -13211,7 +13224,7 @@ public class ComponentModel extends BaseModel {
 </div>
 </div>
 <div class="paragraph">
-<p>This API maps directly the UiSpec model (json schema and ui schema of Talend `UIForm).</p>
+<p>This API maps directly the UiSpec model (json schema and ui schema of Talend <code>UIForm</code>).</p>
 </div>
 <div class="paragraph">
 <p>The default implementation of the mapper is available at <code>org.talend.sdk.component.form.uispec.mapper.impl.UiSpecMapperImpl</code>.</p>
@@ -13225,19 +13238,16 @@ public class ComponentModel extends BaseModel {
 
 @GET
 public Ui getNewComponentModelForm() {
-    return mapper.createFormFor(ComponentModel.class);
+    return mapper.createFormFor(ComponentModel.class).get();
 }
 
 @GET
 @Path("{id}")
 public Ui editComponentModelForm(final @PathParam("id") final String id) {
     final ComponentModel component = findComponent(id);
-    final Ui spec = mapper.createFormFor(ComponentModel.class);
-    return Ui.ui()
-            .withJsonSchema(spec.getJsonSchema())
-            .withUiSchema(spec.getUiSchema())
-            .withProperties(component)
-            .build();
+    final Ui spec = getNewComponentModelForm();
+    spec.setProperties(component);
+    return spec;
 }</code></pre>
 </div>
 </div>
