@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>component-runtime-testing :: Talend Component Kit Developer Reference Guide</title>
     <link rel="canonical" href="https://talend.github.io/component-runtime/main/1.0.3/testing-runtime.html">
-    <meta name="generator" content="Antora 2.1.2">
-<meta name="date" content="2019-11-03T11:34:21.014Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+    <meta name="generator" content="Antora 2.2.0">
+<meta name="date" content="2019-11-03T19:37:02.425Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -682,192 +682,160 @@
           <div class="col-sm-9 row">
               <h1>component-runtime-testing</h1>
             <div class="article-content">
-              <div id="preamble">
+              <div class="sect1">
+<h2 id="_component_runtime_junit"><a class="anchor" href="#_component_runtime_junit"></a>component-runtime-junit</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>&lt;div class="sect1"&gt;
-&lt;h2 id="_component_runtime_junit"&gt;&lt;a class="anchor" href="#_component_runtime_junit"&gt;&lt;/a&gt;component-runtime-junit&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;code&gt;component-runtime-junit&lt;/code&gt; is a test library that allows you to validate simple logic based on the Talend Component Kit tooling.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To import it, add the following dependency to your project:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-xml hljs" data-lang="xml"&gt;&lt;dependency&gt;
+<p><code>component-runtime-junit</code> is a test library that allows you to validate simple logic based on the Talend Component Kit tooling.</p>
+</div>
+<div class="paragraph">
+<p>To import it, add the following dependency to your project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
   &lt;artifactId&gt;component-runtime-junit&lt;/artifactId&gt;
   &lt;version&gt;${talend-component.version}&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
-&lt;/dependency&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This dependency also provides mocked components that you can use with your own component to create tests.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The mocked components are provided under the &lt;code&gt;test&lt;/code&gt; family:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;emitter&lt;/code&gt;     : a mock of an input component&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;collector&lt;/code&gt;   : a mock of an output component&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_junit_4"&gt;&lt;a class="anchor" href="#_junit_4"&gt;&lt;/a&gt;JUnit 4&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;You can define a standard JUnit test and use the &lt;code&gt;SimpleComponentRule&lt;/code&gt; rule:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;public class MyComponentTest {</p>
+&lt;/dependency&gt;</code></pre>
 </div>
-<div class="literalblock">
+</div>
+<div class="paragraph">
+<p>This dependency also provides mocked components that you can use with your own component to create tests.</p>
+</div>
+<div class="paragraph">
+<p>The mocked components are provided under the <code>test</code> family:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>emitter</code>     : a mock of an input component</p>
+</li>
+<li>
+<p><code>collector</code>   : a mock of an output component</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>JUnit 4</h3>
+<div class="paragraph">
+<p>You can define a standard JUnit test and use the <code>SimpleComponentRule</code> rule:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>@Rule &lt;i class="conum" data-value="1"&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
-public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent");</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@Test
-public void produce() {
-    Job.components() &lt;i class="conum" data-value="2"&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
-         .component("mycomponent","yourcomponentfamily://yourcomponent?"+createComponentConfig())
-         .component("collector", "test://collector")
-       .connections()
-         .from("mycomponent").to("collector")
-       .build()
-       .run();</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>        final List&amp;lt;MyRecord&amp;gt; records = components.getCollectedData(MyRecord.class); &lt;i class="conum" data-value="3"&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyComponentTest {
+
+    @Rule <i class="conum" data-value="1"></i><b>(1)</b>
+    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent");
+
+    @Test
+    public void produce() {
+        Job.components() <i class="conum" data-value="2"></i><b>(2)</b>
+             .component("mycomponent","yourcomponentfamily://yourcomponent?"+createComponentConfig())
+             .component("collector", "test://collector")
+           .connections()
+             .from("mycomponent").to("collector")
+           .build()
+           .run();
+
+        final List&lt;MyRecord&gt; records = components.getCollectedData(MyRecord.class); <i class="conum" data-value="3"></i><b>(3)</b>
         doAssertRecords(records); // depending your test
     }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="colist arabic"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class="conum" data-value="1"&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;The rule creates a component manager and provides two mock components: an emitter and a collector. Set the root package of your component to enable it.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class="conum" data-value="2"&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;Define any chain that you want to test. It generally uses the mock as source or collector.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class="conum" data-value="3"&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;Validate your component behavior. For a source, you can assert that the right records were emitted in the mock collect.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class="admonitionblock tip"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class="icon"&gt;
-&lt;i class="fa icon-tip" title="Tip"&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class="content"&gt;
-The rule can also be defined as a &lt;code&gt;@ClassRule&lt;/code&gt; to start it once per class and not per test as with &lt;code&gt;@Rule&lt;/code&gt;.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To go further, you can add the &lt;code&gt;ServiceInjectionRule&lt;/code&gt; rule, which allows to inject all the component family services into the test class by marking test class fields with &lt;code&gt;@InjectService&lt;/code&gt;:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;public class SimpleComponentRuleTest {</pre>
+}</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The rule creates a component manager and provides two mock components: an emitter and a collector. Set the root package of your component to enable it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Define any chain that you want to test. It generally uses the mock as source or collector.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Validate your component behavior. For a source, you can assert that the right records were emitted in the mock collect.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The rule can also be defined as a <code>@ClassRule</code> to start it once per class and not per test as with <code>@Rule</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To go further, you can add the <code>ServiceInjectionRule</code> rule, which allows to inject all the component family services into the test class by marking test class fields with <code>@InjectService</code>:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>@ClassRule
-public static final SimpleComponentRule COMPONENT_FACTORY = new SimpleComponentRule("...");</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@Rule &lt;i class="conum" data-value="1"&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
-public final ServiceInjectionRule injections = new ServiceInjectionRule(COMPONENT_FACTORY, this); &lt;i class="conum" data-value="2"&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@Service &lt;i class="conum" data-value="3"&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
-private LocalConfiguration configuration;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@Service
-private Jsonb jsonb;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    @Test
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class SimpleComponentRuleTest {
+
+    @ClassRule
+    public static final SimpleComponentRule COMPONENT_FACTORY = new SimpleComponentRule("...");
+
+    @Rule <i class="conum" data-value="1"></i><b>(1)</b>
+    public final ServiceInjectionRule injections = new ServiceInjectionRule(COMPONENT_FACTORY, this); <i class="conum" data-value="2"></i><b>(2)</b>
+
+    @Service <i class="conum" data-value="3"></i><b>(3)</b>
+    private LocalConfiguration configuration;
+
+    @Service
+    private Jsonb jsonb;
+
+    @Test
     public void test() {
         // ...
     }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="colist arabic"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class="conum" data-value="1"&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;The injection requires the test instance, so it must be a &lt;code&gt;@Rule&lt;/code&gt; rather than a &lt;code&gt;@ClassRule&lt;/code&gt;.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class="conum" data-value="2"&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;The &lt;code&gt;ComponentsController&lt;/code&gt; is passed to the rule, which for JUnit 4 is the &lt;code&gt;SimpleComponentRule&lt;/code&gt;, as well as the test instance to inject services in.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class="conum" data-value="3"&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;All service fields are marked with &lt;code&gt;@Service&lt;/code&gt; to let the rule inject them before the test is ran.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_junit_5"&gt;&lt;a class="anchor" href="#_junit_5"&gt;&lt;/a&gt;JUnit 5&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The JUnit 5 integration is very similar to JUnit 4, except that it uses the JUnit 5 extension mechanism.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The entry point is the &lt;code&gt;@WithComponents&lt;/code&gt; annotation that you add to your test class, and which takes the component package you want to test. You can use &lt;code&gt;@Injected&lt;/code&gt; to inject an instance of &lt;code&gt;ComponentsHandler&lt;/code&gt; - which exposes the same utilities than the JUnit 4 rule - in a test class field :&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;@WithComponents("org.talend.sdk.component.junit.component") &lt;i class="conum" data-value="1"&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The injection requires the test instance, so it must be a <code>@Rule</code> rather than a <code>@ClassRule</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>ComponentsController</code> is passed to the rule, which for JUnit 4 is the <code>SimpleComponentRule</code>, as well as the test instance to inject services in.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>All service fields are marked with <code>@Service</code> to let the rule inject them before the test is ran.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>JUnit 5</h3>
+<div class="paragraph">
+<p>The JUnit 5 integration is very similar to JUnit 4, except that it uses the JUnit 5 extension mechanism.</p>
+</div>
+<div class="paragraph">
+<p>The entry point is the <code>@WithComponents</code> annotation that you add to your test class, and which takes the component package you want to test. You can use <code>@Injected</code> to inject an instance of <code>ComponentsHandler</code> - which exposes the same utilities than the JUnit 4 rule - in a test class field :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WithComponents("org.talend.sdk.component.junit.component") <i class="conum" data-value="1"></i><b>(1)</b>
 public class ComponentExtensionTest {
-    @Injected &lt;i class="conum" data-value="2"&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
-    private ComponentsHandler handler;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@Test
-public void manualMapper() {
-    final Mapper mapper = handler.createMapper(Source.class, new Source.Config() {</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>            {
+    @Injected <i class="conum" data-value="2"></i><b>(2)</b>
+    private ComponentsHandler handler;
+
+    @Test
+    public void manualMapper() {
+        final Mapper mapper = handler.createMapper(Source.class, new Source.Config() {
+
+            {
                 values = asList("a", "b");
             }
         });
@@ -877,215 +845,181 @@ public void manualMapper() {
         assertEquals("b", input.next());
         assertNull(input.next());
     }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="colist arabic"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class="conum" data-value="1"&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;The annotation defines which components to register in the test context.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class="conum" data-value="2"&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;The field allows to get the handler to be able to orchestrate the tests.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class="admonitionblock note"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class="icon"&gt;
-&lt;i class="fa icon-note" title="Note"&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class="content"&gt;
-If you use JUnit 5 for the first time, keep in mind that the imports changed and that you need to use &lt;code&gt;org.junit.jupiter.api.Test&lt;/code&gt; instead of &lt;code&gt;org.junit.Test&lt;/code&gt;.
-Some IDE versions and &lt;code&gt;surefire&lt;/code&gt; versions can also require you to install either a plugin or a specific configuration.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;As for JUnit 4, you can go further by injecting test class fields marked with &lt;code&gt;@InjectService&lt;/code&gt;, but there is no additional extension to specify in this case:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;@WithComponents("...")
-class ComponentExtensionTest {</pre>
+}</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The annotation defines which components to register in the test context.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The field allows to get the handler to be able to orchestrate the tests.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you use JUnit 5 for the first time, keep in mind that the imports changed and that you need to use <code>org.junit.jupiter.api.Test</code> instead of <code>org.junit.Test</code>.
+Some IDE versions and <code>surefire</code> versions can also require you to install either a plugin or a specific configuration.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As for JUnit 4, you can go further by injecting test class fields marked with <code>@InjectService</code>, but there is no additional extension to specify in this case:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>@Service &lt;i class="conum" data-value="1"&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
-private LocalConfiguration configuration;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@Service
-private Jsonb jsonb;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    @Test
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@WithComponents("...")
+class ComponentExtensionTest {
+
+    @Service <i class="conum" data-value="1"></i><b>(1)</b>
+    private LocalConfiguration configuration;
+
+    @Service
+    private Jsonb jsonb;
+
+    @Test
     void test() {
         // ...
     }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="colist arabic"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class="conum" data-value="1"&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;All service fields are marked with &lt;code&gt;@Service&lt;/code&gt; to let the rule inject them before the test is ran.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_mocking_the_output"&gt;&lt;a class="anchor" href="#_mocking_the_output"&gt;&lt;/a&gt;Mocking the output&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Using the "test"/"collector" component as shown in the previous sample stores all records emitted by the chain (typically your source) in memory. You can then access them using &lt;code&gt;theSimpleComponentRule.getCollectedData(type)&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Note that this method filters by type. If you don&amp;#8217;t need any specific type, you can use &lt;code&gt;Object.class&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_mocking_the_input"&gt;&lt;a class="anchor" href="#_mocking_the_input"&gt;&lt;/a&gt;Mocking the input&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The input mocking is symmetric to the output. In this case, you provide the data you want to inject:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;public class MyComponentTest {</pre>
+}</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>All service fields are marked with <code>@Service</code> to let the rule inject them before the test is ran.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mocking_the_output"><a class="anchor" href="#_mocking_the_output"></a>Mocking the output</h3>
+<div class="paragraph">
+<p>Using the "test"/"collector" component as shown in the previous sample stores all records emitted by the chain (typically your source) in memory. You can then access them using <code>theSimpleComponentRule.getCollectedData(type)</code>.</p>
+</div>
+<div class="paragraph">
+<p>Note that this method filters by type. If you don&#8217;t need any specific type, you can use <code>Object.class</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mocking_the_input"><a class="anchor" href="#_mocking_the_input"></a>Mocking the input</h3>
+<div class="paragraph">
+<p>The input mocking is symmetric to the output. In this case, you provide the data you want to inject:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>@Rule
-public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent");</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@Test
-public void produce() {
-    components.setInputData(asList(createData(), createData(), createData())); &lt;i class="conum" data-value="1"&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Job.components()
-     .component("emitter","test://emitter")
-     .component("out", "yourcomponentfamily://myoutput?"+createComponentConfig())
-   .connections()
-      .from("emitter").to("out")
-   .build
-   .run();</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>        assertMyOutputProcessedTheInputData();
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyComponentTest {
+
+    @Rule
+    public final SimpleComponentRule components = new SimpleComponentRule("org.talend.sdk.component.mycomponent");
+
+    @Test
+    public void produce() {
+        components.setInputData(asList(createData(), createData(), createData())); <i class="conum" data-value="1"></i><b>(1)</b>
+
+        Job.components()
+             .component("emitter","test://emitter")
+             .component("out", "yourcomponentfamily://myoutput?"+createComponentConfig())
+           .connections()
+              .from("emitter").to("out")
+           .build
+           .run();
+
+        assertMyOutputProcessedTheInputData();
     }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="colist arabic"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;i class="conum" data-value="1"&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;using &lt;code&gt;setInputData&lt;/code&gt;, you prepare the execution(s) to have a fake input when using the "test"/"emitter" component.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_creating_runtime_configuration_from_component_configuration"&gt;&lt;a class="anchor" href="#_creating_runtime_configuration_from_component_configuration"&gt;&lt;/a&gt;Creating runtime configuration from component configuration&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The component configuration is a POJO (using &lt;code&gt;@Option&lt;/code&gt; on fields) and the runtime configuration (&lt;code&gt;ExecutionChainBuilder&lt;/code&gt;) uses a &lt;code&gt;Map&amp;lt;String, String&amp;gt;&lt;/code&gt;. To make the conversion easier, the JUnit integration provides a &lt;code&gt;SimpleFactory.configurationByExample&lt;/code&gt; utility to get this map instance from a configuration instance.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="title"&gt;Example:&lt;/div&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;final MyComponentConfig componentConfig = new MyComponentConfig();
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>using <code>setInputData</code>, you prepare the execution(s) to have a fake input when using the "test"/"emitter" component.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_runtime_configuration_from_component_configuration"><a class="anchor" href="#_creating_runtime_configuration_from_component_configuration"></a>Creating runtime configuration from component configuration</h3>
+<div class="paragraph">
+<p>The component configuration is a POJO (using <code>@Option</code> on fields) and the runtime configuration (<code>ExecutionChainBuilder</code>) uses a <code>Map&lt;String, String&gt;</code>. To make the conversion easier, the JUnit integration provides a <code>SimpleFactory.configurationByExample</code> utility to get this map instance from a configuration instance.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final MyComponentConfig componentConfig = new MyComponentConfig();
 componentConfig.setUser("....");
-// .. other inits</pre>
+// .. other inits
+
+final Map&lt;String, String&gt; configuration = configurationByExample(componentConfig);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>final Map&lt;String, String&gt; configuration = configurationByExample(componentConfig);&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The same factory provides a fluent DSL to create the configuration by calling &lt;code&gt;configurationByExample&lt;/code&gt; without any parameter.
-The advantage is to be able to convert an object as a &lt;code&gt;Map&lt;String, String&gt;&lt;/code&gt; or as a query string
-in order to use it with the &lt;code&gt;Job&lt;/code&gt; DSL:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;final String uri = "family://component?"<br>
-    configurationByExample().forInstance(componentConfig).configured().toQueryString();&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;It handles the encoding of the URI to ensure it is correctly done.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_testing_a_mapper"&gt;&lt;a class="anchor" href="#_testing_a_mapper"&gt;&lt;/a&gt;Testing a Mapper&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The &lt;code&gt;SimpleComponentRule&lt;/code&gt; also allows to test a mapper unitarily. You can get an instance from a configuration and execute this instance to collect the output.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="title"&gt;Example&lt;/div&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;public class MapperTest {</p>
+<p>The same factory provides a fluent DSL to create the configuration by calling <code>configurationByExample</code> without any parameter.
+The advantage is to be able to convert an object as a <code>Map&lt;String, String&gt;</code> or as a query string
+in order to use it with the <code>Job</code> DSL:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>@ClassRule
-public static final SimpleComponentRule COMPONENT_FACTORY = new SimpleComponentRule(
-        "org.company.talend.component");</pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">final String uri = "family://component?" +
+    configurationByExample().forInstance(componentConfig).configured().toQueryString();</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="paragraph">
+<p>It handles the encoding of the URI to ensure it is correctly done.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_a_mapper"><a class="anchor" href="#_testing_a_mapper"></a>Testing a Mapper</h3>
+<div class="paragraph">
+<p>The <code>SimpleComponentRule</code> also allows to test a mapper unitarily. You can get an instance from a configuration and execute this instance to collect the output.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
 <div class="content">
-<pre>    @Test
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MapperTest {
+
+    @ClassRule
+    public static final SimpleComponentRule COMPONENT_FACTORY = new SimpleComponentRule(
+            "org.company.talend.component");
+
+    @Test
     public void mapper() {
         final Mapper mapper = COMPONENT_FACTORY.createMapper(MyMapper.class, new Source.Config() {{
             values = asList("a", "b");
         }});
         assertEquals(asList("a", "b"), COMPONENT_FACTORY.collectAsList(String.class, mapper));
     }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_testing_a_processor"&gt;&lt;a class="anchor" href="#_testing_a_processor"&gt;&lt;/a&gt;Testing a Processor&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;As for a mapper, a processor is testable unitary. However, this case can be more complex in case of multiple inputs or outputs.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="title"&gt;Example&lt;/div&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;public class ProcessorTest {</pre>
+}</code></pre>
 </div>
 </div>
-<div class="literalblock">
+</div>
+<div class="sect2">
+<h3 id="_testing_a_processor"><a class="anchor" href="#_testing_a_processor"></a>Testing a Processor</h3>
+<div class="paragraph">
+<p>As for a mapper, a processor is testable unitary. However, this case can be more complex in case of multiple inputs or outputs.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
 <div class="content">
-<pre>@ClassRule
-public static final SimpleComponentRule COMPONENT_FACTORY = new SimpleComponentRule(
-        "org.company.talend.component");</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    @Test
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class ProcessorTest {
+
+    @ClassRule
+    public static final SimpleComponentRule COMPONENT_FACTORY = new SimpleComponentRule(
+            "org.company.talend.component");
+
+    @Test
     public void processor() {
         final Processor processor = COMPONENT_FACTORY.createProcessor(Transform.class, null);
         final SimpleComponentRule.Outputs outputs = COMPONENT_FACTORY.collect(processor,
@@ -1096,37 +1030,33 @@ public static final SimpleComponentRule COMPONENT_FACTORY = new SimpleComponentR
         assertEquals(asList(2, 3), outputs.get(Integer.class, "size"));
         assertEquals(asList("a1", "bb2"), outputs.get(String.class, "value"));
     }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The rule allows you to instantiate a &lt;code&gt;Processor&lt;/code&gt; from your code, and then to &lt;code&gt;collect&lt;/code&gt; the output from the inputs you pass in. There are two convenient implementations of the input factory:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="olist arabic"&gt;
-&lt;ol class="arabic"&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;MainInputFactory&lt;/code&gt; for processors using only the default input.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;JoinInputfactory&lt;/code&gt; with the &lt;code&gt;withInput(branch, data)&lt;/code&gt; method for processors using multiple inputs. The first argument is the branch name and the second argument is the data used by the branch.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;div class="admonitionblock tip"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class="icon"&gt;
-&lt;i class="fa icon-tip" title="Tip"&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class="content"&gt;
-If needed, you can also implement your own input representation using &lt;code&gt;org.talend.sdk.component.junit.ControllableInputFactory&lt;/code&gt;.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The rule allows you to instantiate a <code>Processor</code> from your code, and then to <code>collect</code> the output from the inputs you pass in. There are two convenient implementations of the input factory:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>MainInputFactory</code> for processors using only the default input.</p>
+</li>
+<li>
+<p><code>JoinInputfactory</code> with the <code>withInput(branch, data)</code> method for processors using multiple inputs. The first argument is the branch name and the second argument is the data used by the branch.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If needed, you can also implement your own input representation using <code>org.talend.sdk.component.junit.ControllableInputFactory</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1148,7 +1078,7 @@ If needed, you can also implement your own input representation using &lt;code&g
 </div>
 </div>
 <div class="sect2">
-<h3 id="_junit_4"><a class="anchor" href="#_junit_4"></a>JUnit 4</h3>
+<h3 id="_junit_4_2"><a class="anchor" href="#_junit_4_2"></a>JUnit 4</h3>
 <div class="paragraph">
 <p>The testing relies on a JUnit <code>TestRule</code>. It is recommended to use it as a <code>@ClassRule</code>, to make sure that a single instance of a Spark cluster is built. You can also use it as a simple <code>@Rule</code>, to create the Spark cluster instances per method instead of per test class.</p>
 </div>
@@ -1189,7 +1119,7 @@ This testing methodology works with <code>@Parameterized</code>. You can submit 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_junit_5"><a class="anchor" href="#_junit_5"></a>JUnit 5</h3>
+<h3 id="_junit_5_2"><a class="anchor" href="#_junit_5_2"></a>JUnit 5</h3>
 <div class="paragraph">
 <p>The integration of that Spark cluster logic with JUnit 5 is done using the <code>@WithSpark</code> marker for the extension. Optionally, it allows you to inject—through <code>@SparkInject</code>—the <code>BaseSpark&lt;?&gt;</code> handler to access the Spark cluster meta information. For example, its host/port.</p>
 </div>
@@ -1248,236 +1178,212 @@ class SparkExtensionTest {
         equalTo("the expected content of the file"));</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="component-runtime-http-junit"><a class="anchor" href="#component-runtime-http-junit"></a>component-runtime-http-junit</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>&lt;div class="sect1"&gt;
-&lt;h2 id="component-runtime-http-junit"&gt;&lt;a class="anchor" href="#component-runtime-http-junit"&gt;&lt;/a&gt;component-runtime-http-junit&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The HTTP JUnit module allows you to mock REST API very simply. The module coordinates are:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-xml hljs" data-lang="xml"&gt;&lt;dependency&gt;
+<p>The HTTP JUnit module allows you to mock REST API very simply. The module coordinates are:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;org.talend.sdk.component&lt;/groupId&gt;
   &lt;artifactId&gt;component-runtime-http-junit&lt;/artifactId&gt;
   &lt;version&gt;${talend-component.version}&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
-&lt;/dependency&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="admonitionblock tip"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class="icon"&gt;
-&lt;i class="fa icon-tip" title="Tip"&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class="content"&gt;
-This module uses Apache Johnzon and Netty. If you have any conflict (in particular with Netty), you can add the &lt;code&gt;shaded&lt;/code&gt; classifier to the dependency. This way, both dependencies are shaded, which avoids conflicts with your component.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;It supports both JUnit 4 and JUnit 5. The concept is the exact same one: the extension/rule
-is able to serve precomputed responses saved in the classpath.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;You can plug your own &lt;code&gt;ResponseLocator&lt;/code&gt; to map a request to a response, but the default implementation - which should be sufficient in most cases - looks in &lt;code&gt;talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json&lt;/code&gt;. Note that you can also put it in &lt;code&gt;talend/testing/http/&lt;request path&gt;.json&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_junit_4"&gt;&lt;a class="anchor" href="#_junit_4"&gt;&lt;/a&gt;JUnit 4&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;JUnit 4 setup is done through two rules:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;JUnit4HttpApi&lt;/code&gt;, which is starts the server.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;JUnit4HttpApiPerMethodConfigurator&lt;/code&gt;, which configures the server per test and also handles the capture mode.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="admonitionblock important"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class="icon"&gt;
-&lt;i class="fa icon-important" title="Important"&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class="content"&gt;
-If you don&#8217;t use the &lt;code&gt;JUnit4HttpApiPerMethodConfigurator&lt;/code&gt;, the capture feature is disabled and the per test mocking is not available.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="title"&gt;Test example&lt;/div&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;public class MyRESTApiTest {
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This module uses Apache Johnzon and Netty. If you have any conflict (in particular with Netty), you can add the <code>shaded</code> classifier to the dependency. This way, both dependencies are shaded, which avoids conflicts with your component.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It supports both JUnit 4 and JUnit 5. The concept is the exact same one: the extension/rule
+is able to serve precomputed responses saved in the classpath.</p>
+</div>
+<div class="paragraph">
+<p>You can plug your own <code>ResponseLocator</code> to map a request to a response, but the default implementation - which should be sufficient in most cases - looks in <code>talend/testing/http/&lt;class name&gt;_&lt;method name&gt;.json</code>. Note that you can also put it in <code>talend/testing/http/&lt;request path&gt;.json</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_junit_4_3"><a class="anchor" href="#_junit_4_3"></a>JUnit 4</h3>
+<div class="paragraph">
+<p>JUnit 4 setup is done through two rules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>JUnit4HttpApi</code>, which is starts the server.</p>
+</li>
+<li>
+<p><code>JUnit4HttpApiPerMethodConfigurator</code>, which configures the server per test and also handles the capture mode.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you don&#8217;t use the <code>JUnit4HttpApiPerMethodConfigurator</code>, the capture feature is disabled and the per test mocking is not available.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Test example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyRESTApiTest {
     @ClassRule
-    public static final JUnit4HttpApi API = new JUnit4HttpApi();</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@Rule
-public final JUnit4HttpApiPerMethodConfigurator configurator = new JUnit4HttpApiPerMethodConfigurator(API);</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    @Test
+    public static final JUnit4HttpApi API = new JUnit4HttpApi();
+
+    @Rule
+    public final JUnit4HttpApiPerMethodConfigurator configurator = new JUnit4HttpApiPerMethodConfigurator(API);
+
+    @Test
     public void direct() throws Exception {
         // ... do your requests
     }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect3"&gt;
-&lt;h4 id="_ssl"&gt;&lt;a class="anchor" href="#_ssl"&gt;&lt;/a&gt;SSL&lt;/h4&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;For tests using SSL-based services, you need to use &lt;code&gt;activeSsl()&lt;/code&gt; on the &lt;code&gt;JUnit4HttpApi&lt;/code&gt; rule.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;You can access the client SSL socket factory through the API handler:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;@ClassRule
-public static final JUnit4HttpApi API = new JUnit4HttpApi()&lt;strong&gt;.activeSsl()&lt;/strong&gt;;</pre>
+}</code></pre>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_ssl"><a class="anchor" href="#_ssl"></a>SSL</h4>
+<div class="paragraph">
+<p>For tests using SSL-based services, you need to use <code>activeSsl()</code> on the <code>JUnit4HttpApi</code> rule.</p>
 </div>
 <div class="paragraph">
-<p>@Test
+<p>You can access the client SSL socket factory through the API handler:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@ClassRule
+public static final JUnit4HttpApi API = new JUnit4HttpApi()<strong>.activeSsl()</strong>;
+
+@Test
 public void test() throws Exception {
     final HttpsURLConnection connection = getHttpsConnection();
     connection.setSSLSocketFactory(API.getSslContext().getSocketFactory());
-    // &#8230;&#8203;.
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_junit_5"&gt;&lt;a class="anchor" href="#_junit_5"&gt;&lt;/a&gt;JUnit 5&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;JUnit 5 uses a JUnit 5 extension based on the &lt;code&gt;HttpApi&lt;/code&gt; annotation that you can add to your test class. You can inject the test handler - which has some utilities for advanced cases - through &lt;code&gt;@HttpApiInject&lt;/code&gt;:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;@HttpApi
+    // ....
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_junit_5_3"><a class="anchor" href="#_junit_5_3"></a>JUnit 5</h3>
+<div class="paragraph">
+<p>JUnit 5 uses a JUnit 5 extension based on the <code>HttpApi</code> annotation that you can add to your test class. You can inject the test handler - which has some utilities for advanced cases - through <code>@HttpApiInject</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HttpApi
 class JUnit5HttpApiTest {
     @HttpApiInject
-    private HttpApiHandler&lt;?&gt; handler;</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    @Test
+    private HttpApiHandler&lt;?&gt; handler;
+
+    @Test
     void getProxy() throws Exception {
         // .... do your requests
     }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="admonitionblock note"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class="icon"&gt;
-&lt;i class="fa icon-note" title="Note"&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class="content"&gt;
-The injection is optional and the &lt;code&gt;@HttpApi&lt;/code&gt; annotation allows you to configure several test behaviors.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class="sect3"&gt;
-&lt;h4 id="_ssl_2"&gt;&lt;a class="anchor" href="#_ssl_2"&gt;&lt;/a&gt;SSL&lt;/h4&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;For tests using SSL-based services, you need to use &lt;code&gt;@HttpApi(useSsl = true)&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;You can access the client SSL socket factory through the API handler:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;@HttpApi*(useSsl = true)*
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The injection is optional and the <code>@HttpApi</code> annotation allows you to configure several test behaviors.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_ssl_2"><a class="anchor" href="#_ssl_2"></a>SSL</h4>
+<div class="paragraph">
+<p>For tests using SSL-based services, you need to use <code>@HttpApi(useSsl = true)</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can access the client SSL socket factory through the API handler:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@HttpApi*(useSsl = true)*
 class MyHttpsApiTest {
     @HttpApiInject
-    private HttpApiHandler&amp;lt;?&amp;gt; handler;</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    @Test
+    private HttpApiHandler&lt;?&gt; handler;
+
+    @Test
     void test() throws Exception {
         final HttpsURLConnection connection = getHttpsConnection();
         connection.setSSLSocketFactory(handler.getSslContext().getSocketFactory());
         // ....
     }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_capturing_mode"&gt;&lt;a class="anchor" href="#_capturing_mode"&gt;&lt;/a&gt;Capturing mode&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The strength of this implementation is to run a small proxy server and to auto-configure the JVM:
-&lt;code&gt;http[s].proxyHost&lt;/code&gt;, &lt;code&gt;http[s].proxyPort&lt;/code&gt;, &lt;code&gt;HttpsURLConnection#defaultSSLSocketFactory&lt;/code&gt; and &lt;code&gt;SSLContext#default&lt;/code&gt; are auto-configured to work out-of-the-box with the proxy.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;It allows you to keep the native and real URLs in your tests. For example, the following test is valid:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;public class GoogleTest {
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_capturing_mode"><a class="anchor" href="#_capturing_mode"></a>Capturing mode</h3>
+<div class="paragraph">
+<p>The strength of this implementation is to run a small proxy server and to auto-configure the JVM:
+<code>http[s].proxyHost</code>, <code>http[s].proxyPort</code>, <code>HttpsURLConnection#defaultSSLSocketFactory</code> and <code>SSLContext#default</code> are auto-configured to work out-of-the-box with the proxy.</p>
+</div>
+<div class="paragraph">
+<p>It allows you to keep the native and real URLs in your tests. For example, the following test is valid:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class GoogleTest {
     @ClassRule
-    public static final JUnit4HttpApi API = new JUnit4HttpApi();</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@Rule
-public final JUnit4HttpApiPerMethodConfigurator configurator = new JUnit4HttpApiPerMethodConfigurator(API);</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>@Test
-public void google() throws Exception {
-    assertEquals(HttpURLConnection.HTTP_OK, get("https://google.fr?q=Talend"));
-}</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>    private int get(final String uri) throws Exception {
+    public static final JUnit4HttpApi API = new JUnit4HttpApi();
+
+    @Rule
+    public final JUnit4HttpApiPerMethodConfigurator configurator = new JUnit4HttpApiPerMethodConfigurator(API);
+
+    @Test
+    public void google() throws Exception {
+        assertEquals(HttpURLConnection.HTTP_OK, get("https://google.fr?q=Talend"));
+    }
+
+    private int get(final String uri) throws Exception {
         // do the GET request, skipped for brievity
     }
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;If you execute this test, it fails with an HTTP 400 error because the proxy does not find the mocked response.&lt;br&gt;
-You can create it manually, as described in &lt;a href="#component-runtime-http-junit"&gt;component-runtime-http-junit&lt;/a&gt;, but you can also set the &lt;code&gt;talend.junit.http.capture&lt;/code&gt; property to the folder storing the captures. It must be the root folder and not the folder where the JSON files are located (not prefixed by &lt;code&gt;talend/testing/http&lt;/code&gt; by default).&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In most cases, use &lt;code&gt;src/test/resources&lt;/code&gt;. If &lt;code&gt;new File("src/test/resources")&lt;/code&gt; resolves the valid folder when executing your test (Maven default), then you can just set the system property to &lt;code&gt;true&lt;/code&gt;. Otherwise, you need to adjust accordingly the system property value.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;When the tests run with this system property, the testing framework creates the correct mock response files. After that, you can remove the system property. The tests will still pass, using &lt;code&gt;google.com&lt;/code&gt;, even if you disconnect your machine from the Internet.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="_passthrough_mode"&gt;&lt;a class="anchor" href="#_passthrough_mode"&gt;&lt;/a&gt;Passthrough mode&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;If you set the &lt;code&gt;talend.junit.http.passthrough&lt;/code&gt; system property to &lt;code&gt;true&lt;/code&gt;, the server acts as a proxy and executes each request to the actual server - similarly to the capturing mode.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
+}</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>If you execute this test, it fails with an HTTP 400 error because the proxy does not find the mocked response.<br>
+You can create it manually, as described in <a href="#component-runtime-http-junit">component-runtime-http-junit</a>, but you can also set the <code>talend.junit.http.capture</code> property to the folder storing the captures. It must be the root folder and not the folder where the JSON files are located (not prefixed by <code>talend/testing/http</code> by default).</p>
+</div>
+<div class="paragraph">
+<p>In most cases, use <code>src/test/resources</code>. If <code>new File("src/test/resources")</code> resolves the valid folder when executing your test (Maven default), then you can just set the system property to <code>true</code>. Otherwise, you need to adjust accordingly the system property value.</p>
+</div>
+<div class="paragraph">
+<p>When the tests run with this system property, the testing framework creates the correct mock response files. After that, you can remove the system property. The tests will still pass, using <code>google.com</code>, even if you disconnect your machine from the Internet.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_passthrough_mode"><a class="anchor" href="#_passthrough_mode"></a>Passthrough mode</h3>
+<div class="paragraph">
+<p>If you set the <code>talend.junit.http.passthrough</code> system property to <code>true</code>, the server acts as a proxy and executes each request to the actual server - similarly to the capturing mode.</p>
 </div>
 </div>
 </div>
