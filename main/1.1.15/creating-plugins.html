@@ -15,7 +15,7 @@
     <meta name="description" content="learn how to create plugins for your components">
     <meta name="keywords" content="ContainerManager, ContainerListener">
     <meta name="generator" content="Antora 2.1.2">
-<meta name="date" content="2019-10-31T17:09:38.259Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2019-11-03T11:35:03.047Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -498,7 +498,7 @@ you to define what is the <code>Shared</code> classloader and to create children
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">try (final ContainerManager manager = new ContainerManager( <i class="conum" data-value="1"></i><b>(1)</b>
     ContainerManager.DependenciesResolutionConfiguration.builder() <i class="conum" data-value="2"></i><b>(2)</b>
         .resolver(new MvnDependencyListLocalRepositoryResolver("META-INF/talend/dependencies.list"))
-        .rootRepositoryLocation(new File(System.getProperty("user.home", ".m2/repository"))
+        .rootRepositoryLocation(new File(System.getProperty("user.home"), ".m2/repository"))
         .create(),
     ContainerManager.ClassLoaderConfiguration.builder() <i class="conum" data-value="3"></i><b>(3)</b>
         .parent(getClass().getClassLoader())
