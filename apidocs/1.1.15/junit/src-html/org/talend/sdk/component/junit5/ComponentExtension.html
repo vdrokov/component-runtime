@@ -34,29 +34,29 @@
 <span class="sourceLineNo">026</span>import org.junit.jupiter.api.extension.BeforeAllCallback;<a name="line.26"></a>
 <span class="sourceLineNo">027</span>import org.junit.jupiter.api.extension.BeforeEachCallback;<a name="line.27"></a>
 <span class="sourceLineNo">028</span>import org.junit.jupiter.api.extension.ExtensionContext;<a name="line.28"></a>
-<span class="sourceLineNo">029</span>import org.talend.sdk.component.junit.BaseComponentsHandler;<a name="line.29"></a>
-<span class="sourceLineNo">030</span>import org.talend.sdk.component.junit.base.junit5.JUnit5InjectionSupport;<a name="line.30"></a>
-<span class="sourceLineNo">031</span>import org.talend.sdk.component.junit.environment.Environment;<a name="line.31"></a>
-<span class="sourceLineNo">032</span><a name="line.32"></a>
-<span class="sourceLineNo">033</span>/**<a name="line.33"></a>
-<span class="sourceLineNo">034</span> * Extension allowing the test to use a {@link org.talend.sdk.component.junit.ComponentsHandler}<a name="line.34"></a>
-<span class="sourceLineNo">035</span> * and auto register components from current project.<a name="line.35"></a>
-<span class="sourceLineNo">036</span> */<a name="line.36"></a>
-<span class="sourceLineNo">037</span>public class ComponentExtension extends BaseComponentsHandler<a name="line.37"></a>
-<span class="sourceLineNo">038</span>        implements BeforeAllCallback, AfterAllCallback, JUnit5InjectionSupport, BeforeEachCallback, AfterEachCallback {<a name="line.38"></a>
-<span class="sourceLineNo">039</span><a name="line.39"></a>
-<span class="sourceLineNo">040</span>    public static final ExtensionContext.Namespace NAMESPACE =<a name="line.40"></a>
-<span class="sourceLineNo">041</span>            ExtensionContext.Namespace.create(ComponentExtension.class.getName());<a name="line.41"></a>
-<span class="sourceLineNo">042</span><a name="line.42"></a>
-<span class="sourceLineNo">043</span>    private static final String USE_EACH_KEY = ComponentExtension.class.getName() + ".useEach";<a name="line.43"></a>
-<span class="sourceLineNo">044</span><a name="line.44"></a>
-<span class="sourceLineNo">045</span>    private static final String SHARED_INSTANCE = ComponentExtension.class.getName() + ".instance";<a name="line.45"></a>
-<span class="sourceLineNo">046</span><a name="line.46"></a>
-<span class="sourceLineNo">047</span>    @Override<a name="line.47"></a>
-<span class="sourceLineNo">048</span>    public void beforeAll(final ExtensionContext extensionContext) {<a name="line.48"></a>
-<span class="sourceLineNo">049</span>        final WithComponents element = extensionContext<a name="line.49"></a>
-<span class="sourceLineNo">050</span>                .getElement()<a name="line.50"></a>
-<span class="sourceLineNo">051</span>                .map(e -&gt; e.getAnnotation(WithComponents.class))<a name="line.51"></a>
+<span class="sourceLineNo">029</span>import org.junit.platform.commons.util.AnnotationUtils;<a name="line.29"></a>
+<span class="sourceLineNo">030</span>import org.talend.sdk.component.junit.BaseComponentsHandler;<a name="line.30"></a>
+<span class="sourceLineNo">031</span>import org.talend.sdk.component.junit.base.junit5.JUnit5InjectionSupport;<a name="line.31"></a>
+<span class="sourceLineNo">032</span>import org.talend.sdk.component.junit.environment.Environment;<a name="line.32"></a>
+<span class="sourceLineNo">033</span><a name="line.33"></a>
+<span class="sourceLineNo">034</span>/**<a name="line.34"></a>
+<span class="sourceLineNo">035</span> * Extension allowing the test to use a {@link org.talend.sdk.component.junit.ComponentsHandler}<a name="line.35"></a>
+<span class="sourceLineNo">036</span> * and auto register components from current project.<a name="line.36"></a>
+<span class="sourceLineNo">037</span> */<a name="line.37"></a>
+<span class="sourceLineNo">038</span>public class ComponentExtension extends BaseComponentsHandler<a name="line.38"></a>
+<span class="sourceLineNo">039</span>        implements BeforeAllCallback, AfterAllCallback, JUnit5InjectionSupport, BeforeEachCallback, AfterEachCallback {<a name="line.39"></a>
+<span class="sourceLineNo">040</span><a name="line.40"></a>
+<span class="sourceLineNo">041</span>    public static final ExtensionContext.Namespace NAMESPACE =<a name="line.41"></a>
+<span class="sourceLineNo">042</span>            ExtensionContext.Namespace.create(ComponentExtension.class.getName());<a name="line.42"></a>
+<span class="sourceLineNo">043</span><a name="line.43"></a>
+<span class="sourceLineNo">044</span>    private static final String USE_EACH_KEY = ComponentExtension.class.getName() + ".useEach";<a name="line.44"></a>
+<span class="sourceLineNo">045</span><a name="line.45"></a>
+<span class="sourceLineNo">046</span>    private static final String SHARED_INSTANCE = ComponentExtension.class.getName() + ".instance";<a name="line.46"></a>
+<span class="sourceLineNo">047</span><a name="line.47"></a>
+<span class="sourceLineNo">048</span>    @Override<a name="line.48"></a>
+<span class="sourceLineNo">049</span>    public void beforeAll(final ExtensionContext extensionContext) {<a name="line.49"></a>
+<span class="sourceLineNo">050</span>        final WithComponents element = AnnotationUtils<a name="line.50"></a>
+<span class="sourceLineNo">051</span>                .findAnnotation(extensionContext.getElement(), WithComponents.class)<a name="line.51"></a>
 <span class="sourceLineNo">052</span>                .orElseThrow(() -&gt; new IllegalArgumentException(<a name="line.52"></a>
 <span class="sourceLineNo">053</span>                        "No annotation @WithComponents on " + extensionContext.getRequiredTestClass()));<a name="line.53"></a>
 <span class="sourceLineNo">054</span>        this.packageName = element.value();<a name="line.54"></a>
@@ -134,7 +134,7 @@
 <span class="sourceLineNo">126</span>    }<a name="line.126"></a>
 <span class="sourceLineNo">127</span><a name="line.127"></a>
 <span class="sourceLineNo">128</span>    private boolean shouldIgnore(final Optional&lt;AnnotatedElement&gt; element) {<a name="line.128"></a>
-<span class="sourceLineNo">129</span>        return element.map(e -&gt; e.getDeclaredAnnotationsByType(Environment.class).length &gt; 0).orElse(false);<a name="line.129"></a>
+<span class="sourceLineNo">129</span>        return !AnnotationUtils.findRepeatableAnnotations(element, Environment.class).isEmpty();<a name="line.129"></a>
 <span class="sourceLineNo">130</span>    }<a name="line.130"></a>
 <span class="sourceLineNo">131</span>}<a name="line.131"></a>
 
