@@ -15,7 +15,7 @@
     <meta name="description" content="How to replace the default icon with a custom icon using Talend Component Kit">
     <meta name="keywords" content="component icon">
     <meta name="generator" content="Antora 2.2.0">
-<meta name="date" content="2020-02-07T08:43:34.489Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2020-02-07T09:50:29.989Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -494,7 +494,7 @@
             <div class="article-content">
               <div class="paragraph">
 <p>Every component family and component needs to have a representative icon.<br>
-You can use one of the icons provided by the framework or you can use a custom icon.</p>
+You have to define a custom icon as follows:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -507,9 +507,20 @@ You can use one of the icons provided by the framework or you can use a custom i
 </ul>
 </div>
 <div class="paragraph">
-<p>To use a custom icon, you need to have the icon file placed in the <code>src/main/resources/icons</code> folder of the project.
-The icon file needs to have a name following the convention <code>IconName.svg</code> - or the convention <code>IconName_icon32.png</code> which will run in degraded mode in Talend Cloud.
-Indeed, you can replace <code>IconName</code> by the name of your choice.</p>
+<p>Custom icons must comply with the following requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Icons must be stored in the <code>src/main/resources/icons</code> folder of the project.</p>
+</li>
+<li>
+<p>Icon file names need to match one of the following patterns: <code>IconName.svg</code> or <code>IconName_icon32.png</code>. The latter will run in degraded mode in Talend Cloud. Replace <code>IconName</code> by the name of your choice.</p>
+</li>
+<li>
+<p>Icons must be squared, even for the SVG format.</p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -523,19 +534,15 @@ Indeed, you can replace <code>IconName</code> by the name of your choice.</p>
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-even in SVG, the icon must be squared.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Note that SVG icons are not supported by Talend Studio and can cause the deployment of the component to fail.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-the Maven (or Gradle) <code>svg2png</code> plugin takes care of converting the SVG into PNG, if you want a finer control over both images, you can provide both in your component.
+<div class="paragraph">
+<p>If you aim at deploying a custom component to Talend Studio, specify PNG icons or use the Maven (or Gradle) <code>svg2png</code> plugin to convert SVG icons to PNG. If you want a finer control over both images, you can provide both in your component.</p>
+</div>
+<div class="paragraph">
+<p>Ultimately, you can also remove SVG parameters from the <code>talend.component.server.icon.paths</code> property in the HTTP server configuration.</p>
+</div>
 </td>
 </tr>
 </table>

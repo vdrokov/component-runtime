@@ -15,7 +15,7 @@
     <meta name="description" content="How to build a component archive that you can easily share and how to install the shared .car file in Talend Studio.">
     <meta name="keywords" content="deploy, install, car, .car, component archive">
     <meta name="generator" content="Antora 2.2.0">
-<meta name="date" content="2020-02-07T08:43:36.737Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
+<meta name="date" content="2020-02-07T09:50:32.518Z" scheme="YYYY-MM-DDTHH:mm:ss.sssZ">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css" integrity="sha256-rD61BPsgKHzJPyg7vpXaYOw6tMYuY2fz1p9033NYeM8=" crossorigin="anonymous" />
@@ -591,6 +591,31 @@ Remote projects are available with Enterprise versions of Talend Studio only.
 </div>
 <div class="paragraph">
 <p>The components are deployed automatically to the repository and available in the Palette for other users when connected to a remote project with the same sharing repository configuration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>My custom component builds correctly but does not appear in Talend Studio, how to fix it?</strong>
+This issue can be caused by the icon specified in the component metadata.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Make sure to specify a custom icon for the component and the component family.</p>
+</li>
+<li>
+<p>These custom icons must be in PNG format to be properly handled by Talend Studio.</p>
+</li>
+<li>
+<p>Remove SVG parameters from the <code>talend.component.server.icon.paths</code> property in the HTTP server configuration. Refer to <a href="ref-server-configuration.html" class="page">this section</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Learn more about defining custom icons for components in <a href="component-registering.html" class="page">this document</a>.</p>
 </div>
 </div>
 </div>
